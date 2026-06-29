@@ -1,4 +1,3 @@
-```markdown
 # CLAUDE.md — Resonance Knowledge System
 
 **The Resonance Grammar** — atoms, molecules, categories, and sensory lexicon. The vocabulary of the AudHDities Sanctuary. Every Sanctuary app references this system for shared meaning.
@@ -54,4 +53,3 @@ docs/
 - Every new Tauri plugin needs its own `allow-*` entries in capabilities, not just `plugin:default`
 - SQLite databases use internal app storage — no Android manifest permissions needed for database access
 - Never use non-ASCII characters (emoji, special symbols) as DEFAULT values in SQL migration strings — they can fail silently through the Rust JNI bridge on Android
-```
