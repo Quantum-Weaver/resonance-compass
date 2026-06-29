@@ -1,0 +1,15 @@
+{
+  "project": "Resonance Compass",
+  "generated": "2026-06-28T20:28:45.146271 | in sovereign time",
+  "phases_complete": [],
+  "phases_pending": [],
+  "next_phase": null,
+  "total_routes": 5,
+  "known_bugs": [
+    "| B1 | SQLite ACL error on Android: \"command plugin:sql\\|execute not allowed by ACL\" | \u2705 Fixed \u2014 added `sql:allow-load`, `sql:allow-execute`, `sql:allow-select`, `sql:allow-close` to `capabilities/default.json` |",
+    "| B2 | Migration v2 used emoji `'\u2728'` as SQL DEFAULT value \u2014 breaks JNI encoding on Android SQLite | \u2705 Fixed \u2014 changed to `DEFAULT ''` in migration v2; migration v3 ensures clean schema |",
+    "| B3 | `addEcho()` silently returned null instead of throwing when db was null | \u2705 Fixed \u2014 now throws descriptive error; dbError banner shown in add form |"
+  ],
+  "next_session": "",
+  "recommendation": "All phases complete"
+}

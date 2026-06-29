@@ -1,0 +1,156 @@
+{
+  "route_name": "home",
+  "source_file": "src\\routes\\+page.svelte",
+  "scan_timestamp": "2026-06-28T20:28:45.043849 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [
+        "senses"
+      ],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "searchInput",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "searchQuery",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "activeSense",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "activeEmoji",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "displayCount",
+        "rune": "$state",
+        "source": "50"
+      },
+      {
+        "name": "visible",
+        "rune": "$derived",
+        "source": "filteredEchoes.slice(0, displayCount"
+      },
+      {
+        "name": "hasMore",
+        "rune": "$derived",
+        "source": "filteredEchoes.length > displayCount"
+      },
+      {
+        "name": "hasFilters",
+        "rune": "$derived",
+        "source": "!!(activeSense || activeEmoji || searchQuery.trim("
+      },
+      {
+        "name": "quickLogging",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "quickLogSuccess",
+        "rune": "$state",
+        "source": "false"
+      }
+    ],
+    "functions": [
+      {
+        "name": "setSense",
+        "params": "id: string"
+      },
+      {
+        "name": "setEmoji",
+        "params": "emoji: string"
+      },
+      {
+        "name": "setSort",
+        "params": "order: 'newest' | 'oldest' | 'intensity'"
+      },
+      {
+        "name": "clearAll",
+        "params": ""
+      },
+      {
+        "name": "getSense",
+        "params": "senseId: string"
+      },
+      {
+        "name": "quickLog",
+        "params": ""
+      },
+      {
+        "name": "relativeTime",
+        "params": "timestamp: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "home-title",
+      "count-badge",
+      "sense-badge",
+      "echo-emoji",
+      "chip",
+      "search-icon",
+      "load-more",
+      "echo-meta",
+      "home-header",
+      "sort-btn",
+      "empty-state",
+      "echo-list",
+      "sort-row",
+      "clear-btn",
+      "empty-heading",
+      "quick-log-hint",
+      "filter-status",
+      "echo-card",
+      "inline-link",
+      "empty-sub",
+      "search-clear",
+      "echo-note",
+      "echo-body",
+      "empty-icon",
+      "echo-header",
+      "search-input",
+      "echo-intensity",
+      "dot",
+      "chip-scroll",
+      "echo-name",
+      "quick-log-fab",
+      "echo-time",
+      "browse",
+      "home",
+      "emoji-chip",
+      "search-wrap"
+    ],
+    "has_style_block": true,
+    "script_lines": 148,
+    "template_lines": 154,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [
+      "99",
+      "100"
+    ],
+    "has_ondestroy": true
+  },
+  "phase": 9,
+  "status": "complete"
+}

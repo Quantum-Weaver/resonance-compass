@@ -1,0 +1,104 @@
+{
+  "route_name": "insights",
+  "source_file": "src\\routes\\insights\\+page.svelte",
+  "scan_timestamp": "2026-06-28T20:28:45.050765 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [],
+      "data": [
+        "senses"
+      ],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "echoes",
+        "rune": "$derived",
+        "source": "echoStore.echoes"
+      },
+      {
+        "name": "maxCount",
+        "rune": "$derived",
+        "source": "topEmojis[0]?.count ?? 1"
+      },
+      {
+        "name": "topSense",
+        "rune": "$derived",
+        "source": "bySense.find(s => s.count > 0"
+      },
+      {
+        "name": "hasThisWeek",
+        "rune": "$derived",
+        "source": "recentMood.some(d => d.count > 0"
+      },
+      {
+        "name": "notSureCount",
+        "rune": "$derived",
+        "source": "echoes.filter((e"
+      }
+    ],
+    "functions": [
+      {
+        "name": "dayKey",
+        "params": "d: Date"
+      },
+      {
+        "name": "emojiSize",
+        "params": "count: number"
+      },
+      {
+        "name": "dayLabel",
+        "params": "date: Date, index: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "sense-ct",
+      "cloud-emoji",
+      "sense-nm",
+      "streak-unit",
+      "emoji-cloud",
+      "insights",
+      "mood-row",
+      "card-empty",
+      "card-note",
+      "tod-icon",
+      "tod-grid",
+      "tod-count",
+      "card",
+      "sense-list",
+      "streak-display",
+      "insights-header",
+      "tod-cell",
+      "mood-lbl",
+      "mood-day",
+      "mood-emoji",
+      "cards",
+      "sense-row",
+      "sense-em",
+      "tod-lbl",
+      "insights-title",
+      "card-label",
+      "card-insight",
+      "streak-num"
+    ],
+    "has_style_block": true,
+    "script_lines": 204,
+    "template_lines": 148,
+    "uses_runes": {
+      "state": false,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 99,
+  "status": "complete"
+}

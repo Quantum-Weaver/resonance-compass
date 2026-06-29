@@ -1,0 +1,190 @@
+{
+  "route_name": "add",
+  "source_file": "src\\routes\\add\\+page.svelte",
+  "scan_timestamp": "2026-06-28T20:28:45.047439 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [
+        "senses",
+        "emojis"
+      ],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "name",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "selectedSense",
+        "rune": "$state",
+        "source": "'other'"
+      },
+      {
+        "name": "selectedSubcategory",
+        "rune": "$state",
+        "source": "'custom'"
+      },
+      {
+        "name": "customSubcategoryText",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "selectedEmoji",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "note",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "intensity",
+        "rune": "$state",
+        "source": "3"
+      },
+      {
+        "name": "useCustomTime",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "customTimestamp",
+        "rune": "$state",
+        "source": "toLocalISO(new Date("
+      },
+      {
+        "name": "saving",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "saveError",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "saveSuccess",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "isEditMode",
+        "rune": "$derived",
+        "source": "editId !== null"
+      },
+      {
+        "name": "showAdvanced",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "isSimplified",
+        "rune": "$derived",
+        "source": "!showAdvanced && echoStore.totalCount < 10"
+      },
+      {
+        "name": "showEmojiNudge",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "currentSense",
+        "rune": "$derived",
+        "source": "SENSES.find((s"
+      }
+    ],
+    "functions": [
+      {
+        "name": "toLocalISO",
+        "params": "date: Date"
+      },
+      {
+        "name": "selectSense",
+        "params": "senseId: string"
+      },
+      {
+        "name": "getFinalSubcategory",
+        "params": ""
+      },
+      {
+        "name": "getTimestamp",
+        "params": ""
+      },
+      {
+        "name": "save",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/"
+    ],
+    "css_classes": [
+      "emoji-btn",
+      "disclosure-text",
+      "emoji-skip-row",
+      "emoji-grid",
+      "not-sure-btn",
+      "intensity-dot",
+      "chip",
+      "custom-sub-input",
+      "db-error-banner",
+      "chip-muted",
+      "section-label",
+      "name-input",
+      "disclosure-hint",
+      "actions",
+      "cancel-btn",
+      "sense-emoji",
+      "optional",
+      "back-btn",
+      "disambig-chip",
+      "time-toggle",
+      "disambig-chips",
+      "save-error",
+      "form",
+      "datetime-input",
+      "save-btn",
+      "sense-name",
+      "disambig-text",
+      "sense-scroll",
+      "disambig",
+      "add-header",
+      "disclosure-toggle",
+      "intensity-row",
+      "sense-btn",
+      "time-btn",
+      "intensity-val",
+      "emoji-nudge",
+      "emoji-skip-btn",
+      "note-input",
+      "chip-row",
+      "emoji-def",
+      "form-section",
+      "add-title",
+      "add-page"
+    ],
+    "has_style_block": true,
+    "script_lines": 149,
+    "template_lines": 201,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [],
+    "has_ondestroy": true
+  },
+  "phase": 99,
+  "status": "complete"
+}

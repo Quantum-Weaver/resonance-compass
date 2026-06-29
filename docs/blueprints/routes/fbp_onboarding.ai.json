@@ -1,0 +1,98 @@
+{
+  "route_name": "onboarding",
+  "source_file": "src\\routes\\onboarding\\+page.svelte",
+  "scan_timestamp": "2026-06-28T20:28:45.053001 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": [
+        "theme"
+      ]
+    },
+    "reactive_state": [
+      {
+        "name": "screen",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "vesselName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "selectedPreset",
+        "rune": "$state",
+        "source": "'dark'"
+      }
+    ],
+    "functions": [
+      {
+        "name": "begin",
+        "params": ""
+      },
+      {
+        "name": "next",
+        "params": ""
+      },
+      {
+        "name": "selectTheme",
+        "params": "key: string"
+      },
+      {
+        "name": "enterEchoes",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/"
+    ],
+    "css_classes": [
+      "ob-title",
+      "name-section",
+      "ob-sub",
+      "btn-primary",
+      "name-hint",
+      "header-text",
+      "screen",
+      "name-label",
+      "name-input",
+      "how-text",
+      "theme-grid",
+      "screen-body",
+      "how-card",
+      "theme-icon",
+      "screen-actions",
+      "how-icon",
+      "theme-swatch",
+      "theme-card",
+      "progress",
+      "dot",
+      "how-cards",
+      "btn-skip",
+      "onboarding",
+      "sigil",
+      "sigil-wrap",
+      "theme-name"
+    ],
+    "has_style_block": true,
+    "script_lines": 38,
+    "template_lines": 128,
+    "uses_runes": {
+      "state": true,
+      "derived": false,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 13,
+  "status": "complete"
+}

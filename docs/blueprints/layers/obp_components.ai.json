@@ -1,0 +1,59 @@
+{
+  "layer": "components",
+  "components": {
+    "ComfortBar": {
+      "file": "src\\lib\\components\\ComfortBar.svelte",
+      "props": [],
+      "lines": 179,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [
+        "110"
+      ],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+layout.svelte"
+      ]
+    },
+    "GradientPulse": {
+      "file": "src\\lib\\components\\GradientPulse.svelte",
+      "props": [],
+      "lines": 55,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\onboarding\\+page.svelte"
+      ]
+    },
+    "Sidebar": {
+      "file": "src\\lib\\components\\Sidebar.svelte",
+      "props": [],
+      "lines": 177,
+      "uses_runes": {
+        "state": true,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [
+        "120",
+        "49",
+        "50"
+      ],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+layout.svelte"
+      ]
+    }
+  },
+  "total_components": 3,
+  "icon_components": [],
+  "scan_timestamp": "2026-06-28T20:28:45.095268 | in sovereign time"
+}

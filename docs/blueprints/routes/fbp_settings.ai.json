@@ -1,0 +1,112 @@
+{
+  "route_name": "settings",
+  "source_file": "src\\routes\\settings\\+page.svelte",
+  "scan_timestamp": "2026-06-28T20:28:45.055703 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": [
+        "theme"
+      ]
+    },
+    "reactive_state": [
+      {
+        "name": "echoCount",
+        "rune": "$derived",
+        "source": "echoStore.totalCount"
+      },
+      {
+        "name": "pendingExport",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "showUninstallGuide",
+        "rune": "$state",
+        "source": "false"
+      }
+    ],
+    "functions": [
+      {
+        "name": "exportData",
+        "params": ""
+      },
+      {
+        "name": "startPurge",
+        "params": "withExport: boolean"
+      },
+      {
+        "name": "cancelPurge",
+        "params": ""
+      },
+      {
+        "name": "executePurge",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/onboarding"
+    ],
+    "css_classes": [
+      "echo-count",
+      "font-row",
+      "font-btn",
+      "about-built",
+      "btn-danger-filled",
+      "about-tag",
+      "confirm-actions",
+      "warning",
+      "confirm-card",
+      "btn-neutral",
+      "theme-grid",
+      "btn-danger",
+      "danger-zone",
+      "font-label",
+      "theme-icon",
+      "about-name",
+      "theme-swatch",
+      "section",
+      "btn-uninstall",
+      "about-card",
+      "theme-card",
+      "section-title",
+      "confirm-text",
+      "final",
+      "uninstall-section",
+      "settings",
+      "about-app",
+      "uninstall-intro",
+      "uninstall-guide",
+      "settings-title",
+      "danger-label",
+      "uninstall-steps",
+      "settings-header",
+      "about-license",
+      "uninstall-note",
+      "about-version",
+      "theme-name",
+      "font-btns",
+      "btn-data",
+      "data-actions"
+    ],
+    "has_style_block": true,
+    "script_lines": 67,
+    "template_lines": 137,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 10,
+  "status": "complete"
+}
