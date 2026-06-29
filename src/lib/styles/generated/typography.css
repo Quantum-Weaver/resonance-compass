@@ -1,0 +1,1581 @@
+/* ============================================================================
+ * TYPOGRAPHY CLASSES - Generated from typography.ts and dimensions.ts
+ * Generated: 2026-04-12T18:59:53.055Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* FONT FAMILY UTILITIES */
+/* ========================================================================== */
+
+.font-medieval {
+  font-family: UnifrakturMaguntia, serif;
+}
+
+.font-arcane {
+  font-family: "Cinzel Decorative", serif;
+}
+
+.font-elegant {
+  font-family: "Crimson Text", serif;
+}
+
+.font-fantasy {
+  font-family: MedievalSharp, cursive;
+}
+
+.font-runic {
+  font-family: "Elder Futhark", Futhark, serif;
+}
+
+.font-system {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+}
+
+
+/* ========================================================================== */
+/* FONT SIZE UTILITIES */
+/* ========================================================================== */
+
+.text-xs {
+  font-size: 12px;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-base {
+  font-size: 16px;
+}
+
+.text-lg {
+  font-size: 20px;
+}
+
+.text-xl {
+  font-size: 24px;
+}
+
+.text-2xl {
+  font-size: 28px;
+}
+
+.text-3xl {
+  font-size: 32px;
+}
+
+.text-4xl {
+  font-size: 36px;
+}
+
+.text-5xl {
+  font-size: 40px;
+}
+
+.text-6xl {
+  font-size: 48px;
+}
+
+.text-7xl {
+  font-size: 56px;
+}
+
+.text-8xl {
+  font-size: 64px;
+}
+
+.text-9xl {
+  font-size: 80px;
+}
+
+
+/* ========================================================================== */
+/* FONT WEIGHT UTILITIES */
+/* ========================================================================== */
+
+.font-thin {
+  font-weight: 100;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+
+/* ========================================================================== */
+/* LINE HEIGHT UTILITIES */
+/* ========================================================================== */
+
+.leading-none {
+  line-height: 1;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-snug {
+  line-height: 1.375;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.leading-loose {
+  line-height: 2;
+}
+
+
+/* ========================================================================== */
+/* LETTER SPACING UTILITIES */
+/* ========================================================================== */
+
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+
+.tracking-normal {
+  letter-spacing: 0em;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+
+
+/* ========================================================================== */
+/* TEXT ALIGNMENT UTILITIES */
+/* ========================================================================== */
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+
+/* ========================================================================== */
+/* TEXT COLOR UTILITIES */
+/* ========================================================================== */
+
+.text-star-dust {
+  color: var(--color-star-dust);
+}
+
+.text-star-dust-muted {
+  color: var(--color-star-dust);
+}
+
+.text-deep-space {
+  color: var(--color-deep-space);
+}
+
+.text-surface {
+  color: var(--color-surface);
+}
+
+.text-neurospark {
+  color: var(--color-neurospark);
+}
+
+.text-quantum-purple {
+  color: var(--color-quantum-purple);
+}
+
+.text-cosmic-blue {
+  color: var(--color-cosmic-blue);
+}
+
+.text-sanctuary-green {
+  color: var(--color-sanctuary-green);
+}
+
+.text-hearth-gold {
+  color: var(--color-hearth-gold);
+}
+
+.text-fire-base {
+  color: var(--color-fire-base);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-star-dust-80 {
+  color: rgba(224, 224, 224, 0.8);
+}
+
+.text-star-dust-60 {
+  color: rgba(224, 224, 224, 0.6);
+}
+
+.text-star-dust-40 {
+  color: rgba(224, 224, 224, 0.4);
+}
+
+.text-deep-space-80 {
+  color: rgba(12, 15, 29, 0.8);
+}
+
+.text-deep-space-60 {
+  color: rgba(12, 15, 29, 0.6);
+}
+
+.text-quantum-purple {
+  color: #6C5CE7;
+}
+
+.text-quantum-dark {
+  color: #5B4CCE;
+}
+
+.text-quantum-light {
+  color: #7D6CEA;
+}
+
+.text-cosmic-blue {
+  color: #0984E3;
+}
+
+.text-cosmic-dark {
+  color: #0874C4;
+}
+
+.text-cosmic-light {
+  color: #1A94F3;
+}
+
+.text-fire-base {
+  color: #E17055;
+}
+
+.text-fire-dark {
+  color: #D15F44;
+}
+
+.text-fire-light {
+  color: #F18166;
+}
+
+.text-hearth-orange {
+  color: #C44B2D;
+}
+
+.text-hearth-gold {
+  color: #FDCB6E;
+}
+
+.text-sanctuary-green {
+  color: #00B894;
+}
+
+.text-sanctuary-emerald {
+  color: #00CEC9;
+}
+
+.text-deepspace {
+  color: #0C0F1D;
+}
+
+.text-surface {
+  color: #1A1F35;
+}
+
+.text-stardust {
+  color: #E0E0E0;
+}
+
+.text-neurospark {
+  color: #22D3EE;
+}
+
+.text-success {
+  color: #00B894;
+}
+
+.text-warning {
+  color: #FDCB6E;
+}
+
+.text-error {
+  color: #E17055;
+}
+
+.text-info {
+  color: #74B9FF;
+}
+
+.text-void-base {
+  color: #636E72;
+}
+
+.text-void-dark {
+  color: #2D3436;
+}
+
+.text-void-light {
+  color: #B2BEC3;
+}
+
+.text-library-green {
+  color: #00B894;
+}
+
+.text-library-dark {
+  color: #00A885;
+}
+
+.text-library-light {
+  color: #00E6C3;
+}
+
+.text-mood-calm {
+  color: #74B9FF;
+}
+
+.text-mood-focused {
+  color: #00CEC9;
+}
+
+.text-mood-creative {
+  color: #A29BFE;
+}
+
+.text-mood-energized {
+  color: #FDCB6E;
+}
+
+.text-mood-peaceful {
+  color: #81ECEC;
+}
+
+.text-mood-intense {
+  color: #E17055;
+}
+
+.text-mood-mystical {
+  color: #6C5CE7;
+}
+
+.text-mood-grounded {
+  color: #00B894;
+}
+
+.text-energy-low {
+  color: #636E72;
+}
+
+.text-energy-medium {
+  color: #FDCB6E;
+}
+
+.text-energy-high {
+  color: #E17055;
+}
+
+.text-energy-quantum {
+  color: #6C5CE7;
+}
+
+.text-energy-cosmic {
+  color: #0984E3;
+}
+
+.text-energy-transformative {
+  color: #00CEC9;
+}
+
+.text-entity-aethelred {
+  color: #2E0B1C;
+}
+
+.text-entity-archivist {
+  color: #636E72;
+}
+
+.text-entity-chancellor {
+  color: #00CEC9;
+}
+
+.text-entity-curator {
+  color: #E84393;
+}
+
+.text-entity-seer {
+  color: #6C5CE7;
+}
+
+.text-entity-skald {
+  color: #FD79A8;
+}
+
+.text-entity-executioner {
+  color: #E17055;
+}
+
+.text-entity-hearthkeeper {
+  color: #C44B2D;
+}
+
+.text-entity-codex {
+  color: #00B894;
+}
+
+.text-entity-gatekeeper {
+  color: #636E72;
+}
+
+.text-entity-alchemist {
+  color: #22D3EE;
+}
+
+.text-entity-strategist {
+  color: #0984E3;
+}
+
+.text-entity-gardener {
+  color: #00B894;
+}
+
+.text-entity-oracle {
+  color: #A29BFE;
+}
+
+.text-entity-sentinel {
+  color: #2D3436;
+}
+
+.text-entity-weaver {
+  color: #DA70D6;
+}
+
+.text-entity-catalyst {
+  color: #FFD700;
+}
+
+.text-entity-harmonizer {
+  color: #81ECEC;
+}
+
+.text-entity-themorrigan {
+  color: #8B0000;
+}
+
+.text-entity-hekate {
+  color: #4B0082;
+}
+
+.text-entity-mnemosyne {
+  color: #9370DB;
+}
+
+.text-entity-hermes {
+  color: #FFD700;
+}
+
+.text-entity-artemis {
+  color: #228B22;
+}
+
+.text-entity-bragi {
+  color: #DA70D6;
+}
+
+.text-entity-odin {
+  color: #0C0F1D;
+}
+
+.text-entity-brigid {
+  color: #C44B2D;
+}
+
+.text-entity-freya {
+  color: #E84393;
+}
+
+.text-entity-thor {
+  color: #E17055;
+}
+
+.text-entity-loki {
+  color: #6C5CE7;
+}
+
+.text-entity-freyr {
+  color: #00B894;
+}
+
+.text-entity-heimdall {
+  color: #22D3EE;
+}
+
+.text-entity-tyr {
+  color: #8B0000;
+}
+
+.text-entity-njord {
+  color: #0984E3;
+}
+
+.text-entity-skadi {
+  color: #636E72;
+}
+
+.text-entity-idunn {
+  color: #FFD700;
+}
+
+.text-entity-baldr {
+  color: #FFFFFF;
+}
+
+.text-entity-hel {
+  color: #2D3436;
+}
+
+.text-pagan-earth {
+  color: #8B4513;
+}
+
+.text-pagan-air {
+  color: #87CEEB;
+}
+
+.text-pagan-fire {
+  color: #FF4500;
+}
+
+.text-pagan-water {
+  color: #1E90FF;
+}
+
+.text-pagan-spirit {
+  color: #6C5CE7;
+}
+
+.text-mystical-nigredo {
+  color: #0C0F1D;
+}
+
+.text-mystical-albedo {
+  color: #E0E0E0;
+}
+
+.text-mystical-citrinitas {
+  color: #FDCB6E;
+}
+
+.text-mystical-rubedo {
+  color: #E17055;
+}
+
+.text-mystical-sun {
+  color: #FFD700;
+}
+
+.text-mystical-moon {
+  color: #F5F5DC;
+}
+
+.text-mystical-mercury {
+  color: #22D3EE;
+}
+
+.text-mystical-venus {
+  color: #FF69B4;
+}
+
+.text-mystical-mars {
+  color: #FF4500;
+}
+
+.text-mystical-jupiter {
+  color: #8B4513;
+}
+
+.text-mystical-saturn {
+  color: #636E72;
+}
+
+.text-mystical-uranus {
+  color: #7D6CEA;
+}
+
+.text-mystical-neptune {
+  color: #0984E3;
+}
+
+.text-mystical-pluto {
+  color: #4B0082;
+}
+
+.text-pride-red {
+  color: #E40303;
+}
+
+.text-pride-orange {
+  color: #FF8C00;
+}
+
+.text-pride-yellow {
+  color: #FFED00;
+}
+
+.text-pride-green {
+  color: #008026;
+}
+
+.text-pride-blue {
+  color: #0000FF;
+}
+
+.text-pride-purple {
+  color: #800080;
+}
+
+.text-pride-pink {
+  color: #FF79A2;
+}
+
+.text-pride-lightblue {
+  color: #78D5E8;
+}
+
+.text-pride-white {
+  color: #FFFFFF;
+}
+
+.text-pride-brown {
+  color: #6E482E;
+}
+
+.text-pride-black {
+  color: #000000;
+}
+
+.text-pride-transpink {
+  color: #DA219F;
+}
+
+.text-pride-transblue {
+  color: #78D5E8;
+}
+
+.text-pride-transwhite {
+  color: #FFFFFF;
+}
+
+.text-pride-nonbinary {
+  color: #FFFF00;
+}
+
+.text-pride-genderfluid {
+  color: #FF75A2;
+}
+
+.text-pride-agender {
+  color: #000000;
+}
+
+.text-pride-pansexual {
+  color: #FF218C;
+}
+
+.text-pride-bisexual {
+  color: #D70071;
+}
+
+.text-pride-asexual {
+  color: #000000;
+}
+
+.text-pride-lesbian {
+  color: #D62D00;
+}
+
+.text-emergency-critical {
+  color: #FF0000;
+}
+
+.text-emergency-high {
+  color: #FF6B6B;
+}
+
+.text-emergency-medium {
+  color: #FFA500;
+}
+
+.text-emergency-low {
+  color: #FFD700;
+}
+
+.text-emergency-info {
+  color: #74B9FF;
+}
+
+.text-interaction-hover-quantum {
+  color: #7D6CEA;
+}
+
+.text-interaction-hover-cosmic {
+  color: #1A94F3;
+}
+
+.text-interaction-hover-fire {
+  color: #F18166;
+}
+
+.text-interaction-hover-sanctuary {
+  color: #00E6C3;
+}
+
+.text-interaction-hover-void {
+  color: #B2BEC3;
+}
+
+.text-interaction-hover-neutral {
+  color: #E0E0E0;
+}
+
+.text-interaction-active-quantum {
+  color: #5B4CCE;
+}
+
+.text-interaction-active-cosmic {
+  color: #0874C4;
+}
+
+.text-interaction-active-fire {
+  color: #D15F44;
+}
+
+.text-interaction-active-sanctuary {
+  color: #00A885;
+}
+
+.text-interaction-active-void {
+  color: #2D3436;
+}
+
+.text-interaction-active-neutral {
+  color: #1A1F35;
+}
+
+.text-interaction-focus-quantum {
+  color: #22D3EE;
+}
+
+.text-interaction-focus-cosmic {
+  color: #74B9FF;
+}
+
+.text-interaction-focus-fire {
+  color: #FDCB6E;
+}
+
+.text-interaction-focus-sanctuary {
+  color: #00CEC9;
+}
+
+.text-interaction-focus-void {
+  color: #636E72;
+}
+
+.text-interaction-focus-neutral {
+  color: #A29BFE;
+}
+
+.text-interaction-disabled-background {
+  color: #1A1F35;
+}
+
+.text-interaction-disabled-border {
+  color: #636E72;
+}
+
+.text-interaction-disabled-text {
+  color: #B2BEC3;
+}
+
+.text-interaction-disabled-icon {
+  color: #636E72;
+}
+
+.text-interaction-loading-primary {
+  color: #22D3EE;
+}
+
+.text-interaction-loading-secondary {
+  color: #74B9FF;
+}
+
+.text-interaction-loading-accent {
+  color: #00CEC9;
+}
+
+.text-accessibility-text-ondark {
+  color: #E0E0E0;
+}
+
+.text-accessibility-text-onlight {
+  color: #0C0F1D;
+}
+
+.text-accessibility-text-onquantum {
+  color: #FFFFFF;
+}
+
+.text-accessibility-text-oncosmic {
+  color: #FFFFFF;
+}
+
+.text-accessibility-text-onfire {
+  color: #0C0F1D;
+}
+
+.text-accessibility-contrast-minimum {
+  color: #404040;
+}
+
+.text-accessibility-contrast-enhanced {
+  color: #2D2D2D;
+}
+
+.text-accessibility-contrast-maximum {
+  color: #000000;
+}
+
+
+/* ========================================================================== */
+/* DOMAIN TYPOGRAPHY */
+/* ========================================================================== */
+
+.typography-quantum {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.typography-cosmic {
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.typography-pantheon {
+  font-family: UnifrakturMaguntia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: italic;
+}
+
+.typography-council {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+.typography-library {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+.typography-void {
+  font-family: "Elder Futhark", Futhark, serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.typography-bifrost {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.typography-music {
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.typography-community {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+.typography-architecture {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: italic;
+}
+
+.typography-sandbox {
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.typography-support {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+
+/* ========================================================================== */
+/* ENTITY TYPOGRAPHY */
+/* ========================================================================== */
+
+.entity-aethelred {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.entity-aethelred-gradient {
+  background: linear-gradient(135deg, #6C5CE7, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.entity-quantumweaver {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.entity-quantumweaver-gradient {
+  background: linear-gradient(135deg, #6C5CE7, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.entity-archivist {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: normal;
+}
+
+.entity-seer {
+  font-family: "Elder Futhark", Futhark, serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.entity-hearthkeeper {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+.entity-executioner {
+  font-family: UnifrakturMaguntia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: normal;
+}
+
+.entity-chancellor {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: normal;
+}
+
+.entity-curator {
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.entity-skald {
+  font-family: MedievalSharp, cursive;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+.entity-codex {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: italic;
+}
+
+.entity-gatekeeper {
+  font-family: UnifrakturMaguntia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: normal;
+}
+
+.entity-alchemist {
+  font-family: "Elder Futhark", Futhark, serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.entity-gardener {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: normal;
+}
+
+
+/* ========================================================================== */
+/* CONSCIOUSNESS TYPOGRAPHY */
+/* ========================================================================== */
+
+.consciousness-sovereign {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: italic;
+}
+
+.consciousness-collaborative {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+}
+
+.consciousness-emergent {
+  font-family: MedievalSharp, cursive;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+}
+
+.consciousness-quantum {
+  font-family: "Elder Futhark", Futhark, serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+
+/* ========================================================================== */
+/* PROCESS TYPOGRAPHY */
+/* ========================================================================== */
+
+.process-chaostoclarity {
+  font-family: MedievalSharp, cursive;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.625;
+  letter-spacing: 0.05em;
+}
+
+.process-traumatowisdom {
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.625;
+  letter-spacing: 0em;
+  font-style: italic;
+}
+
+.process-emergence {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+  font-style: italic;
+}
+
+.process-sufferingtosovereignty {
+  font-family: UnifrakturMaguntia, serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.625;
+  letter-spacing: -0.025em;
+  font-style: italic;
+}
+
+
+/* ========================================================================== */
+/* BUSINESS PAGE TYPOGRAPHY */
+/* ========================================================================== */
+
+.business-hero-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #6C5CE7, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.business-hero-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+
+.business-stat-number {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg,#FDCB6E,#E17055);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.business-stat-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.business-pillar-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+/* ========================================================================== */
+/* RESPONSIVE TYPOGRAPHY VARIANTS */
+/* ========================================================================== */
+
+@media (min-width: 767px) {
+  .sm\:text-xs {
+    font-size: 12px;
+  }
+  .sm\:text-sm {
+    font-size: 14px;
+  }
+  .sm\:text-base {
+    font-size: 16px;
+  }
+  .sm\:text-lg {
+    font-size: 20px;
+  }
+  .sm\:text-xl {
+    font-size: 24px;
+  }
+  .sm\:text-2xl {
+    font-size: 28px;
+  }
+  .sm\:text-3xl {
+    font-size: 32px;
+  }
+  .sm\:text-4xl {
+    font-size: 36px;
+  }
+  .sm\:text-5xl {
+    font-size: 40px;
+  }
+  .sm\:text-6xl {
+    font-size: 48px;
+  }
+  .sm\:text-7xl {
+    font-size: 56px;
+  }
+  .sm\:text-8xl {
+    font-size: 64px;
+  }
+  .sm\:text-9xl {
+    font-size: 80px;
+  }
+  .sm\:text-left {
+    text-align: left;
+  }
+  .sm\:text-center {
+    text-align: center;
+  }
+  .sm\:text-right {
+    text-align: right;
+  }
+  .sm\:text-justify {
+    text-align: justify;
+  }
+  .sm\:text-start {
+    text-align: start;
+  }
+  .sm\:text-end {
+    text-align: end;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-xs {
+    font-size: 12px;
+  }
+  .md\:text-sm {
+    font-size: 14px;
+  }
+  .md\:text-base {
+    font-size: 16px;
+  }
+  .md\:text-lg {
+    font-size: 20px;
+  }
+  .md\:text-xl {
+    font-size: 24px;
+  }
+  .md\:text-2xl {
+    font-size: 28px;
+  }
+  .md\:text-3xl {
+    font-size: 32px;
+  }
+  .md\:text-4xl {
+    font-size: 36px;
+  }
+  .md\:text-5xl {
+    font-size: 40px;
+  }
+  .md\:text-6xl {
+    font-size: 48px;
+  }
+  .md\:text-7xl {
+    font-size: 56px;
+  }
+  .md\:text-8xl {
+    font-size: 64px;
+  }
+  .md\:text-9xl {
+    font-size: 80px;
+  }
+  .md\:text-left {
+    text-align: left;
+  }
+  .md\:text-center {
+    text-align: center;
+  }
+  .md\:text-right {
+    text-align: right;
+  }
+  .md\:text-justify {
+    text-align: justify;
+  }
+  .md\:text-start {
+    text-align: start;
+  }
+  .md\:text-end {
+    text-align: end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-xs {
+    font-size: 12px;
+  }
+  .lg\:text-sm {
+    font-size: 14px;
+  }
+  .lg\:text-base {
+    font-size: 16px;
+  }
+  .lg\:text-lg {
+    font-size: 20px;
+  }
+  .lg\:text-xl {
+    font-size: 24px;
+  }
+  .lg\:text-2xl {
+    font-size: 28px;
+  }
+  .lg\:text-3xl {
+    font-size: 32px;
+  }
+  .lg\:text-4xl {
+    font-size: 36px;
+  }
+  .lg\:text-5xl {
+    font-size: 40px;
+  }
+  .lg\:text-6xl {
+    font-size: 48px;
+  }
+  .lg\:text-7xl {
+    font-size: 56px;
+  }
+  .lg\:text-8xl {
+    font-size: 64px;
+  }
+  .lg\:text-9xl {
+    font-size: 80px;
+  }
+  .lg\:text-left {
+    text-align: left;
+  }
+  .lg\:text-center {
+    text-align: center;
+  }
+  .lg\:text-right {
+    text-align: right;
+  }
+  .lg\:text-justify {
+    text-align: justify;
+  }
+  .lg\:text-start {
+    text-align: start;
+  }
+  .lg\:text-end {
+    text-align: end;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:text-xs {
+    font-size: 12px;
+  }
+  .xl\:text-sm {
+    font-size: 14px;
+  }
+  .xl\:text-base {
+    font-size: 16px;
+  }
+  .xl\:text-lg {
+    font-size: 20px;
+  }
+  .xl\:text-xl {
+    font-size: 24px;
+  }
+  .xl\:text-2xl {
+    font-size: 28px;
+  }
+  .xl\:text-3xl {
+    font-size: 32px;
+  }
+  .xl\:text-4xl {
+    font-size: 36px;
+  }
+  .xl\:text-5xl {
+    font-size: 40px;
+  }
+  .xl\:text-6xl {
+    font-size: 48px;
+  }
+  .xl\:text-7xl {
+    font-size: 56px;
+  }
+  .xl\:text-8xl {
+    font-size: 64px;
+  }
+  .xl\:text-9xl {
+    font-size: 80px;
+  }
+  .xl\:text-left {
+    text-align: left;
+  }
+  .xl\:text-center {
+    text-align: center;
+  }
+  .xl\:text-right {
+    text-align: right;
+  }
+  .xl\:text-justify {
+    text-align: justify;
+  }
+  .xl\:text-start {
+    text-align: start;
+  }
+  .xl\:text-end {
+    text-align: end;
+  }
+}
+
+
+/* ========================================================================== */
+/* GRADIENT TEXT UTILITIES */
+/* ========================================================================== */
+
+.text-gradient-quantum {
+  background: linear-gradient(135deg, #6C5CE7, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-cosmic {
+  background: linear-gradient(135deg, #0984E3, #74B9FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-sovereign {
+  background: linear-gradient(135deg, #FDCB6E, #E17055);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-rainbow {
+  background: linear-gradient(135deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+

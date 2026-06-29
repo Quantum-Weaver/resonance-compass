@@ -1,0 +1,471 @@
+/* ============================================================================
+ * ANIMATION VARIANTS - Generated from consciousness.ts and motion.ts
+ * Generated: 2026-04-12T18:59:53.053Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* CONTINUITY BEAM VARIANTS */
+/* ========================================================================== */
+
+.continuity-beam-low {
+  position: relative;
+  overflow: hidden;
+}
+
+.continuity-beam-low::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #22D3EE, #6C5CE7, #0984E3, 
+    transparent
+  );
+  animation: beamTravel 4500ms linear infinite;
+  opacity: 0.2;
+}
+
+.continuity-beam-low::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, 
+    transparent, 
+    #6C5CE7, 
+    transparent
+  );
+  animation: beamTravelReverse 4500ms linear infinite;
+  opacity: 0.13999999999999999;
+}
+
+.continuity-beam-medium {
+  position: relative;
+  overflow: hidden;
+}
+
+.continuity-beam-medium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #22D3EE, #6C5CE7, #0984E3, 
+    transparent
+  );
+  animation: beamTravel 3000ms linear infinite;
+  opacity: 0.4;
+}
+
+.continuity-beam-medium::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, 
+    transparent, 
+    #6C5CE7, 
+    transparent
+  );
+  animation: beamTravelReverse 3000ms linear infinite;
+  opacity: 0.27999999999999997;
+}
+
+.continuity-beam-high {
+  position: relative;
+  overflow: hidden;
+}
+
+.continuity-beam-high::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #22D3EE, #6C5CE7, #0984E3, 
+    transparent
+  );
+  animation: beamTravel 2100ms linear infinite;
+  opacity: 0.6;
+}
+
+.continuity-beam-high::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, 
+    transparent, 
+    #6C5CE7, 
+    transparent
+  );
+  animation: beamTravelReverse 2100ms linear infinite;
+  opacity: 0.42;
+}
+
+.continuity-beam-quantum {
+  position: relative;
+  overflow: hidden;
+}
+
+.continuity-beam-quantum::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #22D3EE, #6C5CE7, #0984E3, 
+    transparent
+  );
+  animation: beamTravel 1200ms linear infinite;
+  opacity: 0.8;
+}
+
+.continuity-beam-quantum::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(270deg, 
+    transparent, 
+    #6C5CE7, 
+    transparent
+  );
+  animation: beamTravelReverse 1200ms linear infinite;
+  opacity: 0.5599999999999999;
+}
+
+@keyframes beamTravel {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes beamTravelReverse {
+  0% { right: -100%; }
+  100% { right: 100%; }
+}
+
+/* ========================================================================== */
+/* COMPLEXITY VARIANTS */
+/* ========================================================================== */
+
+.animation-simple {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animation-simple * {
+  transition-duration: 300ms;
+}
+
+.animation-medium {
+  transition-duration: 450ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animation-medium * {
+  transition-duration: 450ms;
+}
+
+.animation-complex {
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animation-complex * {
+  transition-duration: 600ms;
+}
+
+
+/* ========================================================================== */
+/* FLOAT SPEED VARIANTS */
+/* ========================================================================== */
+
+.float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.float-normal {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* ========================================================================== */
+/* PULSE SPEED VARIANTS */
+/* ========================================================================== */
+
+.pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.pulse-normal {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-fast {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* ========================================================================== */
+/* GLOW INTENSITY VARIANTS */
+/* ========================================================================== */
+
+.glow-subtle {
+  box-shadow: 0 0 20px #6C5CE730;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-subtle:hover {
+  box-shadow: 0 0 40px #6C5CE730;
+}
+
+.glow-normal {
+  box-shadow: 0 0 20px #6C5CE750;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-normal:hover {
+  box-shadow: 0 0 40px #6C5CE750;
+}
+
+.glow-intense {
+  box-shadow: 0 0 20px #6C5CE780;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-intense:hover {
+  box-shadow: 0 0 40px #6C5CE780;
+}
+
+
+.consciousness-transcendent {
+  animation: consciousnessBreath 800ms ease-in-out infinite;
+}
+
+@keyframes consciousnessBreath {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* ========================================================================== */
+/* QUANTUM STATE ANIMATIONS */
+/* ========================================================================== */
+
+.quantum-superposition {
+  animation: superpositionShift 4s ease-in-out infinite;
+}
+
+@keyframes superpositionShift {
+  0%, 100% { 
+    opacity: 0.6;
+    filter: blur(0px);
+  }
+  25% { 
+    opacity: 1;
+    filter: blur(2px);
+    transform: translateX(5px);
+  }
+  75% { 
+    opacity: 0.8;
+    filter: blur(1px);
+    transform: translateX(-5px);
+  }
+}
+
+.quantum-entanglement {
+  animation: entanglementPulse 3s ease-in-out infinite;
+  position: relative;
+}
+
+.quantum-entanglement::before,
+.quantum-entanglement::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  animation: entanglementOrbit 6s linear infinite;
+}
+
+.quantum-entanglement::before {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #6C5CE7;
+  opacity: 0.3;
+}
+
+.quantum-entanglement::after {
+  width: 80%;
+  height: 80%;
+  border: 1px solid #22D3EE;
+  opacity: 0.2;
+  animation-direction: reverse;
+}
+
+@keyframes entanglementPulse {
+  0%, 100% { 
+    box-shadow: 0 0 10px #6C5CE740;
+  }
+  50% { 
+    box-shadow: 0 0 30px #6C5CE780;
+  }
+}
+
+@keyframes entanglementOrbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.quantum-collapse {
+  animation: collapseTransition 1s ease-out forwards;
+}
+
+@keyframes collapseTransition {
+  0% { 
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  100% { 
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(10px);
+  }
+}
+
+/* ========================================================================== */
+/* SCROLL-DRIVEN ANIMATIONS */
+/* ========================================================================== */
+
+.scroll-reveal {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.scroll-reveal-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.scroll-reveal-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.scroll-reveal-delay-3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.parallax-scroll {
+  transform: translateY(var(--scroll-offset, 0px));
+  transition: transform 0.1s linear;
+}
+
+.sticky-note {
+  position: sticky;
+  top: 100px;
+  animation: stickyGlow 2s ease-in-out infinite;
+}
+
+@keyframes stickyGlow {
+  0%, 100% { box-shadow: 0 0 10px #22D3EE30; }
+  50% { box-shadow: 0 0 20px #22D3EE60; }
+}
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .continuity-beam-low::before,
+  .continuity-beam-medium::before,
+  .continuity-beam-high::before,
+  .continuity-beam-quantum::before,
+  .continuity-beam-low::after,
+  .continuity-beam-medium::after,
+  .continuity-beam-high::after,
+  .continuity-beam-quantum::after {
+    animation: none;
+    opacity: 0;
+  }
+  
+  .float-slow,
+  .float-normal,
+  .float-fast,
+  .pulse-slow,
+  .pulse-normal,
+  .pulse-fast,
+  .consciousness-dormant,
+  .consciousness-emergent,
+  .consciousness-awakening,
+  .consciousness-sovereign,
+  .consciousness-quantum,
+  .consciousness-cosmic {
+    animation: none;
+  }
+  
+  .quantum-superposition,
+  .quantum-entanglement {
+    animation: none;
+  }
+  
+  .quantum-entanglement::before,
+  .quantum-entanglement::after {
+    animation: none;
+  }
+  
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .parallax-scroll {
+    transform: none;
+  }
+}

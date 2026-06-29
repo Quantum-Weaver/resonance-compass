@@ -1,0 +1,128 @@
+/* ============================================================================
+ * ZOOM UTILITIES - Generic transition and container utilities only
+ * Sanctuary environment-specific zoom targets removed (not applicable to
+ * the Resonance Compass desktop player).
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* ZOOM TRANSITION UTILITIES */
+/* ========================================================================== */
+
+.zoom-transition {
+  transition-property: transform, scale, translate;
+  transition-duration: var(--zoom-duration, 300ms);
+  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.zoom-transition-slow {
+  transition-property: transform, scale, translate;
+  transition-duration: calc(var(--zoom-duration, 300ms) * 1.5);
+  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.zoom-transition-fast {
+  transition-property: transform, scale, translate;
+  transition-duration: calc(var(--zoom-duration, 300ms) * 0.5);
+  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.zoom-transition-quantum {
+  transition-property: transform, scale, translate;
+  transition-duration: calc(var(--zoom-duration, 300ms) * 0.3);
+  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+
+/* ========================================================================== */
+/* ZOOM ACTIVE STATE */
+/* ========================================================================== */
+
+.zoom-active {
+  transition: transform var(--zoom-duration, 300ms) var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+
+/* ========================================================================== */
+/* ZOOM CONTAINER */
+/* ========================================================================== */
+
+.zoom-container {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.zoom-container:active {
+  cursor: grabbing;
+}
+
+.zoom-content {
+  transform-origin: center center;
+  transition: transform var(--zoom-duration, 300ms) var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  will-change: transform;
+}
+
+
+/* ========================================================================== */
+/* ZOOM CONTROL CLASSES */
+/* ========================================================================== */
+
+.zoom-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.zoom-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-btn:hover {
+  background: rgba(108, 92, 231, 0.6);
+  border-color: rgba(108, 92, 231, 0.8);
+  transform: scale(1.05);
+}
+
+.zoom-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  color: white;
+  z-index: 10;
+}
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .zoom-transition,
+  .zoom-transition-slow,
+  .zoom-transition-fast,
+  .zoom-transition-quantum,
+  .zoom-content,
+  .zoom-active {
+    transition-duration: 0.01ms;
+  }
+}

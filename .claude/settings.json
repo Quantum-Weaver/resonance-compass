@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\_superposition\\\\resonance-echoes\\\\src-tauri\\\\icons\")",
+      "PowerShell(python -c $script)",
+      "PowerShell(python \"C:\\\\Users\\\\audhd\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c---superposition-resonance-echoes\\\\71bc64a2-53f6-4d13-acd3-1ba79ac283a4\\\\scratchpad\\\\make_icon.py\")"
+    ],
+    "additionalDirectories": [
+      "c:\\_superposition\\resonance-echoes\\src-tauri"
+    ]
+  }
+}

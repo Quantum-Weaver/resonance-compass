@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nickknapton88/tauri-docs/dev/crates/tauri-utils/schema/capabilities.json",
+  "identifier": "default",
+  "description": "Default capabilities for Resonance Echoes",
+  "windows": ["*"],
+  "permissions": [
+    "core:default",
+    "sql:default",
+    "sql:allow-execute",
+    "sql:allow-select",
+    "sql:allow-close",
+    "sql:allow-load",
+    "fs:default",
+    "opener:default",
+    "dialog:default"
+  ]
+}

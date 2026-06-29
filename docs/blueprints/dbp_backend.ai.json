@@ -1,0 +1,25 @@
+{
+  "stack": "backend",
+  "language": "Rust",
+  "framework": "Tauri v2",
+  "all_commands": [
+    "greet"
+  ],
+  "total_commands": 1,
+  "db_migrations": [
+    1,
+    2,
+    3
+  ],
+  "registered_plugins": [
+    "dialog",
+    "fs",
+    "opener",
+    "sql"
+  ],
+  "files": [
+    "lib",
+    "main"
+  ],
+  "scan_timestamp": "2026-06-28T20:28:45.143921 | in sovereign time"
+}

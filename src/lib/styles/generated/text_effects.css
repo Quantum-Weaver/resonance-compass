@@ -1,0 +1,470 @@
+/* ============================================================================
+ * TEXT EFFECTS - Generated from motion.ts and colors.ts
+ * Generated: 2026-04-12T18:59:53.051Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* RAINBOW & QUANTUM EFFECTS */
+/* ========================================================================== */
+
+.rainbow-text {
+  background: linear-gradient(to right, #E40303, #FF8C00, #FFED00, #008026, #0000FF, #800080, #FF79A2, #78D5E8, #FFFFFF, #6E482E, #000000, #DA219F, #78D5E8, #FFFFFF, #FFFF00, #FF75A2, #000000, #FF218C, #D70071, #000000, #D62D00);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowFlow 8s linear infinite;
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.quantum-weaver-text {
+  background: linear-gradient(135deg, #6C5CE7, #22D3EE, #0984E3, #6C5CE7);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quantumWeave 4s ease infinite;
+  text-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+}
+
+@keyframes quantumWeave {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.quantum-entanglement-text {
+  background: linear-gradient(135deg, #A855F7, #EC489A, #06B6D4, #A855F7);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: entanglementShift 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+}
+
+@keyframes entanglementShift {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+.quantum-resonance-text {
+  color: #C084FC;
+  text-shadow: 
+    0 0 10px rgba(192, 132, 252, 0.6),
+    0 0 20px rgba(192, 132, 252, 0.4),
+    0 0 30px rgba(168, 85, 247, 0.3);
+  animation: quantumResonance 2s ease-in-out infinite;
+}
+
+@keyframes quantumResonance {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(192, 132, 252, 0.6),
+      0 0 20px rgba(192, 132, 252, 0.4);
+    opacity: 0.9;
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(192, 132, 252, 0.9),
+      0 0 40px rgba(168, 85, 247, 0.7),
+      0 0 60px rgba(139, 92, 246, 0.5);
+    opacity: 1;
+  }
+}
+
+/* ========================================================================== */
+/* ELEMENTAL EFFECTS */
+/* ========================================================================== */
+
+/* Fire Text - Flickering flame */
+.fire-text {
+  color: #FF4500;
+  text-shadow: 
+    0 0 10px rgba(255, 69, 0, 0.6),
+    0 0 20px rgba(255, 69, 0, 0.4),
+    0 0 30px rgba(255, 140, 0, 0.3);
+  animation: fireFlicker 0.8s ease-in-out infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% {
+    text-shadow: 
+      0 0 8px rgba(255, 69, 0, 0.7),
+      0 0 16px rgba(255, 140, 0, 0.5);
+  }
+  25% {
+    text-shadow: 
+      0 0 12px rgba(255, 69, 0, 0.9),
+      0 0 24px rgba(255, 140, 0, 0.7),
+      0 0 36px rgba(255, 69, 0, 0.5);
+  }
+  75% {
+    text-shadow: 
+      0 0 6px rgba(255, 69, 0, 0.5),
+      0 0 12px rgba(255, 140, 0, 0.4);
+  }
+}
+
+/* Water Text - Flowing liquid */
+.water-text {
+  color: #1E90FF;
+  text-shadow: 
+    0 2px 8px rgba(30, 144, 255, 0.4),
+    0 -1px 4px rgba(0, 191, 255, 0.3);
+  background: linear-gradient(135deg, #1E90FF, #00BFFF, #1E90FF);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: waterFlow 3s ease-in-out infinite;
+}
+
+@keyframes waterFlow {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* Air Text - Ethereal drift */
+.air-text {
+  color: #87CEEB;
+  text-shadow: 
+    0 0 20px rgba(135, 206, 235, 0.6),
+    0 0 40px rgba(135, 206, 235, 0.3);
+  animation: airDrift 6s ease-in-out infinite;
+}
+
+@keyframes airDrift {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+    transform: translateY(0px);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(135, 206, 235, 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+/* Earth Text - Grounded stone */
+.earth-text {
+  color: #8B5A2B;
+  text-shadow: 
+    0 2px 5px rgba(62, 38, 14, 0.3),
+    0 0 15px rgba(139, 90, 43, 0.2);
+  background: linear-gradient(135deg, #8B5A2B, #C49A6C);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================================================== */
+/* SPARKLE & STARDUST EFFECTS */
+/* ========================================================================== */
+
+/* Sparkle Text - Magical shimmer */
+.sparkle-text {
+  color: #F0F0F0;
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 215, 0, 0.5);
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 1),
+      0 0 25px rgba(255, 215, 0, 0.8);
+  }
+}
+
+/* Star Dust Text - Gentle floating particles */
+.stardust-text {
+  background: linear-gradient(135deg, #F5F5DC, #E6E6FA, #FFD700, #E6E6FA, #F5F5DC);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: stardustFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+}
+
+@keyframes stardustFloat {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.2));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+  }
+}
+
+/* Glitter Text - Sparkling celebration */
+.glitter-text {
+  background: linear-gradient(90deg, #FFD700, #FF69B4, #87CEEB, #FFD700);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: glitterFlow 3s linear infinite;
+}
+
+@keyframes glitterFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Cosmic Sparkle - Deep space shimmer */
+.cosmic-sparkle-text {
+  color: #E0E0E0;
+  text-shadow: 
+    0 0 8px rgba(108, 92, 231, 0.6),
+    0 0 15px rgba(108, 92, 231, 0.4),
+    0 0 22px rgba(34, 211, 238, 0.3);
+  animation: cosmicSparkle 2.5s ease-in-out infinite;
+}
+
+@keyframes cosmicSparkle {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(108, 92, 231, 0.5);
+  }
+  25% {
+    text-shadow: 
+      0 0 12px rgba(108, 92, 231, 0.8),
+      0 0 20px rgba(34, 211, 238, 0.5);
+  }
+  75% {
+    text-shadow: 
+      0 0 8px rgba(34, 211, 238, 0.7),
+      0 0 15px rgba(108, 92, 231, 0.5);
+  }
+}
+
+/* ========================================================================== */
+/* PAGAN & PRIDE EFFECTS */
+/* ========================================================================== */
+
+.pagan-text {
+  background: linear-gradient(135deg, #8B5A2B 0%, #87CEEB 25%, #FF4500 50%, #1E90FF 75%, #8B5A2B 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: elementalCycle 12s ease infinite;
+}
+
+@keyframes elementalCycle {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pride-rainbow-text {
+  background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #0000FF, #800080, #FF79A2);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowFlow 8s linear infinite;
+}
+
+.pride-trans-text {
+  background: linear-gradient(90deg, #78D5E8, #DA219F, #FFFFFF, #DA219F, #78D5E8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowFlow 6s linear infinite;
+}
+
+.quantum-pride-text {
+  background: linear-gradient(135deg, #FF0000, #6C5CE7, #00FF00, #22D3EE, #800080);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quantumWeave 4s ease infinite;
+}
+
+/* ========================================================================== */
+/* MOOD & ENERGY EFFECTS */
+/* ========================================================================== */
+
+.mood-calm-text {
+  color: #74B9FF;
+  text-shadow: 0 0 10px rgba(116, 185, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-calm-text:hover {
+  text-shadow: 0 0 20px rgba(116, 185, 255, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-focused-text {
+  color: #00CEC9;
+  text-shadow: 0 0 10px rgba(0, 206, 201, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-focused-text:hover {
+  text-shadow: 0 0 20px rgba(0, 206, 201, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-creative-text {
+  color: #A29BFE;
+  text-shadow: 0 0 10px rgba(162, 155, 254, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-creative-text:hover {
+  text-shadow: 0 0 20px rgba(162, 155, 254, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-energized-text {
+  color: #FDCB6E;
+  text-shadow: 0 0 10px rgba(253, 203, 110, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-energized-text:hover {
+  text-shadow: 0 0 20px rgba(253, 203, 110, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-peaceful-text {
+  color: #81ECEC;
+  text-shadow: 0 0 10px rgba(129, 236, 236, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-peaceful-text:hover {
+  text-shadow: 0 0 20px rgba(129, 236, 236, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-intense-text {
+  color: #E17055;
+  text-shadow: 0 0 10px rgba(225, 112, 85, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-intense-text:hover {
+  text-shadow: 0 0 20px rgba(225, 112, 85, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-mystical-text {
+  color: #6C5CE7;
+  text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-mystical-text:hover {
+  text-shadow: 0 0 20px rgba(108, 92, 231, 0.6);
+  transform: scale(1.02);
+}
+
+.mood-grounded-text {
+  color: #00B894;
+  text-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mood-grounded-text:hover {
+  text-shadow: 0 0 20px rgba(0, 184, 148, 0.6);
+  transform: scale(1.02);
+}
+
+
+.energy-low-text {
+  color: #636E72;
+  text-shadow: 0 0 10px rgba(99, 110, 114, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.energy-medium-text {
+  color: #FDCB6E;
+  text-shadow: 0 0 10px rgba(253, 203, 110, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.energy-high-text {
+  color: #E17055;
+  text-shadow: 0 0 10px rgba(225, 112, 85, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.energy-quantum-text {
+  color: #6C5CE7;
+  text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.energy-cosmic-text {
+  color: #0984E3;
+  text-shadow: 0 0 10px rgba(9, 132, 227, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.energy-transformative-text {
+  color: #00CEC9;
+  text-shadow: 0 0 10px rgba(0, 206, 201, 0.4);
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+@keyframes energyPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 20px currentColor; }
+}
+
+/* ========================================================================== */
+/* REDUCED MOTION VARIANTS */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-text,
+  .quantum-weaver-text,
+  .quantum-entanglement-text,
+  .water-text,
+  .air-text,
+  .sparkle-text,
+  .stardust-text,
+  .glitter-text,
+  .cosmic-sparkle-text,
+  .pagan-text,
+  .pride-rainbow-text,
+  .pride-trans-text,
+  .quantum-pride-text {
+    animation: none;
+    background-size: 100% 100%;
+  }
+  
+  .fire-text {
+    animation: none;
+  }
+  
+  .quantum-resonance-text,
+  .cosmic-sparkle-text {
+    animation: none;
+  }
+  
+  .energy-low-text,
+  .energy-medium-text,
+  .energy-high-text {
+    animation: none;
+  }
+}

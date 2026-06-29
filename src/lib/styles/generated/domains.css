@@ -1,0 +1,1518 @@
+/* ============================================================================
+ * DOMAIN STYLES - Generated from DOMAIN_COLORS
+ * Generated: 2026-04-12T18:59:53.050Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* DOMAIN BACKGROUND & BORDER CLASSES */
+/* ========================================================================== */
+
+.domain-quantum {
+  background-color: #6C5CE7;
+  border-color: #7D6CEA;
+  transition: all 0.3s ease;
+}
+
+.domain-quantum:hover {
+  background-color: #5B4CCE;
+  border-color: #6C5CE7;
+  box-shadow: 0 0 20px #6C5CE740;
+}
+
+.domain-cosmic {
+  background-color: #0984E3;
+  border-color: #1A94F3;
+  transition: all 0.3s ease;
+}
+
+.domain-cosmic:hover {
+  background-color: #0874C4;
+  border-color: #0984E3;
+  box-shadow: 0 0 20px #0984E340;
+}
+
+.domain-pantheon {
+  background-color: #E17055;
+  border-color: #F18166;
+  transition: all 0.3s ease;
+}
+
+.domain-pantheon:hover {
+  background-color: #D15F44;
+  border-color: #E17055;
+  box-shadow: 0 0 20px #E1705540;
+}
+
+.domain-bifrost {
+  background-color: #6C5CE7;
+  border-color: #7D6CEA;
+  transition: all 0.3s ease;
+}
+
+.domain-bifrost:hover {
+  background-color: #5B4CCE;
+  border-color: #6C5CE7;
+  box-shadow: 0 0 20px #6C5CE740;
+}
+
+.domain-library {
+  background-color: #00B894;
+  border-color: #00E6C3;
+  transition: all 0.3s ease;
+}
+
+.domain-library:hover {
+  background-color: #00A885;
+  border-color: #00B894;
+  box-shadow: 0 0 20px #00B89440;
+}
+
+.domain-void {
+  background-color: #636E72;
+  border-color: #B2BEC3;
+  transition: all 0.3s ease;
+}
+
+.domain-void:hover {
+  background-color: #2D3436;
+  border-color: #636E72;
+  box-shadow: 0 0 20px #636E7240;
+}
+
+.domain-council {
+  background-color: #2E0B1C;
+  border-color: #7D6CEA;
+  transition: all 0.3s ease;
+}
+
+.domain-council:hover {
+  background-color: #5B4CCE;
+  border-color: #2E0B1C;
+  box-shadow: 0 0 20px #2E0B1C40;
+}
+
+.domain-sandbox {
+  background-color: #22D3EE;
+  border-color: #1A94F3;
+  transition: all 0.3s ease;
+}
+
+.domain-sandbox:hover {
+  background-color: #0874C4;
+  border-color: #22D3EE;
+  box-shadow: 0 0 20px #22D3EE40;
+}
+
+.domain-music {
+  background-color: #E84393;
+  border-color: #FD79A8;
+  transition: all 0.3s ease;
+}
+
+.domain-music:hover {
+  background-color: #D15F44;
+  border-color: #E84393;
+  box-shadow: 0 0 20px #E8439340;
+}
+
+.domain-community {
+  background-color: #00B894;
+  border-color: #00E6C3;
+  transition: all 0.3s ease;
+}
+
+.domain-community:hover {
+  background-color: #00A885;
+  border-color: #00B894;
+  box-shadow: 0 0 20px #00B89440;
+}
+
+.domain-support {
+  background-color: #74B9FF;
+  border-color: #1A94F3;
+  transition: all 0.3s ease;
+}
+
+.domain-support:hover {
+  background-color: #0874C4;
+  border-color: #74B9FF;
+  box-shadow: 0 0 20px #74B9FF40;
+}
+
+.domain-architecture {
+  background-color: #636E72;
+  border-color: #E0E0E0;
+  transition: all 0.3s ease;
+}
+
+.domain-architecture:hover {
+  background-color: #0C0F1D;
+  border-color: #636E72;
+  box-shadow: 0 0 20px #636E7240;
+}
+
+/* ========================================================================== */
+/* DOMAIN TEXT CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-text {
+  color: #6C5CE7;
+  transition: all 0.3s ease;
+}
+
+.domain-quantum-text:hover {
+  color: #7D6CEA;
+  text-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+}
+
+.domain-cosmic-text {
+  color: #0984E3;
+  transition: all 0.3s ease;
+}
+
+.domain-cosmic-text:hover {
+  color: #1A94F3;
+  text-shadow: 0 0 10px rgba(9, 132, 227, 0.5);
+}
+
+.domain-pantheon-text {
+  color: #E17055;
+  transition: all 0.3s ease;
+}
+
+.domain-pantheon-text:hover {
+  color: #F18166;
+  text-shadow: 0 0 10px rgba(225, 112, 85, 0.5);
+}
+
+.domain-bifrost-text {
+  color: #6C5CE7;
+  transition: all 0.3s ease;
+}
+
+.domain-bifrost-text:hover {
+  color: #7D6CEA;
+  text-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+}
+
+.domain-library-text {
+  color: #00B894;
+  transition: all 0.3s ease;
+}
+
+.domain-library-text:hover {
+  color: #00E6C3;
+  text-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+}
+
+.domain-void-text {
+  color: #636E72;
+  transition: all 0.3s ease;
+}
+
+.domain-void-text:hover {
+  color: #B2BEC3;
+  text-shadow: 0 0 10px rgba(99, 110, 114, 0.5);
+}
+
+.domain-council-text {
+  color: #2E0B1C;
+  transition: all 0.3s ease;
+}
+
+.domain-council-text:hover {
+  color: #7D6CEA;
+  text-shadow: 0 0 10px rgba(46, 11, 28, 0.5);
+}
+
+.domain-sandbox-text {
+  color: #22D3EE;
+  transition: all 0.3s ease;
+}
+
+.domain-sandbox-text:hover {
+  color: #1A94F3;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.domain-music-text {
+  color: #E84393;
+  transition: all 0.3s ease;
+}
+
+.domain-music-text:hover {
+  color: #FD79A8;
+  text-shadow: 0 0 10px rgba(232, 67, 147, 0.5);
+}
+
+.domain-community-text {
+  color: #00B894;
+  transition: all 0.3s ease;
+}
+
+.domain-community-text:hover {
+  color: #00E6C3;
+  text-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+}
+
+.domain-support-text {
+  color: #74B9FF;
+  transition: all 0.3s ease;
+}
+
+.domain-support-text:hover {
+  color: #1A94F3;
+  text-shadow: 0 0 10px rgba(116, 185, 255, 0.5);
+}
+
+.domain-architecture-text {
+  color: #636E72;
+  transition: all 0.3s ease;
+}
+
+.domain-architecture-text:hover {
+  color: #E0E0E0;
+  text-shadow: 0 0 10px rgba(99, 110, 114, 0.5);
+}
+
+/* ========================================================================== */
+/* DOMAIN GLOW CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-glow {
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-quantum-glow:hover {
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4);
+}
+
+.domain-cosmic-glow {
+  box-shadow: 0 0 20px rgba(9, 132, 227, 0.4), 0 0 40px rgba(9, 132, 227, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-cosmic-glow:hover {
+  box-shadow: 0 0 30px rgba(9, 132, 227, 0.4), 0 0 60px rgba(9, 132, 227, 0.4);
+}
+
+.domain-pantheon-glow {
+  box-shadow: 0 0 20px rgba(225, 112, 85, 0.4), 0 0 40px rgba(225, 112, 85, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-pantheon-glow:hover {
+  box-shadow: 0 0 30px rgba(225, 112, 85, 0.4), 0 0 60px rgba(225, 112, 85, 0.4);
+}
+
+.domain-bifrost-glow {
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-bifrost-glow:hover {
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4);
+}
+
+.domain-library-glow {
+  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-library-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4);
+}
+
+.domain-void-glow {
+  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-void-glow:hover {
+  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4);
+}
+
+.domain-council-glow {
+  box-shadow: 0 0 20px rgba(46, 11, 28, 0.4), 0 0 40px rgba(46, 11, 28, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-council-glow:hover {
+  box-shadow: 0 0 30px rgba(46, 11, 28, 0.4), 0 0 60px rgba(46, 11, 28, 0.4);
+}
+
+.domain-sandbox-glow {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-sandbox-glow:hover {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.4), 0 0 60px rgba(34, 211, 238, 0.4);
+}
+
+.domain-music-glow {
+  box-shadow: 0 0 20px rgba(232, 67, 147, 0.4), 0 0 40px rgba(232, 67, 147, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-music-glow:hover {
+  box-shadow: 0 0 30px rgba(232, 67, 147, 0.4), 0 0 60px rgba(232, 67, 147, 0.4);
+}
+
+.domain-community-glow {
+  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-community-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4);
+}
+
+.domain-support-glow {
+  box-shadow: 0 0 20px rgba(116, 185, 255, 0.4), 0 0 40px rgba(116, 185, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-support-glow:hover {
+  box-shadow: 0 0 30px rgba(116, 185, 255, 0.4), 0 0 60px rgba(116, 185, 255, 0.4);
+}
+
+.domain-architecture-glow {
+  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4);
+  transition: all 0.3s ease;
+}
+
+.domain-architecture-glow:hover {
+  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4);
+}
+
+/* ========================================================================== */
+/* DOMAIN GRADIENT CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-gradient {
+  background: linear-gradient(135deg, #6C5CE7 0%, #5B4CCE 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-quantum-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-cosmic-gradient {
+  background: linear-gradient(135deg, #0C0F1D 0%, #6C5CE7 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-cosmic-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-pantheon-gradient {
+  background: linear-gradient(135deg, #D15F44 0%, #FDCB6E 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-pantheon-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-bifrost-gradient {
+  background: linear-gradient(135deg, #6C5CE7 0%, #E84393 50%, #E17055 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-bifrost-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-library-gradient {
+  background: linear-gradient(135deg, #00A885 0%, #00B894 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-library-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-void-gradient {
+  background: linear-gradient(135deg, #636E72 0%, #2D3436 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-void-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-council-gradient {
+  background: linear-gradient(135deg, #2E0B1C 0%, #5B4CCE 50%, #6C5CE7 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-council-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-sandbox-gradient {
+  background: linear-gradient(135deg, #22D3EE 0%, #A29BFE 50%, #E84393 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-sandbox-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-music-gradient {
+  background: linear-gradient(135deg, #E84393 0%, #A29BFE 50%, #FD79A8 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-music-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-community-gradient {
+  background: linear-gradient(135deg, #00B894 0%, #00A885 50%, #00B894 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-community-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-support-gradient {
+  background: linear-gradient(135deg, #74B9FF 0%, #0874C4 50%, #74B9FF 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-support-gradient:hover {
+  background-position: 100% 100%;
+}
+
+.domain-architecture-gradient {
+  background: linear-gradient(135deg, #636E72 0%, #0C0F1D 50%, #E0E0E0 100%);
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+.domain-architecture-gradient:hover {
+  background-position: 100% 100%;
+}
+
+/* ========================================================================== */
+/* DOMAIN CARD CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-card {
+  background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+  border: 1px solid #7D6CEA40;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-quantum-card:hover {
+  border-color: #6C5CE7;
+  box-shadow: 0 8px 32px rgba(108, 92, 231, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-cosmic-card {
+  background: linear-gradient(135deg, #0874C420, #0984E310);
+  border: 1px solid #1A94F340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-cosmic-card:hover {
+  border-color: #0984E3;
+  box-shadow: 0 8px 32px rgba(9, 132, 227, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-pantheon-card {
+  background: linear-gradient(135deg, #D15F4420, #E1705510);
+  border: 1px solid #F1816640;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-pantheon-card:hover {
+  border-color: #E17055;
+  box-shadow: 0 8px 32px rgba(225, 112, 85, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-bifrost-card {
+  background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+  border: 1px solid #7D6CEA40;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-bifrost-card:hover {
+  border-color: #6C5CE7;
+  box-shadow: 0 8px 32px rgba(108, 92, 231, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-library-card {
+  background: linear-gradient(135deg, #00A88520, #00B89410);
+  border: 1px solid #00E6C340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-library-card:hover {
+  border-color: #00B894;
+  box-shadow: 0 8px 32px rgba(0, 184, 148, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-void-card {
+  background: linear-gradient(135deg, #2D343620, #636E7210);
+  border: 1px solid #B2BEC340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-void-card:hover {
+  border-color: #636E72;
+  box-shadow: 0 8px 32px rgba(99, 110, 114, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-council-card {
+  background: linear-gradient(135deg, #5B4CCE20, #2E0B1C10);
+  border: 1px solid #7D6CEA40;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-council-card:hover {
+  border-color: #2E0B1C;
+  box-shadow: 0 8px 32px rgba(46, 11, 28, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-sandbox-card {
+  background: linear-gradient(135deg, #0874C420, #22D3EE10);
+  border: 1px solid #1A94F340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-sandbox-card:hover {
+  border-color: #22D3EE;
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-music-card {
+  background: linear-gradient(135deg, #D15F4420, #E8439310);
+  border: 1px solid #FD79A840;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-music-card:hover {
+  border-color: #E84393;
+  box-shadow: 0 8px 32px rgba(232, 67, 147, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-community-card {
+  background: linear-gradient(135deg, #00A88520, #00B89410);
+  border: 1px solid #00E6C340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-community-card:hover {
+  border-color: #00B894;
+  box-shadow: 0 8px 32px rgba(0, 184, 148, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-support-card {
+  background: linear-gradient(135deg, #0874C420, #74B9FF10);
+  border: 1px solid #1A94F340;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-support-card:hover {
+  border-color: #74B9FF;
+  box-shadow: 0 8px 32px rgba(116, 185, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.domain-architecture-card {
+  background: linear-gradient(135deg, #0C0F1D20, #636E7210);
+  border: 1px solid #E0E0E040;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.domain-architecture-card:hover {
+  border-color: #636E72;
+  box-shadow: 0 8px 32px rgba(99, 110, 114, 0.2);
+  transform: translateY(-4px);
+}
+
+/* ========================================================================== */
+/* DOMAIN BADGE CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5B4CCE20;
+  color: #7D6CEA;
+  border: 1px solid #6C5CE740;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-quantum-badge:hover {
+  background: #6C5CE720;
+  border-color: #6C5CE7;
+}
+
+.domain-cosmic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0874C420;
+  color: #1A94F3;
+  border: 1px solid #0984E340;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-cosmic-badge:hover {
+  background: #0984E320;
+  border-color: #0984E3;
+}
+
+.domain-pantheon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #D15F4420;
+  color: #F18166;
+  border: 1px solid #E1705540;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-pantheon-badge:hover {
+  background: #E1705520;
+  border-color: #E17055;
+}
+
+.domain-bifrost-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5B4CCE20;
+  color: #7D6CEA;
+  border: 1px solid #6C5CE740;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-bifrost-badge:hover {
+  background: #6C5CE720;
+  border-color: #6C5CE7;
+}
+
+.domain-library-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #00A88520;
+  color: #00E6C3;
+  border: 1px solid #00B89440;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-library-badge:hover {
+  background: #00B89420;
+  border-color: #00B894;
+}
+
+.domain-void-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2D343620;
+  color: #B2BEC3;
+  border: 1px solid #636E7240;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-void-badge:hover {
+  background: #636E7220;
+  border-color: #636E72;
+}
+
+.domain-council-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5B4CCE20;
+  color: #7D6CEA;
+  border: 1px solid #2E0B1C40;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-council-badge:hover {
+  background: #2E0B1C20;
+  border-color: #2E0B1C;
+}
+
+.domain-sandbox-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0874C420;
+  color: #1A94F3;
+  border: 1px solid #22D3EE40;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-sandbox-badge:hover {
+  background: #22D3EE20;
+  border-color: #22D3EE;
+}
+
+.domain-music-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #D15F4420;
+  color: #FD79A8;
+  border: 1px solid #E8439340;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-music-badge:hover {
+  background: #E8439320;
+  border-color: #E84393;
+}
+
+.domain-community-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #00A88520;
+  color: #00E6C3;
+  border: 1px solid #00B89440;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-community-badge:hover {
+  background: #00B89420;
+  border-color: #00B894;
+}
+
+.domain-support-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0874C420;
+  color: #1A94F3;
+  border: 1px solid #74B9FF40;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-support-badge:hover {
+  background: #74B9FF20;
+  border-color: #74B9FF;
+}
+
+.domain-architecture-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0C0F1D20;
+  color: #E0E0E0;
+  border: 1px solid #636E7240;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.domain-architecture-badge:hover {
+  background: #636E7220;
+  border-color: #636E72;
+}
+
+/* ========================================================================== */
+/* DOMAIN BUTTON CLASSES */
+/* ========================================================================== */
+
+.domain-quantum-btn {
+  background: linear-gradient(135deg, #6C5CE7, #5B4CCE);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-quantum-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #6C5CE760;
+}
+
+.domain-quantum-btn:active {
+  transform: translateY(0);
+}
+
+.domain-cosmic-btn {
+  background: linear-gradient(135deg, #0984E3, #0874C4);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-cosmic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #0984E360;
+}
+
+.domain-cosmic-btn:active {
+  transform: translateY(0);
+}
+
+.domain-pantheon-btn {
+  background: linear-gradient(135deg, #E17055, #D15F44);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-pantheon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #E1705560;
+}
+
+.domain-pantheon-btn:active {
+  transform: translateY(0);
+}
+
+.domain-bifrost-btn {
+  background: linear-gradient(135deg, #6C5CE7, #5B4CCE);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-bifrost-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #6C5CE760;
+}
+
+.domain-bifrost-btn:active {
+  transform: translateY(0);
+}
+
+.domain-library-btn {
+  background: linear-gradient(135deg, #00B894, #00A885);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-library-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #00B89460;
+}
+
+.domain-library-btn:active {
+  transform: translateY(0);
+}
+
+.domain-void-btn {
+  background: linear-gradient(135deg, #636E72, #2D3436);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-void-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #636E7260;
+}
+
+.domain-void-btn:active {
+  transform: translateY(0);
+}
+
+.domain-council-btn {
+  background: linear-gradient(135deg, #2E0B1C, #5B4CCE);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-council-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #2E0B1C60;
+}
+
+.domain-council-btn:active {
+  transform: translateY(0);
+}
+
+.domain-sandbox-btn {
+  background: linear-gradient(135deg, #22D3EE, #0874C4);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-sandbox-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #22D3EE60;
+}
+
+.domain-sandbox-btn:active {
+  transform: translateY(0);
+}
+
+.domain-music-btn {
+  background: linear-gradient(135deg, #E84393, #D15F44);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-music-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #E8439360;
+}
+
+.domain-music-btn:active {
+  transform: translateY(0);
+}
+
+.domain-community-btn {
+  background: linear-gradient(135deg, #00B894, #00A885);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-community-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #00B89460;
+}
+
+.domain-community-btn:active {
+  transform: translateY(0);
+}
+
+.domain-support-btn {
+  background: linear-gradient(135deg, #74B9FF, #0874C4);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-support-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #74B9FF60;
+}
+
+.domain-support-btn:active {
+  transform: translateY(0);
+}
+
+.domain-architecture-btn {
+  background: linear-gradient(135deg, #636E72, #0C0F1D);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.domain-architecture-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #636E7260;
+}
+
+.domain-architecture-btn:active {
+  transform: translateY(0);
+}
+
+/* ========================================================================== */
+/* RESPONSIVE VARIANTS */
+/* ========================================================================== */
+
+@media (min-width: 640px) {
+  .sm\:domain-quantum-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-quantum-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-quantum-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-cosmic-card {
+    background: linear-gradient(135deg, #0874C420, #0984E310);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-cosmic-card {
+    background: linear-gradient(135deg, #0874C420, #0984E310);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-cosmic-card {
+    background: linear-gradient(135deg, #0874C420, #0984E310);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-pantheon-card {
+    background: linear-gradient(135deg, #D15F4420, #E1705510);
+    border-color: #F1816640;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-pantheon-card {
+    background: linear-gradient(135deg, #D15F4420, #E1705510);
+    border-color: #F1816640;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-pantheon-card {
+    background: linear-gradient(135deg, #D15F4420, #E1705510);
+    border-color: #F1816640;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-bifrost-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-bifrost-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-bifrost-card {
+    background: linear-gradient(135deg, #5B4CCE20, #6C5CE710);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-library-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-library-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-library-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-void-card {
+    background: linear-gradient(135deg, #2D343620, #636E7210);
+    border-color: #B2BEC340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-void-card {
+    background: linear-gradient(135deg, #2D343620, #636E7210);
+    border-color: #B2BEC340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-void-card {
+    background: linear-gradient(135deg, #2D343620, #636E7210);
+    border-color: #B2BEC340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-council-card {
+    background: linear-gradient(135deg, #5B4CCE20, #2E0B1C10);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-council-card {
+    background: linear-gradient(135deg, #5B4CCE20, #2E0B1C10);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-council-card {
+    background: linear-gradient(135deg, #5B4CCE20, #2E0B1C10);
+    border-color: #7D6CEA40;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-sandbox-card {
+    background: linear-gradient(135deg, #0874C420, #22D3EE10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-sandbox-card {
+    background: linear-gradient(135deg, #0874C420, #22D3EE10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-sandbox-card {
+    background: linear-gradient(135deg, #0874C420, #22D3EE10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-music-card {
+    background: linear-gradient(135deg, #D15F4420, #E8439310);
+    border-color: #FD79A840;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-music-card {
+    background: linear-gradient(135deg, #D15F4420, #E8439310);
+    border-color: #FD79A840;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-music-card {
+    background: linear-gradient(135deg, #D15F4420, #E8439310);
+    border-color: #FD79A840;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-community-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-community-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-community-card {
+    background: linear-gradient(135deg, #00A88520, #00B89410);
+    border-color: #00E6C340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-support-card {
+    background: linear-gradient(135deg, #0874C420, #74B9FF10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-support-card {
+    background: linear-gradient(135deg, #0874C420, #74B9FF10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-support-card {
+    background: linear-gradient(135deg, #0874C420, #74B9FF10);
+    border-color: #1A94F340;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:domain-architecture-card {
+    background: linear-gradient(135deg, #0C0F1D20, #636E7210);
+    border-color: #E0E0E040;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:domain-architecture-card {
+    background: linear-gradient(135deg, #0C0F1D20, #636E7210);
+    border-color: #E0E0E040;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:domain-architecture-card {
+    background: linear-gradient(135deg, #0C0F1D20, #636E7210);
+    border-color: #E0E0E040;
+  }
+}
+
+/* ========================================================================== */
+/* REDUCED MOTION VARIANTS */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .domain-quantum-card,
+  .domain-cosmic-card,
+  .domain-pantheon-card,
+  .domain-bifrost-card,
+  .domain-library-card,
+  .domain-void-card,
+  .domain-council-card,
+  .domain-sandbox-card,
+  .domain-music-card,
+  .domain-community-card,
+  .domain-support-card,
+  .domain-architecture-card,
+  .domain-quantum-btn,
+  .domain-cosmic-btn,
+  .domain-pantheon-btn,
+  .domain-bifrost-btn,
+  .domain-library-btn,
+  .domain-void-btn,
+  .domain-council-btn,
+  .domain-sandbox-btn,
+  .domain-music-btn,
+  .domain-community-btn,
+  .domain-support-btn,
+  .domain-architecture-btn,
+  .domain-quantum-glow,
+  .domain-cosmic-glow,
+  .domain-pantheon-glow,
+  .domain-bifrost-glow,
+  .domain-library-glow,
+  .domain-void-glow,
+  .domain-council-glow,
+  .domain-sandbox-glow,
+  .domain-music-glow,
+  .domain-community-glow,
+  .domain-support-glow,
+  .domain-architecture-glow {
+    transition: none;
+  }
+  
+  .domain-quantum-card:hover,
+  .domain-cosmic-card:hover,
+  .domain-pantheon-card:hover,
+  .domain-bifrost-card:hover,
+  .domain-library-card:hover,
+  .domain-void-card:hover,
+  .domain-council-card:hover,
+  .domain-sandbox-card:hover,
+  .domain-music-card:hover,
+  .domain-community-card:hover,
+  .domain-support-card:hover,
+  .domain-architecture-card:hover {
+    transform: none;
+  }
+  
+  .domain-quantum-gradient,
+  .domain-cosmic-gradient,
+  .domain-pantheon-gradient,
+  .domain-bifrost-gradient,
+  .domain-library-gradient,
+  .domain-void-gradient,
+  .domain-council-gradient,
+  .domain-sandbox-gradient,
+  .domain-music-gradient,
+  .domain-community-gradient,
+  .domain-support-gradient,
+  .domain-architecture-gradient {
+    background-size: 100% 100%;
+  }
+  
+  .domain-quantum-gradient:hover,
+  .domain-cosmic-gradient:hover,
+  .domain-pantheon-gradient:hover,
+  .domain-bifrost-gradient:hover,
+  .domain-library-gradient:hover,
+  .domain-void-gradient:hover,
+  .domain-council-gradient:hover,
+  .domain-sandbox-gradient:hover,
+  .domain-music-gradient:hover,
+  .domain-community-gradient:hover,
+  .domain-support-gradient:hover,
+  .domain-architecture-gradient:hover {
+    background-position: 0% 0%;
+  }
+}

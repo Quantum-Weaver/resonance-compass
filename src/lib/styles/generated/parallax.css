@@ -1,0 +1,524 @@
+/* ============================================================================
+ * PARALLAX CLASSES - Generated from positioning.ts
+ * Generated: 2026-04-12T18:59:53.062Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* PARALLAX CSS VARIABLES */
+/* ========================================================================== */
+
+:root {
+  --parallax-speed: 1;
+  --parallax-intensity: 1;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  --scroll-offset: 0px;
+}
+
+
+/* ========================================================================== */
+/* PARALLAX LAYER CLASSES */
+/* ========================================================================== */
+
+.parallax-cosmic {
+  position: relative;
+  z-index: 0;
+  will-change: transform;
+}
+
+.parallax-far {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  filter: blur(2px);
+}
+
+.parallax-mid {
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+  filter: blur(1px);
+}
+
+.parallax-near {
+  position: relative;
+  z-index: 3;
+  will-change: transform;
+}
+
+.parallax-interactive {
+  position: relative;
+  z-index: 4;
+  will-change: transform;
+}
+
+.parallax-interactive:hover {
+  filter: blur(0);
+  transition: filter 0.3s ease;
+}
+
+.parallax-ui {
+  position: relative;
+  z-index: 10;
+  will-change: transform;
+}
+
+
+/* ========================================================================== */
+/* PARALLAX INTENSITY VARIANTS */
+/* ========================================================================== */
+
+.parallax-cosmic-subtle {
+  --parallax-factor: 0.025;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-cosmic-normal {
+  --parallax-factor: 0.05;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-cosmic-intense {
+  --parallax-factor: 0.07500000000000001;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-cosmic-extreme {
+  --parallax-factor: 0.1;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-far-subtle {
+  --parallax-factor: 0.05;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-far-normal {
+  --parallax-factor: 0.1;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-far-intense {
+  --parallax-factor: 0.15000000000000002;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-far-extreme {
+  --parallax-factor: 0.2;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-mid-subtle {
+  --parallax-factor: 0.1;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-mid-normal {
+  --parallax-factor: 0.2;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-mid-intense {
+  --parallax-factor: 0.30000000000000004;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-mid-extreme {
+  --parallax-factor: 0.4;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-near-subtle {
+  --parallax-factor: 0.175;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-near-normal {
+  --parallax-factor: 0.35;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-near-intense {
+  --parallax-factor: 0.5249999999999999;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-near-extreme {
+  --parallax-factor: 0.7;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-interactive-subtle {
+  --parallax-factor: 0.25;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-interactive-normal {
+  --parallax-factor: 0.5;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-interactive-intense {
+  --parallax-factor: 0.75;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-interactive-extreme {
+  --parallax-factor: 1;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-ui-subtle {
+  --parallax-factor: 0;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-ui-normal {
+  --parallax-factor: 0;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-ui-intense {
+  --parallax-factor: 0;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+.parallax-ui-extreme {
+  --parallax-factor: 0;
+  transform: translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+}
+
+
+/* ========================================================================== */
+/* PARALLAX CONTAINER */
+/* ========================================================================== */
+
+.parallax-container {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  height: 100%;
+}
+
+.parallax-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.parallax-container::-webkit-scrollbar-track {
+  background: #0C0F1D;
+}
+
+.parallax-container::-webkit-scrollbar-thumb {
+  background: #6C5CE7;
+  border-radius: 4px;
+}
+
+.parallax-container::-webkit-scrollbar-thumb:hover {
+  background: #22D3EE;
+}
+
+
+/* ========================================================================== */
+/* CONVENIENCE CLASSES */
+/* ========================================================================== */
+
+.parallax-background {
+  position: relative;
+  z-index: 0;
+}
+
+.parallax-foreground {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* ========================================================================== */
+/* SCROLL-DRIVEN PARALLAX */
+/* ========================================================================== */
+
+.scroll-parallax-cosmic {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0.05));
+  transition: transform 0.1s linear;
+}
+
+.scroll-parallax-far {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0.1));
+  transition: transform 0.1s linear;
+}
+
+.scroll-parallax-mid {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0.2));
+  transition: transform 0.1s linear;
+}
+
+.scroll-parallax-near {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0.35));
+  transition: transform 0.1s linear;
+}
+
+.scroll-parallax-interactive {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0.5));
+  transition: transform 0.1s linear;
+}
+
+.scroll-parallax-ui {
+  transform: translateY(calc(var(--scroll-offset, 0px) * 0));
+  transition: transform 0.1s linear;
+}
+
+.smooth-parallax {
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+
+/* ========================================================================== */
+/* MOUSE-DRIVEN PARALLAX */
+/* ========================================================================== */
+
+.mouse-parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.mouse-parallax-cosmic {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.mouse-parallax-far {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.mouse-parallax-mid {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.mouse-parallax-near {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.mouse-parallax-interactive {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.mouse-parallax-ui {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+
+/* ========================================================================== */
+/* RESPONSIVE PARALLAX VARIANTS */
+/* ========================================================================== */
+
+@media (min-width: 767px) {
+  .sm\:parallax-cosmic {
+    --parallax-factor: 0.025;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-cosmic {
+    --parallax-factor: 0.034999999999999996;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-cosmic {
+    --parallax-factor: 0.05;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-cosmic {
+    --parallax-factor: 0.06;
+  }
+}
+
+@media (min-width: 767px) {
+  .sm\:parallax-far {
+    --parallax-factor: 0.05;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-far {
+    --parallax-factor: 0.06999999999999999;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-far {
+    --parallax-factor: 0.1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-far {
+    --parallax-factor: 0.12;
+  }
+}
+
+@media (min-width: 767px) {
+  .sm\:parallax-mid {
+    --parallax-factor: 0.1;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-mid {
+    --parallax-factor: 0.13999999999999999;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-mid {
+    --parallax-factor: 0.2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-mid {
+    --parallax-factor: 0.24;
+  }
+}
+
+@media (min-width: 767px) {
+  .sm\:parallax-near {
+    --parallax-factor: 0.175;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-near {
+    --parallax-factor: 0.24499999999999997;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-near {
+    --parallax-factor: 0.35;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-near {
+    --parallax-factor: 0.42;
+  }
+}
+
+@media (min-width: 767px) {
+  .sm\:parallax-interactive {
+    --parallax-factor: 0.25;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-interactive {
+    --parallax-factor: 0.35;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-interactive {
+    --parallax-factor: 0.5;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-interactive {
+    --parallax-factor: 0.6;
+  }
+}
+
+@media (min-width: 767px) {
+  .sm\:parallax-ui {
+    --parallax-factor: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:parallax-ui {
+    --parallax-factor: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:parallax-ui {
+    --parallax-factor: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:parallax-ui {
+    --parallax-factor: 0;
+  }
+}
+
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-container,
+  .parallax-cosmic,
+  .parallax-far,
+  .parallax-mid,
+  .parallax-near,
+  .parallax-interactive {
+    transform: none !important;
+  }
+  
+  .scroll-parallax-cosmic,
+  .scroll-parallax-far,
+  .scroll-parallax-mid,
+  .scroll-parallax-near,
+  .scroll-parallax-interactive,
+  .scroll-parallax-ui,
+  .mouse-parallax-cosmic,
+  .mouse-parallax-far,
+  .mouse-parallax-mid,
+  .mouse-parallax-near,
+  .mouse-parallax-interactive,
+  .mouse-parallax-ui {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .parallax-container {
+    perspective: none;
+    transform-style: flat;
+  }
+}
+
+/* ========================================================================== */
+/* PERFORMANCE OPTIMIZATIONS */
+/* ========================================================================== */
+
+/* GPU acceleration for parallax layers */
+.parallax-cosmic,
+.parallax-far,
+.parallax-mid,
+.parallax-near,
+.parallax-interactive {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Limit parallax effect on lower-end devices */
+@media (max-width: 768px) {
+  .parallax-cosmic,
+  .parallax-far,
+  .parallax-mid {
+    transform: none !important;
+  }
+}

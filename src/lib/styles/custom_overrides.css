@@ -1,0 +1,52 @@
+/* styles/custom-overrides.css
+   MANUAL - Only for styles that cannot be generated
+   Keep this file MINIMAL
+   ========================================================================== */
+
+/* ========================================================================== */
+/* PROJECT-SPECIFIC UTILITIES (Not in design system) */
+/* ========================================================================== */
+
+/* Custom container query utilities (if needed) */
+@container (min-width: 640px) {
+  .container\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================================================== */
+/* BROWSER-SPECIFIC FIXES */
+/* ========================================================================== */
+
+/* Safari-specific fixes */
+@media not all and (min-resolution:.001dpcm) {
+  .safari-blur-fix {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+  .firefox-scroll-fix {
+    scrollbar-width: thin;
+  }
+}
+
+/* ========================================================================== */
+/* THIRD-PARTY INTEGRATION OVERRIDES */
+/* ========================================================================== */
+
+/* Example: Override third-party library styles */
+/* .third-party-widget {
+  --custom-override: value;
+} */
+
+/* ========================================================================== */
+/* EMERGENCY OVERRIDES (Use sparingly) */
+/* ========================================================================== */
+
+/* Only for critical fixes that can't wait for regeneration */
+/* .emergency-fix {
+  property: value !important;
+} */

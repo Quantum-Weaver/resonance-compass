@@ -1,0 +1,81 @@
+/* src/app.css */
+/* ==========================================================================
+   APP.CSS — Thin orchestration layer
+   Imports generated COSMIC styles + minimal app-shell resets
+   ========================================================================== */
+
+/* ─── Tailwind CSS v4 ──────────────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* ─── COSMIC Generated Styles ──────────────────────────────────────────── */
+@import "./lib/styles/generated/variables.css";
+@import "./lib/styles/generated/animations.css";
+@import "./lib/styles/generated/text_effects.css";
+
+/* ─── Global Resets ────────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-deep-space, #0C0F1D);
+  color: var(--color-star-dust, #E0E0E0);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+.focus-visible {
+  outline: 3px solid var(--color-neurospark, #22D3EE);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-neurospark, #22D3EE);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+[aria-live] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[aria-live]:not(:empty) {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
