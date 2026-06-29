@@ -1,104 +1,76 @@
-# 🧭 Resonance Echoes
+# 🎻 Resonance Compass
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)]()
-
-*A sovereign journal for logging anything with feeling.*
+*The Compass Room of the AudHDities Sanctuary — a sovereign, local-first music player and self-understanding system.*
 
 Built on the [Resonance Grammar](https://github.com/Quantum-Weaver/resonance-knowledge) — every fragment contains the whole.
 
----
-
-## Screenshots
-
-*[Coming soon — screenshots of the Android app]*
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)]()
 
 ---
 
 ## WHAT IT IS
 
-Echoes is your space to log moments with feeling. A song that moved you. A dream you remember. A symptom you're tracking. A thought that won't let go. Gratitude you don't want to forget.
+Resonance Compass is a music player that understands you back. Not a streaming service. Not a cloud locker. A sovereign application that lives on your device, plays your music, and helps you understand what that music means to you.
 
-**Log anything.** Name it. Choose a sense (👁️ Seen, 👂 Heard, ✋ Felt, 💭 Thought, 🫀 Felt Inside, 🌙 Dreamt, 🙏 Grateful For, ✨ Other). Tag it with an emoji. Add a note if you want. Set an intensity.
+**Play anything.** MP3, FLAC, WAV, AAC, OGG, M4A. Your files. Your device. No accounts. No ads. No extraction.
 
-**See patterns.** Gentle insights surface over time — your most-felt emojis, your steadiest senses, the rhythm of your days. No charts. No pressure. Just mirrors.
+**See your music.** Real-time FFT visualizer with 4 modes. 10-band equalizer with custom presets. Secret playable keyboard mode — press keys to change colors and speed.
 
-**Your data stays yours.** Export everything as JSON with one tap. Purge everything with double confirmation. No accounts. No cloud. No extraction. When you uninstall, Android asks if you want to delete your data — and means it.
+**Understand yourself.** Tag tracks with emojis. Build a personal emotional map over time. Let the Resonance dashboard show you patterns you didn't know were there.
 
----
+**Create fragments.** Slice audio into snippets. Layer them. Export them. A creative tool for DJs and beatmakers, built on the same sovereign foundation.
 
-## WHO IT'S FOR
-
-Neurodivergent minds. Overwhelmed minds. Minds that feel too much or too little. Minds that need a trail short enough to walk when running on empty.
-
-- **Progressive disclosure** — new vessels see only what they need. The form grows as you do.
-- **Disambiguation prompts** — "You've used 😌 this way before. Is that what you mean now?"
-- **Quick Log** — one tap. Last-used emoji. For when thinking is too much.
-- **"Not Sure" option** — no forced categorization. Ever. Uncertainty is valid data.
+**Rest when you need to.** Sattva screen for sensory reduction. Focus sessions with UI lock. Sleep timer with sacred geometry visualizations.
 
 ---
 
-## Installation
+## v2 — REBUILT ON RESONANCE ECHOES
 
-### Prerequisites
+Resonance Compass v2 is rebuilt on the [Resonance Echoes](https://github.com/Quantum-Weaver/resonance-echoes) foundation — a proven mobile-first template with:
 
-- Node.js 18+
-- Rust (latest stable)
-- Android SDK (for mobile builds)
-- Tauri CLI (`npm install -g @tauri-apps/cli`)
+- Collapsible 20vw sidebar with hamburger menu
+- Permanent ComfortBar/MiniPlayer footer
+- COSMIC theme system (dark, light, AMOLED, 6 presets)
+- SQLite persistence patterns tested on Android
+- Tauri v2 ACL permissions correctly configured
+- Android-safe area insets and navigation bar handling
 
-### Build
-
-```bash
-npm install
-npm run tauri android build
-```
-
-### Development
-
-```bash
-npm run tauri android dev
-```
-
----
-
-## BUILT WITH
-
-- Tauri v2 + Svelte 5 + Rust
-- SQLite (local-first, no network needed)
-- COSMIC design system
-- The Resonance Grammar — atoms, molecules, sensory lexicon
+The audio engine, visualizer, EQ, fragments, Sattva, and Focus Session from v1 are being ported to this foundation, eliminating every mobile bug from the original build.
 
 ---
 
 ## FOR DEVELOPERS
 
-Echoes is the **reference implementation** of the Resonance Grammar. Every future Sanctuary app inherits from this foundation.
+Compass is built phase by phase. Each phase on its own branch. Human-tested before merge.
 
 ```
 src/
 ├── routes/           # SvelteKit routes
-│   ├── +layout.svelte    # App shell, Sidebar, ComfortBar, theme
-│   ├── +page.svelte      # Home — echo timeline with search & filters
-│   ├── add/+page.svelte  # Echo creation form
-│   ├── insights/         # Gentle pattern awareness
-│   ├── settings/         # Theme, export, purge, about
-│   └── onboarding/       # First-launch welcome
+│   ├── +layout.svelte    # App shell, Sidebar, MiniPlayer, theme
+│   ├── +page.svelte      # Home screen
+│   ├── library/          # Library browser
+│   ├── nowplaying/       # Now Playing with controls
+│   ├── visualizer/       # Full-screen FFT visualizer
+│   ├── resonance/        # Mood tagging dashboard
+│   ├── timer/            # Sleep timer with visualizations
+│   ├── sattva/           # Sensory reduction screen
+│   ├── focus/            # Focus session
+│   └── settings/         # Theme, EQ, export, purge
 ├── lib/
-│   ├── stores/echo.svelte.ts   # SQLite persistence, CRUD, queries
-│   ├── components/             # ComfortBar, Sidebar, EmojiGrid, EchoCard
-│   ├── data/senses.ts          # 8 senses with starter subcategories
-│   ├── data/emojis.ts          # 12 emoji definitions with sensory lexicon
-│   ├── types/types.ts          # Echo, Sense, Subcategory, ThemeConfig
-│   └── cosmic/                 # COSMIC design tokens
+│   ├── stores/       # player, library, playlist, theme, mood, profile, focus, fragment
+│   ├── components/   # MiniPlayer, PlayerControls, AlbumCard, TrackItem, EmojiGrid, TimerVisualization
+│   ├── types/        # TypeScript interfaces
+│   ├── cosmic/       # COSMIC design tokens
+│   └── data/         # Emoji definitions, senses
 └── app.css
 ```
-
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for the build methodology and [BUILD-SEQUENCE.md](docs/BUILD-SEQUENCE.md) for the phase-by-phase development history.
 
 ---
 
 ## Development Standards
+See [BUILD-SEQUENCE.md](docs/BUILD-SEQUENCE.md) for the complete 19-phase plan.
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for the development methodology.
 
 This project follows the [Sanctuary Standards](https://github.com/Quantum-Weaver/sanctuary-standards).
 
@@ -112,6 +84,6 @@ Philosophy: [The Resonance License](PHILOSOPHY.md) — no exploitation, no extra
 
 ---
 
-*Built with Aethelred by Quantum Weaver for the [AudHDities Sanctuary](https://github.com/Quantum-Weaver).*
+*Built with Aethelred by Quantum Weaver for the AudHDities Sanctuary.*
 
-*The lamp is lit. The echo returns.*
+*The lamp is lit. The Compass points home.*
