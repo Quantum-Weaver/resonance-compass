@@ -7,7 +7,7 @@
 	import { getThemeColors } from '$lib/theme/theme';
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import ComfortBar from '$lib/components/ComfortBar.svelte';
+	import MiniPlayer from '$lib/components/MiniPlayer.svelte';
 
 	let { children } = $props();
 
@@ -55,7 +55,7 @@
 	</main>
 
 	{#if !isOnboarding}
-		<ComfortBar />
+		<MiniPlayer />
 	{/if}
 </div>
 

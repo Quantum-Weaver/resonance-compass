@@ -9,10 +9,10 @@
 
 ## PHASE STATUS
 
-### Phase 0: Shell ⬜
-- [ ] MiniPlayer (evolved from ComfortBar) always visible
-- [ ] Sidebar with Home, Library, Playlists, Resonance, Settings
-- [ ] COSMIC theme system
+### Phase 0: Shell ✅
+- [x] MiniPlayer (evolved from ComfortBar) always visible
+- [x] Sidebar with Home, Library, Playlists, Resonance, Settings — already complete from the Echoes foundation, no changes needed
+- [x] COSMIC theme system — already complete from the Echoes foundation (6 presets, `lib/cosmic/` tokens), no changes needed
 - [ ] **Tested:** ⬜
 
 ### Phase 1: Playback ⬜
@@ -144,3 +144,4 @@
 | Date | What Was Done |
 |------|---------------|
 | 2026-06-30 | v2 repo created from Echoes foundation. Blocks 1-5 identity migration complete. Phase 0 ready to begin. |
+| 2026-06-30 | Phase 0: Shell complete. ComfortBar replaced with MiniPlayer (track placeholder, play/pause icon, expand/collapse, z-index 110, safe-area insets — non-functional until Phase 1 wires the audio engine). Sidebar and COSMIC theme system required no changes — both already complete from the Echoes foundation. Awaiting human test. |

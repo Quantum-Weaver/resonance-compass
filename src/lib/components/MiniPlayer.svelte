@@ -1,26 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-
 	let expanded = $state(false);
-	let vesselName = $state('there');
 
-	function getGreeting(): string {
-		const hour = new Date().getHours();
-		if (hour < 12) return 'Good morning';
-		if (hour < 17) return 'Good afternoon';
-		return 'Good evening';
-	}
-
-	const greeting = $derived(`${getGreeting()}, ${vesselName}`);
-
-	onMount(() => {
-		vesselName = localStorage.getItem('resonance-compass-vessel-name') ?? 'there';
-	});
-
-	function onQuickAdd() {
-		// Phase 1: wire to Now Playing / track picker
-		goto('/library');
+	function onPlayPause() {
+		// Phase 1: wire to audio engine
 	}
 
 	function toggleExpanded() {
@@ -28,32 +10,30 @@
 	}
 </script>
 
-<div class="comfort-bar" class:expanded>
+<div class="mini-player" class:expanded>
 	{#if expanded}
-		<div class="comfort-bar__expanded">
-			<button class="comfort-bar__collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
-			<div class="comfort-bar__greeting">{greeting}</div>
-			<div class="comfort-bar__stats">No music playing — your library begins here.</div>
-			<div class="comfort-bar__actions">
-				<button class="cb-action primary" onclick={onQuickAdd}>+ Quick Add</button>
-				<button class="cb-action" onclick={() => goto('/insights')}>Insights</button>
-				<button class="cb-action" onclick={() => goto('/settings')}>Settings</button>
+		<div class="mini-player__expanded">
+			<button class="mp-collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
+			<div class="mp-track">No music playing</div>
+			<div class="mp-stats">Your library will appear here</div>
+			<div class="mp-actions">
+				<button class="mp-action primary" onclick={onPlayPause} aria-label="Play">▶</button>
 			</div>
 		</div>
 	{:else}
-		<div class="comfort-bar__minimized">
-			<button class="comfort-bar__greeting-btn" onclick={toggleExpanded}>
-				{greeting}
+		<div class="mini-player__minimized">
+			<button class="mp-track-btn" onclick={toggleExpanded}>
+				No music playing
 			</button>
-			<button class="comfort-bar__quick-add" onclick={onQuickAdd} aria-label="Quick add echo">
-				+
+			<button class="mp-play-pause" onclick={onPlayPause} aria-label="Play">
+				▶
 			</button>
 		</div>
 	{/if}
 </div>
 
 <style>
-	.comfort-bar {
+	.mini-player {
 		position: fixed;
 		bottom: 0;
 		left: 0;
@@ -66,7 +46,7 @@
 	}
 
 	/* Minimized */
-	.comfort-bar__minimized {
+	.mini-player__minimized {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -74,7 +54,7 @@
 		padding: 0 1rem;
 	}
 
-	.comfort-bar__greeting-btn {
+	.mp-track-btn {
 		background: none;
 		border: none;
 		color: var(--text-secondary);
@@ -84,11 +64,11 @@
 		text-align: left;
 	}
 
-	.comfort-bar__greeting-btn:hover {
+	.mp-track-btn:hover {
 		color: var(--text);
 	}
 
-	.comfort-bar__quick-add {
+	.mp-play-pause {
 		width: 36px;
 		height: 36px;
 		border-radius: 50%;
@@ -105,7 +85,7 @@
 	}
 
 	/* Expanded */
-	.comfort-bar__expanded {
+	.mini-player__expanded {
 		padding: 0.75rem 1rem 1rem;
 		display: flex;
 		flex-direction: column;
@@ -113,7 +93,7 @@
 		position: relative;
 	}
 
-	.comfort-bar__collapse {
+	.mp-collapse {
 		position: absolute;
 		top: 0.25rem;
 		right: 0.75rem;
@@ -126,25 +106,25 @@
 		line-height: 1;
 	}
 
-	.comfort-bar__greeting {
+	.mp-track {
 		font-size: 1rem;
 		color: var(--text);
 		font-weight: 500;
 		padding-right: 2rem;
 	}
 
-	.comfort-bar__stats {
+	.mp-stats {
 		font-size: 0.85rem;
 		color: var(--text-muted);
 	}
 
-	.comfort-bar__actions {
+	.mp-actions {
 		display: flex;
 		gap: 0.5rem;
 		flex-wrap: wrap;
 	}
 
-	.cb-action {
+	.mp-action {
 		padding: 0.45rem 0.85rem;
 		border-radius: 8px;
 		background-color: var(--bg);
@@ -155,23 +135,23 @@
 		transition: background-color 0.15s ease, color 0.15s ease;
 	}
 
-	.cb-action:hover {
+	.mp-action:hover {
 		background-color: var(--border-color);
 		color: var(--text);
 	}
 
-	.cb-action.primary {
+	.mp-action.primary {
 		background-color: var(--accent);
 		border-color: var(--accent);
 		color: #fff;
 	}
 
-	.cb-action.primary:hover {
+	.mp-action.primary:hover {
 		opacity: 0.9;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.comfort-bar {
+		.mini-player {
 			transition: none;
 		}
 	}
