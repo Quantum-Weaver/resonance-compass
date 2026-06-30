@@ -1,10 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(python -c $script)"
+      "PowerShell(python -c $script)",
+      "Bash(git status *)",
+      "Bash(npm run *)",
+      "Bash(cargo --version)",
+      "Bash(rustc --version)",
+      "Bash(cargo check *)",
+      "Bash(npm outdated *)",
+      "Bash(npm audit *)",
+      "Bash(mkdir -p \"C:\\\\_superposition\\\\AudHDities-Resonance\\\\resonance-compass\\\\reports\")"
     ],
     "additionalDirectories": [
-      "c:\\_superposition\\AudHDities-Resonance\\resonance-compass\\src-tauri"
+      "c:\\_superposition\\AudHDities-Resonance\\resonance-compass\\src-tauri",
+      "C:\\_superposition\\AudHDities-Resonance\\resonance-compass"
     ]
   }
 }
