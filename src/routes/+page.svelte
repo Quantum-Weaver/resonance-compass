@@ -1,8 +1,21 @@
 <script lang="ts">
+	import { open } from '@tauri-apps/plugin-dialog';
 	import GradientPulse from '$lib/components/GradientPulse.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { playerStore } from '$lib/stores/player.svelte';
 
 	const trackCount = $derived(libraryStore.tracks.length);
+
+	// Phase 1 only — replaced by the full library scanner in Phase 2.
+	async function onOpenFile() {
+		const path = await open({
+			multiple: false,
+			filters: [{ name: 'Audio', extensions: ['mp3', 'flac', 'wav', 'ogg', 'm4a'] }],
+		});
+		if (typeof path === 'string') {
+			await playerStore.loadTrack(path);
+		}
+	}
 </script>
 
 <div class="home" style="padding-top: env(safe-area-inset-top, 0px);">
@@ -19,6 +32,7 @@
 		</GradientPulse>
 		<p class="empty-heading">Your library will appear here.</p>
 		<p class="empty-sub">Scan your music folder to get started.</p>
+		<button class="open-file-btn" onclick={onOpenFile}>Open File</button>
 	</div>
 </div>
 
@@ -80,5 +94,22 @@
 		font-size: 0.9rem;
 		color: var(--text-muted);
 		margin: 0;
+	}
+
+	.open-file-btn {
+		margin-top: 0.5rem;
+		padding: 0.55rem 1.1rem;
+		border-radius: 8px;
+		background-color: var(--accent);
+		border: none;
+		color: #fff;
+		font-size: 0.9rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: opacity 0.15s ease;
+	}
+
+	.open-file-btn:hover {
+		opacity: 0.9;
 	}
 </style>

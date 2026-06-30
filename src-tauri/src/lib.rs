@@ -1,4 +1,7 @@
+use tauri::Manager;
 use tauri_plugin_sql::{Migration, MigrationKind};
+
+mod audio;
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -92,6 +95,11 @@ pub fn run() {
     ];
 
     tauri::Builder::default()
+        .setup(|app| {
+            let audio_state = audio::AudioState::init(app.handle().clone());
+            app.manage(audio_state);
+            Ok(())
+        })
         .plugin(
             tauri_plugin_sql::Builder::default()
                 .add_migrations("sqlite:compass.db", migrations)
@@ -100,7 +108,15 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            audio::play_track,
+            audio::pause,
+            audio::resume,
+            audio::seek,
+            audio::set_volume,
+            audio::stop,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running Resonance Compass");
 }

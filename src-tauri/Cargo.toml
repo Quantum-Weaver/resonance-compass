@@ -20,6 +20,8 @@ tauri-plugin-fs = "2"
 tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+rodio = { version = "0.20", features = ["symphonia-all"] }
+lofty = "0.22"
 
 [profile.release]
 strip = true

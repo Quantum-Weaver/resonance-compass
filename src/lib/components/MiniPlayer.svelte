@@ -1,9 +1,14 @@
 <script lang="ts">
+	import { playerStore } from '$lib/stores/player.svelte';
+
 	let expanded = $state(false);
 
-	function onPlayPause() {
-		// Phase 1: wire to audio engine
-	}
+	const track = $derived(playerStore.currentTrack);
+	const isPlaying = $derived(playerStore.isPlaying);
+	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
+	const progressPct = $derived(
+		playerStore.duration > 0 ? Math.min(100, (playerStore.position / playerStore.duration) * 100) : 0
+	);
 
 	function toggleExpanded() {
 		expanded = !expanded;
@@ -14,19 +19,37 @@
 	{#if expanded}
 		<div class="mini-player__expanded">
 			<button class="mp-collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
-			<div class="mp-track">No music playing</div>
-			<div class="mp-stats">Your library will appear here</div>
+			<div class="mp-track">{trackLabel}</div>
+			{#if track}
+				<div class="mp-progress" aria-hidden="true">
+					<div class="mp-progress__fill" style="width: {progressPct}%"></div>
+				</div>
+			{:else}
+				<div class="mp-stats">Your library will appear here</div>
+			{/if}
 			<div class="mp-actions">
-				<button class="mp-action primary" onclick={onPlayPause} aria-label="Play">▶</button>
+				<button
+					class="mp-action primary"
+					onclick={() => playerStore.togglePlay()}
+					aria-label={isPlaying ? 'Pause' : 'Play'}
+					disabled={!track}
+				>
+					{isPlaying ? '⏸' : '▶'}
+				</button>
 			</div>
 		</div>
 	{:else}
 		<div class="mini-player__minimized">
 			<button class="mp-track-btn" onclick={toggleExpanded}>
-				No music playing
+				{trackLabel}
 			</button>
-			<button class="mp-play-pause" onclick={onPlayPause} aria-label="Play">
-				▶
+			<button
+				class="mp-play-pause"
+				onclick={() => playerStore.togglePlay()}
+				aria-label={isPlaying ? 'Pause' : 'Play'}
+				disabled={!track}
+			>
+				{isPlaying ? '⏸' : '▶'}
 			</button>
 		</div>
 	{/if}
@@ -62,6 +85,9 @@
 		cursor: pointer;
 		padding: 0;
 		text-align: left;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.mp-track-btn:hover {
@@ -82,6 +108,12 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
+	}
+
+	.mp-play-pause:disabled,
+	.mp-action:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
 	}
 
 	/* Expanded */
@@ -116,6 +148,20 @@
 	.mp-stats {
 		font-size: 0.85rem;
 		color: var(--text-muted);
+	}
+
+	/* Progress bar placeholder — becomes draggable/seekable in Phase 4 */
+	.mp-progress {
+		height: 4px;
+		border-radius: 2px;
+		background-color: var(--border-color);
+		overflow: hidden;
+	}
+
+	.mp-progress__fill {
+		height: 100%;
+		background-color: var(--accent);
+		transition: width 0.2s linear;
 	}
 
 	.mp-actions {
