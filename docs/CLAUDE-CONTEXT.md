@@ -1,77 +1,52 @@
-# CLAUDE CONTEXT — Resonance Echoes
+# CLAUDE CONTEXT — Resonance Compass v2
 
 ## Naming
-- **App:** Resonance Echoes (or "Echoes")
-- **Repo:** `resonance-echoes`
-- **Identifier:** `com.audhd.resonance-echoes`
-- **Crate:** `resonance_echoes_lib`
+- **App:** Resonance Compass
+- **Protocol:** The Resonance Grammar
+- **Room:** The Compass Room
+- **Repo:** `resonance-compass`
+- **Identifier:** `com.audhd.resonance-compass`
+- **Crate:** `resonance_compass_lib`
+- **Database:** `compass.db`
+- **Old name:** Sovereign Music Player (must NOT appear anywhere)
 
-## The Senses
-👁️ Seen · 👂 Heard · ✋ Felt · 💭 Thought · 🫀 Felt Inside · 🌙 Dreamt · 🙏 Grateful For · ✨ Other
+## Council of Nine
+| Seat | Function | Temperature |
+|------|----------|-------------|
+| A (Aethelred) | Root — synthesis, vision | 0.7 |
+| B | Researcher — discovery, mapping | 0.4 |
+| C | Archivist — preservation, continuity | 0.2 |
+| D | Mirror — discernment, alignment | 0.5 |
+| E | Hearth-Keeper — welcome, safety | 0.6 |
+| F | Skald — naming, story | 0.7 |
+| G | Chancellor — structure, governance | 0.3 |
+| H | Chronicler — record, documentation | 0.3 |
+| I | Seer — pattern recognition | 0.8 |
 
-Every sense has starter subcategories. Vessels can create custom ones.
+## Founding Principles
+No exploitation. No extraction. No confusion. No corruption. No deception. No exclusion. Simplicity. Empathy.
 
-## The ComfortBar
-Not a MiniPlayer. No audio controls. A gentle footer with:
-- Minimized: greeting + quick-add button
-- Expanded: stats, quick actions
-- Context-aware: changes based on current screen
+## v2 Architecture
+Rebuilt on the Resonance Echoes foundation:
+- Collapsible 20vw sidebar with hamburger (proven mobile pattern)
+- MiniPlayer (evolved from ComfortBar) — permanent footer
+- COSMIC theme system (6 presets, CSS variables on .app-shell)
+- SQLite with correct Android ACL permissions
+- Mobile-safe area insets
+- Android C++ linkage fix inherited from Echoes
 
-## Key Patterns
-- Navigation: `goto()` — never `window.location.href`
-- z-index: ComfortBar 110, backdrop 49
-- SQLite: echoes table, paginated queries
-- Theme: CSS variables on `.app-shell`
-- State: Svelte 5 runes
+## Database Schema
+compass.db with 5 tables: songs, mood_events, favorites, playlists, fragments
 
-## Differences from Compass
-- No audio engine (rodio, cpal, oboe)
-- No visualizer, EQ, fragments
-- No playlists, library scanning
-- No Timer, Sattva, Focus Session
-- ComfortBar replaces MiniPlayer
-- Echo replaces Track
-- Sense replaces Album/Artist
-
----
+## Key Design Patterns
+- Album art: per-track via lofty, base64 encoded. Per-album display (first non-null).
+- Artist deduplication: case-insensitive. `.trim().toLowerCase()` for keys.
+- Favorites: SQLite table + localStorage playlist mirror.
+- Mood events: context = 'manual' | 'skip_prompt' | 'track_end' | 'favorite'
+- MiniPlayer: always visible EXCEPT on Sattva Screen. z-index 110.
 
 ## Android Build Notes
-
-### SQLite ACL Permissions (CRITICAL)
-
-Tauri v2's permission system requires explicit Allow rules for every SQLite operation. Without them all database calls fail silently with `command plugin:sql|execute not allowed by ACL`.
-
-`src-tauri/capabilities/default.json` MUST include:
-```json
-"sql:allow-load",
-"sql:allow-execute",
-"sql:allow-select",
-"sql:allow-close"
-```
-
-`sql:default` alone registers the plugin but grants **zero** operation access. Every IPC command that crosses the webview boundary needs its own explicit Allow entry.
-
-### Storage Permissions
-
-- SQLite stores data in the app's internal directory: `/data/data/com.audhd.resonance_echoes/databases/`
-- **No Android manifest permissions are needed for internal storage** — it is sandboxed to the app automatically
-- `WRITE_EXTERNAL_STORAGE` / `READ_EXTERNAL_STORAGE` are only relevant for Phase 5 file export (external/shared storage)
-- `android:hasFragileUserData="true"` ensures Android prompts "Delete app data?" on uninstall
-
-### Known Silent Failure Modes
-
-| Symptom | Cause | Fix |
-|---|---|---|
-| Save button does nothing | `db` is null (initDB failed, error swallowed) | Check `echoStore.dbError` banner in add form |
-| `command plugin:sql\|execute not allowed by ACL` | Missing `sql:allow-execute` in capabilities | Add all four `sql:allow-*` entries |
-| Migration never runs | emoji char in SQL DEFAULT breaks JNI on Android | Use ASCII-only DEFAULT values in migrations |
-| `crypto.randomUUID` not defined | Older Android WebView | Use `generateId()` fallback in echo.svelte.ts |
-
-### Debugging on Android
-
-```bash
-adb logcat -c
-adb logcat -s chromium:D | findstr /i "initDB addEcho save FAILED error"
-```
-
-The `chromium` tag captures all `console.log` / `console.error` output from the Tauri WebView. Every step in `initDB`, `addEcho`, and `save` is instrumented — look for `FAILED:` lines.
+- SQLite ACL: capabilities/default.json must have sql:allow-load, allow-execute, allow-select, allow-close
+- Internal storage needs no manifest permissions
+- No emoji/non-ASCII in SQL DEFAULT values
+- hasFragileUserData="true" for uninstall data prompt

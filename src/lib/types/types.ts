@@ -6,20 +6,70 @@ export interface ThemeConfig {
   fontSize: 'small' | 'medium' | 'large';
 }
 
-// Echo — a single journal entry
-export interface Echo {
+// Track — a single song in the library (mirrors the songs table)
+export interface Track {
   id: string;
-  name: string;
-  sense: string;
-  subcategory: string;
-  emoji: string;
-  note?: string;
-  intensity: number;
-  timestamp: number;
-  createdAt: number;
+  uri: string;
+  filename: string;
+  title: string;
+  artist: string;
+  album: string;
+  genre?: string;
+  year?: number;
+  trackNumber?: number;
+  duration: number;
+  coverArt?: string;
+  lyrics?: string;
+  dateAdded: number;
+  lastScanned: number;
 }
 
-// Sense — top-level perception category (Seen, Heard, Felt, Thought, etc.)
+// MoodEvent — a mood tag applied to a track (mirrors the mood_events table)
+export interface MoodEvent {
+  id: number;
+  trackId: string;
+  emoji: string;
+  timestamp: number;
+  intensity: number;
+  comment?: string;
+  context: string;
+}
+
+// Album — derived grouping for UI
+export interface Album {
+  name: string;
+  artist: string;
+  year?: number;
+  coverArt?: string;
+  tracks: Track[];
+}
+
+// Artist — derived grouping for UI
+export interface Artist {
+  name: string;
+  albums: Album[];
+}
+
+// Playlist — mirrors the playlists table
+export interface Playlist {
+  id: string;
+  name: string;
+  description: string;
+  trackIds: string[];
+  createdAt: number;
+  updatedAt: number;
+}
+
+// PlayerState — runtime playback state
+export interface PlayerState {
+  currentTrack: Track | null;
+  isPlaying: boolean;
+  position: number;
+  duration: number;
+  volume: number;
+}
+
+// Sense — top-level perception category (Resonance Grammar)
 export interface Sense {
   id: string;
   name: string;

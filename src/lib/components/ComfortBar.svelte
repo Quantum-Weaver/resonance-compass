@@ -15,12 +15,12 @@
 	const greeting = $derived(`${getGreeting()}, ${vesselName}`);
 
 	onMount(() => {
-		vesselName = localStorage.getItem('resonance-echoes-vessel-name') ?? 'there';
+		vesselName = localStorage.getItem('resonance-compass-vessel-name') ?? 'there';
 	});
 
 	function onQuickAdd() {
-		// Phase 1 will wire this to the echo form
-		goto('/add');
+		// Phase 1: wire to Now Playing / track picker
+		goto('/library');
 	}
 
 	function toggleExpanded() {
@@ -33,7 +33,7 @@
 		<div class="comfort-bar__expanded">
 			<button class="comfort-bar__collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
 			<div class="comfort-bar__greeting">{greeting}</div>
-			<div class="comfort-bar__stats">No echoes yet — your journey begins here.</div>
+			<div class="comfort-bar__stats">No music playing — your library begins here.</div>
 			<div class="comfort-bar__actions">
 				<button class="cb-action primary" onclick={onQuickAdd}>+ Quick Add</button>
 				<button class="cb-action" onclick={() => goto('/insights')}>Insights</button>

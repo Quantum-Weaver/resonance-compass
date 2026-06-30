@@ -1,7 +1,7 @@
 import { PRESET_THEMES } from '$lib/theme/theme';
 import type { ThemeConfig } from '$lib/types/types';
 
-const STORAGE_KEY = 'resonance-echoes-theme';
+const STORAGE_KEY = 'resonance-compass-theme';
 
 let config = $state<ThemeConfig>(PRESET_THEMES.dark);
 

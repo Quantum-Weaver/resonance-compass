@@ -8,8 +8,10 @@
 
 	const navItems = [
 		{ href: '/', icon: '🏠', label: 'Home' },
-		{ href: '/insights', icon: '✨', label: 'Insights' },
-		{ href: '/settings', icon: '⚙️', label: 'Settings' }
+		{ href: '/library', icon: '🎵', label: 'Library' },
+		{ href: '/playlists', icon: '📋', label: 'Playlists' },
+		{ href: '/resonance', icon: '✨', label: 'Resonance' },
+		{ href: '/settings', icon: '⚙️', label: 'Settings' },
 	];
 
 	onMount(() => {
@@ -49,7 +51,7 @@
 <!-- Sidebar panel -->
 <nav class="sidebar" class:open aria-label="Main navigation">
 	<div class="sidebar__header">
-		<span class="sidebar__wordmark">Echoes</span>
+		<span class="sidebar__wordmark">Compass</span>
 	</div>
 
 	<ul class="sidebar__nav">

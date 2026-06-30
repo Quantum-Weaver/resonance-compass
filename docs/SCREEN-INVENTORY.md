@@ -1,21 +1,33 @@
-# SCREEN INVENTORY — Resonance Echoes
+# SCREEN INVENTORY — Resonance Compass v2
 
 ## Built (0)
-None yet.
+None yet. Phase 0 begins now.
 
-## Planned (6 screens)
+## Planned (19 screens)
 | Screen | Route | Phase |
 |--------|-------|-------|
-| Home (timeline) | `/` | 1 |
-| Insights | `/insights` | 3 |
-| Settings | `/settings` | 5 |
-| Onboarding | `/onboarding` | 4 |
+| Home | `/` | 9 |
+| Library | `/library` | 2 |
+| Now Playing | `/nowplaying` | 4 |
+| Queue | `/queue` | 3 |
+| Playlists | `/playlists` | 3 |
+| Playlist Detail | `/playlists/[id]` | 3 |
+| Liked Songs | `/liked` | 10 |
+| Search | `/search` | 11 |
+| Lyrics | `/lyrics` | 12 |
+| Resonance | `/resonance` | 7 |
+| Timer | `/timer` | 8 |
+| Visualizer | `/visualizer` | 5 |
+| Equalizer | `/equalizer` | 6 |
+| Sattva | `/sattva` | 15 |
+| Focus | `/focus` | 17 |
+| Profiles | `/profiles` | 16 |
+| History | `/history` | 14 |
+| Settings | `/settings` | — |
+| Onboarding | `/onboarding` | 13 |
 
-## Components
-| Component | Purpose | Phase |
-|-----------|---------|-------|
-| ComfortBar | Permanent footer — greeting + quick-add | 0 |
-| EchoCard | Single echo display — emoji, name, sense, time | 1 |
-| EmojiGrid | Emoji selection grid (shared with Compass) | 1 |
-| SensePicker | Sense + subcategory selector | 1 |
-| GradientPulse | Ambient glow wrapper (shared with Compass) | 0 |
+## Sanctuary-Unique Screens
+- Sattva Screen — one-tap sensory reduction
+- Resonance Dashboard — emoji mood tagging with sensory lexicon
+- Focus Session — timer + UI lock
+- Sensory Profiles — theme/EQ/font/playlist bundles

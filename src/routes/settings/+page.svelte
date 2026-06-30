@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { themeStore } from '$lib/stores/theme.svelte';
-	import { echoStore } from '$lib/stores/echo.svelte';
+	import { libraryStore } from '$lib/stores/library.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
 	// ── Theme section ──────────────────────────────────────────────────────────
@@ -25,21 +25,20 @@
 
 	// ── Data Sovereignty section ────────────────────────────────────────────────
 
-	const echoCount = $derived(echoStore.totalCount);
+	const trackCount = $derived(libraryStore.tracks.length);
 
-	// purgeState controls the double-confirmation flow for both purge paths
 	let purgeState = $state<'idle' | 'confirm1' | 'confirm2'>('idle');
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
 	function exportData() {
-		const json = JSON.stringify(echoStore.echoes, null, 2);
+		const json = JSON.stringify(libraryStore.tracks, null, 2);
 		const blob = new Blob([json], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
 		const date = new Date().toISOString().split('T')[0];
 		a.href = url;
-		a.download = `resonance-echoes-export-${date}.json`;
+		a.download = `resonance-compass-export-${date}.json`;
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
@@ -58,9 +57,9 @@
 
 	async function executePurge() {
 		if (pendingExport) exportData();
-		await echoStore.purgeAll();
-		localStorage.removeItem('resonance-echoes-vessel-name');
-		localStorage.removeItem('resonance-echoes-theme');
+		await libraryStore.clearLibrary();
+		localStorage.removeItem('resonance-compass-vessel-name');
+		localStorage.removeItem('resonance-compass-theme');
 		localStorage.removeItem('onboarding_complete');
 		goto('/onboarding');
 	}
@@ -109,17 +108,17 @@
 	<section class="section">
 		<h2 class="section-title">Data Sovereignty</h2>
 
-		<p class="echo-count">
-			{echoCount === 0
-				? 'No echoes stored yet.'
-				: `${echoCount} ${echoCount === 1 ? 'echo' : 'echoes'} stored on your device.`}
+		<p class="track-count">
+			{trackCount === 0
+				? 'No data stored yet.'
+				: `${trackCount} ${trackCount === 1 ? 'track' : 'tracks'} in your library.`}
 		</p>
 
 		<div class="data-actions">
-			<button class="btn-data" onclick={exportData} disabled={echoCount === 0}>
-				Export All Data
+			<button class="btn-data" onclick={exportData} disabled={trackCount === 0}>
+				Export Library Data
 			</button>
-			<button class="btn-data warning" onclick={() => startPurge(true)} disabled={echoCount === 0}>
+			<button class="btn-data warning" onclick={() => startPurge(true)} disabled={trackCount === 0}>
 				Export &amp; Purge
 			</button>
 		</div>
@@ -128,7 +127,7 @@
 			<p class="danger-label">Danger zone</p>
 
 			{#if purgeState === 'idle'}
-				<button class="btn-danger" onclick={() => startPurge(false)} disabled={echoCount === 0}>
+				<button class="btn-danger" onclick={() => startPurge(false)} disabled={trackCount === 0}>
 					Purge All Data
 				</button>
 
@@ -136,9 +135,9 @@
 				<div class="confirm-card">
 					<p class="confirm-text">
 						{#if pendingExport}
-							This will export your data and permanently delete all your echoes. This cannot be undone.
+							This will export your library and permanently delete all stored data. This cannot be undone.
 						{:else}
-							This will permanently delete all your echoes. This cannot be undone.
+							This will permanently delete all stored data. This cannot be undone.
 						{/if}
 					</p>
 					<div class="confirm-actions">
@@ -151,9 +150,9 @@
 				<div class="confirm-card final">
 					<p class="confirm-text">
 						{#if pendingExport}
-							Are you absolutely sure? Your echoes will be downloaded then permanently deleted.
+							Are you absolutely sure? Your library will be downloaded then permanently deleted.
 						{:else}
-							Are you absolutely sure? All echoes, insights, and settings will be removed.
+							Are you absolutely sure? All data, playlists, and settings will be removed.
 						{/if}
 					</p>
 					<div class="confirm-actions">
@@ -171,10 +170,10 @@
 				</button>
 			{:else}
 				<div class="uninstall-guide">
-					<p class="uninstall-intro">Resonance Echoes stores all data on your device. To completely remove the app and all data:</p>
+					<p class="uninstall-intro">Resonance Compass stores all data on your device. To completely remove the app and all data:</p>
 					<ol class="uninstall-steps">
 						<li>Export your data if you want to keep it</li>
-						<li>Go to Android Settings → Apps → Resonance Echoes → Uninstall</li>
+						<li>Go to Android Settings → Apps → Resonance Compass → Uninstall</li>
 					</ol>
 					<p class="uninstall-note">This ensures Android removes all app data.</p>
 					<button class="btn-neutral" onclick={() => (showUninstallGuide = false)}>Got it</button>
@@ -189,10 +188,10 @@
 
 		<div class="about-card">
 			<div class="about-app">
-				<span class="about-name">Resonance Echoes</span>
-				<span class="about-version">v1.0.0</span>
+				<span class="about-name">Resonance Compass</span>
+				<span class="about-version">v2.0.0</span>
 			</div>
-			<p class="about-tag">A sovereign journal for logging anything with feeling.</p>
+			<p class="about-tag">A sovereign music player and self-understanding system.</p>
 			<p class="about-built">Built with Aethelred by Quantum Weaver for the AudHDities Sanctuary.</p>
 			<p class="about-license">All data belongs to the vessel. The Resonance Grammar governs.</p>
 		</div>
@@ -300,7 +299,7 @@
 	}
 
 	/* ── Data Sovereignty ── */
-	.echo-count {
+	.track-count {
 		font-size: 0.875rem;
 		color: var(--text-muted);
 		margin: 0;

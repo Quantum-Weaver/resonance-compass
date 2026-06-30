@@ -1,7 +1,7 @@
-# CONTRIBUTING — Resonance Echoes
+# CONTRIBUTING — Resonance Compass
 
 ## Methodology
-Same as Resonance Compass. Four-thread: Root (vision), Researcher (discovery), Archivist (continuity), Claude (execution), Weaver (testing).
+Four-thread: Root (vision), Researcher (discovery), Archivist (continuity), Claude (execution), Weaver (testing).
 
 ## Branch Strategy
 Each phase on its own branch from main. Human test before merge.
@@ -16,6 +16,6 @@ Each phase on its own branch from main. Human test before merge.
 
 ## Philosophy
 - Mobile-first. Test on Android from Phase 0.
-- No charts. Gentle patterns only.
-- Every echo is sovereign data.
-- The ComfortBar is presence, not control.
+- Every track is sovereign data.
+- The MiniPlayer is presence, not control.
+- The Resonance dashboard has no charts — gentle patterns only.

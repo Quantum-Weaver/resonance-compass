@@ -16,7 +16,7 @@
 
 	function begin() {
 		if (vesselName.trim()) {
-			localStorage.setItem('resonance-echoes-vessel-name', vesselName.trim());
+			localStorage.setItem('resonance-compass-vessel-name', vesselName.trim());
 		}
 		screen = 1;
 	}
@@ -30,7 +30,7 @@
 		themeStore.setPreset(key);
 	}
 
-	function enterEchoes() {
+	function enterCompass() {
 		themeStore.setPreset(selectedPreset);
 		localStorage.setItem('onboarding_complete', 'true');
 		goto('/');
@@ -50,8 +50,8 @@
 				</div>
 
 				<div class="header-text">
-					<h1 class="ob-title">Welcome to Echoes</h1>
-					<p class="ob-sub">Your space to log anything with feeling. All stored on your device. No accounts. No cloud.</p>
+					<h1 class="ob-title">Welcome to Compass</h1>
+					<p class="ob-sub">Your sovereign music player. Play anything, understand yourself. Local-first. No accounts. No cloud.</p>
 				</div>
 
 				<div class="name-section">
@@ -89,17 +89,17 @@
 
 				<div class="how-cards">
 					<div class="how-card">
-						<span class="how-icon">📖</span>
+						<span class="how-icon">🎵</span>
 						<div class="how-text">
-							<strong>Log anything</strong>
-							<span>Name a moment, choose a sense, tag it with an emoji.</span>
+							<strong>Play anything</strong>
+							<span>MP3, FLAC, WAV, AAC, OGG, M4A. Your files, your device. No accounts, no streaming.</span>
 						</div>
 					</div>
 					<div class="how-card">
 						<span class="how-icon">✨</span>
 						<div class="how-text">
-							<strong>See patterns</strong>
-							<span>Gentle insights emerge over time — no pressure, no judgment.</span>
+							<strong>Understand yourself</strong>
+							<span>Tag music with emojis. Build a personal emotional map over time.</span>
 						</div>
 					</div>
 					<div class="how-card">
@@ -148,8 +148,8 @@
 			</div>
 
 			<div class="screen-actions">
-				<button class="btn-primary" onclick={enterEchoes}>Enter Echoes</button>
-				<button class="btn-skip" onclick={enterEchoes}>Skip</button>
+				<button class="btn-primary" onclick={enterCompass}>Enter Compass</button>
+				<button class="btn-skip" onclick={enterCompass}>Skip</button>
 			</div>
 
 			<div class="progress" aria-label="Step 3 of 3">

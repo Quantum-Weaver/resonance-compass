@@ -1,7 +1,7 @@
 {
-  "name": "resonance-echoes",
-  "version": "1.0.0",
-  "description": "A sovereign journal for logging anything with feeling",
+  "name": "resonance-compass",
+  "version": "2.0.0",
+  "description": "A sovereign music player and self-understanding system",
   "type": "module",
   "scripts": {
     "dev": "vite dev",

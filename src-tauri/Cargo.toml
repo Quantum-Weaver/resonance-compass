@@ -1,12 +1,12 @@
 [package]
-name = "resonance-echoes"
-version = "0.1.0"
-description = "A sovereign journal for logging anything with feeling"
+name = "resonance-compass"
+version = "2.0.0"
+description = "A sovereign music player and self-understanding system"
 authors = ["Quantum Weaver"]
 edition = "2021"
 
 [lib]
-name = "resonance_echoes_lib"
+name = "resonance_compass_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
