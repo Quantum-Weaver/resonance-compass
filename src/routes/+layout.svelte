@@ -4,6 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { playerStore } from '$lib/stores/player.svelte';
 	import { getThemeColors } from '$lib/theme/theme';
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
@@ -17,6 +18,7 @@
 	onMount(async () => {
 		themeStore.loadTheme();
 		await libraryStore.initDB();
+		playerStore.restoreState();
 		const done = localStorage.getItem('onboarding_complete');
 		if (!done && page.url.pathname !== '/onboarding') {
 			goto('/onboarding');

@@ -1,12 +1,20 @@
 import Database from '@tauri-apps/plugin-sql';
 import { browser } from '$app/environment';
-import type { Track } from '$lib/types/types';
+import type { Track, Album, Artist } from '$lib/types/types';
 
 let db: Database | null = null;
 let tracks = $state<Track[]>([]);
+let albums = $state<Album[]>([]);
+let artists = $state<Artist[]>([]);
 let loading = $state(false);
 let dbError = $state<string | null>(null);
+let isScanning = $state(false);
 let scanProgress = $state(0);
+let scanError = $state<string | null>(null);
+let lastScanned = $state<number | null>(null);
+
+// SQLite bound-parameter limit is 999. 13 cols x 50 rows = 650 params per batch.
+const INSERT_BATCH = 50;
 
 function rowToTrack(row: Record<string, unknown>): Track {
 	return {
@@ -27,6 +35,23 @@ function rowToTrack(row: Record<string, unknown>): Track {
 	};
 }
 
+// Builds one upsert statement for a single batch (max INSERT_BATCH rows).
+// cover_art is deliberately excluded — embedded art can be 100-500KB per
+// track, so batching 50 of those into one IPC call risks a huge/failing
+// payload. It's written separately afterward, one UPDATE per track.
+function buildInsertBatch(vals: unknown[][]): [string, unknown[]] {
+	let p = 1;
+	const rows = vals.map((row) => `(${row.map(() => '$' + p++).join(',')})`);
+	const cols =
+		'id,uri,filename,title,artist,album,genre,year,track_number,duration,lyrics,date_added,last_scanned';
+	const upd =
+		'uri=excluded.uri,filename=excluded.filename,title=excluded.title,artist=excluded.artist,album=excluded.album,genre=excluded.genre,year=excluded.year,track_number=excluded.track_number,duration=excluded.duration,lyrics=excluded.lyrics,date_added=excluded.date_added,last_scanned=excluded.last_scanned';
+	return [
+		`INSERT INTO songs (${cols}) VALUES ${rows.join(',')} ON CONFLICT(id) DO UPDATE SET ${upd}`,
+		vals.flat(),
+	];
+}
+
 async function initDB() {
 	if (!browser || db) return;
 	try {
@@ -45,7 +70,8 @@ async function loadTracks() {
 		const rows = await db.select<Record<string, unknown>[]>(
 			'SELECT * FROM songs ORDER BY artist, album, track_number'
 		);
-		tracks = rows.map(rowToTrack);
+		const saved = rows.map(rowToTrack);
+		if (saved.length > 0) setTracks(saved);
 	} catch (e) {
 		console.error('[libraryStore] loadTracks failed:', e);
 	} finally {
@@ -53,24 +79,183 @@ async function loadTracks() {
 	}
 }
 
+// Builds the album/artist groupings from a flat track list.
+// Artist dedup is case-insensitive (.trim().toLowerCase()); album id follows
+// the "albumName|||artistName" format (CLAUDE.md).
+function setTracks(newTracks: Track[]) {
+	tracks = newTracks;
+
+	const albumMap = new Map<string, Album>();
+	const artistMap = new Map<string, Artist>();
+
+	for (const track of newTracks) {
+		const artistName = track.artist.trim();
+		const albumName = track.album.trim();
+		const artistKey = artistName.toLowerCase();
+		const albumKey = `${albumName.toLowerCase()}|||${artistKey}`;
+
+		if (!albumMap.has(albumKey)) {
+			albumMap.set(albumKey, {
+				id: `${albumName}|||${artistName}`,
+				name: albumName,
+				artist: artistName,
+				tracks: [],
+				coverArt: track.coverArt,
+				year: track.year,
+				genre: track.genre,
+			});
+		}
+		const album = albumMap.get(albumKey)!;
+		album.tracks.push(track);
+		if (!album.coverArt && track.coverArt) album.coverArt = track.coverArt;
+
+		if (!artistMap.has(artistKey)) {
+			artistMap.set(artistKey, { id: artistName, name: artistName, albums: [], trackCount: 0 });
+		}
+		artistMap.get(artistKey)!.trackCount++;
+	}
+
+	for (const album of albumMap.values()) {
+		const artist = artistMap.get(album.artist.toLowerCase());
+		if (artist) artist.albums.push(album);
+	}
+
+	albums = Array.from(albumMap.values());
+	artists = Array.from(artistMap.values());
+	lastScanned = Date.now();
+}
+
+// Note: explicit BEGIN/COMMIT is intentionally omitted — tauri-plugin-sql's
+// SQLx connection pool issues ROLLBACK on connection release, which silently
+// cancels explicit transactions. Each execute() call is autocommitted, and
+// batching keeps each call under SQLite's 999 bound-parameter limit.
+async function saveScannedTracks(scannedTracks: Track[]) {
+	if (!db) return;
+
+	const now = Math.floor(Date.now() / 1000);
+	const vals = scannedTracks.map((t) => [
+		t.id,
+		t.uri,
+		t.filename,
+		t.title,
+		t.artist,
+		t.album,
+		t.genre ?? null,
+		t.year ?? null,
+		t.trackNumber ?? null,
+		t.duration,
+		t.lyrics ?? null,
+		t.dateAdded || now,
+		now,
+	]);
+	for (let i = 0; i < vals.length; i += INSERT_BATCH) {
+		const [stmt, params] = buildInsertBatch(vals.slice(i, i + INSERT_BATCH));
+		await db.execute(stmt, params);
+	}
+
+	// Cover art: one UPDATE per track so no single IPC call carries more than one image.
+	for (const t of scannedTracks) {
+		if (t.coverArt) {
+			await db.execute('UPDATE songs SET cover_art = $1 WHERE id = $2', [t.coverArt, t.id]);
+		}
+	}
+}
+
 async function scanLibrary() {
-	// Phase 2: wire to Tauri FS + audio metadata reader
-	console.log('[libraryStore] scanLibrary — not yet implemented (Phase 2)');
+	const { open } = await import('@tauri-apps/plugin-dialog');
+	const { invoke } = await import('@tauri-apps/api/core');
+	const { listen } = await import('@tauri-apps/api/event');
+
+	const selected = await open({ directory: true, multiple: false, title: 'Select your music folder' });
+	if (!selected) return;
+
+	scanError = null;
+	isScanning = true;
+	scanProgress = 0;
+
+	const unlisten = await listen<{ current: number; total: number }>('scan-progress', (event) => {
+		const { current, total } = event.payload;
+		if (total > 0) scanProgress = current / total;
+	});
+
+	try {
+		const scanned = await invoke<Track[]>('scan_directory', { dirPath: selected as string });
+		const now = Math.floor(Date.now() / 1000);
+		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now }));
+		setTracks(withTimestamps);
+		await saveScannedTracks(withTimestamps);
+	} catch (e) {
+		scanError = e instanceof Error ? e.message : String(e);
+		console.error('[libraryStore] scan failed:', e);
+	} finally {
+		unlisten();
+		isScanning = false;
+		scanProgress = 0;
+	}
 }
 
 async function clearLibrary() {
 	if (!db) return;
 	await db.execute('DELETE FROM songs');
 	tracks = [];
+	albums = [];
+	artists = [];
+	lastScanned = null;
+}
+
+function getTrackById(id: string): Track | undefined {
+	return tracks.find((t) => t.id === id);
+}
+
+function getTracksByAlbum(albumId: string): Track[] {
+	const album = albums.find((a) => a.id === albumId);
+	return album ? [...album.tracks].sort((a, b) => (a.trackNumber ?? 0) - (b.trackNumber ?? 0)) : [];
+}
+
+function getTracksByArtist(artistName: string): Track[] {
+	const key = artistName.trim().toLowerCase();
+	return tracks.filter((t) => t.artist.trim().toLowerCase() === key);
+}
+
+function getAlbumsByArtist(artistId: string): Album[] {
+	const artist = artists.find((a) => a.id === artistId);
+	return artist ? artist.albums : [];
+}
+
+function search(query: string): { tracks: Track[]; albums: Album[]; artists: Artist[] } {
+	const q = query.trim().toLowerCase();
+	if (!q) return { tracks: [], albums: [], artists: [] };
+	return {
+		tracks: tracks.filter(
+			(t) =>
+				t.title.toLowerCase().includes(q) ||
+				t.artist.toLowerCase().includes(q) ||
+				t.album.toLowerCase().includes(q)
+		),
+		albums: albums.filter((a) => a.name.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q)),
+		artists: artists.filter((a) => a.name.toLowerCase().includes(q)),
+	};
 }
 
 export const libraryStore = {
 	get tracks() { return tracks; },
+	get albums() { return albums; },
+	get artists() { return artists; },
 	get loading() { return loading; },
 	get dbError() { return dbError; },
+	get isScanning() { return isScanning; },
 	get scanProgress() { return scanProgress; },
+	get scanError() { return scanError; },
+	get lastScanned() { return lastScanned; },
 	initDB,
 	loadTracks,
+	setTracks,
+	saveScannedTracks,
 	scanLibrary,
 	clearLibrary,
+	getTrackById,
+	getTracksByAlbum,
+	getTracksByArtist,
+	getAlbumsByArtist,
+	search,
 };
