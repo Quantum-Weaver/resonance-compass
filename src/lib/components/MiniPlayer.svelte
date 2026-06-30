@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { playerStore } from '$lib/stores/player.svelte';
+	import { playlistStore } from '$lib/stores/playlist.svelte';
 
 	let expanded = $state(false);
 
@@ -9,6 +10,11 @@
 	const progressPct = $derived(
 		playerStore.duration > 0 ? Math.min(100, (playerStore.position / playerStore.duration) * 100) : 0
 	);
+	const isFav = $derived(track ? playlistStore.isFavorite(track.id) : false);
+
+	function toggleFav() {
+		if (track) playlistStore.toggleFavorite(track.id);
+	}
 
 	function toggleExpanded() {
 		expanded = !expanded;
@@ -35,6 +41,15 @@
 					disabled={!track}
 				>
 					{isPlaying ? '⏸' : '▶'}
+				</button>
+				<button
+					class="mp-action mp-heart"
+					onclick={toggleFav}
+					aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+					aria-pressed={isFav}
+					disabled={!track}
+				>
+					{isFav ? '❤️' : '🤍'}
 				</button>
 			</div>
 		</div>
