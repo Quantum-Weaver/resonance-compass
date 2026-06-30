@@ -23,3 +23,5 @@ src-tauri/gen/
 .env.*
 helper.md
 generate_blueprint.py
+/target/
+/reports
