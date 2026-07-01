@@ -15,6 +15,16 @@
 		{ href: '/settings', icon: '⚙️', label: 'Settings' },
 	];
 
+	// The visualizer is a full-screen immersive experience — no hamburger, no
+	// sidebar. Its own z-index (100) sits above the sidebar panel (50) but below
+	// the hamburger (120), so an opened panel would be invisible but the toggle
+	// would still be clickable if left alone. Hide it and force-close instead.
+	const isVisualizer = $derived(page.url.pathname === '/visualizer');
+
+	$effect(() => {
+		if (isVisualizer) open = false;
+	});
+
 	onMount(() => {
 		isMobile = window.innerWidth < 768;
 	});
@@ -29,19 +39,21 @@
 	}
 </script>
 
-<!-- Hamburger (always visible) -->
-<button
-	class="hamburger"
-	onclick={toggle}
-	aria-label={open ? 'Close navigation' : 'Open navigation'}
-	aria-expanded={open}
->
-	{open ? '✕' : '☰'}
-</button>
+<!-- Hamburger — always visible except on the full-screen visualizer -->
+{#if !isVisualizer}
+	<button
+		class="hamburger"
+		onclick={toggle}
+		aria-label={open ? 'Close navigation' : 'Open navigation'}
+		aria-expanded={open}
+	>
+		{open ? '✕' : '☰'}
+	</button>
+{/if}
 
 <!-- Backdrop — dismisses the sidebar on outside interaction whenever it's open,
      desktop or mobile, since the hamburger toggle is always visible on both. -->
-{#if open}
+{#if open && !isVisualizer}
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="backdrop"
@@ -51,8 +63,9 @@
 	></div>
 {/if}
 
-<!-- Sidebar panel -->
-<nav class="sidebar" class:open aria-label="Main navigation">
+<!-- Sidebar panel — class:open is gated on !isVisualizer too so nothing can
+     render it expanded while on the visualizer, even defensively. -->
+<nav class="sidebar" class:open={open && !isVisualizer} aria-label="Main navigation">
 	<div class="sidebar__header">
 		<span class="sidebar__wordmark">Compass</span>
 	</div>
