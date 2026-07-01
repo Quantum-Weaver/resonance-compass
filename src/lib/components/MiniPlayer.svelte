@@ -7,12 +7,15 @@
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
 	let expanded = $state(false);
+	let previousPath = $state(page.url.pathname);
 
-	// Collapse whenever the route changes — covers both in-panel nav buttons and
-	// sidebar navigation while the panel happens to be open.
+	// Collapse on route change only — not on initial mount (previousPath === currentPath).
 	$effect(() => {
-		void page.url.pathname;
-		if (expanded) expanded = false;
+		const currentPath = page.url.pathname;
+		if (currentPath !== previousPath && expanded) {
+			expanded = false;
+		}
+		previousPath = currentPath;
 	});
 
 	const track = $derived(playerStore.currentTrack);
