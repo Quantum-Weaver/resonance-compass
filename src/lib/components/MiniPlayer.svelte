@@ -32,14 +32,19 @@
 
 			{#if track}
 				<PlayerControls />
-				<button
-					class="mp-heart"
-					onclick={toggleFav}
-					aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
-					aria-pressed={isFav}
-				>
-					{isFav ? '❤️' : '🤍'}
-				</button>
+				<div class="mp-nav-row">
+					<button
+						class="mp-nav-btn"
+						onclick={toggleFav}
+						aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+						aria-pressed={isFav}
+					>
+						{isFav ? '❤️' : '🤍'}
+					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/visualizer')} aria-label="Visualizer">
+						🌊
+					</button>
+				</div>
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
 			{/if}
@@ -182,13 +187,18 @@
 		color: var(--text-muted);
 	}
 
-	.mp-heart {
-		align-self: center;
+	.mp-nav-row {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.mp-nav-btn {
 		background: none;
 		border: none;
 		cursor: pointer;
 		font-size: 1.1rem;
-		padding: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		line-height: 1;
 	}
 

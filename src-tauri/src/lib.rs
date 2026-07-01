@@ -10,6 +10,7 @@ use tauri::{Emitter, Manager};
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 mod audio;
+mod visualizer;
 
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -191,6 +192,8 @@ fn scan_directory(app_handle: tauri::AppHandle, dir_path: String) -> Result<Vec<
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let (vis_tx, vis_rx) = visualizer::make_channel();
+
     let migrations = vec![
         Migration {
             version: 1,
@@ -279,8 +282,9 @@ pub fn run() {
     ];
 
     tauri::Builder::default()
-        .setup(|app| {
-            let audio_state = audio::AudioState::init(app.handle().clone());
+        .setup(move |app| {
+            visualizer::start(app.handle().clone(), vis_rx);
+            let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx);
             app.manage(audio_state);
             Ok(())
         })

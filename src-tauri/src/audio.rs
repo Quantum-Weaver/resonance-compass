@@ -16,8 +16,11 @@ use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::time::{Duration, Instant};
 
+use crossbeam::channel::Sender as VisSender;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Sink, Source};
 use tauri::{AppHandle, Emitter};
+
+use crate::visualizer::{SampleTap, VisSample};
 
 #[derive(Default)]
 struct CurrentPlayback {
@@ -30,10 +33,11 @@ struct CurrentPlayback {
 pub struct AudioState {
     playback: Arc<Mutex<CurrentPlayback>>,
     stream_handle: OutputStreamHandle,
+    vis_tx: VisSender<VisSample>,
 }
 
 impl AudioState {
-    pub fn init(app: AppHandle) -> Self {
+    pub fn init(app: AppHandle, vis_tx: VisSender<VisSample>) -> Self {
         let playback = Arc::new(Mutex::new(CurrentPlayback::default()));
         let (ready_tx, ready_rx) = mpsc::sync_channel::<OutputStreamHandle>(1);
 
@@ -44,7 +48,7 @@ impl AudioState {
             .recv()
             .expect("audio output thread failed to start");
 
-        AudioState { playback, stream_handle }
+        AudioState { playback, stream_handle, vis_tx }
     }
 
     pub fn play_track(&self, path: &str, app: &AppHandle) -> Result<(), String> {
@@ -57,7 +61,9 @@ impl AudioState {
         let dur_secs = lofty_dur.or(decoder_dur);
 
         let sink = Sink::try_new(&self.stream_handle).map_err(|e| format!("sink: {e}"))?;
-        sink.append(decoder.convert_samples::<f32>());
+        let converted = decoder.convert_samples::<f32>();
+        let tapped = SampleTap::new(converted, self.vis_tx.clone());
+        sink.append(tapped);
         sink.play();
 
         {
