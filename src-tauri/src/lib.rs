@@ -242,6 +242,9 @@ pub fn run() {
             );",
             kind: MigrationKind::Up,
         },
+        // Reserved for a possible future SQLite migration. Playlists (including the
+        // 'favorites' auto-playlist) currently live in localStorage via playlistStore
+        // (see docs/CLAUDE-CONTEXT.md) — this table is created but not written to.
         Migration {
             version: 4,
             description: "create_playlists_table",

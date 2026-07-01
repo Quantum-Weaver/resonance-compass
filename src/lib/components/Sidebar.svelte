@@ -39,11 +39,14 @@
 	{open ? '✕' : '☰'}
 </button>
 
-<!-- Mobile backdrop -->
-{#if open && isMobile}
+<!-- Backdrop — dismisses the sidebar on outside interaction whenever it's open,
+     desktop or mobile, since the hamburger toggle is always visible on both. -->
+{#if open}
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="backdrop"
 		onclick={() => (open = false)}
+		onkeydown={(e) => { if (e.key === 'Escape') open = false; }}
 		role="presentation"
 	></div>
 {/if}
@@ -94,7 +97,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: 49;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: transparent;
 	}
 
 	.sidebar {
