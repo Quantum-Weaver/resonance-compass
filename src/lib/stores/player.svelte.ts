@@ -2,6 +2,7 @@ import type { Track } from '$lib/types/types';
 import { browser } from '$app/environment';
 import { invoke } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
+import { moodStore } from '$lib/stores/mood.svelte';
 
 const PERSIST_KEY = 'resonance-compass-player-state';
 
@@ -152,11 +153,25 @@ async function stopPlayback() {
 	trackLoadedInBackend = false;
 }
 
+// Logs a mood event for the track being skipped away from. Called before the
+// track actually advances, using the position at the moment of the skip.
+// When invoked from the natural audio://track-end handler, position has
+// already been reset to 0 beforehand, so this correctly only fires for real
+// manual skips (position > 0), not natural completion.
+function logSkipIfMidTrack() {
+	if (currentTrack && position > 0) {
+		moodStore
+			.addMoodEvent(currentTrack.id, '⏭️', 3, undefined, 'skip_prompt')
+			.catch((e) => console.error('[playerStore] skip mood log failed:', e));
+	}
+}
+
 async function next() {
 	if (queue.length === 0 || !currentTrack) {
 		await stopPlayback();
 		return;
 	}
+	logSkipIfMidTrack();
 	if (repeatMode === 'one') {
 		await loadTrackObject(currentTrack, 0);
 		persistState();
@@ -178,6 +193,7 @@ async function next() {
 
 async function previous() {
 	if (queue.length === 0 || !currentTrack) return;
+	logSkipIfMidTrack();
 	if (repeatMode === 'one') {
 		await loadTrackObject(currentTrack, 0);
 		persistState();

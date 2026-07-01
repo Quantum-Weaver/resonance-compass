@@ -6,6 +6,7 @@
 	import { libraryStore } from '$lib/stores/library.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import { moodStore } from '$lib/stores/mood.svelte';
 	import { getThemeColors } from '$lib/theme/theme';
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
@@ -20,6 +21,7 @@
 		themeStore.loadTheme();
 		await libraryStore.initDB();
 		playlistStore.loadPlaylists();
+		await moodStore.initDB();
 		playerStore.restoreState();
 		const done = localStorage.getItem('onboarding_complete');
 		if (!done && page.url.pathname !== '/onboarding') {

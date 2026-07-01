@@ -1,5 +1,6 @@
 import type { Playlist } from '$lib/types/types';
 import { browser } from '$app/environment';
+import { moodStore } from '$lib/stores/mood.svelte';
 
 const STORAGE_KEY = 'resonance-compass-playlists';
 const FAVORITES_ID = 'favorites';
@@ -77,6 +78,9 @@ function toggleFavorite(trackId: string) {
 		removeTrack(FAVORITES_ID, trackId);
 	} else {
 		addTrack(FAVORITES_ID, trackId);
+		moodStore
+			.addMoodEvent(trackId, '❤️', 3, undefined, 'favorite')
+			.catch((e) => console.error('[playlistStore] favorite mood log failed:', e));
 	}
 }
 

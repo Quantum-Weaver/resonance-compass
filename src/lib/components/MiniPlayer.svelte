@@ -3,6 +3,7 @@
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
+	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
 	let expanded = $state(false);
 
@@ -48,6 +49,7 @@
 						🎛️
 					</button>
 				</div>
+				<EmojiPalette />
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
 			{/if}

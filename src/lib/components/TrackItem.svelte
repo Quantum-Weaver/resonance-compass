@@ -12,6 +12,7 @@
 		playlists = [],
 		onAddToPlaylist,
 		onRemove,
+		onTag,
 	}: {
 		track: Track;
 		index: number;
@@ -22,6 +23,7 @@
 		playlists?: Playlist[];
 		onAddToPlaylist?: (playlistId: string) => void;
 		onRemove?: () => void;
+		onTag?: () => void;
 	} = $props();
 
 	let menuOpen = $state(false);
@@ -102,6 +104,10 @@
 				</div>
 			{/if}
 		</div>
+	{/if}
+
+	{#if onTag}
+		<button class="tag-btn" onclick={(e) => { e.stopPropagation(); onTag?.(); }} aria-label="Tag mood">+</button>
 	{/if}
 
 	{#if onRemove}
@@ -281,6 +287,28 @@
 
 	.dropdown-item:hover {
 		background-color: var(--border-color);
+	}
+
+	.tag-btn {
+		background: color-mix(in srgb, var(--accent) 15%, transparent);
+		border: 1px solid var(--accent);
+		border-radius: 6px;
+		width: 26px;
+		height: 26px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--accent);
+		flex-shrink: 0;
+		margin-right: 0.25rem;
+		line-height: 1;
+	}
+
+	.tag-btn:hover {
+		background: color-mix(in srgb, var(--accent) 30%, transparent);
 	}
 
 	.remove-btn {

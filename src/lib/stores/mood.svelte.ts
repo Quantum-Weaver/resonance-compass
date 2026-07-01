@@ -4,6 +4,8 @@ import type { MoodEvent } from '$lib/types/types';
 
 let db: Database | null = null;
 let recentMoods = $state<MoodEvent[]>([]);
+let topEmojis = $state<Array<{ emoji: string; count: number }>>([]);
+let totalEvents = $state(0);
 let loading = $state(false);
 let dbError = $state<string | null>(null);
 
@@ -23,7 +25,7 @@ async function initDB() {
 	if (!browser || db) return;
 	try {
 		db = await Database.load('sqlite:compass.db');
-		await loadRecentMoods();
+		await refreshStats();
 	} catch (e) {
 		dbError = e instanceof Error ? e.message : String(e);
 		console.error('[moodStore] initDB failed:', e);
@@ -59,7 +61,7 @@ async function addMoodEvent(
 		'INSERT INTO mood_events (track_id, emoji, timestamp, intensity, comment, context) VALUES ($1, $2, $3, $4, $5, $6)',
 		[trackId, emoji, timestamp, intensity, comment ?? null, context]
 	);
-	await loadRecentMoods();
+	await refreshStats();
 }
 
 async function getMoodEventsByTrack(trackId: string): Promise<MoodEvent[]> {
@@ -88,8 +90,32 @@ async function getTopEmojis(limit = 8): Promise<Array<{ emoji: string; count: nu
 	);
 }
 
+async function getTotalEvents(): Promise<number> {
+	if (!db) return 0;
+	const rows = await db.select<Array<{ count: number }>>('SELECT COUNT(*) as count FROM mood_events');
+	return rows[0]?.count ?? 0;
+}
+
+// Composite refresh — keeps recentMoods/topEmojis/totalEvents in sync after any write.
+async function refreshStats() {
+	recentMoods = await getRecentMoods(50);
+	topEmojis = await getTopEmojis(8);
+	totalEvents = await getTotalEvents();
+}
+
+// Convenience bundle for dashboard consumers that want everything at once.
+async function getMoodStats() {
+	return {
+		totalEvents: await getTotalEvents(),
+		topEmojis: await getTopEmojis(8),
+		recentActivity: await getRecentMoods(20),
+	};
+}
+
 export const moodStore = {
 	get recentMoods() { return recentMoods; },
+	get topEmojis() { return topEmojis; },
+	get totalEvents() { return totalEvents; },
 	get loading() { return loading; },
 	get dbError() { return dbError; },
 	initDB,
@@ -98,4 +124,5 @@ export const moodStore = {
 	getMoodEventsByTrack,
 	getRecentMoods,
 	getTopEmojis,
+	getMoodStats,
 };

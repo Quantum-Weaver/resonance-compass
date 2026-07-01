@@ -3,6 +3,7 @@
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import GradientPulse from '$lib/components/GradientPulse.svelte';
+	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
 	const currentTrack = $derived(playerStore.currentTrack);
 	const isPlaying = $derived(playerStore.isPlaying);
@@ -78,6 +79,10 @@
 				aria-label="Repeat: {repeatMode}"
 				aria-pressed={repeatMode !== 'off'}
 			>{repeatIcon}</button>
+		</div>
+
+		<div class="mood-section">
+			<EmojiPalette />
 		</div>
 	{/if}
 </div>
@@ -220,5 +225,11 @@
 
 	.ctrl-btn.active {
 		opacity: 1;
+	}
+
+	.mood-section {
+		margin-top: 1.5rem;
+		display: flex;
+		justify-content: center;
 	}
 </style>
