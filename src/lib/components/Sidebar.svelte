@@ -9,6 +9,7 @@
 	const navItems = [
 		{ href: '/', icon: '🏠', label: 'Home' },
 		{ href: '/library', icon: '🎵', label: 'Library' },
+		{ href: '/liked', icon: '❤️', label: 'Liked' },
 		{ href: '/playlists', icon: '📋', label: 'Playlists' },
 		{ href: '/visualizer', icon: '🌊', label: 'Visualizer' },
 		{ href: '/resonance', icon: '✨', label: 'Resonance' },
