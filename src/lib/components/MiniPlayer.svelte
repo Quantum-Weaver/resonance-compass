@@ -48,6 +48,9 @@
 					<button class="mp-nav-btn" onclick={() => goto('/settings#eq')} aria-label="Equalizer">
 						🎛️
 					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/timer')} aria-label="Timer">
+						⏰
+					</button>
 				</div>
 				<div class="mp-emoji-row">
 					<EmojiPalette />
