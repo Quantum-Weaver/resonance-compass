@@ -6,10 +6,12 @@ use lofty::tag::ItemKey;
 use serde::Serialize;
 use std::fs;
 use std::path::Path;
+use std::sync::{Arc, Mutex};
 use tauri::{Emitter, Manager};
 use tauri_plugin_sql::{Migration, MigrationKind};
 
 mod audio;
+mod equalizer;
 mod visualizer;
 
 #[tauri::command]
@@ -193,6 +195,7 @@ fn scan_directory(app_handle: tauri::AppHandle, dir_path: String) -> Result<Vec<
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let (vis_tx, vis_rx) = visualizer::make_channel();
+    let eq_state = Arc::new(Mutex::new(equalizer::EqState::default()));
 
     let migrations = vec![
         Migration {
@@ -284,7 +287,7 @@ pub fn run() {
     tauri::Builder::default()
         .setup(move |app| {
             visualizer::start(app.handle().clone(), vis_rx);
-            let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx);
+            let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx, eq_state);
             app.manage(audio_state);
             Ok(())
         })
@@ -305,6 +308,11 @@ pub fn run() {
             audio::seek,
             audio::set_volume,
             audio::stop,
+            equalizer::get_eq_state,
+            equalizer::set_eq_band,
+            equalizer::set_eq_preamp,
+            equalizer::toggle_eq,
+            equalizer::set_eq_preset,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Resonance Compass");

@@ -20,6 +20,7 @@ use crossbeam::channel::Sender as VisSender;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Sink, Source};
 use tauri::{AppHandle, Emitter};
 
+use crate::equalizer::{EqFilter, EqState};
 use crate::visualizer::{SampleTap, VisSample};
 
 #[derive(Default)]
@@ -34,10 +35,11 @@ pub struct AudioState {
     playback: Arc<Mutex<CurrentPlayback>>,
     stream_handle: OutputStreamHandle,
     vis_tx: VisSender<VisSample>,
+    pub eq: Arc<Mutex<EqState>>,
 }
 
 impl AudioState {
-    pub fn init(app: AppHandle, vis_tx: VisSender<VisSample>) -> Self {
+    pub fn init(app: AppHandle, vis_tx: VisSender<VisSample>, eq: Arc<Mutex<EqState>>) -> Self {
         let playback = Arc::new(Mutex::new(CurrentPlayback::default()));
         let (ready_tx, ready_rx) = mpsc::sync_channel::<OutputStreamHandle>(1);
 
@@ -48,7 +50,7 @@ impl AudioState {
             .recv()
             .expect("audio output thread failed to start");
 
-        AudioState { playback, stream_handle, vis_tx }
+        AudioState { playback, stream_handle, vis_tx, eq }
     }
 
     pub fn play_track(&self, path: &str, app: &AppHandle) -> Result<(), String> {
@@ -62,7 +64,9 @@ impl AudioState {
 
         let sink = Sink::try_new(&self.stream_handle).map_err(|e| format!("sink: {e}"))?;
         let converted = decoder.convert_samples::<f32>();
-        let tapped = SampleTap::new(converted, self.vis_tx.clone());
+        // EQ runs before the visualizer tap so the FFT sees what's actually audible.
+        let eq_applied = EqFilter::new(converted, Arc::clone(&self.eq));
+        let tapped = SampleTap::new(eq_applied, self.vis_tx.clone());
         sink.append(tapped);
         sink.play();
 

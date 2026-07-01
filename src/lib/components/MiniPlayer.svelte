@@ -44,6 +44,9 @@
 					<button class="mp-nav-btn" onclick={() => goto('/visualizer')} aria-label="Visualizer">
 						🌊
 					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/settings#eq')} aria-label="Equalizer">
+						🎛️
+					</button>
 				</div>
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
