@@ -1,15 +1,14 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import PlayerControls from '$lib/components/PlayerControls.svelte';
 
 	let expanded = $state(false);
 
 	const track = $derived(playerStore.currentTrack);
 	const isPlaying = $derived(playerStore.isPlaying);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
-	const progressPct = $derived(
-		playerStore.duration > 0 ? Math.min(100, (playerStore.position / playerStore.duration) * 100) : 0
-	);
 	const isFav = $derived(track ? playlistStore.isFavorite(track.id) : false);
 
 	function toggleFav() {
@@ -19,43 +18,35 @@
 	function toggleExpanded() {
 		expanded = !expanded;
 	}
+
+	function openNowPlaying() {
+		if (track) goto('/nowplaying');
+	}
 </script>
 
 <div class="mini-player" class:expanded>
 	{#if expanded}
 		<div class="mini-player__expanded">
 			<button class="mp-collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
-			<div class="mp-track">{trackLabel}</div>
+			<button class="mp-track" onclick={openNowPlaying} disabled={!track}>{trackLabel}</button>
+
 			{#if track}
-				<div class="mp-progress" aria-hidden="true">
-					<div class="mp-progress__fill" style="width: {progressPct}%"></div>
-				</div>
-			{:else}
-				<div class="mp-stats">Your library will appear here</div>
-			{/if}
-			<div class="mp-actions">
+				<PlayerControls />
 				<button
-					class="mp-action primary"
-					onclick={() => playerStore.togglePlay()}
-					aria-label={isPlaying ? 'Pause' : 'Play'}
-					disabled={!track}
-				>
-					{isPlaying ? '⏸' : '▶'}
-				</button>
-				<button
-					class="mp-action mp-heart"
+					class="mp-heart"
 					onclick={toggleFav}
 					aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
 					aria-pressed={isFav}
-					disabled={!track}
 				>
 					{isFav ? '❤️' : '🤍'}
 				</button>
-			</div>
+			{:else}
+				<div class="mp-stats">Your library will appear here</div>
+			{/if}
 		</div>
 	{:else}
 		<div class="mini-player__minimized">
-			<button class="mp-track-btn" onclick={toggleExpanded}>
+			<button class="mp-track-btn" onclick={openNowPlaying} disabled={!track}>
 				{trackLabel}
 			</button>
 			<button
@@ -66,6 +57,7 @@
 			>
 				{isPlaying ? '⏸' : '▶'}
 			</button>
+			<button class="mp-expand" onclick={toggleExpanded} aria-label="Expand" disabled={!track}>⌃</button>
 		</div>
 	{/if}
 </div>
@@ -87,12 +79,13 @@
 	.mini-player__minimized {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: 0.5rem;
 		height: 48px;
 		padding: 0 1rem;
 	}
 
 	.mp-track-btn {
+		flex: 1;
 		background: none;
 		border: none;
 		color: var(--text-secondary);
@@ -105,8 +98,19 @@
 		white-space: nowrap;
 	}
 
-	.mp-track-btn:hover {
+	.mp-track-btn:hover:not(:disabled) {
 		color: var(--text);
+	}
+
+	.mp-expand {
+		background: none;
+		border: none;
+		color: var(--text-muted);
+		cursor: pointer;
+		font-size: 1.1rem;
+		padding: 0.25rem 0.4rem;
+		line-height: 1;
+		flex-shrink: 0;
 	}
 
 	.mp-play-pause {
@@ -126,7 +130,9 @@
 	}
 
 	.mp-play-pause:disabled,
-	.mp-action:disabled {
+	.mp-expand:disabled,
+	.mp-track-btn:disabled,
+	.mp-track:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;
 	}
@@ -136,7 +142,7 @@
 		padding: 0.75rem 1rem 1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.6rem;
+		gap: 0.5rem;
 		position: relative;
 	}
 
@@ -154,10 +160,21 @@
 	}
 
 	.mp-track {
+		background: none;
+		border: none;
 		font-size: 1rem;
 		color: var(--text);
 		font-weight: 500;
-		padding-right: 2rem;
+		padding: 0 2rem 0 0;
+		text-align: left;
+		cursor: pointer;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.mp-track:hover:not(:disabled) {
+		color: var(--accent);
 	}
 
 	.mp-stats {
@@ -165,50 +182,14 @@
 		color: var(--text-muted);
 	}
 
-	/* Progress bar placeholder — becomes draggable/seekable in Phase 4 */
-	.mp-progress {
-		height: 4px;
-		border-radius: 2px;
-		background-color: var(--border-color);
-		overflow: hidden;
-	}
-
-	.mp-progress__fill {
-		height: 100%;
-		background-color: var(--accent);
-		transition: width 0.2s linear;
-	}
-
-	.mp-actions {
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-	}
-
-	.mp-action {
-		padding: 0.45rem 0.85rem;
-		border-radius: 8px;
-		background-color: var(--bg);
-		border: 1px solid var(--border-color);
-		color: var(--text-secondary);
-		font-size: 0.85rem;
+	.mp-heart {
+		align-self: center;
+		background: none;
+		border: none;
 		cursor: pointer;
-		transition: background-color 0.15s ease, color 0.15s ease;
-	}
-
-	.mp-action:hover {
-		background-color: var(--border-color);
-		color: var(--text);
-	}
-
-	.mp-action.primary {
-		background-color: var(--accent);
-		border-color: var(--accent);
-		color: #fff;
-	}
-
-	.mp-action.primary:hover {
-		opacity: 0.9;
+		font-size: 1.1rem;
+		padding: 0.25rem;
+		line-height: 1;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

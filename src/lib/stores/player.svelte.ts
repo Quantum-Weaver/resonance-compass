@@ -12,6 +12,8 @@ let isPlaying = $state(false);
 let position = $state(0);
 let duration = $state(0);
 let volume = $state(1.0);
+let shuffle = $state(false);
+let repeatMode = $state<'off' | 'all' | 'one'>('off');
 
 let listenersReady = false;
 // True once `play_track` has actually been invoked for currentTrack in this
@@ -47,12 +49,14 @@ interface PersistedPlayerState {
 	queueIndex: number;
 	position: number;
 	volume: number;
+	shuffle: boolean;
+	repeatMode: 'off' | 'all' | 'one';
 }
 
 function persistState() {
 	if (!browser) return;
 	try {
-		const data: PersistedPlayerState = { currentTrack, queue, queueIndex, position, volume };
+		const data: PersistedPlayerState = { currentTrack, queue, queueIndex, position, volume, shuffle, repeatMode };
 		localStorage.setItem(PERSIST_KEY, JSON.stringify(data));
 	} catch (e) {
 		console.error('[playerStore] persistState failed:', e);
@@ -74,6 +78,8 @@ function restoreState() {
 		position = data.position ?? 0;
 		duration = currentTrack?.duration ?? 0;
 		volume = data.volume ?? 1.0;
+		shuffle = data.shuffle ?? false;
+		repeatMode = data.repeatMode ?? 'off';
 		trackLoadedInBackend = false;
 		isPlaying = false;
 	} catch (e) {
@@ -147,10 +153,23 @@ async function stopPlayback() {
 }
 
 async function next() {
-	const nextIndex = queueIndex + 1;
-	if (queue.length === 0 || nextIndex >= queue.length) {
+	if (queue.length === 0 || !currentTrack) {
 		await stopPlayback();
 		return;
+	}
+	if (repeatMode === 'one') {
+		await loadTrackObject(currentTrack, 0);
+		persistState();
+		return;
+	}
+	let nextIndex = queueIndex + 1;
+	if (nextIndex >= queue.length) {
+		if (repeatMode === 'all') {
+			nextIndex = 0;
+		} else {
+			await stopPlayback();
+			return;
+		}
 	}
 	queueIndex = nextIndex;
 	await loadTrackObject(queue[queueIndex]);
@@ -158,12 +177,48 @@ async function next() {
 }
 
 async function previous() {
-	if (queue.length === 0 || queueIndex <= 0) {
-		await seek(0);
+	if (queue.length === 0 || !currentTrack) return;
+	if (repeatMode === 'one') {
+		await loadTrackObject(currentTrack, 0);
+		persistState();
+		return;
+	}
+	if (queueIndex <= 0) {
+		if (repeatMode === 'all' && queue.length > 1) {
+			queueIndex = queue.length - 1;
+			await loadTrackObject(queue[queueIndex]);
+			persistState();
+		} else {
+			await seek(0);
+		}
 		return;
 	}
 	queueIndex -= 1;
 	await loadTrackObject(queue[queueIndex]);
+	persistState();
+}
+
+// Reorders the queue once (Fisher-Yates), keeping the current track anchored
+// first so playback doesn't jump. Turning shuffle back off leaves the order
+// as-is — restoring the pre-shuffle order isn't tracked.
+function toggleShuffle() {
+	shuffle = !shuffle;
+	if (shuffle && queue.length > 1) {
+		const current = queue[queueIndex];
+		const rest = queue.filter((_, i) => i !== queueIndex);
+		for (let i = rest.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[rest[i], rest[j]] = [rest[j], rest[i]];
+		}
+		queue = current !== undefined ? [current, ...rest] : rest;
+		queueIndex = 0;
+	}
+	persistState();
+}
+
+function cycleRepeat() {
+	const modes: Array<'off' | 'all' | 'one'> = ['off', 'all', 'one'];
+	repeatMode = modes[(modes.indexOf(repeatMode) + 1) % modes.length];
 	persistState();
 }
 
@@ -196,10 +251,13 @@ function setQueue(tracks: Track[], startIndex = 0) {
 export const playerStore = {
 	get currentTrack() { return currentTrack; },
 	get queue() { return queue; },
+	get queueIndex() { return queueIndex; },
 	get isPlaying() { return isPlaying; },
 	get position() { return position; },
 	get duration() { return duration; },
 	get volume() { return volume; },
+	get shuffle() { return shuffle; },
+	get repeatMode() { return repeatMode; },
 	play,
 	pause,
 	togglePlay,
@@ -208,5 +266,7 @@ export const playerStore = {
 	setVolume,
 	seek,
 	setQueue,
+	toggleShuffle,
+	cycleRepeat,
 	restoreState,
 };
