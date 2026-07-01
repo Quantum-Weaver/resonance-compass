@@ -1,11 +1,19 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
 	let expanded = $state(false);
+
+	// Collapse whenever the route changes — covers both in-panel nav buttons and
+	// sidebar navigation while the panel happens to be open.
+	$effect(() => {
+		void page.url.pathname;
+		if (expanded) expanded = false;
+	});
 
 	const track = $derived(playerStore.currentTrack);
 	const isPlaying = $derived(playerStore.isPlaying);

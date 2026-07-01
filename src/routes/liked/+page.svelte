@@ -134,11 +134,6 @@
 		<!-- Mood filter (only shown when at least one favorited track has been tagged) -->
 		{#if topFavEmojis.length > 0}
 			<div class="mood-row">
-				<button
-					class="mood-chip"
-					class:active={activeEmoji === null}
-					onclick={() => { activeEmoji = null; }}
-				>All</button>
 				{#each topFavEmojis as emoji (emoji)}
 					<button
 						class="mood-chip emoji-chip"

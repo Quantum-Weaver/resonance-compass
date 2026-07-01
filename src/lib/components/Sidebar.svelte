@@ -33,7 +33,7 @@
 
 	function navigate(href: string) {
 		goto(href);
-		if (isMobile) open = false;
+		open = false;
 	}
 
 	function toggle() {
