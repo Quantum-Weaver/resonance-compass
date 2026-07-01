@@ -34,6 +34,9 @@
 			{#if track}
 				<PlayerControls />
 				<div class="mp-nav-row">
+					<button class="mp-nav-btn" onclick={() => goto('/')} aria-label="Home">
+						🏠
+					</button>
 					<button
 						class="mp-nav-btn"
 						onclick={toggleFav}
