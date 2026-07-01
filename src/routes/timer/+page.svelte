@@ -40,10 +40,12 @@
 	<header class="timer-header">
 		<h1 class="timer-title">Sleep Timer</h1>
 		{#if isRunning && !prefersReducedMotion}
-			<button class="mode-btn" onclick={() => timerStore.cycleMode()} title="Switch visualization">
-				{currentModeInfo?.icon} {currentModeInfo?.label}
-				<span class="mode-cycle-icon">↻</span>
-			</button>
+			<div class="mode-btn-wrap">
+				<button class="mode-btn" onclick={() => timerStore.cycleMode()} title="Switch visualization">
+					{currentModeInfo?.icon} {currentModeInfo?.label}
+					<span class="mode-cycle-icon">↻</span>
+				</button>
+			</div>
 		{/if}
 	</header>
 
@@ -113,6 +115,11 @@
 		font-weight: 700;
 		color: var(--text);
 		margin: 0;
+	}
+
+	.mode-btn-wrap {
+		display: flex;
+		padding-top: 1.5rem;
 	}
 
 	.mode-btn {
