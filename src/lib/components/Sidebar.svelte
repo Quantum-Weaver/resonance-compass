@@ -16,7 +16,6 @@
 
 	onMount(() => {
 		isMobile = window.innerWidth < 768;
-		open = !isMobile;
 	});
 
 	function navigate(href: string) {
