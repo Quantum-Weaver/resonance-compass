@@ -49,7 +49,9 @@
 						🎛️
 					</button>
 				</div>
-				<EmojiPalette />
+				<div class="mp-emoji-row">
+					<EmojiPalette />
+				</div>
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
 			{/if}
@@ -196,6 +198,16 @@
 		display: flex;
 		justify-content: center;
 		gap: 1rem;
+	}
+
+	.mp-emoji-row {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		/* Keeps the strip clear of the fixed hamburger (bottom-left, z-index 120)
+		   even though it's visually below this panel's own stacking context. */
+		max-width: calc(100% - 3.5rem);
+		margin: 0 auto;
 	}
 
 	.mp-nav-btn {

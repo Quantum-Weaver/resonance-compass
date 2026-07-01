@@ -85,7 +85,9 @@
 	}
 
 	.emoji-strip {
-		width: 100%;
+		width: fit-content;
+		max-width: 100%;
+		margin: 0 auto;
 		display: flex;
 		flex-wrap: nowrap;
 		gap: 0.4rem;
