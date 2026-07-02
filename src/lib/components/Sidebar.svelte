@@ -2,23 +2,25 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	import Icons from '$lib/components/icons/Icons.svelte';
+	import type { IconName } from '$lib/components/icons/Icons.svelte';
 
 	let open = $state(false);
 	let isMobile = $state(true);
 
-	const navItems = [
-		{ href: '/', icon: '🏠', label: 'Home' },
-		{ href: '/search', icon: '🔍', label: 'Search' },
-		{ href: '/library', icon: '🎵', label: 'Library' },
-		{ href: '/liked', icon: '❤️', label: 'Liked' },
-		{ href: '/playlists', icon: '📋', label: 'Playlists' },
-		{ href: '/visualizer', icon: '🌊', label: 'Visualizer' },
-		{ href: '/resonance', icon: '✨', label: 'Resonance' },
-		{ href: '/fragments', icon: '✂️', label: 'Fragments' },
-		{ href: '/history', icon: '🕐', label: 'History' },
-		{ href: '/focus', icon: '🎯', label: 'Focus' },
-		{ href: '/timer', icon: '⏰', label: 'Timer' },
-		{ href: '/settings', icon: '⚙️', label: 'Settings' },
+	const navItems: { href: string; icon: IconName; label: string }[] = [
+		{ href: '/', icon: 'home', label: 'Home' },
+		{ href: '/search', icon: 'search', label: 'Search' },
+		{ href: '/library', icon: 'library', label: 'Library' },
+		{ href: '/liked', icon: 'heart', label: 'Liked' },
+		{ href: '/playlists', icon: 'playlist', label: 'Playlists' },
+		{ href: '/visualizer', icon: 'visualizer', label: 'Visualizer' },
+		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
+		{ href: '/fragments', icon: 'fragment', label: 'Fragments' },
+		{ href: '/history', icon: 'history', label: 'History' },
+		{ href: '/focus', icon: 'focus', label: 'Focus' },
+		{ href: '/timer', icon: 'timer', label: 'Timer' },
+		{ href: '/settings', icon: 'settings', label: 'Settings' },
 	];
 
 	// The visualizer is a full-screen immersive experience — no hamburger, no
@@ -84,7 +86,7 @@
 					class:active={page.url.pathname === item.href}
 					onclick={() => navigate(item.href)}
 				>
-					<span class="nav-icon">{item.icon}</span>
+					<span class="nav-icon"><Icons name={item.icon} size={18} /></span>
 					<span class="nav-label">{item.label}</span>
 				</button>
 			</li>
@@ -188,7 +190,8 @@
 	}
 
 	.nav-icon {
-		font-size: 1.1rem;
+		display: flex;
+		align-items: center;
 		flex-shrink: 0;
 	}
 

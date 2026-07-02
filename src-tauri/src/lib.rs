@@ -14,11 +14,6 @@ mod audio;
 mod equalizer;
 mod visualizer;
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Welcome to Resonance Compass, {}!", name)
-}
-
 // ── TrackInfo (returned by scan_directory; field names mirror the Track TS interface) ──
 
 #[derive(Debug, Serialize, Clone)]
@@ -611,7 +606,6 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
-            greet,
             scan_directory,
             fetch_cover_art,
             fetch_lyrics,

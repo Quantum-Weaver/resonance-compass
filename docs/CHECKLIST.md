@@ -256,11 +256,12 @@
 - [x] `npm run check` — 340 files, 0 errors
 - [ ] **Tested:** ⬜
 
-### Phase 18c: Polish ⬜
-- [ ] Sacred geometry icons
-- [ ] Naming audit
-- [ ] Dead code removal
-- [ ] Accessibility pass
+### Phase 18c: Polish ✅
+- [x] Sacred geometry icons — v1's complete 28-file icon set copied to `src/lib/components/icons/` (it had never been brought over); Sidebar nav now renders `<Icons name={…}>` SVGs instead of emoji glyphs (stroke follows `currentColor`, so active/hover states tint correctly)
+- [x] Naming audit — zero occurrences of the old "Sovereign Music Player" product name anywhere (the only hit is CLAUDE-CONTEXT.md's rule stating it must not appear); `productName: "Resonance Compass"`, identifier `com.audhd.resonance-compass`; "a sovereign music player" survives only as the descriptive tagline, as in the README
+- [x] Dead code removal — `greet` template command deleted from lib.rs + handler list (never invoked from the frontend); no orphaned component imports found
+- [x] Accessibility — global `:focus-visible` indicators already in app.css (verified); this session's screens shipped with aria-labels, `aria-pressed` on toggles, `role="slider"` + arrow-key handlers on fragment drag handles, `aria-live` break reminder, Escape-key exits on Sattva/sidebar; keyboard nav on visualizer (arrows cycle modes, Space play/pause)
+- [x] `npm run check` — 368 files, 0 errors; `cargo build` — 0 errors
 - [ ] **Tested:** ⬜
 
 ### Phase 19: Deploy ⬜
