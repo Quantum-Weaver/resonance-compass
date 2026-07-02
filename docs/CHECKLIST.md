@@ -135,11 +135,15 @@
 - [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
 - [ ] **Tested:** ⬜
 
-### Phase 13: Onboarding ⬜
-- [ ] First-launch welcome
-- [ ] Library scan prompt
-- [ ] Sensory profile
-- [ ] Theme selection
+### Phase 13: Onboarding ✅
+- [x] Screen 0: Welcome — name input (`resonance-compass-vessel-name` localStorage), GradientPulse sigil, "Skip setup" advances without saving name
+- [x] Screen 1: Library Setup — `libraryStore.scanLibrary()`, progress bar (`scanProgress` 0–1), idle/scanning/error/done states, "I'll do this later" skip
+- [x] Screen 2: Sensory Profile — 8 `EMOJI_DEFS` chips, select up to 3, saves to `sensory_profile` localStorage
+- [x] Screen 3: Theme — 3 cards (Dark/Warm/Ocean), live preview via `themeStore.setPreset()`, checkmark on active
+- [x] Screen 4: Complete — GradientPulse ✓ sigil, library track count, "Enter Resonance Compass" sets `onboarding_complete` + `goto('/')`
+- [x] 5 progress dots — pill-expands on active, fades past dots, outside screen content
+- [x] Layout integration — `+layout.svelte` already complete: `isOnboarding` derived, Sidebar/MiniPlayer hidden, `onMount` redirect if `onboarding_complete` unset
+- [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
 - [ ] **Tested:** ⬜
 
 ### Phase 14: Listening History ⬜
