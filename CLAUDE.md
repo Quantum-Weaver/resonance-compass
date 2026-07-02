@@ -70,12 +70,13 @@ src-tauri/src/
 1. Navigation: `goto()` from `$app/navigation` — never `window.location.href`
 2. z-index layers: MiniPlayer 110, backdrop 49, visualizer 100
 3. SQLite batch limit: 999 params. INSERT_BATCH = 50 rows
-4. Album ID format: `"albumName|||artistName"`
+4. Album ID format: `"albumName|||artistName"` — plus `"|||<year-or-folder>"` suffix only when several releases share name+artist
 5. Theme: CSS variables injected inline on `.app-shell` via `getThemeColors()`
 6. State: Svelte 5 runes — `$state`, `$derived`, `$effect`
 7. Android: capabilities/default.json must have explicit sql:allow-* permissions
-8. Android: internal storage needs no manifest permissions
+8. Android: internal storage needs no manifest permissions; scanning public Music/Download needs READ_MEDIA_AUDIO (see docs/ANDROID-BUILD-NOTES.md)
 9. Android: no emoji or non-ASCII in SQL DEFAULT values
+10. Android: `src-tauri/gen/` is gitignored and regenerated — after `tauri android init`, re-apply docs/ANDROID-BUILD-NOTES.md (icons + manifest permissions)
 
 ---
 

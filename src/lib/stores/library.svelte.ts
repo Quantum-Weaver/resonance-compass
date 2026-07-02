@@ -161,23 +161,28 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 	}
 }
 
-// Selects individual audio files rather than a folder: Android's SAF file
-// picker (@tauri-apps/plugin-dialog) returns content:// URIs for a directory
-// pick, but there's no way to enumerate a content:// tree's children — only
-// to open a URI that's already known. Multi-selecting files sidesteps that
-// entirely, and the Rust side (scan_files) opens each URI directly.
-const AUDIO_EXTENSIONS = ['mp3', 'flac', 'wav', 'aac', 'ogg', 'm4a'];
+// Android's dialog plugin rejects directory picks (FolderPickerNotImplemented
+// in tauri-plugin-dialog's mobile branch), so there the standard public music
+// locations are scanned directly instead — readable via plain paths once the
+// vessel grants Media/Audio permission (declared in AndroidManifest.xml; the
+// PERMISSION_DENIED scan error carries the Settings guidance).
+const ANDROID_MUSIC_DIRS = ['/storage/emulated/0/Music', '/storage/emulated/0/Download'];
+
+export const isAndroid = browser && navigator.userAgent.includes('Android');
 
 async function scanLibrary() {
-	const { open } = await import('@tauri-apps/plugin-dialog');
 	const { invoke } = await import('@tauri-apps/api/core');
 	const { listen } = await import('@tauri-apps/api/event');
 
-	const selected = await open({
-		multiple: true,
-		filters: [{ name: 'Audio', extensions: AUDIO_EXTENSIONS }],
-	});
-	if (!selected || selected.length === 0) return;
+	let selected: string[];
+	if (isAndroid) {
+		selected = ANDROID_MUSIC_DIRS;
+	} else {
+		const { open } = await import('@tauri-apps/plugin-dialog');
+		const picked = await open({ directory: true, multiple: true, title: 'Select your music folders' });
+		if (!picked || picked.length === 0) return;
+		selected = picked as string[];
+	}
 
 	scanError = null;
 	isScanning = true;
@@ -189,11 +194,24 @@ async function scanLibrary() {
 	});
 
 	try {
-		const scanned = await invoke<Track[]>('scan_files', { paths: selected as string[] });
+		const scanned = await invoke<Track[]>('scan_paths', { paths: selected });
 		const now = Math.floor(Date.now() / 1000);
 		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now }));
-		setTracks(withTimestamps);
 		await saveScannedTracks(withTimestamps);
+		if (isAndroid && scanned.length > 0 && db) {
+			// Rows from the interim file-picker build hold content:// URIs whose
+			// SAF grants died with that session — permanently unplayable, so drop
+			// them now that the same files are re-scanned under real paths.
+			await db.execute("DELETE FROM songs WHERE uri LIKE 'content://%'");
+		}
+		// Reload from the DB so the view reflects the union of every scanned
+		// folder, not just this pass (scans are additive upserts).
+		await loadTracks();
+		if (isAndroid && scanned.length === 0 && !scanError) {
+			scanError =
+				'No tracks found in Music or Download. If your music is on this device, ' +
+				'enable Music and audio access in Settings → Apps → Resonance Compass → Permissions, then rescan.';
+		}
 	} catch (e) {
 		scanError = e instanceof Error ? e.message : String(e);
 		console.error('[libraryStore] scan failed:', e);

@@ -15,7 +15,7 @@ mod audio;
 mod equalizer;
 mod visualizer;
 
-// ── TrackInfo (returned by scan_files; field names mirror the Track TS interface) ──
+// ── TrackInfo (returned by scan_paths; field names mirror the Track TS interface) ──
 
 #[derive(Debug, Serialize, Clone)]
 pub struct TrackInfo {
@@ -159,14 +159,55 @@ struct ScanProgress {
     total: usize,
 }
 
-// Takes an explicit file list (rather than a directory to walk) because Android's
-// SAF file picker returns content:// URIs with no directory-listing equivalent —
-// tauri-plugin-fs can open a known URI but can't enumerate a picked tree's children.
+const AUDIO_EXTENSIONS: &[&str] = &["mp3", "flac", "wav", "aac", "ogg", "m4a"];
+
+fn collect_audio_paths(dir: &Path, out: &mut Vec<String>) {
+    if let Ok(entries) = fs::read_dir(dir) {
+        for entry in entries.flatten() {
+            let p = entry.path();
+            if p.is_dir() {
+                collect_audio_paths(&p, out);
+            } else if p
+                .extension()
+                .map(|e| AUDIO_EXTENSIONS.contains(&e.to_string_lossy().to_lowercase().as_str()))
+                .unwrap_or(false)
+            {
+                out.push(p.to_string_lossy().to_string());
+            }
+        }
+    }
+}
+
+// Each entry may be a directory (walked recursively — desktop folder picker,
+// Android's fixed public Music/Download dirs) or a single file path / content://
+// URI (opened directly). Android has no folder-picker dialog, so its directories
+// arrive as well-known paths readable once media permission is granted.
 #[tauri::command]
-fn scan_files(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<TrackInfo>, String> {
-    let total = paths.len();
+fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<TrackInfo>, String> {
+    let mut files: Vec<String> = Vec::new();
+    for entry in &paths {
+        let p = Path::new(entry);
+        if p.is_dir() {
+            // Probe storage access early so the frontend can show a useful error
+            if let Err(e) = fs::read_dir(p) {
+                return Err(if e.kind() == std::io::ErrorKind::PermissionDenied {
+                    "PERMISSION_DENIED: Storage access is required to scan music files. \
+                     Please grant Media or Files access in \
+                     Settings → Apps → Resonance Compass → Permissions."
+                        .to_string()
+                } else {
+                    format!("Cannot read directory: {e}")
+                });
+            }
+            collect_audio_paths(p, &mut files);
+        } else {
+            files.push(entry.clone());
+        }
+    }
+
+    let total = files.len();
     let mut tracks = Vec::with_capacity(total);
-    for (i, uri) in paths.iter().enumerate() {
+    for (i, uri) in files.iter().enumerate() {
         tracks.push(parse_metadata(&app_handle, uri));
         let _ = app_handle.emit("scan-progress", ScanProgress { current: i + 1, total });
     }
@@ -592,7 +633,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
-            scan_files,
+            scan_paths,
             fetch_cover_art,
             fetch_lyrics,
             create_fragment,

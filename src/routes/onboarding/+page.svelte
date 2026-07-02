@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { libraryStore } from '$lib/stores/library.svelte';
+	import { libraryStore, isAndroid } from '$lib/stores/library.svelte';
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 	import { EMOJI_DEFS } from '$lib/data/emojis';
@@ -122,7 +122,12 @@
 
 					{#if scanPhase === 'idle'}
 						<div class="screen-actions inner">
-							<button class="btn-primary" onclick={startLibraryScan}>Select Tracks</button>
+							<button class="btn-primary" onclick={startLibraryScan}>
+								{isAndroid ? 'Scan Music Folder' : 'Select Music Folder'}
+							</button>
+							{#if isAndroid}
+								<p class="scan-hint">Scans the Music and Download folders on this device</p>
+							{/if}
 							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
 						</div>
 
@@ -132,6 +137,16 @@
 							<div class="progress-fill" style="width: {Math.max(4, Math.round(scanProgress * 100))}%"></div>
 						</div>
 						<p class="scan-hint">This may take a moment for large libraries</p>
+
+					{:else if scanError?.startsWith('PERMISSION_DENIED')}
+						<div class="perm-notice">
+							<p class="perm-msg">Resonance Compass needs access to your music files to scan your library. Your files never leave your device.</p>
+							<p class="perm-hint">Go to Settings → Apps → Resonance Compass → Permissions → Music and audio (or Files) and enable access, then try again.</p>
+						</div>
+						<div class="screen-actions inner">
+							<button class="btn-primary" onclick={startLibraryScan}>Try Again</button>
+							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
+						</div>
 
 					{:else if scanError}
 						<p class="scan-error-msg">{scanError}</p>
@@ -443,6 +458,30 @@
 		color: color-mix(in srgb, red 70%, var(--text));
 		text-align: center;
 		margin: 0.25rem 0;
+	}
+
+	.perm-notice {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.9rem 1rem;
+		background: var(--bg-surface);
+		border: 1px solid var(--border-color);
+		border-radius: 12px;
+	}
+
+	.perm-msg {
+		font-size: 0.875rem;
+		color: var(--text);
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.perm-hint {
+		font-size: 0.78rem;
+		color: var(--text-secondary);
+		margin: 0;
+		line-height: 1.5;
 	}
 
 	.scan-done {
