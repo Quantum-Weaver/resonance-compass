@@ -33,7 +33,9 @@ struct CurrentPlayback {
 
 pub struct AudioState {
     playback: Arc<Mutex<CurrentPlayback>>,
-    stream_handle: OutputStreamHandle,
+    // None when no output device could be opened. Android may refuse the device
+    // at app launch, so init failure must not panic — play_track retries instead.
+    stream_handle: Mutex<Option<OutputStreamHandle>>,
     vis_tx: VisSender<VisSample>,
     pub eq: Arc<Mutex<EqState>>,
 }
@@ -41,19 +43,24 @@ pub struct AudioState {
 impl AudioState {
     pub fn init(app: AppHandle, vis_tx: VisSender<VisSample>, eq: Arc<Mutex<EqState>>) -> Self {
         let playback = Arc::new(Mutex::new(CurrentPlayback::default()));
-        let (ready_tx, ready_rx) = mpsc::sync_channel::<OutputStreamHandle>(1);
 
-        let playback_thread = Arc::clone(&playback);
-        thread::spawn(move || audio_thread(playback_thread, app, ready_tx));
+        let stream_handle = start_output(&playback, app);
+        if stream_handle.is_none() {
+            eprintln!("[audio] output unavailable at startup — will retry on first play");
+        }
 
-        let stream_handle = ready_rx
-            .recv()
-            .expect("audio output thread failed to start");
-
-        AudioState { playback, stream_handle, vis_tx, eq }
+        AudioState { playback, stream_handle: Mutex::new(stream_handle), vis_tx, eq }
     }
 
     pub fn play_track(&self, path: &str, app: &AppHandle) -> Result<(), String> {
+        let stream_handle = {
+            let mut guard = self.stream_handle.lock().map_err(|_| "audio state lock poisoned")?;
+            if guard.is_none() {
+                *guard = start_output(&self.playback, app.clone());
+            }
+            guard.clone().ok_or("audio output unavailable")?
+        };
+
         let file = File::open(path).map_err(|e| format!("open '{path}': {e}"))?;
         let decoder = Decoder::new(BufReader::new(file)).map_err(|e| format!("decode '{path}': {e}"))?;
 
@@ -62,7 +69,7 @@ impl AudioState {
         let decoder_dur = decoder.total_duration().map(|d| d.as_secs_f64()).filter(|&d| d > 0.0);
         let dur_secs = lofty_dur.or(decoder_dur);
 
-        let sink = Sink::try_new(&self.stream_handle).map_err(|e| format!("sink: {e}"))?;
+        let sink = Sink::try_new(&stream_handle).map_err(|e| format!("sink: {e}"))?;
         let converted = decoder.convert_samples::<f32>();
         // EQ runs before the visualizer tap so the FFT sees what's actually audible.
         let eq_applied = EqFilter::new(converted, Arc::clone(&self.eq));
@@ -127,6 +134,15 @@ impl AudioState {
             guard.stop_flag = true;
         }
     }
+}
+
+/// Spawns the audio thread and waits for its OutputStreamHandle. Returns None
+/// when no output device could be opened; safe to call again later to retry.
+fn start_output(playback: &Arc<Mutex<CurrentPlayback>>, app: AppHandle) -> Option<OutputStreamHandle> {
+    let (ready_tx, ready_rx) = mpsc::sync_channel::<OutputStreamHandle>(1);
+    let playback_thread = Arc::clone(playback);
+    thread::spawn(move || audio_thread(playback_thread, app, ready_tx));
+    ready_rx.recv().ok()
 }
 
 /// Owns the audio output device for its entire lifetime and emits position /

@@ -144,7 +144,7 @@
 - [x] 5 progress dots — pill-expands on active, fades past dots, outside screen content
 - [x] Layout integration — `+layout.svelte` already complete: `isOnboarding` derived, Sidebar/MiniPlayer hidden, `onMount` redirect if `onboarding_complete` unset
 - [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
-- [x] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 14: Listening History ✅
 - [x] History tracking added to `playerStore` — `HistoryEntry` (id/trackId/title/artist/album/coverArt/duration/timestamp), recorded in `loadTrackObject` for every fresh track start (skipped for repeat-one loops and session resume via `record=false` / `resumeAt > 0`), capped at 500 entries, debounced 1s flush to localStorage (`listening_history`), loaded in `restoreState`
@@ -154,7 +154,7 @@
 - [x] Clear History — confirmation row (Clear / Cancel) before `playerStore.clearHistory()`
 - [x] Sidebar — 🕐 History nav item (between Resonance and Timer)
 - [x] `npm run check` — 324 files, 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 15: Sattva Screen ✅
 - [x] One-tap sensory reduction — `/sattva`, full-screen fixed overlay (z-index 200), tap anywhere / Enter / Space / Escape to exit, fade-out transition (skipped under `prefers-reduced-motion`)
@@ -165,7 +165,7 @@
 - [x] MiniPlayer hides on /sattva — layout `hideChrome` derived (onboarding OR sattva)
 - [x] Sidebar hides on /sattva — same gate
 - [x] `npm run check` — 326 files, 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 16: Sensory Profiles ✅
 - [x] `profile.svelte.ts` store — `SensoryProfile` (name, emoji, theme preset, font size, EQ preset, playlist), localStorage persistence (`sensory_profiles` / `active_profile_id` / `profile_prev_theme` / `profile_show_mp`)
@@ -175,7 +175,7 @@
 - [x] Settings section — profile count, Manage → link, "Show quick-switch in the MiniPlayer panel" checkbox
 - [x] Profiles loaded in `+layout.svelte` onMount
 - [x] `npm run check` — 329 files, 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 17: Focus Session ✅
 - [x] `focus.svelte.ts` store — `FocusSession` (active) + `FocusRecord` (history, capped 50) + `FocusSettings` (defaults), localStorage (`focus_sessions` / `focus_settings`)
@@ -189,7 +189,7 @@
 - [x] Track counting — `$effect` on `currentTrack` increments `tracksPlayed` on change during active phase
 - [x] Sidebar — 🎯 Focus nav item
 - [x] `npm run check` — 332 files, 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 17a: Audio Fragments ✅
 - [x] ✂️ Fragment creator on Now Playing — modal (bottom sheet, z-index 130 above MiniPlayer), opens centered ±7.5s around the playhead
@@ -201,7 +201,7 @@
 - [x] `/fragments` page — list with play (loads as a single-track queue), rename (inline input), emoji tag (12-emoji picker), favorite, add-to-playlist, delete (confirm)
 - [x] Sidebar — ✂️ Fragments nav item
 - [x] `npm run check` — 335 files, 0 errors; `cargo build` — 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 17b: Fragment Studio ✅
 - [x] Layer multiple fragments — `/fragments/studio`, add any fragment as a layer (new layers default to appending at the current mix end), reorder ↑↓, remove; per-layer start offset in seconds
