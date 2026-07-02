@@ -319,6 +319,90 @@ async fn fetch_lyrics(artist: String, title: String) -> Result<Option<LyricsResu
     }))
 }
 
+// ── Fragment commands ─────────────────────────────────────────────────────────
+
+#[tauri::command]
+async fn create_fragment(
+    app_handle: tauri::AppHandle,
+    source_path: String,
+    start_secs: f64,
+    end_secs: f64,
+    output_name: String,
+) -> Result<String, String> {
+    let source = Path::new(&source_path);
+    let ext = source
+        .extension()
+        .and_then(|e| e.to_str())
+        .unwrap_or("mp3")
+        .to_lowercase();
+
+    let fragments_dir = app_handle
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("fragments");
+
+    fs::create_dir_all(&fragments_dir)
+        .map_err(|e| format!("Cannot create fragments dir: {e}"))?;
+
+    let safe_name: String = output_name
+        .chars()
+        .map(|c| match c {
+            '<' | '>' | ':' | '"' | '/' | '\\' | '|' | '?' | '*' => '_',
+            c => c,
+        })
+        .collect();
+
+    let output_path = fragments_dir.join(format!("{}.{}", safe_name, ext));
+    let output_str = output_path.to_string_lossy().to_string();
+
+    let result = std::process::Command::new("ffmpeg")
+        .args([
+            "-y",
+            "-i",
+            &source_path,
+            "-ss",
+            &format!("{:.3}", start_secs),
+            "-to",
+            &format!("{:.3}", end_secs),
+            "-c",
+            "copy",
+            &output_str,
+        ])
+        .output();
+
+    match result {
+        Ok(out) if out.status.success() => Ok(output_str),
+        Ok(out) => Err(format!(
+            "ffmpeg failed: {}",
+            String::from_utf8_lossy(&out.stderr)
+        )),
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Err("ffmpeg_not_found".to_string()),
+        Err(e) => Err(format!("Failed to run ffmpeg: {e}")),
+    }
+}
+
+#[tauri::command]
+async fn export_fragments(paths: Vec<String>, dest_dir: String) -> Result<u32, String> {
+    let dest = Path::new(&dest_dir);
+    if !dest.exists() {
+        return Err(format!("Destination directory does not exist: {dest_dir}"));
+    }
+    let mut copied = 0u32;
+    for path_str in &paths {
+        let src = Path::new(path_str);
+        if !src.exists() {
+            continue;
+        }
+        let file_name = src.file_name().unwrap_or_default();
+        let dst = dest.join(file_name);
+        if fs::copy(src, &dst).is_ok() {
+            copied += 1;
+        }
+    }
+    Ok(copied)
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let (vis_tx, vis_rx) = visualizer::make_channel();
@@ -431,6 +515,8 @@ pub fn run() {
             scan_directory,
             fetch_cover_art,
             fetch_lyrics,
+            create_fragment,
+            export_fragments,
             audio::play_track,
             audio::pause,
             audio::resume,

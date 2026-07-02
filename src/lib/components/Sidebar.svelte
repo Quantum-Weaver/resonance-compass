@@ -14,6 +14,7 @@
 		{ href: '/playlists', icon: '📋', label: 'Playlists' },
 		{ href: '/visualizer', icon: '🌊', label: 'Visualizer' },
 		{ href: '/resonance', icon: '✨', label: 'Resonance' },
+		{ href: '/fragments', icon: '✂️', label: 'Fragments' },
 		{ href: '/history', icon: '🕐', label: 'History' },
 		{ href: '/focus', icon: '🎯', label: 'Focus' },
 		{ href: '/timer', icon: '⏰', label: 'Timer' },
