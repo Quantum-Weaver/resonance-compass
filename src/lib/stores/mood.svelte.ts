@@ -2,12 +2,15 @@ import Database from '@tauri-apps/plugin-sql';
 import { browser } from '$app/environment';
 import type { MoodEvent } from '$lib/types/types';
 
+const PERSONAL_DEF_PREFIX = 'emoji_def_';
+
 let db: Database | null = null;
 let recentMoods = $state<MoodEvent[]>([]);
 let topEmojis = $state<Array<{ emoji: string; count: number }>>([]);
 let totalEvents = $state(0);
 let loading = $state(false);
 let dbError = $state<string | null>(null);
+let personalDefinitions = $state<Record<string, string>>({});
 
 function rowToMoodEvent(row: Record<string, unknown>): MoodEvent {
 	return {
@@ -21,11 +24,39 @@ function rowToMoodEvent(row: Record<string, unknown>): MoodEvent {
 	};
 }
 
+function loadPersonalDefinitions() {
+	if (!browser) return;
+	const loaded: Record<string, string> = {};
+	try {
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i);
+			if (key?.startsWith(PERSONAL_DEF_PREFIX)) {
+				const emoji = key.slice(PERSONAL_DEF_PREFIX.length);
+				const val = localStorage.getItem(key);
+				if (val) loaded[emoji] = val;
+			}
+		}
+	} catch {}
+	personalDefinitions = loaded;
+}
+
+function setPersonalDefinition(emoji: string, definition: string) {
+	try {
+		localStorage.setItem(`${PERSONAL_DEF_PREFIX}${emoji}`, definition);
+		personalDefinitions = { ...personalDefinitions, [emoji]: definition };
+	} catch {}
+}
+
+function getPersonalDefinition(emoji: string): string {
+	return personalDefinitions[emoji] ?? '';
+}
+
 async function initDB() {
 	if (!browser || db) return;
 	try {
 		db = await Database.load('sqlite:compass.db');
 		await refreshStats();
+		loadPersonalDefinitions();
 	} catch (e) {
 		dbError = e instanceof Error ? e.message : String(e);
 		console.error('[moodStore] initDB failed:', e);
@@ -118,6 +149,7 @@ export const moodStore = {
 	get totalEvents() { return totalEvents; },
 	get loading() { return loading; },
 	get dbError() { return dbError; },
+	get personalDefinitions() { return personalDefinitions; },
 	initDB,
 	loadRecentMoods,
 	addMoodEvent,
@@ -125,4 +157,7 @@ export const moodStore = {
 	getRecentMoods,
 	getTopEmojis,
 	getMoodStats,
+	loadPersonalDefinitions,
+	setPersonalDefinition,
+	getPersonalDefinition,
 };

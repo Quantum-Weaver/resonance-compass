@@ -19,6 +19,7 @@
 	let searchQuery = $state('');
 	let tagMenuTrackId = $state<string | null>(null);
 	let selectedDictEmoji = $state<string | null>(null);
+	let editingPersonalDef = $state('');
 
 	// Resolved pending prompts, this session only — tagging a skip prompt logs a
 	// new mood event (matching how manual tagging works) rather than mutating or
@@ -28,6 +29,7 @@
 
 	onMount(() => {
 		moodStore.loadRecentMoods(50);
+		moodStore.loadPersonalDefinitions();
 	});
 
 	const recentMoods = $derived(moodStore.recentMoods);
@@ -87,6 +89,20 @@
 	}
 
 	const selectedDef = $derived(EMOJI_DEFS.find((d) => d.emoji === selectedDictEmoji));
+
+	function selectDict(emoji: string) {
+		if (selectedDictEmoji === emoji) {
+			selectedDictEmoji = null;
+			return;
+		}
+		selectedDictEmoji = emoji;
+		editingPersonalDef = moodStore.getPersonalDefinition(emoji);
+	}
+
+	function savePersonalDef() {
+		if (!selectedDictEmoji) return;
+		moodStore.setPersonalDefinition(selectedDictEmoji, editingPersonalDef);
+	}
 </script>
 
 <div class="resonance-page" style="padding-top: env(safe-area-inset-top, 0px);">
@@ -267,7 +283,7 @@
 						class="dict-btn"
 						class:selected={selectedDictEmoji === def.emoji}
 						style="--dict-btn-color: {def.color};"
-						onclick={() => (selectedDictEmoji = selectedDictEmoji === def.emoji ? null : def.emoji)}
+						onclick={() => selectDict(def.emoji)}
 						title={def.label}
 					>{def.emoji}</button>
 				{/each}
@@ -279,12 +295,29 @@
 						<span class="dict-emoji">{selectedDef.emoji}</span>
 						<span class="dict-label">{selectedDef.label}</span>
 					</div>
-					<p class="dict-definition">{selectedDef.definition}</p>
-					<div class="sensory-grid">
-						<span class="sensory-item">🎨 {selectedDef.sensory.color}</span>
-						<span class="sensory-item">🔊 {selectedDef.sensory.sound}</span>
-						<span class="sensory-item">✋ {selectedDef.sensory.texture}</span>
-						<span class="sensory-item">🌡️ {selectedDef.sensory.temperature}</span>
+					<div class="dict-columns">
+						<div class="dict-col">
+							<h4 class="dict-col-title">Sanctuary</h4>
+							<p class="dict-definition">{selectedDef.definition}</p>
+							<div class="sensory-grid">
+								<span class="sensory-item">🎨 {selectedDef.sensory.color}</span>
+								<span class="sensory-item">🔊 {selectedDef.sensory.sound}</span>
+								<span class="sensory-item">✋ {selectedDef.sensory.texture}</span>
+								<span class="sensory-item">🌡️ {selectedDef.sensory.temperature}</span>
+							</div>
+						</div>
+						<div class="dict-col">
+							<h4 class="dict-col-title">Yours</h4>
+							<textarea
+								class="personal-textarea"
+								placeholder="What does this feel like to you?"
+								rows={5}
+								bind:value={editingPersonalDef}
+								onblur={savePersonalDef}
+								onkeydown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); savePersonalDef(); } }}
+							></textarea>
+							<button class="personal-save-btn" onclick={savePersonalDef}>Save</button>
+						</div>
 					</div>
 				</div>
 			{/if}
@@ -645,5 +678,55 @@
 	.sensory-item {
 		font-size: 0.82rem;
 		color: var(--text-muted);
+	}
+
+	/* Two-column dictionary layout */
+	.dict-columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 0.5rem;
+	}
+
+	.dict-col-title {
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-muted);
+		margin: 0 0 0.5rem;
+	}
+
+	.personal-textarea {
+		width: 100%;
+		padding: 0.5rem 0.65rem;
+		border-radius: 8px;
+		border: 1px solid var(--border-color);
+		background: var(--bg);
+		color: var(--text);
+		font-size: 0.85rem;
+		font-family: inherit;
+		resize: vertical;
+		outline: none;
+		box-sizing: border-box;
+		line-height: 1.5;
+		transition: border-color 0.15s;
+	}
+
+	.personal-textarea:focus {
+		border-color: var(--accent);
+	}
+
+	.personal-save-btn {
+		margin-top: 0.5rem;
+		padding: 0.3rem 0.9rem;
+		border-radius: 14px;
+		border: none;
+		background: var(--accent);
+		color: #fff;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
 	}
 </style>

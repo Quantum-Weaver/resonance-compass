@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invoke } from '@tauri-apps/api/core';
 	import { page } from '$app/state';
 	import { libraryStore } from '$lib/stores/library.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
@@ -13,6 +14,10 @@
 	const playlists = $derived(playlistStore.playlists);
 
 	let albumMenuOpen = $state(false);
+
+	type ArtFetch = 'idle' | 'loading' | 'found' | 'not_found' | 'error';
+	let artFetch = $state<ArtFetch>('idle');
+	let fetchedArt = $state<string | null>(null);
 
 	function playAll() {
 		if (albumTracks.length > 0) playerStore.setQueue(albumTracks);
@@ -31,6 +36,34 @@
 
 	function goBack() {
 		history.back();
+	}
+
+	async function findCoverArt() {
+		if (!album) return;
+		artFetch = 'loading';
+		fetchedArt = null;
+		try {
+			const result = await invoke<string | null>('fetch_cover_art', {
+				artist: album.artist,
+				album: album.name,
+			});
+			fetchedArt = result;
+			artFetch = result ? 'found' : 'not_found';
+		} catch {
+			artFetch = 'error';
+		}
+	}
+
+	async function saveCoverArt() {
+		if (!fetchedArt) return;
+		await libraryStore.updateAlbumCoverArt(albumId, fetchedArt);
+		artFetch = 'idle';
+		fetchedArt = null;
+	}
+
+	function dismissArtFetch() {
+		artFetch = 'idle';
+		fetchedArt = null;
 	}
 </script>
 
@@ -55,6 +88,28 @@
 				💿
 			{/if}
 		</div>
+
+		{#if !album?.coverArt}
+			<div class="art-fetch-row">
+				{#if artFetch === 'idle'}
+					<button class="art-fetch-btn" onclick={findCoverArt}>🖼️ Find Cover Art</button>
+				{:else if artFetch === 'loading'}
+					<span class="art-fetch-status">Searching…</span>
+				{:else if artFetch === 'found' && fetchedArt}
+					<img src={fetchedArt} alt="Found cover art" class="art-preview" />
+					<div class="art-fetch-actions">
+						<button class="art-save-btn" onclick={saveCoverArt}>Save</button>
+						<button class="art-dismiss-btn" onclick={dismissArtFetch}>Dismiss</button>
+					</div>
+				{:else if artFetch === 'not_found'}
+					<span class="art-fetch-status">No cover art found.</span>
+					<button class="art-dismiss-btn sm" onclick={dismissArtFetch}>×</button>
+				{:else if artFetch === 'error'}
+					<span class="art-fetch-status">Could not reach search service.</span>
+					<button class="art-dismiss-btn sm" onclick={dismissArtFetch}>×</button>
+				{/if}
+			</div>
+		{/if}
 		<h1>{album?.name ?? albumId}</h1>
 		<p class="artist-name">{album?.artist ?? ''}</p>
 		<p class="album-meta">
@@ -267,5 +322,80 @@
 	.track-list {
 		flex: 1;
 		overflow-y: auto;
+	}
+
+	/* Find Cover Art */
+	.art-fetch-row {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 0.25rem;
+	}
+
+	.art-fetch-btn {
+		background: none;
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		padding: 0.3rem 0.85rem;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+		transition: border-color 0.15s, color 0.15s;
+	}
+
+	.art-fetch-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	.art-fetch-status {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+
+	.art-preview {
+		width: 80px;
+		height: 80px;
+		border-radius: 6px;
+		object-fit: cover;
+		border: 1px solid var(--border-color);
+	}
+
+	.art-fetch-actions {
+		display: flex;
+		gap: 0.4rem;
+	}
+
+	.art-save-btn {
+		padding: 0.3rem 0.9rem;
+		border-radius: 14px;
+		border: none;
+		background: var(--accent);
+		color: #fff;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	.art-dismiss-btn {
+		padding: 0.3rem 0.9rem;
+		border-radius: 14px;
+		border: 1px solid var(--border-color);
+		background: transparent;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	.art-dismiss-btn.sm {
+		padding: 0.2rem 0.5rem;
+		font-size: 0.85rem;
 	}
 </style>

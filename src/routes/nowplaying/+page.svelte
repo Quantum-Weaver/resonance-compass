@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { invoke } from '@tauri-apps/api/core';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import { libraryStore } from '$lib/stores/library.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import GradientPulse from '$lib/components/GradientPulse.svelte';
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
@@ -15,6 +17,12 @@
 
 	let heartAnimating = $state(false);
 
+	type ArtFetch = 'idle' | 'loading' | 'found' | 'not_found' | 'error';
+	let artFetch = $state<ArtFetch>('idle');
+	let fetchedArt = $state<string | null>(null);
+	let localArt = $state<string | null>(null);
+	const displayArt = $derived(localArt ?? currentTrack?.coverArt ?? null);
+
 	function toggleFav() {
 		if (!currentTrack) return;
 		heartAnimating = true;
@@ -24,6 +32,36 @@
 
 	function goBack() {
 		history.back();
+	}
+
+	async function findCoverArt() {
+		if (!currentTrack) return;
+		artFetch = 'loading';
+		fetchedArt = null;
+		try {
+			const result = await invoke<string | null>('fetch_cover_art', {
+				artist: currentTrack.artist,
+				album: currentTrack.album,
+			});
+			fetchedArt = result;
+			artFetch = result ? 'found' : 'not_found';
+		} catch {
+			artFetch = 'error';
+		}
+	}
+
+	async function saveCoverArt() {
+		if (!fetchedArt || !currentTrack) return;
+		const albumId = `${currentTrack.album.trim()}|||${currentTrack.artist.trim()}`;
+		await libraryStore.updateAlbumCoverArt(albumId, fetchedArt);
+		localArt = fetchedArt;
+		artFetch = 'idle';
+		fetchedArt = null;
+	}
+
+	function dismissArtFetch() {
+		artFetch = 'idle';
+		fetchedArt = null;
 	}
 </script>
 
@@ -39,13 +77,36 @@
 		<div class="art-container">
 			<GradientPulse color="var(--accent)" pulse={isPlaying}>
 				<div class="album-art">
-					{#if currentTrack.coverArt}
-						<img src={currentTrack.coverArt} alt="" class="art-img" />
+					{#if displayArt}
+						<img src={displayArt} alt="" class="art-img" />
 					{:else}
 						<span>💿</span>
 					{/if}
 				</div>
 			</GradientPulse>
+
+			{#if !displayArt}
+				<div class="art-fetch-row">
+					{#if artFetch === 'idle'}
+						<button class="art-fetch-btn" onclick={findCoverArt}>🖼️ Find Cover Art</button>
+					{:else if artFetch === 'loading'}
+						<span class="art-fetch-status">Searching…</span>
+					{:else if artFetch === 'found' && fetchedArt}
+						<img src={fetchedArt} alt="Found cover art" class="art-preview" />
+						<div class="art-fetch-actions">
+							<button class="art-save-btn" onclick={saveCoverArt}>Save</button>
+							<button class="art-dismiss-btn" onclick={dismissArtFetch}>Dismiss</button>
+						</div>
+					{:else if artFetch === 'not_found'}
+						<span class="art-fetch-status">No cover art found.</span>
+					{:else if artFetch === 'error'}
+						<span class="art-fetch-status">Could not reach search service.</span>
+					{/if}
+					{#if artFetch === 'not_found' || artFetch === 'error'}
+						<button class="art-dismiss-btn" onclick={dismissArtFetch}>×</button>
+					{/if}
+				</div>
+			{/if}
 		</div>
 
 		<div class="track-info">
@@ -237,5 +298,72 @@
 		margin-top: 1.5rem;
 		display: flex;
 		justify-content: center;
+	}
+
+	/* Find Cover Art */
+	.art-fetch-row {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 0.75rem;
+	}
+
+	.art-fetch-btn {
+		background: none;
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		padding: 0.3rem 0.85rem;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+		transition: border-color 0.15s, color 0.15s;
+	}
+
+	.art-fetch-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+	.art-fetch-status {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+
+	.art-preview {
+		width: 80px;
+		height: 80px;
+		border-radius: 6px;
+		object-fit: cover;
+		border: 1px solid var(--border-color);
+	}
+
+	.art-fetch-actions {
+		display: flex;
+		gap: 0.4rem;
+	}
+
+	.art-save-btn {
+		padding: 0.3rem 0.9rem;
+		border-radius: 14px;
+		border: none;
+		background: var(--accent);
+		color: #fff;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	.art-dismiss-btn {
+		padding: 0.3rem 0.9rem;
+		border-radius: 14px;
+		border: 1px solid var(--border-color);
+		background: transparent;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
 	}
 </style>

@@ -194,6 +194,24 @@ async function scanLibrary() {
 	}
 }
 
+async function updateAlbumCoverArt(albumId: string, coverArt: string) {
+	if (!db) return;
+	const album = albums.find((a) => a.id === albumId);
+	if (!album) return;
+	await db.execute(
+		'UPDATE songs SET cover_art = $1 WHERE artist = $2 AND album = $3',
+		[coverArt, album.artist, album.name]
+	);
+	// Update in-memory tracks + album so UI reacts without a full reload.
+	for (const track of tracks) {
+		if (track.artist.trim() === album.artist.trim() && track.album.trim() === album.name.trim()) {
+			track.coverArt = coverArt;
+		}
+	}
+	const albumObj = albums.find((a) => a.id === albumId);
+	if (albumObj) albumObj.coverArt = coverArt;
+}
+
 async function updateTrackLyrics(trackId: string, lyrics: string) {
 	if (!db) return;
 	await db.execute('UPDATE songs SET lyrics = $1 WHERE id = $2', [lyrics, trackId]);
@@ -259,6 +277,7 @@ export const libraryStore = {
 	setTracks,
 	saveScannedTracks,
 	scanLibrary,
+	updateAlbumCoverArt,
 	updateTrackLyrics,
 	clearLibrary,
 	getTrackById,

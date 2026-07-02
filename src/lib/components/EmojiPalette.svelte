@@ -6,6 +6,10 @@
 	let expanded = $state(false);
 	let confirmedEmoji = $state<string | null>(null);
 
+	const confirmedPersonalDef = $derived(
+		confirmedEmoji ? moodStore.getPersonalDefinition(confirmedEmoji) : ''
+	);
+
 	const track = $derived(playerStore.currentTrack);
 
 	function handleSelect(emoji: string) {
@@ -45,6 +49,9 @@
 				</button>
 			{/each}
 		</div>
+		{#if confirmedEmoji && confirmedPersonalDef}
+			<p class="personal-hint" aria-live="polite">{confirmedPersonalDef}</p>
+		{/if}
 	{/if}
 </div>
 
@@ -130,6 +137,16 @@
 
 	.emoji-glyph {
 		line-height: 1;
+	}
+
+	.personal-hint {
+		font-size: 0.78rem;
+		color: var(--text-secondary);
+		text-align: center;
+		margin: 0;
+		max-width: 200px;
+		line-height: 1.4;
+		font-style: italic;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

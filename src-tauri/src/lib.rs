@@ -192,6 +192,76 @@ fn scan_directory(app_handle: tauri::AppHandle, dir_path: String) -> Result<Vec<
     Ok(tracks)
 }
 
+// ── fetch_cover_art (MusicBrainz + Cover Art Archive, opt-in, user-initiated) ─
+
+#[tauri::command]
+async fn fetch_cover_art(artist: String, album: String) -> Result<Option<String>, String> {
+    let Ok(client) = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(10))
+        .user_agent("ResonanceCompass/2.0.0 (resonance-compass)")
+        .build()
+    else {
+        return Ok(None);
+    };
+
+    // Step 1: MusicBrainz — find the release MBID
+    let query = format!("artist:{} release:{}", artist, album);
+    let Ok(mb_resp) = client
+        .get("https://musicbrainz.org/ws/2/release/")
+        .query(&[("query", query.as_str()), ("fmt", "json"), ("limit", "5")])
+        .send()
+        .await
+    else {
+        return Ok(None);
+    };
+
+    if !mb_resp.status().is_success() {
+        return Ok(None);
+    }
+
+    let Ok(mb_json) = mb_resp.json::<serde_json::Value>().await else {
+        return Ok(None);
+    };
+
+    let mbid = match mb_json
+        .get("releases")
+        .and_then(|r| r.as_array())
+        .and_then(|arr| arr.first())
+        .and_then(|rel| rel.get("id"))
+        .and_then(|id| id.as_str())
+    {
+        Some(id) => id.to_string(),
+        None => return Ok(None),
+    };
+
+    // Step 2: Cover Art Archive — download front image as base64 data URI
+    let caa_url = format!("https://coverartarchive.org/release/{}/front", mbid);
+    let Ok(caa_resp) = client.get(&caa_url).send().await else {
+        return Ok(None);
+    };
+
+    if !caa_resp.status().is_success() {
+        return Ok(None);
+    }
+
+    let mime = caa_resp
+        .headers()
+        .get("content-type")
+        .and_then(|ct| ct.to_str().ok())
+        .map(|ct| ct.split(';').next().unwrap_or("image/jpeg").trim().to_string())
+        .unwrap_or_else(|| "image/jpeg".to_string());
+
+    let Ok(bytes) = caa_resp.bytes().await else {
+        return Ok(None);
+    };
+
+    if bytes.is_empty() {
+        return Ok(None);
+    }
+
+    Ok(Some(format!("data:{};base64,{}", mime, BASE64_STANDARD.encode(&bytes))))
+}
+
 // ── fetch_lyrics (LRCLIB, opt-in, user-initiated only) ──────────────────────
 
 #[derive(Serialize)]
@@ -359,6 +429,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             scan_directory,
+            fetch_cover_art,
             fetch_lyrics,
             audio::play_track,
             audio::pause,
