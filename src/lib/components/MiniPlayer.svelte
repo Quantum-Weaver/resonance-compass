@@ -21,6 +21,7 @@
 
 	const track = $derived(playerStore.currentTrack);
 	const isPlaying = $derived(playerStore.isPlaying);
+	const playbackError = $derived(playerStore.playbackError);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
 	const isFav = $derived(track ? playlistStore.isFavorite(track.id) : false);
 
@@ -42,6 +43,10 @@
 		<div class="mini-player__expanded">
 			<button class="mp-collapse" onclick={toggleExpanded} aria-label="Collapse">⌄</button>
 			<button class="mp-track" onclick={openNowPlaying} disabled={!track}>{trackLabel}</button>
+
+			{#if playbackError}
+				<p class="mp-error" role="alert">Playback failed: {playbackError}</p>
+			{/if}
 
 			{#if track}
 				<PlayerControls />
@@ -109,6 +114,7 @@
 	{:else}
 		<div class="mini-player__minimized">
 			<button class="mp-track-btn" onclick={openNowPlaying} disabled={!track}>
+				{#if playbackError}<span class="mp-error-dot" title={playbackError} aria-label="Playback error">⚠</span>{/if}
 				{trackLabel}
 			</button>
 			<button
@@ -242,6 +248,18 @@
 	.mp-stats {
 		font-size: 0.85rem;
 		color: var(--text-muted);
+	}
+
+	.mp-error {
+		font-size: 0.75rem;
+		color: color-mix(in srgb, red 70%, var(--text));
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.mp-error-dot {
+		color: color-mix(in srgb, red 70%, var(--text));
+		margin-right: 0.3rem;
 	}
 
 	.mp-nav-row {

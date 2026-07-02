@@ -67,6 +67,9 @@ let currentTrack = $state<Track | null>(null);
 let queue = $state<Track[]>([]);
 let queueIndex = $state(0);
 let isPlaying = $state(false);
+// Why play didn't produce sound (backend rejection) — shown in the MiniPlayer,
+// since on Android there's no console to see the swallowed error in.
+let playbackError = $state<string | null>(null);
 let position = $state(0);
 let duration = $state(0);
 let volume = $state(1.0);
@@ -154,6 +157,7 @@ async function loadTrackObject(track: Track, resumeAt = 0, record = true) {
 	currentTrack = track;
 	position = resumeAt;
 	duration = track.duration || 0;
+	playbackError = null;
 	if (record && resumeAt === 0) addToHistory(track);
 	try {
 		await invoke('play_track', { path: track.uri });
@@ -164,6 +168,7 @@ async function loadTrackObject(track: Track, resumeAt = 0, record = true) {
 		}
 	} catch (e) {
 		isPlaying = false;
+		playbackError = e instanceof Error ? e.message : String(e);
 		console.error('[playerStore] play_track failed:', e);
 	}
 }
@@ -178,7 +183,9 @@ async function play() {
 	try {
 		await invoke('resume');
 		isPlaying = true;
+		playbackError = null;
 	} catch (e) {
+		playbackError = e instanceof Error ? e.message : String(e);
 		console.error('[playerStore] resume failed:', e);
 	}
 }
@@ -351,6 +358,7 @@ export const playerStore = {
 	get queue() { return queue; },
 	get queueIndex() { return queueIndex; },
 	get isPlaying() { return isPlaying; },
+	get playbackError() { return playbackError; },
 	get position() { return position; },
 	get duration() { return duration; },
 	get volume() { return volume; },
