@@ -6,6 +6,63 @@ import { moodStore } from '$lib/stores/mood.svelte';
 
 const PERSIST_KEY = 'resonance-compass-player-state';
 
+// ── Listening History ──────────────────────────────────────────────────────
+
+const HISTORY_KEY = 'listening_history';
+const HISTORY_MAX = 500;
+
+export interface HistoryEntry {
+	id: string;
+	trackId: string;
+	title: string;
+	artist: string;
+	album: string;
+	coverArt?: string;
+	duration: number;
+	timestamp: number;
+}
+
+let history = $state<HistoryEntry[]>([]);
+let histFlush: ReturnType<typeof setTimeout> | null = null;
+
+function addToHistory(track: Track) {
+	const ts = Date.now();
+	const entry: HistoryEntry = {
+		id: `${ts}-${track.id}`,
+		trackId: track.id,
+		title: track.title,
+		artist: track.artist,
+		album: track.album,
+		coverArt: track.coverArt,
+		duration: track.duration,
+		timestamp: ts,
+	};
+	history = [entry, ...history].slice(0, HISTORY_MAX);
+	if (histFlush) clearTimeout(histFlush);
+	histFlush = setTimeout(() => {
+		try { if (browser) localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch {}
+		histFlush = null;
+	}, 1000);
+}
+
+function loadHistory() {
+	if (!browser) return;
+	try {
+		const raw = localStorage.getItem(HISTORY_KEY);
+		if (raw) {
+			const parsed = JSON.parse(raw);
+			if (Array.isArray(parsed)) history = parsed;
+		}
+	} catch {}
+}
+
+function clearHistory() {
+	history = [];
+	try { if (browser) localStorage.removeItem(HISTORY_KEY); } catch {}
+}
+
+// ── Player State ───────────────────────────────────────────────────────────
+
 let currentTrack = $state<Track | null>(null);
 let queue = $state<Track[]>([]);
 let queueIndex = $state(0);
@@ -86,15 +143,18 @@ function restoreState() {
 	} catch (e) {
 		console.error('[playerStore] restoreState failed:', e);
 	}
+	loadHistory();
 }
 
 // Loads a full Track (preserving real metadata) into the audio backend.
 // resumeAt seeks once the engine starts — used to resume a restored session.
-async function loadTrackObject(track: Track, resumeAt = 0) {
+// record=false skips the history entry (repeat-one loops, session resume).
+async function loadTrackObject(track: Track, resumeAt = 0, record = true) {
 	ensureListeners();
 	currentTrack = track;
 	position = resumeAt;
 	duration = track.duration || 0;
+	if (record && resumeAt === 0) addToHistory(track);
 	try {
 		await invoke('play_track', { path: track.uri });
 		trackLoadedInBackend = true;
@@ -173,7 +233,7 @@ async function next() {
 	}
 	logSkipIfMidTrack();
 	if (repeatMode === 'one') {
-		await loadTrackObject(currentTrack, 0);
+		await loadTrackObject(currentTrack, 0, false);
 		persistState();
 		return;
 	}
@@ -195,7 +255,7 @@ async function previous() {
 	if (queue.length === 0 || !currentTrack) return;
 	logSkipIfMidTrack();
 	if (repeatMode === 'one') {
-		await loadTrackObject(currentTrack, 0);
+		await loadTrackObject(currentTrack, 0, false);
 		persistState();
 		return;
 	}
@@ -274,6 +334,8 @@ export const playerStore = {
 	get volume() { return volume; },
 	get shuffle() { return shuffle; },
 	get repeatMode() { return repeatMode; },
+	get history() { return history; },
+	clearHistory,
 	play,
 	pause,
 	togglePlay,
