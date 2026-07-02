@@ -187,7 +187,10 @@
 </script>
 
 <div class="nowplaying-page" style="padding-top: env(safe-area-inset-top, 0px);">
-	<button class="back-btn" onclick={goBack}>← Back</button>
+	<div class="np-header">
+		<button class="back-btn" onclick={goBack}>← Back</button>
+		<button class="queue-link" onclick={() => goto('/queue')}>Queue →</button>
+	</div>
 
 	{#if !currentTrack}
 		<div class="empty-state">
@@ -386,16 +389,24 @@
 		padding: 1rem 1.5rem 2rem;
 	}
 
-	.back-btn {
+	.np-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.5rem;
+	}
+
+	.back-btn,
+	.queue-link {
 		background: none;
 		border: none;
 		font-size: 0.95rem;
 		font-weight: 600;
 		cursor: pointer;
-		padding: 0;
-		margin-bottom: 1.5rem;
-		align-self: flex-start;
+		padding: 0.5rem 0;
+		min-height: 44px;
 		color: var(--accent);
+		font-family: inherit;
 	}
 
 	.empty-state {

@@ -249,6 +249,13 @@
 - [x] `npm run check` — 338 files, 0 errors
 - [ ] **Tested:** ⬜ (human: export → purge → verify empty → import → verify everything back)
 
+### v1 Parity: Queue Screen ✅
+- [x] `/queue` route — Up Next list (TrackItem rows, current track highlighted at the playing index), Clear All (keeps the playing track), tap to jump-play, ✕ remove per row
+- [x] `playerStore` queue ops added — `playFromQueue(i)`, `removeFromQueue(i)` (shifts `queueIndex` so `next()` stays correct), `clearQueue()`
+- [x] Now Playing header — "Queue →" link restored (v1 had it; v2 had dropped it)
+- [x] `npm run check` — 340 files, 0 errors
+- [ ] **Tested:** ⬜
+
 ### Phase 18c: Polish ⬜
 - [ ] Sacred geometry icons
 - [ ] Naming audit

@@ -324,6 +324,28 @@ function setQueue(tracks: Track[], startIndex = 0) {
 	}
 }
 
+function playFromQueue(index: number) {
+	if (!queue[index]) return;
+	queueIndex = index;
+	loadTrackObject(queue[index]).then(persistState);
+}
+
+// Removing at/before the playing position shifts queueIndex down so next()
+// still advances to the track that followed the removed one. The currently
+// loaded audio keeps playing either way.
+function removeFromQueue(index: number) {
+	if (index < 0 || index >= queue.length) return;
+	queue = queue.filter((_, i) => i !== index);
+	if (index <= queueIndex) queueIndex = Math.max(0, queueIndex - 1);
+	persistState();
+}
+
+function clearQueue() {
+	queue = currentTrack ? [currentTrack] : [];
+	queueIndex = 0;
+	persistState();
+}
+
 export const playerStore = {
 	get currentTrack() { return currentTrack; },
 	get queue() { return queue; },
@@ -344,6 +366,9 @@ export const playerStore = {
 	setVolume,
 	seek,
 	setQueue,
+	playFromQueue,
+	removeFromQueue,
+	clearQueue,
 	toggleShuffle,
 	cycleRepeat,
 	restoreState,
