@@ -14,8 +14,10 @@
 
 	let { children } = $props();
 
-	// Hide chrome during the immersive onboarding flow
+	// Hide chrome during immersive full-screen flows
 	const isOnboarding = $derived(page.url.pathname === '/onboarding');
+	const isSattva = $derived(page.url.pathname === '/sattva');
+	const hideChrome = $derived(isOnboarding || isSattva);
 
 	onMount(async () => {
 		themeStore.loadTheme();
@@ -52,15 +54,15 @@
 		--border-color: {colors.border};
 	"
 >
-	{#if !isOnboarding}
+	{#if !hideChrome}
 		<Sidebar />
 	{/if}
 
-	<main class="main-content" class:full-screen={isOnboarding}>
+	<main class="main-content" class:full-screen={hideChrome}>
 		{@render children()}
 	</main>
 
-	{#if !isOnboarding}
+	{#if !hideChrome}
 		<MiniPlayer />
 	{/if}
 </div>
