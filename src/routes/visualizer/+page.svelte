@@ -20,7 +20,14 @@
 	const mode = $derived(MODES[modeIndex]);
 	let showOverlay = $state(true);
 	let showModeLabel = $state(false);
+	let modeLabelText = $state('');
 	let liveFFT = $state(false);
+
+	// Secret playable keyboard (v1 parity): letters tint the palette hue,
+	// digits 1-9 set animation speed, 0 resets both. Arrows/Space keep their
+	// mode-cycle and play/pause roles.
+	let keyHue = $state(0);
+	let speedMult = $state(1);
 
 	let canvas: HTMLCanvasElement | null = null;
 	let visPageEl: HTMLDivElement | null = null;
@@ -428,17 +435,19 @@
 
 	// ── Main draw loop ─────────────────────────────────────────────────────────
 
-	function draw(ts: number) {
+	function draw(rawTs: number) {
 		if (!canvas || !mounted) return;
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 		const W = canvas.width;
 		const H = canvas.height;
-		const dt = Math.min((ts - (lastTs || ts)) / 1000, 0.1);
-		lastTs = ts;
+		const dt = Math.min((rawTs - (lastTs || rawTs)) / 1000, 0.1) * speedMult;
+		lastTs = rawTs;
+		const ts = rawTs * speedMult;
 
 		ctx.clearRect(0, 0, W, H);
 		ctx.shadowBlur = 0;
+		ctx.filter = keyHue !== 0 ? `hue-rotate(${keyHue}deg)` : 'none';
 		smoothSpectrum();
 
 		const m = mode;
@@ -453,6 +462,7 @@
 			drawParticles(ctx);
 		}
 
+		ctx.filter = 'none';
 		animFrame = requestAnimationFrame(draw);
 	}
 
@@ -466,7 +476,8 @@
 		}, 3000);
 	}
 
-	function flashModeLabel() {
+	function flashModeLabel(text?: string) {
+		modeLabelText = text ?? MODE_LABELS[mode];
 		showModeLabel = true;
 		if (modeLabelTimer) clearTimeout(modeLabelTimer);
 		modeLabelTimer = setTimeout(() => {
@@ -476,7 +487,7 @@
 
 	function cycleMode(direction: 1 | -1 = 1) {
 		modeIndex = (modeIndex + direction + MODES.length) % MODES.length;
-		flashModeLabel();
+		flashModeLabel(MODE_LABELS[MODES[modeIndex]]);
 		resetOverlayTimer();
 	}
 
@@ -520,6 +531,22 @@
 		if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
 			e.preventDefault();
 			cycleMode(-1);
+			return;
+		}
+		if (/^[a-z]$/i.test(e.key)) {
+			keyHue = ((e.key.toLowerCase().charCodeAt(0) - 97) * 14) % 360;
+			flashModeLabel(`♪ ${e.key.toUpperCase()}`);
+			return;
+		}
+		if (/^[1-9]$/.test(e.key)) {
+			speedMult = Number(e.key) * 0.5;
+			flashModeLabel(`»${speedMult}×`);
+			return;
+		}
+		if (e.key === '0') {
+			keyHue = 0;
+			speedMult = 1;
+			flashModeLabel('reset');
 			return;
 		}
 	}
@@ -579,7 +606,7 @@
 	<canvas bind:this={canvas} class="vis-canvas" onclick={handleCanvasClick} aria-hidden="true"></canvas>
 
 	{#if showModeLabel}
-		<div class="mode-label">{MODE_LABELS[mode]}</div>
+		<div class="mode-label">{modeLabelText}</div>
 	{/if}
 
 	<div class="overlay" class:hidden={!showOverlay}>

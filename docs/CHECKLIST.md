@@ -249,6 +249,13 @@
 - [x] `npm run check` — 338 files, 0 errors
 - [ ] **Tested:** ⬜ (human: export → purge → verify empty → import → verify everything back)
 
+### v1 Parity: Secret Playable Keyboard (Visualizer) ✅
+- [x] Letter keys A–Z tint the entire visualizer palette (per-letter hue rotation via canvas `filter: hue-rotate`), digits 1–9 set animation speed (0.5×–4.5×), 0 resets both — "press keys to change colors and speed" per the README's advertised feature
+- [x] Non-conflicting: Space (play/pause) and arrows (mode cycling) keep their Phase 5 assignments — v1's arrow-key hue rotation is the one part not reproduced, since those keys were already spoken for
+- [x] Key feedback flashes through the existing mode-label toast (♪ letter / »speed×)
+- [x] `npm run check` — 368 files, 0 errors
+- [ ] **Tested:** ⬜
+
 ### v1 Parity: Queue Screen ✅
 - [x] `/queue` route — Up Next list (TrackItem rows, current track highlighted at the playing index), Clear All (keeps the playing track), tap to jump-play, ✕ remove per row
 - [x] `playerStore` queue ops added — `playFromQueue(i)`, `removeFromQueue(i)` (shifts `queueIndex` so `next()` stays correct), `clearQueue()`

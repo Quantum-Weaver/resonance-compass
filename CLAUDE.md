@@ -24,23 +24,39 @@
 ```
 src/
 ├── routes/           # SvelteKit routes
-│   ├── +layout.svelte    # App shell, Sidebar, MiniPlayer, theme
-│   ├── +page.svelte      # Home screen
-│   ├── library/          # Library browser (Phase 2)
-│   ├── playlists/        # Playlist management (Phase 3)
-│   ├── resonance/        # Mood tagging dashboard (Phase 7)
-│   ├── settings/         # Theme, EQ, export, purge
-│   └── onboarding/       # First-launch welcome
+│   ├── +layout.svelte    # App shell, Sidebar, MiniPlayer, theme, chrome gates
+│   ├── +page.svelte      # Home screen (Phase 9)
+│   ├── library/          # Library browser + artist/album detail (Phase 2)
+│   ├── liked/            # Liked songs (Phase 10)
+│   ├── search/           # Full-screen search (Phase 11)
+│   ├── playlists/        # Playlist management + detail (Phase 3)
+│   ├── queue/            # Up Next (v1 parity)
+│   ├── nowplaying/       # Now Playing + fragment creator (Phases 4, 17a)
+│   ├── lyrics/           # Synced lyrics (Phase 12)
+│   ├── visualizer/       # 7-mode FFT visualizer (Phases 5, 18)
+│   ├── resonance/        # Mood tagging dashboard (Phases 7, 7b)
+│   ├── history/          # Listening history (Phase 14)
+│   ├── sattva/           # Sensory reduction (Phase 15)
+│   ├── profiles/         # Sensory profiles (Phase 16)
+│   ├── focus/            # Focus sessions (Phase 17)
+│   ├── fragments/        # Fragment list + studio/ (Phases 17a, 17b)
+│   ├── timer/            # Sleep timer (Phase 8)
+│   ├── settings/         # Theme, EQ, profiles, export/import/purge
+│   └── onboarding/       # First-launch welcome (Phase 13)
 ├── lib/
-│   ├── stores/       # library, player, mood, theme
-│   ├── components/   # MiniPlayer, Sidebar, GradientPulse, EmojiGrid
+│   ├── stores/       # player, library, playlist, mood, theme, timer,
+│   │                 #   profile, focus, fragment, studio
+│   ├── components/   # MiniPlayer, Sidebar, PlayerControls, AlbumCard,
+│   │                 #   TrackItem, EmojiPalette, GradientPulse,
+│   │                 #   TimerVisualization, icons/ (28 sacred geometry SVGs)
 │   ├── types/        # TypeScript interfaces
 │   ├── cosmic/       # COSMIC design tokens
 │   └── data/         # Emoji definitions, senses
 └── app.css
 
 src-tauri/src/
-├── lib.rs           # App setup, migrations, commands
+├── lib.rs           # App setup, migrations, commands (scan, lyrics, cover art,
+│                    #   create_fragment, export_fragments, export_mix)
 ├── main.rs          # Entry point
 ├── audio.rs         # Playback engine (Phase 1)
 ├── equalizer.rs     # 10-band EQ (Phase 6)
@@ -82,9 +98,9 @@ fragments(id TEXT PK, source_track_id TEXT, name TEXT, start_time REAL, end_time
 
 ## CURRENT STATE
 
-v2 rebuild in progress. Blocks 1-3 complete (identity migration from Echoes). Phase 0 ready to begin.
+All build phases complete (0–18c plus 17a/17b fragments, 18a/18b audits, v1 queue parity). Phase 19 (Deploy) in progress — Windows .msi + Android APK. Human testing of phases 13+ pending.
 
-See `docs/BUILD-SEQUENCE.md` for the complete 19-phase plan.
+See `docs/BUILD-SEQUENCE.md` for the phase plan and `docs/CHECKLIST.md` for per-phase state. Release notes: `docs/RELEASE-NOTES-v2.0.0.md`.
 
 ---
 
