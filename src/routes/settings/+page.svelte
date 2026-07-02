@@ -5,6 +5,7 @@
 	import { invoke } from '@tauri-apps/api/core';
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { profileStore } from '$lib/stores/profile.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
 	// ── Theme section ──────────────────────────────────────────────────────────
@@ -273,6 +274,28 @@
 				{/each}
 			</div>
 		</div>
+	</section>
+
+	<!-- ── Section: Sensory Profiles ── -->
+	<section class="section">
+		<h2 class="section-title">Sensory Profiles</h2>
+		<div class="profiles-row">
+			<div class="profiles-info">
+				<span class="profiles-count">
+					{profileStore.profiles.length} profile{profileStore.profiles.length !== 1 ? 's' : ''}
+				</span>
+				<span class="profiles-hint">Bundle theme, EQ, and font — switch with one tap.</span>
+			</div>
+			<button class="profiles-manage-btn" onclick={() => goto('/profiles')}>Manage →</button>
+		</div>
+		<label class="toggle-wrap profiles-toggle" aria-label="Show profiles in MiniPlayer">
+			<input
+				type="checkbox"
+				checked={profileStore.showInMiniPlayer}
+				onchange={(e) => profileStore.setShowInMiniPlayer(e.currentTarget.checked)}
+			/>
+			<span>Show quick-switch in the MiniPlayer panel</span>
+		</label>
 	</section>
 
 	<!-- ── Section 2: Equalizer ── -->
@@ -1042,5 +1065,55 @@
 		color: var(--text-muted);
 		font-size: 0.88rem;
 		margin: 0;
+	}
+
+	/* ── Sensory Profiles ── */
+	.profiles-row {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.profiles-info {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		min-width: 0;
+	}
+
+	.profiles-count {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	.profiles-hint {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+
+	.profiles-manage-btn {
+		padding: 0.5rem 0.9rem;
+		min-height: 44px;
+		background: none;
+		border: 1px solid var(--accent);
+		border-radius: 8px;
+		color: var(--accent);
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+		font-family: inherit;
+		flex-shrink: 0;
+	}
+
+	.profiles-toggle {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		cursor: pointer;
 	}
 </style>

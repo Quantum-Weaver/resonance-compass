@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import { profileStore } from '$lib/stores/profile.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
@@ -71,6 +72,26 @@
 				</div>
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
+			{/if}
+
+			{#if profileStore.showInMiniPlayer && profileStore.profiles.length > 0}
+				<div class="mp-profile-row" role="group" aria-label="Sensory profiles">
+					{#each profileStore.profiles as prof (prof.id)}
+						{@const isActiveProf = profileStore.activeProfileId === prof.id}
+						<button
+							class="mp-profile-chip"
+							class:prof-active={isActiveProf}
+							onclick={() => isActiveProf ? profileStore.deactivateProfile() : profileStore.activateProfile(prof.id)}
+							aria-label="{isActiveProf ? 'Deactivate' : 'Activate'} {prof.name}"
+							aria-pressed={isActiveProf}
+							title={prof.name}
+						>
+							<span class="chip-emoji">{prof.emoji}</span>
+							<span class="chip-name">{prof.name}</span>
+						</button>
+					{/each}
+					<button class="mp-profile-chip manage" onclick={() => goto('/profiles')} aria-label="Manage profiles">⚙</button>
+				</div>
 			{/if}
 		</div>
 	{:else}
@@ -234,6 +255,48 @@
 		font-size: 1.1rem;
 		padding: 0.25rem 0.5rem;
 		line-height: 1;
+	}
+
+	/* Profile quick-switch */
+	.mp-profile-row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.35rem;
+		padding: 0.4rem 0.75rem 0.55rem;
+	}
+
+	.mp-profile-chip {
+		display: flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.4rem 0.7rem;
+		min-height: 36px;
+		background: none;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		color: var(--text-secondary);
+		font-size: 0.75rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+		transition: border-color 0.15s, background 0.15s;
+		max-width: 40vw;
+	}
+	.mp-profile-chip:hover { border-color: var(--accent); }
+	.mp-profile-chip.prof-active {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 20%, transparent);
+		color: var(--text);
+	}
+	.mp-profile-chip.manage { padding: 0.4rem 0.55rem; }
+
+	.chip-emoji { line-height: 1; }
+
+	.chip-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
