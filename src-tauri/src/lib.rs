@@ -382,6 +382,106 @@ async fn create_fragment(
     }
 }
 
+// ── Fragment Studio: mix export ───────────────────────────────────────────────
+
+#[derive(Debug, Deserialize)]
+pub struct MixLayer {
+    pub path: String,
+    pub offset_secs: f64,
+    pub volume: f64,
+    pub pan: f64,
+    pub fade_in: f64,
+    pub fade_out: f64,
+    pub duration: f64,
+}
+
+#[tauri::command]
+async fn export_mix(
+    app_handle: tauri::AppHandle,
+    layers: Vec<MixLayer>,
+    output_name: String,
+) -> Result<String, String> {
+    if layers.is_empty() {
+        return Err("No layers to mix".to_string());
+    }
+
+    let mixes_dir = app_handle
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("mixes");
+
+    fs::create_dir_all(&mixes_dir).map_err(|e| format!("Cannot create mixes dir: {e}"))?;
+
+    let safe_name: String = output_name
+        .chars()
+        .map(|c| match c {
+            '<' | '>' | ':' | '"' | '/' | '\\' | '|' | '?' | '*' => '_',
+            c => c,
+        })
+        .collect();
+
+    let output_path = mixes_dir.join(format!("{}.wav", safe_name));
+    let output_str = output_path.to_string_lossy().to_string();
+
+    let mut cmd = std::process::Command::new("ffmpeg");
+    cmd.arg("-y");
+
+    for layer in &layers {
+        cmd.args(["-i", &layer.path]);
+    }
+
+    let mut filters: Vec<String> = Vec::new();
+    let mut mix_inputs = String::new();
+
+    for (i, layer) in layers.iter().enumerate() {
+        let vol = layer.volume.clamp(0.0, 2.0);
+        let pan = layer.pan.clamp(-1.0, 1.0);
+        let left = if pan <= 0.0 { 1.0 } else { 1.0 - pan };
+        let right = if pan >= 0.0 { 1.0 } else { 1.0 + pan };
+        let delay_ms = (layer.offset_secs.max(0.0) * 1000.0).round() as u64;
+        let fade_out_start = (layer.duration - layer.fade_out).max(0.0);
+
+        let mut chain = format!("[{i}:a]aresample=44100,aformat=channel_layouts=stereo");
+        if layer.fade_in > 0.0 {
+            chain.push_str(&format!(",afade=t=in:st=0:d={:.3}", layer.fade_in));
+        }
+        if layer.fade_out > 0.0 {
+            chain.push_str(&format!(
+                ",afade=t=out:st={:.3}:d={:.3}",
+                fade_out_start, layer.fade_out
+            ));
+        }
+        chain.push_str(&format!(",volume={:.3}", vol));
+        chain.push_str(&format!(",pan=stereo|c0={:.3}*c0|c1={:.3}*c1", left, right));
+        chain.push_str(&format!(",adelay={delay_ms}|{delay_ms}[a{i}]"));
+
+        filters.push(chain);
+        mix_inputs.push_str(&format!("[a{i}]"));
+    }
+
+    filters.push(format!(
+        "{}amix=inputs={}:duration=longest:normalize=0[out]",
+        mix_inputs,
+        layers.len()
+    ));
+
+    cmd.args(["-filter_complex", &filters.join(";")]);
+    cmd.args(["-map", "[out]", "-c:a", "pcm_s16le", &output_str]);
+
+    let result = cmd.output();
+
+    match result {
+        Ok(out) if out.status.success() => Ok(output_str),
+        Ok(out) => Err(format!(
+            "ffmpeg failed: {}",
+            String::from_utf8_lossy(&out.stderr)
+        )),
+        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Err("ffmpeg_not_found".to_string()),
+        Err(e) => Err(format!("Failed to run ffmpeg: {e}")),
+    }
+}
+
 #[tauri::command]
 async fn export_fragments(paths: Vec<String>, dest_dir: String) -> Result<u32, String> {
     let dest = Path::new(&dest_dir);
@@ -517,6 +617,7 @@ pub fn run() {
             fetch_lyrics,
             create_fragment,
             export_fragments,
+            export_mix,
             audio::play_track,
             audio::pause,
             audio::resume,

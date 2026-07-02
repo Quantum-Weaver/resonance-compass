@@ -104,6 +104,8 @@
 		{#if fragments.length > 0}
 			<span class="frag-count">{fragments.length}</span>
 		{/if}
+		<span class="header-spacer"></span>
+		<a class="studio-link" href="/fragments/studio">🎚 Studio</a>
 	</header>
 
 	{#if fragments.length === 0}
@@ -238,6 +240,21 @@
 		background: color-mix(in srgb, var(--accent) 15%, transparent);
 		color: var(--accent);
 		border-radius: 20px;
+	}
+
+	.header-spacer { flex: 1; }
+
+	.studio-link {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--accent);
+		text-decoration: none;
+		border: 1px solid var(--accent);
+		border-radius: 8px;
+		padding: 0.5rem 0.8rem;
+		min-height: 44px;
+		display: flex;
+		align-items: center;
 	}
 
 	/* ── Empty state ── */
