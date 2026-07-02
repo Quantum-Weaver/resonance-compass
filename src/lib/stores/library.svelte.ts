@@ -194,6 +194,13 @@ async function scanLibrary() {
 	}
 }
 
+async function updateTrackLyrics(trackId: string, lyrics: string) {
+	if (!db) return;
+	await db.execute('UPDATE songs SET lyrics = $1 WHERE id = $2', [lyrics, trackId]);
+	const track = tracks.find((t) => t.id === trackId);
+	if (track) track.lyrics = lyrics;
+}
+
 async function clearLibrary() {
 	if (!db) return;
 	await db.execute('DELETE FROM songs');
@@ -252,6 +259,7 @@ export const libraryStore = {
 	setTracks,
 	saveScannedTracks,
 	scanLibrary,
+	updateTrackLyrics,
 	clearLibrary,
 	getTrackById,
 	getTracksByAlbum,

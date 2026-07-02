@@ -3,7 +3,7 @@ use lofty::file::AudioFile;
 use lofty::file::TaggedFileExt;
 use lofty::tag::Accessor;
 use lofty::tag::ItemKey;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::Path;
 use std::sync::{Arc, Mutex};
@@ -192,6 +192,63 @@ fn scan_directory(app_handle: tauri::AppHandle, dir_path: String) -> Result<Vec<
     Ok(tracks)
 }
 
+// ── fetch_lyrics (LRCLIB, opt-in, user-initiated only) ──────────────────────
+
+#[derive(Serialize)]
+pub struct LyricsResult {
+    #[serde(rename = "syncedLyrics")]
+    synced_lyrics: Option<String>,
+    #[serde(rename = "plainLyrics")]
+    plain_lyrics: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct LrclibResponse {
+    #[serde(rename = "syncedLyrics")]
+    synced_lyrics: Option<String>,
+    #[serde(rename = "plainLyrics")]
+    plain_lyrics: Option<String>,
+}
+
+#[tauri::command]
+async fn fetch_lyrics(artist: String, title: String) -> Result<Option<LyricsResult>, String> {
+    let client = match reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(8))
+        .build()
+    {
+        Ok(c) => c,
+        Err(_) => return Ok(None),
+    };
+
+    let resp = match client
+        .get("https://lrclib.net/api/get")
+        .query(&[("artist_name", &artist), ("track_name", &title)])
+        .send()
+        .await
+    {
+        Ok(r) => r,
+        Err(_) => return Ok(None),
+    };
+
+    if resp.status() == 404 || !resp.status().is_success() {
+        return Ok(None);
+    }
+
+    let body: LrclibResponse = match resp.json().await {
+        Ok(b) => b,
+        Err(_) => return Ok(None),
+    };
+
+    if body.synced_lyrics.is_none() && body.plain_lyrics.is_none() {
+        return Ok(None);
+    }
+
+    Ok(Some(LyricsResult {
+        synced_lyrics: body.synced_lyrics,
+        plain_lyrics: body.plain_lyrics,
+    }))
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let (vis_tx, vis_rx) = visualizer::make_channel();
@@ -302,6 +359,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             scan_directory,
+            fetch_lyrics,
             audio::play_track,
             audio::pause,
             audio::resume,

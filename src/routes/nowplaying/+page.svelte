@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
@@ -79,6 +80,11 @@
 				aria-label="Repeat: {repeatMode}"
 				aria-pressed={repeatMode !== 'off'}
 			>{repeatIcon}</button>
+			<button
+				class="ctrl-btn"
+				onclick={() => goto(`/lyrics?trackId=${encodeURIComponent(currentTrack.id)}`)}
+				aria-label="Lyrics"
+			>🎤</button>
 		</div>
 
 		<div class="mood-section">
