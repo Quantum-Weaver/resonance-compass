@@ -19,6 +19,7 @@ use std::time::{Duration, Instant};
 use crossbeam::channel::Sender as VisSender;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Sink, Source};
 use tauri::{AppHandle, Emitter};
+use tauri_plugin_fs::{FilePath, FsExt, OpenOptions};
 
 use crate::equalizer::{EqFilter, EqState};
 use crate::visualizer::{SampleTap, VisSample};
@@ -61,11 +62,15 @@ impl AudioState {
             guard.clone().ok_or("audio output unavailable")?
         };
 
-        let file = File::open(path).map_err(|e| format!("open '{path}': {e}"))?;
+        let file = open_audio_file(app, path).map_err(|e| format!("open '{path}': {e}"))?;
         let decoder = Decoder::new(BufReader::new(file)).map_err(|e| format!("decode '{path}': {e}"))?;
 
         // Prefer lofty's duration (accurate for VBR); fall back to the decoder's own estimate.
-        let lofty_dur = read_duration_lofty(path).ok().filter(|&d| d > 0.0);
+        // Opened separately from the decoder's handle since lofty needs its own seek position.
+        let lofty_dur = open_audio_file(app, path)
+            .ok()
+            .and_then(|f| read_duration_lofty(f).ok())
+            .filter(|&d| d > 0.0);
         let decoder_dur = decoder.total_duration().map(|d| d.as_secs_f64()).filter(|&d| d > 0.0);
         let dur_secs = lofty_dur.or(decoder_dur);
 
@@ -199,9 +204,19 @@ fn audio_thread(
     }
 }
 
-fn read_duration_lofty(path: &str) -> Result<f64, Box<dyn std::error::Error + Send + Sync>> {
+// Bridged through tauri-plugin-fs so this resolves both plain desktop paths
+// and Android content:// URIs (via ContentResolver) to the same std::fs::File
+// — required since raw std::fs can't open a content:// URI.
+fn open_audio_file(app: &AppHandle, path: &str) -> std::io::Result<File> {
+    let file_path: FilePath = path.parse().unwrap();
+    let mut opts = OpenOptions::new();
+    opts.read(true);
+    app.fs().open(file_path, opts)
+}
+
+fn read_duration_lofty(mut file: File) -> Result<f64, Box<dyn std::error::Error + Send + Sync>> {
     use lofty::file::AudioFile;
-    let tagged = lofty::read_from_path(path)?;
+    let tagged = lofty::read_from(&mut file)?;
     Ok(tagged.properties().duration().as_secs_f64())
 }
 

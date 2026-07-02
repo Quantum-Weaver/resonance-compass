@@ -161,13 +161,23 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 	}
 }
 
+// Selects individual audio files rather than a folder: Android's SAF file
+// picker (@tauri-apps/plugin-dialog) returns content:// URIs for a directory
+// pick, but there's no way to enumerate a content:// tree's children — only
+// to open a URI that's already known. Multi-selecting files sidesteps that
+// entirely, and the Rust side (scan_files) opens each URI directly.
+const AUDIO_EXTENSIONS = ['mp3', 'flac', 'wav', 'aac', 'ogg', 'm4a'];
+
 async function scanLibrary() {
 	const { open } = await import('@tauri-apps/plugin-dialog');
 	const { invoke } = await import('@tauri-apps/api/core');
 	const { listen } = await import('@tauri-apps/api/event');
 
-	const selected = await open({ directory: true, multiple: false, title: 'Select your music folder' });
-	if (!selected) return;
+	const selected = await open({
+		multiple: true,
+		filters: [{ name: 'Audio', extensions: AUDIO_EXTENSIONS }],
+	});
+	if (!selected || selected.length === 0) return;
 
 	scanError = null;
 	isScanning = true;
@@ -179,7 +189,7 @@ async function scanLibrary() {
 	});
 
 	try {
-		const scanned = await invoke<Track[]>('scan_directory', { dirPath: selected as string });
+		const scanned = await invoke<Track[]>('scan_files', { paths: selected as string[] });
 		const now = Math.floor(Date.now() / 1000);
 		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now }));
 		setTracks(withTimestamps);

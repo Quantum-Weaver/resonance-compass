@@ -1,0 +1,140 @@
+{
+  "route_name": "onboarding",
+  "source_file": "src\\routes\\onboarding\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.536139 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [
+        "emojis"
+      ],
+      "cosmic": [],
+      "theme": [
+        "theme"
+      ]
+    },
+    "reactive_state": [
+      {
+        "name": "step",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "vesselName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "selectedPreset",
+        "rune": "$state",
+        "source": "themeStore.config.presetName?.toLowerCase("
+      },
+      {
+        "name": "trackCount",
+        "rune": "$derived",
+        "source": "libraryStore.tracks.length"
+      },
+      {
+        "name": "scanProgress",
+        "rune": "$derived",
+        "source": "libraryStore.scanProgress"
+      },
+      {
+        "name": "scanError",
+        "rune": "$derived",
+        "source": "libraryStore.scanError"
+      }
+    ],
+    "functions": [
+      {
+        "name": "saveNameAndAdvance",
+        "params": ""
+      },
+      {
+        "name": "toggleEmoji",
+        "params": "emoji: string"
+      },
+      {
+        "name": "saveSensoryProfile",
+        "params": ""
+      },
+      {
+        "name": "selectTheme",
+        "params": "key: string"
+      },
+      {
+        "name": "completeOnboarding",
+        "params": ""
+      },
+      {
+        "name": "startLibraryScan",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/"
+    ],
+    "css_classes": [
+      "emoji-name",
+      "name-section",
+      "scan-hint",
+      "dots",
+      "outer-skip",
+      "scan-error-msg",
+      "screen-actions",
+      "ob-title",
+      "theme-grid",
+      "name-hint",
+      "screen-body",
+      "step-hint",
+      "sigil",
+      "center",
+      "scan-status",
+      "ob-sub",
+      "screen",
+      "inner",
+      "onboarding",
+      "done-check",
+      "name-input",
+      "theme-card",
+      "dot",
+      "sigil-wrap",
+      "btn-skip",
+      "btn-secondary",
+      "header-text",
+      "btn-primary",
+      "theme-icon",
+      "theme-name",
+      "emoji-btn",
+      "theme-check",
+      "emoji-glyph",
+      "done-sigil",
+      "theme-desc",
+      "progress-fill",
+      "emoji-picker",
+      "screen-wrap",
+      "progress-bar",
+      "enter-btn",
+      "name-label",
+      "step-icon",
+      "scan-done"
+    ],
+    "has_style_block": true,
+    "script_lines": 74,
+    "template_lines": 202,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 13,
+  "status": "complete"
+}

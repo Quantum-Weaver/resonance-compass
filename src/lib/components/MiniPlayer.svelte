@@ -66,6 +66,18 @@
 					<button class="mp-nav-btn" onclick={() => goto('/timer')} aria-label="Timer">
 						⏰
 					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/sattva')} aria-label="Sattva">
+						🧘
+					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/focus')} aria-label="Focus">
+						🎯
+					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/history')} aria-label="History">
+						📜
+					</button>
+					<button class="mp-nav-btn" onclick={() => goto('/fragments')} aria-label="Fragments">
+						✂️
+					</button>
 				</div>
 				<div class="mp-emoji-row">
 					<EmojiPalette />
@@ -234,8 +246,9 @@
 
 	.mp-nav-row {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
-		gap: 1rem;
+		gap: 0.5rem 1rem;
 	}
 
 	.mp-emoji-row {

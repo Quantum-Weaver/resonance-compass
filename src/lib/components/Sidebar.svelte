@@ -8,18 +8,16 @@
 	let open = $state(false);
 	let isMobile = $state(true);
 
+	// Visualizer, Equalizer, Timer, Sattva, Focus, Profiles, History, and
+	// Fragments live in the MiniPlayer's expanded nav row instead — keeps this
+	// list short enough to fit without scrolling on mobile screens.
 	const navItems: { href: string; icon: IconName; label: string }[] = [
 		{ href: '/', icon: 'home', label: 'Home' },
 		{ href: '/search', icon: 'search', label: 'Search' },
 		{ href: '/library', icon: 'library', label: 'Library' },
 		{ href: '/liked', icon: 'heart', label: 'Liked' },
 		{ href: '/playlists', icon: 'playlist', label: 'Playlists' },
-		{ href: '/visualizer', icon: 'visualizer', label: 'Visualizer' },
 		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
-		{ href: '/fragments', icon: 'fragment', label: 'Fragments' },
-		{ href: '/history', icon: 'history', label: 'History' },
-		{ href: '/focus', icon: 'focus', label: 'Focus' },
-		{ href: '/timer', icon: 'timer', label: 'Timer' },
 		{ href: '/settings', icon: 'settings', label: 'Settings' },
 	];
 

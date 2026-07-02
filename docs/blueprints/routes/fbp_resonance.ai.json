@@ -1,0 +1,162 @@
+{
+  "route_name": "resonance",
+  "source_file": "src\\routes\\resonance\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.545872 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [
+        "emojis"
+      ],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "searchQuery",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "editingPersonalDef",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "recentMoods",
+        "rune": "$derived",
+        "source": "moodStore.recentMoods"
+      },
+      {
+        "name": "topEmojis",
+        "rune": "$derived",
+        "source": "moodStore.topEmojis"
+      },
+      {
+        "name": "totalEvents",
+        "rune": "$derived",
+        "source": "moodStore.totalEvents"
+      },
+      {
+        "name": "tracks",
+        "rune": "$derived",
+        "source": "libraryStore.tracks"
+      },
+      {
+        "name": "topEmojiTotal",
+        "rune": "$derived",
+        "source": "topEmojis.reduce((sum, e"
+      },
+      {
+        "name": "selectedDef",
+        "rune": "$derived",
+        "source": "EMOJI_DEFS.find((d"
+      }
+    ],
+    "functions": [
+      {
+        "name": "relativeTime",
+        "params": "ts: number"
+      },
+      {
+        "name": "intensityDots",
+        "params": "intensity = 3"
+      },
+      {
+        "name": "tagTrack",
+        "params": "trackId: string, emoji: string"
+      },
+      {
+        "name": "resolvePending",
+        "params": "moodId: number, trackId: string, emoji: string"
+      },
+      {
+        "name": "playTrack",
+        "params": "trackId: string"
+      },
+      {
+        "name": "topInsight",
+        "params": ""
+      },
+      {
+        "name": "selectDict",
+        "params": "emoji: string"
+      },
+      {
+        "name": "savePersonalDef",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "mood-right",
+      "insight",
+      "tab-content",
+      "mood-emoji",
+      "dict-col-title",
+      "dict-grid",
+      "dict-definition",
+      "emoji-bar-track",
+      "personal-textarea",
+      "mood-time",
+      "tabs",
+      "dict-header",
+      "res-subtitle",
+      "empty-heading",
+      "mood-art",
+      "mood-artist",
+      "dict-emoji",
+      "pending-row",
+      "tab",
+      "quick-pick-btn",
+      "res-header",
+      "mood-art-img",
+      "palette-popup",
+      "personal-save-btn",
+      "empty-icon",
+      "emoji-bar-wrap",
+      "emoji-big",
+      "tag-list",
+      "sensory-item",
+      "pending-info",
+      "dict-columns",
+      "dict-btn",
+      "resonance-page",
+      "dict-col",
+      "mood-list",
+      "search-input",
+      "dict-tab",
+      "mood-row",
+      "quick-picks",
+      "empty-text",
+      "res-title",
+      "sensory-grid",
+      "emoji-bar-fill",
+      "dict-expansion",
+      "emoji-row",
+      "empty-sub",
+      "mood-info",
+      "emoji-count",
+      "mood-dots",
+      "mood-title",
+      "emoji-list",
+      "dict-label",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 106,
+    "template_lines": 224,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 7,
+  "status": "complete"
+}

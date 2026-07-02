@@ -1,0 +1,259 @@
+{
+  "layer": "rust_backend",
+  "files": {
+    "audio": {
+      "file": "src-tauri\\src\\audio.rs",
+      "lines": 254,
+      "commands": [
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "command_signatures": [
+        {
+          "name": "play_track",
+          "params": "path: String, state: tauri::State<AudioState>, app: AppHandle"
+        },
+        {
+          "name": "pause",
+          "params": "state: tauri::State<AudioState>"
+        },
+        {
+          "name": "resume",
+          "params": "state: tauri::State<AudioState>"
+        },
+        {
+          "name": "seek",
+          "params": "position_secs: f64, state: tauri::State<AudioState>"
+        },
+        {
+          "name": "set_volume",
+          "params": "vol: f32, state: tauri::State<AudioState>"
+        },
+        {
+          "name": "stop",
+          "params": "state: tauri::State<AudioState>"
+        }
+      ],
+      "structs": [
+        "CurrentPlayback",
+        "AudioState"
+      ],
+      "imports": [
+        "std::fs::File",
+        "std::io::BufReader",
+        "std::sync::",
+        "std::thread",
+        "std::time::",
+        "crossbeam::channel::Sender",
+        "rodio::",
+        "tauri::",
+        "tauri_plugin_fs::",
+        "crate::equalizer::",
+        "crate::visualizer::",
+        "the",
+        "lofty::file::AudioFile"
+      ],
+      "mod_declarations": [],
+      "migrations": [],
+      "plugins": [
+        "fs"
+      ]
+    },
+    "equalizer": {
+      "file": "src-tauri\\src\\equalizer.rs",
+      "lines": 273,
+      "commands": [
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "toggle_eq",
+        "set_eq_preset"
+      ],
+      "command_signatures": [
+        {
+          "name": "get_eq_state",
+          "params": "state: tauri::State<AudioState>"
+        },
+        {
+          "name": "set_eq_band",
+          "params": "state: tauri::State<AudioState>, band: usize, gain_db: f32"
+        },
+        {
+          "name": "set_eq_preamp",
+          "params": "state: tauri::State<AudioState>, gain_db: f32"
+        },
+        {
+          "name": "toggle_eq",
+          "params": "state: tauri::State<AudioState>, enabled: bool"
+        },
+        {
+          "name": "set_eq_preset",
+          "params": "state: tauri::State<AudioState>, preset: String"
+        }
+      ],
+      "structs": [
+        "EqState",
+        "EqStateResponse",
+        "EqFilter"
+      ],
+      "imports": [
+        "crate::audio::AudioState",
+        "rodio::Source",
+        "serde::Serialize",
+        "std::sync::",
+        "std::time::Duration"
+      ],
+      "mod_declarations": [],
+      "migrations": [],
+      "plugins": []
+    },
+    "lib": {
+      "file": "src-tauri\\src\\lib.rs",
+      "lines": 616,
+      "commands": [
+        "scan_files",
+        "fetch_cover_art",
+        "fetch_lyrics",
+        "create_fragment",
+        "export_mix",
+        "export_fragments"
+      ],
+      "command_signatures": [
+        {
+          "name": "scan_files",
+          "params": "app_handle: tauri::AppHandle, paths: Vec<String>"
+        },
+        {
+          "name": "fetch_cover_art",
+          "params": "artist: String, album: String"
+        },
+        {
+          "name": "fetch_lyrics",
+          "params": "artist: String, title: String"
+        },
+        {
+          "name": "create_fragment",
+          "params": "app_handle: tauri::AppHandle, source_path: String, start_secs: f64, end_secs: f64, output_name: String,"
+        },
+        {
+          "name": "export_mix",
+          "params": "app_handle: tauri::AppHandle, layers: Vec<MixLayer>, output_name: String,"
+        },
+        {
+          "name": "export_fragments",
+          "params": "paths: Vec<String>, dest_dir: String"
+        }
+      ],
+      "structs": [
+        "TrackInfo",
+        "ScanProgress",
+        "LyricsResult",
+        "LrclibResponse",
+        "MixLayer"
+      ],
+      "imports": [
+        "base64::prelude::",
+        "lofty::file::AudioFile",
+        "lofty::file::TaggedFileExt",
+        "lofty::tag::Accessor",
+        "lofty::tag::ItemKey",
+        "serde::",
+        "std::fs",
+        "std::path::Path",
+        "std::sync::",
+        "tauri::",
+        "tauri_plugin_fs::",
+        "tauri_plugin_sql::",
+        "Android"
+      ],
+      "mod_declarations": [
+        "audio",
+        "equalizer",
+        "visualizer"
+      ],
+      "migrations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "plugins": [
+        "sql",
+        "dialog",
+        "opener",
+        "fs"
+      ]
+    },
+    "main": {
+      "file": "src-tauri\\src\\main.rs",
+      "lines": 7,
+      "commands": [],
+      "command_signatures": [],
+      "structs": [],
+      "imports": [],
+      "mod_declarations": [],
+      "migrations": [],
+      "plugins": []
+    },
+    "visualizer": {
+      "file": "src-tauri\\src\\visualizer.rs",
+      "lines": 221,
+      "commands": [],
+      "command_signatures": [],
+      "structs": [
+        "SampleTap"
+      ],
+      "imports": [
+        "crossbeam::channel::",
+        "rodio::Source",
+        "rustfft::",
+        "std::time::",
+        "tauri::",
+        "crossbeam::channel::RecvTimeoutError",
+        "std::f32::consts::PI"
+      ],
+      "mod_declarations": [],
+      "migrations": [],
+      "plugins": []
+    }
+  },
+  "all_commands": [
+    "create_fragment",
+    "export_fragments",
+    "export_mix",
+    "fetch_cover_art",
+    "fetch_lyrics",
+    "get_eq_state",
+    "pause",
+    "play_track",
+    "resume",
+    "scan_files",
+    "seek",
+    "set_eq_band",
+    "set_eq_preamp",
+    "set_eq_preset",
+    "set_volume",
+    "stop",
+    "toggle_eq"
+  ],
+  "total_commands": 17,
+  "db_migrations": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "registered_plugins": [
+    "dialog",
+    "fs",
+    "opener",
+    "sql"
+  ],
+  "scan_timestamp": "2026-07-02T11:03:31.277671 | in sovereign time"
+}

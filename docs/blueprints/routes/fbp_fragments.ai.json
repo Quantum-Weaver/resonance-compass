@@ -1,0 +1,115 @@
+{
+  "route_name": "fragments",
+  "source_file": "src\\routes\\fragments\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.519108 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [],
+      "data": [
+        "emojis"
+      ],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "fragments",
+        "rune": "$derived",
+        "source": "fragmentStore.fragments"
+      },
+      {
+        "name": "renameValue",
+        "rune": "$state",
+        "source": "''"
+      }
+    ],
+    "functions": [
+      {
+        "name": "toggleMenu",
+        "params": "id: string"
+      },
+      {
+        "name": "closeAll",
+        "params": ""
+      },
+      {
+        "name": "startRename",
+        "params": "frag: Fragment"
+      },
+      {
+        "name": "commitRename",
+        "params": "id: string"
+      },
+      {
+        "name": "fragmentToTrack",
+        "params": "frag: Fragment"
+      },
+      {
+        "name": "playFragment",
+        "params": "frag: Fragment"
+      },
+      {
+        "name": "fmtDur",
+        "params": "secs: number"
+      },
+      {
+        "name": "relativeDate",
+        "params": "ts: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "pl-picker",
+      "frag-name",
+      "frag-menu",
+      "frag-page-title",
+      "frag-source",
+      "frag-meta",
+      "frag-count",
+      "frag-list",
+      "rename-input",
+      "empty-quote",
+      "studio-link",
+      "empty-icon",
+      "frag-date",
+      "frag-info",
+      "menu-item",
+      "frag-emoji",
+      "frag-dur",
+      "frag-row",
+      "frag-play-area",
+      "fragments-page",
+      "menu-item-danger",
+      "frag-menu-btn",
+      "menu-item-confirm",
+      "ep-btn",
+      "header-spacer",
+      "frag-page-header",
+      "frag-heart",
+      "emoji-picker",
+      "pl-btn",
+      "empty-title",
+      "empty-state",
+      "empty-hint"
+    ],
+    "has_style_block": true,
+    "script_lines": 94,
+    "template_lines": 127,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [
+      "50"
+    ],
+    "has_ondestroy": false
+  },
+  "phase": 17,
+  "status": "complete"
+}

@@ -29,7 +29,21 @@
       "PowerShell(\"===\")",
       "PowerShell(cargo build --manifest-path src-tauri/Cargo.toml 2>&1)",
       "PowerShell(npm run tauri android build 2>&1)",
-      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\_superposition\\\\AudHDities-Resonance\\\\resonance-compass\\\\src-tauri\\\\gen\\\\android\\\\app\\\\build\\\\outputs\\\\apk\\\\universal\\\\release\\\\app-universal-release-unsigned.apk\"\\); $zip.Entries | Where-Object { $_.FullName -match '\\\\.so$' } | ForEach-Object { \"$\\($_.FullName\\)  $\\($_.Length\\)\" }; $zip.Dispose\\(\\); \"=== new arm64 lib on disk ===\"; Get-Item \"src-tauri\\\\target\\\\aarch64-linux-android\\\\release\\\\libresonance_compass_lib.so\" | Select-Object Length, LastWriteTime)"
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\_superposition\\\\AudHDities-Resonance\\\\resonance-compass\\\\src-tauri\\\\gen\\\\android\\\\app\\\\build\\\\outputs\\\\apk\\\\universal\\\\release\\\\app-universal-release-unsigned.apk\"\\); $zip.Entries | Where-Object { $_.FullName -match '\\\\.so$' } | ForEach-Object { \"$\\($_.FullName\\)  $\\($_.Length\\)\" }; $zip.Dispose\\(\\); \"=== new arm64 lib on disk ===\"; Get-Item \"src-tauri\\\\target\\\\aarch64-linux-android\\\\release\\\\libresonance_compass_lib.so\" | Select-Object Length, LastWriteTime)",
+      "Read(//c/Users/audhd/.cargo/registry/src/**)",
+      "Read(//c//**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-fs-2.5.1/src/**)",
+      "Bash(find \"/c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-fs-2.5.1\" -iname \"*.kt\" -o -iname \"*.gradle*\" 2>/dev/null)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-fs-2.5.1/**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-fs-2.5.1/android/src/main/java/**)",
+      "Bash(CARGO_SRC=\"/c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f\"; ls \"$CARGO_SRC\" | grep -i \"^lofty-\")",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lofty-0.22.4/**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lofty-0.22.4/src/**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tauri-plugin-dialog-2.7.1/android/src/main/java/**)",
+      "Bash(cargo build *)",
+      "Bash(python3 -c ' *)",
+      "PowerShell(Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\(\"C:\\\\_superposition\\\\AudHDities-Resonance\\\\resonance-compass\\\\src-tauri\\\\gen\\\\android\\\\app\\\\build\\\\outputs\\\\apk\\\\universal\\\\release\\\\app-universal-release-unsigned.apk\"\\); $zip.Entries | Where-Object { $_.FullName -match '\\\\.so$' } | ForEach-Object { \"$\\($_.FullName\\)  $\\($_.Length\\)\" }; $zip.Dispose\\(\\))"
     ],
     "additionalDirectories": [
       "c:\\_superposition\\AudHDities-Resonance\\resonance-compass\\src-tauri",

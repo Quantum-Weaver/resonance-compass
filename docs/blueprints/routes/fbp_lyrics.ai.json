@@ -1,0 +1,150 @@
+{
+  "route_name": "lyrics",
+  "source_file": "src\\routes\\lyrics\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.530056 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      },
+      {
+        "name": "position",
+        "rune": "$derived",
+        "source": "playerStore.position"
+      },
+      {
+        "name": "duration",
+        "rune": "$derived",
+        "source": "playerStore.duration"
+      },
+      {
+        "name": "trackIdParam",
+        "rune": "$derived",
+        "source": "page.url.searchParams.get('trackId'"
+      },
+      {
+        "name": "isSyncEnabled",
+        "rune": "$derived",
+        "source": "!trackIdParam || targetTrack?.id === currentTrack?.id"
+      },
+      {
+        "name": "fontSize",
+        "rune": "$state",
+        "source": "1.4"
+      },
+      {
+        "name": "headerVisible",
+        "rune": "$state",
+        "source": "true"
+      },
+      {
+        "name": "lyricsRaw",
+        "rune": "$derived",
+        "source": "localLyrics ?? targetTrack?.lyrics ?? null"
+      },
+      {
+        "name": "lrcLines",
+        "rune": "$derived",
+        "source": "lyricsRaw ? parseLRC(lyricsRaw"
+      },
+      {
+        "name": "displayLines",
+        "rune": "$derived",
+        "source": "lrcLines ? lrcLines.map((l"
+      },
+      {
+        "name": "currentLineIdx",
+        "rune": "$derived",
+        "source": "(("
+      }
+    ],
+    "functions": [
+      {
+        "name": "parseLRC",
+        "params": "text: string"
+      },
+      {
+        "name": "adjustFont",
+        "params": "delta: number"
+      },
+      {
+        "name": "toggleHeader",
+        "params": ""
+      },
+      {
+        "name": "previewLines",
+        "params": "lyrics: string"
+      },
+      {
+        "name": "findLyrics",
+        "params": ""
+      },
+      {
+        "name": "saveLyrics",
+        "params": ""
+      },
+      {
+        "name": "dismissFetch",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "fetch-spinner",
+      "no-lyrics-title",
+      "no-lyrics-sub",
+      "lyric-line",
+      "lyric-spacer",
+      "font-btn",
+      "mini-title",
+      "lyrics-scroll",
+      "header",
+      "mini-artist",
+      "bg-art",
+      "bg-overlay",
+      "save-lyrics-btn",
+      "find-lyrics-btn",
+      "lyrics-page",
+      "art-bg",
+      "lyrics-preview-box",
+      "center-icon",
+      "center-message",
+      "font-controls",
+      "back-btn",
+      "fetch-actions",
+      "bg-gradient",
+      "dismiss-btn",
+      "preview-line",
+      "fetch-preview-label",
+      "track-mini"
+    ],
+    "has_style_block": true,
+    "script_lines": 148,
+    "template_lines": 120,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [
+      "0",
+      "2",
+      "1",
+      "3"
+    ],
+    "has_ondestroy": false
+  },
+  "phase": 12,
+  "status": "complete"
+}

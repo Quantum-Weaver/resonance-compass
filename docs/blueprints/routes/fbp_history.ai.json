@@ -1,0 +1,106 @@
+{
+  "route_name": "history",
+  "source_file": "src\\routes\\history\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.521416 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "history",
+        "rune": "$derived",
+        "source": "playerStore.history"
+      },
+      {
+        "name": "showClearConfirm",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "moodByTrack",
+        "rune": "$derived",
+        "source": "(("
+      },
+      {
+        "name": "grouped",
+        "rune": "$derived",
+        "source": "(("
+      }
+    ],
+    "functions": [
+      {
+        "name": "getGroupLabel",
+        "params": "timestamp: number"
+      },
+      {
+        "name": "formatTime",
+        "params": "timestamp: number"
+      },
+      {
+        "name": "formatDuration",
+        "params": "seconds: number"
+      },
+      {
+        "name": "play",
+        "params": "entry: HistoryEntry"
+      },
+      {
+        "name": "confirmClear",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "history-list",
+      "hist-meta",
+      "clear-btn",
+      "hist-time",
+      "art-img",
+      "group",
+      "history-page",
+      "empty-icon",
+      "count",
+      "hist-info",
+      "confirm-no",
+      "empty-title",
+      "hist-fav",
+      "confirm-yes",
+      "hist-dur",
+      "confirm-row",
+      "group-label",
+      "hist-bottom",
+      "confirm-label",
+      "hist-artist",
+      "hist-moods",
+      "art-placeholder",
+      "page-header",
+      "empty-sub",
+      "hist-title",
+      "header-left",
+      "hist-art",
+      "hist-row",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 80,
+    "template_lines": 78,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [
+      "1"
+    ],
+    "has_ondestroy": false
+  },
+  "phase": 14,
+  "status": "complete"
+}

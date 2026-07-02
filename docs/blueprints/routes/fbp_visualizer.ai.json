@@ -1,0 +1,213 @@
+{
+  "route_name": "visualizer",
+  "source_file": "src\\routes\\visualizer\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.561028 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "modeIndex",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "mode",
+        "rune": "$derived",
+        "source": "MODES[modeIndex]"
+      },
+      {
+        "name": "showOverlay",
+        "rune": "$state",
+        "source": "true"
+      },
+      {
+        "name": "showModeLabel",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "modeLabelText",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "liveFFT",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "keyHue",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "speedMult",
+        "rune": "$state",
+        "source": "1"
+      },
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      },
+      {
+        "name": "isPlaying",
+        "rune": "$derived",
+        "source": "playerStore.isPlaying"
+      }
+    ],
+    "functions": [
+      {
+        "name": "lerp",
+        "params": "a: number, b: number, t: number"
+      },
+      {
+        "name": "cosmicColor",
+        "params": "t: number"
+      },
+      {
+        "name": "hash",
+        "params": "s: string, i: number"
+      },
+      {
+        "name": "smoothSpectrum",
+        "params": ""
+      },
+      {
+        "name": "barLevel",
+        "params": "i: number, ts: number"
+      },
+      {
+        "name": "bandLevel",
+        "params": "lo: number, hi: number, ts: number"
+      },
+      {
+        "name": "drawBars",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "fftEnergy",
+        "params": ""
+      },
+      {
+        "name": "drawWaveform",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "bassEnergy",
+        "params": ""
+      },
+      {
+        "name": "drawSpiral",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "updateParticles",
+        "params": "W: number, H: number, dt: number"
+      },
+      {
+        "name": "drawParticles",
+        "params": "ctx: CanvasRenderingContext2D"
+      },
+      {
+        "name": "drawMandala",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "flowerCenters",
+        "params": "d: number"
+      },
+      {
+        "name": "drawFlower",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "metatronCenters",
+        "params": "d: number"
+      },
+      {
+        "name": "drawMetatron",
+        "params": "ctx: CanvasRenderingContext2D, W: number, H: number, ts: number"
+      },
+      {
+        "name": "draw",
+        "params": "rawTs: number"
+      },
+      {
+        "name": "resetOverlayTimer",
+        "params": ""
+      },
+      {
+        "name": "flashModeLabel",
+        "params": "text?: string"
+      },
+      {
+        "name": "cycleMode",
+        "params": "direction: 1 | -1 = 1"
+      },
+      {
+        "name": "handleCanvasClick",
+        "params": ""
+      },
+      {
+        "name": "handleTouchStart",
+        "params": "e: TouchEvent"
+      },
+      {
+        "name": "handleTouchEnd",
+        "params": "e: TouchEvent"
+      },
+      {
+        "name": "handleResize",
+        "params": ""
+      },
+      {
+        "name": "handleKeyDown",
+        "params": "e: KeyboardEvent"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "overlay-track",
+      "ov-artist",
+      "play",
+      "overlay",
+      "vis-canvas",
+      "vis-page",
+      "back-btn",
+      "live-badge",
+      "mode-label",
+      "ov-art-img",
+      "ov-empty",
+      "ov-title",
+      "ov-art",
+      "ov-btn",
+      "ov-controls",
+      "ov-info"
+    ],
+    "has_style_block": true,
+    "script_lines": 590,
+    "template_lines": 56,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [
+      "100"
+    ],
+    "has_ondestroy": true
+  },
+  "phase": 5,
+  "status": "complete"
+}

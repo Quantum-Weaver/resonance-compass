@@ -1,0 +1,46 @@
+{
+  "stack": "backend",
+  "language": "Rust",
+  "framework": "Tauri v2",
+  "all_commands": [
+    "create_fragment",
+    "export_fragments",
+    "export_mix",
+    "fetch_cover_art",
+    "fetch_lyrics",
+    "get_eq_state",
+    "pause",
+    "play_track",
+    "resume",
+    "scan_files",
+    "seek",
+    "set_eq_band",
+    "set_eq_preamp",
+    "set_eq_preset",
+    "set_volume",
+    "stop",
+    "toggle_eq"
+  ],
+  "total_commands": 17,
+  "db_migrations": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "registered_plugins": [
+    "dialog",
+    "fs",
+    "opener",
+    "sql"
+  ],
+  "files": [
+    "audio",
+    "equalizer",
+    "lib",
+    "main",
+    "visualizer"
+  ],
+  "scan_timestamp": "2026-07-02T11:03:31.384774 | in sovereign time"
+}

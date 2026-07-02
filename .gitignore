@@ -1,7 +1,7 @@
 # ─── SOVEREIGNTY — NEVER COMMIT ───────────────────────────
 *.keystore
 *.jks
-*.apk
+*.apk*
 *.aab
 .env
 .env.*

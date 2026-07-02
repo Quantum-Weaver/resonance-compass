@@ -1,0 +1,108 @@
+{
+  "layer": "types",
+  "file": "src\\lib\\types\\types.ts",
+  "interfaces": [
+    "ThemeConfig",
+    "Track",
+    "MoodEvent",
+    "Album",
+    "Artist",
+    "Playlist",
+    "PlayerState",
+    "Sense",
+    "Subcategory"
+  ],
+  "types": [],
+  "enums": [],
+  "usage": {
+    "Sense": [
+      "src\\lib\\data\\senses.ts"
+    ],
+    "Subcategory": [
+      "src\\lib\\data\\senses.ts"
+    ],
+    "Playlist": [
+      "src\\lib\\stores\\focus.svelte.ts",
+      "src\\lib\\stores\\playlist.svelte.ts",
+      "src\\routes\\+layout.svelte",
+      "src\\routes\\+page.svelte",
+      "src\\routes\\focus\\+page.svelte",
+      "src\\routes\\fragments\\+page.svelte",
+      "src\\routes\\liked\\+page.svelte",
+      "src\\routes\\playlists\\+page.svelte",
+      "src\\routes\\profiles\\+page.svelte",
+      "src\\routes\\sattva\\+page.svelte",
+      "src\\routes\\search\\+page.svelte",
+      "src\\routes\\playlists\\[id]\\+page.svelte",
+      "src\\routes\\library\\album\\[id]\\+page.svelte",
+      "src\\lib\\components\\Sidebar.svelte",
+      "src\\lib\\components\\TrackItem.svelte",
+      "src\\lib\\components\\icons\\Icons.svelte"
+    ],
+    "Track": [
+      "src\\lib\\stores\\fragment.svelte.ts",
+      "src\\lib\\stores\\library.svelte.ts",
+      "src\\lib\\stores\\mood.svelte.ts",
+      "src\\lib\\stores\\player.svelte.ts",
+      "src\\lib\\stores\\playlist.svelte.ts",
+      "src\\routes\\+page.svelte",
+      "src\\routes\\focus\\+page.svelte",
+      "src\\routes\\fragments\\+page.svelte",
+      "src\\routes\\history\\+page.svelte",
+      "src\\routes\\liked\\+page.svelte",
+      "src\\routes\\lyrics\\+page.svelte",
+      "src\\routes\\nowplaying\\+page.svelte",
+      "src\\routes\\onboarding\\+page.svelte",
+      "src\\routes\\queue\\+page.svelte",
+      "src\\routes\\resonance\\+page.svelte",
+      "src\\routes\\sattva\\+page.svelte",
+      "src\\routes\\search\\+page.svelte",
+      "src\\routes\\settings\\+page.svelte",
+      "src\\routes\\visualizer\\+page.svelte",
+      "src\\routes\\playlists\\[id]\\+page.svelte",
+      "src\\routes\\library\\artist\\[id]\\+page.svelte",
+      "src\\routes\\library\\album\\[id]\\+page.svelte",
+      "src\\routes\\fragments\\studio\\+page.svelte",
+      "src\\lib\\components\\EmojiPalette.svelte",
+      "src\\lib\\components\\MiniPlayer.svelte",
+      "src\\lib\\components\\TrackItem.svelte"
+    ],
+    "Album": [
+      "src\\lib\\stores\\library.svelte.ts",
+      "src\\routes\\+page.svelte",
+      "src\\routes\\library\\+page.svelte",
+      "src\\routes\\nowplaying\\+page.svelte",
+      "src\\routes\\search\\+page.svelte",
+      "src\\routes\\library\\artist\\[id]\\+page.svelte",
+      "src\\routes\\library\\album\\[id]\\+page.svelte",
+      "src\\lib\\components\\AlbumCard.svelte"
+    ],
+    "Artist": [
+      "src\\lib\\stores\\library.svelte.ts",
+      "src\\routes\\library\\+page.svelte",
+      "src\\routes\\liked\\+page.svelte",
+      "src\\routes\\search\\+page.svelte",
+      "src\\routes\\library\\artist\\[id]\\+page.svelte"
+    ],
+    "MoodEvent": [
+      "src\\lib\\stores\\mood.svelte.ts",
+      "src\\lib\\stores\\player.svelte.ts",
+      "src\\lib\\stores\\playlist.svelte.ts",
+      "src\\routes\\focus\\+page.svelte",
+      "src\\routes\\liked\\+page.svelte",
+      "src\\routes\\resonance\\+page.svelte",
+      "src\\routes\\settings\\+page.svelte",
+      "src\\lib\\components\\EmojiPalette.svelte"
+    ],
+    "PlayerState": [
+      "src\\lib\\stores\\player.svelte.ts"
+    ],
+    "ThemeConfig": [
+      "src\\lib\\stores\\theme.svelte.ts",
+      "src\\lib\\theme\\theme.ts"
+    ]
+  },
+  "unused": [],
+  "duplicates_found": [],
+  "scan_timestamp": "2026-07-02T11:03:31.318051 | in sovereign time"
+}

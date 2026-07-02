@@ -122,7 +122,7 @@
 
 					{#if scanPhase === 'idle'}
 						<div class="screen-actions inner">
-							<button class="btn-primary" onclick={startLibraryScan}>Select Folder</button>
+							<button class="btn-primary" onclick={startLibraryScan}>Select Tracks</button>
 							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
 						</div>
 

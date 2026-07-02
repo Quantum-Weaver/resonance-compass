@@ -1,0 +1,211 @@
+{
+  "route_name": "focus",
+  "source_file": "src\\routes\\focus\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.516830 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "selectedDuration",
+        "rune": "$state",
+        "source": "25"
+      },
+      {
+        "name": "customDuration",
+        "rune": "$state",
+        "source": "30"
+      },
+      {
+        "name": "isCustom",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "lockUI",
+        "rune": "$state",
+        "source": "true"
+      },
+      {
+        "name": "breakReminders",
+        "rune": "$state",
+        "source": "true"
+      },
+      {
+        "name": "playlists",
+        "rune": "$derived",
+        "source": "playlistStore.playlists"
+      },
+      {
+        "name": "remaining",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "elapsed",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "breakVisible",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "breakShown",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "tracksPlayed",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "endHoldProgress",
+        "rune": "$state",
+        "source": "0"
+      }
+    ],
+    "functions": [
+      {
+        "name": "startTimer",
+        "params": "plannedMs: number, startedAt: number"
+      },
+      {
+        "name": "stopTimer",
+        "params": ""
+      },
+      {
+        "name": "onEndHoldStart",
+        "params": "e: PointerEvent"
+      },
+      {
+        "name": "onEndHoldCancel",
+        "params": ""
+      },
+      {
+        "name": "endManual",
+        "params": ""
+      },
+      {
+        "name": "startFocus",
+        "params": ""
+      },
+      {
+        "name": "completeSession",
+        "params": ""
+      },
+      {
+        "name": "returnToSetup",
+        "params": ""
+      },
+      {
+        "name": "fmtMs",
+        "params": "ms: number"
+      },
+      {
+        "name": "fmtMins",
+        "params": "ms: number"
+      },
+      {
+        "name": "dateStr",
+        "params": "ts: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "option-label",
+      "focus-card",
+      "complete-overlay",
+      "h-date",
+      "h-detail",
+      "toggle-thumb",
+      "option-toggle",
+      "focus-title",
+      "history-list",
+      "break-overlay",
+      "np-art-fallback",
+      "preset-row",
+      "np-artist",
+      "end-hint",
+      "custom-duration-row",
+      "option-icon",
+      "session-label",
+      "clear-btn",
+      "h-status",
+      "stat-val",
+      "ctrl-play",
+      "focus-section",
+      "np-title",
+      "session-playlist",
+      "playback-controls",
+      "end-hold-btn",
+      "complete-title",
+      "end-btn-wrap",
+      "focus-header",
+      "complete-icon",
+      "history-item",
+      "section-label",
+      "custom-unit",
+      "np-meta",
+      "history-section",
+      "countdown-wrap",
+      "custom-input",
+      "sr-only",
+      "start-btn",
+      "complete-sub",
+      "complete-card",
+      "countdown-label",
+      "focus-page",
+      "preset-btn",
+      "ctrl-btn",
+      "stat-lbl",
+      "history-header",
+      "focus-subtitle",
+      "countdown-text",
+      "toggle-track",
+      "stat",
+      "stats-grid",
+      "active-overlay",
+      "np-art",
+      "np-info",
+      "ghost-btn",
+      "active-header",
+      "break-text",
+      "h-planned",
+      "h-info",
+      "options-section",
+      "countdown-ring",
+      "option-hint",
+      "countdown-time"
+    ],
+    "has_style_block": true,
+    "script_lines": 240,
+    "template_lines": 229,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [
+      "200",
+      "250",
+      "200"
+    ],
+    "has_ondestroy": true
+  },
+  "phase": 17,
+  "status": "complete"
+}

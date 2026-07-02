@@ -1,0 +1,100 @@
+{
+  "route_name": "library",
+  "source_file": "src\\routes\\library\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.524204 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "searchQuery",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "debouncedQuery",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "gridView",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "tracks",
+        "rune": "$derived",
+        "source": "libraryStore.tracks"
+      },
+      {
+        "name": "artists",
+        "rune": "$derived",
+        "source": "libraryStore.artists"
+      },
+      {
+        "name": "albums",
+        "rune": "$derived",
+        "source": "libraryStore.albums"
+      }
+    ],
+    "functions": [
+      {
+        "name": "onScanClick",
+        "params": ""
+      },
+      {
+        "name": "openArtist",
+        "params": "id: string"
+      },
+      {
+        "name": "openAlbum",
+        "params": "id: string"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "list-item",
+      "tabs",
+      "library-page",
+      "scan-error",
+      "empty-heading",
+      "card-icon",
+      "lib-actions",
+      "tab",
+      "empty-icon",
+      "icon-btn",
+      "search-input",
+      "list",
+      "cover",
+      "empty-search",
+      "scan-btn",
+      "lib-title",
+      "lib-header",
+      "empty-sub",
+      "item-text",
+      "item-sub",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 59,
+    "template_lines": 100,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 2,
+  "status": "complete"
+}
