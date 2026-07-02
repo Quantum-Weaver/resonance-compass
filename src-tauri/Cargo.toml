@@ -25,7 +25,7 @@ lofty = "0.22"
 base64 = "0.22"
 crossbeam = "0.8"
 rustfft = "6"
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
 
 [profile.release]
 strip = true
