@@ -281,7 +281,6 @@
 
 	.list {
 		flex: 1;
-		overflow-y: auto;
 	}
 
 	.list-item {

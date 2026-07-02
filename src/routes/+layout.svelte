@@ -81,6 +81,7 @@
 	.main-content {
 		flex: 1;
 		overflow-y: auto;
+		overflow-x: hidden;
 		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
 	}
 

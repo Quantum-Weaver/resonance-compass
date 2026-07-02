@@ -404,8 +404,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
-		max-height: 40vh;
-		overflow-y: auto;
 	}
 
 	.panel-empty { font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem; text-align: center; }

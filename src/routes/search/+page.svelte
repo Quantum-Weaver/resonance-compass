@@ -268,10 +268,9 @@
 
 <style>
 	.search-page {
-		height: 100%;
+		min-height: 100%;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
 	}
 
 	/* Search bar */
@@ -350,10 +349,9 @@
 	.tab:hover { color: var(--accent); }
 	.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-	/* Results scrollable area */
+	/* Results area — .main-content is the scroller */
 	.results-area {
 		flex: 1;
-		overflow-y: auto;
 		padding: 1.25rem 1.25rem 1rem;
 	}
 

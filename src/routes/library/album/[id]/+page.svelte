@@ -321,7 +321,6 @@
 
 	.track-list {
 		flex: 1;
-		overflow-y: auto;
 	}
 
 	/* Find Cover Art */

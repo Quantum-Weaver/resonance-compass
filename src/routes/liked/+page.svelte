@@ -191,10 +191,9 @@
 
 <style>
 	.liked-page {
-		height: 100%;
+		min-height: 100%;
 		display: flex;
 		flex-direction: column;
-		overflow-y: auto;
 	}
 
 	/* Header */
@@ -349,7 +348,6 @@
 	/* Track list */
 	.track-list {
 		flex: 1;
-		overflow-y: auto;
 		padding: 0.25rem 0;
 	}
 

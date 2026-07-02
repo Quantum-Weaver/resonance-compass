@@ -169,7 +169,6 @@
 
 	.playlist-list {
 		flex: 1;
-		overflow-y: auto;
 	}
 
 	.playlist-item {

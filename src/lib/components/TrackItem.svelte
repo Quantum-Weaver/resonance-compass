@@ -206,6 +206,8 @@
 		line-height: 1;
 		flex-shrink: 0;
 		transition: transform 0.15s;
+		min-width: 44px;
+		min-height: 44px;
 	}
 
 	.heart-btn:hover {
@@ -236,6 +238,8 @@
 		font-size: 1.1rem;
 		color: var(--text-muted);
 		line-height: 1;
+		min-width: 44px;
+		min-height: 44px;
 	}
 
 	.menu-btn:hover {

@@ -255,6 +255,8 @@
 		font-size: 1.1rem;
 		padding: 0.25rem 0.5rem;
 		line-height: 1;
+		min-width: 44px;
+		min-height: 44px;
 	}
 
 	/* Profile quick-switch */
