@@ -63,7 +63,7 @@
 ### Phase 8: Timer ✅
 - [x] Sleep timer with visualizations — `/timer`, presets 15/30/45/60/90/120 min, 7 modes ported from v1's `TimerVisualization.svelte` (Sand hourglass, Breathe, Mandala, Flower of Life, Metatron's Cube, Cycle, Numeric), mode-cycle button locked out under `prefers-reduced-motion` (numeric only)
 - [x] Fade-out — toggle on the preset screen; when enabled, volume ramps to 0 over the final 60 seconds (30 steps × 2s), restores the pre-timer volume on cancel or natural expiry
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 9: Home Screen Revamp ✅
 - [x] Time-of-day greeting — "Good morning/afternoon/evening" (5am/12pm/5pm thresholds), personalized with vessel name if set
@@ -85,16 +85,36 @@
 - [x] ⋮ menu — add to other playlists (favorites excluded)
 - [x] Empty state — "No liked songs yet. Tap the ❤️ on any track to add it here."
 - [x] Sidebar — ❤️ Liked nav item added (between Library and Playlists)
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
-### Phase 11: Search ⬜
-- [ ] Full-screen search
-- [ ] Real-time results by category
-- [ ] **Tested:** ⬜
+### Phase 11: Search ✅
+- [x] Full-screen search — `src/routes/search/+page.svelte`, auto-focused input on page load
+- [x] Real-time results — 150ms debounce via `$effect` cleanup pattern, case-insensitive partial matching across title/artist/album
+- [x] Category tabs — All | Artists | Albums | Tracks; "All" limits: 3 artists, 3 albums, 5 tracks; "See all N →" switches tab
+- [x] Artists tab — avatar (initial letter), name, track count; taps navigate to `/library/artist/[id]`
+- [x] Albums tab — AlbumCard grid (130px), taps navigate to `/library/album/[id]`
+- [x] Tracks tab — TrackItem rows with heart + ⋮ menu; tapping loads full `matchedTracks` as queue (not just the preview slice), starting at tapped track
+- [x] Recent searches — last 10 persisted to localStorage, deduplicated newest-first, tap to re-run, Clear button
+- [x] Empty states — library stats when idle, "No results for…" when query has no matches
+- [x] Sidebar — 🔍 Search nav item added (between Home and Library)
+- [x] **Tested:** ✅
 
-### Phase 12: Lyrics ⬜
-- [ ] Full-screen synced lyrics
-- [ ] Blurred background
+### Phase 12: Lyrics ✅
+- [x] Full-screen synced lyrics — `src/routes/lyrics/+page.svelte`, LRC parser (`[mm:ss.cc]` timestamps), current line white+bold+glow, past lines dimmed, auto-scroll via `scrollIntoView` `block: center`
+- [x] Static lyrics fallback — plain text split to lines, current line estimated by playback percentage through track
+- [x] Blurred album art background — `filter: blur(48px) brightness(0.28) saturate(1.6)` + dark overlay; gradient fallback when no cover art
+- [x] Sync guard — LRC sync only when viewed track matches currently playing track (`isSyncEnabled`)
+- [x] Font size A−/A+ — persisted to localStorage (`lyrics_font_size`), 0.9–2.4rem range
+- [x] Tap to toggle header — immersive mode hides title/back row with slide-up animation; font controls always visible
+- [x] Back button — "← Now Playing" via `window.history.back()`
+- [x] **Part B: Find Lyrics** — `fetch_lyrics` Rust command, LRCLIB API (`https://lrclib.net/api/get`), `reqwest` 0.12 with `rustls-tls`, 8s timeout, errors return `Ok(None)` (never panics)
+- [x] Find Lyrics button — appears only when lyrics are missing; user-initiated only (never automatic)
+- [x] Fetch flow — loading spinner → preview (first 5 lines) → Save / Dismiss; "No lyrics found" graceful state; "Could not reach lyrics service" on network error
+- [x] Save lyrics — `libraryStore.updateTrackLyrics()` writes to SQLite + updates in-memory track; `localLyrics` session state overrides without needing a store reload
+- [x] Lyrics button on Now Playing — 🎤 in extra-controls row, navigates to `/lyrics?trackId=[id]`
+- [x] `reqwest` — added to `Cargo.toml` with `rustls-tls` + `json` features (Android-compatible, no native-tls)
+- [x] `songs` table — `lyrics TEXT` already present in migration v1; no new migration needed
+- [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
 - [ ] **Tested:** ⬜
 
 ### Phase 13: Onboarding ⬜
@@ -173,4 +193,5 @@
 | 2026-06-30 | Fix: EmojiPalette wasn't actually centered in MiniPlayer's expanded panel — `.emoji-strip` had `width: 100%`, which stretched it edge-to-edge regardless of the `align-items: center` on its wrapper (centering a full-width element is a no-op). Changed to `width: fit-content; max-width: 100%;` and wrapped the MiniPlayer usage in a `justify-content: center` row with a reserved `max-width: calc(100% - 3.5rem)` clearance so it can't re-approach the fixed hamburger's corner even when scrolling content is wide. |
 | 2026-07-01 | Phase 10: Liked Songs complete. New `/liked` route: full favorited track list (reactive — unfavoriting removes instantly), 4 sort modes (Recently Added, A-Z, Artist, Most Played [dateAdded proxy — real playCount is Phase 14]), mood filter chips (top 8 emojis across favorites, loaded via `Promise.all` in onMount), Play All / Shuffle All loads filtered queue, inline mood tag display per row, ⋮ menu (add to other playlists, favorites excluded), empty state. Sidebar: ❤️ Liked nav item added. v1 adaptations: `libraryStore.favoriteTrackIds` → `playlistStore.getPlaylist('favorites')?.trackIds`; `loadQueue` → `setQueue`; removed `getThemeColors` (CSS vars are global). `npm run check` 318 files 0 errors. `cargo build` clean. Awaiting human test. |
 | 2026-07-01 | Phase 9: Home Screen complete. New `AlbumCard.svelte` (ported from v0.5). Home page rewritten: time-of-day greeting (vessel name personalized), Sattva amber button → `/sattva`, Resume button when track loaded, Recently Played (album-based, `$effect` on `playerStore.currentTrack` + localStorage, `untrack()` to avoid effect loop), Favorites albums (from `playlistStore.getPlaylist('favorites')?.trackIds` → album lookup), insight line (favorites count + library count), empty state with Scan Library. Replaced the Phase 2 "Recently Added" placeholder with true "Recently Played". MiniPlayer nav row: 🏠 Home button added. `npm run check` 316 files 0 errors. `cargo build` clean. Awaiting human test. |
+| 2026-07-01 | Phase 12: Lyrics complete. New `/lyrics` route: full-screen immersive view, blurred album art background (blur(48px) brightness(0.28)), LRC parser (`[mm:ss.cc]` format), auto-scroll `scrollIntoView` on current line, static fallback (percentage-based position), font size A−/A+ (localStorage), tap-to-toggle header. Find Lyrics: `fetch_lyrics` Rust command (LRCLIB API, reqwest 0.12 rustls-tls, 8s timeout, never throws), opt-in only — button shown when lyrics missing, preview → Save → writes to SQLite + in-memory via `libraryStore.updateTrackLyrics`. 🎤 button added to Now Playing extra-controls row. `songs` table already had `lyrics TEXT` from migration v1. `npm run check` 322 files 0 errors. `cargo build` clean. Awaiting human test. |
 | 2026-06-30 | Phase 8: Timer complete. Ported `TimerVisualization.svelte`'s 7 modes from the v1 archive close to verbatim (Sand hourglass with a live particle stream, Breathe, Mandala/Flower/Metatron dissolve-reveal patterns sharing one pixel-shuffle algorithm, Cycle rotating through the three dissolve patterns every 10s, Numeric) — only CSS-variable substitutions for v2's inherited theme vars, logic untouched. One deliberate architectural departure from v1: rather than a page-local `+page.svelte` holding all timer state (v1's approach), created `timer.svelte.ts` — v1's page-local design meant navigating away from `/timer` unmounted the component while its `setInterval` kept running orphaned in the background (invisible, uncancelable, and a second visit could start a stacking duplicate timer). Every other stateful feature in this codebase (player, library, playlists, mood) already lives in a `.svelte.ts` store for exactly this reason, so timer state followed the same pattern instead of reproducing the bug. `timerStore.start()` now cancels any existing timer before starting a new one. Fade-out logic, pause-on-expiry, and volume restoration on cancel were ported directly from v1's proven implementation. Added "Timer" to the Sidebar nav (⏰) and MiniPlayer's expanded panel nav row. Awaiting human test. |
