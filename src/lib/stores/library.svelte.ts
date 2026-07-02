@@ -79,48 +79,81 @@ async function loadTracks() {
 	}
 }
 
+// Parent folder of a track, decoded so content:// document IDs (%2F-encoded)
+// split like plain paths. Trailing "Disc N"/"CD N" segments are stripped so
+// multi-disc rips in per-disc subfolders still group as one album.
+function folderOf(uri: string): string {
+	let p = uri;
+	try {
+		p = decodeURIComponent(uri);
+	} catch {}
+	const cut = Math.max(p.lastIndexOf('/'), p.lastIndexOf('\\'));
+	const dir = cut >= 0 ? p.slice(0, cut) : p;
+	return dir.replace(/[\\/](disc|cd)[\s._-]*\d+\s*$/i, '');
+}
+
 // Builds the album/artist groupings from a flat track list.
 // Artist dedup is case-insensitive (.trim().toLowerCase()); album id follows
-// the "albumName|||artistName" format (CLAUDE.md).
+// the "albumName|||artistName" format (CLAUDE.md), gaining a "|||discriminator"
+// suffix only when several releases share both name and artist (e.g. three
+// self-titled albums): distinct tag years split first, source folders only when
+// no year info exists at all — a lone tagged year must not split disc folders.
 function setTracks(newTracks: Track[]) {
 	tracks = newTracks;
 
-	const albumMap = new Map<string, Album>();
-	const artistMap = new Map<string, Artist>();
-
+	const baseGroups = new Map<string, Track[]>();
 	for (const track of newTracks) {
-		const artistName = track.artist.trim();
-		const albumName = track.album.trim();
-		const artistKey = artistName.toLowerCase();
-		const albumKey = `${albumName.toLowerCase()}|||${artistKey}`;
+		const key = `${track.album.trim().toLowerCase()}|||${track.artist.trim().toLowerCase()}`;
+		const group = baseGroups.get(key);
+		if (group) group.push(track);
+		else baseGroups.set(key, [track]);
+	}
 
-		if (!albumMap.has(albumKey)) {
-			albumMap.set(albumKey, {
-				id: `${albumName}|||${artistName}`,
+	const albumList: Album[] = [];
+	for (const group of baseGroups.values()) {
+		const years = new Set(group.map((t) => t.year).filter((y) => y != null));
+		const folders = new Set(group.map((t) => folderOf(t.uri)));
+
+		let discOf: (t: Track) => string;
+		if (years.size > 1) discOf = (t) => String(t.year ?? '?');
+		else if (years.size === 0 && folders.size > 1) discOf = (t) => folderOf(t.uri);
+		else discOf = () => '';
+
+		const subGroups = new Map<string, Track[]>();
+		for (const t of group) {
+			const disc = discOf(t);
+			const sub = subGroups.get(disc);
+			if (sub) sub.push(t);
+			else subGroups.set(disc, [t]);
+		}
+
+		for (const [disc, subTracks] of subGroups) {
+			const albumName = subTracks[0].album.trim();
+			const artistName = subTracks[0].artist.trim();
+			albumList.push({
+				id: disc ? `${albumName}|||${artistName}|||${disc}` : `${albumName}|||${artistName}`,
 				name: albumName,
 				artist: artistName,
-				tracks: [],
-				coverArt: track.coverArt,
-				year: track.year,
-				genre: track.genre,
+				tracks: subTracks,
+				coverArt: subTracks.find((t) => t.coverArt)?.coverArt,
+				year: subTracks.find((t) => t.year != null)?.year,
+				genre: subTracks[0].genre,
 			});
 		}
-		const album = albumMap.get(albumKey)!;
-		album.tracks.push(track);
-		if (!album.coverArt && track.coverArt) album.coverArt = track.coverArt;
+	}
 
+	const artistMap = new Map<string, Artist>();
+	for (const album of albumList) {
+		const artistKey = album.artist.toLowerCase();
 		if (!artistMap.has(artistKey)) {
-			artistMap.set(artistKey, { id: artistName, name: artistName, albums: [], trackCount: 0 });
+			artistMap.set(artistKey, { id: album.artist, name: album.artist, albums: [], trackCount: 0 });
 		}
-		artistMap.get(artistKey)!.trackCount++;
+		const artist = artistMap.get(artistKey)!;
+		artist.albums.push(album);
+		artist.trackCount += album.tracks.length;
 	}
 
-	for (const album of albumMap.values()) {
-		const artist = artistMap.get(album.artist.toLowerCase());
-		if (artist) artist.albums.push(album);
-	}
-
-	albums = Array.from(albumMap.values());
+	albums = albumList;
 	artists = Array.from(artistMap.values());
 	lastScanned = Date.now();
 }
@@ -226,18 +259,17 @@ async function updateAlbumCoverArt(albumId: string, coverArt: string) {
 	if (!db) return;
 	const album = albums.find((a) => a.id === albumId);
 	if (!album) return;
-	await db.execute(
-		'UPDATE songs SET cover_art = $1 WHERE artist = $2 AND album = $3',
-		[coverArt, album.artist, album.name]
-	);
-	// Update in-memory tracks + album so UI reacts without a full reload.
-	for (const track of tracks) {
-		if (track.artist.trim() === album.artist.trim() && track.album.trim() === album.name.trim()) {
-			track.coverArt = coverArt;
-		}
+	// Per-track updates — a WHERE artist+album match would also restamp
+	// same-named sibling albums (split apart by year/folder) with this art.
+	for (const t of album.tracks) {
+		await db.execute('UPDATE songs SET cover_art = $1 WHERE id = $2', [coverArt, t.id]);
 	}
-	const albumObj = albums.find((a) => a.id === albumId);
-	if (albumObj) albumObj.coverArt = coverArt;
+	// Update in-memory tracks + album so UI reacts without a full reload.
+	const ids = new Set(album.tracks.map((t) => t.id));
+	for (const track of tracks) {
+		if (ids.has(track.id)) track.coverArt = coverArt;
+	}
+	album.coverArt = coverArt;
 }
 
 async function updateTrackLyrics(trackId: string, lyrics: string) {
