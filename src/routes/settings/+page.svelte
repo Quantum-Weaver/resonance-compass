@@ -6,6 +6,7 @@
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
+	import { moodStore } from '$lib/stores/mood.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
 	// ── Theme section ──────────────────────────────────────────────────────────
@@ -196,6 +197,10 @@
 	});
 
 	// ── Data Sovereignty section ────────────────────────────────────────────────
+	// Export/import cover EVERYTHING the app stores: the songs table (with lyrics
+	// and cover art), all mood events, and every localStorage key (playlists,
+	// history, fragments, arrangements, profiles, focus, sattva, theme, EQ
+	// presets, personal emoji definitions, player state, onboarding flags).
 
 	const trackCount = $derived(libraryStore.tracks.length);
 
@@ -203,8 +208,33 @@
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
-	function exportData() {
-		const json = JSON.stringify(libraryStore.tracks, null, 2);
+	interface CompassExport {
+		format: string;
+		version: number;
+		exportedAt: string;
+		library: unknown[];
+		moodEvents: unknown[];
+		localStorage: Record<string, string>;
+	}
+
+	async function buildSnapshot(): Promise<CompassExport> {
+		const ls: Record<string, string> = {};
+		for (let i = 0; i < localStorage.length; i++) {
+			const k = localStorage.key(i);
+			if (k !== null) ls[k] = localStorage.getItem(k) ?? '';
+		}
+		return {
+			format: 'resonance-compass-export',
+			version: 2,
+			exportedAt: new Date().toISOString(),
+			library: libraryStore.tracks,
+			moodEvents: await moodStore.getAllMoodEvents(),
+			localStorage: ls,
+		};
+	}
+
+	async function exportData() {
+		const json = JSON.stringify(await buildSnapshot(), null, 2);
 		const blob = new Blob([json], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
@@ -217,6 +247,68 @@
 		URL.revokeObjectURL(url);
 	}
 
+	// ── Import ──
+
+	let importState = $state<'idle' | 'confirm' | 'importing' | 'error'>('idle');
+	let importError = $state<string | null>(null);
+	let importFileEl = $state<HTMLInputElement | null>(null);
+	let pendingImport: CompassExport | null = null;
+	let importSummary = $state('');
+
+	function onImportFile(e: Event) {
+		const file = (e.currentTarget as HTMLInputElement).files?.[0];
+		if (!file) return;
+		const reader = new FileReader();
+		reader.onload = () => {
+			try {
+				const data = JSON.parse(String(reader.result)) as CompassExport;
+				if (data.format !== 'resonance-compass-export') {
+					throw new Error('Not a Resonance Compass export file.');
+				}
+				pendingImport = data;
+				const nTracks = Array.isArray(data.library) ? data.library.length : 0;
+				const nMoods = Array.isArray(data.moodEvents) ? data.moodEvents.length : 0;
+				const nKeys = Object.keys(data.localStorage ?? {}).length;
+				importSummary = `${nTracks} tracks · ${nMoods} mood events · ${nKeys} settings entries`;
+				importState = 'confirm';
+				importError = null;
+			} catch (err) {
+				importError = err instanceof Error ? err.message : String(err);
+				importState = 'error';
+			}
+			if (importFileEl) importFileEl.value = '';
+		};
+		reader.readAsText(file);
+	}
+
+	async function executeImport() {
+		if (!pendingImport) return;
+		importState = 'importing';
+		try {
+			for (const [k, v] of Object.entries(pendingImport.localStorage ?? {})) {
+				localStorage.setItem(k, v);
+			}
+			if (Array.isArray(pendingImport.library) && pendingImport.library.length > 0) {
+				await libraryStore.importTracks(pendingImport.library as never[]);
+			}
+			if (Array.isArray(pendingImport.moodEvents) && pendingImport.moodEvents.length > 0) {
+				await moodStore.importMoodEvents(pendingImport.moodEvents as never[]);
+			}
+			location.reload();
+		} catch (err) {
+			importError = err instanceof Error ? err.message : String(err);
+			importState = 'error';
+		}
+	}
+
+	function cancelImport() {
+		pendingImport = null;
+		importState = 'idle';
+		importError = null;
+	}
+
+	// ── Purge ──
+
 	function startPurge(withExport: boolean) {
 		pendingExport = withExport;
 		purgeState = 'confirm1';
@@ -228,12 +320,11 @@
 	}
 
 	async function executePurge() {
-		if (pendingExport) exportData();
+		if (pendingExport) await exportData();
 		await libraryStore.clearLibrary();
-		localStorage.removeItem('resonance-compass-vessel-name');
-		localStorage.removeItem('resonance-compass-theme');
-		localStorage.removeItem('onboarding_complete');
-		goto('/onboarding');
+		await moodStore.purgeAll();
+		localStorage.clear();
+		location.reload();
 	}
 </script>
 
@@ -401,11 +492,43 @@
 
 		<div class="data-actions">
 			<button class="btn-data" onclick={exportData} disabled={trackCount === 0}>
-				Export Library Data
+				Export All Data
 			</button>
 			<button class="btn-data warning" onclick={() => startPurge(true)} disabled={trackCount === 0}>
 				Export &amp; Purge
 			</button>
+		</div>
+
+		<div class="import-zone">
+			<input
+				bind:this={importFileEl}
+				type="file"
+				accept="application/json,.json"
+				class="import-file-input"
+				onchange={onImportFile}
+				aria-label="Choose export file to import"
+			/>
+			{#if importState === 'idle'}
+				<button class="btn-data" onclick={() => importFileEl?.click()}>Import Data</button>
+				<p class="import-hint">Restore a previous export — library, playlists, moods, history, fragments, settings.</p>
+			{:else if importState === 'confirm'}
+				<div class="confirm-card">
+					<p class="confirm-text">Import this export? {importSummary}. Existing data with matching ids will be overwritten.</p>
+					<div class="confirm-actions">
+						<button class="btn-neutral" onclick={cancelImport}>Cancel</button>
+						<button class="btn-data" onclick={executeImport}>Import &amp; Restart</button>
+					</div>
+				</div>
+			{:else if importState === 'importing'}
+				<p class="import-hint">Importing…</p>
+			{:else if importState === 'error'}
+				<div class="confirm-card">
+					<p class="confirm-text">Import failed: {importError}</p>
+					<div class="confirm-actions">
+						<button class="btn-neutral" onclick={cancelImport}>OK</button>
+					</div>
+				</div>
+			{/if}
 		</div>
 
 		<div class="danger-zone">
@@ -1064,6 +1187,30 @@
 	.loading-hint {
 		color: var(--text-muted);
 		font-size: 0.88rem;
+		margin: 0;
+	}
+
+	/* ── Import ── */
+	.import-zone {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		margin-top: 0.75rem;
+		align-items: flex-start;
+	}
+
+	.import-file-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+	}
+
+	.import-hint {
+		font-size: 0.78rem;
+		color: var(--text-muted);
 		margin: 0;
 	}
 

@@ -134,6 +134,31 @@ async function refreshStats() {
 	totalEvents = await getTotalEvents();
 }
 
+async function getAllMoodEvents(): Promise<MoodEvent[]> {
+	if (!db) return [];
+	const rows = await db.select<Record<string, unknown>[]>(
+		'SELECT * FROM mood_events ORDER BY timestamp ASC'
+	);
+	return rows.map(rowToMoodEvent);
+}
+
+async function importMoodEvents(events: MoodEvent[]) {
+	if (!db) throw new Error('Database not ready — call initDB first.');
+	for (const ev of events) {
+		await db.execute(
+			'INSERT INTO mood_events (track_id, emoji, timestamp, intensity, comment, context) VALUES ($1, $2, $3, $4, $5, $6)',
+			[ev.trackId, ev.emoji, ev.timestamp, ev.intensity ?? 3, ev.comment ?? null, ev.context ?? 'manual']
+		);
+	}
+	await refreshStats();
+}
+
+async function purgeAll() {
+	if (!db) return;
+	await db.execute('DELETE FROM mood_events');
+	await refreshStats();
+}
+
 // Convenience bundle for dashboard consumers that want everything at once.
 async function getMoodStats() {
 	return {
@@ -157,6 +182,9 @@ export const moodStore = {
 	getRecentMoods,
 	getTopEmojis,
 	getMoodStats,
+	getAllMoodEvents,
+	importMoodEvents,
+	purgeAll,
 	loadPersonalDefinitions,
 	setPersonalDefinition,
 	getPersonalDefinition,

@@ -228,6 +228,12 @@ async function clearLibrary() {
 	lastScanned = null;
 }
 
+async function importTracks(imported: Track[]) {
+	if (!db || imported.length === 0) return;
+	await saveScannedTracks(imported);
+	await loadTracks();
+}
+
 function getTrackById(id: string): Track | undefined {
 	return tracks.find((t) => t.id === id);
 }
@@ -280,6 +286,7 @@ export const libraryStore = {
 	updateAlbumCoverArt,
 	updateTrackLyrics,
 	clearLibrary,
+	importTracks,
 	getTrackById,
 	getTracksByAlbum,
 	getTracksByArtist,
