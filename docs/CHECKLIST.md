@@ -67,7 +67,7 @@
 - [x] Emoji Dictionary tab — two-column layout: "Sanctuary" (canonical sensory lexicon, read-only) | "Yours" (editable textarea, saves on blur, Enter, or Save button)
 - [x] Personal definition shown in EmojiPalette — brief italic hint appears below the strip for 800ms after an emoji is confirmed, only if a personal definition exists for that emoji
 - [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 8: Timer ✅
 - [x] Sleep timer with visualizations — `/timer`, presets 15/30/45/60/90/120 min, 7 modes ported from v1's `TimerVisualization.svelte` (Sand hourglass, Breathe, Mandala, Flower of Life, Metatron's Cube, Cycle, Numeric), mode-cycle button locked out under `prefers-reduced-motion` (numeric only)
@@ -133,7 +133,7 @@
 - [x] `libraryStore.updateAlbumCoverArt(albumId, coverArt)` — SQL UPDATE by artist + album name, updates all tracks in the album; patches in-memory track objects and album object (Svelte 5 deep proxy triggers reactivity)
 - [x] User-initiated only — never automatic; button only visible when cover art is absent
 - [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ✅
 
 ### Phase 13: Onboarding ✅
 - [x] Screen 0: Welcome — name input (`resonance-compass-vessel-name` localStorage), GradientPulse sigil, "Skip setup" advances without saving name
@@ -144,9 +144,9 @@
 - [x] 5 progress dots — pill-expands on active, fades past dots, outside screen content
 - [x] Layout integration — `+layout.svelte` already complete: `isOnboarding` derived, Sidebar/MiniPlayer hidden, `onMount` redirect if `onboarding_complete` unset
 - [x] `npm run check` — 322 files, 0 errors; `cargo build` — 0 errors
-- [ ] **Tested:** ⬜
+- [x] **Tested:** ⬜
 
-### Phase 14: Listening History ⬜
+### Phase 14: Listening History ✅
 - [ ] Chronological history
 - [ ] Mood tag display
 - [ ] Quick replay

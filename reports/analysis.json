@@ -1,0 +1,137 @@
+{
+  "project": "resonance-compass",
+  "analyzed_at": "2026-06-30T21:38:53.331004+00:00",
+  "standards_compliance": {
+    "readme": true,
+    "license": true,
+    "philosophy": true,
+    "claude_md": true,
+    "gitignore": true
+  },
+  "vulnerabilities": [
+    {
+      "severity": "medium",
+      "issue": ".gitignore is missing recommended patterns: node_modules/, __pycache__/"
+    }
+  ],
+  "gaps": [
+    "Marked incomplete in docs/CHECKLIST.md: - \u2b1c Pending",
+    "Unchecked checklist item in docs/CHECKLIST.md: MiniPlayer (evolved from ComfortBar) always visible",
+    "Unchecked checklist item in docs/CHECKLIST.md: Sidebar with Home, Library, Playlists, Resonance, Settings",
+    "Unchecked checklist item in docs/CHECKLIST.md: COSMIC theme system",
+    "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c",
+    "Unchecked checklist item in docs/CHECKLIST.md: Audio engine (rodio)",
+    "Unchecked checklist item in docs/CHECKLIST.md: Play / pause / skip / seek / volume",
+    "Unchecked checklist item in docs/CHECKLIST.md: State persistence across restart",
+    "Unchecked checklist item in docs/CHECKLIST.md: Directory scan",
+    "Unchecked checklist item in docs/CHECKLIST.md: SQLite persistence (songs table)",
+    "Unchecked checklist item in docs/CHECKLIST.md: Artist / album / genre tabs",
+    "Unchecked checklist item in docs/CHECKLIST.md: Search",
+    "Unchecked checklist item in docs/CHECKLIST.md: Create / edit / delete playlists",
+    "Unchecked checklist item in docs/CHECKLIST.md: Add tracks and albums",
+    "Unchecked checklist item in docs/CHECKLIST.md: Favorites auto-playlist (non-deletable)",
+    "Unchecked checklist item in docs/CHECKLIST.md: Album art display",
+    "Unchecked checklist item in docs/CHECKLIST.md: GradientPulse ambient",
+    "Unchecked checklist item in docs/CHECKLIST.md: PlayerControls",
+    "Unchecked checklist item in docs/CHECKLIST.md: Shuffle / repeat",
+    "Unchecked checklist item in docs/CHECKLIST.md: Full-screen Canvas",
+    "Unchecked checklist item in docs/CHECKLIST.md: 4 FFT modes",
+    "Unchecked checklist item in docs/CHECKLIST.md: Live badge",
+    "Unchecked checklist item in docs/CHECKLIST.md: 10-band EQ",
+    "Unchecked checklist item in docs/CHECKLIST.md: Biquad filters",
+    "Unchecked checklist item in docs/CHECKLIST.md: 6 presets in Settings",
+    "Unchecked checklist item in docs/CHECKLIST.md: Emoji mood tagging per track",
+    "Unchecked checklist item in docs/CHECKLIST.md: mood_events SQLite writes",
+    "Unchecked checklist item in docs/CHECKLIST.md: Resonance dashboard",
+    "Unchecked checklist item in docs/CHECKLIST.md: Sleep timer with visualizations",
+    "Unchecked checklist item in docs/CHECKLIST.md: Fade-out",
+    "Unchecked checklist item in docs/CHECKLIST.md: Time-of-day greeting",
+    "Unchecked checklist item in docs/CHECKLIST.md: Recently Played row",
+    "Unchecked checklist item in docs/CHECKLIST.md: Favorites scroll",
+    "Unchecked checklist item in docs/CHECKLIST.md: Full favorited tracks list",
+    "Unchecked checklist item in docs/CHECKLIST.md: Mood filter",
+    "Unchecked checklist item in docs/CHECKLIST.md: Full-screen search",
+    "Unchecked checklist item in docs/CHECKLIST.md: Real-time results by category",
+    "Unchecked checklist item in docs/CHECKLIST.md: Full-screen synced lyrics",
+    "Unchecked checklist item in docs/CHECKLIST.md: Blurred background",
+    "Unchecked checklist item in docs/CHECKLIST.md: First-launch welcome",
+    "Unchecked checklist item in docs/CHECKLIST.md: Library scan prompt",
+    "Unchecked checklist item in docs/CHECKLIST.md: Sensory profile",
+    "Unchecked checklist item in docs/CHECKLIST.md: Theme selection",
+    "Unchecked checklist item in docs/CHECKLIST.md: Chronological history",
+    "Unchecked checklist item in docs/CHECKLIST.md: Mood tag display",
+    "Unchecked checklist item in docs/CHECKLIST.md: Quick replay",
+    "Unchecked checklist item in docs/CHECKLIST.md: One-tap sensory reduction",
+    "Unchecked checklist item in docs/CHECKLIST.md: Breathing square",
+    "Unchecked checklist item in docs/CHECKLIST.md: MiniPlayer hides",
+    "Unchecked checklist item in docs/CHECKLIST.md: Create / edit / delete profiles",
+    "Unchecked checklist item in docs/CHECKLIST.md: Quick-switch",
+    "Unchecked checklist item in docs/CHECKLIST.md: Theme / EQ / font apply",
+    "Unchecked checklist item in docs/CHECKLIST.md: Timer + playlist + UI lock",
+    "Unchecked checklist item in docs/CHECKLIST.md: Break reminders",
+    "Unchecked checklist item in docs/CHECKLIST.md: Sacred geometry icons",
+    "Unchecked checklist item in docs/CHECKLIST.md: Naming audit",
+    "Unchecked checklist item in docs/CHECKLIST.md: Dead code removal",
+    "Unchecked checklist item in docs/CHECKLIST.md: Accessibility pass",
+    "Unchecked checklist item in docs/CHECKLIST.md: Windows installer",
+    "Unchecked checklist item in docs/CHECKLIST.md: Android APK (signed)",
+    "Unchecked checklist item in docs/CHECKLIST.md: App icons",
+    "Unchecked checklist item in docs/CHECKLIST.md: Release notes",
+    "No CI/CD configuration found"
+  ],
+  "test_readiness": "No test infrastructure found. Primary source language is typescript. Recommend starting with unit tests for the core data/query functions before expanding coverage.",
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Address: .gitignore is missing recommended patterns: node_modules/, __pycache__/"
+    },
+    {
+      "priority": 2,
+      "action": "Marked incomplete in docs/CHECKLIST.md: - \u2b1c Pending"
+    },
+    {
+      "priority": 3,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: MiniPlayer (evolved from ComfortBar) always visible"
+    },
+    {
+      "priority": 4,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Sidebar with Home, Library, Playlists, Resonance, Settings"
+    },
+    {
+      "priority": 5,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: COSMIC theme system"
+    },
+    {
+      "priority": 6,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c"
+    },
+    {
+      "priority": 7,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Audio engine (rodio)"
+    },
+    {
+      "priority": 8,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Play / pause / skip / seek / volume"
+    },
+    {
+      "priority": 9,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: State persistence across restart"
+    },
+    {
+      "priority": 10,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Directory scan"
+    },
+    {
+      "priority": 11,
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: SQLite persistence (songs table)"
+    },
+    {
+      "priority": 12,
+      "action": "Establish a test suite"
+    },
+    {
+      "priority": 13,
+      "action": "Add CI/CD configuration"
+    }
+  ]
+}
