@@ -4,13 +4,16 @@
 	import { goto } from '$app/navigation';
 	import { listen } from '@tauri-apps/api/event';
 
-	type VisMode = 'bars' | 'waveform' | 'spiral' | 'particles';
-	const MODES: VisMode[] = ['bars', 'waveform', 'spiral', 'particles'];
+	type VisMode = 'bars' | 'waveform' | 'spiral' | 'particles' | 'mandala' | 'flower' | 'metatron';
+	const MODES: VisMode[] = ['bars', 'waveform', 'spiral', 'particles', 'mandala', 'flower', 'metatron'];
 	const MODE_LABELS: Record<VisMode, string> = {
 		bars: '▊ Bars',
 		waveform: '〜 Waveform',
 		spiral: '◎ Spiral',
 		particles: '✦ Particles',
+		mandala: '✳ Mandala',
+		flower: '❀ Flower of Life',
+		metatron: "⬡ Metatron's Cube",
 	};
 
 	let modeIndex = $state(0);
@@ -81,36 +84,45 @@
 		return (h >>> 0) / 0xffffffff;
 	}
 
+	// ── Spectrum level helpers (shared across all modes) ───────────────────────
+	// smoothedBars is advanced once per frame in draw(), not per-mode, so every
+	// mode sees live data. barLevel/bandLevel fall back to seeded motion when
+	// no FFT data has ever arrived.
+
+	function smoothSpectrum() {
+		if (!liveFFT || reducedMotion) return;
+		const target = isPlaying ? targetBars : ZERO_BARS;
+		for (let i = 0; i < N_BARS; i++) {
+			smoothedBars[i] += (target[i] - smoothedBars[i]) * 0.35;
+		}
+	}
+	const ZERO_BARS = new Array(N_BARS).fill(0);
+
+	function barLevel(i: number, ts: number): number {
+		if (liveFFT) return smoothedBars[i];
+		const tid = currentTrack?.id ?? '';
+		const base = 0.08 + hash(tid, i) * 0.55;
+		if (reducedMotion || !isPlaying) return base * 0.25;
+		const freq = 0.5 + hash(tid + 'f', i) * 2.5;
+		const phase = hash(tid + 'p', i) * Math.PI * 2;
+		const wave = (Math.sin((ts / 1000) * freq + phase) + 1) / 2;
+		return base * 0.2 + wave * base * 0.8;
+	}
+
+	function bandLevel(lo: number, hi: number, ts: number): number {
+		let sum = 0;
+		for (let i = lo; i < hi; i++) sum += barLevel(i, ts);
+		return sum / (hi - lo);
+	}
+
 	// ── Bars ───────────────────────────────────────────────────────────────────
 
 	function drawBars(ctx: CanvasRenderingContext2D, W: number, H: number, ts: number) {
 		const gap = 2;
 		const bw = Math.max(1, (W - (N_BARS - 1) * gap) / N_BARS);
-		const tid = currentTrack?.id ?? '';
-
-		if (liveFFT && !reducedMotion) {
-			for (let i = 0; i < N_BARS; i++) {
-				smoothedBars[i] += (targetBars[i] - smoothedBars[i]) * 0.35;
-			}
-		}
 
 		for (let i = 0; i < N_BARS; i++) {
-			let ratio: number;
-
-			if (liveFFT) {
-				ratio = smoothedBars[i];
-			} else {
-				const base = 0.08 + hash(tid, i) * 0.55;
-				const freq = 0.5 + hash(tid + 'f', i) * 2.5;
-				const phase = hash(tid + 'p', i) * Math.PI * 2;
-				if (reducedMotion || !isPlaying) {
-					ratio = base * 0.25;
-				} else {
-					const wave = (Math.sin((ts / 1000) * freq + phase) + 1) / 2;
-					ratio = base * 0.2 + wave * base * 0.8;
-				}
-			}
-
+			const ratio = barLevel(i, ts);
 			const h = Math.max(2, ratio * H * 0.85);
 			const x = i * (bw + gap);
 			const color = cosmicColor(i / (N_BARS - 1));
@@ -251,6 +263,169 @@
 		ctx.globalAlpha = 1;
 	}
 
+	// ── Mandala ────────────────────────────────────────────────────────────────
+	// Concentric rings of dots with 12-fold symmetry. Each ring is fed by a
+	// different frequency band (inner = bass, outer = treble); bass pulses the
+	// ring radii, rings counter-rotate.
+
+	function drawMandala(ctx: CanvasRenderingContext2D, W: number, H: number, ts: number) {
+		const cx = W / 2;
+		const cy = H / 2;
+		const maxR = Math.min(W, H) * 0.42;
+		const RINGS = 5;
+		const SYM = 12;
+		const bass = bandLevel(0, 8, ts);
+		const baseRot = reducedMotion ? 0 : (ts / 1000) * 0.12;
+
+		ctx.shadowBlur = !reducedMotion ? 12 : 0;
+
+		for (let ring = 0; ring < RINGS; ring++) {
+			const ringT = (ring + 1) / RINGS;
+			const bandLo = ring * 12;
+			const ringR = maxR * ringT * (1 + bass * 0.18);
+			const rot = baseRot * (ring % 2 === 0 ? 1 : -1) * (1 + ring * 0.15);
+			const color = cosmicColor(ringT * 0.9);
+
+			ctx.shadowColor = color;
+			ctx.fillStyle = color;
+
+			for (let s = 0; s < SYM; s++) {
+				const level = barLevel(Math.min(N_BARS - 1, bandLo + Math.floor((s / SYM) * 12)), ts);
+				const angle = rot + (s / SYM) * Math.PI * 2;
+				const dotR = 2 + level * 14 * (0.6 + ringT * 0.4);
+				const x = cx + Math.cos(angle) * ringR;
+				const y = cy + Math.sin(angle) * ringR;
+
+				ctx.globalAlpha = 0.35 + level * 0.65;
+				ctx.beginPath();
+				ctx.arc(x, y, dotR, 0, Math.PI * 2);
+				ctx.fill();
+			}
+		}
+
+		const coreR = maxR * 0.1 * (1 + bass * 0.9);
+		ctx.globalAlpha = 0.5 + bass * 0.5;
+		ctx.strokeStyle = cosmicColor(0);
+		ctx.shadowColor = cosmicColor(0);
+		ctx.lineWidth = 2;
+		ctx.beginPath();
+		ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+		ctx.stroke();
+		ctx.globalAlpha = 1;
+	}
+
+	// ── Flower of Life ─────────────────────────────────────────────────────────
+	// The 19-circle hexagonal pattern. Circle radii breathe with mid energy,
+	// per-ring brightness follows its band, the whole flower slowly turns.
+
+	function flowerCenters(d: number): Array<{ x: number; y: number; ring: number }> {
+		const pts: Array<{ x: number; y: number; ring: number }> = [{ x: 0, y: 0, ring: 0 }];
+		for (let i = 0; i < 6; i++) {
+			const a = (i / 6) * Math.PI * 2;
+			pts.push({ x: Math.cos(a) * d, y: Math.sin(a) * d, ring: 1 });
+		}
+		for (let i = 0; i < 6; i++) {
+			const a = (i / 6) * Math.PI * 2;
+			pts.push({ x: Math.cos(a) * d * 2, y: Math.sin(a) * d * 2, ring: 2 });
+		}
+		for (let i = 0; i < 6; i++) {
+			const a = (i / 6) * Math.PI * 2 + Math.PI / 6;
+			pts.push({ x: Math.cos(a) * d * Math.sqrt(3), y: Math.sin(a) * d * Math.sqrt(3), ring: 2 });
+		}
+		return pts;
+	}
+
+	function drawFlower(ctx: CanvasRenderingContext2D, W: number, H: number, ts: number) {
+		const cx = W / 2;
+		const cy = H / 2;
+		const d = Math.min(W, H) * 0.13;
+		const bass = bandLevel(0, 8, ts);
+		const mid = bandLevel(8, 32, ts);
+		const treble = bandLevel(32, 64, ts);
+		const rot = reducedMotion ? 0 : (ts / 1000) * (0.06 + treble * 0.2);
+		const breathe = 1 + mid * 0.22;
+		const ringLevels = [bass, mid, treble];
+
+		ctx.lineWidth = 1.6;
+		ctx.shadowBlur = !reducedMotion ? 14 : 0;
+
+		for (const c of flowerCenters(d)) {
+			const level = ringLevels[c.ring];
+			const rx = c.x * Math.cos(rot) - c.y * Math.sin(rot);
+			const ry = c.x * Math.sin(rot) + c.y * Math.cos(rot);
+			const color = cosmicColor(c.ring / 2.5);
+
+			ctx.globalAlpha = 0.28 + level * 0.72;
+			ctx.strokeStyle = color;
+			ctx.shadowColor = color;
+			ctx.beginPath();
+			ctx.arc(cx + rx, cy + ry, d * breathe, 0, Math.PI * 2);
+			ctx.stroke();
+		}
+		ctx.globalAlpha = 1;
+	}
+
+	// ── Metatron's Cube ────────────────────────────────────────────────────────
+	// The 13 Fruit-of-Life nodes with all 78 connecting lines. Node size follows
+	// bass, line glow follows treble, rotation follows overall energy.
+
+	function metatronCenters(d: number): Array<{ x: number; y: number }> {
+		const pts: Array<{ x: number; y: number }> = [{ x: 0, y: 0 }];
+		for (let i = 0; i < 6; i++) {
+			const a = (i / 6) * Math.PI * 2;
+			pts.push({ x: Math.cos(a) * d, y: Math.sin(a) * d });
+		}
+		for (let i = 0; i < 6; i++) {
+			const a = (i / 6) * Math.PI * 2;
+			pts.push({ x: Math.cos(a) * d * 2, y: Math.sin(a) * d * 2 });
+		}
+		return pts;
+	}
+
+	function drawMetatron(ctx: CanvasRenderingContext2D, W: number, H: number, ts: number) {
+		const cx = W / 2;
+		const cy = H / 2;
+		const d = Math.min(W, H) * 0.16;
+		const bass = bandLevel(0, 8, ts);
+		const treble = bandLevel(32, 64, ts);
+		const energy = bandLevel(0, 64, ts);
+		const rot = reducedMotion ? 0 : (ts / 1000) * (0.05 + energy * 0.18);
+
+		const pts = metatronCenters(d).map((p) => ({
+			x: cx + p.x * Math.cos(rot) - p.y * Math.sin(rot),
+			y: cy + p.x * Math.sin(rot) + p.y * Math.cos(rot),
+		}));
+
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = cosmicColor(0.5);
+		ctx.shadowBlur = !reducedMotion ? 8 : 0;
+		ctx.shadowColor = cosmicColor(0.5);
+		ctx.globalAlpha = 0.1 + treble * 0.55;
+		ctx.beginPath();
+		for (let i = 0; i < pts.length; i++) {
+			for (let j = i + 1; j < pts.length; j++) {
+				ctx.moveTo(pts[i].x, pts[i].y);
+				ctx.lineTo(pts[j].x, pts[j].y);
+			}
+		}
+		ctx.stroke();
+
+		for (let i = 0; i < pts.length; i++) {
+			const level = barLevel(Math.min(N_BARS - 1, i * 5), ts);
+			const color = cosmicColor(i / (pts.length - 1));
+			const nodeR = d * 0.16 * (1 + bass * 0.8) + level * 6;
+
+			ctx.globalAlpha = 0.45 + level * 0.55;
+			ctx.strokeStyle = color;
+			ctx.shadowColor = color;
+			ctx.lineWidth = 1.6;
+			ctx.beginPath();
+			ctx.arc(pts[i].x, pts[i].y, nodeR, 0, Math.PI * 2);
+			ctx.stroke();
+		}
+		ctx.globalAlpha = 1;
+	}
+
 	// ── Main draw loop ─────────────────────────────────────────────────────────
 
 	function draw(ts: number) {
@@ -264,11 +439,15 @@
 
 		ctx.clearRect(0, 0, W, H);
 		ctx.shadowBlur = 0;
+		smoothSpectrum();
 
 		const m = mode;
 		if (m === 'bars') drawBars(ctx, W, H, ts);
 		else if (m === 'waveform') drawWaveform(ctx, W, H, ts);
 		else if (m === 'spiral') drawSpiral(ctx, W, H, ts);
+		else if (m === 'mandala') drawMandala(ctx, W, H, ts);
+		else if (m === 'flower') drawFlower(ctx, W, H, ts);
+		else if (m === 'metatron') drawMetatron(ctx, W, H, ts);
 		else {
 			updateParticles(W, H, dt);
 			drawParticles(ctx);
