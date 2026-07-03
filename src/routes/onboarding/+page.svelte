@@ -166,14 +166,6 @@
 						</div>
 					{/if}
 				</div>
-
-				{#if scanPhase === 'idle' || scanError || scanPhase === 'done'}
-					<div class="screen-actions outer-skip">
-						{#if scanPhase !== 'idle'}
-							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
-						{/if}
-					</div>
-				{/if}
 			</div>
 
 		<!-- ── Screen 2: Sensory Profile ── -->
@@ -591,10 +583,6 @@
 
 	.screen-actions.inner {
 		margin-top: 0.5rem;
-	}
-
-	.outer-skip {
-		margin-top: -0.5rem;
 	}
 
 	.btn-primary {

@@ -70,7 +70,12 @@
 
 	{#if !mini}
 		<div class="volume-group">
-			<span class="volume-icon" aria-hidden="true">🔊</span>
+			<button
+				class="volume-icon"
+				onclick={() => playerStore.toggleMute()}
+				aria-label={volume === 0 ? 'Unmute' : 'Mute'}
+				aria-pressed={volume === 0}
+			>{volume === 0 ? '🔇' : '🔊'}</button>
 			<input
 				type="range"
 				class="volume-slider"
@@ -182,6 +187,10 @@
 	.volume-icon {
 		font-size: 0.9rem;
 		line-height: 1;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.25rem;
 	}
 
 	.volume-slider {

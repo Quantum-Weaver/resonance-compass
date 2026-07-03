@@ -494,14 +494,19 @@
 		color: var(--text-muted);
 	}
 
+	/* Single-row carousel — all moods reachable by horizontal scroll */
 	.quick-picks {
 		display: flex;
 		gap: 0.3rem;
 		margin-top: 0.3rem;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: thin;
+		padding-bottom: 0.2rem;
 	}
 
 	.quick-pick-btn {
+		flex-shrink: 0;
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
@@ -596,9 +601,12 @@
 		flex-direction: column;
 	}
 
+	/* Single-row carousel — all moods reachable by horizontal scroll */
 	.palette-popup {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: thin;
 		gap: 0.35rem;
 		padding: 0.6rem 0.5rem;
 		margin-bottom: 0.5rem;
@@ -608,14 +616,19 @@
 	}
 
 	/* Emoji Dictionary */
+	/* Single-row carousel — all moods reachable by horizontal scroll */
 	.dict-grid {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: thin;
 		gap: 0.5rem;
 		margin-bottom: 1rem;
+		padding-bottom: 0.3rem;
 	}
 
 	.dict-btn {
+		flex-shrink: 0;
 		width: 44px;
 		height: 44px;
 		border-radius: 50%;

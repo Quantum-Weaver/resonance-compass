@@ -376,9 +376,12 @@
 	.menu-item-confirm { background: rgba(225, 112, 85, 0.12); color: #e17055; font-weight: 700; }
 	.menu-item-confirm:hover { background: rgba(225, 112, 85, 0.2); }
 
+	/* Single-row carousel — all moods reachable by horizontal scroll */
 	.emoji-picker {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: thin;
 		gap: 0.25rem;
 		padding: 0.35rem;
 		background: rgba(255, 255, 255, 0.04);
@@ -387,6 +390,7 @@
 	}
 
 	.ep-btn {
+		flex-shrink: 0;
 		width: 38px;
 		height: 38px;
 		display: flex;

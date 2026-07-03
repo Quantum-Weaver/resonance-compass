@@ -23,11 +23,66 @@
 	let modeLabelText = $state('');
 	let liveFFT = $state(false);
 
-	// Secret playable keyboard (v1 parity): letters tint the palette hue,
-	// digits 1-9 set animation speed, 0 resets both. Arrows/Space keep their
-	// mode-cycle and play/pause roles.
+	// Playable keyboard (see docs/VISUALIZER-PLAYABLE-MODE.md): letter rows pick
+	// a palette family + hue tint, digits 1-9 set a speed burst that decays back
+	// to baseline, Up/Down rotate hue, 0 resets. Space stays play/pause and
+	// Left/Right stay mode-cycle (v1 parity — deliberate deviation from rows-map
+	// docs drafts that wanted them for reset/hue).
 	let keyHue = $state(0);
 	let speedMult = $state(1);
+	let keyPalette = $state<PaletteName | null>(null);
+
+	// ── Settings (⚙ panel, persisted) ──────────────────────────────────────────
+
+	type PaletteName = 'warm' | 'cool' | 'earth' | 'cosmic';
+	type PaletteSetting = PaletteName | 'auto';
+	type SpeedSetting = 'slow' | 'normal' | 'fast' | 'auto';
+	type SensSetting = 'low' | 'medium' | 'high';
+
+	const PALETTE_OPTIONS: PaletteSetting[] = ['warm', 'cool', 'earth', 'cosmic', 'auto'];
+	const SPEED_OPTIONS: SpeedSetting[] = ['slow', 'normal', 'fast', 'auto'];
+	const SENS_OPTIONS: SensSetting[] = ['low', 'medium', 'high'];
+
+	const SPEED_FACTORS: Record<Exclude<SpeedSetting, 'auto'>, number> = {
+		slow: 0.6,
+		normal: 1,
+		fast: 1.6,
+	};
+	const SENS_FACTORS: Record<SensSetting, number> = { low: 0.55, medium: 1, high: 1.6 };
+
+	let paletteSetting = $state<PaletteSetting>('cosmic');
+	let speedSetting = $state<SpeedSetting>('normal');
+	let sensitivity = $state<SensSetting>('medium');
+	let showSettings = $state(false);
+	let showKeyHint = $state(false);
+
+	const SETTINGS_KEY = 'resonance-compass-visualizer';
+	const HINT_KEY = 'visualizer-key-hint-seen';
+
+	function saveVisSettings() {
+		try {
+			localStorage.setItem(
+				SETTINGS_KEY,
+				JSON.stringify({ palette: paletteSetting, speed: speedSetting, sensitivity })
+			);
+		} catch {}
+	}
+
+	function loadVisSettings() {
+		try {
+			const raw = localStorage.getItem(SETTINGS_KEY);
+			if (!raw) return;
+			const s = JSON.parse(raw);
+			if (PALETTE_OPTIONS.includes(s.palette)) paletteSetting = s.palette;
+			if (SPEED_OPTIONS.includes(s.speed)) speedSetting = s.speed;
+			if (SENS_OPTIONS.includes(s.sensitivity)) sensitivity = s.sensitivity;
+		} catch {}
+	}
+
+	// Settings panel lives visually with the overlay — when it fades, close.
+	$effect(() => {
+		if (!showOverlay) showSettings = false;
+	});
 
 	let canvas: HTMLCanvasElement | null = null;
 	let visPageEl: HTMLDivElement | null = null;
@@ -51,31 +106,87 @@
 
 	// ── Colour helpers ─────────────────────────────────────────────────────────
 	// Canvas 2D needs literal color values (CSS custom properties don't apply to
-	// fillStyle/strokeStyle), so the COSMIC gradient is hardcoded here rather
-	// than read from --accent etc. The visualizer is a full-black immersive
-	// surface independent of the active theme, matching the v1 reference.
+	// fillStyle/strokeStyle), so the palettes are hardcoded here rather than
+	// read from --accent etc. The visualizer is a full-black immersive surface
+	// independent of the active theme, matching the v1 reference. Every renderer
+	// samples color exclusively through cosmicColor(t), so a palette swap
+	// recolors all seven modes at once.
 
 	function lerp(a: number, b: number, t: number) {
 		return a + (b - a) * t;
 	}
 
-	const STOPS = [
-		[0.0, 108, 92, 231],
-		[0.35, 9, 132, 227],
-		[0.65, 253, 203, 110],
-		[1.0, 108, 92, 231],
-	] as const;
+	type Stops = ReadonlyArray<readonly [number, number, number, number]>;
+
+	const PALETTES: Record<PaletteName, Stops> = {
+		// quantum purple → cosmic blue → hearth gold (the original COSMIC sweep)
+		cosmic: [
+			[0.0, 108, 92, 231],
+			[0.35, 9, 132, 227],
+			[0.65, 253, 203, 110],
+			[1.0, 108, 92, 231],
+		],
+		// reds → oranges → golds
+		warm: [
+			[0.0, 214, 48, 49],
+			[0.35, 230, 126, 34],
+			[0.65, 253, 203, 110],
+			[1.0, 214, 48, 49],
+		],
+		// blues → purples → teals
+		cool: [
+			[0.0, 9, 132, 227],
+			[0.35, 108, 92, 231],
+			[0.65, 0, 206, 201],
+			[1.0, 9, 132, 227],
+		],
+		// browns → greens → sands
+		earth: [
+			[0.0, 141, 96, 52],
+			[0.35, 106, 153, 78],
+			[0.65, 205, 170, 125],
+			[1.0, 141, 96, 52],
+		],
+	};
+
+	// Auto palette: re-evaluated every ~2.5s (hysteresis, no per-frame flicker).
+	// Energetic music runs warm, treble-forward runs cool, quiet runs earth.
+	let autoPalette: PaletteName = 'cosmic';
+	let lastAutoEval = 0;
+
+	function updateAutoPalette(nowMs: number) {
+		if (paletteSetting !== 'auto' || keyPalette !== null) return;
+		if (nowMs - lastAutoEval < 2500) return;
+		lastAutoEval = nowMs;
+		if (!liveFFT || !isPlaying) {
+			autoPalette = 'cosmic';
+			return;
+		}
+		const bass = smoothedBars.slice(0, 8).reduce((a, b) => a + b, 0) / 8;
+		const treble = smoothedBars.slice(32).reduce((a, b) => a + b, 0) / (N_BARS - 32);
+		const energy = fftEnergy();
+		autoPalette =
+			energy > 0.55 ? 'warm' : treble > bass * 1.2 ? 'cool' : energy < 0.18 ? 'earth' : 'cosmic';
+	}
+
+	// Keyboard row palette (playable mode) overrides the setting until reset.
+	function activeStops(): Stops {
+		const name = keyPalette ?? (paletteSetting === 'auto' ? autoPalette : paletteSetting);
+		return PALETTES[name];
+	}
 
 	function cosmicColor(t: number): string {
-		for (let i = 0; i < STOPS.length - 1; i++) {
-			const [t0, r0, g0, b0] = STOPS[i];
-			const [t1, r1, g1, b1] = STOPS[i + 1];
+		const stops = activeStops();
+		for (let i = 0; i < stops.length - 1; i++) {
+			const [t0, r0, g0, b0] = stops[i];
+			const [t1, r1, g1, b1] = stops[i + 1];
 			if (t <= t1) {
 				const f = (t - t0) / (t1 - t0);
 				return `rgb(${Math.round(lerp(r0, r1, f))},${Math.round(lerp(g0, g1, f))},${Math.round(lerp(b0, b1, f))})`;
 			}
 		}
-		return '#6C5CE7';
+		const [, r, g, b] = stops[0];
+		return `rgb(${r},${g},${b})`;
 	}
 
 	// ── Seeded helpers — deterministic per-track fallback motion when no FFT ────
@@ -98,12 +209,14 @@
 
 	function smoothSpectrum() {
 		if (!liveFFT || reducedMotion) return;
-		const target = isPlaying ? targetBars : ZERO_BARS;
+		// Sensitivity scales how hard the spectrum drives the visuals before
+		// smoothing, so the ease-out response curve stays identical.
+		const f = SENS_FACTORS[sensitivity];
 		for (let i = 0; i < N_BARS; i++) {
-			smoothedBars[i] += (target[i] - smoothedBars[i]) * 0.35;
+			const target = isPlaying ? Math.min(targetBars[i] * f, 1) : 0;
+			smoothedBars[i] += (target - smoothedBars[i]) * 0.35;
 		}
 	}
-	const ZERO_BARS = new Array(N_BARS).fill(0);
 
 	function barLevel(i: number, ts: number): number {
 		if (liveFFT) return smoothedBars[i];
@@ -159,15 +272,15 @@
 		const f3 = 0.4 + hash(tid, 3) * 1.0;
 
 		const grad = ctx.createLinearGradient(0, 0, W, 0);
-		grad.addColorStop(0, '#6C5CE7');
-		grad.addColorStop(0.5, '#0984E3');
-		grad.addColorStop(1, '#FDCB6E');
+		grad.addColorStop(0, cosmicColor(0));
+		grad.addColorStop(0.5, cosmicColor(0.35));
+		grad.addColorStop(1, cosmicColor(0.65));
 
 		ctx.beginPath();
 		ctx.lineWidth = 2.5;
 		ctx.strokeStyle = grad;
 		ctx.shadowBlur = energy > 0.1 && !reducedMotion ? 16 : 0;
-		ctx.shadowColor = '#6C5CE7';
+		ctx.shadowColor = cosmicColor(0);
 
 		const N = 300;
 		for (let i = 0; i <= N; i++) {
@@ -203,15 +316,15 @@
 		const bass = bassEnergy();
 
 		const grad = ctx.createLinearGradient(cx - maxR, cy, cx + maxR, cy);
-		grad.addColorStop(0, '#6C5CE7');
-		grad.addColorStop(0.5, '#0984E3');
-		grad.addColorStop(1, '#FDCB6E');
+		grad.addColorStop(0, cosmicColor(0));
+		grad.addColorStop(0.5, cosmicColor(0.35));
+		grad.addColorStop(1, cosmicColor(0.65));
 
 		ctx.beginPath();
 		ctx.lineWidth = 1.5;
 		ctx.strokeStyle = grad;
 		ctx.shadowBlur = (isPlaying || liveFFT) && !reducedMotion ? 18 : 4;
-		ctx.shadowColor = '#6C5CE7';
+		ctx.shadowColor = cosmicColor(0);
 
 		for (let i = 0; i <= N; i++) {
 			const t = i / N;
@@ -435,15 +548,38 @@
 
 	// ── Main draw loop ─────────────────────────────────────────────────────────
 
+	// Speed setting → baseline factor; 'auto' follows the music's energy.
+	function settingSpeedFactor(): number {
+		if (speedSetting === 'auto') return 0.6 + fftEnergy() * 1.2;
+		return SPEED_FACTORS[speedSetting];
+	}
+
+	// Animation clock advanced by (real dt × speed) each frame, so speed changes
+	// alter pace smoothly instead of teleporting every phase (ts × mult jumps).
+	let virtualTs = 0;
+
 	function draw(rawTs: number) {
 		if (!canvas || !mounted) return;
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 		const W = canvas.width;
 		const H = canvas.height;
-		const dt = Math.min((rawTs - (lastTs || rawTs)) / 1000, 0.1) * speedMult;
+		const dtRaw = Math.min((rawTs - (lastTs || rawTs)) / 1000, 0.1);
 		lastTs = rawTs;
-		const ts = rawTs * speedMult;
+
+		// Keyboard speed bursts (digits 1-9) decay back to 1× (~9s half-life),
+		// like a struck string settling.
+		if (speedMult !== 1) {
+			speedMult += (1 - speedMult) * Math.min(dtRaw * 0.08, 1);
+			if (Math.abs(speedMult - 1) < 0.01) speedMult = 1;
+		}
+
+		const speed = speedMult * settingSpeedFactor();
+		const dt = dtRaw * speed;
+		virtualTs += dt * 1000;
+		const ts = virtualTs;
+
+		updateAutoPalette(rawTs);
 
 		ctx.clearRect(0, 0, W, H);
 		ctx.shadowBlur = 0;
@@ -514,6 +650,14 @@
 		}
 	}
 
+	// Keyboard rows → palette families. Each key also carries a hue tint from
+	// its position in the row (center = pure family color, edges = ±~40°).
+	const KEY_ROWS: Array<{ keys: string; palette: PaletteName }> = [
+		{ keys: 'qwertyuiop', palette: 'warm' },
+		{ keys: 'asdfghjkl', palette: 'cool' },
+		{ keys: 'zxcvbnm', palette: 'earth' },
+	];
+
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
@@ -523,29 +667,44 @@
 			resetOverlayTimer();
 			return;
 		}
-		if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+		if (e.key === 'ArrowRight') {
 			e.preventDefault();
 			cycleMode(1);
 			return;
 		}
-		if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+		if (e.key === 'ArrowLeft') {
 			e.preventDefault();
 			cycleMode(-1);
 			return;
 		}
+		if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+			e.preventDefault();
+			keyHue = (keyHue + (e.key === 'ArrowUp' ? 15 : -15) + 360) % 360;
+			flashModeLabel(`⌨ hue ${Math.round(keyHue)}°`);
+			return;
+		}
 		if (/^[a-z]$/i.test(e.key)) {
-			keyHue = ((e.key.toLowerCase().charCodeAt(0) - 97) * 14) % 360;
-			flashModeLabel(`♪ ${e.key.toUpperCase()}`);
+			const k = e.key.toLowerCase();
+			const row = KEY_ROWS.find((r) => r.keys.includes(k));
+			if (!row) return;
+			keyPalette = row.palette;
+			const idx = row.keys.indexOf(k);
+			const tint = (idx - (row.keys.length - 1) / 2) * 9;
+			// Successive presses blend toward the new tint (additive mixing)
+			// rather than hard-switching — chords glide instead of snapping.
+			keyHue = keyHue * 0.4 + tint * 0.6;
+			flashModeLabel(`⌨ ♪ ${k.toUpperCase()} · ${row.palette}`);
 			return;
 		}
 		if (/^[1-9]$/.test(e.key)) {
 			speedMult = Number(e.key) * 0.5;
-			flashModeLabel(`»${speedMult}×`);
+			flashModeLabel(`⌨ »${speedMult}×`);
 			return;
 		}
 		if (e.key === '0') {
 			keyHue = 0;
 			speedMult = 1;
+			keyPalette = null;
 			flashModeLabel('reset');
 			return;
 		}
@@ -554,10 +713,22 @@
 	// ── Lifecycle ──────────────────────────────────────────────────────────────
 
 	let unlistenSpectrum: (() => void) | null = null;
+	let hintTimer: ReturnType<typeof setTimeout> | null = null;
 
 	onMount(async () => {
 		mounted = true;
 		reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		loadVisSettings();
+
+		// First visit only: whisper that the visualizer is an instrument.
+		try {
+			if (!localStorage.getItem(HINT_KEY)) {
+				localStorage.setItem(HINT_KEY, '1');
+				showKeyHint = true;
+				hintTimer = setTimeout(() => (showKeyHint = false), 5000);
+			}
+		} catch {}
+
 		if (canvas) {
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
@@ -583,6 +754,7 @@
 		cancelAnimationFrame(animFrame);
 		if (overlayTimer) clearTimeout(overlayTimer);
 		if (modeLabelTimer) clearTimeout(modeLabelTimer);
+		if (hintTimer) clearTimeout(hintTimer);
 		window.removeEventListener('resize', handleResize);
 		window.removeEventListener('keydown', handleKeyDown);
 		unlistenSpectrum?.();
@@ -600,13 +772,68 @@
 	ontouchstart={handleTouchStart}
 	ontouchend={handleTouchEnd}
 	role="application"
-	aria-label="Music visualizer — click to cycle modes, swipe for direction, Space to play/pause"
+	aria-label="Music visualizer — click or Left/Right to cycle modes, letter keys play palettes, digits set speed, Up/Down rotate hue, Space to play/pause, 0 to reset"
 	tabindex="0"
 >
 	<canvas bind:this={canvas} class="vis-canvas" onclick={handleCanvasClick} aria-hidden="true"></canvas>
 
 	{#if showModeLabel}
 		<div class="mode-label">{modeLabelText}</div>
+	{/if}
+
+	{#if showKeyHint}
+		<div class="key-hint-toast" role="status">Press keys to play ⌨️</div>
+	{/if}
+
+	<!-- ⚙ settings — fades with the overlay chrome -->
+	<button
+		class="gear-btn"
+		class:hidden={!showOverlay}
+		onclick={() => { showSettings = !showSettings; resetOverlayTimer(); }}
+		aria-label="Visualizer settings"
+		aria-expanded={showSettings}
+	>⚙️</button>
+
+	{#if showSettings && showOverlay}
+		<div class="vis-settings" role="group" aria-label="Visualizer settings">
+			<div class="vs-row">
+				<span class="vs-label">Palette</span>
+				<div class="vs-opts">
+					{#each PALETTE_OPTIONS as p (p)}
+						<button
+							class="vs-opt"
+							class:active={paletteSetting === p}
+							onclick={() => { paletteSetting = p; keyPalette = null; saveVisSettings(); }}
+						>{p}</button>
+					{/each}
+				</div>
+			</div>
+			<div class="vs-row">
+				<span class="vs-label">Speed</span>
+				<div class="vs-opts">
+					{#each SPEED_OPTIONS as s (s)}
+						<button
+							class="vs-opt"
+							class:active={speedSetting === s}
+							onclick={() => { speedSetting = s; saveVisSettings(); }}
+						>{s}</button>
+					{/each}
+				</div>
+			</div>
+			<div class="vs-row">
+				<span class="vs-label">Sensitivity</span>
+				<div class="vs-opts">
+					{#each SENS_OPTIONS as s (s)}
+						<button
+							class="vs-opt"
+							class:active={sensitivity === s}
+							onclick={() => { sensitivity = s; saveVisSettings(); }}
+						>{s}</button>
+					{/each}
+				</div>
+			</div>
+			<p class="vs-hint">Press keys to play the visualizer like an instrument ⌨️</p>
+		</div>
 	{/if}
 
 	<div class="overlay" class:hidden={!showOverlay}>
@@ -810,12 +1037,133 @@
 		background: rgba(255, 255, 255, 0.2);
 	}
 
+	/* ── Settings panel + discovery hint ── */
+
+	.gear-btn {
+		position: absolute;
+		top: calc(1rem + env(safe-area-inset-top, 0px));
+		right: 1rem;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		color: #fff;
+		font-size: 1.05rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 0.4s ease;
+	}
+
+	.gear-btn:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.gear-btn.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.vis-settings {
+		position: absolute;
+		top: calc(1rem + 48px + env(safe-area-inset-top, 0px));
+		right: 1rem;
+		width: min(280px, calc(100vw - 2rem));
+		background: rgba(10, 10, 18, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 14px;
+		padding: 0.9rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+	}
+
+	.vs-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.vs-label {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	.vs-opts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.3rem;
+	}
+
+	.vs-opt {
+		padding: 0.28rem 0.6rem;
+		border-radius: 14px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: rgba(255, 255, 255, 0.06);
+		color: rgba(255, 255, 255, 0.75);
+		font-size: 0.75rem;
+		font-family: inherit;
+		text-transform: capitalize;
+		cursor: pointer;
+	}
+
+	.vs-opt:hover {
+		background: rgba(255, 255, 255, 0.14);
+	}
+
+	.vs-opt.active {
+		background: rgba(108, 92, 231, 0.85);
+		border-color: rgba(108, 92, 231, 1);
+		color: #fff;
+	}
+
+	.vs-hint {
+		font-size: 0.72rem;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0;
+		line-height: 1.45;
+	}
+
+	.key-hint-toast {
+		position: absolute;
+		bottom: calc(130px + env(safe-area-inset-bottom, 0px));
+		left: 50%;
+		transform: translateX(-50%);
+		background: rgba(10, 10, 18, 0.85);
+		border: 1px solid rgba(108, 92, 231, 0.5);
+		border-radius: 20px;
+		padding: 0.45rem 1rem;
+		font-size: 0.85rem;
+		color: #fff;
+		white-space: nowrap;
+		pointer-events: none;
+		animation: hintFade 5s ease forwards;
+	}
+
+	@keyframes hintFade {
+		0% { opacity: 0; transform: translate(-50%, 8px); }
+		8% { opacity: 1; transform: translate(-50%, 0); }
+		85% { opacity: 1; }
+		100% { opacity: 0; }
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.mode-label {
 			animation: none;
 		}
 		.overlay {
 			transition: none;
+		}
+		.gear-btn {
+			transition: none;
+		}
+		.key-hint-toast {
+			animation: none;
 		}
 	}
 </style>

@@ -314,6 +314,19 @@ async function setVolume(v: number) {
 	}
 }
 
+// Volume before the last mute, so unmuting restores it (fresh sessions
+// default to full volume rather than staying inaudible).
+let preMuteVolume = 1;
+
+async function toggleMute() {
+	if (volume > 0) {
+		preMuteVolume = volume;
+		await setVolume(0);
+	} else {
+		await setVolume(preMuteVolume > 0 ? preMuteVolume : 1);
+	}
+}
+
 async function seek(seconds: number) {
 	position = seconds;
 	try {
@@ -372,6 +385,7 @@ export const playerStore = {
 	next,
 	previous,
 	setVolume,
+	toggleMute,
 	seek,
 	setQueue,
 	playFromQueue,

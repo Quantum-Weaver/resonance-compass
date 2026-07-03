@@ -13,6 +13,7 @@ use tauri_plugin_sql::{Migration, MigrationKind};
 
 mod audio;
 mod equalizer;
+mod media_permission;
 mod visualizer;
 
 // ── TrackInfo (returned by scan_paths; field names mirror the Track TS interface) ──
@@ -212,6 +213,40 @@ fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<Tr
         let _ = app_handle.emit("scan-progress", ScanProgress { current: i + 1, total });
     }
     Ok(tracks)
+}
+
+// ── Media permission commands (Android runtime prompt; desktop always granted) ─
+
+#[tauri::command]
+async fn check_audio_permission(app_handle: tauri::AppHandle) -> Result<bool, String> {
+    #[cfg(target_os = "android")]
+    {
+        return media_permission::check(&app_handle);
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = app_handle;
+        Ok(true)
+    }
+}
+
+#[tauri::command]
+async fn request_audio_permission(app_handle: tauri::AppHandle) -> Result<bool, String> {
+    #[cfg(target_os = "android")]
+    {
+        // run_mobile_plugin blocks until the vessel answers the system dialog —
+        // keep that wait off the async runtime's core threads.
+        return tauri::async_runtime::spawn_blocking(move || {
+            media_permission::request(&app_handle)
+        })
+        .await
+        .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = app_handle;
+        Ok(true)
+    }
 }
 
 // ── fetch_cover_art (MusicBrainz + Cover Art Archive, opt-in, user-initiated) ─
@@ -504,6 +539,24 @@ async fn export_mix(
     }
 }
 
+// Full-sovereignty companion to the DB purge: the fragments/mixes tables lose
+// their rows in SQL, this removes the audio bytes they pointed at (app-data
+// fragments/ and mixes/ directories, recreated on next fragment creation).
+#[tauri::command]
+async fn purge_fragment_files(app_handle: tauri::AppHandle) -> Result<(), String> {
+    let data_dir = app_handle
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?;
+    for sub in ["fragments", "mixes"] {
+        let dir = data_dir.join(sub);
+        if dir.exists() {
+            fs::remove_dir_all(&dir).map_err(|e| format!("Cannot remove {sub}: {e}"))?;
+        }
+    }
+    Ok(())
+}
+
 #[tauri::command]
 async fn export_fragments(paths: Vec<String>, dest_dir: String) -> Result<u32, String> {
     let dest = Path::new(&dest_dir);
@@ -617,7 +670,7 @@ pub fn run() {
         },
     ];
 
-    tauri::Builder::default()
+    let builder = tauri::Builder::default()
         .setup(move |app| {
             visualizer::start(app.handle().clone(), vis_rx);
             let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx, eq_state);
@@ -631,14 +684,22 @@ pub fn run() {
         )
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
-        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_dialog::init());
+
+    #[cfg(target_os = "android")]
+    let builder = builder.plugin(media_permission::init());
+
+    builder
         .invoke_handler(tauri::generate_handler![
             scan_paths,
+            check_audio_permission,
+            request_audio_permission,
             fetch_cover_art,
             fetch_lyrics,
             create_fragment,
             export_fragments,
             export_mix,
+            purge_fragment_files,
             audio::play_track,
             audio::pause,
             audio::resume,

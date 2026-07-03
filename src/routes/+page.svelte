@@ -102,7 +102,7 @@
 	<div class="greeting-wrap">
 		<GradientPulse pulse={playerStore.isPlaying}>
 			<div class="greeting-inner">
-				<h1 class="greeting-text">{greeting()}</h1>
+				<h1 class="greeting-text mood-calm-text">{greeting()}</h1>
 			</div>
 		</GradientPulse>
 	</div>
@@ -198,6 +198,12 @@
 		color: var(--text);
 		margin: 0;
 		line-height: 1.2;
+	}
+
+	/* The scoped color above outranks the global .mood-calm-text — restore its
+	   calm-blue hue (readable on light and dark; the glow comes from the class). */
+	.greeting-text.mood-calm-text {
+		color: #74b9ff;
 	}
 
 	/* Quick actions */

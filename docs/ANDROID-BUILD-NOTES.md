@@ -19,19 +19,18 @@ If the CLI writes to `src-tauri/icons/android/` instead of `gen/`, copy that tre
 `gen/android/app/src/main/res/` (including `mipmap-anydpi-v26/` and
 `values/ic_launcher_background.xml`).
 
-### 2. Re-add storage permissions to AndroidManifest.xml
+### 2. Storage permissions + Kotlin plugin — AUTOMATED
 
-`gen/android/app/src/main/AndroidManifest.xml` — after the INTERNET permission:
+`scripts/sync-android-extras.mjs` runs from `beforeBuildCommand`/`beforeDevCommand`
+(also manually via `npm run sync-android`) and re-applies on every build:
 
-```xml
-<!-- Android 13+ audio access (API 33+) -->
-<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-<!-- Android 12 and below storage access -->
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-```
+- the manifest permissions (`READ_MEDIA_AUDIO`, `READ_EXTERNAL_STORAGE` maxSdk 32) —
+  inserted idempotently after the INTERNET permission
+- `src-tauri/android-extras/*.kt` → `gen/.../java/com/audhd/resonance_compass/plugin/`
+  (currently `MediaPermissionPlugin.kt`, the runtime permission bridge)
 
-Without these, the Settings permission toggle never appears and library scanning
-finds nothing (see below).
+No manual manifest editing needed anymore. Without the permissions, the Settings
+toggle never appears and scanning finds nothing (see below).
 
 ### 3. Re-apply MainActivity edge-to-edge (v1 parity)
 
@@ -57,15 +56,18 @@ Android the app skips the dialog and scans the standard public locations directl
 (`ANDROID_MUSIC_DIRS` in `src/lib/stores/library.svelte.ts`).
 
 Plain-path reads of public media files work through scoped storage's FUSE layer
-once **Music and audio** (API 33+) / **Files** (≤32) permission is granted. The app
-declares the permissions but does not request them at runtime (no
-runtime-permission bridge exists in our plugin set — same as v1's design); the
-vessel grants access manually:
+once **Music and audio** (API 33+) / **Files** (≤32) permission is granted.
 
-> Settings → Apps → Resonance Compass → Permissions → Music and audio → Allow
+The app requests the permission at runtime before scanning:
+`MediaPermissionPlugin.kt` (app-local Tauri mobile plugin, synced from
+`android-extras/`) ↔ `src-tauri/src/media_permission.rs` ↔
+`check_audio_permission` / `request_audio_permission` commands ↔ the
+`MediaPermissionDialog` explainer shown by `scanLibrary()` when access is
+missing. Desktop builds of the commands always return granted.
 
-The scan surfaces two failure signals in the UI:
-- `PERMISSION_DENIED: …` — directory read refused (older Androids) → guidance card.
+Failure signals still surfaced in the UI as fallbacks:
+- Permission denied at the system prompt → `PERMISSION_DENIED: …` guidance card
+  (manual path: Settings → Apps → Resonance Compass → Permissions).
 - Zero tracks found — scoped storage hides unpermitted media instead of erroring
   (Android 11+) → guidance appended to the scan error.
 

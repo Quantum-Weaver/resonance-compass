@@ -19,10 +19,20 @@
   box-sizing: border-box;
 }
 
+/* Images may never push a screen past the viewport; component classes that
+   set explicit dimensions (cover thumbnails etc.) still win on specificity. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;
   overflow: hidden;
+  /* Second layer of pinch-zoom prevention alongside the viewport meta:
+     pan gestures stay, two-finger zoom is dropped by the compositor. */
+  touch-action: pan-x pan-y;
 }
 
 body {

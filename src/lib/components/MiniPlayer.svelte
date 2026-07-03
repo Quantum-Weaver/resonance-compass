@@ -4,6 +4,7 @@
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
+	import { uiStore } from '$lib/stores/ui.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
 
@@ -19,8 +20,14 @@
 		previousPath = currentPath;
 	});
 
+	// Broadcast the panel state so the Sidebar can close itself when it opens.
+	$effect(() => {
+		uiStore.setMiniPlayerExpanded(expanded);
+	});
+
 	const track = $derived(playerStore.currentTrack);
 	const isPlaying = $derived(playerStore.isPlaying);
+	const volume = $derived(playerStore.volume);
 	const playbackError = $derived(playerStore.playbackError);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
 	const isFav = $derived(track ? playlistStore.isFavorite(track.id) : false);
@@ -118,6 +125,15 @@
 				{trackLabel}
 			</button>
 			<button
+				class="mp-mute"
+				onclick={() => playerStore.toggleMute()}
+				aria-label={volume === 0 ? 'Unmute' : 'Mute'}
+				aria-pressed={volume === 0}
+				disabled={!track}
+			>
+				{volume === 0 ? '🔇' : '🔊'}
+			</button>
+			<button
 				class="mp-play-pause"
 				onclick={() => playerStore.togglePlay()}
 				aria-label={isPlaying ? 'Pause' : 'Play'}
@@ -141,6 +157,10 @@
 		border-top: 1px solid var(--border-color);
 		padding-bottom: env(safe-area-inset-bottom, 0px);
 		transition: background-color 0.2s ease;
+		/* Own compositor layer: large relayouts elsewhere (e.g. the settings EQ
+		   section expanding) could leave a stale painted copy of this fixed bar
+		   in the Android WebView — the "ghost MiniPlayer" artifact. */
+		transform: translateZ(0);
 	}
 
 	/* Minimized */
@@ -179,6 +199,21 @@
 		padding: 0.25rem 0.4rem;
 		line-height: 1;
 		flex-shrink: 0;
+	}
+
+	.mp-mute {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-size: 0.95rem;
+		padding: 0.25rem 0.3rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.mp-mute:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
 	}
 
 	.mp-play-pause {

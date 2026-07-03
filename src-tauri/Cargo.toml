@@ -27,6 +27,12 @@ crossbeam = "0.8"
 rustfft = "6"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
 
+# cpal's oboe backend reads the JNI context via ndk-context; the tauri stack
+# never initializes it, so we do (see media_permission.rs nativeInitNdkContext).
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21"
+ndk-context = "0.1"
+
 [profile.release]
 strip = true
 opt-level = "s"

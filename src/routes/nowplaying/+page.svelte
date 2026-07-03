@@ -235,7 +235,7 @@
 
 		<div class="track-info">
 			<div class="title-row">
-				<h1>{currentTrack.title}</h1>
+				<h1 class="stardust-text">{currentTrack.title}</h1>
 				<button
 					class="heart-btn"
 					class:pop={heartAnimating}
@@ -430,8 +430,11 @@
 	}
 
 	.album-art {
-		width: 260px;
-		height: 260px;
+		/* Shrinks below 260px on very narrow screens (320px target) so art
+		   plus page padding can never exceed the viewport. */
+		width: min(260px, calc(100vw - 4rem));
+		aspect-ratio: 1 / 1;
+		height: auto;
 		border-radius: 12px;
 		display: flex;
 		align-items: center;
@@ -466,6 +469,16 @@
 		font-weight: 700;
 		color: var(--text);
 		margin: 0;
+		/* Untagged tracks often carry the full filename as title — one long
+		   unbroken word must wrap, not stretch the row past the viewport. */
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	/* The scoped h1 color above outranks the global .stardust-text — restore
+	   the transparent fill its gradient background-clip needs. */
+	h1.stardust-text {
+		color: transparent;
 	}
 
 	.heart-btn {

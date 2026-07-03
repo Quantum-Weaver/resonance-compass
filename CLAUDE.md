@@ -76,7 +76,7 @@ src-tauri/src/
 7. Android: capabilities/default.json must have explicit sql:allow-* permissions
 8. Android: internal storage needs no manifest permissions; scanning public Music/Download needs READ_MEDIA_AUDIO (see docs/ANDROID-BUILD-NOTES.md)
 9. Android: no emoji or non-ASCII in SQL DEFAULT values
-10. Android: `src-tauri/gen/` is gitignored and regenerated — after `tauri android init`, re-apply docs/ANDROID-BUILD-NOTES.md (icons + manifest permissions)
+10. Android: `src-tauri/gen/` is gitignored and regenerated — manifest permissions + Kotlin plugin auto-sync via scripts/sync-android-extras.mjs each build; icons need manual re-apply after `tauri android init` (docs/ANDROID-BUILD-NOTES.md)
 
 ---
 

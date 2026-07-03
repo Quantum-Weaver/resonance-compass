@@ -203,7 +203,55 @@ const ANDROID_MUSIC_DIRS = ['/storage/emulated/0/Music', '/storage/emulated/0/Do
 
 export const isAndroid = browser && navigator.userAgent.includes('Android');
 
+// True while the pre-scan permission explainer should be shown (Android only).
+// Set by scanLibrary, consumed by MediaPermissionDialog (mounted in +layout).
+let permissionNeeded = $state(false);
+
+// Gate: on Android, make sure media access is granted before scanning — a
+// missing grant doesn't error, it just makes the music invisible (scoped
+// storage), so without this the vessel sees a silent zero-track scan.
 async function scanLibrary() {
+	if (isAndroid) {
+		const { invoke } = await import('@tauri-apps/api/core');
+		try {
+			const granted = await invoke<boolean>('check_audio_permission');
+			if (!granted) {
+				permissionNeeded = true;
+				return;
+			}
+		} catch (e) {
+			// Bridge unavailable (stale build) — proceed; the zero-track
+			// guidance in runScan still covers the unpermitted case.
+			console.error('[libraryStore] permission check failed:', e);
+		}
+	}
+	await runScan();
+}
+
+// "Grant Access" in the explainer dialog: fires the system permission prompt,
+// then scans on grant or surfaces the Settings guidance card on denial.
+async function grantPermissionAndScan() {
+	permissionNeeded = false;
+	const { invoke } = await import('@tauri-apps/api/core');
+	try {
+		const granted = await invoke<boolean>('request_audio_permission');
+		if (granted) {
+			await runScan();
+			return;
+		}
+	} catch (e) {
+		console.error('[libraryStore] permission request failed:', e);
+	}
+	scanError =
+		'PERMISSION_DENIED: Storage access is required to scan music files. ' +
+		'Please grant Media or Files access in Settings → Apps → Resonance Compass → Permissions.';
+}
+
+function dismissPermissionPrompt() {
+	permissionNeeded = false;
+}
+
+async function runScan() {
 	const { invoke } = await import('@tauri-apps/api/core');
 	const { listen } = await import('@tauri-apps/api/event');
 
@@ -279,8 +327,16 @@ async function updateTrackLyrics(trackId: string, lyrics: string) {
 	if (track) track.lyrics = lyrics;
 }
 
-async function clearLibrary() {
-	if (!db) return;
+// Full data purge: every table this app writes, children before parents —
+// fragments holds a FOREIGN KEY to songs(id) (enforced by sqlx), so deleting
+// songs first rejects and silently aborted the whole purge when any fragment
+// existed. Throws instead of returning silently so the purge UI can tell the
+// vessel when nothing was actually deleted.
+async function purgeAllData() {
+	if (!db) throw new Error('Database not ready — nothing was purged');
+	await db.execute('DELETE FROM fragments');
+	await db.execute('DELETE FROM favorites');
+	await db.execute('DELETE FROM playlists');
 	await db.execute('DELETE FROM songs');
 	tracks = [];
 	albums = [];
@@ -338,6 +394,9 @@ export const libraryStore = {
 	get scanProgress() { return scanProgress; },
 	get scanError() { return scanError; },
 	get lastScanned() { return lastScanned; },
+	get permissionNeeded() { return permissionNeeded; },
+	grantPermissionAndScan,
+	dismissPermissionPrompt,
 	initDB,
 	loadTracks,
 	setTracks,
@@ -345,7 +404,7 @@ export const libraryStore = {
 	scanLibrary,
 	updateAlbumCoverArt,
 	updateTrackLyrics,
-	clearLibrary,
+	purgeAllData,
 	importTracks,
 	getTrackById,
 	getTracksByAlbum,

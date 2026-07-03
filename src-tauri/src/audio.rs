@@ -18,7 +18,7 @@ use std::time::{Duration, Instant};
 
 use crossbeam::channel::Sender as VisSender;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Sink, Source};
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
 use tauri_plugin_fs::{FilePath, FsExt, OpenOptions};
 
 use crate::equalizer::{EqFilter, EqState};
@@ -147,7 +147,11 @@ fn start_output(playback: &Arc<Mutex<CurrentPlayback>>, app: AppHandle) -> Optio
     let (ready_tx, ready_rx) = mpsc::sync_channel::<OutputStreamHandle>(1);
     let playback_thread = Arc::clone(playback);
     thread::spawn(move || audio_thread(playback_thread, app, ready_tx));
-    ready_rx.recv().ok()
+    // Bounded wait: a device-open that hangs (seen with oboe on some Android
+    // devices) must surface as "audio output unavailable", not wedge the
+    // caller forever. A thread whose open succeeds after the timeout finds the
+    // channel closed and exits, dropping its stream.
+    ready_rx.recv_timeout(Duration::from_secs(3)).ok()
 }
 
 /// Owns the audio output device for its entire lifetime and emits position /
@@ -187,7 +191,13 @@ fn audio_thread(
                 continue;
             }
             match &guard.sink {
-                Some(sink) => (sink.get_pos().as_secs_f64(), !guard.end_sent && sink.empty()),
+                Some(sink) => {
+                    let pos = sink.get_pos().as_secs_f64();
+                    // pos > 0 gate: a sink that never produced audio (failed
+                    // device, zero-sample decode) must not fire track-end —
+                    // the frontend's next() would cascade through the queue.
+                    (pos, !guard.end_sent && pos > 0.0 && sink.empty())
+                }
                 None => continue,
             }
         };
@@ -222,9 +232,18 @@ fn read_duration_lofty(mut file: File) -> Result<f64, Box<dyn std::error::Error 
 
 // ── Tauri commands ──────────────────────────────────────────────────────────
 
+// Async + spawn_blocking: sync commands run on the main thread, and this body
+// blocks — decoder probe, tag parse, the output-device retry, and (for
+// content:// URIs) an fs-plugin round-trip that posts to the Android main
+// looper and waits for it. Running that ON the main looper self-deadlocks:
+// frozen UI → ANR → activity recreated (the "MiniPlayer collapse" bug).
 #[tauri::command]
-pub fn play_track(path: String, state: tauri::State<AudioState>, app: AppHandle) -> Result<(), String> {
-    state.play_track(&path, &app)
+pub async fn play_track(path: String, app: AppHandle) -> Result<(), String> {
+    tauri::async_runtime::spawn_blocking(move || {
+        app.state::<AudioState>().play_track(&path, &app)
+    })
+    .await
+    .map_err(|e| e.to_string())?
 }
 
 #[tauri::command]

@@ -85,7 +85,7 @@ documented in [ANDROID-BUILD-NOTES.md](ANDROID-BUILD-NOTES.md).
 | `build.rs` libc++_shared jniLibs link workaround | ✅ | ✅ identical (inherited) | None |
 | Folder picker on Android | ❌ **never worked** — `tauri-plugin-dialog` 2.7.1 mobile branch returns `FolderPickerNotImplemented` (both versions ship 2.7.1) | ♻️ v2 now bypasses the dialog: scans `/storage/emulated/0/Music` + `Download` directly under media permission | Longer-term: custom SAF tree-picker plugin (see ANDROID-BUILD-NOTES.md roadmap) |
 | PERMISSION_DENIED guidance card (onboarding) | ✅ | ❌ was lost in rebuild | ✅ Restored today |
-| Runtime permission request dialog | ❌ (manual grant via system Settings, guidance card) | ❌ same design | Optional future: needs a small Kotlin plugin |
+| Runtime permission request dialog | ❌ (manual grant via system Settings, guidance card) | ✅ added 2026-07-02: app-local MediaPermissionPlugin.kt + explainer dialog before scan | None — v2 now exceeds v1 |
 
 ---
 

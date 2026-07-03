@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- maximum-scale + user-scalable lock out pinch-zoom: the Android WebView
+         honors only this meta for gesture zoom, and a zoomed visual viewport
+         displaces position:fixed chrome (MiniPlayer ghosting mid-frame). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <title>Resonance Compass</title>
     %sveltekit.head%
   </head>

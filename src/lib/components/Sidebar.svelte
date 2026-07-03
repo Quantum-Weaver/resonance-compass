@@ -2,22 +2,25 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	import { uiStore } from '$lib/stores/ui.svelte';
 	import Icons from '$lib/components/icons/Icons.svelte';
 	import type { IconName } from '$lib/components/icons/Icons.svelte';
 
 	let open = $state(false);
 	let isMobile = $state(true);
 
-	// Visualizer, Equalizer, Timer, Sattva, Focus, Profiles, History, and
-	// Fragments live in the MiniPlayer's expanded nav row instead — keeps this
-	// list short enough to fit without scrolling on mobile screens.
+	// Visualizer, Equalizer, Sattva, Profiles, History, and Fragments live in
+	// the MiniPlayer's expanded nav row instead — keeps this list short enough
+	// to fit without scrolling on mobile screens. Search is reachable from the
+	// Library page.
 	const navItems: { href: string; icon: IconName; label: string }[] = [
 		{ href: '/', icon: 'home', label: 'Home' },
-		{ href: '/search', icon: 'search', label: 'Search' },
 		{ href: '/library', icon: 'library', label: 'Library' },
 		{ href: '/liked', icon: 'heart', label: 'Liked' },
 		{ href: '/playlists', icon: 'playlist', label: 'Playlists' },
+		{ href: '/timer', icon: 'timer', label: 'Timer' },
 		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
+		{ href: '/focus', icon: 'focus', label: 'Focus' },
 		{ href: '/settings', icon: 'settings', label: 'Settings' },
 	];
 
@@ -29,6 +32,11 @@
 
 	$effect(() => {
 		if (isVisualizer) open = false;
+	});
+
+	// The vessel opened the MiniPlayer panel — they want to see it, not the nav.
+	$effect(() => {
+		if (uiStore.miniPlayerExpanded) open = false;
 	});
 
 	onMount(() => {
@@ -73,7 +81,9 @@
      render it expanded while on the visualizer, even defensively. -->
 <nav class="sidebar" class:open={open && !isVisualizer} aria-label="Main navigation">
 	<div class="sidebar__header">
-		<span class="sidebar__wordmark">Compass</span>
+		<!-- cosmic-sparkle-text adds the animated glow; the scoped accent color
+		     below outranks its light-gray color so light mode stays readable. -->
+		<span class="sidebar__wordmark cosmic-sparkle-text">Compass</span>
 	</div>
 
 	<ul class="sidebar__nav">

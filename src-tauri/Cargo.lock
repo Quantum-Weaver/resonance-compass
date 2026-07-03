@@ -3688,7 +3688,9 @@ version = "2.0.0"
 dependencies = [
  "base64 0.22.1",
  "crossbeam",
+ "jni",
  "lofty",
+ "ndk-context",
  "reqwest 0.12.28",
  "rodio",
  "rustfft",

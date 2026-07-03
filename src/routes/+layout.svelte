@@ -12,6 +12,7 @@
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import MiniPlayer from '$lib/components/MiniPlayer.svelte';
+	import MediaPermissionDialog from '$lib/components/MediaPermissionDialog.svelte';
 
 	let { children } = $props();
 
@@ -67,12 +68,16 @@
 	{#if !hideChrome}
 		<MiniPlayer />
 	{/if}
+
+	<!-- Global: pre-scan media-permission explainer; must render during onboarding too -->
+	<MediaPermissionDialog />
 </div>
 
 <style>
 	.app-shell {
 		display: flex;
 		height: 100vh;
+		max-width: 100vw;
 		overflow: hidden;
 		background-color: var(--bg);
 		color: var(--text);
@@ -80,6 +85,11 @@
 
 	.main-content {
 		flex: 1;
+		/* min-width: 0 is the load-bearing guard: flex children default to
+		   min-width auto, so any wide descendant would stretch the shell
+		   past the viewport instead of being contained. */
+		min-width: 0;
+		max-width: 100%;
 		overflow-y: auto;
 		overflow-x: hidden;
 		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { Track, Playlist } from '$lib/types/types';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 
@@ -54,6 +55,12 @@
 		onAddToPlaylist?.(playlistId);
 		menuOpen = false;
 	}
+
+	// Always available: the lyrics page shows stored lyrics or offers Find Lyrics.
+	function openLyrics() {
+		menuOpen = false;
+		goto(`/lyrics?trackId=${encodeURIComponent(track.id)}`);
+	}
 </script>
 
 {#if menuOpen}
@@ -93,6 +100,9 @@
 			<button class="menu-btn" onclick={openMenu} aria-label="Track options">⋮</button>
 			{#if menuOpen}
 				<div class="menu-dropdown">
+					<button class="dropdown-item" onclick={openLyrics}>
+						🎤 {track.lyrics ? 'Lyrics' : 'Find Lyrics'}
+					</button>
 					<p class="dropdown-label">Add to playlist</p>
 					{#if playlists.length === 0}
 						<p class="dropdown-empty">No playlists yet</p>
