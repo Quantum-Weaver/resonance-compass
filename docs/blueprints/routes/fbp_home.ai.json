@@ -1,0 +1,98 @@
+{
+  "route_name": "home",
+  "source_file": "src\\routes\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.512793 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "vesselName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "tracks",
+        "rune": "$derived",
+        "source": "libraryStore.tracks"
+      },
+      {
+        "name": "trackCount",
+        "rune": "$derived",
+        "source": "tracks.length"
+      },
+      {
+        "name": "greeting",
+        "rune": "$derived",
+        "source": "("
+      },
+      {
+        "name": "insight",
+        "rune": "$derived",
+        "source": "("
+      }
+    ],
+    "functions": [
+      {
+        "name": "navigateAlbum",
+        "params": "album: Album"
+      },
+      {
+        "name": "resume",
+        "params": ""
+      },
+      {
+        "name": "onScanClick",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/nowplaying"
+    ],
+    "css_classes": [
+      "primary",
+      "insight",
+      "h-card",
+      "home-sigil",
+      "section-title",
+      "home",
+      "h-scroll",
+      "action-btn",
+      "empty-sub",
+      "greeting-text",
+      "greeting-inner",
+      "sattva-btn",
+      "section",
+      "browse-prompt",
+      "greeting-wrap",
+      "quick-actions",
+      "empty-state",
+      "empty-heading"
+    ],
+    "has_style_block": true,
+    "script_lines": 98,
+    "template_lines": 80,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [
+      "1"
+    ],
+    "has_ondestroy": false
+  },
+  "phase": 9,
+  "status": "complete"
+}

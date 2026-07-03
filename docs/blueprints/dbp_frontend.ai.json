@@ -1,0 +1,152 @@
+{
+  "stack": "frontend",
+  "route_map": {
+    "home": {
+      "file": "src\\routes\\+page.svelte",
+      "phase": 9,
+      "status": "complete",
+      "navigates_to": [
+        "/nowplaying"
+      ]
+    },
+    "focus": {
+      "file": "src\\routes\\focus\\+page.svelte",
+      "phase": 17,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "fragments": {
+      "file": "src\\routes\\fragments\\+page.svelte",
+      "phase": 17,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "history": {
+      "file": "src\\routes\\history\\+page.svelte",
+      "phase": 14,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "library": {
+      "file": "src\\routes\\library\\+page.svelte",
+      "phase": 2,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "liked": {
+      "file": "src\\routes\\liked\\+page.svelte",
+      "phase": 10,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "lyrics": {
+      "file": "src\\routes\\lyrics\\+page.svelte",
+      "phase": 12,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "nowplaying": {
+      "file": "src\\routes\\nowplaying\\+page.svelte",
+      "phase": 4,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "onboarding": {
+      "file": "src\\routes\\onboarding\\+page.svelte",
+      "phase": 13,
+      "status": "complete",
+      "navigates_to": [
+        "/"
+      ]
+    },
+    "playlists": {
+      "file": "src\\routes\\playlists\\+page.svelte",
+      "phase": 3,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "profiles": {
+      "file": "src\\routes\\profiles\\+page.svelte",
+      "phase": 16,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "queue": {
+      "file": "src\\routes\\queue\\+page.svelte",
+      "phase": 4,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "resonance": {
+      "file": "src\\routes\\resonance\\+page.svelte",
+      "phase": 7,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "sattva": {
+      "file": "src\\routes\\sattva\\+page.svelte",
+      "phase": 15,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "search": {
+      "file": "src\\routes\\search\\+page.svelte",
+      "phase": 11,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "settings": {
+      "file": "src\\routes\\settings\\+page.svelte",
+      "phase": 10,
+      "status": "complete",
+      "navigates_to": [
+        "/settings#eq"
+      ]
+    },
+    "timer": {
+      "file": "src\\routes\\timer\\+page.svelte",
+      "phase": 8,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "visualizer": {
+      "file": "src\\routes\\visualizer\\+page.svelte",
+      "phase": 5,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "playlists_id": {
+      "file": "src\\routes\\playlists\\[id]\\+page.svelte",
+      "phase": 3,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "library_artist_id": {
+      "file": "src\\routes\\library\\artist\\[id]\\+page.svelte",
+      "phase": 99,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "library_album_id": {
+      "file": "src\\routes\\library\\album\\[id]\\+page.svelte",
+      "phase": 99,
+      "status": "complete",
+      "navigates_to": []
+    },
+    "fragments_studio": {
+      "file": "src\\routes\\fragments\\studio\\+page.svelte",
+      "phase": 99,
+      "status": "complete",
+      "navigates_to": []
+    }
+  },
+  "total_routes": 22,
+  "store_count": 10,
+  "store_dependencies": {},
+  "component_count": 36,
+  "icon_component_count": 28,
+  "known_bugs": [
+    "| \u2014 | \u2014 | \u2014 |"
+  ],
+  "scan_timestamp": "2026-07-02T11:03:31.383633 | in sovereign time"
+}

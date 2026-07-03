@@ -1,0 +1,120 @@
+{
+  "route_name": "sattva",
+  "source_file": "src\\routes\\sattva\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.549067 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "visible",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "fadingOut",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "breathingOn",
+        "rune": "$state",
+        "source": "DEFAULTS.breathingEnabled"
+      },
+      {
+        "name": "currentCount",
+        "rune": "$state",
+        "source": "1"
+      },
+      {
+        "name": "countOpacity",
+        "rune": "$state",
+        "source": "0.04"
+      },
+      {
+        "name": "phaseIdx",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "borderAlpha",
+        "rune": "$state",
+        "source": "0.1"
+      }
+    ],
+    "functions": [
+      {
+        "name": "loadSettings",
+        "params": ""
+      },
+      {
+        "name": "hexToRgb",
+        "params": "hex: string"
+      },
+      {
+        "name": "drawSquarePulse",
+        "params": "canvas: HTMLCanvasElement, color: string, alpha: number"
+      },
+      {
+        "name": "animLoop",
+        "params": ""
+      },
+      {
+        "name": "resizeCanvas",
+        "params": ""
+      },
+      {
+        "name": "applyEntryState",
+        "params": "s: SattvaSettings"
+      },
+      {
+        "name": "restoreState",
+        "params": ""
+      },
+      {
+        "name": "exitSattva",
+        "params": ""
+      },
+      {
+        "name": "toggleBreathing",
+        "params": "e: MouseEvent"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "border-canvas",
+      "toggle-dot",
+      "vis-toggle",
+      "count-number",
+      "sattva"
+    ],
+    "has_style_block": true,
+    "script_lines": 330,
+    "template_lines": 38,
+    "uses_runes": {
+      "state": true,
+      "derived": false,
+      "effect": false
+    },
+    "z_indices": [
+      "200",
+      "1",
+      "3",
+      "10"
+    ],
+    "has_ondestroy": true
+  },
+  "phase": 15,
+  "status": "complete"
+}

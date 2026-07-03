@@ -1,0 +1,167 @@
+{
+  "layer": "routes",
+  "routes": {
+    "home": {
+      "file": "src\\routes\\+page.svelte",
+      "phase": 9,
+      "navigates_to": [
+        "/nowplaying"
+      ],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "focus": {
+      "file": "src\\routes\\focus\\+page.svelte",
+      "phase": 17,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "fragments": {
+      "file": "src\\routes\\fragments\\+page.svelte",
+      "phase": 17,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "history": {
+      "file": "src\\routes\\history\\+page.svelte",
+      "phase": 14,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "library": {
+      "file": "src\\routes\\library\\+page.svelte",
+      "phase": 2,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "liked": {
+      "file": "src\\routes\\liked\\+page.svelte",
+      "phase": 10,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "lyrics": {
+      "file": "src\\routes\\lyrics\\+page.svelte",
+      "phase": 12,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "nowplaying": {
+      "file": "src\\routes\\nowplaying\\+page.svelte",
+      "phase": 4,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "onboarding": {
+      "file": "src\\routes\\onboarding\\+page.svelte",
+      "phase": 13,
+      "navigates_to": [
+        "/"
+      ],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "playlists": {
+      "file": "src\\routes\\playlists\\+page.svelte",
+      "phase": 3,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "profiles": {
+      "file": "src\\routes\\profiles\\+page.svelte",
+      "phase": 16,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "queue": {
+      "file": "src\\routes\\queue\\+page.svelte",
+      "phase": 4,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "resonance": {
+      "file": "src\\routes\\resonance\\+page.svelte",
+      "phase": 7,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "sattva": {
+      "file": "src\\routes\\sattva\\+page.svelte",
+      "phase": 15,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "search": {
+      "file": "src\\routes\\search\\+page.svelte",
+      "phase": 11,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "settings": {
+      "file": "src\\routes\\settings\\+page.svelte",
+      "phase": 10,
+      "navigates_to": [
+        "/settings#eq"
+      ],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "timer": {
+      "file": "src\\routes\\timer\\+page.svelte",
+      "phase": 8,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "visualizer": {
+      "file": "src\\routes\\visualizer\\+page.svelte",
+      "phase": 5,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "playlists_id": {
+      "file": "src\\routes\\playlists\\[id]\\+page.svelte",
+      "phase": 3,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "library_artist_id": {
+      "file": "src\\routes\\library\\artist\\[id]\\+page.svelte",
+      "phase": 99,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "library_album_id": {
+      "file": "src\\routes\\library\\album\\[id]\\+page.svelte",
+      "phase": 99,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    },
+    "fragments_studio": {
+      "file": "src\\routes\\fragments\\studio\\+page.svelte",
+      "phase": 99,
+      "navigates_to": [],
+      "imports_stores": [],
+      "imports_components": []
+    }
+  },
+  "total_routes": 22,
+  "scan_timestamp": "2026-07-02T11:03:30.573103 | in sovereign time"
+}

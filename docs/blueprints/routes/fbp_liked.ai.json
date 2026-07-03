@@ -1,0 +1,81 @@
+{
+  "route_name": "liked",
+  "source_file": "src\\routes\\liked\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.527444 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      }
+    ],
+    "functions": [
+      {
+        "name": "playAt",
+        "params": "index: number"
+      },
+      {
+        "name": "playAll",
+        "params": ""
+      },
+      {
+        "name": "shuffleAll",
+        "params": ""
+      },
+      {
+        "name": "toggleEmoji",
+        "params": "emoji: string"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "mood-chip",
+      "mood-tags",
+      "track-row",
+      "track-list",
+      "liked-page",
+      "emoji-chip",
+      "filter-count",
+      "title-row",
+      "empty-icon",
+      "count",
+      "sort-row",
+      "play-row",
+      "no-results",
+      "sort-btn",
+      "mood-row",
+      "play-btn",
+      "empty-text",
+      "primary",
+      "page-header",
+      "empty-sub",
+      "mood-tag",
+      "title",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 106,
+    "template_lines": 88,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 10,
+  "status": "complete"
+}

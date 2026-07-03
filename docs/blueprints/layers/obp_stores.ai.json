@@ -1,0 +1,264 @@
+{
+  "layer": "stores",
+  "stores": {
+    "focus": {
+      "file": "src\\lib\\stores\\focus.svelte.ts",
+      "lines": 100,
+      "reactive_state": [
+        "activeSession",
+        "sessionHistory"
+      ],
+      "exports": [],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "fragment": {
+      "file": "src\\lib\\stores\\fragment.svelte.ts",
+      "lines": 73,
+      "reactive_state": [
+        "fragments"
+      ],
+      "exports": [
+        "persist"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "library": {
+      "file": "src\\lib\\stores\\library.svelte.ts",
+      "lines": 306,
+      "reactive_state": [
+        "tracks",
+        "albums",
+        "artists",
+        "loading",
+        "dbError",
+        "isScanning",
+        "scanProgress",
+        "scanError",
+        "lastScanned"
+      ],
+      "exports": [
+        "rowToTrack",
+        "buildInsertBatch",
+        "initDB",
+        "loadTracks",
+        "setTracks",
+        "saveScannedTracks",
+        "scanLibrary",
+        "updateAlbumCoverArt",
+        "updateTrackLyrics",
+        "clearLibrary",
+        "importTracks",
+        "getTrackById",
+        "getTracksByAlbum",
+        "getTracksByArtist",
+        "getAlbumsByArtist",
+        "search"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": true,
+      "has_load_function": true
+    },
+    "mood": {
+      "file": "src\\lib\\stores\\mood.svelte.ts",
+      "lines": 192,
+      "reactive_state": [
+        "recentMoods",
+        "topEmojis",
+        "totalEvents",
+        "loading",
+        "dbError",
+        "personalDefinitions"
+      ],
+      "exports": [
+        "rowToMoodEvent",
+        "loadPersonalDefinitions",
+        "setPersonalDefinition",
+        "getPersonalDefinition",
+        "initDB",
+        "loadRecentMoods",
+        "addMoodEvent",
+        "getMoodEventsByTrack",
+        "getRecentMoods",
+        "getTopEmojis",
+        "getTotalEvents",
+        "refreshStats",
+        "getAllMoodEvents",
+        "importMoodEvents",
+        "purgeAll",
+        "getMoodStats"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": true,
+      "has_load_function": true
+    },
+    "player": {
+      "file": "src\\lib\\stores\\player.svelte.ts",
+      "lines": 376,
+      "reactive_state": [
+        "history",
+        "currentTrack",
+        "queue",
+        "queueIndex",
+        "isPlaying",
+        "position",
+        "duration",
+        "volume",
+        "shuffle",
+        "repeatMode"
+      ],
+      "exports": [
+        "addToHistory",
+        "loadHistory",
+        "clearHistory",
+        "ensureListeners",
+        "persistState",
+        "restoreState",
+        "loadTrackObject",
+        "play",
+        "pause",
+        "togglePlay",
+        "stopPlayback",
+        "logSkipIfMidTrack",
+        "next",
+        "previous",
+        "toggleShuffle",
+        "cycleRepeat",
+        "setVolume",
+        "seek",
+        "setQueue",
+        "playFromQueue",
+        "removeFromQueue",
+        "clearQueue"
+      ],
+      "tauri_invoke_calls": [
+        "play_track",
+        "seek",
+        "resume",
+        "pause",
+        "stop",
+        "set_volume",
+        "seek"
+      ],
+      "events_listened": [
+        "audio://track-end"
+      ],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "playlist": {
+      "file": "src\\lib\\stores\\playlist.svelte.ts",
+      "lines": 99,
+      "reactive_state": [
+        "playlists"
+      ],
+      "exports": [
+        "persist",
+        "loadPlaylists",
+        "createPlaylist",
+        "deletePlaylist",
+        "renamePlaylist",
+        "addTrack",
+        "removeTrack",
+        "getPlaylist",
+        "isFavorite",
+        "toggleFavorite"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "profile": {
+      "file": "src\\lib\\stores\\profile.svelte.ts",
+      "lines": 151,
+      "reactive_state": [
+        "profiles",
+        "activeProfileId",
+        "showInMiniPlayer"
+      ],
+      "exports": [
+        "persist",
+        "currentPresetKey",
+        "restorePrevTheme"
+      ],
+      "tauri_invoke_calls": [
+        "set_eq_preset"
+      ],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "studio": {
+      "file": "src\\lib\\stores\\studio.svelte.ts",
+      "lines": 83,
+      "reactive_state": [
+        "arrangements"
+      ],
+      "exports": [
+        "persist",
+        "newLayer"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "theme": {
+      "file": "src\\lib\\stores\\theme.svelte.ts",
+      "lines": 43,
+      "reactive_state": [
+        "config"
+      ],
+      "exports": [
+        "persist"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": true
+    },
+    "timer": {
+      "file": "src\\lib\\stores\\timer.svelte.ts",
+      "lines": 103,
+      "reactive_state": [
+        "totalSecs",
+        "remainingSecs",
+        "isRunning",
+        "fadeOut",
+        "mode"
+      ],
+      "exports": [
+        "startFade",
+        "stopFade",
+        "start",
+        "cancel",
+        "setFadeOut",
+        "cycleMode"
+      ],
+      "tauri_invoke_calls": [],
+      "events_listened": [],
+      "localStorage_keys": [],
+      "has_init_function": false,
+      "has_load_function": false
+    }
+  },
+  "cross_dependencies": {},
+  "scan_timestamp": "2026-07-02T11:03:30.586037 | in sovereign time"
+}

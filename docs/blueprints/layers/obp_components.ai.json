@@ -1,0 +1,602 @@
+{
+  "layer": "components",
+  "components": {
+    "AlbumCard": {
+      "file": "src\\lib\\components\\AlbumCard.svelte",
+      "props": [],
+      "lines": 110,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+page.svelte",
+        "src\\routes\\search\\+page.svelte"
+      ]
+    },
+    "EmojiPalette": {
+      "file": "src\\lib\\components\\EmojiPalette.svelte",
+      "props": [],
+      "lines": 158,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\nowplaying\\+page.svelte",
+        "src\\lib\\components\\MiniPlayer.svelte"
+      ]
+    },
+    "GradientPulse": {
+      "file": "src\\lib\\components\\GradientPulse.svelte",
+      "props": [],
+      "lines": 55,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+page.svelte",
+        "src\\routes\\nowplaying\\+page.svelte",
+        "src\\routes\\onboarding\\+page.svelte"
+      ]
+    },
+    "MiniPlayer": {
+      "file": "src\\lib\\components\\MiniPlayer.svelte",
+      "props": [],
+      "lines": 323,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": true
+      },
+      "z_indices": [
+        "110"
+      ],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+layout.svelte",
+        "src\\routes\\settings\\+page.svelte",
+        "src\\lib\\components\\Sidebar.svelte"
+      ]
+    },
+    "PlayerControls": {
+      "file": "src\\lib\\components\\PlayerControls.svelte",
+      "props": [
+        "mini = false "
+      ],
+      "lines": 192,
+      "uses_runes": {
+        "state": false,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\nowplaying\\+page.svelte",
+        "src\\lib\\components\\MiniPlayer.svelte"
+      ]
+    },
+    "Sidebar": {
+      "file": "src\\lib\\components\\Sidebar.svelte",
+      "props": [],
+      "lines": 202,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": true
+      },
+      "z_indices": [
+        "120",
+        "49",
+        "50"
+      ],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\+layout.svelte"
+      ]
+    },
+    "TimerVisualization": {
+      "file": "src\\lib\\components\\TimerVisualization.svelte",
+      "props": [
+        "remainingSecs,\n\t\ttotalSecs,\n\t\tmode,\n\t"
+      ],
+      "lines": 595,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": true
+      },
+      "z_indices": [],
+      "has_cleanup": true,
+      "imported_by": [
+        "src\\routes\\timer\\+page.svelte"
+      ]
+    },
+    "TrackItem": {
+      "file": "src\\lib\\components\\TrackItem.svelte",
+      "props": [],
+      "lines": 332,
+      "uses_runes": {
+        "state": true,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [
+        "9",
+        "10"
+      ],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\routes\\liked\\+page.svelte",
+        "src\\routes\\queue\\+page.svelte",
+        "src\\routes\\resonance\\+page.svelte",
+        "src\\routes\\search\\+page.svelte",
+        "src\\routes\\playlists\\[id]\\+page.svelte",
+        "src\\routes\\library\\album\\[id]\\+page.svelte"
+      ]
+    },
+    "icons/IconChevron": {
+      "file": "src\\lib\\components\\icons\\IconChevron.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconCompass": {
+      "file": "src\\lib\\components\\icons\\IconCompass.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconEqualizer": {
+      "file": "src\\lib\\components\\icons\\IconEqualizer.svelte",
+      "props": [],
+      "lines": 15,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconFocus": {
+      "file": "src\\lib\\components\\icons\\IconFocus.svelte",
+      "props": [],
+      "lines": 13,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconFragment": {
+      "file": "src\\lib\\components\\icons\\IconFragment.svelte",
+      "props": [],
+      "lines": 11,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconHeart": {
+      "file": "src\\lib\\components\\icons\\IconHeart.svelte",
+      "props": [],
+      "lines": 7,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconHistory": {
+      "file": "src\\lib\\components\\icons\\IconHistory.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconHome": {
+      "file": "src\\lib\\components\\icons\\IconHome.svelte",
+      "props": [],
+      "lines": 7,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconLibrary": {
+      "file": "src\\lib\\components\\icons\\IconLibrary.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconLyrics": {
+      "file": "src\\lib\\components\\icons\\IconLyrics.svelte",
+      "props": [],
+      "lines": 11,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconPause": {
+      "file": "src\\lib\\components\\icons\\IconPause.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconPlay": {
+      "file": "src\\lib\\components\\icons\\IconPlay.svelte",
+      "props": [],
+      "lines": 7,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconPlaylist": {
+      "file": "src\\lib\\components\\icons\\IconPlaylist.svelte",
+      "props": [],
+      "lines": 10,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconProfiles": {
+      "file": "src\\lib\\components\\icons\\IconProfiles.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconRepeat": {
+      "file": "src\\lib\\components\\icons\\IconRepeat.svelte",
+      "props": [],
+      "lines": 10,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconRepeatOne": {
+      "file": "src\\lib\\components\\icons\\IconRepeatOne.svelte",
+      "props": [],
+      "lines": 11,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconResonance": {
+      "file": "src\\lib\\components\\icons\\IconResonance.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/Icons": {
+      "file": "src\\lib\\components\\icons\\Icons.svelte",
+      "props": [],
+      "lines": 90,
+      "uses_runes": {
+        "state": false,
+        "derived": true,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\Sidebar.svelte"
+      ]
+    },
+    "icons/IconSattva": {
+      "file": "src\\lib\\components\\icons\\IconSattva.svelte",
+      "props": [],
+      "lines": 15,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconSearch": {
+      "file": "src\\lib\\components\\icons\\IconSearch.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconSettings": {
+      "file": "src\\lib\\components\\icons\\IconSettings.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconShuffle": {
+      "file": "src\\lib\\components\\icons\\IconShuffle.svelte",
+      "props": [],
+      "lines": 11,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconSkipBack": {
+      "file": "src\\lib\\components\\icons\\IconSkipBack.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconSkipForward": {
+      "file": "src\\lib\\components\\icons\\IconSkipForward.svelte",
+      "props": [],
+      "lines": 8,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconTimer": {
+      "file": "src\\lib\\components\\icons\\IconTimer.svelte",
+      "props": [],
+      "lines": 10,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconVisualizer": {
+      "file": "src\\lib\\components\\icons\\IconVisualizer.svelte",
+      "props": [],
+      "lines": 10,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconVolume": {
+      "file": "src\\lib\\components\\icons\\IconVolume.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    },
+    "icons/IconVolumeMuted": {
+      "file": "src\\lib\\components\\icons\\IconVolumeMuted.svelte",
+      "props": [],
+      "lines": 9,
+      "uses_runes": {
+        "state": false,
+        "derived": false,
+        "effect": false
+      },
+      "z_indices": [],
+      "has_cleanup": false,
+      "imported_by": [
+        "src\\lib\\components\\icons\\Icons.svelte"
+      ]
+    }
+  },
+  "total_components": 36,
+  "icon_components": [
+    "icons/IconChevron",
+    "icons/IconCompass",
+    "icons/IconEqualizer",
+    "icons/IconFocus",
+    "icons/IconFragment",
+    "icons/IconHeart",
+    "icons/IconHistory",
+    "icons/IconHome",
+    "icons/IconLibrary",
+    "icons/IconLyrics",
+    "icons/IconPause",
+    "icons/IconPlay",
+    "icons/IconPlaylist",
+    "icons/IconProfiles",
+    "icons/IconRepeat",
+    "icons/IconRepeatOne",
+    "icons/IconResonance",
+    "icons/Icons",
+    "icons/IconSattva",
+    "icons/IconSearch",
+    "icons/IconSettings",
+    "icons/IconShuffle",
+    "icons/IconSkipBack",
+    "icons/IconSkipForward",
+    "icons/IconTimer",
+    "icons/IconVisualizer",
+    "icons/IconVolume",
+    "icons/IconVolumeMuted"
+  ],
+  "scan_timestamp": "2026-07-02T11:03:31.267701 | in sovereign time"
+}

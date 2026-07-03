@@ -1,0 +1,237 @@
+{
+  "route_name": "settings",
+  "source_file": "src\\routes\\settings\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.554442 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": [
+        "theme"
+      ]
+    },
+    "reactive_state": [
+      {
+        "name": "eqOpen",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "eqEnabled",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "eqPreamp",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "eqLoading",
+        "rune": "$state",
+        "source": "true"
+      },
+      {
+        "name": "eqDirty",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "trackCount",
+        "rune": "$derived",
+        "source": "libraryStore.tracks.length"
+      },
+      {
+        "name": "pendingExport",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "showUninstallGuide",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "importSummary",
+        "rune": "$state",
+        "source": "''"
+      }
+    ],
+    "functions": [
+      {
+        "name": "loadEq",
+        "params": ""
+      },
+      {
+        "name": "setEqBand",
+        "params": "i: number, v: number"
+      },
+      {
+        "name": "setEqPreamp",
+        "params": "v: number"
+      },
+      {
+        "name": "toggleEq",
+        "params": "val: boolean"
+      },
+      {
+        "name": "applyPreset",
+        "params": "preset: Preset"
+      },
+      {
+        "name": "dbLabel",
+        "params": "db: number"
+      },
+      {
+        "name": "loadCustomEqPresets",
+        "params": ""
+      },
+      {
+        "name": "persistCustomEqPresets",
+        "params": ""
+      },
+      {
+        "name": "saveEqAsCustom",
+        "params": ""
+      },
+      {
+        "name": "deleteCustomEqPreset",
+        "params": "name: string"
+      },
+      {
+        "name": "applyCustomEqPreset",
+        "params": "cp: CustomEqPreset"
+      },
+      {
+        "name": "buildSnapshot",
+        "params": ""
+      },
+      {
+        "name": "exportData",
+        "params": ""
+      },
+      {
+        "name": "onImportFile",
+        "params": "e: Event"
+      },
+      {
+        "name": "executeImport",
+        "params": ""
+      },
+      {
+        "name": "cancelImport",
+        "params": ""
+      },
+      {
+        "name": "startPurge",
+        "params": "withExport: boolean"
+      },
+      {
+        "name": "cancelPurge",
+        "params": ""
+      },
+      {
+        "name": "executePurge",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [
+      "/settings#eq"
+    ],
+    "css_classes": [
+      "toggle-wrap",
+      "font-btn",
+      "toggle-label",
+      "about-version",
+      "settings",
+      "toggle-thumb",
+      "toggle-arrow",
+      "profiles-row",
+      "btn-neutral",
+      "font-row",
+      "uninstall-note",
+      "uninstall-section",
+      "theme-grid",
+      "btn-data",
+      "custom-btn",
+      "btn-danger-filled",
+      "btn-uninstall",
+      "preamp-col",
+      "band-db",
+      "about-tag",
+      "presets-row",
+      "confirm-actions",
+      "danger-label",
+      "uninstall-intro",
+      "eq-header",
+      "vslider",
+      "center-line",
+      "final",
+      "profiles-manage-btn",
+      "custom-wrap",
+      "profiles-toggle",
+      "import-hint",
+      "save-custom-btn",
+      "settings-header",
+      "settings-title",
+      "sr-only",
+      "custom-indicator",
+      "import-zone",
+      "theme-card",
+      "sliders-wrap",
+      "band-label",
+      "font-label",
+      "preset-btn",
+      "danger-zone",
+      "warning",
+      "uninstall-guide",
+      "about-name",
+      "track-count",
+      "section",
+      "toggle-track",
+      "btn-danger",
+      "theme-name",
+      "theme-icon",
+      "divider",
+      "slider-col",
+      "about-built",
+      "loading-hint",
+      "profiles-count",
+      "section-title",
+      "slider-track-wrap",
+      "about-card",
+      "eq-section",
+      "confirm-text",
+      "about-license",
+      "import-file-input",
+      "profiles-info",
+      "preset-del",
+      "section-toggle",
+      "confirm-card",
+      "uninstall-steps",
+      "data-actions",
+      "profiles-hint",
+      "font-btns",
+      "about-app",
+      "theme-swatch"
+    ],
+    "has_style_block": true,
+    "script_lines": 329,
+    "template_lines": 282,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 10,
+  "status": "complete"
+}

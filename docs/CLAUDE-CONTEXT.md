@@ -38,10 +38,17 @@ Rebuilt on the Resonance Echoes foundation:
 ## Database Schema
 compass.db with 5 tables: songs, mood_events, favorites, playlists, fragments
 
+**Playlists and favorites are NOT stored in SQLite.** Both `favorites` and `playlists`
+exist in the migration history but are currently unused — `playlistStore`
+(`src/lib/stores/playlist.svelte.ts`) persists everything to localStorage instead,
+including the `'favorites'` auto-playlist. Decision (Phase 3): consolidate to
+localStorage for now — it's working, tested, and supports export/purge. The tables
+are left in place for a possible future SQLite migration, not removed.
+
 ## Key Design Patterns
 - Album art: per-track via lofty, base64 encoded. Per-album display (first non-null).
 - Artist deduplication: case-insensitive. `.trim().toLowerCase()` for keys.
-- Favorites: SQLite table + localStorage playlist mirror.
+- Favorites: the `'favorites'` playlist in `playlistStore` (localStorage) — not the SQLite `favorites` table.
 - Mood events: context = 'manual' | 'skip_prompt' | 'track_end' | 'favorite'
 - MiniPlayer: always visible EXCEPT on Sattva Screen. z-index 110.
 

@@ -2,26 +2,42 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	import Icons from '$lib/components/icons/Icons.svelte';
+	import type { IconName } from '$lib/components/icons/Icons.svelte';
 
 	let open = $state(false);
 	let isMobile = $state(true);
 
-	const navItems = [
-		{ href: '/', icon: '🏠', label: 'Home' },
-		{ href: '/library', icon: '🎵', label: 'Library' },
-		{ href: '/playlists', icon: '📋', label: 'Playlists' },
-		{ href: '/resonance', icon: '✨', label: 'Resonance' },
-		{ href: '/settings', icon: '⚙️', label: 'Settings' },
+	// Visualizer, Equalizer, Timer, Sattva, Focus, Profiles, History, and
+	// Fragments live in the MiniPlayer's expanded nav row instead — keeps this
+	// list short enough to fit without scrolling on mobile screens.
+	const navItems: { href: string; icon: IconName; label: string }[] = [
+		{ href: '/', icon: 'home', label: 'Home' },
+		{ href: '/search', icon: 'search', label: 'Search' },
+		{ href: '/library', icon: 'library', label: 'Library' },
+		{ href: '/liked', icon: 'heart', label: 'Liked' },
+		{ href: '/playlists', icon: 'playlist', label: 'Playlists' },
+		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
+		{ href: '/settings', icon: 'settings', label: 'Settings' },
 	];
+
+	// The visualizer is a full-screen immersive experience — no hamburger, no
+	// sidebar. Its own z-index (100) sits above the sidebar panel (50) but below
+	// the hamburger (120), so an opened panel would be invisible but the toggle
+	// would still be clickable if left alone. Hide it and force-close instead.
+	const isVisualizer = $derived(page.url.pathname === '/visualizer');
+
+	$effect(() => {
+		if (isVisualizer) open = false;
+	});
 
 	onMount(() => {
 		isMobile = window.innerWidth < 768;
-		open = !isMobile;
 	});
 
 	function navigate(href: string) {
 		goto(href);
-		if (isMobile) open = false;
+		open = false;
 	}
 
 	function toggle() {
@@ -29,27 +45,33 @@
 	}
 </script>
 
-<!-- Hamburger (always visible) -->
-<button
-	class="hamburger"
-	onclick={toggle}
-	aria-label={open ? 'Close navigation' : 'Open navigation'}
-	aria-expanded={open}
->
-	{open ? '✕' : '☰'}
-</button>
+<!-- Hamburger — always visible except on the full-screen visualizer -->
+{#if !isVisualizer}
+	<button
+		class="hamburger"
+		onclick={toggle}
+		aria-label={open ? 'Close navigation' : 'Open navigation'}
+		aria-expanded={open}
+	>
+		{open ? '✕' : '☰'}
+	</button>
+{/if}
 
-<!-- Mobile backdrop -->
-{#if open && isMobile}
+<!-- Backdrop — dismisses the sidebar on outside interaction whenever it's open,
+     desktop or mobile, since the hamburger toggle is always visible on both. -->
+{#if open && !isVisualizer}
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="backdrop"
 		onclick={() => (open = false)}
+		onkeydown={(e) => { if (e.key === 'Escape') open = false; }}
 		role="presentation"
 	></div>
 {/if}
 
-<!-- Sidebar panel -->
-<nav class="sidebar" class:open aria-label="Main navigation">
+<!-- Sidebar panel — class:open is gated on !isVisualizer too so nothing can
+     render it expanded while on the visualizer, even defensively. -->
+<nav class="sidebar" class:open={open && !isVisualizer} aria-label="Main navigation">
 	<div class="sidebar__header">
 		<span class="sidebar__wordmark">Compass</span>
 	</div>
@@ -62,7 +84,7 @@
 					class:active={page.url.pathname === item.href}
 					onclick={() => navigate(item.href)}
 				>
-					<span class="nav-icon">{item.icon}</span>
+					<span class="nav-icon"><Icons name={item.icon} size={18} /></span>
 					<span class="nav-label">{item.label}</span>
 				</button>
 			</li>
@@ -94,7 +116,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: 49;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: transparent;
 	}
 
 	.sidebar {
@@ -166,7 +188,8 @@
 	}
 
 	.nav-icon {
-		font-size: 1.1rem;
+		display: flex;
+		align-items: center;
 		flex-shrink: 0;
 	}
 

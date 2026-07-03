@@ -1,0 +1,233 @@
+{
+  "route_name": "nowplaying",
+  "source_file": "src\\routes\\nowplaying\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.533333 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      },
+      {
+        "name": "isPlaying",
+        "rune": "$derived",
+        "source": "playerStore.isPlaying"
+      },
+      {
+        "name": "shuffle",
+        "rune": "$derived",
+        "source": "playerStore.shuffle"
+      },
+      {
+        "name": "repeatMode",
+        "rune": "$derived",
+        "source": "playerStore.repeatMode"
+      },
+      {
+        "name": "repeatIcon",
+        "rune": "$derived",
+        "source": "repeatMode === 'one' ? '\ud83d\udd02' : '\ud83d\udd01'"
+      },
+      {
+        "name": "isFav",
+        "rune": "$derived",
+        "source": "currentTrack ? playlistStore.isFavorite(currentTrack.id"
+      },
+      {
+        "name": "heartAnimating",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "displayArt",
+        "rune": "$derived",
+        "source": "localArt ?? currentTrack?.coverArt ?? null"
+      },
+      {
+        "name": "fragOpen",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "fragStart",
+        "rune": "$state",
+        "source": "0"
+      },
+      {
+        "name": "fragEnd",
+        "rune": "$state",
+        "source": "15"
+      },
+      {
+        "name": "fragName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "fragSaving",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "fragPreview",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "trackDur",
+        "rune": "$derived",
+        "source": "playerStore.duration || currentTrack?.duration || 1"
+      },
+      {
+        "name": "startPct",
+        "rune": "$derived",
+        "source": "(fragStart / trackDur"
+      },
+      {
+        "name": "endPct",
+        "rune": "$derived",
+        "source": "(fragEnd / trackDur"
+      },
+      {
+        "name": "posPct",
+        "rune": "$derived",
+        "source": "(playerStore.position / trackDur"
+      }
+    ],
+    "functions": [
+      {
+        "name": "toggleFav",
+        "params": ""
+      },
+      {
+        "name": "goBack",
+        "params": ""
+      },
+      {
+        "name": "findCoverArt",
+        "params": ""
+      },
+      {
+        "name": "saveCoverArt",
+        "params": ""
+      },
+      {
+        "name": "dismissArtFetch",
+        "params": ""
+      },
+      {
+        "name": "fmtSec",
+        "params": "s: number"
+      },
+      {
+        "name": "openFragmentCreator",
+        "params": ""
+      },
+      {
+        "name": "calcFragTime",
+        "params": "clientX: number"
+      },
+      {
+        "name": "onHandleDown",
+        "params": "e: PointerEvent, handle: 'start' | 'end'"
+      },
+      {
+        "name": "onHandleMove",
+        "params": "e: PointerEvent, handle: 'start' | 'end'"
+      },
+      {
+        "name": "startPreview",
+        "params": ""
+      },
+      {
+        "name": "stopPreview",
+        "params": ""
+      },
+      {
+        "name": "closeFragmentModal",
+        "params": ""
+      },
+      {
+        "name": "saveFragment",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "frag-actions",
+      "np-header",
+      "art-container",
+      "art-preview",
+      "track-info",
+      "frag-btn-save",
+      "frag-name-row",
+      "art-img",
+      "art-fetch-actions",
+      "title-row",
+      "art-fetch-status",
+      "tl-handle-start",
+      "empty-icon",
+      "frag-times",
+      "frag-header",
+      "frag-title",
+      "frag-btn-preview",
+      "art-save-btn",
+      "frag-tagline",
+      "frag-timeline",
+      "frag-dur",
+      "back-btn",
+      "queue-link",
+      "frag-modal",
+      "art-dismiss-btn",
+      "frag-btn-cancel",
+      "ctrl-btn",
+      "art-fetch-btn",
+      "album",
+      "heart-btn",
+      "art-fetch-row",
+      "tl-handle-end",
+      "album-art",
+      "extra-controls",
+      "frag-overlay",
+      "tl-handle",
+      "artist",
+      "frag-set-row",
+      "mood-section",
+      "frag-set-btn",
+      "frag-error",
+      "frag-name-input",
+      "tl-track",
+      "nowplaying-page",
+      "tl-selection",
+      "frag-success",
+      "empty-state",
+      "tl-playhead"
+    ],
+    "has_style_block": true,
+    "script_lines": 187,
+    "template_lines": 199,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [
+      "130"
+    ],
+    "has_ondestroy": false
+  },
+  "phase": 4,
+  "status": "complete"
+}

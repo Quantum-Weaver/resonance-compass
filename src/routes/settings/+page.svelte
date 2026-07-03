@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
+	import { onMount } from 'svelte';
+	import { invoke } from '@tauri-apps/api/core';
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { profileStore } from '$lib/stores/profile.svelte';
+	import { moodStore } from '$lib/stores/mood.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
 	// ── Theme section ──────────────────────────────────────────────────────────
@@ -23,7 +28,179 @@
 		{ key: 'large' as const, label: 'Large' }
 	];
 
+	// ── Equalizer section ────────────────────────────────────────────────────────
+
+	interface EqStateResponse {
+		enabled: boolean;
+		bands: number[];
+		preamp: number;
+		labels: string[];
+	}
+
+	const EQ_PRESETS = ['flat', 'rock', 'jazz', 'classical', 'vocal', 'bass_boost'] as const;
+	type Preset = (typeof EQ_PRESETS)[number];
+	const PRESET_LABELS: Record<Preset, string> = {
+		flat: 'Flat',
+		rock: 'Rock',
+		jazz: 'Jazz',
+		classical: 'Classical',
+		vocal: 'Vocal',
+		bass_boost: 'Bass Boost',
+	};
+
+	let eqOpen = $state(false);
+	let eqEnabled = $state(false);
+	let eqBands = $state<number[]>(new Array(10).fill(0));
+	let eqPreamp = $state(0);
+	let eqLabels = $state<string[]>(['32', '64', '125', '250', '500', '1k', '2k', '4k', '8k', '16k']);
+	let eqLoading = $state(true);
+	let eqActivePreset = $state<string | null>(null);
+	let eqDirty = $state(false);
+
+	async function loadEq() {
+		try {
+			const s = await invoke<EqStateResponse>('get_eq_state');
+			eqEnabled = s.enabled;
+			eqBands = [...s.bands];
+			eqPreamp = s.preamp;
+			eqLabels = [...s.labels];
+		} catch (e) {
+			console.error('[settings] loadEq failed:', e);
+		} finally {
+			eqLoading = false;
+		}
+	}
+
+	async function setEqBand(i: number, v: number) {
+		eqBands[i] = v;
+		eqBands = [...eqBands];
+		eqActivePreset = null;
+		eqDirty = true;
+		try {
+			await invoke('set_eq_band', { band: i, gainDb: v });
+		} catch (e) {
+			console.error('[settings] set_eq_band failed:', e);
+		}
+	}
+
+	async function setEqPreamp(v: number) {
+		eqPreamp = v;
+		eqDirty = true;
+		try {
+			await invoke('set_eq_preamp', { gainDb: v });
+		} catch (e) {
+			console.error('[settings] set_eq_preamp failed:', e);
+		}
+	}
+
+	async function toggleEq(val: boolean) {
+		eqEnabled = val;
+		try {
+			await invoke('toggle_eq', { enabled: val });
+		} catch (e) {
+			console.error('[settings] toggle_eq failed:', e);
+		}
+	}
+
+	async function applyPreset(preset: Preset) {
+		eqActivePreset = preset;
+		eqDirty = false;
+		try {
+			await invoke('set_eq_preset', { preset });
+			const s = await invoke<EqStateResponse>('get_eq_state');
+			eqBands = [...s.bands];
+			eqEnabled = s.enabled;
+		} catch (e) {
+			console.error('[settings] set_eq_preset failed:', e);
+		}
+	}
+
+	function dbLabel(db: number): string {
+		return db === 0 ? '0' : (db > 0 ? '+' : '') + db.toFixed(1);
+	}
+
+	// ── Custom EQ presets (localStorage) ──────────────────────────────────────────
+
+	interface CustomEqPreset {
+		name: string;
+		bands: number[];
+		preamp: number;
+	}
+
+	const CUSTOM_EQ_KEY = 'resonance-compass-eq-custom-presets';
+	let customEqPresets = $state<CustomEqPreset[]>([]);
+
+	function loadCustomEqPresets() {
+		try {
+			const raw = localStorage.getItem(CUSTOM_EQ_KEY);
+			if (raw) customEqPresets = JSON.parse(raw) as CustomEqPreset[];
+		} catch (e) {
+			console.error('[settings] loadCustomEqPresets failed:', e);
+		}
+	}
+
+	function persistCustomEqPresets() {
+		try {
+			localStorage.setItem(CUSTOM_EQ_KEY, JSON.stringify(customEqPresets));
+		} catch (e) {
+			console.error('[settings] persistCustomEqPresets failed:', e);
+		}
+	}
+
+	function saveEqAsCustom() {
+		const name = (prompt('Name this preset:') ?? '').trim();
+		if (!name) return;
+		customEqPresets = [
+			...customEqPresets.filter((p) => p.name !== name),
+			{ name, bands: [...eqBands], preamp: eqPreamp },
+		];
+		persistCustomEqPresets();
+		eqActivePreset = 'c:' + name;
+		eqDirty = false;
+	}
+
+	function deleteCustomEqPreset(name: string) {
+		customEqPresets = customEqPresets.filter((p) => p.name !== name);
+		persistCustomEqPresets();
+		if (eqActivePreset === 'c:' + name) eqActivePreset = null;
+	}
+
+	async function applyCustomEqPreset(cp: CustomEqPreset) {
+		eqActivePreset = 'c:' + cp.name;
+		eqDirty = false;
+		eqBands = [...cp.bands];
+		eqPreamp = cp.preamp;
+		for (let i = 0; i < cp.bands.length; i++) {
+			try {
+				await invoke('set_eq_band', { band: i, gainDb: cp.bands[i] });
+			} catch (e) {
+				console.error('[settings] applyCustomEqPreset set_eq_band failed:', e);
+			}
+		}
+		try {
+			await invoke('set_eq_preamp', { gainDb: cp.preamp });
+		} catch (e) {
+			console.error('[settings] applyCustomEqPreset set_eq_preamp failed:', e);
+		}
+	}
+
+	onMount(() => {
+		loadEq();
+		loadCustomEqPresets();
+		// Deep-linked from MiniPlayer's 🎛️ EQ button (goto('/settings#eq'))
+		if (page.url.hash === '#eq') {
+			eqOpen = true;
+			requestAnimationFrame(() => {
+				document.getElementById('eq-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		}
+	});
+
 	// ── Data Sovereignty section ────────────────────────────────────────────────
+	// Export/import cover EVERYTHING the app stores: the songs table (with lyrics
+	// and cover art), all mood events, and every localStorage key (playlists,
+	// history, fragments, arrangements, profiles, focus, sattva, theme, EQ
+	// presets, personal emoji definitions, player state, onboarding flags).
 
 	const trackCount = $derived(libraryStore.tracks.length);
 
@@ -31,8 +208,33 @@
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
-	function exportData() {
-		const json = JSON.stringify(libraryStore.tracks, null, 2);
+	interface CompassExport {
+		format: string;
+		version: number;
+		exportedAt: string;
+		library: unknown[];
+		moodEvents: unknown[];
+		localStorage: Record<string, string>;
+	}
+
+	async function buildSnapshot(): Promise<CompassExport> {
+		const ls: Record<string, string> = {};
+		for (let i = 0; i < localStorage.length; i++) {
+			const k = localStorage.key(i);
+			if (k !== null) ls[k] = localStorage.getItem(k) ?? '';
+		}
+		return {
+			format: 'resonance-compass-export',
+			version: 2,
+			exportedAt: new Date().toISOString(),
+			library: libraryStore.tracks,
+			moodEvents: await moodStore.getAllMoodEvents(),
+			localStorage: ls,
+		};
+	}
+
+	async function exportData() {
+		const json = JSON.stringify(await buildSnapshot(), null, 2);
 		const blob = new Blob([json], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
@@ -45,6 +247,68 @@
 		URL.revokeObjectURL(url);
 	}
 
+	// ── Import ──
+
+	let importState = $state<'idle' | 'confirm' | 'importing' | 'error'>('idle');
+	let importError = $state<string | null>(null);
+	let importFileEl = $state<HTMLInputElement | null>(null);
+	let pendingImport: CompassExport | null = null;
+	let importSummary = $state('');
+
+	function onImportFile(e: Event) {
+		const file = (e.currentTarget as HTMLInputElement).files?.[0];
+		if (!file) return;
+		const reader = new FileReader();
+		reader.onload = () => {
+			try {
+				const data = JSON.parse(String(reader.result)) as CompassExport;
+				if (data.format !== 'resonance-compass-export') {
+					throw new Error('Not a Resonance Compass export file.');
+				}
+				pendingImport = data;
+				const nTracks = Array.isArray(data.library) ? data.library.length : 0;
+				const nMoods = Array.isArray(data.moodEvents) ? data.moodEvents.length : 0;
+				const nKeys = Object.keys(data.localStorage ?? {}).length;
+				importSummary = `${nTracks} tracks · ${nMoods} mood events · ${nKeys} settings entries`;
+				importState = 'confirm';
+				importError = null;
+			} catch (err) {
+				importError = err instanceof Error ? err.message : String(err);
+				importState = 'error';
+			}
+			if (importFileEl) importFileEl.value = '';
+		};
+		reader.readAsText(file);
+	}
+
+	async function executeImport() {
+		if (!pendingImport) return;
+		importState = 'importing';
+		try {
+			for (const [k, v] of Object.entries(pendingImport.localStorage ?? {})) {
+				localStorage.setItem(k, v);
+			}
+			if (Array.isArray(pendingImport.library) && pendingImport.library.length > 0) {
+				await libraryStore.importTracks(pendingImport.library as never[]);
+			}
+			if (Array.isArray(pendingImport.moodEvents) && pendingImport.moodEvents.length > 0) {
+				await moodStore.importMoodEvents(pendingImport.moodEvents as never[]);
+			}
+			location.reload();
+		} catch (err) {
+			importError = err instanceof Error ? err.message : String(err);
+			importState = 'error';
+		}
+	}
+
+	function cancelImport() {
+		pendingImport = null;
+		importState = 'idle';
+		importError = null;
+	}
+
+	// ── Purge ──
+
 	function startPurge(withExport: boolean) {
 		pendingExport = withExport;
 		purgeState = 'confirm1';
@@ -56,12 +320,11 @@
 	}
 
 	async function executePurge() {
-		if (pendingExport) exportData();
+		if (pendingExport) await exportData();
 		await libraryStore.clearLibrary();
-		localStorage.removeItem('resonance-compass-vessel-name');
-		localStorage.removeItem('resonance-compass-theme');
-		localStorage.removeItem('onboarding_complete');
-		goto('/onboarding');
+		await moodStore.purgeAll();
+		localStorage.clear();
+		location.reload();
 	}
 </script>
 
@@ -104,7 +367,120 @@
 		</div>
 	</section>
 
-	<!-- ── Section 2: Data Sovereignty ── -->
+	<!-- ── Section: Sensory Profiles ── -->
+	<section class="section">
+		<h2 class="section-title">Sensory Profiles</h2>
+		<div class="profiles-row">
+			<div class="profiles-info">
+				<span class="profiles-count">
+					{profileStore.profiles.length} profile{profileStore.profiles.length !== 1 ? 's' : ''}
+				</span>
+				<span class="profiles-hint">Bundle theme, EQ, and font — switch with one tap.</span>
+			</div>
+			<button class="profiles-manage-btn" onclick={() => goto('/profiles')}>Manage →</button>
+		</div>
+		<label class="toggle-wrap profiles-toggle" aria-label="Show profiles in MiniPlayer">
+			<input
+				type="checkbox"
+				checked={profileStore.showInMiniPlayer}
+				onchange={(e) => profileStore.setShowInMiniPlayer(e.currentTarget.checked)}
+			/>
+			<span>Show quick-switch in the MiniPlayer panel</span>
+		</label>
+	</section>
+
+	<!-- ── Section 2: Equalizer ── -->
+	<section class="section" id="eq-section">
+		<button class="section-toggle" onclick={() => (eqOpen = !eqOpen)} aria-expanded={eqOpen}>
+			<span>🎛️ Equalizer</span>
+			<span class="toggle-arrow">{eqOpen ? '▲' : '▼'}</span>
+		</button>
+
+		{#if eqOpen}
+			<div class="eq-section">
+				<div class="eq-header">
+					<label class="toggle-wrap" aria-label="Enable equalizer">
+						<input
+							type="checkbox"
+							class="sr-only"
+							checked={eqEnabled}
+							onchange={(e) => toggleEq((e.target as HTMLInputElement).checked)}
+						/>
+						<span class="toggle-track" class:on={eqEnabled}><span class="toggle-thumb"></span></span>
+						<span class="toggle-label">{eqEnabled ? 'On' : 'Off'}</span>
+					</label>
+				</div>
+
+				<div class="presets-row">
+					{#each EQ_PRESETS as preset}
+						<button
+							class="preset-btn"
+							class:active={eqActivePreset === preset}
+							onclick={() => applyPreset(preset)}
+						>{PRESET_LABELS[preset]}</button>
+					{/each}
+
+					{#each customEqPresets as cp (cp.name)}
+						<span class="custom-wrap">
+							<button
+								class="preset-btn custom-btn"
+								class:active={eqActivePreset === 'c:' + cp.name}
+								onclick={() => applyCustomEqPreset(cp)}
+							>{cp.name}</button>
+							<button class="preset-del" onclick={() => deleteCustomEqPreset(cp.name)} aria-label="Delete preset {cp.name}">✕</button>
+						</span>
+					{/each}
+
+					{#if eqDirty && eqActivePreset === null}
+						<span class="preset-btn custom-indicator">Custom</span>
+					{/if}
+				</div>
+
+				{#if eqDirty}
+					<button class="save-custom-btn" onclick={saveEqAsCustom}>💾 Save as Custom</button>
+				{/if}
+
+				{#if eqLoading}
+					<p class="loading-hint">Loading EQ state…</p>
+				{:else}
+					<div class="sliders-wrap">
+						<!-- Preamp -->
+						<div class="slider-col preamp-col">
+							<span class="band-db">{dbLabel(eqPreamp)}</span>
+							<div class="slider-track-wrap">
+								<input type="range" class="vslider" min="-12" max="12" step="0.5"
+									value={eqPreamp}
+									oninput={(e) => setEqPreamp(parseFloat((e.target as HTMLInputElement).value))}
+									aria-label="Preamp gain" disabled={!eqEnabled}
+								/>
+								<div class="center-line"></div>
+							</div>
+							<span class="band-label">Pre</span>
+						</div>
+
+						<div class="divider"></div>
+
+						{#each eqBands as band, i}
+							<div class="slider-col">
+								<span class="band-db">{dbLabel(band)}</span>
+								<div class="slider-track-wrap">
+									<input type="range" class="vslider" min="-12" max="12" step="0.5"
+										value={band}
+										oninput={(e) => setEqBand(i, parseFloat((e.target as HTMLInputElement).value))}
+										aria-label="{eqLabels[i]} Hz" disabled={!eqEnabled}
+									/>
+									<div class="center-line"></div>
+								</div>
+								<span class="band-label">{eqLabels[i]}</span>
+							</div>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/if}
+	</section>
+
+	<!-- ── Section 3: Data Sovereignty ── -->
 	<section class="section">
 		<h2 class="section-title">Data Sovereignty</h2>
 
@@ -116,11 +492,43 @@
 
 		<div class="data-actions">
 			<button class="btn-data" onclick={exportData} disabled={trackCount === 0}>
-				Export Library Data
+				Export All Data
 			</button>
 			<button class="btn-data warning" onclick={() => startPurge(true)} disabled={trackCount === 0}>
 				Export &amp; Purge
 			</button>
+		</div>
+
+		<div class="import-zone">
+			<input
+				bind:this={importFileEl}
+				type="file"
+				accept="application/json,.json"
+				class="import-file-input"
+				onchange={onImportFile}
+				aria-label="Choose export file to import"
+			/>
+			{#if importState === 'idle'}
+				<button class="btn-data" onclick={() => importFileEl?.click()}>Import Data</button>
+				<p class="import-hint">Restore a previous export — library, playlists, moods, history, fragments, settings.</p>
+			{:else if importState === 'confirm'}
+				<div class="confirm-card">
+					<p class="confirm-text">Import this export? {importSummary}. Existing data with matching ids will be overwritten.</p>
+					<div class="confirm-actions">
+						<button class="btn-neutral" onclick={cancelImport}>Cancel</button>
+						<button class="btn-data" onclick={executeImport}>Import &amp; Restart</button>
+					</div>
+				</div>
+			{:else if importState === 'importing'}
+				<p class="import-hint">Importing…</p>
+			{:else if importState === 'error'}
+				<div class="confirm-card">
+					<p class="confirm-text">Import failed: {importError}</p>
+					<div class="confirm-actions">
+						<button class="btn-neutral" onclick={cancelImport}>OK</button>
+					</div>
+				</div>
+			{/if}
 		</div>
 
 		<div class="danger-zone">
@@ -182,7 +590,7 @@
 		</div>
 	</section>
 
-	<!-- ── Section 3: About ── -->
+	<!-- ── Section 4: About ── -->
 	<section class="section">
 		<h2 class="section-title">About</h2>
 
@@ -510,5 +918,349 @@
 		font-size: 0.875rem;
 		color: var(--text-secondary);
 		line-height: 1.5;
+	}
+
+	/* ── Equalizer ── */
+	.section-toggle {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding: 0.65rem 0.85rem;
+		background: var(--bg-surface);
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		cursor: pointer;
+		color: var(--text);
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.section-toggle:hover {
+		border-color: var(--accent);
+	}
+	.toggle-arrow {
+		font-size: 0.65rem;
+		color: var(--text-muted);
+	}
+
+	.eq-section {
+		border: 1px solid var(--border-color);
+		border-top: none;
+		border-radius: 0 0 8px 8px;
+		padding: 0.85rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.eq-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.toggle-wrap {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
+		user-select: none;
+	}
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+	.toggle-track {
+		width: 40px;
+		height: 22px;
+		border-radius: 11px;
+		background: var(--bg);
+		border: 1px solid var(--border-color);
+		position: relative;
+		transition: background 0.2s, border-color 0.2s;
+		display: block;
+	}
+	.toggle-track.on {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.toggle-thumb {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #fff;
+		transition: transform 0.2s;
+		display: block;
+	}
+	.toggle-track.on .toggle-thumb {
+		transform: translateX(18px);
+	}
+	.toggle-label {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		min-width: 2rem;
+	}
+
+	.presets-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+	.preset-btn {
+		padding: 0.35rem 0.8rem;
+		border-radius: 20px;
+		border: 1px solid var(--border-color);
+		background: var(--bg-surface);
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+	.preset-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.preset-btn.active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+
+	.sliders-wrap {
+		display: flex;
+		align-items: flex-end;
+		gap: 0.4rem;
+		padding: 0.25rem 0;
+		overflow-x: auto;
+		min-height: 190px;
+	}
+	.slider-col {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.3rem;
+		flex-shrink: 0;
+		width: 34px;
+	}
+	.preamp-col {
+		width: 42px;
+	}
+	.band-db {
+		font-size: 0.65rem;
+		font-weight: 600;
+		color: var(--accent);
+		min-height: 1rem;
+		text-align: center;
+	}
+	.slider-track-wrap {
+		position: relative;
+		height: 140px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.vslider {
+		-webkit-appearance: none;
+		appearance: none;
+		writing-mode: vertical-lr;
+		direction: rtl;
+		width: 26px;
+		height: 140px;
+		background: transparent;
+		cursor: pointer;
+		outline: none;
+		padding: 0;
+		margin: 0;
+	}
+	.vslider:disabled {
+		opacity: 0.35;
+		cursor: default;
+	}
+	.vslider::-webkit-slider-runnable-track {
+		width: 4px;
+		background: var(--border-color);
+		border-radius: 2px;
+	}
+	.vslider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: var(--accent);
+		margin-left: -6px;
+	}
+	.vslider::-moz-range-track {
+		width: 4px;
+		background: var(--border-color);
+		border-radius: 2px;
+	}
+	.vslider::-moz-range-thumb {
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: var(--accent);
+		border: none;
+	}
+	.center-line {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 18px;
+		height: 1px;
+		background: var(--border-color);
+		pointer-events: none;
+	}
+	.band-label {
+		font-size: 0.68rem;
+		color: var(--text-muted);
+		text-align: center;
+	}
+	.divider {
+		width: 1px;
+		height: 140px;
+		background: var(--border-color);
+		flex-shrink: 0;
+		align-self: center;
+	}
+
+	.custom-wrap {
+		display: inline-flex;
+		align-items: center;
+	}
+	.custom-btn {
+		border-radius: 20px 0 0 20px;
+		border-right: none;
+	}
+	.custom-btn.active {
+		border-right: none;
+	}
+	.preset-del {
+		padding: 0.35rem 0.45rem;
+		background: var(--bg-surface);
+		border: 1px solid var(--border-color);
+		border-left: none;
+		border-radius: 0 20px 20px 0;
+		cursor: pointer;
+		color: var(--text-muted);
+		font-size: 0.62rem;
+	}
+	.preset-del:hover {
+		color: #e17055;
+		background: color-mix(in srgb, #e17055 10%, transparent);
+	}
+	.custom-indicator {
+		opacity: 0.55;
+		cursor: default;
+		border-style: dashed;
+		background: transparent;
+	}
+	.save-custom-btn {
+		align-self: flex-start;
+		padding: 0.3rem 0.85rem;
+		border-radius: 20px;
+		border: 1px solid var(--accent);
+		background: transparent;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+	.save-custom-btn:hover {
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+	}
+
+	.loading-hint {
+		color: var(--text-muted);
+		font-size: 0.88rem;
+		margin: 0;
+	}
+
+	/* ── Import ── */
+	.import-zone {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		margin-top: 0.75rem;
+		align-items: flex-start;
+	}
+
+	.import-file-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+	}
+
+	.import-hint {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+		margin: 0;
+	}
+
+	/* ── Sensory Profiles ── */
+	.profiles-row {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.profiles-info {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		min-width: 0;
+	}
+
+	.profiles-count {
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	.profiles-hint {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+
+	.profiles-manage-btn {
+		padding: 0.5rem 0.9rem;
+		min-height: 44px;
+		background: none;
+		border: 1px solid var(--accent);
+		border-radius: 8px;
+		color: var(--accent);
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+		font-family: inherit;
+		flex-shrink: 0;
+	}
+
+	.profiles-toggle {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		cursor: pointer;
 	}
 </style>

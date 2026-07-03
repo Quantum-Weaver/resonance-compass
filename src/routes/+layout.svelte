@@ -4,19 +4,29 @@
 	import { goto } from '$app/navigation';
 	import { themeStore } from '$lib/stores/theme.svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { playerStore } from '$lib/stores/player.svelte';
+	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import { moodStore } from '$lib/stores/mood.svelte';
+	import { profileStore } from '$lib/stores/profile.svelte';
 	import { getThemeColors } from '$lib/theme/theme';
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import ComfortBar from '$lib/components/ComfortBar.svelte';
+	import MiniPlayer from '$lib/components/MiniPlayer.svelte';
 
 	let { children } = $props();
 
-	// Hide chrome during the immersive onboarding flow
+	// Hide chrome during immersive full-screen flows
 	const isOnboarding = $derived(page.url.pathname === '/onboarding');
+	const isSattva = $derived(page.url.pathname === '/sattva');
+	const hideChrome = $derived(isOnboarding || isSattva);
 
 	onMount(async () => {
 		themeStore.loadTheme();
 		await libraryStore.initDB();
+		playlistStore.loadPlaylists();
+		await moodStore.initDB();
+		playerStore.restoreState();
+		profileStore.loadProfiles();
 		const done = localStorage.getItem('onboarding_complete');
 		if (!done && page.url.pathname !== '/onboarding') {
 			goto('/onboarding');
@@ -46,16 +56,16 @@
 		--border-color: {colors.border};
 	"
 >
-	{#if !isOnboarding}
+	{#if !hideChrome}
 		<Sidebar />
 	{/if}
 
-	<main class="main-content" class:full-screen={isOnboarding}>
+	<main class="main-content" class:full-screen={hideChrome}>
 		{@render children()}
 	</main>
 
-	{#if !isOnboarding}
-		<ComfortBar />
+	{#if !hideChrome}
+		<MiniPlayer />
 	{/if}
 </div>
 
@@ -71,6 +81,7 @@
 	.main-content {
 		flex: 1;
 		overflow-y: auto;
+		overflow-x: hidden;
 		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
 	}
 

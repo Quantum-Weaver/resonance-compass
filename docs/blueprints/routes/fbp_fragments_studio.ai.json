@@ -1,0 +1,164 @@
+{
+  "route_name": "fragments_studio",
+  "source_file": "src\\routes\\fragments\\studio\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.571884 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "mixName",
+        "rune": "$state",
+        "source": "'My Mix'"
+      },
+      {
+        "name": "pickerOpen",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "arrangementsOpen",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "crossfadeSecs",
+        "rune": "$state",
+        "source": "2"
+      },
+      {
+        "name": "exporting",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "validLayers",
+        "rune": "$derived",
+        "source": "layers.filter((l"
+      }
+    ],
+    "functions": [
+      {
+        "name": "fragFor",
+        "params": "layer: StudioLayer"
+      },
+      {
+        "name": "addFragment",
+        "params": "frag: Fragment"
+      },
+      {
+        "name": "removeLayer",
+        "params": "id: string"
+      },
+      {
+        "name": "updateLayer",
+        "params": "id: string, changes: Partial<StudioLayer>"
+      },
+      {
+        "name": "moveLayer",
+        "params": "id: string, dir: -1 | 1"
+      },
+      {
+        "name": "autoCrossfade",
+        "params": ""
+      },
+      {
+        "name": "clearExport",
+        "params": ""
+      },
+      {
+        "name": "exportMix",
+        "params": ""
+      },
+      {
+        "name": "playMix",
+        "params": ""
+      },
+      {
+        "name": "saveCurrent",
+        "params": ""
+      },
+      {
+        "name": "loadArrangement",
+        "params": "id: string"
+      },
+      {
+        "name": "fmtSec",
+        "params": "s: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "xfade-input",
+      "ctrl-slider",
+      "picker-dur",
+      "layer-card",
+      "layer-remove",
+      "viz-bar",
+      "layer-name",
+      "ctrl-label",
+      "export-path",
+      "layer-controls",
+      "studio-title",
+      "arrangements-panel",
+      "layer-move",
+      "mix-name-input",
+      "xfade-group",
+      "picker-row",
+      "layer-list",
+      "layer-dur",
+      "layer-missing",
+      "export-error",
+      "empty-icon",
+      "export-done",
+      "viz-lane",
+      "arr-meta",
+      "viz-total",
+      "export-btn",
+      "timeline-viz",
+      "arr-load",
+      "layer-head",
+      "arr-name",
+      "layer-dot",
+      "ctrl",
+      "studio-header",
+      "add-btn",
+      "xfade-unit",
+      "action-row",
+      "picker-name",
+      "panel-empty",
+      "export-section",
+      "arr-delete",
+      "ghost-btn",
+      "studio-page",
+      "picker-panel",
+      "back-link",
+      "empty-sub",
+      "name-row",
+      "arr-row",
+      "empty-title",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 173,
+    "template_lines": 178,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 99,
+  "status": "complete"
+}

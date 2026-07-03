@@ -1,0 +1,150 @@
+{
+  "route_name": "profiles",
+  "source_file": "src\\routes\\profiles\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.540953 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "profiles",
+        "rune": "$derived",
+        "source": "profileStore.profiles"
+      },
+      {
+        "name": "activeId",
+        "rune": "$derived",
+        "source": "profileStore.activeProfileId"
+      },
+      {
+        "name": "creating",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "newName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "newEmoji",
+        "rune": "$state",
+        "source": "'\u2728'"
+      },
+      {
+        "name": "editName",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "editEmoji",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "editTheme",
+        "rune": "$state",
+        "source": "'dark'"
+      },
+      {
+        "name": "editEq",
+        "rune": "$state",
+        "source": "'flat'"
+      },
+      {
+        "name": "playlists",
+        "rune": "$derived",
+        "source": "playlistStore.playlists"
+      }
+    ],
+    "functions": [
+      {
+        "name": "submitCreate",
+        "params": ""
+      },
+      {
+        "name": "startEdit",
+        "params": "p: SensoryProfile"
+      },
+      {
+        "name": "saveEdit",
+        "params": "id: string"
+      },
+      {
+        "name": "deleteConfirmed",
+        "params": "id: string"
+      },
+      {
+        "name": "activate",
+        "params": "id: string"
+      },
+      {
+        "name": "summarize",
+        "params": "p: SensoryProfile"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "edit-panel",
+      "profiles-page",
+      "cancel-inline",
+      "save-btn",
+      "card-main",
+      "card-actions",
+      "edit-label",
+      "card-summary",
+      "empty-icon",
+      "count",
+      "deactivate-btn",
+      "card-name",
+      "page-helper",
+      "icon-btn",
+      "danger-confirm",
+      "confirm-btn",
+      "opt-btn",
+      "name-input",
+      "large",
+      "emoji-quick",
+      "activate-btn",
+      "profile-list",
+      "edit-input",
+      "option-row",
+      "edit-footer",
+      "create-btn",
+      "card-emoji",
+      "create-row",
+      "new-emoji-preview",
+      "emoji-btn",
+      "small",
+      "create-form",
+      "card-info",
+      "page-header",
+      "empty-sub",
+      "cancel-btn",
+      "profile-card",
+      "header-left",
+      "empty-title",
+      "empty-state",
+      "edit-row"
+    ],
+    "has_style_block": true,
+    "script_lines": 103,
+    "template_lines": 175,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 16,
+  "status": "complete"
+}

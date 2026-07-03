@@ -35,19 +35,23 @@ export interface MoodEvent {
   context: string;
 }
 
-// Album — derived grouping for UI
+// Album — derived grouping for UI. id follows the "albumName|||artistName" format (CLAUDE.md).
 export interface Album {
+  id: string;
   name: string;
   artist: string;
   year?: number;
+  genre?: string;
   coverArt?: string;
   tracks: Track[];
 }
 
-// Artist — derived grouping for UI
+// Artist — derived grouping for UI. id is the artist's name (original case).
 export interface Artist {
+  id: string;
   name: string;
   albums: Album[];
+  trackCount: number;
 }
 
 // Playlist — mirrors the playlists table

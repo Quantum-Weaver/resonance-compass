@@ -1,0 +1,74 @@
+{
+  "route_name": "library_artist_id",
+  "source_file": "src\\routes\\library\\artist\\[id]\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.567117 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "artistId",
+        "rune": "$derived",
+        "source": "decodeURIComponent(page.params.id ?? ''"
+      },
+      {
+        "name": "artistTracks",
+        "rune": "$derived",
+        "source": "libraryStore.getTracksByArtist(artistId"
+      },
+      {
+        "name": "artistAlbums",
+        "rune": "$derived",
+        "source": "libraryStore.getAlbumsByArtist(artistId"
+      }
+    ],
+    "functions": [
+      {
+        "name": "playAll",
+        "params": ""
+      },
+      {
+        "name": "openAlbum",
+        "params": "id: string"
+      },
+      {
+        "name": "goBack",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "album-art",
+      "album-name",
+      "avatar",
+      "back-btn",
+      "artist-stats",
+      "hero",
+      "play-btn",
+      "album-grid",
+      "artist-page",
+      "album-card"
+    ],
+    "has_style_block": true,
+    "script_lines": 22,
+    "template_lines": 32,
+    "uses_runes": {
+      "state": false,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 99,
+  "status": "complete"
+}

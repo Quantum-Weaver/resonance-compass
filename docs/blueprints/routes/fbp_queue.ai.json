@@ -1,0 +1,58 @@
+{
+  "route_name": "queue",
+  "source_file": "src\\routes\\queue\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.543224 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "queue",
+        "rune": "$derived",
+        "source": "playerStore.queue"
+      },
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      }
+    ],
+    "functions": [
+      {
+        "name": "goBack",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "clear-btn",
+      "back-btn",
+      "header",
+      "empty-sub",
+      "empty-icon",
+      "queue-page",
+      "track-list",
+      "empty-title",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 11,
+    "template_lines": 36,
+    "uses_runes": {
+      "state": false,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 4,
+  "status": "complete"
+}

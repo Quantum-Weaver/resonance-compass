@@ -1,0 +1,1155 @@
+{
+  "project": "resonance-compass",
+  "scanned_at": "2026-06-30T21:38:53.158024+00:00",
+  "total_files": 161,
+  "files": [
+    {
+      "path": ".claude/settings.json",
+      "type": "config",
+      "language": "json",
+      "lines": 19,
+      "description": "Settings"
+    },
+    {
+      "path": ".gitignore",
+      "type": "config",
+      "language": "unknown",
+      "lines": 27,
+      "description": ".gitignore"
+    },
+    {
+      "path": ".svelte-kit/ambient.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 420,
+      "description": "this file is generated \u2014 do not edit it"
+    },
+    {
+      "path": ".svelte-kit/env.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 1,
+      "description": "See https://svelte.dev/docs/kit/environment-variables for more information"
+    },
+    {
+      "path": ".svelte-kit/generated/client/app.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 49,
+      "description": "in dev, this makes Vite inject its client as this module's first dependency,"
+    },
+    {
+      "path": ".svelte-kit/generated/client/matchers.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Matchers"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/0.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 3,
+      "description": "0"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/1.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "1"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "2"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/3.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "3"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "4"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/5.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "5"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/6.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "6"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/7.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "7"
+    },
+    {
+      "path": ".svelte-kit/generated/root.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 3,
+      "description": "Root"
+    },
+    {
+      "path": ".svelte-kit/generated/root.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 68,
+      "description": "Root"
+    },
+    {
+      "path": ".svelte-kit/generated/server/internal.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 55,
+      "description": "Internal"
+    },
+    {
+      "path": ".svelte-kit/generated/shared/error-template.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Error template"
+    },
+    {
+      "path": ".svelte-kit/non-ambient.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 48,
+      "description": "this file is generated \u2014 do not edit it"
+    },
+    {
+      "path": ".svelte-kit/tsconfig.json",
+      "type": "config",
+      "language": "json",
+      "lines": 56,
+      "description": "Tsconfig"
+    },
+    {
+      "path": ".svelte-kit/types/route_meta_data.json",
+      "type": "config",
+      "language": "json",
+      "lines": 21,
+      "description": "Route meta data"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 25,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/library/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/onboarding/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/playlists/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/resonance/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/settings/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 93,
+      "description": "CLAUDE.md \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/BUILD-SEQUENCE.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 105,
+      "description": "BUILD SEQUENCE \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/CHECKLIST.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 146,
+      "description": "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST"
+    },
+    {
+      "path": "docs/CLAUDE-CONTEXT.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 52,
+      "description": "CLAUDE CONTEXT \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/CONTRIBUTING.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 21,
+      "description": "CONTRIBUTING \u2014 Resonance Compass"
+    },
+    {
+      "path": "docs/GIT-HYGIENE.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 189,
+      "description": "SANCTUARY GIT HYGIENE GUIDE"
+    },
+    {
+      "path": "docs/RESONANCE-GRAMMAR.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 192,
+      "description": "THE RESONANCE GRAMMAR"
+    },
+    {
+      "path": "docs/SCREEN-INVENTORY.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 33,
+      "description": "SCREEN INVENTORY \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/session-reports/2026-06-30-identity-migration.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 122,
+      "description": "Session Report: 2026-06-30 \u2014 Identity Migration"
+    },
+    {
+      "path": "helper.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 35,
+      "description": "REBUILD"
+    },
+    {
+      "path": "LICENSE",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 21,
+      "description": "LICENSE"
+    },
+    {
+      "path": "package-lock.json",
+      "type": "config",
+      "language": "json",
+      "lines": 2509,
+      "description": "Package lock"
+    },
+    {
+      "path": "package.json",
+      "type": "config",
+      "language": "json",
+      "lines": 35,
+      "description": "Package"
+    },
+    {
+      "path": "PHILOSOPHY.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 114,
+      "description": "THE RESONANCE LICENSE \u2014 PHILOSOPHY"
+    },
+    {
+      "path": "README.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 89,
+      "description": "\ud83c\udfbb Resonance Compass"
+    },
+    {
+      "path": "reports/2026-06-30-assessment-manual.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 225,
+      "description": "Resonance Compass v2 \u2014 Repository Assessment"
+    },
+    {
+      "path": "reports/2026-06-30-assessment.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 225,
+      "description": "Resonance Compass v2 \u2014 Repository Assessment"
+    },
+    {
+      "path": "src/app.css",
+      "type": "source",
+      "language": "css",
+      "lines": 81,
+      "description": "src/app.css */"
+    },
+    {
+      "path": "src/app.html",
+      "type": "source",
+      "language": "html",
+      "lines": 13,
+      "description": "App"
+    },
+    {
+      "path": "src/lib/components/ComfortBar.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 178,
+      "description": "ComfortBar"
+    },
+    {
+      "path": "src/lib/components/GradientPulse.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 54,
+      "description": "GradientPulse"
+    },
+    {
+      "path": "src/lib/components/Sidebar.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 178,
+      "description": "Sidebar"
+    },
+    {
+      "path": "src/lib/cosmic/colors.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 376,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/consciousness.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 381,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/dimensions.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 576,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/effects.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 270,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/index.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 247,
+      "description": "====================================================="
+    },
+    {
+      "path": "src/lib/cosmic/motion.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 532,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/positioning.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 573,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/typography.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 679,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/data/emojis.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 99,
+      "description": "Emojis"
+    },
+    {
+      "path": "src/lib/data/senses.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 109,
+      "description": "Senses"
+    },
+    {
+      "path": "src/lib/stores/library.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 76,
+      "description": "Library.svelte"
+    },
+    {
+      "path": "src/lib/stores/mood.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 101,
+      "description": "Mood.svelte"
+    },
+    {
+      "path": "src/lib/stores/player.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 62,
+      "description": "Phase 1: wire to Tauri audio backend"
+    },
+    {
+      "path": "src/lib/stores/theme.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 42,
+      "description": "Theme.svelte"
+    },
+    {
+      "path": "src/lib/styles/custom_overrides.css",
+      "type": "source",
+      "language": "css",
+      "lines": 52,
+      "description": "styles/custom-overrides.css"
+    },
+    {
+      "path": "src/lib/styles/generated/animations.css",
+      "type": "source",
+      "language": "css",
+      "lines": 471,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/styles/generated/domains.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1518,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/styles/generated/parallax.css",
+      "type": "source",
+      "language": "css",
+      "lines": 524,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/styles/generated/text_effects.css",
+      "type": "source",
+      "language": "css",
+      "lines": 470,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/styles/generated/typography.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1581,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/styles/generated/variables.css",
+      "type": "source",
+      "language": "css",
+      "lines": 478,
+      "description": "========================================================================== */"
+    },
+    {
+      "path": "src/lib/styles/generated/zoom.css",
+      "type": "source",
+      "language": "css",
+      "lines": 128,
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/theme/theme.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 61,
+      "description": "Theme"
+    },
+    {
+      "path": "src/lib/types/types.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 89,
+      "description": "Theme customization"
+    },
+    {
+      "path": "src/routes/+layout.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 80,
+      "description": "+layout"
+    },
+    {
+      "path": "src/routes/+layout.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 5,
+      "description": "Tauri doesn't have a Node.js server to do proper SSR"
+    },
+    {
+      "path": "src/routes/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 84,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/library/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 20,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/onboarding/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 392,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/playlists/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 20,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/resonance/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 20,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/settings/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 514,
+      "description": "+page"
+    },
+    {
+      "path": "src-tauri/.gitignore",
+      "type": "config",
+      "language": "unknown",
+      "lines": 7,
+      "description": ".gitignore"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 25,
+      "description": "The jniLibs/<abi> dirs contain ONLY libc++_shared.so \u2014 not libc.a."
+    },
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "type": "config",
+      "language": "json",
+      "lines": 17,
+      "description": "Default"
+    },
+    {
+      "path": "src-tauri/Cargo.lock",
+      "type": "config",
+      "language": "unknown",
+      "lines": 6038,
+      "description": "Cargo"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "type": "config",
+      "language": "toml",
+      "lines": 27,
+      "description": "Cargo"
+    },
+    {
+      "path": "src-tauri/gen/schemas/acl-manifests.json",
+      "type": "config",
+      "language": "json",
+      "lines": 1,
+      "description": "Acl manifests"
+    },
+    {
+      "path": "src-tauri/gen/schemas/capabilities.json",
+      "type": "config",
+      "language": "json",
+      "lines": 1,
+      "description": "Capabilities"
+    },
+    {
+      "path": "src-tauri/gen/schemas/desktop-schema.json",
+      "type": "config",
+      "language": "json",
+      "lines": 6221,
+      "description": "Desktop schema"
+    },
+    {
+      "path": "src-tauri/gen/schemas/windows-schema.json",
+      "type": "config",
+      "language": "json",
+      "lines": 6221,
+      "description": "Windows schema"
+    },
+    {
+      "path": "src-tauri/icons/128x128.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 9.88,
+      "description": "128x128"
+    },
+    {
+      "path": "src-tauri/icons/128x128@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 22.84,
+      "description": "128x128@2x"
+    },
+    {
+      "path": "src-tauri/icons/32x32.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1.59,
+      "description": "32x32"
+    },
+    {
+      "path": "src-tauri/icons/64x64.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4.27,
+      "description": "64x64"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-anydpi-v26/ic_launcher.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 5,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.17,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.37,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.27,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.17,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.23,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.27,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.28,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.5,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.48,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.42,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.88,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.7,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.55,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1.32,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.88,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/icons/android/values/ic_launcher_background.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 4,
+      "description": "Ic launcher background"
+    },
+    {
+      "path": "src-tauri/icons/icon.icns",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 2436,
+      "description": "Icon"
+    },
+    {
+      "path": "src-tauri/icons/icon.ico",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 35.65,
+      "description": "Icon"
+    },
+    {
+      "path": "src-tauri/icons/icon.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 55.05,
+      "description": "Icon"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@1x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.73,
+      "description": "AppIcon 20x20@1x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@2x-1.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2.3,
+      "description": "AppIcon 20x20@2x 1"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2.3,
+      "description": "AppIcon 20x20@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@3x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3.87,
+      "description": "AppIcon 20x20@3x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@1x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1.38,
+      "description": "AppIcon 29x29@1x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@2x-1.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3.79,
+      "description": "AppIcon 29x29@2x 1"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3.79,
+      "description": "AppIcon 29x29@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@3x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 6.15,
+      "description": "AppIcon 29x29@3x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@1x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2.3,
+      "description": "AppIcon 40x40@1x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@2x-1.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 5.7,
+      "description": "AppIcon 40x40@2x 1"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 5.7,
+      "description": "AppIcon 40x40@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@3x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 9.12,
+      "description": "AppIcon 40x40@3x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-512@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 60.79,
+      "description": "AppIcon 512@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-60x60@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 9.12,
+      "description": "AppIcon 60x60@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-60x60@3x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 14.78,
+      "description": "AppIcon 60x60@3x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-76x76@1x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 5.4,
+      "description": "AppIcon 76x76@1x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-76x76@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 12.2,
+      "description": "AppIcon 76x76@2x"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-83.5x83.5@2x.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 13.45,
+      "description": "AppIcon 83.5x83.5@2x"
+    },
+    {
+      "path": "src-tauri/icons/source.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 51.94,
+      "description": "Source"
+    },
+    {
+      "path": "src-tauri/icons/Square107x107Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 7.91,
+      "description": "Square107x107Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square142x142Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 11.17,
+      "description": "Square142x142Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square150x150Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 11.95,
+      "description": "Square150x150Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square284x284Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 26.07,
+      "description": "Square284x284Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square30x30Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1.44,
+      "description": "Square30x30Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square310x310Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 29.12,
+      "description": "Square310x310Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square44x44Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2.65,
+      "description": "Square44x44Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square71x71Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4.88,
+      "description": "Square71x71Logo"
+    },
+    {
+      "path": "src-tauri/icons/Square89x89Logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 6.34,
+      "description": "Square89x89Logo"
+    },
+    {
+      "path": "src-tauri/icons/StoreLogo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3.09,
+      "description": "StoreLogo"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 106,
+      "description": "Lib"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 6,
+      "description": "Prevents additional console window on Windows in release, DO NOT REMOVE!!"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "type": "config",
+      "language": "json",
+      "lines": 37,
+      "description": "Tauri.conf"
+    },
+    {
+      "path": "static/aethelred-avatar.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1410.42,
+      "description": "Aethelred avatar"
+    },
+    {
+      "path": "static/cello.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2934.02,
+      "description": "Cello"
+    },
+    {
+      "path": "static/favicon.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1941.39,
+      "description": "Favicon"
+    },
+    {
+      "path": "static/favicon2.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Favicon2"
+    },
+    {
+      "path": "static/Icon-1.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 242.27,
+      "description": "Icon 1"
+    },
+    {
+      "path": "static/Icon-2.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 312.82,
+      "description": "Icon 2"
+    },
+    {
+      "path": "static/QW-logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1941.39,
+      "description": "QW logo"
+    },
+    {
+      "path": "static/svelte.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Svelte"
+    },
+    {
+      "path": "static/tauri.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Tauri"
+    },
+    {
+      "path": "static/tauri.svg",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 218,
+      "description": "Tauri"
+    },
+    {
+      "path": "static/thread.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3872.19,
+      "description": "Thread"
+    },
+    {
+      "path": "static/vite.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Vite"
+    },
+    {
+      "path": "svelte.config.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 18,
+      "description": "Tauri doesn't have a Node.js server to do proper SSR"
+    },
+    {
+      "path": "tsconfig.json",
+      "type": "config",
+      "language": "json",
+      "lines": 14,
+      "description": "Tsconfig"
+    },
+    {
+      "path": "vite.config.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 25,
+      "description": "Vite.config"
+    }
+  ],
+  "by_type": {
+    "config": 16,
+    "source": 67,
+    "doc": 14,
+    "unknown": 3,
+    "binary": 61
+  },
+  "by_language": {
+    "json": 12,
+    "unknown": 67,
+    "typescript": 26,
+    "javascript": 15,
+    "svelte": 11,
+    "markdown": 14,
+    "css": 9,
+    "html": 1,
+    "rust": 3,
+    "toml": 1,
+    "xml": 2
+  },
+  "secrets_flagged": []
+}

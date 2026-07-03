@@ -1,0 +1,71 @@
+{
+  "route_name": "playlists_id",
+  "source_file": "src\\routes\\playlists\\[id]\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.564441 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "playlistId",
+        "rune": "$derived",
+        "source": "page.params.id ?? ''"
+      },
+      {
+        "name": "playlist",
+        "rune": "$derived",
+        "source": "playlistStore.getPlaylist(playlistId"
+      },
+      {
+        "name": "currentTrack",
+        "rune": "$derived",
+        "source": "playerStore.currentTrack"
+      }
+    ],
+    "functions": [
+      {
+        "name": "playAll",
+        "params": ""
+      },
+      {
+        "name": "playTrack",
+        "params": "index: number"
+      },
+      {
+        "name": "goBack",
+        "params": ""
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "back-btn",
+      "hero",
+      "play-btn",
+      "empty-icon",
+      "empty-text",
+      "track-count",
+      "track-list",
+      "playlist-detail",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 28,
+    "template_lines": 42,
+    "uses_runes": {
+      "state": false,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 3,
+  "status": "complete"
+}

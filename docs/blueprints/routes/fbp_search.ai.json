@@ -1,0 +1,155 @@
+{
+  "route_name": "search",
+  "source_file": "src\\routes\\search\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.551340 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [
+        "types"
+      ],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "query",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "debouncedQ",
+        "rune": "$state",
+        "source": "''"
+      },
+      {
+        "name": "tracks",
+        "rune": "$derived",
+        "source": "libraryStore.tracks"
+      },
+      {
+        "name": "albums",
+        "rune": "$derived",
+        "source": "libraryStore.albums"
+      },
+      {
+        "name": "artists",
+        "rune": "$derived",
+        "source": "libraryStore.artists"
+      },
+      {
+        "name": "q",
+        "rune": "$derived",
+        "source": "debouncedQ"
+      },
+      {
+        "name": "displayArtists",
+        "rune": "$derived",
+        "source": "category === 'all' ? matchedArtists.slice(0, 3"
+      },
+      {
+        "name": "displayAlbums",
+        "rune": "$derived",
+        "source": "category === 'all' ? matchedAlbums.slice(0, 3"
+      },
+      {
+        "name": "displayTracks",
+        "rune": "$derived",
+        "source": "category === 'all' ? matchedTracks.slice(0, 5"
+      },
+      {
+        "name": "showArtists",
+        "rune": "$derived",
+        "source": "category === 'all' || category === 'artists'"
+      },
+      {
+        "name": "showAlbums",
+        "rune": "$derived",
+        "source": "category === 'all' || category === 'albums'"
+      },
+      {
+        "name": "showTracks",
+        "rune": "$derived",
+        "source": "category === 'all' || category === 'tracks'"
+      }
+    ],
+    "functions": [
+      {
+        "name": "saveSearch",
+        "params": "term: string"
+      },
+      {
+        "name": "clearSearches",
+        "params": ""
+      },
+      {
+        "name": "selectRecent",
+        "params": "term: string"
+      },
+      {
+        "name": "navigateAlbum",
+        "params": "album: Album"
+      },
+      {
+        "name": "navigateArtist",
+        "params": "artist: Artist"
+      },
+      {
+        "name": "playTrack",
+        "params": "trackIndex: number"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "row-arrow",
+      "artist-name",
+      "artist-avatar",
+      "card-wrap",
+      "album-grid",
+      "artist-list",
+      "tabs",
+      "track-list",
+      "search-bar-wrap",
+      "recent-chip",
+      "clear-btn",
+      "tab",
+      "empty-icon",
+      "results-area",
+      "search-input",
+      "recent-icon",
+      "recent-list",
+      "artist-row",
+      "empty-text",
+      "recent-section",
+      "result-section",
+      "search-page",
+      "link-btn",
+      "search-icon",
+      "recent-label",
+      "section-title",
+      "section-header",
+      "empty-sub",
+      "recent-header",
+      "artist-info",
+      "artist-meta",
+      "empty-state"
+    ],
+    "has_style_block": true,
+    "script_lines": 117,
+    "template_lines": 154,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": true
+    },
+    "z_indices": [],
+    "has_ondestroy": true
+  },
+  "phase": 11,
+  "status": "complete"
+}

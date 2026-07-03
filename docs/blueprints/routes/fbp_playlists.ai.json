@@ -1,0 +1,74 @@
+{
+  "route_name": "playlists",
+  "source_file": "src\\routes\\playlists\\+page.svelte",
+  "scan_timestamp": "2026-07-02T11:03:30.538092 | in sovereign time",
+  "analysis": {
+    "imports": {
+      "components": [],
+      "stores": [],
+      "types": [],
+      "navigation": [
+        "from '$app/navigation'"
+      ],
+      "data": [],
+      "cosmic": [],
+      "theme": []
+    },
+    "reactive_state": [
+      {
+        "name": "showCreate",
+        "rune": "$state",
+        "source": "false"
+      },
+      {
+        "name": "newName",
+        "rune": "$state",
+        "source": "''"
+      }
+    ],
+    "functions": [
+      {
+        "name": "handleCreate",
+        "params": ""
+      },
+      {
+        "name": "handleDelete",
+        "params": "id: string, name: string"
+      }
+    ],
+    "goto_navigation": [],
+    "css_classes": [
+      "playlist-click",
+      "chevron",
+      "empty-heading",
+      "playlist-name",
+      "empty-icon",
+      "playlist-meta",
+      "delete-btn",
+      "add-btn",
+      "create-input",
+      "playlist-icon",
+      "create-btn",
+      "playlists-page",
+      "create-row",
+      "playlist-list",
+      "pl-header",
+      "playlist-item",
+      "pl-title",
+      "empty-state",
+      "playlist-info"
+    ],
+    "has_style_block": true,
+    "script_lines": 30,
+    "template_lines": 53,
+    "uses_runes": {
+      "state": true,
+      "derived": true,
+      "effect": false
+    },
+    "z_indices": [],
+    "has_ondestroy": false
+  },
+  "phase": 3,
+  "status": "complete"
+}
