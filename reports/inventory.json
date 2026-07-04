@@ -1,27 +1,27 @@
 {
   "project": "resonance-compass",
-  "scanned_at": "2026-06-30T21:38:53.158024+00:00",
-  "total_files": 161,
+  "scanned_at": "2026-07-04T20:40:14.947763+00:00",
+  "total_files": 644,
   "files": [
     {
       "path": ".claude/settings.json",
       "type": "config",
       "language": "json",
-      "lines": 19,
+      "lines": 135,
       "description": "Settings"
     },
     {
       "path": ".gitignore",
       "type": "config",
       "language": "unknown",
-      "lines": 27,
+      "lines": 52,
       "description": ".gitignore"
     },
     {
       "path": ".svelte-kit/ambient.d.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 420,
+      "lines": 446,
       "description": "this file is generated \u2014 do not edit it"
     },
     {
@@ -35,7 +35,7 @@
       "path": ".svelte-kit/generated/client/app.js",
       "type": "source",
       "language": "javascript",
-      "lines": 49,
+      "lines": 81,
       "description": "in dev, this makes Vite inject its client as this module's first dependency,"
     },
     {
@@ -60,11 +60,116 @@
       "description": "1"
     },
     {
+      "path": ".svelte-kit/generated/client/nodes/10.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "10"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/11.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "11"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/12.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "12"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/13.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "13"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/14.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "14"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/15.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "15"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/16.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "16"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/17.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "17"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/18.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "18"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/19.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "19"
+    },
+    {
       "path": ".svelte-kit/generated/client/nodes/2.js",
       "type": "source",
       "language": "javascript",
       "lines": 1,
       "description": "2"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/20.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "20"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/21.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "21"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/22.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "22"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/23.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "23"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/24.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "24"
     },
     {
       "path": ".svelte-kit/generated/client/nodes/3.js",
@@ -102,6 +207,202 @@
       "description": "7"
     },
     {
+      "path": ".svelte-kit/generated/client/nodes/8.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "8"
+    },
+    {
+      "path": ".svelte-kit/generated/client/nodes/9.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "9"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/app.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 81,
+      "description": "in dev, this makes Vite inject its client as this module's first dependency,"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/matchers.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Matchers"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/0.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 3,
+      "description": "0"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/1.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "1"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/10.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "10"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/11.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "11"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/12.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "12"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/13.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "13"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/14.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "14"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/15.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "15"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/16.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "16"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/17.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "17"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/18.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "18"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/19.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "19"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "2"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/20.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "20"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/21.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "21"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/22.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "22"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/23.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "23"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/3.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "3"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "4"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/5.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "5"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/6.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "6"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/7.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "7"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/8.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "8"
+    },
+    {
+      "path": ".svelte-kit/generated/client-optimized/nodes/9.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "9"
+    },
+    {
       "path": ".svelte-kit/generated/root.js",
       "type": "source",
       "language": "javascript",
@@ -133,8 +434,1466 @@
       "path": ".svelte-kit/non-ambient.d.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 48,
+      "lines": 69,
       "description": "this file is generated \u2014 do not edit it"
+    },
+    {
+      "path": ".svelte-kit/output/client/.vite/manifest.json",
+      "type": "config",
+      "language": "json",
+      "lines": 912,
+      "description": "Manifest"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/0.C6k1c2Mc.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from r"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/10.g1tbr8QG.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "10.g1tbr8QG"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/11.DGjVYtB8.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "11.DGjVYtB8"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/12.DR302m84.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "12.DR302m84"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/13.DCoTGqLm.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "13.DCoTGqLm"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/14.D8GNCXXK.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "14.D8GNCXXK"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/15.BB3sNheC.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "15.BB3sNheC"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/16.UlKfZMJr.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "16.UlKfZMJr"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/17.BM8Ofp_C.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "17.BM8Ofp C"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/18.DtLMI3Wr.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "18.DtLMI3Wr"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/19.ZFjqwmd4.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "19.ZFjqwmd4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/2.B_Oj-mA9.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "2.B Oj mA9"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/20.DcRPoDoO.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "20.DcRPoDoO"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/21.BnZvNXqn.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "21.BnZvNXqn"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/22.ndga5WqC.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "22.ndga5WqC"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/23.Dm_gNxIv.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "23.Dm gNxIv"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/3.n5IR5i4_.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "3.n5IR5i4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/4.BhUfd30r.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "4.BhUfd30r"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/5.6ezFF3Dv.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "5.6ezFF3Dv"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/6.D3C4CU6V.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "6.D3C4CU6V"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/7.Bp6UK9G6.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "7.Bp6UK9G6"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/8.B4Gk1FPh.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "8.B4Gk1FPh"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/9.CuZPNtkn.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "9.CuZPNtkn"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/AlbumCard.CpSe2Yjp.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "AlbumCard.CpSe2Yjp"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/EmojiPalette.1BAfQkOp.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "EmojiPalette.1BAfQkOp"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/GradientPulse.CysNErvS.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "GradientPulse.CysNErvS"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/assets/TrackItem.CJQNUudm.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "TrackItem.CJQNUudm"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/2vJasNzO.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "2vJasNzO"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/AqXPeKC1.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "AqXPeKC1"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/B08B5jt4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 2,
+      "description": "B08B5jt4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/BaFabLaC.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "BaFabLaC"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/BnKVzypF.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "BnKVzypF"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/BoFxrMlB.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "BoFxrMlB"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/BRY9XaKZ.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "BRY9XaKZ"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/C3pJpguB.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "C3pJpguB"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CbIo4ZGi.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CbIo4ZGi"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CFlaifSx.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CFlaifSx"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CjpHUHfS.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CjpHUHfS"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CPwLOqZt.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CPwLOqZt"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CQV2EdNd.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CQV2EdNd"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CsIAI2_i.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CsIAI2 i"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CUwHNU3a.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CUwHNU3a"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/CV_zdgzL.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "CV zdgzL"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DgSDV5dn.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DgSDV5dn"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DI02QdgS.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 2,
+      "description": "DI02QdgS"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DIY5Dyk9.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DIY5Dyk9"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DJbRKDXO.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DJbRKDXO"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DLMWsVUl.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DLMWsVUl"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DM7MgSw0.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 2,
+      "description": "DM7MgSw0"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DnFMVf8I.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DnFMVf8I"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/Dp1pzeXC.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Dp1pzeXC"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/DthUc1rn.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "DthUc1rn"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/EBSeeyJr.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "EBSeeyJr"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/jb8op-9Z.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Jb8op 9Z"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/lahigXbY.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "LahigXbY"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/lxzuSvsc.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "LxzuSvsc"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/MMV2fdzQ.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "MMV2fdzQ"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/MXE3_YpE.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "MXE3 YpE"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/wbPk3Yxo.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 81,
+      "description": "WbPk3Yxo"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/chunks/ZpPbHZHz.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "ZpPbHZHz"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/entry/app.mZ6YEFnz.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 2,
+      "description": "App.mZ6YEFnz"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/entry/start.DI_ZayaL.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "Start.DI ZayaL"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/0.omBTbYNY.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 10,
+      "description": "0.omBTbYNY"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/1.DyMKEOtF.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "1.DyMKEOtF"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/10._szOIwjw.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "10. szOIwjw"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/11.DemiEhMo.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 4,
+      "description": "11.DemiEhMo"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/12.C_LijtSk.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "12.C LijtSk"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/13.BAXJrNNH.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "13.BAXJrNNH"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/14.QAj2rjk4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "14.QAj2rjk4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/15.IZaaRtgj.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "15.IZaaRtgj"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/16.Bj800oSu.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "16.Bj800oSu"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/17.LpdsD6f5.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "17.LpdsD6f5"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/18.aOyMoBoB.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "18.aOyMoBoB"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/19.DAjvsqAR.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 4,
+      "description": "19.DAjvsqAR"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/2.CYd4mUhc.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "2.CYd4mUhc"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/20.DaMVhl8p.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "20.DaMVhl8p"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/21.IqDexqEV.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "21.IqDexqEV"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/22.CI9qvogu.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "22.CI9qvogu"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/23.C1B3Ajvy.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "23.C1B3Ajvy"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/3.DpcDOtB3.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "3.DpcDOtB3"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/4.BTfEF5jX.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "4.BTfEF5jX"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/5.ygPiy9o4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "5.ygPiy9o4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/6.BKdJKcBO.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "6.BKdJKcBO"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/7.BNx7PmV7.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "7.BNx7PmV7"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/8.sMfiPond.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "8.sMfiPond"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/immutable/nodes/9.BtBLIQI4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1,
+      "description": "9.BtBLIQI4"
+    },
+    {
+      "path": ".svelte-kit/output/client/_app/version.json",
+      "type": "config",
+      "language": "json",
+      "lines": 1,
+      "description": "Version"
+    },
+    {
+      "path": ".svelte-kit/output/client/aethelred-avatar.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1410.42,
+      "description": "Aethelred avatar"
+    },
+    {
+      "path": ".svelte-kit/output/client/cello.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 2934.02,
+      "description": "Cello"
+    },
+    {
+      "path": ".svelte-kit/output/client/favicon.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1941.39,
+      "description": "Favicon"
+    },
+    {
+      "path": ".svelte-kit/output/client/favicon2.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Favicon2"
+    },
+    {
+      "path": ".svelte-kit/output/client/Icon-1.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 242.27,
+      "description": "Icon 1"
+    },
+    {
+      "path": ".svelte-kit/output/client/Icon-2.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 312.82,
+      "description": "Icon 2"
+    },
+    {
+      "path": ".svelte-kit/output/client/QW-logo.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 1941.39,
+      "description": "QW logo"
+    },
+    {
+      "path": ".svelte-kit/output/client/svelte.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Svelte"
+    },
+    {
+      "path": ".svelte-kit/output/client/tauri.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Tauri"
+    },
+    {
+      "path": ".svelte-kit/output/client/tauri.svg",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 116.78,
+      "description": "Tauri"
+    },
+    {
+      "path": ".svelte-kit/output/client/thread.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3872.19,
+      "description": "Thread"
+    },
+    {
+      "path": ".svelte-kit/output/client/vite.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 40.49,
+      "description": "Vite"
+    },
+    {
+      "path": ".svelte-kit/output/server/.vite/manifest.json",
+      "type": "config",
+      "language": "json",
+      "lines": 645,
+      "description": "Manifest"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_layout.7D9VUDhh.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from r"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.6ezFF3Dv.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.6ezFF3Dv"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.B_Oj-mA9.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.B Oj mA9"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BB3sNheC.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BB3sNheC"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BhUfd30r.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BhUfd30r"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BJU6aQGL.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BJU6aQGL"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BM2rW_LM.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BM2rW LM"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BM8Ofp_C.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BM8Ofp C"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.Bp6UK9G6.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.Bp6UK9G6"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.BwK-9fCk.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.BwK 9fCk"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.C463n3C2.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.C463n3C2"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.CuZPNtkn.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.CuZPNtkn"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.CWFlXoit.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.CWFlXoit"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.D3C4CU6V.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.D3C4CU6V"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.D8GNCXXK.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.D8GNCXXK"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.DCoTGqLm.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.DCoTGqLm"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.DcRPoDoO.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.DcRPoDoO"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.DNhj-Qvy.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.DNhj Qvy"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.DtLMI3Wr.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.DtLMI3Wr"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.DwFofAio.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.DwFofAio"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.g1tbr8QG.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.g1tbr8QG"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.ndga5WqC.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.ndga5WqC"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/_page.UlKfZMJr.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "Page.UlKfZMJr"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/AlbumCard.CpSe2Yjp.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "AlbumCard.CpSe2Yjp"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/EmojiPalette.GS5NeUUL.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "EmojiPalette.GS5NeUUL"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/GradientPulse.D0rpziNa.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "GradientPulse.D0rpziNa"
+    },
+    {
+      "path": ".svelte-kit/output/server/_app/immutable/assets/TrackItem.BFLwYpdH.css",
+      "type": "source",
+      "language": "css",
+      "lines": 1,
+      "description": "TrackItem.BFLwYpdH"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/AlbumCard.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 25,
+      "description": "AlbumCard"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/client.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 30,
+      "description": "eslint-disable-next-line @typescript-eslint/require-await"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/client2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 5,
+      "description": "Client2"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/dimensions.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 282,
+      "description": "0px"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/exports.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 174,
+      "description": "Exports"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/false.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 4,
+      "description": "False"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/fragment.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 10,
+      "description": "Fragment.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/GradientPulse.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 10,
+      "description": "GradientPulse"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/index-server.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 9,
+      "description": "Index server"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/index.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1279,
+      "description": "Index"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/index2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 24,
+      "description": "Index2"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/index3.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 59,
+      "description": "Index3"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/internal.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 135,
+      "description": "Internal"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/library.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 236,
+      "description": "Library.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/mood.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 95,
+      "description": "Mood.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/player.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 282,
+      "description": "Player.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/playlist.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 76,
+      "description": "Playlist.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/profile.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 20,
+      "description": "Profile.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/root.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 2968,
+      "description": "Root"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/server.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 34,
+      "description": "Server"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/state.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 19,
+      "description": "State.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/theme.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 91,
+      "description": "============================================================================"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/TrackItem.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 72,
+      "description": "TrackItem"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/utils.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1005,
+      "description": "Utils"
+    },
+    {
+      "path": ".svelte-kit/output/server/chunks/utils2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 41,
+      "description": "Utils2"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/fallbacks/error.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 11,
+      "description": "Error.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/_layout.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 286,
+      "description": "Layout.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/_layout.ts.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 4,
+      "description": "Layout.ts"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 113,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/focus/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 81,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/fragments/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 210,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/fragments/studio/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 105,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/history/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 127,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/library/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 74,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/library/album/_id_/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 66,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/library/artist/_id_/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 37,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/liked/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 119,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/lyrics/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 95,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/nowplaying/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 116,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/onboarding/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 62,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/playlists/_id_/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 57,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/playlists/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 46,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/profiles/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 132,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/queue/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 41,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/resonance/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 90,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/sattva/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 47,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/search/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 160,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/settings/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 113,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/timer/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 138,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/entries/pages/visualizer/_page.svelte.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 174,
+      "description": "Page.svelte"
+    },
+    {
+      "path": ".svelte-kit/output/server/env.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 13,
+      "description": "Env"
+    },
+    {
+      "path": ".svelte-kit/output/server/index.js",
+      "type": "source",
+      "language": "javascript",
+      "large": true,
+      "size_kb": 127.73,
+      "description": "Index"
+    },
+    {
+      "path": ".svelte-kit/output/server/internal.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 14,
+      "description": "Internal"
+    },
+    {
+      "path": ".svelte-kit/output/server/manifest-full.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 207,
+      "description": "Manifest full"
+    },
+    {
+      "path": ".svelte-kit/output/server/manifest.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 207,
+      "description": "Manifest"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/0.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 10,
+      "description": "0"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/1.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "1"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/10.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "10"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/11.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "11"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/12.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "12"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/13.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "13"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/14.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "14"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/15.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "15"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/16.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "16"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/17.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "17"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/18.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "18"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/19.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "19"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/2.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "2"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/20.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "20"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/21.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "21"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/22.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "22"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/23.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "23"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/3.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "3"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/4.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "4"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/5.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "5"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/6.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "6"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/7.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "7"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/8.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "8"
+    },
+    {
+      "path": ".svelte-kit/output/server/nodes/9.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 6,
+      "description": "9"
+    },
+    {
+      "path": ".svelte-kit/output/server/remote-entry.js",
+      "type": "source",
+      "language": "javascript",
+      "lines": 1164,
+      "description": "Remote entry"
     },
     {
       "path": ".svelte-kit/tsconfig.json",
@@ -147,7 +1906,7 @@
       "path": ".svelte-kit/types/route_meta_data.json",
       "type": "config",
       "language": "json",
-      "lines": 21,
+      "lines": 69,
       "description": "Route meta data"
     },
     {
@@ -158,7 +1917,77 @@
       "description": "$types.d"
     },
     {
+      "path": ".svelte-kit/types/src/routes/equalizer/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/focus/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/fragments/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/fragments/studio/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/history/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
       "path": ".svelte-kit/types/src/routes/library/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/library/album/[id]/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 18,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/library/artist/[id]/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 18,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/liked/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/lyrics/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/nowplaying/$types.d.ts",
       "type": "source",
       "language": "typescript",
       "lines": 17,
@@ -179,7 +2008,42 @@
       "description": "$types.d"
     },
     {
+      "path": ".svelte-kit/types/src/routes/playlists/[id]/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 18,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/profiles/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/queue/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
       "path": ".svelte-kit/types/src/routes/resonance/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/sattva/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/search/$types.d.ts",
       "type": "source",
       "language": "typescript",
       "lines": 17,
@@ -193,11 +2057,249 @@
       "description": "$types.d"
     },
     {
+      "path": ".svelte-kit/types/src/routes/timer/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
+      "path": ".svelte-kit/types/src/routes/visualizer/$types.d.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 17,
+      "description": "$types.d"
+    },
+    {
       "path": "CLAUDE.md",
       "type": "doc",
       "language": "markdown",
-      "lines": 93,
+      "lines": 110,
       "description": "CLAUDE.md \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/ANDROID-BUILD-NOTES.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 95,
+      "description": "Android Build Notes \u2014 Resonance Compass v2"
+    },
+    {
+      "path": "docs/blueprints/dbp_backend.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 46,
+      "description": "Dbp backend.ai"
+    },
+    {
+      "path": "docs/blueprints/dbp_frontend.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 152,
+      "description": "Dbp frontend.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_components.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 602,
+      "description": "Obp components.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_routes.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 167,
+      "description": "Obp routes.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_rust_backend.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 259,
+      "description": "Obp rust backend.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_stores.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 264,
+      "description": "Obp stores.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_styles.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 377,
+      "description": "Obp styles.ai"
+    },
+    {
+      "path": "docs/blueprints/layers/obp_types.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 108,
+      "description": "Obp types.ai"
+    },
+    {
+      "path": "docs/blueprints/pbp_resonance_compass.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 13,
+      "description": "Pbp resonance compass.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_focus.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 211,
+      "description": "Fbp focus.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_fragments.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 115,
+      "description": "Fbp fragments.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_fragments_studio.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 164,
+      "description": "Fbp fragments studio.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_history.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 106,
+      "description": "Fbp history.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_home.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 98,
+      "description": "Fbp home.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_library.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 100,
+      "description": "Fbp library.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_library_album_id.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 125,
+      "description": "Fbp library album id.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_library_artist_id.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 74,
+      "description": "Fbp library artist id.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_liked.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 81,
+      "description": "Fbp liked.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_lyrics.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 150,
+      "description": "Fbp lyrics.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_nowplaying.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 233,
+      "description": "Fbp nowplaying.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_onboarding.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 140,
+      "description": "Fbp onboarding.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_playlists.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 74,
+      "description": "Fbp playlists.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_playlists_id.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 71,
+      "description": "Fbp playlists id.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_profiles.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 150,
+      "description": "Fbp profiles.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_queue.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 58,
+      "description": "Fbp queue.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_resonance.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 162,
+      "description": "Fbp resonance.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_sattva.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 120,
+      "description": "Fbp sattva.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_search.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 155,
+      "description": "Fbp search.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_settings.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 237,
+      "description": "Fbp settings.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_timer.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 92,
+      "description": "Fbp timer.ai"
+    },
+    {
+      "path": "docs/blueprints/routes/fbp_visualizer.ai.json",
+      "type": "config",
+      "language": "json",
+      "lines": 213,
+      "description": "Fbp visualizer.ai"
     },
     {
       "path": "docs/BUILD-SEQUENCE.md",
@@ -210,14 +2312,14 @@
       "path": "docs/CHECKLIST.md",
       "type": "doc",
       "language": "markdown",
-      "lines": 146,
+      "lines": 329,
       "description": "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST"
     },
     {
       "path": "docs/CLAUDE-CONTEXT.md",
       "type": "doc",
       "language": "markdown",
-      "lines": 52,
+      "lines": 59,
       "description": "CLAUDE CONTEXT \u2014 Resonance Compass v2"
     },
     {
@@ -233,6 +2335,13 @@
       "language": "markdown",
       "lines": 189,
       "description": "SANCTUARY GIT HYGIENE GUIDE"
+    },
+    {
+      "path": "docs/RELEASE-NOTES-v2.0.0.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 77,
+      "description": "Resonance Compass v2.0.0 \u2014 Release Notes"
     },
     {
       "path": "docs/RESONANCE-GRAMMAR.md",
@@ -254,6 +2363,27 @@
       "language": "markdown",
       "lines": 122,
       "description": "Session Report: 2026-06-30 \u2014 Identity Migration"
+    },
+    {
+      "path": "docs/v1-v2-gap-report.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 99,
+      "description": "v1 \u2192 v2 Gap Report \u2014 Resonance Compass"
+    },
+    {
+      "path": "docs/VISUALIZER-PLAYABLE-MODE.md",
+      "type": "doc",
+      "language": "markdown",
+      "lines": 118,
+      "description": "Visualizer Playable Mode \u2014 Developer Guide"
+    },
+    {
+      "path": "generate_blueprint.py",
+      "type": "source",
+      "language": "python",
+      "lines": 733,
+      "description": "\u2500\u2500\u2500 CONFIGURATION \u2500\u2500\u2500"
     },
     {
       "path": "helper.md",
@@ -280,7 +2410,7 @@
       "path": "package.json",
       "type": "config",
       "language": "json",
-      "lines": 35,
+      "lines": 36,
       "description": "Package"
     },
     {
@@ -298,6 +2428,193 @@
       "description": "\ud83c\udfbb Resonance Compass"
     },
     {
+      "path": "release/resonance-compass-v2.0.1.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 36889.77,
+      "description": "Resonance compass v2.0.1"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.1.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.1.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.2.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 133790.24,
+      "description": "Resonance compass v2.0.2"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.2.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 1065.58,
+      "description": "Resonance compass v2.0.2.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.3.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37197.77,
+      "description": "Resonance compass v2.0.3"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.3.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.3.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.4.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37241.77,
+      "description": "Resonance compass v2.0.4"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.4.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.4.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.5.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37277.77,
+      "description": "Resonance compass v2.0.5"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.5.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.5.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.6.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37277.77,
+      "description": "Resonance compass v2.0.6"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.6.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.6.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.7.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37281.77,
+      "description": "Resonance compass v2.0.7"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.7.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.7.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.8.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37281.77,
+      "description": "Resonance compass v2.0.8"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.8.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.8.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.9.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37281.77,
+      "description": "Resonance compass v2.0.9"
+    },
+    {
+      "path": "release/resonance-compass-v2.0.9.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.0.9.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.0.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37281.77,
+      "description": "Resonance compass v2.1.0"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.0.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.1.0.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.1.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37297.77,
+      "description": "Resonance compass v2.1.1"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.1.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.1.1.apk"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.2.apk",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 37297.77,
+      "description": "Resonance compass v2.1.2"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.2.apk.idsig",
+      "type": "unknown",
+      "language": "unknown",
+      "large": true,
+      "size_kb": 297.58,
+      "description": "Resonance compass v2.1.2.apk"
+    },
+    {
+      "path": "release/resonance-compass.keystore",
+      "type": "unknown",
+      "language": "unknown",
+      "description": "Flagged \u2014 contents not read (env/secret/keystore)",
+      "size_kb": 2.76
+    },
+    {
       "path": "reports/2026-06-30-assessment-manual.md",
       "type": "doc",
       "language": "markdown",
@@ -308,29 +2625,64 @@
       "path": "reports/2026-06-30-assessment.md",
       "type": "doc",
       "language": "markdown",
-      "lines": 225,
-      "description": "Resonance Compass v2 \u2014 Repository Assessment"
+      "lines": 101,
+      "description": "Resonance Compass \u2014 Assessment Report"
+    },
+    {
+      "path": "reports/analysis.json",
+      "type": "config",
+      "language": "json",
+      "lines": 137,
+      "description": "Analysis"
+    },
+    {
+      "path": "reports/inventory.json",
+      "type": "config",
+      "language": "json",
+      "lines": 1155,
+      "description": "Inventory"
+    },
+    {
+      "path": "resonance-compass.keystore",
+      "type": "unknown",
+      "language": "unknown",
+      "description": "Flagged \u2014 contents not read (env/secret/keystore)",
+      "size_kb": 2.76
+    },
+    {
+      "path": "scripts/sync-android-extras.mjs",
+      "type": "source",
+      "language": "javascript",
+      "lines": 53,
+      "description": "Syncs committed Android customizations into the gitignored, regenerable"
     },
     {
       "path": "src/app.css",
       "type": "source",
       "language": "css",
-      "lines": 81,
+      "lines": 91,
       "description": "src/app.css */"
     },
     {
       "path": "src/app.html",
       "type": "source",
       "language": "html",
-      "lines": 13,
+      "lines": 16,
       "description": "App"
     },
     {
-      "path": "src/lib/components/ComfortBar.svelte",
+      "path": "src/lib/components/AlbumCard.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 178,
-      "description": "ComfortBar"
+      "lines": 109,
+      "description": "AlbumCard"
+    },
+    {
+      "path": "src/lib/components/EmojiPalette.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 157,
+      "description": "EmojiPalette"
     },
     {
       "path": "src/lib/components/GradientPulse.svelte",
@@ -340,11 +2692,242 @@
       "description": "GradientPulse"
     },
     {
+      "path": "src/lib/components/icons/IconChevron.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconChevron"
+    },
+    {
+      "path": "src/lib/components/icons/IconCompass.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconCompass"
+    },
+    {
+      "path": "src/lib/components/icons/IconEqualizer.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 14,
+      "description": "IconEqualizer"
+    },
+    {
+      "path": "src/lib/components/icons/IconFocus.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 12,
+      "description": "IconFocus"
+    },
+    {
+      "path": "src/lib/components/icons/IconFragment.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 10,
+      "description": "IconFragment"
+    },
+    {
+      "path": "src/lib/components/icons/IconHeart.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 6,
+      "description": "IconHeart"
+    },
+    {
+      "path": "src/lib/components/icons/IconHistory.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconHistory"
+    },
+    {
+      "path": "src/lib/components/icons/IconHome.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 6,
+      "description": "IconHome"
+    },
+    {
+      "path": "src/lib/components/icons/IconLibrary.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconLibrary"
+    },
+    {
+      "path": "src/lib/components/icons/IconLyrics.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 10,
+      "description": "IconLyrics"
+    },
+    {
+      "path": "src/lib/components/icons/IconPause.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconPause"
+    },
+    {
+      "path": "src/lib/components/icons/IconPlay.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 6,
+      "description": "IconPlay"
+    },
+    {
+      "path": "src/lib/components/icons/IconPlaylist.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 9,
+      "description": "IconPlaylist"
+    },
+    {
+      "path": "src/lib/components/icons/IconProfiles.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconProfiles"
+    },
+    {
+      "path": "src/lib/components/icons/IconRepeat.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 9,
+      "description": "IconRepeat"
+    },
+    {
+      "path": "src/lib/components/icons/IconRepeatOne.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 10,
+      "description": "IconRepeatOne"
+    },
+    {
+      "path": "src/lib/components/icons/IconResonance.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconResonance"
+    },
+    {
+      "path": "src/lib/components/icons/Icons.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 89,
+      "description": "Icons"
+    },
+    {
+      "path": "src/lib/components/icons/IconSattva.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 14,
+      "description": "IconSattva"
+    },
+    {
+      "path": "src/lib/components/icons/IconSearch.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconSearch"
+    },
+    {
+      "path": "src/lib/components/icons/IconSettings.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconSettings"
+    },
+    {
+      "path": "src/lib/components/icons/IconShuffle.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 10,
+      "description": "IconShuffle"
+    },
+    {
+      "path": "src/lib/components/icons/IconSkipBack.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconSkipBack"
+    },
+    {
+      "path": "src/lib/components/icons/IconSkipForward.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 7,
+      "description": "IconSkipForward"
+    },
+    {
+      "path": "src/lib/components/icons/IconTimer.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 9,
+      "description": "IconTimer"
+    },
+    {
+      "path": "src/lib/components/icons/IconVisualizer.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 9,
+      "description": "IconVisualizer"
+    },
+    {
+      "path": "src/lib/components/icons/IconVolume.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconVolume"
+    },
+    {
+      "path": "src/lib/components/icons/IconVolumeMuted.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 8,
+      "description": "IconVolumeMuted"
+    },
+    {
+      "path": "src/lib/components/MediaPermissionDialog.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 113,
+      "description": "MediaPermissionDialog"
+    },
+    {
+      "path": "src/lib/components/MiniPlayer.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 375,
+      "description": "MiniPlayer"
+    },
+    {
+      "path": "src/lib/components/PlayerControls.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 200,
+      "description": "PlayerControls"
+    },
+    {
       "path": "src/lib/components/Sidebar.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 178,
+      "lines": 211,
       "description": "Sidebar"
+    },
+    {
+      "path": "src/lib/components/TimerVisualization.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 594,
+      "description": "TimerVisualization"
+    },
+    {
+      "path": "src/lib/components/TrackItem.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 341,
+      "description": "TrackItem"
     },
     {
       "path": "src/lib/cosmic/colors.ts",
@@ -417,25 +3000,60 @@
       "description": "Senses"
     },
     {
+      "path": "src/lib/stores/focus.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 99,
+      "description": "Focus.svelte"
+    },
+    {
+      "path": "src/lib/stores/fragment.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 72,
+      "description": "Fragment.svelte"
+    },
+    {
       "path": "src/lib/stores/library.svelte.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 76,
-      "description": "Library.svelte"
+      "lines": 414,
+      "description": "SQLite bound-parameter limit is 999. 13 cols x 50 rows = 650 params per batch."
     },
     {
       "path": "src/lib/stores/mood.svelte.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 101,
+      "lines": 191,
       "description": "Mood.svelte"
     },
     {
       "path": "src/lib/stores/player.svelte.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 62,
-      "description": "Phase 1: wire to Tauri audio backend"
+      "lines": 397,
+      "description": "\u2500\u2500 Listening History \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "src/lib/stores/playlist.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 98,
+      "description": "Playlist.svelte"
+    },
+    {
+      "path": "src/lib/stores/profile.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 150,
+      "description": "\u2500\u2500 Types \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "src/lib/stores/studio.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 82,
+      "description": "Studio.svelte"
     },
     {
       "path": "src/lib/stores/theme.svelte.ts",
@@ -443,6 +3061,20 @@
       "language": "typescript",
       "lines": 42,
       "description": "Theme.svelte"
+    },
+    {
+      "path": "src/lib/stores/timer.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 102,
+      "description": "Locks to numeric and hides the cycle control when the OS prefers reduced motion."
+    },
+    {
+      "path": "src/lib/stores/ui.svelte.ts",
+      "type": "source",
+      "language": "typescript",
+      "lines": 10,
+      "description": "Cross-component UI signals that don't belong to any domain store."
     },
     {
       "path": "src/lib/styles/custom_overrides.css",
@@ -511,14 +3143,14 @@
       "path": "src/lib/types/types.ts",
       "type": "source",
       "language": "typescript",
-      "lines": 89,
+      "lines": 93,
       "description": "Theme customization"
     },
     {
       "path": "src/routes/+layout.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 80,
+      "lines": 101,
       "description": "+layout"
     },
     {
@@ -532,42 +3164,154 @@
       "path": "src/routes/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 84,
+      "lines": 354,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/focus/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 831,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/fragments/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 445,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/fragments/studio/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 628,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/history/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 374,
       "description": "+page"
     },
     {
       "path": "src/routes/library/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 20,
+      "lines": 369,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/library/album/[id]/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 400,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/library/artist/[id]/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 169,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/liked/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 416,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/lyrics/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 558,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/nowplaying/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 798,
       "description": "+page"
     },
     {
       "path": "src/routes/onboarding/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 392,
+      "lines": 668,
       "description": "+page"
     },
     {
       "path": "src/routes/playlists/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 20,
+      "lines": 252,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/playlists/[id]/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 145,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/profiles/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 629,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/queue/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 96,
       "description": "+page"
     },
     {
       "path": "src/routes/resonance/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 20,
+      "lines": 745,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/sattva/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 436,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/search/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 515,
       "description": "+page"
     },
     {
       "path": "src/routes/settings/+page.svelte",
       "type": "source",
       "language": "svelte",
-      "lines": 514,
+      "lines": 1318,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/timer/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 270,
+      "description": "+page"
+    },
+    {
+      "path": "src/routes/visualizer/+page.svelte",
+      "type": "source",
+      "language": "svelte",
+      "lines": 1169,
       "description": "+page"
     },
     {
@@ -576,6 +3320,13 @@
       "language": "unknown",
       "lines": 7,
       "description": ".gitignore"
+    },
+    {
+      "path": "src-tauri/android-extras/MediaPermissionPlugin.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 80,
+      "description": "MediaPermissionPlugin \u2014 runtime media-permission bridge for library scanning."
     },
     {
       "path": "src-tauri/build.rs",
@@ -595,22 +3346,634 @@
       "path": "src-tauri/Cargo.lock",
       "type": "config",
       "language": "unknown",
-      "lines": 6038,
+      "large": true,
+      "size_kb": 162.28,
       "description": "Cargo"
     },
     {
       "path": "src-tauri/Cargo.toml",
       "type": "config",
       "language": "toml",
-      "lines": 27,
+      "lines": 39,
       "description": "Cargo"
+    },
+    {
+      "path": "src-tauri/gen/android/.editorconfig",
+      "type": "config",
+      "language": "unknown",
+      "lines": 12,
+      "description": ".editorconfig"
+    },
+    {
+      "path": "src-tauri/gen/android/.gitignore",
+      "type": "config",
+      "language": "unknown",
+      "lines": 20,
+      "description": ".gitignore"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/checksums/checksums.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "Checksums"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/executionHistory/executionHistory.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4906.9,
+      "description": "ExecutionHistory"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/executionHistory/executionHistory.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "ExecutionHistory"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/fileChanges/last-build.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.0,
+      "description": "Last build"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/fileHashes/fileHashes.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 138.07,
+      "description": "FileHashes"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/fileHashes/fileHashes.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 2,
+      "description": "FileHashes"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/fileHashes/resourceHashesCache.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 23.91,
+      "description": "ResourceHashesCache"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/8.14.3/gc.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 0,
+      "description": "Gc"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "BuildOutputCleanup"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/buildOutputCleanup/cache.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 2,
+      "description": "Cache"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/buildOutputCleanup/outputFiles.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 58.36,
+      "description": "OutputFiles"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/file-system.probe",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "File system"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/noVersion/buildLogic.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "BuildLogic"
+    },
+    {
+      "path": "src-tauri/gen/android/.gradle/vcs-1/gc.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 0,
+      "description": "Gc"
+    },
+    {
+      "path": "src-tauri/gen/android/app/.gitignore",
+      "type": "config",
+      "language": "unknown",
+      "lines": 6,
+      "description": ".gitignore"
+    },
+    {
+      "path": "src-tauri/gen/android/app/build.gradle.kts",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 71,
+      "description": "Build.gradle"
+    },
+    {
+      "path": "src-tauri/gen/android/app/proguard-rules.pro",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 21,
+      "description": "Proguard rules"
+    },
+    {
+      "path": "src-tauri/gen/android/app/proguard-tauri.pro",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 5,
+      "description": "Proguard tauri"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/AndroidManifest.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 41,
+      "description": "AndroidManifest"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/assets/tauri.conf.json",
+      "type": "config",
+      "language": "json",
+      "lines": 1,
+      "description": "Tauri.conf"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/Ipc.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 25,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/Logger.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 89,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/PermissionHelper.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 117,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/proguard-wry.pro",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 37,
+      "description": "Proguard wry"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/Rust.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 48,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/RustWebChromeClient.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 493,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/RustWebView.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 98,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/RustWebViewClient.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 100,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/TauriActivity.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 65,
+      "description": "Copyright 2019-2024 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/generated/WryActivity.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 175,
+      "description": "Copyright 2020-2023 Tauri Programme within The Commons Conservancy"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/MainActivity.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 11,
+      "description": "MainActivity"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/plugin/MediaPermissionPlugin.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 80,
+      "description": "MediaPermissionPlugin \u2014 runtime media-permission bridge for library scanning."
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/libc++_shared.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 9264.04,
+      "description": "Libc++ shared"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/libresonance_compass_lib.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.0,
+      "description": "Libresonance compass lib"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a/libc++_shared.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 7390.96,
+      "description": "Libc++ shared"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a/libresonance_compass_lib.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.0,
+      "description": "Libresonance compass lib"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/x86/libc++_shared.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 7473.08,
+      "description": "Libc++ shared"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/x86/libresonance_compass_lib.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.0,
+      "description": "Libresonance compass lib"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/x86_64/libc++_shared.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 8879.58,
+      "description": "Libc++ shared"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/jniLibs/x86_64/libresonance_compass_lib.so",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 0.0,
+      "description": "Libresonance compass lib"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 170,
+      "description": "Ic launcher background"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 30,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/layout/activity_main.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 18,
+      "description": "Activity main"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 5,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4.18,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 45.01,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4.46,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 3.96,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 22.29,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 4.27,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 13.43,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 73.2,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 14.5,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 27.42,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 144.54,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 29.91,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 45.2,
+      "description": "Ic launcher"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 237.1,
+      "description": "Ic launcher foreground"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 49.23,
+      "description": "Ic launcher round"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values/colors.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 10,
+      "description": "Colors"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values/ic_launcher_background.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 4,
+      "description": "Ic launcher background"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values/strings.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 4,
+      "description": "Strings"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values/themes.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 6,
+      "description": "Themes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values-night/themes.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 6,
+      "description": "Themes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/xml/file_paths.xml",
+      "type": "source",
+      "language": "xml",
+      "lines": 5,
+      "description": "File paths"
+    },
+    {
+      "path": "src-tauri/gen/android/app/tauri.build.gradle.kts",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 9,
+      "description": "Tauri.build.gradle"
+    },
+    {
+      "path": "src-tauri/gen/android/app/tauri.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 3,
+      "description": "Tauri"
+    },
+    {
+      "path": "src-tauri/gen/android/build.gradle.kts",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 22,
+      "description": "Build.gradle"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 51.77,
+      "description": "ExecutionHistory"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/8.14.3/executionHistory/executionHistory.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "ExecutionHistory"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 2,
+      "description": "BuildOutputCleanup"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/buildOutputCleanup/cache.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 2,
+      "description": "Cache"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 18.43,
+      "description": "OutputFiles"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/.gradle/file-system.probe",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 1,
+      "description": "File system"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/build.gradle.kts",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 23,
+      "description": "Build.gradle"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass/kotlin/BuildTask.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 68,
+      "description": "Try different Windows-specific extensions"
+    },
+    {
+      "path": "src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass/kotlin/RustPlugin.kt",
+      "type": "source",
+      "language": "kotlin",
+      "lines": 85,
+      "description": "RustPlugin"
+    },
+    {
+      "path": "src-tauri/gen/android/gradle/wrapper/gradle-wrapper.jar",
+      "type": "binary",
+      "language": "unknown",
+      "size_kb": 57.82,
+      "description": "Gradle wrapper"
+    },
+    {
+      "path": "src-tauri/gen/android/gradle/wrapper/gradle-wrapper.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 6,
+      "description": "Gradle wrapper"
+    },
+    {
+      "path": "src-tauri/gen/android/gradle.properties",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 24,
+      "description": "Gradle"
+    },
+    {
+      "path": "src-tauri/gen/android/gradlew",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 185,
+      "description": "Gradlew"
+    },
+    {
+      "path": "src-tauri/gen/android/gradlew.bat",
+      "type": "source",
+      "language": "batch",
+      "lines": 89,
+      "description": "Gradlew"
+    },
+    {
+      "path": "src-tauri/gen/android/settings.gradle",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 3,
+      "description": "Settings"
+    },
+    {
+      "path": "src-tauri/gen/android/tauri.settings.gradle",
+      "type": "unknown",
+      "language": "unknown",
+      "lines": 9,
+      "description": "Tauri.settings"
     },
     {
       "path": "src-tauri/gen/schemas/acl-manifests.json",
       "type": "config",
       "language": "json",
-      "lines": 1,
+      "large": true,
+      "size_kb": 139.1,
       "description": "Acl manifests"
+    },
+    {
+      "path": "src-tauri/gen/schemas/android-schema.json",
+      "type": "config",
+      "language": "json",
+      "large": true,
+      "size_kb": 403.02,
+      "description": "Android schema"
     },
     {
       "path": "src-tauri/gen/schemas/capabilities.json",
@@ -623,42 +3986,52 @@
       "path": "src-tauri/gen/schemas/desktop-schema.json",
       "type": "config",
       "language": "json",
-      "lines": 6221,
+      "large": true,
+      "size_kb": 403.02,
       "description": "Desktop schema"
+    },
+    {
+      "path": "src-tauri/gen/schemas/mobile-schema.json",
+      "type": "config",
+      "language": "json",
+      "large": true,
+      "size_kb": 403.02,
+      "description": "Mobile schema"
     },
     {
       "path": "src-tauri/gen/schemas/windows-schema.json",
       "type": "config",
       "language": "json",
-      "lines": 6221,
+      "large": true,
+      "size_kb": 403.02,
       "description": "Windows schema"
     },
     {
       "path": "src-tauri/icons/128x128.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 9.88,
+      "size_kb": 28.88,
       "description": "128x128"
     },
     {
       "path": "src-tauri/icons/128x128@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 22.84,
+      "size_kb": 90.71,
       "description": "128x128@2x"
     },
     {
       "path": "src-tauri/icons/32x32.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 1.59,
+      "size_kb": 2.57,
       "description": "32x32"
     },
     {
       "path": "src-tauri/icons/64x64.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 4.27,
+      "size_kb": 8.64,
       "description": "64x64"
     },
     {
@@ -672,105 +4045,105 @@
       "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.17,
+      "size_kb": 2.42,
       "description": "Ic launcher"
     },
     {
       "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_foreground.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.37,
+      "size_kb": 19.38,
       "description": "Ic launcher foreground"
     },
     {
       "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_round.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.27,
+      "size_kb": 2.67,
       "description": "Ic launcher round"
     },
     {
       "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.17,
+      "size_kb": 2.34,
       "description": "Ic launcher"
     },
     {
       "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_foreground.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.23,
+      "size_kb": 9.65,
       "description": "Ic launcher foreground"
     },
     {
       "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_round.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.27,
+      "size_kb": 2.58,
       "description": "Ic launcher round"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.28,
+      "size_kb": 6.59,
       "description": "Ic launcher"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_foreground.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.5,
+      "size_kb": 32.54,
       "description": "Ic launcher foreground"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_round.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.48,
+      "size_kb": 7.39,
       "description": "Ic launcher round"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.42,
+      "size_kb": 12.71,
       "description": "Ic launcher"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_foreground.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.88,
+      "size_kb": 68.27,
       "description": "Ic launcher foreground"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_round.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.7,
+      "size_kb": 14.39,
       "description": "Ic launcher round"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.55,
+      "size_kb": 20.65,
       "description": "Ic launcher"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_foreground.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 1.32,
+      "size_kb": 116.03,
       "description": "Ic launcher foreground"
     },
     {
       "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_round.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.88,
+      "size_kb": 23.73,
       "description": "Ic launcher round"
     },
     {
@@ -784,147 +4157,148 @@
       "path": "src-tauri/icons/icon.icns",
       "type": "unknown",
       "language": "unknown",
-      "lines": 2436,
+      "large": true,
+      "size_kb": 1797.84,
       "description": "Icon"
     },
     {
       "path": "src-tauri/icons/icon.ico",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 35.65,
+      "size_kb": 110.04,
       "description": "Icon"
     },
     {
-      "path": "src-tauri/icons/icon.png",
+      "path": "src-tauri/icons/Icon.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 55.05,
+      "size_kb": 289.28,
       "description": "Icon"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-20x20@1x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 0.73,
+      "size_kb": 1.16,
       "description": "AppIcon 20x20@1x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-20x20@2x-1.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 2.3,
+      "size_kb": 3.77,
       "description": "AppIcon 20x20@2x 1"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-20x20@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 2.3,
+      "size_kb": 3.77,
       "description": "AppIcon 20x20@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-20x20@3x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 3.87,
+      "size_kb": 7.78,
       "description": "AppIcon 20x20@3x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-29x29@1x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 1.38,
+      "size_kb": 2.15,
       "description": "AppIcon 29x29@1x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-29x29@2x-1.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 3.79,
+      "size_kb": 7.31,
       "description": "AppIcon 29x29@2x 1"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-29x29@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 3.79,
+      "size_kb": 7.31,
       "description": "AppIcon 29x29@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-29x29@3x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 6.15,
+      "size_kb": 15.11,
       "description": "AppIcon 29x29@3x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-40x40@1x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 2.3,
+      "size_kb": 3.77,
       "description": "AppIcon 40x40@1x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-40x40@2x-1.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 5.7,
+      "size_kb": 13.0,
       "description": "AppIcon 40x40@2x 1"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-40x40@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 5.7,
+      "size_kb": 13.0,
       "description": "AppIcon 40x40@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-40x40@3x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 9.12,
+      "size_kb": 26.67,
       "description": "AppIcon 40x40@3x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-512@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 60.79,
+      "size_kb": 992.77,
       "description": "AppIcon 512@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-60x60@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 9.12,
+      "size_kb": 26.67,
       "description": "AppIcon 60x60@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-60x60@3x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 14.78,
+      "size_kb": 53.61,
       "description": "AppIcon 60x60@3x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-76x76@1x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 5.4,
+      "size_kb": 11.82,
       "description": "AppIcon 76x76@1x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-76x76@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 12.2,
+      "size_kb": 40.35,
       "description": "AppIcon 76x76@2x"
     },
     {
       "path": "src-tauri/icons/ios/AppIcon-83.5x83.5@2x.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 13.45,
+      "size_kb": 47.49,
       "description": "AppIcon 83.5x83.5@2x"
     },
     {
@@ -938,78 +4312,92 @@
       "path": "src-tauri/icons/Square107x107Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 7.91,
+      "size_kb": 21.88,
       "description": "Square107x107Logo"
     },
     {
       "path": "src-tauri/icons/Square142x142Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 11.17,
+      "size_kb": 35.88,
       "description": "Square142x142Logo"
     },
     {
       "path": "src-tauri/icons/Square150x150Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 11.95,
+      "size_kb": 39.4,
       "description": "Square150x150Logo"
     },
     {
       "path": "src-tauri/icons/Square284x284Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 26.07,
+      "size_kb": 115.65,
       "description": "Square284x284Logo"
     },
     {
       "path": "src-tauri/icons/Square30x30Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 1.44,
+      "size_kb": 2.3,
       "description": "Square30x30Logo"
     },
     {
       "path": "src-tauri/icons/Square310x310Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 29.12,
+      "size_kb": 134.44,
       "description": "Square310x310Logo"
     },
     {
       "path": "src-tauri/icons/Square44x44Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 2.65,
+      "size_kb": 4.45,
       "description": "Square44x44Logo"
     },
     {
       "path": "src-tauri/icons/Square71x71Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 4.88,
+      "size_kb": 10.53,
       "description": "Square71x71Logo"
     },
     {
       "path": "src-tauri/icons/Square89x89Logo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 6.34,
+      "size_kb": 15.73,
       "description": "Square89x89Logo"
     },
     {
       "path": "src-tauri/icons/StoreLogo.png",
       "type": "binary",
       "language": "unknown",
-      "size_kb": 3.09,
+      "size_kb": 5.62,
       "description": "StoreLogo"
+    },
+    {
+      "path": "src-tauri/src/audio.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 272,
+      "description": "audio.rs \u2014 Resonance Compass audio engine"
+    },
+    {
+      "path": "src-tauri/src/equalizer.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 272,
+      "description": "equalizer.rs \u2014 10-band parametric EQ, biquad peaking filters (Audio EQ Cookbook)"
     },
     {
       "path": "src-tauri/src/lib.rs",
       "type": "source",
       "language": "rust",
-      "lines": 106,
-      "description": "Lib"
+      "lines": 717,
+      "description": "\u2500\u2500 TrackInfo (returned by scan_paths; field names mirror the Track TS interface) \u2500\u2500"
     },
     {
       "path": "src-tauri/src/main.rs",
@@ -1017,6 +4405,20 @@
       "language": "rust",
       "lines": 6,
       "description": "Prevents additional console window on Windows in release, DO NOT REMOVE!!"
+    },
+    {
+      "path": "src-tauri/src/media_permission.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 84,
+      "description": "media_permission.rs \u2014 runtime media-permission bridge (Android)."
+    },
+    {
+      "path": "src-tauri/src/visualizer.rs",
+      "type": "source",
+      "language": "rust",
+      "lines": 220,
+      "description": "visualizer.rs \u2014 Real-time FFT spectrum analyser"
     },
     {
       "path": "src-tauri/tauri.conf.json",
@@ -1092,7 +4494,8 @@
       "path": "static/tauri.svg",
       "type": "unknown",
       "language": "unknown",
-      "lines": 218,
+      "large": true,
+      "size_kb": 116.78,
       "description": "Tauri"
     },
     {
@@ -1132,24 +4535,54 @@
     }
   ],
   "by_type": {
-    "config": 16,
-    "source": 67,
-    "doc": 14,
-    "unknown": 3,
-    "binary": 61
+    "config": 58,
+    "source": 409,
+    "binary": 115,
+    "unknown": 44,
+    "doc": 18
   },
   "by_language": {
-    "json": 12,
-    "unknown": 67,
-    "typescript": 26,
-    "javascript": 15,
-    "svelte": 11,
-    "markdown": 14,
-    "css": 9,
+    "json": 51,
+    "unknown": 165,
+    "typescript": 50,
+    "javascript": 198,
+    "svelte": 61,
+    "css": 63,
+    "markdown": 18,
+    "python": 1,
     "html": 1,
-    "rust": 3,
+    "kotlin": 14,
+    "rust": 7,
     "toml": 1,
-    "xml": 2
+    "xml": 13,
+    "batch": 1
   },
-  "secrets_flagged": []
+  "secrets_flagged": [
+    "release/resonance-compass.keystore",
+    "resonance-compass.keystore"
+  ],
+  "large_files": [
+    ".svelte-kit/output/client/tauri.svg",
+    ".svelte-kit/output/server/index.js",
+    "release/resonance-compass-v2.0.1.apk.idsig",
+    "release/resonance-compass-v2.0.2.apk.idsig",
+    "release/resonance-compass-v2.0.3.apk.idsig",
+    "release/resonance-compass-v2.0.4.apk.idsig",
+    "release/resonance-compass-v2.0.5.apk.idsig",
+    "release/resonance-compass-v2.0.6.apk.idsig",
+    "release/resonance-compass-v2.0.7.apk.idsig",
+    "release/resonance-compass-v2.0.8.apk.idsig",
+    "release/resonance-compass-v2.0.9.apk.idsig",
+    "release/resonance-compass-v2.1.0.apk.idsig",
+    "release/resonance-compass-v2.1.1.apk.idsig",
+    "release/resonance-compass-v2.1.2.apk.idsig",
+    "src-tauri/Cargo.lock",
+    "src-tauri/gen/schemas/acl-manifests.json",
+    "src-tauri/gen/schemas/android-schema.json",
+    "src-tauri/gen/schemas/desktop-schema.json",
+    "src-tauri/gen/schemas/mobile-schema.json",
+    "src-tauri/gen/schemas/windows-schema.json",
+    "src-tauri/icons/icon.icns",
+    "static/tauri.svg"
+  ]
 }
