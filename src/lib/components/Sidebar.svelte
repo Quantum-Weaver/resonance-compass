@@ -9,10 +9,11 @@
 	let open = $state(false);
 	let isMobile = $state(true);
 
-	// Visualizer, Equalizer, Sattva, Profiles, History, and Fragments live in
+	// Visualizer, Equalizer, Profiles, History, and Fragments live in
 	// the MiniPlayer's expanded nav row instead — keeps this list short enough
 	// to fit without scrolling on mobile screens. Search is reachable from the
-	// Library page.
+	// Library page. (Sattva was promoted back into this list 2026-07-08 — grouped
+	// with Resonance & Focus as the self-understanding / sensory tools.)
 	const navItems: { href: string; icon: IconName; label: string }[] = [
 		{ href: '/', icon: 'home', label: 'Home' },
 		{ href: '/library', icon: 'library', label: 'Library' },
@@ -21,6 +22,7 @@
 		{ href: '/timer', icon: 'timer', label: 'Timer' },
 		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
 		{ href: '/focus', icon: 'focus', label: 'Focus' },
+		{ href: '/sattva', icon: 'sattva', label: 'Sattva' },
 		{ href: '/settings', icon: 'settings', label: 'Settings' },
 	];
 
