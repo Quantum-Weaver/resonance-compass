@@ -5,7 +5,30 @@
 Built on the [Resonance Grammar](https://github.com/Quantum-Weaver/resonance-knowledge) — every fragment contains the whole.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)]()
+[![Version](https://img.shields.io/badge/version-2.1.3-brightgreen.svg)]()
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/compass-01.jpg" width="23%" alt="Resonance Compass — screenshot 1" />
+  <img src="screenshots/compass-02.jpg" width="23%" alt="Resonance Compass — screenshot 2" />
+  <img src="screenshots/compass-03.jpg" width="23%" alt="Resonance Compass — screenshot 3" />
+  <img src="screenshots/compass-04.jpg" width="23%" alt="Resonance Compass — screenshot 4" />
+  <img src="screenshots/compass-05.jpg" width="23%" alt="Resonance Compass — screenshot 5" />
+  <img src="screenshots/compass-06.jpg" width="23%" alt="Resonance Compass — screenshot 6" />
+  <img src="screenshots/compass-07.jpg" width="23%" alt="Resonance Compass — screenshot 7" />
+  <img src="screenshots/compass-08.jpg" width="23%" alt="Resonance Compass — screenshot 8" />
+  <img src="screenshots/compass-09.jpg" width="23%" alt="Resonance Compass — screenshot 9" />
+  <img src="screenshots/compass-10.jpg" width="23%" alt="Resonance Compass — screenshot 10" />
+  <img src="screenshots/compass-11.jpg" width="23%" alt="Resonance Compass — screenshot 11" />
+  <img src="screenshots/compass-12.jpg" width="23%" alt="Resonance Compass — screenshot 12" />
+  <img src="screenshots/compass-13.jpg" width="23%" alt="Resonance Compass — screenshot 13" />
+  <img src="screenshots/compass-14.jpg" width="23%" alt="Resonance Compass — screenshot 14" />
+  <img src="screenshots/compass-15.jpg" width="23%" alt="Resonance Compass — screenshot 15" />
+  <img src="screenshots/compass-16.jpg" width="23%" alt="Resonance Compass — screenshot 16" />
+</p>
 
 ---
 
@@ -72,7 +95,7 @@ src/
 See [BUILD-SEQUENCE.md](docs/BUILD-SEQUENCE.md) for the complete 19-phase plan.
 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for the development methodology.
 
-This project follows the [Sanctuary Standards](https://github.com/Quantum-Weaver/sanctuary-standards).
+This project follows the [Resonance Standards](https://github.com/Quantum-Weaver/resonance-standards).
 
 ---
 
