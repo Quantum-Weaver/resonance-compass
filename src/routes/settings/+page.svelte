@@ -12,7 +12,7 @@
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
 	// ── Privacy & About links ───────────────────────────────────────────────────
-	const PRIVACY_URL = 'https://audhdities.com/docs/privacy';
+	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
 	const SANCTUARY_URL = 'https://audhdities.com';
 	let privacyError = $state(false);
 	async function openPrivacy() {
