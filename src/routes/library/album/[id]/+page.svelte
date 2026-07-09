@@ -105,7 +105,8 @@
 					<span class="art-fetch-status">No cover art found.</span>
 					<button class="art-dismiss-btn sm" onclick={dismissArtFetch}>×</button>
 				{:else if artFetch === 'error'}
-					<span class="art-fetch-status">Could not reach search service.</span>
+					<span class="art-fetch-status">Search service busy — try again.</span>
+					<button class="art-fetch-btn" onclick={findCoverArt}>Retry</button>
 					<button class="art-dismiss-btn sm" onclick={dismissArtFetch}>×</button>
 				{/if}
 			</div>

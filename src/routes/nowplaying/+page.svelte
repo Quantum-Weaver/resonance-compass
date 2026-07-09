@@ -224,7 +224,8 @@
 					{:else if artFetch === 'not_found'}
 						<span class="art-fetch-status">No cover art found.</span>
 					{:else if artFetch === 'error'}
-						<span class="art-fetch-status">Could not reach search service.</span>
+						<span class="art-fetch-status">Search service busy — try again.</span>
+						<button class="art-fetch-btn" onclick={findCoverArt}>Retry</button>
 					{/if}
 					{#if artFetch === 'not_found' || artFetch === 'error'}
 						<button class="art-dismiss-btn" onclick={dismissArtFetch}>×</button>

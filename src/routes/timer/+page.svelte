@@ -20,6 +20,15 @@
 	const fadeOut = $derived(timerStore.fadeOut);
 	const currentModeInfo = $derived(MODES.find((m) => m.id === mode));
 
+	// Custom duration (minutes). The store's start() already accepts any value,
+	// so this just lets the vessel choose one outside the presets. Capped at 24h.
+	let customMins = $state<number | null>(null);
+	const isValidCustom = $derived(customMins !== null && customMins >= 1 && customMins <= 1440);
+
+	function startCustom() {
+		if (isValidCustom && customMins !== null) timerStore.start(customMins);
+	}
+
 	function formatDuration(mins: number): string {
 		if (mins >= 60) {
 			const h = Math.floor(mins / 60);
@@ -78,6 +87,22 @@
 					{formatDuration(mins)}
 				</button>
 			{/each}
+		</div>
+
+		<div class="custom-row">
+			<input
+				class="custom-input"
+				type="number"
+				min="1"
+				max="1440"
+				inputmode="numeric"
+				placeholder="Custom minutes"
+				bind:value={customMins}
+				aria-label="Custom duration in minutes"
+			/>
+			<button class="custom-btn" disabled={!isValidCustom} onclick={startCustom}>
+				{isValidCustom ? `Start · ${formatDuration(customMins ?? 0)}` : 'Start'}
+			</button>
 		</div>
 
 		<div class="fade-row">
@@ -226,6 +251,45 @@
 
 	.preset-btn:hover {
 		background-color: color-mix(in srgb, var(--accent) 15%, var(--bg-surface));
+	}
+
+	/* Custom duration */
+	.custom-row {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+	}
+
+	.custom-input {
+		flex: 1;
+		min-width: 0;
+		padding: 0 1rem;
+		border-radius: 12px;
+		border: 1px solid var(--border-color);
+		background-color: var(--bg-surface);
+		color: var(--text);
+		font-size: 1rem;
+	}
+
+	.custom-input::placeholder {
+		color: var(--text-secondary);
+	}
+
+	.custom-btn {
+		padding: 0.9rem 1.5rem;
+		border-radius: 12px;
+		border: 1px solid var(--accent);
+		background-color: var(--accent);
+		color: #fff;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+
+	.custom-btn:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 
 	/* Fade toggle */

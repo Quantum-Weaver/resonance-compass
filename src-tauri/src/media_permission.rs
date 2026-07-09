@@ -59,7 +59,7 @@ mod android {
     /// initialized") and audio is permanently unavailable on Android.
     #[no_mangle]
     pub extern "system" fn Java_com_audhd_resonance_1compass_plugin_MediaPermissionPlugin_nativeInitNdkContext(
-        mut env: jni::JNIEnv,
+        env: jni::JNIEnv,
         _this: jni::objects::JObject,
         context: jni::objects::JObject,
     ) {

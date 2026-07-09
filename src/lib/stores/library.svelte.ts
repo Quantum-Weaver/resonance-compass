@@ -327,13 +327,18 @@ async function updateTrackLyrics(trackId: string, lyrics: string) {
 	if (track) track.lyrics = lyrics;
 }
 
-// Full data purge: every table this app writes, children before parents —
-// fragments holds a FOREIGN KEY to songs(id) (enforced by sqlx), so deleting
-// songs first rejects and silently aborted the whole purge when any fragment
-// existed. Throws instead of returning silently so the purge UI can tell the
-// vessel when nothing was actually deleted.
+// Full data purge: every child table with a FOREIGN KEY to songs(id) must be
+// emptied before songs itself, or SQLite rejects with a foreign-key violation
+// (code 787). The children are mood_events, favorites, and fragments (playlists
+// has no FK). mood_events is deleted HERE — not left to moodStore.purgeAll() —
+// so the entire FK-safe ordering lives in one authoritative place; the previous
+// version deleted songs while mood_events still referenced it, which is what
+// raised 787. moodStore.purgeAll() still runs afterward to reset its in-memory
+// stats (its own DELETE then no-ops). Throws instead of returning silently so
+// the purge UI can tell the vessel when nothing was actually deleted.
 async function purgeAllData() {
 	if (!db) throw new Error('Database not ready — nothing was purged');
+	await db.execute('DELETE FROM mood_events');
 	await db.execute('DELETE FROM fragments');
 	await db.execute('DELETE FROM favorites');
 	await db.execute('DELETE FROM playlists');

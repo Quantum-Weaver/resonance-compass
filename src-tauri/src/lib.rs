@@ -253,32 +253,34 @@ async fn request_audio_permission(app_handle: tauri::AppHandle) -> Result<bool, 
 
 #[tauri::command]
 async fn fetch_cover_art(artist: String, album: String) -> Result<Option<String>, String> {
-    let Ok(client) = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(10))
-        .user_agent("ResonanceCompass/2.0.0 (resonance-compass)")
+    // Ok(None) = no matching release / no front image (honest "not found").
+    // Err(..) = transient failure (network, timeout, MusicBrainz 503 rate-limit)
+    // so the UI can retry rather than falsely report "not found". The compliant
+    // User-Agent (app name/version + contact URL) is REQUIRED by MusicBrainz —
+    // a vague one gets throttled, a prime cause of the same-album flakiness.
+    let client = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(15))
+        .user_agent("ResonanceCompass/2.1.3 ( https://audhdities.com )")
         .build()
-    else {
-        return Ok(None);
-    };
+        .map_err(|e| format!("HTTP client error: {e}"))?;
 
     // Step 1: MusicBrainz — find the release MBID
     let query = format!("artist:{} release:{}", artist, album);
-    let Ok(mb_resp) = client
+    let mb_resp = client
         .get("https://musicbrainz.org/ws/2/release/")
         .query(&[("query", query.as_str()), ("fmt", "json"), ("limit", "5")])
         .send()
         .await
-    else {
-        return Ok(None);
-    };
+        .map_err(|e| format!("Could not reach MusicBrainz: {e}"))?;
 
     if !mb_resp.status().is_success() {
-        return Ok(None);
+        return Err(format!("MusicBrainz returned {}", mb_resp.status()));
     }
 
-    let Ok(mb_json) = mb_resp.json::<serde_json::Value>().await else {
-        return Ok(None);
-    };
+    let mb_json = mb_resp
+        .json::<serde_json::Value>()
+        .await
+        .map_err(|e| format!("Could not read MusicBrainz response: {e}"))?;
 
     let mbid = match mb_json
         .get("releases")
@@ -293,12 +295,17 @@ async fn fetch_cover_art(artist: String, album: String) -> Result<Option<String>
 
     // Step 2: Cover Art Archive — download front image as base64 data URI
     let caa_url = format!("https://coverartarchive.org/release/{}/front", mbid);
-    let Ok(caa_resp) = client.get(&caa_url).send().await else {
-        return Ok(None);
-    };
+    let caa_resp = client
+        .get(&caa_url)
+        .send()
+        .await
+        .map_err(|e| format!("Could not reach Cover Art Archive: {e}"))?;
 
-    if !caa_resp.status().is_success() {
+    if caa_resp.status() == reqwest::StatusCode::NOT_FOUND {
         return Ok(None);
+    }
+    if !caa_resp.status().is_success() {
+        return Err(format!("Cover Art Archive returned {}", caa_resp.status()));
     }
 
     let mime = caa_resp
@@ -308,9 +315,10 @@ async fn fetch_cover_art(artist: String, album: String) -> Result<Option<String>
         .map(|ct| ct.split(';').next().unwrap_or("image/jpeg").trim().to_string())
         .unwrap_or_else(|| "image/jpeg".to_string());
 
-    let Ok(bytes) = caa_resp.bytes().await else {
-        return Ok(None);
-    };
+    let bytes = caa_resp
+        .bytes()
+        .await
+        .map_err(|e| format!("Could not download cover image: {e}"))?;
 
     if bytes.is_empty() {
         return Ok(None);
@@ -339,32 +347,36 @@ struct LrclibResponse {
 
 #[tauri::command]
 async fn fetch_lyrics(artist: String, title: String) -> Result<Option<LyricsResult>, String> {
-    let client = match reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(8))
+    // Ok(None) means LRCLIB genuinely has no lyrics for this track.
+    // Err(..) means a *transient* failure (network, timeout, rate-limit) so the
+    // UI can offer a retry instead of falsely reporting "no lyrics found" — the
+    // silent Ok(None)-on-everything was why lyrics appeared once and not the next
+    // time for the same song.
+    let client = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(12))
+        .user_agent("ResonanceCompass/2.1.3 ( https://audhdities.com )")
         .build()
-    {
-        Ok(c) => c,
-        Err(_) => return Ok(None),
-    };
+        .map_err(|e| format!("HTTP client error: {e}"))?;
 
-    let resp = match client
+    let resp = client
         .get("https://lrclib.net/api/get")
         .query(&[("artist_name", &artist), ("track_name", &title)])
         .send()
         .await
-    {
-        Ok(r) => r,
-        Err(_) => return Ok(None),
-    };
+        .map_err(|e| format!("Could not reach LRCLIB: {e}"))?;
 
-    if resp.status() == 404 || !resp.status().is_success() {
+    // 404 is LRCLIB's honest "not found"; any other non-2xx is transient.
+    if resp.status() == reqwest::StatusCode::NOT_FOUND {
         return Ok(None);
     }
+    if !resp.status().is_success() {
+        return Err(format!("LRCLIB returned {}", resp.status()));
+    }
 
-    let body: LrclibResponse = match resp.json().await {
-        Ok(b) => b,
-        Err(_) => return Ok(None),
-    };
+    let body: LrclibResponse = resp
+        .json()
+        .await
+        .map_err(|e| format!("Could not read LRCLIB response: {e}"))?;
 
     if body.synced_lyrics.is_none() && body.plain_lyrics.is_none() {
         return Ok(None);

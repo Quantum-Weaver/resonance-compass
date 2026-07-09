@@ -1,6 +1,6 @@
 import type { Track } from '$lib/types/types';
 import { browser } from '$app/environment';
-import { invoke } from '@tauri-apps/api/core';
+import { invoke, addPluginListener } from '@tauri-apps/api/core';
 import { listen } from '@tauri-apps/api/event';
 import { moodStore } from '$lib/stores/mood.svelte';
 
@@ -100,6 +100,15 @@ function ensureListeners() {
 		position = 0;
 		next();
 	});
+
+	// Android: pause when audio output disconnects (Bluetooth device dropped or
+	// wired headphones unplugged) so playback never jumps to the phone speaker.
+	// The MediaPermissionPlugin fires this from an ACTION_AUDIO_BECOMING_NOISY
+	// receiver. Nothing auto-plays on reconnect — by design. The plugin is
+	// Android-only, so a rejected listener on desktop is expected and ignored.
+	addPluginListener('media-permission', 'audioBecomingNoisy', () => {
+		if (isPlaying) pause();
+	}).catch(() => {});
 
 	window.addEventListener('beforeunload', persistState);
 }

@@ -126,8 +126,16 @@
 			});
 			// Prefer synced lyrics (LRC) over plain text.
 			const lyrics = result?.syncedLyrics ?? result?.plainLyrics ?? null;
-			fetchedLyrics = lyrics;
-			lyricsFetch = lyrics ? 'found' : 'not_found';
+			if (lyrics) {
+				// Auto-persist at once via saveLyrics(): fetch_lyrics is a flaky
+				// network call, so a found result is saved immediately rather than
+				// waiting for a manual Save that, if skipped, lost it and re-fetched
+				// next visit — the "found once, gone the next time" bug.
+				fetchedLyrics = lyrics;
+				await saveLyrics();
+			} else {
+				lyricsFetch = 'not_found';
+			}
 		} catch {
 			lyricsFetch = 'error';
 		}
@@ -226,7 +234,11 @@
 					>Dismiss</button>
 
 				{:else if lyricsFetch === 'error'}
-					<p class="no-lyrics-sub">Could not reach lyrics service.</p>
+					<p class="no-lyrics-sub">Couldn't reach the lyrics service — it may be busy.</p>
+					<button
+						class="find-lyrics-btn"
+						onclick={(e) => { e.stopPropagation(); findLyrics(); }}
+					>Try again</button>
 					<button
 						class="dismiss-btn"
 						onclick={(e) => { e.stopPropagation(); dismissFetch(); }}

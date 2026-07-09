@@ -10,8 +10,13 @@
 package com.audhd.resonance_compass.plugin
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.media.AudioManager
 import android.os.Build
+import android.webkit.WebView
 import app.tauri.PermissionState
 import app.tauri.annotation.Command
 import app.tauri.annotation.Permission
@@ -43,6 +48,33 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
     if (!ndkContextInitialized) {
       ndkContextInitialized = true
       nativeInitNdkContext(activity.applicationContext)
+    }
+  }
+
+  // Pause playback when audio output is about to route to the phone speaker —
+  // a Bluetooth device dropping or wired headphones being unplugged. Android's
+  // ACTION_AUDIO_BECOMING_NOISY is the canonical signal; we relay it to the
+  // webview, which calls the player's pause(). By design nothing auto-plays on
+  // reconnect — the frontend only ever pauses on this event.
+  private val becomingNoisyReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+      if (intent?.action == AudioManager.ACTION_AUDIO_BECOMING_NOISY) {
+        trigger("audioBecomingNoisy", JSObject())
+      }
+    }
+  }
+
+  override fun load(webView: WebView) {
+    super.load(webView)
+    val filter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
+    val ctx = webView.context
+    // API 33+ requires an explicit export flag for context-registered receivers.
+    // NOT_EXPORTED is correct: only the system delivers this protected broadcast.
+    if (Build.VERSION.SDK_INT >= 33) {
+      ctx.registerReceiver(becomingNoisyReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+    } else {
+      @Suppress("UnspecifiedRegisterReceiverFlag")
+      ctx.registerReceiver(becomingNoisyReceiver, filter)
     }
   }
 
