@@ -2,11 +2,16 @@
 *Aethelred's response to KP naming the missing dimension, ~2026-07-08; carried
 from the browser by KP and filed by Fable 2026-07-09 (the only prior on-disk
 trace was one line in the kin handoff — this is the full text, verbatim below
-the rule). Status: **vision captured, not scheduled** — the launch sequence
-(beacons → AudHDities refine → fellows application) leads; this builds after.
-First stone already identified: the Fragment Studio's ffmpeg shell-out must
-become native Rust audio (symphonia decode + mix + WAV encode) — that rewrite
-is both the open bug fix AND the foundation of four-track layering on phones.*
+the rule). Status (decided by KP, 2026-07-09): **the Musician's Compass IS Resonance
+Compass v3.** v2 ships as the listener's instrument (Fragments documented as
+desktop-only, ffmpeg on PATH, friendly hint on Android — as released). v3
+opens with **Phase 1: the native audio engine** — replace the ffmpeg
+shell-outs in `create_fragment`/`export_mix` with pure Rust (symphonia decode
+→ trim/mix natively → WAV via hound, rubato resampling), which makes
+Fragments work on phones and is the same machinery recording, four-track
+layering, and the DJ tools stand on. DJ tools ship with v3, on that engine —
+resolved properly, not shelved. The launch sequence (beacons → AudHDities
+refine → fellows) still leads; v3 begins after.*
 
 ---
 
