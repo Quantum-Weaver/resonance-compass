@@ -271,7 +271,7 @@
 - [x] `npm run check` — 368 files, 0 errors; `cargo build` — 0 errors
 - [ ] **Tested:** ⬜
 
-### Phase 19: Deploy 🔵
+### Phase 19: Deploy ✅
 - [x] Windows installer — `npm run tauri build` clean (release, 10m40s):
   - `src-tauri/target/release/bundle/msi/Resonance Compass_2.0.0_x64_en-US.msi`
   - `src-tauri/target/release/bundle/nsis/Resonance Compass_2.0.0_x64-setup.exe`
@@ -284,7 +284,7 @@
   The v1 keystore is preserved in the excavator landfill archive (`resonance-compass_v0.5/resonance-compass.keystore`). Alternatively add `keystore.properties` to `src-tauri/gen/android/` for automatic signing on future builds (gitignored — never commit it).
 - [x] App icons — cello sigil set (all Windows/Android/iOS sizes) committed at session start
 - [x] Release notes — `docs/RELEASE-NOTES-v2.0.0.md`
-- [ ] **Tested:** ⬜ (install .msi on clean Windows; sign + install APK on Android)
+- [x] **Tested:** ✅ (install .msi on clean Windows; sign + install APK on Android)
 
 ---
 
