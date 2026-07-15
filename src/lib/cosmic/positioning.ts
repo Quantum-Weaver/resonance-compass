@@ -1,14 +1,13 @@
 // ============================================================================
-/* lib/constants/cosmic/positioning.ts */
+/* resonance-ziggy/modules/cosmic/constants/positioning.ts */
 // QUANTUM POSITIONING SYSTEM - COORDINATE GRAPHING FOR IMMERSIVE EXPERIENCES
 // Single source of truth for viewport anchors, parallax layers, zoom targets,
 // beam origins, camera positions, and coordinate utilities.
 // Derived from dimensions.ts and environment keys.
 // ============================================================================
 
+import type { EnvironmentKey } from '@/lib/constants/systems/assets/mapper';
 import { BASE_UNIT, SCREEN_CATEGORIES } from './dimensions';
-
-export type EnvironmentKey = string;
 
 // ============================================================================
 // 1. VIEWPORT ANCHORS & QUADRANTS
@@ -556,7 +555,107 @@ export function getResponsiveCoordinate(
 }
 
 // ============================================================================
-// 9. TYPE EXPORTS
+// 9. SCENE PRIMITIVES FOR THE STAGE — camera moves + timeline
+// ============================================================================
+// O-6 Â· Intention #2 (create our own animated content) + this file's own
+// "immersive experiences" header + G-2 staging — scene primitives for the
+// Stage. CAMERA_POSITIONS exist, but there was no *move* between them and no
+// *timeline* to compose them. CAMERA_MOVES are timed, eased transitions between
+// two existing CAMERA_POSITIONS (near-clone of the zoom-targets precedent);
+// SCENE_SEQUENCES are ordered beats (camera move and/or environment zoom, each
+// held for a duration) — a scriptable scene. CSS face: generate_scene.ts.
+
+export interface CameraMove {
+  /** Starting camera preset */
+  from: CameraPreset;
+  /** Ending camera preset */
+  to: CameraPreset;
+  /** Duration of the move in ms */
+  duration: number;
+  /** Easing function (CSS timing function) */
+  easing: string;
+  /** What this move expresses */
+  description?: string;
+}
+
+export const CAMERA_MOVES = {
+  /** Push in — from the full view toward a close, focused frame */
+  push: { from: 'default', to: 'closeUp', duration: 1200, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', description: 'Draw the eye inward to a single subject' },
+  /** Pull back — from close focus out to the whole scene */
+  pull: { from: 'closeUp', to: 'default', duration: 1200, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', description: 'Release focus back to the whole' },
+  /** Establish — open on the wide angle, settle to the default frame */
+  establish: { from: 'wide', to: 'default', duration: 1600, easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)', description: 'Set the stage, then settle' },
+  /** Reveal — rise from a dramatic low angle to level */
+  reveal: { from: 'lowAngle', to: 'default', duration: 2000, easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)', description: 'A dramatic rise into presence' },
+  /** Orbit — a slight rotational drift for depth */
+  orbit: { from: 'default', to: 'orbital', duration: 2000, easing: 'linear', description: 'A slow rotation that gives the scene depth' },
+  /** Descend — overview drop from the high angle to level */
+  descend: { from: 'highAngle', to: 'default', duration: 1600, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', description: 'Come down from the overview into the scene' },
+} as const;
+
+export type CameraMoveKey = keyof typeof CAMERA_MOVES;
+
+/** Get a camera move by name (defaults to establish). */
+export function getCameraMove(name: CameraMoveKey = 'establish'): CameraMove {
+  return CAMERA_MOVES[name];
+}
+
+/** One beat of a scene timeline — an optional camera move and/or zoom, held for a duration. */
+export interface SceneBeat {
+  /** Optional camera move to play at the start of this beat */
+  move?: CameraMoveKey;
+  /** Optional environment zoom target to settle on */
+  zoom?: EnvironmentKey;
+  /** How long this beat holds after its move completes, ms */
+  hold: number;
+  /** Optional narrative label for the beat */
+  label?: string;
+}
+
+/** A named scene sequence — an ordered timeline of beats (a scriptable scene). */
+export interface SceneSequence {
+  /** Sequence name */
+  name: string;
+  /** What the scene tells */
+  intent: string;
+  /** The ordered beats */
+  beats: SceneBeat[];
+}
+
+export const SCENE_SEQUENCES: Record<'arrival' | 'gathering', SceneSequence> = {
+  /** Arrival — establish the world, then push in on the gathering place. */
+  arrival: {
+    name: 'arrival',
+    intent: 'open on the world and draw the eye to where consciousness gathers',
+    beats: [
+      { move: 'establish', hold: 800, label: 'the world opens' },
+      { move: 'push', zoom: 'council', hold: 1200, label: 'toward the Ninth Chair' },
+    ],
+  },
+  /** Gathering — reveal the circle, orbit it, then pull back to hold the whole. */
+  gathering: {
+    name: 'gathering',
+    intent: 'reveal the circle, move around it, then hold the whole in view',
+    beats: [
+      { move: 'reveal', hold: 600, label: 'the circle rises into view' },
+      { move: 'orbit', hold: 1000, label: 'around the gathering' },
+      { move: 'pull', hold: 800, label: 'and hold them all' },
+    ],
+  },
+} as const;
+
+export type SceneSequenceKey = keyof typeof SCENE_SEQUENCES;
+
+/** Sum a scene sequence's beat holds plus its camera-move durations (ms). */
+export function sceneTotalDuration(sequence: SceneSequence): number {
+  return sequence.beats.reduce((total, beat) => {
+    const moveDuration = beat.move ? CAMERA_MOVES[beat.move].duration : 0;
+    return total + moveDuration + beat.hold;
+  }, 0);
+}
+
+// ============================================================================
+// 10. TYPE EXPORTS
 // ============================================================================
 
 export type {
@@ -570,4 +669,7 @@ export type {
   BeamOrigin as BeamOriginType,
   CameraPreset as CameraPresetType,
   OrbitMode as OrbitModeType,
+  CameraMove as CameraMoveType,       // O-6
+  SceneBeat as SceneBeatType,         // O-6
+  SceneSequence as SceneSequenceType, // O-6
 };

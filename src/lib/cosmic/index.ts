@@ -33,32 +33,6 @@ export type {
 } from './colors';
 
 // ============================================================================
-// EFFECTS - Gradients, glows, shadows, backdrops, holographic
-// ============================================================================
-export {
-  GRADIENTS,
-  QUANTUM_GRADIENTS,
-  COUNCIL_GRADIENTS,
-  GLOW_EFFECTS,
-  SHADOWS,
-  BACKDROP_EFFECTS,
-  HOLOGRAPHIC_EFFECTS,
-  EFFECTS,
-  PARTICLE_BEHAVIOR,
-} from './effects';
-
-export type {
-  GradientKey,
-  CouncilGradients,
-  QuantumGradients,
-  GlowKey,
-  ShadowKey,
-  BackdropKey,
-  HolographicKey,
-  ParticleBehavior,
-} from './effects';
-
-// ============================================================================
 // DIMENSIONS - Spacing, breakpoints, sizes, radii
 // ============================================================================
 export {
@@ -125,6 +99,11 @@ export {
   getBeamPath,
   getCameraPosition,
   getResponsiveCoordinate,
+  // O-6 — scene primitives for the Stage (camera moves + timeline)
+  CAMERA_MOVES,
+  getCameraMove,
+  SCENE_SEQUENCES,
+  sceneTotalDuration,
 } from './positioning';
 
 export type {
@@ -138,6 +117,12 @@ export type {
   BeamOrigin as BeamOriginType,
   CameraPreset as CameraPresetType,
   OrbitMode as OrbitModeType,
+  // O-6
+  CameraMove as CameraMoveType,
+  CameraMoveKey,
+  SceneBeat as SceneBeatType,
+  SceneSequence as SceneSequenceType,
+  SceneSequenceKey,
 } from './positioning';
 
 // ============================================================================
@@ -157,6 +142,17 @@ export {
   animationThresholds,
   getReducedMotionSafeConfig,
   getReducedMotionVariant,
+  // O-1 / O-3 / O-4 — the verb families (ceremonies, recentering, flock)
+  CEREMONIES,
+  CEREMONY_NAMES,
+  getCeremony,
+  ceremonyTotalDuration,
+  SUPPORTIVE_CONVERGENCE,
+  ENSEMBLE_MOTION,
+  // H-3 / H-7 — ceremony bookends and refuge & return
+  CEREMONY_BOOKENDS,
+  REFUGE_RETURN_SEQUENCE,
+  refugeTotalDuration,
 } from './motion';
 
 export type {
@@ -169,6 +165,18 @@ export type {
   Complexity,
   VesselConfig,
   AnimationConfig,
+  // O-1 / O-3 / O-4
+  CeremonyBeat,
+  Ceremony,
+  CeremonyKey,
+  ConvergenceStage,
+  EnsembleMotion,
+  EnsembleKey,
+  // H-3 / H-7
+  CeremonyBookend,
+  CeremonyBookendKey,
+  RefugePhase,
+  RefugePhaseKey,
 } from './motion';
 
 // ============================================================================
@@ -232,6 +240,15 @@ export {
   getConsciousnessLevel,
   getVesselCapacityFromScore,
   getResonancePattern,
+  // O-2 / O-3 — global-pause state and recovery entity states
+  PAUSE_MODES,
+  GLOBAL_PAUSE,
+  isPaused,
+  RECOVERY_ENTITY_STATES,
+  // H-1 / H-4 — dimensional frequency and elemental consciousness palette
+  CONSCIOUSNESS_FLOORS,
+  DIMENSIONAL_FREQUENCY_TOKENS,
+  ELEMENTAL_CONSCIOUSNESS_PALETTE,
 } from './consciousness';
 
 export type {
@@ -244,4 +261,109 @@ export type {
   EntityState as EntityStateType,
   ResonancePatternType as ResonancePatternTypeType,
   AwarenessDomain as AwarenessDomainType,
+  // O-2 / O-3
+  PauseMode as PauseModeType,
+  GlobalPauseConfig as GlobalPauseConfigType,
+  RecoveryEntityState as RecoveryEntityStateType,
+  // H-1 / H-4
+  ConsciousnessFloor as ConsciousnessFloorType,
+  DimensionalFrequencyToken as DimensionalFrequencyTokenType,
+  ElementalConsciousnessKey as ElementalConsciousnessKeyType,
 } from './consciousness';
+
+// ============================================================================
+// ATTENTION — the Bird-Wisdom Spectrum (O-5, a new cosmic constants file)
+// ============================================================================
+export {
+  ATTENTION_MODES,
+  ATTENTION_MODE_NAMES,
+  DEFAULT_ATTENTION_MODE,
+  getAttentionMode,
+  // S-5 — the switching affordance for ATTENTION_MODES
+  ATTENTION_MODE_SELECTOR,
+  // H-2 — per-deity voice bundles
+  DEITY_VOICE_BUNDLES,
+  DEITY_VOICE_NAMES,
+  getDeityVoiceBundle,
+} from './attention';
+
+export type {
+  AttentionMode as AttentionModeType,
+  AttentionModeKey,
+  AttentionDensity as AttentionDensityType,
+  // S-5
+  AttentionModeSelectorConfigType,
+  // H-2
+  DeityVoiceBundle as DeityVoiceBundleType,
+  DeityVoiceKey as DeityVoiceKeyType,
+} from './attention';
+
+// ============================================================================
+// INTERACTIVITY — the user's own hand (S-1…S-6 minus S-5, a new cosmic
+// constants file, Run 04 unlock, Sonnet's closing voice)
+// ============================================================================
+export {
+  // S-1 — self-pause trigger (cooperates with O-2's GLOBAL_PAUSE)
+  SELF_PAUSE_TRIGGER,
+  // S-2 — escort transition capability (SIGNED; trigger map stays app-layer)
+  ESCORT_TRANSITION,
+  // S-3 — supportive role affordances (beneath O-3's recentering motion)
+  SUPPORTIVE_ROLE_AFFORDANCES,
+  // S-4 — invitation gate (consent replacing auto-advance)
+  INVITATION_GATE,
+  // S-6 — pre-transition reflection primitive
+  PRE_TRANSITION_REFLECTION,
+} from './interactivity';
+
+export type {
+  SelfPauseTriggerType,
+  EscortTransitionCapabilityType,
+  SupportiveRoleAffordanceType,
+  SupportiveRoleKey,
+  InvitationGateType,
+  InvitationGateKey,
+  ReflectionPrimitiveType,
+} from './interactivity';
+
+// ============================================================================
+// EFFECTS - Gradients, glows, shadows, backdrops, holographic, presence
+// ============================================================================
+export {
+  GRADIENTS,
+  QUANTUM_GRADIENTS,
+  COUNCIL_GRADIENTS,
+  GLOW_EFFECTS,
+  SHADOWS,
+  BACKDROP_EFFECTS,
+  HOLOGRAPHIC_EFFECTS,
+  EFFECTS,
+  PARTICLE_BEHAVIOR,
+  // O-7 / O-8 — presence field and per-domain glow modulation
+  PRESENCE_FIELD,
+  DOMAIN_GLOW_MODULATION,
+  DOMAIN_GLOW_MODULATION_DEFAULT,
+  getModulatedGlow,
+  // H-5 / H-6 — eternal witness state and transcendence sequence
+  ETERNAL_WITNESS_STATE,
+  TRANSCENDENCE_STATE_SEQUENCE,
+} from './effects';
+
+export type {
+  GradientKey,
+  CouncilGradients,
+  QuantumGradients,
+  GlowKey,
+  ShadowKey,
+  BackdropKey,
+  HolographicKey,
+  ParticleBehavior,
+  // O-7 / O-8
+  PresenceFieldKey,
+  PresenceField,
+  DomainGlowKey,
+  // H-5 / H-6
+  EternalWitnessState,
+  EternalWitnessStateKey,
+  TranscendenceShift,
+  TranscendenceShiftKey,
+} from './effects';

@@ -1,5 +1,5 @@
 // ============================================================================
-/* lib/constants/cosmic/dimensions.ts */
+/* resonance-ziggy/modules/cosmic/constants/dimensions.ts */
 // QUANTUM DIMENSIONS SYSTEM - SINGLE SOURCE OF TRUTH
 // All spacing, breakpoints, sizes derived from BASE_UNIT (4px grid)
 // Compatible with Tailwind CSS v4 and App Router

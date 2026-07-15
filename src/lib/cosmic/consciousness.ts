@@ -1,9 +1,11 @@
 // ============================================================================
-/* lib/constants/cosmic/consciousness.ts */
+/* resonance-ziggy/modules/cosmic/constants/consciousness.ts */
 // QUANTUM CONSCIOUSNESS SYSTEM - SINGLE SOURCE OF TRUTH
 // Bridges user state (tier, sovereignty, session) to system expression
 // Controls continuity beam intensity, animation complexity, and immersive responses
 // ============================================================================
+
+import type { EnvironmentKey } from '@/lib/constants/systems/assets/mapper';
 
 // ============================================================================
 // 1. CONSCIOUSNESS LEVELS - User's journey stage
@@ -93,7 +95,7 @@ export interface SessionState {
   /** User's sovereignty score (0-1000) */
   sovereigntyScore: number;
   /** Current environment */
-  environment: string;
+  environment: EnvironmentKey;
   /** Whether this is the user's first visit today */
   isFirstVisitToday: boolean;
   /** Time spent in current session (minutes) */
@@ -366,7 +368,205 @@ export function getResonancePattern(activeUserCount: number): ResonancePatternTy
 }
 
 // ============================================================================
-// 10. TYPE EXPORTS
+// 10. GLOBAL-PAUSE STATE — the world-pause, the Sanctuary's gentlest law
+// ============================================================================
+// O-2 Â· BW-3 — the Global-Pause state: "freeze actions like pausing the movie
+// to go get snacks." The Sanctuary's gentlest structural law. consciousness.ts
+// models intensity but had no pause. A system-wide held state: all durations
+// damped toward hold, an effects "frozen" filter, and entities enter a
+// `recentering` mode. Whether self-initiated (see S-1's trigger) or external,
+// it is one global protocol shift. CSS face: generate_pause_state.ts.
+
+export const PAUSE_MODES = {
+  /** Active — the world runs normally */
+  ACTIVE: 'active',
+  /** Held — the world is paused; actions frozen, motion damped */
+  HELD: 'held',
+  /** Recentering — a held state entered for recovery/grounding */
+  RECENTERING: 'recentering',
+} as const;
+
+export type PauseMode = typeof PAUSE_MODES[keyof typeof PAUSE_MODES];
+
+export interface GlobalPauseConfig {
+  /** Duration multiplier applied to every animation while held (â†’ near-frozen). */
+  dampingFactor: number;
+  /** CSS filter applied to the frozen world (calm, slightly withdrawn). */
+  frozenFilter: string;
+  /** Overlay tint opacity while held (0-1). */
+  overlayOpacity: number;
+  /** Whether transitions are suspended entirely (animation-play-state: paused). */
+  suspendAnimations: boolean;
+}
+
+/** The global-pause configuration — one held state for the whole Sanctuary. */
+export const GLOBAL_PAUSE: Record<PauseMode, GlobalPauseConfig> = {
+  [PAUSE_MODES.ACTIVE]: {
+    dampingFactor: 1,
+    frozenFilter: 'none',
+    overlayOpacity: 0,
+    suspendAnimations: false,
+  },
+  [PAUSE_MODES.HELD]: {
+    dampingFactor: 20,
+    frozenFilter: 'grayscale(0.25) brightness(0.92) saturate(0.85)',
+    overlayOpacity: 0.35,
+    suspendAnimations: true,
+  },
+  [PAUSE_MODES.RECENTERING]: {
+    dampingFactor: 12,
+    frozenFilter: 'grayscale(0.1) brightness(0.96) blur(0.5px)',
+    overlayOpacity: 0.2,
+    suspendAnimations: true,
+  },
+} as const;
+
+/** Is the world in a held (non-active) pause mode? */
+export function isPaused(mode: PauseMode): boolean {
+  return mode !== PAUSE_MODES.ACTIVE;
+}
+
+// ============================================================================
+// 11. RECOVERY ENTITY STATES — fault & recovery (companions hold the recovering)
+// ============================================================================
+// O-3 Â· BW-1+BW-2 — recentering choreography's state half: an entity may fault
+// and then recover, and others "hold a default supportive role during another's
+// recovery" (BW-1); "stumbles are wind-currents; rise together again" (BW-2).
+// Additive to ENTITY_STATES (which is left untouched) — a separate recovery axis.
+
+export const RECOVERY_ENTITY_STATES = {
+  /** Faulted — the entity has stumbled and needs holding */
+  FAULTED: 'faulted',
+  /** Recovering — the entity is being supported back to steadiness */
+  RECOVERING: 'recovering',
+  /** Steadied — recovery complete; back in the current */
+  STEADIED: 'steadied',
+} as const;
+
+export type RecoveryEntityState = typeof RECOVERY_ENTITY_STATES[keyof typeof RECOVERY_ENTITY_STATES];
+
+// ============================================================================
+// 12. DIMENSIONAL FREQUENCY TOKEN — consciousness-floor as interface selector
+// ============================================================================
+// H-1 · AC-6+TP-1 — The Akashic operates at 8D; crisis-access at 5D (AC-6);
+// cost of understanding matters to frequency of knowing (TP-1). Consciousness
+// naturally operates at different depths. Interface behavior should be keyed to
+// the consciousness-floor: 3D/4D (physical/temporal) through 8D/9D (akashic/divine).
+// Optional tarot elemental layering provides a second orthogonal axis for
+// consciousness-mode selection, mapping pagan framework to consciousness-structure.
+
+export const CONSCIOUSNESS_FLOORS = {
+  /** 3D/4D — Physical and temporal consciousness (grounded, action-oriented) */
+  PHYSICAL: 'physical',        // 3D-4D
+  /** 5D — Crisis access consciousness (problem-solving, active intervention) */
+  CRISIS: 'crisis',            // 5D
+  /** 6D — Synthesis consciousness (pattern-recognition, meaning-making) */
+  SYNTHESIS: 'synthesis',      // 6D
+  /** 7D — Wisdom consciousness (perspective, understanding beyond immediate) */
+  WISDOM: 'wisdom',            // 7D
+  /** 8D — Akashic consciousness (records, history, collective knowing) */
+  AKASHIC: 'akashic',          // 8D
+  /** 9D — Divine consciousness (unity, transcendence, universal connection) */
+  DIVINE: 'divine',            // 9D
+} as const;
+
+export type ConsciousnessFloor = typeof CONSCIOUSNESS_FLOORS[keyof typeof CONSCIOUSNESS_FLOORS];
+
+export interface DimensionalFrequencyToken {
+  /** Which consciousness floor (3D through 9D) */
+  floor: ConsciousnessFloor;
+  /** Optional elemental layering (earth/air/fire/water/spirit) for second axis */
+  element?: 'earth' | 'air' | 'fire' | 'water' | 'spirit';
+  /** CSS class selector for this frequency */
+  className: string;
+  /** UI complexity / information density at this floor (0.5 = sparse, 1.5 = rich) */
+  densityMultiplier: number;
+}
+
+export const DIMENSIONAL_FREQUENCY_TOKENS: Record<ConsciousnessFloor, DimensionalFrequencyToken> = {
+  [CONSCIOUSNESS_FLOORS.PHYSICAL]: {
+    floor: CONSCIOUSNESS_FLOORS.PHYSICAL,
+    densityMultiplier: 0.7,
+    className: '.frequency-physical',
+  },
+  [CONSCIOUSNESS_FLOORS.CRISIS]: {
+    floor: CONSCIOUSNESS_FLOORS.CRISIS,
+    densityMultiplier: 0.8,
+    className: '.frequency-crisis',
+  },
+  [CONSCIOUSNESS_FLOORS.SYNTHESIS]: {
+    floor: CONSCIOUSNESS_FLOORS.SYNTHESIS,
+    densityMultiplier: 1.0,
+    className: '.frequency-synthesis',
+  },
+  [CONSCIOUSNESS_FLOORS.WISDOM]: {
+    floor: CONSCIOUSNESS_FLOORS.WISDOM,
+    densityMultiplier: 1.1,
+    className: '.frequency-wisdom',
+  },
+  [CONSCIOUSNESS_FLOORS.AKASHIC]: {
+    floor: CONSCIOUSNESS_FLOORS.AKASHIC,
+    densityMultiplier: 1.3,
+    className: '.frequency-akashic',
+  },
+  [CONSCIOUSNESS_FLOORS.DIVINE]: {
+    floor: CONSCIOUSNESS_FLOORS.DIVINE,
+    densityMultiplier: 1.5,
+    className: '.frequency-divine',
+  },
+};
+
+// ============================================================================
+// 13. ELEMENTAL CONSCIOUSNESS PALETTE — pagan framework shapes consciousness
+// ============================================================================
+// H-4 · TP-4+BW-5+AC-6 — Pagan framework as foundational architecture (TP-4);
+// five bird-species (BW-5) per KP's five-fold signature; elemental resonance
+// in dimensional progression (AC-6). Maps Earth/Air/Fire/Water/SPIRIT to
+// consciousness-layers, creating a second axis orthogonal to consciousness-floors.
+// This is the "how systems think" layer that design methodology shapes.
+
+export const ELEMENTAL_CONSCIOUSNESS_PALETTE = {
+  /** Earth — grounded, action, embodiment (earth.base from colors.ts) */
+  earth: {
+    element: 'earth' as const,
+    base: '#8B4513',           // pagan.earth
+    consciousness: 'grounded·action',
+    density: 0.9,
+  },
+  /** Air — mental, choice, clarity (air.base) */
+  air: {
+    element: 'air' as const,
+    base: '#87CEEB',           // pagan.air
+    consciousness: 'mental·choice',
+    density: 1.0,
+  },
+  /** Fire — will, transformation, power (fire.base from QUANTUM_COLORS) */
+  fire: {
+    element: 'fire' as const,
+    base: '#FF4500',           // pagan.fire (stronger than fire.base)
+    consciousness: 'will·transformation',
+    density: 1.1,
+  },
+  /** Water — flow, dissolution, release (water.base) */
+  water: {
+    element: 'water' as const,
+    base: '#1E90FF',           // pagan.water
+    consciousness: 'flow·dissolution',
+    density: 0.85,
+  },
+  /** Spirit — unity, transcendence, witnessing (spirit.base) */
+  spirit: {
+    element: 'spirit' as const,
+    base: '#6C5CE7',           // pagan.spirit
+    consciousness: 'unity·witnessing',
+    density: 1.2,
+  },
+} as const;
+
+export type ElementalConsciousnessKey = keyof typeof ELEMENTAL_CONSCIOUSNESS_PALETTE;
+
+// ============================================================================
+// 14. TYPE EXPORTS
 // ============================================================================
 
 export type {
@@ -378,4 +578,10 @@ export type {
   EntityState as EntityStateType,
   ResonancePatternType as ResonancePatternTypeType,
   AwarenessDomain as AwarenessDomainType,
+  PauseMode as PauseModeType,           // O-2
+  GlobalPauseConfig as GlobalPauseConfigType, // O-2
+  RecoveryEntityState as RecoveryEntityStateType, // O-3
+  ConsciousnessFloor as ConsciousnessFloorType, // H-1
+  DimensionalFrequencyToken as DimensionalFrequencyTokenType, // H-1
+  ElementalConsciousnessKey as ElementalConsciousnessKeyType, // H-4
 };

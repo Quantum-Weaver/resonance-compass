@@ -1,5 +1,5 @@
 // ============================================================================
-/* lib/constants/cosmic/typography.ts */
+/* resonance-ziggy/modules/cosmic/constants/typography.ts */
 // QUANTUM TYPOGRAPHY SYSTEM - DERIVED FROM DIMENSIONS.TS
 // All font families, sizes, weights, and semantic text styles
 // Compatible with Tailwind CSS v4 and Framer Motion

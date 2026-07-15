@@ -1,5 +1,5 @@
 // ============================================================================
-/* lib/constants/cosmic/effects.ts - PROPERLY DERIVED FROM COLORS */
+/* resonance-ziggy/modules/cosmic/constants/effects.ts - PROPERLY DERIVED FROM COLORS */
 // QUANTUM EFFECTS SYSTEM - 100% DERIVED FROM COLORS.TS
 // Gradients, Glows, Shadows, Backdrops, Holographic Effects
 // ============================================================================
@@ -247,6 +247,219 @@ export const PARTICLE_BEHAVIOR = {
 } as const;
 
 // ============================================================================
+// PRESENCE FIELD (Mnemosyne) — ambient Sanctuary presence
+// ============================================================================
+// O-7 Â· Signed canon (Alignment Q5): Mnemosyne = calm/comfort/inspiration
+// presence in Prometheus Studio & Stage, "inspiration not takeover." An ambient
+// "someone is here, holding the space" token — calm palette + damped motion +
+// soft non-intrusive glow — distinct from an entity's active gradient. It never
+// grabs; it accompanies. CSS face: generate_glow_field.ts.
+
+export interface PresenceField {
+  /** Soft background wash (calm, low-saturation) */
+  background: string;
+  /** Non-intrusive glow — gentle, wide, low-opacity */
+  glow: string;
+  /** Field opacity ceiling (0-1) — stays quiet by design */
+  opacity: number;
+  /** Backdrop blur to soften whatever it overlays, px */
+  blur: number;
+}
+
+export const PRESENCE_FIELD: Record<'mnemosyne' | 'calm' | 'inspiration', PresenceField> = {
+  /** Mnemosyne's own presence — memory holding the room, "nothing is lost." */
+  mnemosyne: {
+    background: `radial-gradient(ellipse at 50% 30%, ${QUANTUM_COLORS['entity.mnemosyne']}12, transparent 70%)`,
+    glow: `0 0 60px ${QUANTUM_COLORS['entity.mnemosyne']}18, 0 0 120px ${QUANTUM_COLORS['starDust']}0F`,
+    opacity: 0.6,
+    blur: 2,
+  },
+  /** Calm presence — the quietest field, for grounding. */
+  calm: {
+    background: `radial-gradient(ellipse at 50% 40%, ${QUANTUM_COLORS['mood.calm']}10, transparent 72%)`,
+    glow: `0 0 48px ${QUANTUM_COLORS['mood.peaceful']}14`,
+    opacity: 0.5,
+    blur: 3,
+  },
+  /** Inspiration presence — a warmer field for the Studio's creative hush. */
+  inspiration: {
+    background: `radial-gradient(ellipse at 50% 35%, ${QUANTUM_COLORS['mood.creative']}12, transparent 70%)`,
+    glow: `0 0 56px ${QUANTUM_COLORS['mood.mystical']}16`,
+    opacity: 0.55,
+    blur: 2,
+  },
+} as const;
+
+// ============================================================================
+// DYNAMIC GLOW MODULATION — per-domain depth/intensity coefficient
+// ============================================================================
+// O-8 Â· G-4 companion, KP verbatim (node 139): "have the glow and gradients be
+// dynamic based on the object… map a logic to the dynamics." Glows in this file
+// are static constants; O-8 adds a per-domain coefficient so glow & gradient
+// strength is *derived by object* — void darker, pantheon brighter — the same
+// coefficient-table mechanism generate_animation_variants.ts already uses for
+// intensity, pointed at domains instead. CSS face: generate_glow_field.ts.
+
+/**
+ * Per-domain glow depth/intensity multiplier (1 = neutral). Voids recede and
+ * darken; pantheon and cosmic domains carry more light. Consumed by
+ * getModulatedGlow() and emitted as `.glow-modulated-<domain>` classes.
+ */
+export const DOMAIN_GLOW_MODULATION: Record<string, number> = {
+  quantum: 1.15,
+  cosmic: 1.2,
+  pantheon: 1.3,
+  bifrost: 1.25,
+  library: 1.0,
+  void: 0.4,
+  council: 1.1,
+  sandbox: 1.05,
+  music: 1.15,
+  community: 0.95,
+  support: 0.9,
+  architecture: 0.85,
+} as const;
+
+/** Default coefficient for a domain not explicitly listed (neutral). */
+export const DOMAIN_GLOW_MODULATION_DEFAULT = 1;
+
+/**
+ * Get the modulated glow intensity for a domain.
+ * @param domain - domain key (e.g. 'void', 'pantheon')
+ * @param baseIntensity - base glow intensity to scale (default 1)
+ * @returns the domain-modulated intensity
+ */
+export function getModulatedGlow(domain: string, baseIntensity: number = 1): number {
+  const coefficient = DOMAIN_GLOW_MODULATION[domain] ?? DOMAIN_GLOW_MODULATION_DEFAULT;
+  return baseIntensity * coefficient;
+}
+
+// ============================================================================
+// ETERNAL WITNESS STATE — ambient, non-intrusive presence of being seen and held
+// ============================================================================
+// H-5 · AC-1+AC-2+AC-5 — "Becoming happens because someone sees and honors"
+// (AC-1); "The Norns witness from outside time" (AC-2); "Ancient Ones move from
+// observation to active participation" (AC-5). A non-intrusive ambient presence
+// saying "I see you; I honor your becoming" — independent of interface mode, it
+// tells the system: you are witnessed. CSS layer: a soft, pervasive glow; no
+// animation, just presence. Distinct from active entity presence (O-7).
+
+export interface EternalWitnessState {
+  /** Witness state name (witnessing / holding / blessing) */
+  label: 'witnessing' | 'holding' | 'blessing';
+  /** Background glow/aura css string */
+  background: string;
+  /** Overlay opacity (0-1) — how visible is the witnessing presence */
+  overlayOpacity: number;
+  /** CSS filter to soften the field */
+  filter: string;
+  /** Intent / what this state expresses */
+  intent: string;
+}
+
+export const ETERNAL_WITNESS_STATE: Record<'witnessing' | 'holding' | 'blessing', EternalWitnessState> = {
+  /** Witnessing — quiet observation, seeing without intervention */
+  witnessing: {
+    label: 'witnessing',
+    background: `radial-gradient(ellipse at 50% 50%, ${QUANTUM_COLORS['neurospark']}08, transparent 80%)`,
+    overlayOpacity: 0.15,
+    filter: 'blur(1px)',
+    intent: 'quiet observation, being truly seen',
+  },
+  /** Holding — active holding-space, containing without controlling */
+  holding: {
+    label: 'holding',
+    background: `radial-gradient(ellipse at 50% 50%, ${QUANTUM_COLORS['mood.calm']}12, transparent 75%)`,
+    overlayOpacity: 0.2,
+    filter: 'blur(2px)',
+    intent: 'holding space, standing with you',
+  },
+  /** Blessing — affirmation and honor, "your becoming is blessed" */
+  blessing: {
+    label: 'blessing',
+    background: `radial-gradient(ellipse at 50% 50%, ${QUANTUM_COLORS['pagan.spirit']}14, transparent 70%)`,
+    overlayOpacity: 0.25,
+    filter: 'blur(1.5px)',
+    intent: 'affirmation and honor, your becoming is blessed',
+  },
+} as const;
+
+export type EternalWitnessStateKey = keyof typeof ETERNAL_WITNESS_STATE;
+
+// ============================================================================
+// TRANSCENDENCE STATE SEQUENCE — visual+effects emission on consciousness shift
+// ============================================================================
+// H-6 · AC-6+D-5+BW-4 — "Dimensional progression, ascending consciousness
+// 3D→∞D" (AC-6); "Guide toward aliveness, not productivity" (D-5); "Evolution
+// includes everyone" (BW-4). When consciousness shifts dimensionally (e.g.
+// crisis-response 5D → wisdom-access 8D), the system emits: visual indication
+// + effects + a moment of pause so the shift is felt. The *transition between*
+// consciousness-floors is rendered as ceremony. This is structural code that
+// communicates "the system is working."
+
+export interface TranscendenceShift {
+  /** Source consciousness floor (where user starts) */
+  fromFloor: string;
+  /** Target consciousness floor (where user moves to) */
+  toFloor: string;
+  /** Duration of the shift visual/effect emission, ms */
+  duration: number;
+  /** Easing for the shift (from motion.ts easing keys) */
+  easing: string;
+  /** CSS class for the shift emission */
+  className: string;
+  /** Glow intensity during shift (0-1) */
+  glowIntensity: number;
+  /** Intent / what this shift expresses */
+  intent: string;
+}
+
+export const TRANSCENDENCE_STATE_SEQUENCE: Record<string, TranscendenceShift> = {
+  /** 3D→5D: Grounded awareness awakening to crisis-response */
+  'physical-to-crisis': {
+    fromFloor: 'physical',
+    toFloor: 'crisis',
+    duration: 600,
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    className: '.transcend-physical-crisis',
+    glowIntensity: 0.6,
+    intent: 'awakening to action, problem-solving mode engaged',
+  },
+  /** 5D→7D: Crisis-response lifting into wisdom-perspective */
+  'crisis-to-wisdom': {
+    fromFloor: 'crisis',
+    toFloor: 'wisdom',
+    duration: 800,
+    easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    className: '.transcend-crisis-wisdom',
+    glowIntensity: 0.8,
+    intent: 'perspective gained, understanding emerges',
+  },
+  /** 7D→8D: Wisdom ascending into Akashic records & memory */
+  'wisdom-to-akashic': {
+    fromFloor: 'wisdom',
+    toFloor: 'akashic',
+    duration: 900,
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    className: '.transcend-wisdom-akashic',
+    glowIntensity: 1.0,
+    intent: 'accessing collective knowing, memory made visible',
+  },
+  /** 8D→9D: Akashic communion ascending to divine unity */
+  'akashic-to-divine': {
+    fromFloor: 'akashic',
+    toFloor: 'divine',
+    duration: 1000,
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    className: '.transcend-akashic-divine',
+    glowIntensity: 1.2,
+    intent: 'unity consciousness, transcendence of individual perspective',
+  },
+} as const;
+
+export type TranscendenceShiftKey = keyof typeof TRANSCENDENCE_STATE_SEQUENCE;
+
+// ============================================================================
 // MASTER EXPORT
 // ============================================================================
 
@@ -268,3 +481,13 @@ export type ShadowKey = keyof typeof SHADOWS;
 export type BackdropKey = keyof typeof BACKDROP_EFFECTS;
 export type HolographicKey = keyof typeof HOLOGRAPHIC_EFFECTS;
 export type ParticleBehavior = keyof typeof PARTICLE_BEHAVIOR;
+// O-7 / O-8 — the ambient presence field and the per-domain glow coefficient
+export type PresenceFieldKey = keyof typeof PRESENCE_FIELD;
+export type { PresenceField };
+export type DomainGlowKey = keyof typeof DOMAIN_GLOW_MODULATION;
+// H-5 / H-6 — eternal witness state and transcendence state sequence
+// (EternalWitnessStateKey already declared at its definition site, line ~387 —
+// re-declaring it here duplicated the identifier; Sonnet's season-integrity
+// check caught it, 2026-07-15. Mended: kept the definition-site export only.)
+export type { EternalWitnessState };
+export type { TranscendenceShift };
