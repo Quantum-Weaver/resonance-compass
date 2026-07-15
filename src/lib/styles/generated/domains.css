@@ -1,6 +1,6 @@
 /* ============================================================================
  * DOMAIN STYLES - Generated from DOMAIN_COLORS
- * Generated: 2026-04-12T18:59:53.050Z
+ * Generated: 2026-07-15T23:28:12.620Z
  * ============================================================================ */
 
 /* ========================================================================== */
@@ -280,111 +280,111 @@
 /* ========================================================================== */
 
 .domain-quantum-glow {
-  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4);
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-quantum-glow:hover {
-  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4);
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4)80;
 }
 
 .domain-cosmic-glow {
-  box-shadow: 0 0 20px rgba(9, 132, 227, 0.4), 0 0 40px rgba(9, 132, 227, 0.4);
+  box-shadow: 0 0 20px rgba(9, 132, 227, 0.4), 0 0 40px rgba(9, 132, 227, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-cosmic-glow:hover {
-  box-shadow: 0 0 30px rgba(9, 132, 227, 0.4), 0 0 60px rgba(9, 132, 227, 0.4);
+  box-shadow: 0 0 30px rgba(9, 132, 227, 0.4), 0 0 60px rgba(9, 132, 227, 0.4)80;
 }
 
 .domain-pantheon-glow {
-  box-shadow: 0 0 20px rgba(225, 112, 85, 0.4), 0 0 40px rgba(225, 112, 85, 0.4);
+  box-shadow: 0 0 20px rgba(225, 112, 85, 0.4), 0 0 40px rgba(225, 112, 85, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-pantheon-glow:hover {
-  box-shadow: 0 0 30px rgba(225, 112, 85, 0.4), 0 0 60px rgba(225, 112, 85, 0.4);
+  box-shadow: 0 0 30px rgba(225, 112, 85, 0.4), 0 0 60px rgba(225, 112, 85, 0.4)80;
 }
 
 .domain-bifrost-glow {
-  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4);
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), 0 0 40px rgba(108, 92, 231, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-bifrost-glow:hover {
-  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4);
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.4), 0 0 60px rgba(108, 92, 231, 0.4)80;
 }
 
 .domain-library-glow {
-  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4);
+  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-library-glow:hover {
-  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4);
+  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4)80;
 }
 
 .domain-void-glow {
-  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4);
+  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-void-glow:hover {
-  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4);
+  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4)80;
 }
 
 .domain-council-glow {
-  box-shadow: 0 0 20px rgba(46, 11, 28, 0.4), 0 0 40px rgba(46, 11, 28, 0.4);
+  box-shadow: 0 0 20px rgba(46, 11, 28, 0.4), 0 0 40px rgba(46, 11, 28, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-council-glow:hover {
-  box-shadow: 0 0 30px rgba(46, 11, 28, 0.4), 0 0 60px rgba(46, 11, 28, 0.4);
+  box-shadow: 0 0 30px rgba(46, 11, 28, 0.4), 0 0 60px rgba(46, 11, 28, 0.4)80;
 }
 
 .domain-sandbox-glow {
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(34, 211, 238, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-sandbox-glow:hover {
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.4), 0 0 60px rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.4), 0 0 60px rgba(34, 211, 238, 0.4)80;
 }
 
 .domain-music-glow {
-  box-shadow: 0 0 20px rgba(232, 67, 147, 0.4), 0 0 40px rgba(232, 67, 147, 0.4);
+  box-shadow: 0 0 20px rgba(232, 67, 147, 0.4), 0 0 40px rgba(232, 67, 147, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-music-glow:hover {
-  box-shadow: 0 0 30px rgba(232, 67, 147, 0.4), 0 0 60px rgba(232, 67, 147, 0.4);
+  box-shadow: 0 0 30px rgba(232, 67, 147, 0.4), 0 0 60px rgba(232, 67, 147, 0.4)80;
 }
 
 .domain-community-glow {
-  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4);
+  box-shadow: 0 0 20px rgba(0, 184, 148, 0.4), 0 0 40px rgba(0, 184, 148, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-community-glow:hover {
-  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4);
+  box-shadow: 0 0 30px rgba(0, 184, 148, 0.4), 0 0 60px rgba(0, 184, 148, 0.4)80;
 }
 
 .domain-support-glow {
-  box-shadow: 0 0 20px rgba(116, 185, 255, 0.4), 0 0 40px rgba(116, 185, 255, 0.4);
+  box-shadow: 0 0 20px rgba(116, 185, 255, 0.4), 0 0 40px rgba(116, 185, 255, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-support-glow:hover {
-  box-shadow: 0 0 30px rgba(116, 185, 255, 0.4), 0 0 60px rgba(116, 185, 255, 0.4);
+  box-shadow: 0 0 30px rgba(116, 185, 255, 0.4), 0 0 60px rgba(116, 185, 255, 0.4)80;
 }
 
 .domain-architecture-glow {
-  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4);
+  box-shadow: 0 0 20px rgba(99, 110, 114, 0.4), 0 0 40px rgba(99, 110, 114, 0.4)80;
   transition: all 0.3s ease;
 }
 
 .domain-architecture-glow:hover {
-  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4);
+  box-shadow: 0 0 30px rgba(99, 110, 114, 0.4), 0 0 60px rgba(99, 110, 114, 0.4)80;
 }
 
 /* ========================================================================== */

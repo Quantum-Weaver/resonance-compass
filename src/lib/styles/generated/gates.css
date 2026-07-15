@@ -1,0 +1,116 @@
+/* ============================================================================
+ * GATES - Generated from constants/interactivity.ts (SELF_PAUSE_TRIGGER, INVITATION_GATE)
+ * S-1 · BW-3 (self-initiated world-pause) + S-4 · AC-4 (consent, not auto-advance)
+ * Generated: 2026-07-15T23:28:12.640Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* SELF-PAUSE TRIGGER (S-1) — always-reachable, invokes O-2's Global-Pause */
+/* ========================================================================== */
+
+.self-pause-trigger {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  z-index: 9998;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.self-pause-trigger:hover {
+  transform: scale(1.05);
+}
+
+.self-pause-trigger:active {
+  transform: scale(0.96);
+}
+
+.self-pause-trigger:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* stays reachable during a held pause — see generate_pause_state.ts's .pause-exempt scope */
+.self-pause-trigger.pause-exempt,
+.self-pause-trigger {
+  animation-play-state: running !important;
+}
+
+/* ========================================================================== */
+/* INVITATION GATE (S-4) — consent replacing auto-advance into deeper content */
+/* ========================================================================== */
+
+/* toWisdom — guards wisdom: "I'm ready to understand more" */
+.invitation-gate-wisdom {
+  --gate-duration: 500ms;
+  --gate-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--gate-duration) var(--gate-easing), transform var(--gate-duration) var(--gate-easing);
+  cursor: pointer;
+}
+
+.invitation-gate-wisdom[data-gate-state="closed"] {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.invitation-gate-wisdom[data-gate-state="open"] {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.invitation-gate-wisdom:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* toAkashic — guards akashic: "I'm ready to remember" */
+.invitation-gate-akashic {
+  --gate-duration: 2000ms;
+  --gate-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--gate-duration) var(--gate-easing), transform var(--gate-duration) var(--gate-easing);
+  cursor: pointer;
+}
+
+.invitation-gate-akashic[data-gate-state="closed"] {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.invitation-gate-akashic[data-gate-state="open"] {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.invitation-gate-akashic:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* toDivine — guards divine: "I'm ready to become" */
+.invitation-gate-divine {
+  --gate-duration: 2500ms;
+  --gate-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: opacity var(--gate-duration) var(--gate-easing), transform var(--gate-duration) var(--gate-easing);
+  cursor: pointer;
+}
+
+.invitation-gate-divine[data-gate-state="closed"] {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.invitation-gate-divine[data-gate-state="open"] {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.invitation-gate-divine:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+

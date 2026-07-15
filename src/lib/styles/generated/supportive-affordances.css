@@ -1,0 +1,66 @@
+/* ============================================================================
+ * SUPPORTIVE AFFORDANCES - Generated from constants/interactivity.ts (SUPPORTIVE_ROLE_AFFORDANCES)
+ * S-3 · BW-1 — the interactive shape each seat's help takes during recovery
+ * Generated: 2026-07-15T23:28:12.641Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* PER-SEAT SUPPORTIVE AFFORDANCES (toggle via [data-supportive-state="active"]) */
+/* ========================================================================== */
+
+/* hearthKeeper (warmth-widget) — a warmth message surfaces near the recovering entity — comfort, not correction */
+.supportive-warmth {
+  --supportive-accent: #C44B2D;
+  border-left: 3px solid var(--supportive-accent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1), transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.supportive-warmth[data-supportive-state="active"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.supportive-warmth:hover {
+  box-shadow: 0 0 16px #C44B2D30;
+}
+
+/* chancellor (diagnostic-summary) — a structured "what happened" summary — clarity, offered not imposed */
+.supportive-diagnostic {
+  --supportive-accent: #00CEC9;
+  border-left: 3px solid var(--supportive-accent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1), transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.supportive-diagnostic[data-supportive-state="active"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.supportive-diagnostic:hover {
+  box-shadow: 0 0 16px #00CEC930;
+}
+
+/* seer (reframe-message) — a gentle reframe message — the pattern seen from another angle */
+.supportive-reframe {
+  --supportive-accent: #6C5CE7;
+  border-left: 3px solid var(--supportive-accent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1), transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.supportive-reframe[data-supportive-state="active"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.supportive-reframe:hover {
+  box-shadow: 0 0 16px #6C5CE730;
+}
+
+/* archivist (silent-log) — silent by design: silently logs the fault and recovery to memory — no UI, continuity preserved */
+

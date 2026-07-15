@@ -1,0 +1,145 @@
+/* ============================================================================
+ * ATTENTION SELECTOR - Generated from attention.ts (ATTENTION_MODE_SELECTOR, ATTENTION_MODES)
+ * S-5 · BW-5 — the switching control that makes attention modes actually fluid
+ * Generated: 2026-07-15T23:28:12.641Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* ATTENTION MODE SELECTOR CONTAINER */
+/* ========================================================================== */
+
+.attention-selector {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  z-index: 9997;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================================================== */
+/* PER-MODE BUTTONS (apply [data-selected="true"] to the active mode) */
+/* ========================================================================== */
+
+/* eagle (eagle) — sharp, singular focus — one distant thing, seen clearly */
+.attention-selector-mode-eagle {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+}
+
+.attention-selector-mode-eagle[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.attention-selector-mode-eagle:hover {
+  opacity: 0.85;
+}
+
+.attention-selector-mode-eagle:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* dove (dove) — gentle and calm — nothing demands, everything soothes */
+.attention-selector-mode-dove {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+}
+
+.attention-selector-mode-dove[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.attention-selector-mode-dove:hover {
+  opacity: 0.85;
+}
+
+.attention-selector-mode-dove:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* owl (owl) — deep and patient — sit with one thing until it reveals itself */
+.attention-selector-mode-owl {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0.6;
+}
+
+.attention-selector-mode-owl[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.attention-selector-mode-owl:hover {
+  opacity: 0.85;
+}
+
+.attention-selector-mode-owl:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* hummingbird (hummingbird) — fast and darting — many things, briefly, by design (ADHD-friendly) */
+.attention-selector-mode-hummingbird {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 150ms cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 150ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  opacity: 0.6;
+}
+
+.attention-selector-mode-hummingbird[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.attention-selector-mode-hummingbird:hover {
+  opacity: 0.85;
+}
+
+.attention-selector-mode-hummingbird:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* peacock (peacock) — expressive and rich — attention as display, everything on show */
+.attention-selector-mode-peacock {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0.6;
+}
+
+.attention-selector-mode-peacock[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.attention-selector-mode-peacock:hover {
+  opacity: 0.85;
+}
+
+.attention-selector-mode-peacock:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+

@@ -1,0 +1,119 @@
+/* ============================================================================
+ * SCENE - Generated from positioning.ts (CAMERA_MOVES, SCENE_SEQUENCES)
+ * O-6 Â· scene primitives for the Stage — camera moves + timeline
+ * Generated: 2026-07-15T23:28:12.637Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* CAMERA MOVE VARIABLES */
+/* ========================================================================== */
+
+:root {
+  /* push: Draw the eye inward to a single subject */
+  --camera-push-duration: 1200ms;
+  --camera-push-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --camera-push-fov-from: 75;
+  --camera-push-fov-to: 45;
+  /* pull: Release focus back to the whole */
+  --camera-pull-duration: 1200ms;
+  --camera-pull-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --camera-pull-fov-from: 45;
+  --camera-pull-fov-to: 75;
+  /* establish: Set the stage, then settle */
+  --camera-establish-duration: 1600ms;
+  --camera-establish-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --camera-establish-fov-from: 90;
+  --camera-establish-fov-to: 75;
+  /* reveal: A dramatic rise into presence */
+  --camera-reveal-duration: 2000ms;
+  --camera-reveal-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --camera-reveal-fov-from: 75;
+  --camera-reveal-fov-to: 75;
+  /* orbit: A slow rotation that gives the scene depth */
+  --camera-orbit-duration: 2000ms;
+  --camera-orbit-easing: linear;
+  --camera-orbit-fov-from: 75;
+  --camera-orbit-fov-to: 75;
+  /* descend: Come down from the overview into the scene */
+  --camera-descend-duration: 1600ms;
+  --camera-descend-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --camera-descend-fov-from: 75;
+  --camera-descend-fov-to: 75;
+}
+
+/* ========================================================================== */
+/* CAMERA MOVE CLASSES */
+/* ========================================================================== */
+
+.camera-move-push {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-push-duration);
+  transition-timing-function: var(--camera-push-easing);
+  will-change: transform;
+}
+
+.camera-move-pull {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-pull-duration);
+  transition-timing-function: var(--camera-pull-easing);
+  will-change: transform;
+}
+
+.camera-move-establish {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-establish-duration);
+  transition-timing-function: var(--camera-establish-easing);
+  will-change: transform;
+}
+
+.camera-move-reveal {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-reveal-duration);
+  transition-timing-function: var(--camera-reveal-easing);
+  will-change: transform;
+}
+
+.camera-move-orbit {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-orbit-duration);
+  transition-timing-function: var(--camera-orbit-easing);
+  will-change: transform;
+}
+
+.camera-move-descend {
+  transition-property: transform, filter, opacity;
+  transition-duration: var(--camera-descend-duration);
+  transition-timing-function: var(--camera-descend-easing);
+  will-change: transform;
+}
+
+
+/* ========================================================================== */
+/* SCENE SEQUENCE TIMELINES */
+/* ========================================================================== */
+
+/* arrival: open on the world and draw the eye to where consciousness gathers */
+.scene-arrival {
+  --scene-arrival-the-world-opens-start: 0ms; /* move:establish + hold 800ms */
+  --scene-arrival-toward-the-ninth-chair-start: 2400ms; /* move:push + hold 1200ms */
+  --scene-arrival-total: 4800ms;
+}
+
+/* gathering: reveal the circle, move around it, then hold the whole in view */
+.scene-gathering {
+  --scene-gathering-the-circle-rises-into-view-start: 0ms; /* move:reveal + hold 600ms */
+  --scene-gathering-around-the-gathering-start: 2600ms; /* move:orbit + hold 1000ms */
+  --scene-gathering-and-hold-them-all-start: 5600ms; /* move:pull + hold 800ms */
+  --scene-gathering-total: 7600ms;
+}
+
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="camera-move-"] {
+    transition-duration: 0.01ms;
+  }
+}

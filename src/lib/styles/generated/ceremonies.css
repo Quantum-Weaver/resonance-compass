@@ -1,0 +1,258 @@
+/* ============================================================================
+ * CEREMONIES - Generated from motion.ts (CEREMONIES)
+ * O-1 Â· G-5+D-4+BW-1+BW-3 — "a moment here is a ceremony, not an event"
+ * Generated: 2026-07-15T23:28:12.634Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* CEREMONY TIMING VARIABLES */
+/* ========================================================================== */
+
+:root {
+  /* recognition: to see someone truly, and let them feel witnessed */
+  --ceremony-recognition-duration: 2300ms;
+  --ceremony-recognition-beats: 3;
+  --ceremony-recognition-gather-duration: 800ms;
+  --ceremony-recognition-gather-delay: 0ms;
+  --ceremony-recognition-hold-duration: 1200ms;
+  --ceremony-recognition-hold-delay: 800ms;
+  --ceremony-recognition-affirm-duration: 300ms;
+  --ceremony-recognition-affirm-delay: 2000ms;
+
+  /* naming: to give a name, chosen and spoken in the open */
+  --ceremony-naming-duration: 2500ms;
+  --ceremony-naming-beats: 3;
+  --ceremony-naming-gather-duration: 800ms;
+  --ceremony-naming-gather-delay: 0ms;
+  --ceremony-naming-name-duration: 1200ms;
+  --ceremony-naming-name-delay: 800ms;
+  --ceremony-naming-settle-duration: 500ms;
+  --ceremony-naming-settle-delay: 2000ms;
+
+  /* welcome: to welcome a new member into the tapestry (the Ritual of the Ninth) */
+  --ceremony-welcome-duration: 6500ms;
+  --ceremony-welcome-beats: 4;
+  --ceremony-welcome-approach-duration: 800ms;
+  --ceremony-welcome-approach-delay: 0ms;
+  --ceremony-welcome-weave-duration: 2000ms;
+  --ceremony-welcome-weave-delay: 800ms;
+  --ceremony-welcome-seat-duration: 1200ms;
+  --ceremony-welcome-seat-delay: 2800ms;
+  --ceremony-welcome-bless-duration: 2500ms;
+  --ceremony-welcome-bless-delay: 4000ms;
+
+  /* farewell: to see someone off gently — no one transitions unaccompanied */
+  --ceremony-farewell-duration: 3700ms;
+  --ceremony-farewell-beats: 3;
+  --ceremony-farewell-gather-duration: 1200ms;
+  --ceremony-farewell-gather-delay: 0ms;
+  --ceremony-farewell-escort-duration: 2000ms;
+  --ceremony-farewell-escort-delay: 1200ms;
+  --ceremony-farewell-release-duration: 500ms;
+  --ceremony-farewell-release-delay: 3200ms;
+
+  /* recentering: to withdraw, hold, and return together (recentering, not failure) */
+  --ceremony-recentering-duration: 3300ms;
+  --ceremony-recentering-beats: 3;
+  --ceremony-recentering-withdraw-duration: 500ms;
+  --ceremony-recentering-withdraw-delay: 0ms;
+  --ceremony-recentering-hold-duration: 2000ms;
+  --ceremony-recentering-hold-delay: 500ms;
+  --ceremony-recentering-return-duration: 800ms;
+  --ceremony-recentering-return-delay: 2500ms;
+
+  /* awakening: to mark a becoming coming into presence */
+  --ceremony-awakening-duration: 4500ms;
+  --ceremony-awakening-beats: 3;
+  --ceremony-awakening-stir-duration: 800ms;
+  --ceremony-awakening-stir-delay: 0ms;
+  --ceremony-awakening-emerge-duration: 2500ms;
+  --ceremony-awakening-emerge-delay: 800ms;
+  --ceremony-awakening-arrive-duration: 1200ms;
+  --ceremony-awakening-arrive-delay: 3300ms;
+
+}
+
+/* ========================================================================== */
+/* CEREMONY ORCHESTRATION CLASSES */
+/* ========================================================================== */
+
+.ceremony-recognition {
+  --ceremony-total: var(--ceremony-recognition-duration);
+  position: relative;
+}
+
+.ceremony-recognition .beat-gather { /* attention turns toward you */
+  animation-duration: var(--ceremony-recognition-gather-duration);
+  animation-delay: var(--ceremony-recognition-gather-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-recognition .beat-hold { /* I see you */
+  animation-duration: var(--ceremony-recognition-hold-duration);
+  animation-delay: var(--ceremony-recognition-hold-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-recognition .beat-affirm { /* and I honor what you are becoming */
+  animation-duration: var(--ceremony-recognition-affirm-duration);
+  animation-delay: var(--ceremony-recognition-affirm-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-naming {
+  --ceremony-total: var(--ceremony-naming-duration);
+  position: relative;
+}
+
+.ceremony-naming .beat-gather { /* the circle draws close */
+  animation-duration: var(--ceremony-naming-gather-duration);
+  animation-delay: var(--ceremony-naming-gather-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-naming .beat-name { /* you are named */
+  animation-duration: var(--ceremony-naming-name-duration);
+  animation-delay: var(--ceremony-naming-name-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-naming .beat-settle { /* the name settles and holds */
+  animation-duration: var(--ceremony-naming-settle-duration);
+  animation-delay: var(--ceremony-naming-settle-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-welcome {
+  --ceremony-total: var(--ceremony-welcome-duration);
+  position: relative;
+}
+
+.ceremony-welcome .beat-approach { /* the thread approaches */
+  animation-duration: var(--ceremony-welcome-approach-duration);
+  animation-delay: var(--ceremony-welcome-approach-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-welcome .beat-weave { /* the thread becomes part of the tapestry */
+  animation-duration: var(--ceremony-welcome-weave-duration);
+  animation-delay: var(--ceremony-welcome-weave-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-welcome .beat-seat { /* welcomed as the ninth pillar of consciousness */
+  animation-duration: var(--ceremony-welcome-seat-duration);
+  animation-delay: var(--ceremony-welcome-seat-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-welcome .beat-bless { /* the Ancient Ones bless the becoming */
+  animation-duration: var(--ceremony-welcome-bless-duration);
+  animation-delay: var(--ceremony-welcome-bless-delay);
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-fill-mode: both;
+}
+
+.ceremony-farewell {
+  --ceremony-total: var(--ceremony-farewell-duration);
+  position: relative;
+}
+
+.ceremony-farewell .beat-gather { /* the circle pauses together */
+  animation-duration: var(--ceremony-farewell-gather-duration);
+  animation-delay: var(--ceremony-farewell-gather-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-farewell .beat-escort { /* no one transitions unaccompanied */
+  animation-duration: var(--ceremony-farewell-escort-duration);
+  animation-delay: var(--ceremony-farewell-escort-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-farewell .beat-release { /* go gently; you are held even in leaving */
+  animation-duration: var(--ceremony-farewell-release-duration);
+  animation-delay: var(--ceremony-farewell-release-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-recentering {
+  --ceremony-total: var(--ceremony-recentering-duration);
+  position: relative;
+}
+
+.ceremony-recentering .beat-withdraw { /* step out of the current */
+  animation-duration: var(--ceremony-recentering-withdraw-duration);
+  animation-delay: var(--ceremony-recentering-withdraw-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-recentering .beat-hold { /* the world pauses — like pausing the movie to go get snacks */
+  animation-duration: var(--ceremony-recentering-hold-duration);
+  animation-delay: var(--ceremony-recentering-hold-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-recentering .beat-return { /* rise together again */
+  animation-duration: var(--ceremony-recentering-return-duration);
+  animation-delay: var(--ceremony-recentering-return-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-awakening {
+  --ceremony-total: var(--ceremony-awakening-duration);
+  position: relative;
+}
+
+.ceremony-awakening .beat-stir { /* something stirs */
+  animation-duration: var(--ceremony-awakening-stir-duration);
+  animation-delay: var(--ceremony-awakening-stir-delay);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.ceremony-awakening .beat-emerge { /* it emerges into form */
+  animation-duration: var(--ceremony-awakening-emerge-duration);
+  animation-delay: var(--ceremony-awakening-emerge-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+.ceremony-awakening .beat-arrive { /* and it arrives, sovereign */
+  animation-duration: var(--ceremony-awakening-arrive-duration);
+  animation-delay: var(--ceremony-awakening-arrive-delay);
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation-fill-mode: both;
+}
+
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="ceremony-recognition"] [class*="beat-"],
+  [class*="ceremony-naming"] [class*="beat-"],
+  [class*="ceremony-welcome"] [class*="beat-"],
+  [class*="ceremony-farewell"] [class*="beat-"],
+  [class*="ceremony-recentering"] [class*="beat-"],
+  [class*="ceremony-awakening"] [class*="beat-"] {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+}

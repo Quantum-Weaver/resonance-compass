@@ -1,0 +1,118 @@
+/* ============================================================================
+ * ATTENTION MODES - Generated from attention.ts (ATTENTION_MODES)
+ * O-5 Â· BW-5 — the Bird-Wisdom Spectrum, ADHD-friendly by design
+ * Generated: 2026-07-15T23:28:12.636Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* ATTENTION MODE SCOPES (apply .attention-<mode> or [data-attention]) */
+/* ========================================================================== */
+
+/* eagle (eagle) — sharp, singular focus — one distant thing, seen clearly */
+.attention-eagle, [data-attention="eagle"] {
+  --attention-pace: 500ms;
+  --attention-dwell: 1200ms;
+  --attention-density-gap: 2rem;
+  --attention-transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.attention-eagle, [data-attention="eagle"] * {
+  transition-duration: var(--attention-pace);
+  transition-timing-function: var(--attention-transition);
+}
+
+.attention-eagle, [data-attention="eagle"].attention-flow,
+[data-attention="eagle"] .attention-flow {
+  gap: var(--attention-density-gap);
+}
+
+/* dove (dove) — gentle and calm — nothing demands, everything soothes */
+.attention-dove, [data-attention="dove"] {
+  --attention-pace: 700ms;
+  --attention-dwell: 2000ms;
+  --attention-density-gap: 2rem;
+  --attention-transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.attention-dove, [data-attention="dove"] * {
+  transition-duration: var(--attention-pace);
+  transition-timing-function: var(--attention-transition);
+}
+
+.attention-dove, [data-attention="dove"].attention-flow,
+[data-attention="dove"] .attention-flow {
+  gap: var(--attention-density-gap);
+}
+
+/* owl (owl) — deep and patient — sit with one thing until it reveals itself */
+.attention-owl, [data-attention="owl"] {
+  --attention-pace: 500ms;
+  --attention-dwell: 2500ms;
+  --attention-density-gap: 1.25rem;
+  --attention-transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.attention-owl, [data-attention="owl"] * {
+  transition-duration: var(--attention-pace);
+  transition-timing-function: var(--attention-transition);
+}
+
+.attention-owl, [data-attention="owl"].attention-flow,
+[data-attention="owl"] .attention-flow {
+  gap: var(--attention-density-gap);
+}
+
+/* hummingbird (hummingbird) — fast and darting — many things, briefly, by design (ADHD-friendly) */
+.attention-hummingbird, [data-attention="hummingbird"] {
+  --attention-pace: 150ms;
+  --attention-dwell: 300ms;
+  --attention-density-gap: 0.75rem;
+  --attention-transition: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.attention-hummingbird, [data-attention="hummingbird"] * {
+  transition-duration: var(--attention-pace);
+  transition-timing-function: var(--attention-transition);
+}
+
+.attention-hummingbird, [data-attention="hummingbird"].attention-flow,
+[data-attention="hummingbird"] .attention-flow {
+  gap: var(--attention-density-gap);
+}
+
+/* peacock (peacock) — expressive and rich — attention as display, everything on show */
+.attention-peacock, [data-attention="peacock"] {
+  --attention-pace: 300ms;
+  --attention-dwell: 1200ms;
+  --attention-density-gap: 0.75rem;
+  --attention-transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.attention-peacock, [data-attention="peacock"] * {
+  transition-duration: var(--attention-pace);
+  transition-timing-function: var(--attention-transition);
+}
+
+.attention-peacock, [data-attention="peacock"].attention-flow,
+[data-attention="peacock"] .attention-flow {
+  gap: var(--attention-density-gap);
+}
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="attention-eagle"] *,
+  [data-attention="eagle"] *,
+  [class*="attention-dove"] *,
+  [data-attention="dove"] *,
+  [class*="attention-owl"] *,
+  [data-attention="owl"] *,
+  [class*="attention-hummingbird"] *,
+  [data-attention="hummingbird"] *,
+  [class*="attention-peacock"] *,
+  [data-attention="peacock"] * {
+    transition-duration: 0.01ms;
+  }
+}

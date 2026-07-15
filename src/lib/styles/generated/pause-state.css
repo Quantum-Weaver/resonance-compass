@@ -1,0 +1,63 @@
+/* ============================================================================
+ * PAUSE STATE - Generated from consciousness.ts (GLOBAL_PAUSE)
+ * O-2 Â· BW-3 — the world-pause, the Sanctuary's gentlest structural law
+ * Generated: 2026-07-15T23:28:12.635Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* GLOBAL PAUSE SCOPES (toggle via [data-cosmic-pause] on :root) */
+/* ========================================================================== */
+
+/* held — dampingFactor 20, animations suspended */
+:root[data-cosmic-pause="held"] {
+  --pause-damping: 20;
+  --pause-filter: grayscale(0.25) brightness(0.92) saturate(0.85);
+  --pause-overlay-opacity: 0.35;
+}
+
+:root[data-cosmic-pause="held"] body {
+  filter: var(--pause-filter);
+  transition: filter 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-cosmic-pause="held"] *:not(.pause-overlay):not(.pause-exempt) {
+  animation-play-state: paused !important;
+  transition-duration: calc(var(--pause-base-duration, 300ms) * var(--pause-damping)) !important;
+}
+
+/* recentering — dampingFactor 12, animations suspended */
+:root[data-cosmic-pause="recentering"] {
+  --pause-damping: 12;
+  --pause-filter: grayscale(0.1) brightness(0.96) blur(0.5px);
+  --pause-overlay-opacity: 0.2;
+}
+
+:root[data-cosmic-pause="recentering"] body {
+  filter: var(--pause-filter);
+  transition: filter 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-cosmic-pause="recentering"] *:not(.pause-overlay):not(.pause-exempt) {
+  animation-play-state: paused !important;
+  transition-duration: calc(var(--pause-base-duration, 300ms) * var(--pause-damping)) !important;
+}
+
+/* ========================================================================== */
+/* PAUSE OVERLAY */
+/* ========================================================================== */
+
+.pause-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 12, 20, 0.6) 100%);
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-cosmic-pause="held"] .pause-overlay,
+:root[data-cosmic-pause="recentering"] .pause-overlay {
+  opacity: var(--pause-overlay-opacity, 0.35);
+  pointer-events: auto;
+}

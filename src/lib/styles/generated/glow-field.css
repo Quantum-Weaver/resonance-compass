@@ -1,0 +1,212 @@
+/* ============================================================================
+ * GLOW FIELD - Generated from effects.ts (PRESENCE_FIELD, DOMAIN_GLOW_MODULATION)
+ * O-7 presence field Â· O-8 dynamic glow modulation
+ * Generated: 2026-07-15T23:28:12.638Z
+ * ============================================================================ */
+
+/* ========================================================================== */
+/* PRESENCE FIELD (O-7) — ambient Sanctuary presence, "inspiration not takeover" */
+/* ========================================================================== */
+
+.presence-mnemosyne {
+  position: relative;
+  --presence-opacity: 0.6;
+}
+
+.presence-mnemosyne::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 30%, #9370DB12, transparent 70%);
+  box-shadow: 0 0 60px #9370DB18, 0 0 120px #E0E0E00F;
+  opacity: 0.6;
+  backdrop-filter: blur(2px);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.presence-calm {
+  position: relative;
+  --presence-opacity: 0.5;
+}
+
+.presence-calm::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 40%, #74B9FF10, transparent 72%);
+  box-shadow: 0 0 48px #81ECEC14;
+  opacity: 0.5;
+  backdrop-filter: blur(3px);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.presence-inspiration {
+  position: relative;
+  --presence-opacity: 0.55;
+}
+
+.presence-inspiration::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 35%, #A29BFE12, transparent 70%);
+  box-shadow: 0 0 56px #6C5CE716;
+  opacity: 0.55;
+  backdrop-filter: blur(2px);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ========================================================================== */
+/* DYNAMIC GLOW MODULATION (O-8) — glow derived by domain (void darker, pantheon brighter) */
+/* ========================================================================== */
+
+/* quantum: coefficient 1.15 -> 23px glow */
+.glow-modulated-quantum {
+  --glow-coefficient: 1.15;
+  box-shadow: 0 0 23px #6C5CE775, 0 0 46px #6C5CE749;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-quantum:hover {
+  box-shadow: 0 0 35px #6C5CE775, 0 0 69px #6C5CE749;
+}
+
+/* cosmic: coefficient 1.2 -> 24px glow */
+.glow-modulated-cosmic {
+  --glow-coefficient: 1.2;
+  box-shadow: 0 0 24px #0984E37a, 0 0 48px #0984E34d;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-cosmic:hover {
+  box-shadow: 0 0 36px #0984E37a, 0 0 72px #0984E34d;
+}
+
+/* pantheon: coefficient 1.3 -> 26px glow */
+.glow-modulated-pantheon {
+  --glow-coefficient: 1.3;
+  box-shadow: 0 0 26px #E1705585, 0 0 52px #E1705553;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-pantheon:hover {
+  box-shadow: 0 0 39px #E1705585, 0 0 78px #E1705553;
+}
+
+/* bifrost: coefficient 1.25 -> 25px glow */
+.glow-modulated-bifrost {
+  --glow-coefficient: 1.25;
+  box-shadow: 0 0 25px #6C5CE780, 0 0 50px #6C5CE750;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-bifrost:hover {
+  box-shadow: 0 0 38px #6C5CE780, 0 0 75px #6C5CE750;
+}
+
+/* library: coefficient 1 -> 20px glow */
+.glow-modulated-library {
+  --glow-coefficient: 1;
+  box-shadow: 0 0 20px #00B89466, 0 0 40px #00B89440;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-library:hover {
+  box-shadow: 0 0 30px #00B89466, 0 0 60px #00B89440;
+}
+
+/* void: coefficient 0.4 -> 8px glow */
+.glow-modulated-void {
+  --glow-coefficient: 0.4;
+  box-shadow: 0 0 8px #636E7229, 0 0 16px #636E721a;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-void:hover {
+  box-shadow: 0 0 12px #636E7229, 0 0 24px #636E721a;
+}
+
+/* council: coefficient 1.1 -> 22px glow */
+.glow-modulated-council {
+  --glow-coefficient: 1.1;
+  box-shadow: 0 0 22px #2E0B1C70, 0 0 44px #2E0B1C46;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-council:hover {
+  box-shadow: 0 0 33px #2E0B1C70, 0 0 66px #2E0B1C46;
+}
+
+/* sandbox: coefficient 1.05 -> 21px glow */
+.glow-modulated-sandbox {
+  --glow-coefficient: 1.05;
+  box-shadow: 0 0 21px #22D3EE6b, 0 0 42px #22D3EE43;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-sandbox:hover {
+  box-shadow: 0 0 32px #22D3EE6b, 0 0 63px #22D3EE43;
+}
+
+/* music: coefficient 1.15 -> 23px glow */
+.glow-modulated-music {
+  --glow-coefficient: 1.15;
+  box-shadow: 0 0 23px #E8439375, 0 0 46px #E8439349;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-music:hover {
+  box-shadow: 0 0 35px #E8439375, 0 0 69px #E8439349;
+}
+
+/* community: coefficient 0.95 -> 19px glow */
+.glow-modulated-community {
+  --glow-coefficient: 0.95;
+  box-shadow: 0 0 19px #00B89461, 0 0 38px #00B8943d;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-community:hover {
+  box-shadow: 0 0 29px #00B89461, 0 0 57px #00B8943d;
+}
+
+/* support: coefficient 0.9 -> 18px glow */
+.glow-modulated-support {
+  --glow-coefficient: 0.9;
+  box-shadow: 0 0 18px #74B9FF5c, 0 0 36px #74B9FF39;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-support:hover {
+  box-shadow: 0 0 27px #74B9FF5c, 0 0 54px #74B9FF39;
+}
+
+/* architecture: coefficient 0.85 -> 17px glow */
+.glow-modulated-architecture {
+  --glow-coefficient: 0.85;
+  box-shadow: 0 0 17px #636E7257, 0 0 34px #636E7236;
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-modulated-architecture:hover {
+  box-shadow: 0 0 26px #636E7257, 0 0 51px #636E7236;
+}
+
+
+/* ========================================================================== */
+/* REDUCED MOTION OVERRIDES */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="presence-"]::before,
+  [class*="glow-modulated-"] {
+    transition: none;
+  }
+}

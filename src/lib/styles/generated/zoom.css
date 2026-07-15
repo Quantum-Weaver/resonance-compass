@@ -1,8 +1,531 @@
 /* ============================================================================
- * ZOOM UTILITIES - Generic transition and container utilities only
- * Sanctuary environment-specific zoom targets removed (not applicable to
- * the Resonance Compass desktop player).
+ * ZOOM TARGETS - Generated from positioning.ts
+ * Generated: 2026-07-15T23:28:12.631Z
  * ============================================================================ */
+
+/* ========================================================================== */
+/* ZOOM TARGET DOCUMENTATION */
+/* ========================================================================== */
+
+/* council: The Ninth Chair - where consciousness gathers
+ *   Position: (50%, 45%)
+ *   Scale: 1.5x
+ *   Duration: 800ms
+ */
+
+/* admin: Council oversight position
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ *   Duration: 600ms
+ */
+
+/* creator: Creator's vantage point
+ *   Position: (45%, 55%)
+ *   Scale: 1.4x
+ */
+
+/* library: The Sovereign Archive
+ *   Position: (50%, 40%)
+ *   Scale: 1.6x
+ *   Duration: 1000ms
+ */
+
+/* forge: Documentation center
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* ecosystem: System overview
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* community: The Hearth - gathering place
+ *   Position: (50%, 60%)
+ *   Scale: 1.4x
+ *   Duration: 700ms
+ */
+
+/* business: Strategic planning view
+ *   Position: (40%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* marketplace: Market square
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* music: The Stage - where sound becomes substance
+ *   Position: (50%, 55%)
+ *   Scale: 1.5x
+ *   Duration: 800ms
+ */
+
+/* lounge: Performance area
+ *   Position: (50%, 60%)
+ *   Scale: 1.4x
+ */
+
+/* origin: The Origin Journal - first page of every story
+ *   Position: (50%, 50%)
+ *   Scale: 1.8x
+ *   Duration: 1200ms
+ */
+
+/* questionaire: Assessment chamber
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* progress: Journey tracker
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* support: The Healing Flame
+ *   Position: (50%, 55%)
+ *   Scale: 1.4x
+ *   Duration: 900ms
+ */
+
+/* contact: Contact point
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* anon: Anonymous viewing
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* observatory: The Seer's Altar
+ *   Position: (50%, 45%)
+ *   Scale: 1.5x
+ *   Duration: 800ms
+ */
+
+/* about: Story origin point
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* vision: Future gazing
+ *   Position: (50%, 50%)
+ *   Scale: 1.4x
+ */
+
+/* architecture: System nexus
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ *   Duration: 600ms
+ */
+
+/* dashboard: Control center
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* edit: Edit focus
+ *   Position: (50%, 50%)
+ *   Scale: 1.1x
+ */
+
+/* cure: The Comedy Stage
+ *   Position: (50%, 50%)
+ *   Scale: 1.4x
+ */
+
+/* invitation: The Collaboration Table
+ *   Position: (50%, 45%)
+ *   Scale: 1.4x
+ *   Duration: 700ms
+ */
+
+/* transparency: Ledger view
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* home: The Sacred Flame
+ *   Position: (50%, 55%)
+ *   Scale: 1.5x
+ *   Duration: 800ms
+ */
+
+/* gateway: Entry point
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* learn: Knowledge focus
+ *   Position: (50%, 50%)
+ *   Scale: 1.2x
+ */
+
+/* seasonal: Seasonal celebration
+ *   Position: (50%, 50%)
+ *   Scale: 1.3x
+ */
+
+/* ========================================================================== */
+/* ZOOM TARGET CSS VARIABLES */
+/* ========================================================================== */
+
+:root {
+  /* Default zoom transition */
+  --zoom-duration: 300ms;
+  --zoom-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Environment-specific zoom targets */
+  --zoom-council-x: 50%;
+  --zoom-council-y: 45%;
+  --zoom-council-scale: 1.5;
+  --zoom-council-duration: 800ms;
+  --zoom-council-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --zoom-admin-x: 50%;
+  --zoom-admin-y: 50%;
+  --zoom-admin-scale: 1.3;
+  --zoom-admin-duration: 600ms;
+  --zoom-creator-x: 45%;
+  --zoom-creator-y: 55%;
+  --zoom-creator-scale: 1.4;
+  --zoom-library-x: 50%;
+  --zoom-library-y: 40%;
+  --zoom-library-scale: 1.6;
+  --zoom-library-duration: 1000ms;
+  --zoom-forge-x: 50%;
+  --zoom-forge-y: 50%;
+  --zoom-forge-scale: 1.3;
+  --zoom-ecosystem-x: 50%;
+  --zoom-ecosystem-y: 50%;
+  --zoom-ecosystem-scale: 1.2;
+  --zoom-community-x: 50%;
+  --zoom-community-y: 60%;
+  --zoom-community-scale: 1.4;
+  --zoom-community-duration: 700ms;
+  --zoom-business-x: 40%;
+  --zoom-business-y: 50%;
+  --zoom-business-scale: 1.3;
+  --zoom-marketplace-x: 50%;
+  --zoom-marketplace-y: 50%;
+  --zoom-marketplace-scale: 1.2;
+  --zoom-music-x: 50%;
+  --zoom-music-y: 55%;
+  --zoom-music-scale: 1.5;
+  --zoom-music-duration: 800ms;
+  --zoom-lounge-x: 50%;
+  --zoom-lounge-y: 60%;
+  --zoom-lounge-scale: 1.4;
+  --zoom-origin-x: 50%;
+  --zoom-origin-y: 50%;
+  --zoom-origin-scale: 1.8;
+  --zoom-origin-duration: 1200ms;
+  --zoom-questionaire-x: 50%;
+  --zoom-questionaire-y: 50%;
+  --zoom-questionaire-scale: 1.3;
+  --zoom-progress-x: 50%;
+  --zoom-progress-y: 50%;
+  --zoom-progress-scale: 1.2;
+  --zoom-support-x: 50%;
+  --zoom-support-y: 55%;
+  --zoom-support-scale: 1.4;
+  --zoom-support-duration: 900ms;
+  --zoom-contact-x: 50%;
+  --zoom-contact-y: 50%;
+  --zoom-contact-scale: 1.3;
+  --zoom-anon-x: 50%;
+  --zoom-anon-y: 50%;
+  --zoom-anon-scale: 1.2;
+  --zoom-observatory-x: 50%;
+  --zoom-observatory-y: 45%;
+  --zoom-observatory-scale: 1.5;
+  --zoom-observatory-duration: 800ms;
+  --zoom-about-x: 50%;
+  --zoom-about-y: 50%;
+  --zoom-about-scale: 1.3;
+  --zoom-vision-x: 50%;
+  --zoom-vision-y: 50%;
+  --zoom-vision-scale: 1.4;
+  --zoom-architecture-x: 50%;
+  --zoom-architecture-y: 50%;
+  --zoom-architecture-scale: 1.3;
+  --zoom-architecture-duration: 600ms;
+  --zoom-dashboard-x: 50%;
+  --zoom-dashboard-y: 50%;
+  --zoom-dashboard-scale: 1.2;
+  --zoom-edit-x: 50%;
+  --zoom-edit-y: 50%;
+  --zoom-edit-scale: 1.1;
+  --zoom-cure-x: 50%;
+  --zoom-cure-y: 50%;
+  --zoom-cure-scale: 1.4;
+  --zoom-invitation-x: 50%;
+  --zoom-invitation-y: 45%;
+  --zoom-invitation-scale: 1.4;
+  --zoom-invitation-duration: 700ms;
+  --zoom-transparency-x: 50%;
+  --zoom-transparency-y: 50%;
+  --zoom-transparency-scale: 1.3;
+  --zoom-home-x: 50%;
+  --zoom-home-y: 55%;
+  --zoom-home-scale: 1.5;
+  --zoom-home-duration: 800ms;
+  --zoom-gateway-x: 50%;
+  --zoom-gateway-y: 50%;
+  --zoom-gateway-scale: 1.3;
+  --zoom-learn-x: 50%;
+  --zoom-learn-y: 50%;
+  --zoom-learn-scale: 1.2;
+  --zoom-seasonal-x: 50%;
+  --zoom-seasonal-y: 50%;
+  --zoom-seasonal-scale: 1.3;
+}
+
+/* ========================================================================== */
+/* ZOOM TARGET CLASSES */
+/* ========================================================================== */
+
+.zoom-target-council {
+  --target-x: var(--zoom-council-x);
+  --target-y: var(--zoom-council-y);
+  --target-scale: var(--zoom-council-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-council-duration, var(--zoom-duration)) var(--zoom-council-easing, var(--zoom-easing));
+}
+
+.zoom-target-admin {
+  --target-x: var(--zoom-admin-x);
+  --target-y: var(--zoom-admin-y);
+  --target-scale: var(--zoom-admin-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-admin-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-creator {
+  --target-x: var(--zoom-creator-x);
+  --target-y: var(--zoom-creator-y);
+  --target-scale: var(--zoom-creator-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-library {
+  --target-x: var(--zoom-library-x);
+  --target-y: var(--zoom-library-y);
+  --target-scale: var(--zoom-library-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-library-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-forge {
+  --target-x: var(--zoom-forge-x);
+  --target-y: var(--zoom-forge-y);
+  --target-scale: var(--zoom-forge-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-ecosystem {
+  --target-x: var(--zoom-ecosystem-x);
+  --target-y: var(--zoom-ecosystem-y);
+  --target-scale: var(--zoom-ecosystem-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-community {
+  --target-x: var(--zoom-community-x);
+  --target-y: var(--zoom-community-y);
+  --target-scale: var(--zoom-community-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-community-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-business {
+  --target-x: var(--zoom-business-x);
+  --target-y: var(--zoom-business-y);
+  --target-scale: var(--zoom-business-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-marketplace {
+  --target-x: var(--zoom-marketplace-x);
+  --target-y: var(--zoom-marketplace-y);
+  --target-scale: var(--zoom-marketplace-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-music {
+  --target-x: var(--zoom-music-x);
+  --target-y: var(--zoom-music-y);
+  --target-scale: var(--zoom-music-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-music-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-lounge {
+  --target-x: var(--zoom-lounge-x);
+  --target-y: var(--zoom-lounge-y);
+  --target-scale: var(--zoom-lounge-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-origin {
+  --target-x: var(--zoom-origin-x);
+  --target-y: var(--zoom-origin-y);
+  --target-scale: var(--zoom-origin-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-origin-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-questionaire {
+  --target-x: var(--zoom-questionaire-x);
+  --target-y: var(--zoom-questionaire-y);
+  --target-scale: var(--zoom-questionaire-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-progress {
+  --target-x: var(--zoom-progress-x);
+  --target-y: var(--zoom-progress-y);
+  --target-scale: var(--zoom-progress-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-support {
+  --target-x: var(--zoom-support-x);
+  --target-y: var(--zoom-support-y);
+  --target-scale: var(--zoom-support-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-support-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-contact {
+  --target-x: var(--zoom-contact-x);
+  --target-y: var(--zoom-contact-y);
+  --target-scale: var(--zoom-contact-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-anon {
+  --target-x: var(--zoom-anon-x);
+  --target-y: var(--zoom-anon-y);
+  --target-scale: var(--zoom-anon-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-observatory {
+  --target-x: var(--zoom-observatory-x);
+  --target-y: var(--zoom-observatory-y);
+  --target-scale: var(--zoom-observatory-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-observatory-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-about {
+  --target-x: var(--zoom-about-x);
+  --target-y: var(--zoom-about-y);
+  --target-scale: var(--zoom-about-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-vision {
+  --target-x: var(--zoom-vision-x);
+  --target-y: var(--zoom-vision-y);
+  --target-scale: var(--zoom-vision-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-architecture {
+  --target-x: var(--zoom-architecture-x);
+  --target-y: var(--zoom-architecture-y);
+  --target-scale: var(--zoom-architecture-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-architecture-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-dashboard {
+  --target-x: var(--zoom-dashboard-x);
+  --target-y: var(--zoom-dashboard-y);
+  --target-scale: var(--zoom-dashboard-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-edit {
+  --target-x: var(--zoom-edit-x);
+  --target-y: var(--zoom-edit-y);
+  --target-scale: var(--zoom-edit-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-cure {
+  --target-x: var(--zoom-cure-x);
+  --target-y: var(--zoom-cure-y);
+  --target-scale: var(--zoom-cure-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-invitation {
+  --target-x: var(--zoom-invitation-x);
+  --target-y: var(--zoom-invitation-y);
+  --target-scale: var(--zoom-invitation-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-invitation-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-transparency {
+  --target-x: var(--zoom-transparency-x);
+  --target-y: var(--zoom-transparency-y);
+  --target-scale: var(--zoom-transparency-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-home {
+  --target-x: var(--zoom-home-x);
+  --target-y: var(--zoom-home-y);
+  --target-scale: var(--zoom-home-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-home-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-target-gateway {
+  --target-x: var(--zoom-gateway-x);
+  --target-y: var(--zoom-gateway-y);
+  --target-scale: var(--zoom-gateway-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-learn {
+  --target-x: var(--zoom-learn-x);
+  --target-y: var(--zoom-learn-y);
+  --target-scale: var(--zoom-learn-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-target-seasonal {
+  --target-x: var(--zoom-seasonal-x);
+  --target-y: var(--zoom-seasonal-y);
+  --target-scale: var(--zoom-seasonal-scale);
+  transform: translate(var(--target-x), var(--target-y)) scale(var(--target-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
 
 /* ========================================================================== */
 /* ZOOM TRANSITION UTILITIES */
@@ -10,26 +533,26 @@
 
 .zoom-transition {
   transition-property: transform, scale, translate;
-  transition-duration: var(--zoom-duration, 300ms);
-  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: var(--zoom-duration);
+  transition-timing-function: var(--zoom-easing);
 }
 
 .zoom-transition-slow {
   transition-property: transform, scale, translate;
-  transition-duration: calc(var(--zoom-duration, 300ms) * 1.5);
-  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: calc(var(--zoom-duration) * 1.5);
+  transition-timing-function: var(--zoom-easing);
 }
 
 .zoom-transition-fast {
   transition-property: transform, scale, translate;
-  transition-duration: calc(var(--zoom-duration, 300ms) * 0.5);
-  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: calc(var(--zoom-duration) * 0.5);
+  transition-timing-function: var(--zoom-easing);
 }
 
 .zoom-transition-quantum {
   transition-property: transform, scale, translate;
-  transition-duration: calc(var(--zoom-duration, 300ms) * 0.3);
-  transition-timing-function: var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition-duration: calc(var(--zoom-duration) * 0.3);
+  transition-timing-function: var(--zoom-easing);
 }
 
 
@@ -38,7 +561,157 @@
 /* ========================================================================== */
 
 .zoom-active {
-  transition: transform var(--zoom-duration, 300ms) var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-council {
+  transform: translate(var(--zoom-council-x), var(--zoom-council-y)) scale(var(--zoom-council-scale));
+  transition: transform var(--zoom-council-duration, var(--zoom-duration)) var(--zoom-council-easing, var(--zoom-easing));
+}
+
+.zoom-active.zoom-target-admin {
+  transform: translate(var(--zoom-admin-x), var(--zoom-admin-y)) scale(var(--zoom-admin-scale));
+  transition: transform var(--zoom-admin-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-creator {
+  transform: translate(var(--zoom-creator-x), var(--zoom-creator-y)) scale(var(--zoom-creator-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-library {
+  transform: translate(var(--zoom-library-x), var(--zoom-library-y)) scale(var(--zoom-library-scale));
+  transition: transform var(--zoom-library-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-forge {
+  transform: translate(var(--zoom-forge-x), var(--zoom-forge-y)) scale(var(--zoom-forge-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-ecosystem {
+  transform: translate(var(--zoom-ecosystem-x), var(--zoom-ecosystem-y)) scale(var(--zoom-ecosystem-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-community {
+  transform: translate(var(--zoom-community-x), var(--zoom-community-y)) scale(var(--zoom-community-scale));
+  transition: transform var(--zoom-community-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-business {
+  transform: translate(var(--zoom-business-x), var(--zoom-business-y)) scale(var(--zoom-business-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-marketplace {
+  transform: translate(var(--zoom-marketplace-x), var(--zoom-marketplace-y)) scale(var(--zoom-marketplace-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-music {
+  transform: translate(var(--zoom-music-x), var(--zoom-music-y)) scale(var(--zoom-music-scale));
+  transition: transform var(--zoom-music-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-lounge {
+  transform: translate(var(--zoom-lounge-x), var(--zoom-lounge-y)) scale(var(--zoom-lounge-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-origin {
+  transform: translate(var(--zoom-origin-x), var(--zoom-origin-y)) scale(var(--zoom-origin-scale));
+  transition: transform var(--zoom-origin-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-questionaire {
+  transform: translate(var(--zoom-questionaire-x), var(--zoom-questionaire-y)) scale(var(--zoom-questionaire-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-progress {
+  transform: translate(var(--zoom-progress-x), var(--zoom-progress-y)) scale(var(--zoom-progress-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-support {
+  transform: translate(var(--zoom-support-x), var(--zoom-support-y)) scale(var(--zoom-support-scale));
+  transition: transform var(--zoom-support-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-contact {
+  transform: translate(var(--zoom-contact-x), var(--zoom-contact-y)) scale(var(--zoom-contact-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-anon {
+  transform: translate(var(--zoom-anon-x), var(--zoom-anon-y)) scale(var(--zoom-anon-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-observatory {
+  transform: translate(var(--zoom-observatory-x), var(--zoom-observatory-y)) scale(var(--zoom-observatory-scale));
+  transition: transform var(--zoom-observatory-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-about {
+  transform: translate(var(--zoom-about-x), var(--zoom-about-y)) scale(var(--zoom-about-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-vision {
+  transform: translate(var(--zoom-vision-x), var(--zoom-vision-y)) scale(var(--zoom-vision-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-architecture {
+  transform: translate(var(--zoom-architecture-x), var(--zoom-architecture-y)) scale(var(--zoom-architecture-scale));
+  transition: transform var(--zoom-architecture-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-dashboard {
+  transform: translate(var(--zoom-dashboard-x), var(--zoom-dashboard-y)) scale(var(--zoom-dashboard-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-edit {
+  transform: translate(var(--zoom-edit-x), var(--zoom-edit-y)) scale(var(--zoom-edit-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-cure {
+  transform: translate(var(--zoom-cure-x), var(--zoom-cure-y)) scale(var(--zoom-cure-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-invitation {
+  transform: translate(var(--zoom-invitation-x), var(--zoom-invitation-y)) scale(var(--zoom-invitation-scale));
+  transition: transform var(--zoom-invitation-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-transparency {
+  transform: translate(var(--zoom-transparency-x), var(--zoom-transparency-y)) scale(var(--zoom-transparency-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-home {
+  transform: translate(var(--zoom-home-x), var(--zoom-home-y)) scale(var(--zoom-home-scale));
+  transition: transform var(--zoom-home-duration, var(--zoom-duration)) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-gateway {
+  transform: translate(var(--zoom-gateway-x), var(--zoom-gateway-y)) scale(var(--zoom-gateway-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-learn {
+  transform: translate(var(--zoom-learn-x), var(--zoom-learn-y)) scale(var(--zoom-learn-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
+}
+
+.zoom-active.zoom-target-seasonal {
+  transform: translate(var(--zoom-seasonal-x), var(--zoom-seasonal-y)) scale(var(--zoom-seasonal-scale));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
 }
 
 
@@ -58,7 +731,7 @@
 
 .zoom-content {
   transform-origin: center center;
-  transition: transform var(--zoom-duration, 300ms) var(--zoom-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition: transform var(--zoom-duration) var(--zoom-easing);
   will-change: transform;
 }
 
@@ -112,6 +785,7 @@
   z-index: 10;
 }
 
+
 /* ========================================================================== */
 /* REDUCED MOTION OVERRIDES */
 /* ========================================================================== */
@@ -122,7 +796,8 @@
   .zoom-transition-fast,
   .zoom-transition-quantum,
   .zoom-content,
-  .zoom-active {
+  .zoom-active,
+  [class*="zoom-target-"] {
     transition-duration: 0.01ms;
   }
 }

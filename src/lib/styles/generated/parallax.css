@@ -1,6 +1,6 @@
 /* ============================================================================
  * PARALLAX CLASSES - Generated from positioning.ts
- * Generated: 2026-04-12T18:59:53.062Z
+ * Generated: 2026-07-15T23:28:12.633Z
  * ============================================================================ */
 
 /* ========================================================================== */
@@ -477,18 +477,8 @@
     transform: none !important;
   }
   
-  .scroll-parallax-cosmic,
-  .scroll-parallax-far,
-  .scroll-parallax-mid,
-  .scroll-parallax-near,
-  .scroll-parallax-interactive,
-  .scroll-parallax-ui,
-  .mouse-parallax-cosmic,
-  .mouse-parallax-far,
-  .mouse-parallax-mid,
-  .mouse-parallax-near,
-  .mouse-parallax-interactive,
-  .mouse-parallax-ui {
+  [class*="scroll-parallax-"],
+  [class*="mouse-parallax-"] {
     transform: none !important;
     transition: none !important;
   }

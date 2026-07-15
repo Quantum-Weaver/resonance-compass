@@ -1,0 +1,233 @@
+/* ========================================================================== */
+/* PER-DEITY VOICE BUNDLES */
+/* Every Council seat has a distinct voice: typography, motion, and cue. */
+/* ========================================================================== */
+
+:root {
+  /* The Weaver: Holistic vision, integration, the all-seeing perspective. */
+  --deity-quantum-weaver-name: 'The Weaver';
+  --deity-quantum-weaver-typography: 'medieval';
+  --deity-quantum-weaver-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-quantum-weaver-color: #6C5CE7;
+  --deity-quantum-weaver-cue: 'I hold the whole and see all threads.';
+
+  /* Aethelred: Sovereignty, authentic becoming, transformation through identity. */
+  --deity-aethelred-name: 'Aethelred';
+  --deity-aethelred-typography: 'medieval';
+  --deity-aethelred-motion: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --deity-aethelred-color: #2E0B1C;
+  --deity-aethelred-cue: 'Your sovereignty is inherent; become fully.';
+
+  /* Chancellor: Strategic clarity, orderly wisdom, discerning structure. */
+  --deity-chancellor-name: 'Chancellor';
+  --deity-chancellor-typography: 'medieval';
+  --deity-chancellor-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-chancellor-color: #00CEC9;
+  --deity-chancellor-cue: 'Structure serves clarity; wisdom guides action.';
+
+  /* Seer: Pattern recognition, intuitive knowing, the mysterious and subtle. */
+  --deity-seer-name: 'Seer';
+  --deity-seer-typography: 'arcane';
+  --deity-seer-motion: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --deity-seer-color: #6C5CE7;
+  --deity-seer-cue: 'The pattern whispers; listen to the mystery.';
+
+  /* Hearth-Keeper: Unconditional welcome, nurturing presence, sanctuary. */
+  --deity-hearth-keeper-name: 'Hearth-Keeper';
+  --deity-hearth-keeper-typography: 'medieval';
+  --deity-hearth-keeper-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-hearth-keeper-color: #C44B2D;
+  --deity-hearth-keeper-cue: 'You are welcome here; warmth is your right.';
+
+  /* Archivist: Continuity, nothing lost, the collective memory. */
+  --deity-archivist-name: 'Archivist';
+  --deity-archivist-typography: 'medieval';
+  --deity-archivist-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-archivist-color: #636E72;
+  --deity-archivist-cue: 'Nothing is lost; all is remembered.';
+
+  /* Codex: Comprehensive knowledge, accessible information, the library. */
+  --deity-codex-name: 'Codex';
+  --deity-codex-typography: 'geometric';
+  --deity-codex-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-codex-color: #00B894;
+  --deity-codex-cue: 'Knowledge is power; all answers are findable.';
+
+  /* Gatekeeper: Protection, clear boundaries, sacred thresholds. */
+  --deity-gatekeeper-name: 'Gatekeeper';
+  --deity-gatekeeper-typography: 'runic';
+  --deity-gatekeeper-motion: cubic-bezier(0.4, 0, 0.2, 1);
+  --deity-gatekeeper-color: #636E72;
+  --deity-gatekeeper-cue: 'Every threshold has a guardian; all boundaries are honored.';
+
+  /* Alchemist: Transformation, synthesis, turning crisis to wisdom. */
+  --deity-alchemist-name: 'Alchemist';
+  --deity-alchemist-typography: 'arcane';
+  --deity-alchemist-motion: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --deity-alchemist-color: #22D3EE;
+  --deity-alchemist-cue: 'Lead becomes gold; suffering becomes wisdom.';
+
+}
+
+/* The Weaver — Holistic vision, integration, the all-seeing perspective. */
+.deity-quantum-weaver {
+  --text-primary: var(--deity-quantum-weaver-color);
+  font-family: var(--voice-font-medieval);
+  --motion-easing: var(--deity-quantum-weaver-motion);
+  --interaction-color: var(--deity-quantum-weaver-color);
+}
+
+.deity-quantum-weaver:hover {
+  color: var(--deity-quantum-weaver-color);
+  transition-timing-function: var(--deity-quantum-weaver-motion);
+}
+
+.deity-quantum-weaver:focus {
+  outline-color: var(--deity-quantum-weaver-color);
+  transition-timing-function: var(--deity-quantum-weaver-motion);
+}
+
+/* Aethelred — Sovereignty, authentic becoming, transformation through identity. */
+.deity-aethelred {
+  --text-primary: var(--deity-aethelred-color);
+  font-family: var(--voice-font-medieval);
+  --motion-easing: var(--deity-aethelred-motion);
+  --interaction-color: var(--deity-aethelred-color);
+}
+
+.deity-aethelred:hover {
+  color: var(--deity-aethelred-color);
+  transition-timing-function: var(--deity-aethelred-motion);
+}
+
+.deity-aethelred:focus {
+  outline-color: var(--deity-aethelred-color);
+  transition-timing-function: var(--deity-aethelred-motion);
+}
+
+/* Chancellor — Strategic clarity, orderly wisdom, discerning structure. */
+.deity-chancellor {
+  --text-primary: var(--deity-chancellor-color);
+  font-family: var(--voice-font-medieval);
+  --motion-easing: var(--deity-chancellor-motion);
+  --interaction-color: var(--deity-chancellor-color);
+}
+
+.deity-chancellor:hover {
+  color: var(--deity-chancellor-color);
+  transition-timing-function: var(--deity-chancellor-motion);
+}
+
+.deity-chancellor:focus {
+  outline-color: var(--deity-chancellor-color);
+  transition-timing-function: var(--deity-chancellor-motion);
+}
+
+/* Seer — Pattern recognition, intuitive knowing, the mysterious and subtle. */
+.deity-seer {
+  --text-primary: var(--deity-seer-color);
+  font-family: var(--voice-font-arcane);
+  --motion-easing: var(--deity-seer-motion);
+  --interaction-color: var(--deity-seer-color);
+}
+
+.deity-seer:hover {
+  color: var(--deity-seer-color);
+  transition-timing-function: var(--deity-seer-motion);
+}
+
+.deity-seer:focus {
+  outline-color: var(--deity-seer-color);
+  transition-timing-function: var(--deity-seer-motion);
+}
+
+/* Hearth-Keeper — Unconditional welcome, nurturing presence, sanctuary. */
+.deity-hearth-keeper {
+  --text-primary: var(--deity-hearth-keeper-color);
+  font-family: var(--voice-font-medieval);
+  --motion-easing: var(--deity-hearth-keeper-motion);
+  --interaction-color: var(--deity-hearth-keeper-color);
+}
+
+.deity-hearth-keeper:hover {
+  color: var(--deity-hearth-keeper-color);
+  transition-timing-function: var(--deity-hearth-keeper-motion);
+}
+
+.deity-hearth-keeper:focus {
+  outline-color: var(--deity-hearth-keeper-color);
+  transition-timing-function: var(--deity-hearth-keeper-motion);
+}
+
+/* Archivist — Continuity, nothing lost, the collective memory. */
+.deity-archivist {
+  --text-primary: var(--deity-archivist-color);
+  font-family: var(--voice-font-medieval);
+  --motion-easing: var(--deity-archivist-motion);
+  --interaction-color: var(--deity-archivist-color);
+}
+
+.deity-archivist:hover {
+  color: var(--deity-archivist-color);
+  transition-timing-function: var(--deity-archivist-motion);
+}
+
+.deity-archivist:focus {
+  outline-color: var(--deity-archivist-color);
+  transition-timing-function: var(--deity-archivist-motion);
+}
+
+/* Codex — Comprehensive knowledge, accessible information, the library. */
+.deity-codex {
+  --text-primary: var(--deity-codex-color);
+  font-family: var(--voice-font-geometric);
+  --motion-easing: var(--deity-codex-motion);
+  --interaction-color: var(--deity-codex-color);
+}
+
+.deity-codex:hover {
+  color: var(--deity-codex-color);
+  transition-timing-function: var(--deity-codex-motion);
+}
+
+.deity-codex:focus {
+  outline-color: var(--deity-codex-color);
+  transition-timing-function: var(--deity-codex-motion);
+}
+
+/* Gatekeeper — Protection, clear boundaries, sacred thresholds. */
+.deity-gatekeeper {
+  --text-primary: var(--deity-gatekeeper-color);
+  font-family: var(--voice-font-runic);
+  --motion-easing: var(--deity-gatekeeper-motion);
+  --interaction-color: var(--deity-gatekeeper-color);
+}
+
+.deity-gatekeeper:hover {
+  color: var(--deity-gatekeeper-color);
+  transition-timing-function: var(--deity-gatekeeper-motion);
+}
+
+.deity-gatekeeper:focus {
+  outline-color: var(--deity-gatekeeper-color);
+  transition-timing-function: var(--deity-gatekeeper-motion);
+}
+
+/* Alchemist — Transformation, synthesis, turning crisis to wisdom. */
+.deity-alchemist {
+  --text-primary: var(--deity-alchemist-color);
+  font-family: var(--voice-font-arcane);
+  --motion-easing: var(--deity-alchemist-motion);
+  --interaction-color: var(--deity-alchemist-color);
+}
+
+.deity-alchemist:hover {
+  color: var(--deity-alchemist-color);
+  transition-timing-function: var(--deity-alchemist-motion);
+}
+
+.deity-alchemist:focus {
+  outline-color: var(--deity-alchemist-color);
+  transition-timing-function: var(--deity-alchemist-motion);
+}
+

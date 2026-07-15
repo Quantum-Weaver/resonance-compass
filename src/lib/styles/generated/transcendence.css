@@ -1,0 +1,128 @@
+/* ========================================================================== */
+/* TRANSCENDENCE STATE SEQUENCE */
+/* Visual + effects emission when consciousness shifts dimensionally. */
+/* ========================================================================== */
+
+:root {
+  /* awakening to action, problem-solving mode engaged */
+  --transcend-physical-to-crisis-duration: 600ms;
+  --transcend-physical-to-crisis-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transcend-physical-to-crisis-glow: 0.6;
+
+  /* perspective gained, understanding emerges */
+  --transcend-crisis-to-wisdom-duration: 800ms;
+  --transcend-crisis-to-wisdom-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transcend-crisis-to-wisdom-glow: 0.8;
+
+  /* accessing collective knowing, memory made visible */
+  --transcend-wisdom-to-akashic-duration: 900ms;
+  --transcend-wisdom-to-akashic-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transcend-wisdom-to-akashic-glow: 1;
+
+  /* unity consciousness, transcendence of individual perspective */
+  --transcend-akashic-to-divine-duration: 1000ms;
+  --transcend-akashic-to-divine-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transcend-akashic-to-divine-glow: 1.2;
+
+}
+
+/* awakening to action, problem-solving mode engaged (physical → crisis) */
+.transcend-physical-crisis {
+  animation-name: transcend-physical-to-crisis;
+  animation-duration: var(--transcend-physical-to-crisis-duration);
+  animation-timing-function: var(--transcend-physical-to-crisis-easing);
+  animation-fill-mode: forwards;
+}
+
+/* perspective gained, understanding emerges (crisis → wisdom) */
+.transcend-crisis-wisdom {
+  animation-name: transcend-crisis-to-wisdom;
+  animation-duration: var(--transcend-crisis-to-wisdom-duration);
+  animation-timing-function: var(--transcend-crisis-to-wisdom-easing);
+  animation-fill-mode: forwards;
+}
+
+/* accessing collective knowing, memory made visible (wisdom → akashic) */
+.transcend-wisdom-akashic {
+  animation-name: transcend-wisdom-to-akashic;
+  animation-duration: var(--transcend-wisdom-to-akashic-duration);
+  animation-timing-function: var(--transcend-wisdom-to-akashic-easing);
+  animation-fill-mode: forwards;
+}
+
+/* unity consciousness, transcendence of individual perspective (akashic → divine) */
+.transcend-akashic-divine {
+  animation-name: transcend-akashic-to-divine;
+  animation-duration: var(--transcend-akashic-to-divine-duration);
+  animation-timing-function: var(--transcend-akashic-to-divine-easing);
+  animation-fill-mode: forwards;
+}
+
+/* ========================================================================== */
+/* TRANSCENDENCE KEYFRAMES */
+/* ========================================================================== */
+
+@keyframes transcend-physical-to-crisis {
+  0% {
+    opacity: 0.5;
+    box-shadow: none;
+    background: transparent;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 24px rgba(108, 92, 231, 0.24);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px rgba(108, 92, 231, 0.12);
+  }
+}
+
+@keyframes transcend-crisis-to-wisdom {
+  0% {
+    opacity: 0.5;
+    box-shadow: none;
+    background: transparent;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 32px rgba(108, 92, 231, 0.32000000000000006);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 16px rgba(108, 92, 231, 0.16000000000000003);
+  }
+}
+
+@keyframes transcend-wisdom-to-akashic {
+  0% {
+    opacity: 0.5;
+    box-shadow: none;
+    background: transparent;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(108, 92, 231, 0.4);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+  }
+}
+
+@keyframes transcend-akashic-to-divine {
+  0% {
+    opacity: 0.5;
+    box-shadow: none;
+    background: transparent;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 48px rgba(108, 92, 231, 0.48);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 24px rgba(108, 92, 231, 0.24);
+  }
+}
+

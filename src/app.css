@@ -10,7 +10,27 @@
 /* ─── COSMIC Generated Styles ──────────────────────────────────────────── */
 @import "./lib/styles/generated/variables.css";
 @import "./lib/styles/generated/animations.css";
-@import "./lib/styles/generated/text_effects.css";
+@import "./lib/styles/generated/text-effects.css"; /* renamed from text_effects.css — generator's current name (2026-07-15) */
+
+/* ─── COSMIC available, not yet adopted (uncomment per-app as wanted) ────
+   Distributed by resonance-ziggy/modules/cosmic/distribute.ts; the full
+   menu refreshes on every run whether imported or not.
+@import "./lib/styles/generated/domains.css";
+@import "./lib/styles/generated/typography.css";
+@import "./lib/styles/generated/zoom.css";
+@import "./lib/styles/generated/parallax.css";
+@import "./lib/styles/generated/ceremonies.css";
+@import "./lib/styles/generated/pause-state.css";
+@import "./lib/styles/generated/ensemble.css";
+@import "./lib/styles/generated/attention-modes.css";
+@import "./lib/styles/generated/attention-selector.css";
+@import "./lib/styles/generated/scene.css";
+@import "./lib/styles/generated/glow-field.css";
+@import "./lib/styles/generated/deity-voices.css";
+@import "./lib/styles/generated/transcendence.css";
+@import "./lib/styles/generated/gates.css";
+@import "./lib/styles/generated/supportive-affordances.css";
+──────────────────────────────────────────────────────────────────────── */
 
 /* ─── Global Resets ────────────────────────────────────────────────────── */
 * {
