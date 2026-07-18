@@ -840,5 +840,6 @@ export type KeyframeKey = keyof typeof keyframes;
 export type TailwindAnimationKey = keyof typeof tailwindAnimations;
 export type AnimationPresetKey = keyof typeof presets;
 export type QuickAnimationKey = keyof typeof quickAnimations;
-// O-1 / O-3 / O-4 — verb families (the ceremonies, the recentering, the flock)
-export type { CeremonyBeat, Ceremony, ConvergenceStage, EnsembleMotion };
+// O-1 / O-3 / O-4 verb families (CeremonyBeat, Ceremony, ConvergenceStage,
+// EnsembleMotion) are exported at their definition sites — re-exporting them
+// here duplicated the identifiers (same defect Sonnet mended in effects.ts).

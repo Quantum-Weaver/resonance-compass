@@ -60,7 +60,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: var(--spacing-2);
+		/* Fill the mount row and allow shrinking below the strip's natural
+		   width — without min-width: 0 a flex parent lets the strip's
+		   fit-content width win, so it overflows both edges and max-width
+		   below never engages the scroll. */
+		width: 100%;
+		min-width: 0;
+		max-width: 100%;
 	}
 
 	.toggle-btn {
@@ -69,7 +76,7 @@
 		gap: 0.35rem;
 		background: none;
 		border: 1px solid var(--border-color);
-		border-radius: 16px;
+		border-radius: var(--radius-xl);
 		padding: 0.3rem 0.85rem;
 		cursor: pointer;
 		color: var(--text-secondary);
@@ -99,17 +106,18 @@
 		flex-wrap: nowrap;
 		gap: 0.4rem;
 		overflow-x: auto;
+		overscroll-behavior-x: contain;
 		padding: 0.6rem 0.5rem;
-		border-radius: 12px;
+		border-radius: var(--radius-lg);
 		background-color: var(--bg-surface);
 		border: 1px solid var(--border-color);
 	}
 
 	.emoji-btn {
 		flex-shrink: 0;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
+		width: var(--spacing-10);
+		height: var(--spacing-10);
+		border-radius: var(--radius-full);
 		border: 2px solid transparent;
 		background: transparent;
 		cursor: pointer;

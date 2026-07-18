@@ -1,0 +1,11 @@
+# Android 16 KB memory-page-size support (Play requirement for Android 15+
+# devices). NDK r26/r27 align ELF segments to 4 KB by default; r28+ makes
+# 16 KB the default. Until the NDK is upgraded, pass the alignment to the
+# linker for the 64-bit targets the requirement covers.
+# Ref: https://developer.android.com/guide/practices/page-sizes
+
+[target.aarch64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.x86_64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]

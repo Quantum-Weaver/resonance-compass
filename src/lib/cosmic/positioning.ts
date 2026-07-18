@@ -6,8 +6,16 @@
 // Derived from dimensions.ts and environment keys.
 // ============================================================================
 
-import type { EnvironmentKey } from '@/lib/constants/systems/assets/mapper';
 import { BASE_UNIT, SCREEN_CATEGORIES } from './dimensions';
+
+/**
+ * Environment key for zoom/consciousness targeting.
+ * The ancestor `assets/mapper` module that once declared the full union no
+ * longer exists anywhere in the tree (its import broke every distribution
+ * target's typecheck) — until an asset mapper is rebuilt, environments are
+ * open strings and ZOOM_TARGETS' keys are the de-facto canon.
+ */
+export type EnvironmentKey = string;
 
 // ============================================================================
 // 1. VIEWPORT ANCHORS & QUADRANTS

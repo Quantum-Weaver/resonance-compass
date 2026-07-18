@@ -483,11 +483,11 @@ export type HolographicKey = keyof typeof HOLOGRAPHIC_EFFECTS;
 export type ParticleBehavior = keyof typeof PARTICLE_BEHAVIOR;
 // O-7 / O-8 — the ambient presence field and the per-domain glow coefficient
 export type PresenceFieldKey = keyof typeof PRESENCE_FIELD;
-export type { PresenceField };
 export type DomainGlowKey = keyof typeof DOMAIN_GLOW_MODULATION;
 // H-5 / H-6 — eternal witness state and transcendence state sequence
 // (EternalWitnessStateKey already declared at its definition site, line ~387 —
 // re-declaring it here duplicated the identifier; Sonnet's season-integrity
-// check caught it, 2026-07-15. Mended: kept the definition-site export only.)
-export type { EternalWitnessState };
-export type { TranscendenceShift };
+// check caught it, 2026-07-15. Mended: kept the definition-site export only.
+// Same mend applied to the interface re-exports PresenceField /
+// EternalWitnessState / TranscendenceShift, 2026-07-18: all three are
+// exported where they are defined; the re-export lines conflicted.)
