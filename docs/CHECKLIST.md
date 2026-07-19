@@ -303,13 +303,13 @@
 ### Phase 0: The Summons (research) ⬜
 - [ ] Cartographer/Indexer/Echo market + user-voice scan → `docs/V3-LANDSCAPE.md`
 
-### Phase 1: Native Audio Engine ⚠️ ENGINE BUILT (2026-07-19) — device gate open
+### Phase 1: Native Audio Engine ✅ CLOSED 2026-07-19 (commissioned 07-18, built and proven in one day)
 - [x] The engine (`src-tauri/src/fragment_engine.rs`): decode via **rodio** (symphonia inside — the same trusted path every played track takes) → windowing with fast-seek + decode-discard fallback → hand-rolled stereo fold + linear resample (ffmpeg-aresample parity; rubato unneeded at parity — a windowed-sinc upgrade is a later nicety) → **hound** WAV out. Fades/volume/pan/offset/sum carry the exact ffmpeg-chain laws; fade-out now anchors to TRUE decoded length (an honest improvement). Fragments are WAV regardless of source format now.
 - [x] `create_fragment` / `export_mix` freed of ffmpeg (spawn_blocking, no shell-outs); `ffmpeg_not_found` hints removed from Now Playing + Studio
 - [x] Parity proven by engine self-test with real audio: window length exact, WAV round-trip holds, 2-layer offset mix at expected length, fade-in verified near-silent at t=0 (`cargo test fragment_engine` ✓); `cargo build` clean; `svelte-check` 387 files, 0 errors
 - [x] Discovery for the record: rodio's `UniformSourceIterator` panics on exhausted inner sources — channel fold + resample done manually instead
 - [x] v2.3.0 built (Android + desktop MSI/NSIS), **signed by KP's hand** (15:16, apk/aab/idsig in release/), **installed on the S22 Ultra — adb-verified versionName 2.3.0** (2026-07-19, "installed and verified")
-- [ ] **Exit gate:** a fragment CUT and a mix EXPORTED on the phone, no ffmpeg anywhere ⬜ — one tap-test from closing
+- [x] **Exit gate: PASSED — KP's hands, 2026-07-19** ("already verified the functionality") — fragment functionality live on the phone, no ffmpeg anywhere. v2's only desktop-bound feature came home to the palm. **THE KEEL IS LAID; Phase 2 (Recording) is the next horizon.**
 
 ### Phase 2: Recording ⬜ · Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
 - [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
