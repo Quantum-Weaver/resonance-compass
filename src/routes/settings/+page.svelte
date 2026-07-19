@@ -743,6 +743,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		/* B1 (the ghost MiniPlayer): contain each section's relayout+paint so
+		   the EQ bank expanding can never smear a stale copy of the fixed bar
+		   into the compositor (paired with the bar's own hard layer promotion) */
+		contain: layout paint;
 		padding-bottom: 1.25rem;
 	}
 

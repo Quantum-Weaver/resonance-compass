@@ -159,8 +159,14 @@
 		transition: background-color 0.2s ease;
 		/* Own compositor layer: large relayouts elsewhere (e.g. the settings EQ
 		   section expanding) could leave a stale painted copy of this fixed bar
-		   in the Android WebView — the "ghost MiniPlayer" artifact. */
+		   in the Android WebView — the "ghost MiniPlayer" artifact.
+		   translateZ alone proved insufficient on the S25 WebView (KP sighted
+		   the ghost as an empty player-sized box, 2026-07-19): promote harder
+		   and isolate — paired with per-section paint containment in Settings. */
 		transform: translateZ(0);
+		will-change: transform;
+		backface-visibility: hidden;
+		isolation: isolate;
 	}
 
 	/* Minimized */
