@@ -311,7 +311,25 @@
 - [x] v2.3.0 built (Android + desktop MSI/NSIS), **signed by KP's hand** (15:16, apk/aab/idsig in release/), **installed on the S22 Ultra — adb-verified versionName 2.3.0** (2026-07-19, "installed and verified")
 - [x] **Exit gate: PASSED — KP's hands, 2026-07-19** ("already verified the functionality") — fragment functionality live on the phone, no ffmpeg anywhere. v2's only desktop-bound feature came home to the palm. **THE KEEL IS LAID; Phase 2 (Recording) is the next horizon.**
 
-### Phase 2: Recording ⬜ · Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
+### Phase 2: Recording ⚠️ THE GATE IS OPEN — mic spike PASSED (2026-07-19)
+- [x] **The device spike (v2.3.1, S25, KP's voice):** cpal opened a REAL
+      microphone inside the Tauri Android process — permission flow
+      (RECORD_AUDIO via the extended MediaPermissionPlugin), stream,
+      ~2s capture, honest stats on screen. KP: "the spike seems to have
+      worked." The ndk-context bridge a past session laid finally met
+      its purpose. **Recording UI now builds on proven ground.**
+- [ ] The recorder: input select · live level meter (the FFT tap knows
+      how) · take management (record → review → keep/discard) · BT
+      latency calibration (tap-test, stored per input)
+- [ ] **UX note (KP, same night):** the sidebar should have a **Studio**
+      button; and when NO fragments exist, the Studio/Fragments empty
+      state should INVITE — "play a song to create a fragment from" —
+      a doorway, not a dead end. (Rides the recorder sitting or the UX
+      polish sitting, whichever comes first.)
+- [ ] The temporary spike surface in Settings leaves when the real
+      recorder arrives.
+
+### Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
 - [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
 
 ---
@@ -321,7 +339,7 @@
 | ID | Description | Status |
 |----|-------------|--------|
 | B2 | **Studio UX: silent sliders + hidden Play Mix (v2.3.0, phone, KP 2026-07-19 — RESOLVED to UX same evening, engine exonerated):** KP verified export DOES carry slider changes faithfully — the native engine is correct. The real findings, both presentation: (1) the Studio never SAYS changes apply at export, so moved sliders feel dead ("sliders move, no changes happen"); add either live preview or a plain "applies on export" affordance near the sliders; (2) **Play Mix sits below the fold** — its own builder's first user didn't see it ("honestly did not see the play mix button at the bottom until now"); bring export/play actions into reach on phone heights | ⬜ open — UX pass, next Compass sitting |
-| B1 | **EQ settings design issue (v2.2.0, S-device; CORRECTED at KP's word 2026-07-19 — originally misread as a launch-time MiniPlayer flash):** KP 2026-07-18: "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — the *it* is the **Equalizer**: toggling EQ on in Settings pops the slider bank in like a phantom player surface, shifting the layout and jumping the scroll. For the sitting: reserve the section's space (or animate the expansion) so enabling never shoves the page; rethink the 10-slider bank's presentation on phone widths; check the `#eq` deep-link auto-expand path too. **EVIDENCE LANDED (KP, 07-19 night, v2.3.0): bottom-fixed, settings scroll BEHIND it, visible below the EQ section.** Code truth: the MiniPlayer renders UNCONDITIONALLY app-wide ("No music playing" when trackless) — so the bar doesn't appear on toggle; the toggle's reflow slides the EQ section UNDER the always-fixed bar ("shifts the design"). CONFIRM with one glance: does the phantom read "No music playing"? Then the fix: (1) bottom clearance on the settings scroll (nothing may hide beneath the bar); (2) a quieter resting presence for the trackless MiniPlayer so it never reads as a ghost. | ⬜ fix queued — one confirmation from certain |
+| B1 | **EQ settings design issue (v2.2.0, S-device; CORRECTED at KP's word 2026-07-19 — originally misread as a launch-time MiniPlayer flash):** KP 2026-07-18: "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — the *it* is the **Equalizer**: toggling EQ on in Settings pops the slider bank in like a phantom player surface, shifting the layout and jumping the scroll. For the sitting: reserve the section's space (or animate the expansion) so enabling never shoves the page; rethink the 10-slider bank's presentation on phone widths; check the `#eq` deep-link auto-expand path too. **EVIDENCE LANDED (KP, 07-19 night, v2.3.0): bottom-fixed, settings scroll BEHIND it, visible below the EQ section.** Code truth: the MiniPlayer renders UNCONDITIONALLY app-wide ("No music playing" when trackless) — so the bar doesn't appear on toggle; the toggle's reflow slides the EQ section UNDER the always-fixed bar ("shifts the design"). Final evidence (KP): an EMPTY box, player-sized — the codebase's own documented "ghost MiniPlayer" compositor artifact (a stale painted copy; translateZ alone insufficient on S25). **FIX SHIPPED in v2.3.1** (hard layer promotion: will-change + backface-visibility + isolation on the bar; `contain: layout paint` per settings section) — **✅ CLOSED 2026-07-19, VERIFIED BY KP ON DEVICE: "the eq issue is resolved."** | ✅ CLOSED |
 
 ---
 
