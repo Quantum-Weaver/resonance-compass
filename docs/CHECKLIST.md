@@ -308,7 +308,8 @@
 - [x] `create_fragment` / `export_mix` freed of ffmpeg (spawn_blocking, no shell-outs); `ffmpeg_not_found` hints removed from Now Playing + Studio
 - [x] Parity proven by engine self-test with real audio: window length exact, WAV round-trip holds, 2-layer offset mix at expected length, fade-in verified near-silent at t=0 (`cargo test fragment_engine` ✓); `cargo build` clean; `svelte-check` 387 files, 0 errors
 - [x] Discovery for the record: rodio's `UniformSourceIterator` panics on exhausted inner sources — channel fold + resample done manually instead
-- [ ] **Exit gate:** fragment + mix exported on the S25, no ffmpeg ⬜ (android build → sign → KP's hands)
+- [x] v2.3.0 built (Android + desktop MSI/NSIS), **signed by KP's hand** (15:16, apk/aab/idsig in release/), **installed on the S22 Ultra — adb-verified versionName 2.3.0** (2026-07-19, "installed and verified")
+- [ ] **Exit gate:** a fragment CUT and a mix EXPORTED on the phone, no ffmpeg anywhere ⬜ — one tap-test from closing
 
 ### Phase 2: Recording ⬜ · Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
 - [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
