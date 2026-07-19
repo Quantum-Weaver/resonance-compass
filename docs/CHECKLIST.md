@@ -288,6 +288,23 @@
 
 ---
 
+## v3 — THE MUSICIAN'S COMPASS (COMMISSIONED 2026-07-18, KP's word)
+
+*Plan: `docs/V3-BUILD-SEQUENCE.md` · Vision: `docs/MUSICIANS-COMPASS-VISION.md`*
+
+### Phase 0: The Summons (research) ⬜
+- [ ] Cartographer/Indexer/Echo market + user-voice scan → `docs/V3-LANDSCAPE.md`
+
+### Phase 1: Native Audio Engine ⬜ (the keel — first)
+- [ ] symphonia decode → native trim/mix → hound WAV (rubato resample)
+- [ ] `create_fragment` / `export_mix` freed of ffmpeg, parity proven
+- [ ] **Exit gate:** fragment + mix exported on the S25, no ffmpeg ⬜
+
+### Phase 2: Recording ⬜ · Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
+- [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
+
+---
+
 ## KNOWN BUGS
 
 | ID | Description | Status |
