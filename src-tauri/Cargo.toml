@@ -1,6 +1,6 @@
 [package]
 name = "resonance-compass"
-version = "2.2.0"
+version = "2.3.0"
 description = "A sovereign music player and self-understanding system"
 authors = ["Quantum Weaver"]
 edition = "2021"
