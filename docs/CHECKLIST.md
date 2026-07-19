@@ -290,7 +290,8 @@
 - [x] Enhancements branch merged (PR #3); Musician's Compass vision captured → decided as v3
 - [x] **v2.2.0** (2026-07-18): emoji palette scrolls (KP's 07-17 overflow note closed) · 16 KB page-size flags (compiler-proven 0x4000 readelf) · cosmic mended · new app icons (KP's hand, tauri icon rerun)
 - [x] v2.2.0 built (Android 15:31, desktop 15:40) + **signed** (apksigner-verified) — filed in `release/`
-- [ ] Install v2.2.0 on devices (uninstall Play copies first — signature mismatch) ⬜ KP's hands
+- [x] Install v2.2.0 on S22 Ultra — ✅ 2026-07-18, KP's hands; verified on-device via adb
+- [ ] Install v2.2.0 on S25 (uninstall the Play copy first — signature mismatch) ⬜ KP's hands
 - [ ] Play test-track update with v2.2.0 AAB — optional, KP's choice ⬜
 
 ---
