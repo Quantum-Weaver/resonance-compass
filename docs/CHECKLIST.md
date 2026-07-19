@@ -277,14 +277,21 @@
   - `src-tauri/target/release/bundle/nsis/Resonance Compass_2.0.0_x64-setup.exe`
 - [x] Android APK built — `npx tauri android build --apk --target aarch64` clean:
   - `src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-unsigned.apk`
-- [ ] **Android APK signing — human step** (needs the keystore password):
-  ```
-  apksigner sign --ks path\to\resonance-compass.keystore --out resonance-compass-v2.0.0.apk app-universal-release-unsigned.apk
-  ```
-  The v1 keystore is preserved in the excavator landfill archive (`resonance-compass_v0.5/resonance-compass.keystore`). Alternatively add `keystore.properties` to `src-tauri/gen/android/` for automatic signing on future builds (gitignored — never commit it).
+- [x] **Android APK signing — human step** — ✅ superseded by events: v2.1.3 signed + installed 2026-07-08; **v2.2.0 signed 2026-07-18** (`release/resonance-compass-v2.2.0.apk`, apksigner-verified, Sanctuary keystore)
 - [x] App icons — cello sigil set (all Windows/Android/iOS sizes) committed at session start
 - [x] Release notes — `docs/RELEASE-NOTES-v2.0.0.md`
 - [ ] **Tested:** ⬜ (install .msi on clean Windows; sign + install APK on Android)
+
+---
+
+### v2.1.3 → v2.2.0 (2026-07-08 → 2026-07-18) ✅
+- [x] v2.1.3 built + signed + installed (2026-07-08); Play internal testing track (paid app, not published)
+- [x] Cosmic distribution received; `src/lib/cosmic` managed constants mirror (2026-07-15)
+- [x] Enhancements branch merged (PR #3); Musician's Compass vision captured → decided as v3
+- [x] **v2.2.0** (2026-07-18): emoji palette scrolls (KP's 07-17 overflow note closed) · 16 KB page-size flags (compiler-proven 0x4000 readelf) · cosmic mended · new app icons (KP's hand, tauri icon rerun)
+- [x] v2.2.0 built (Android 15:31, desktop 15:40) + **signed** (apksigner-verified) — filed in `release/`
+- [ ] Install v2.2.0 on devices (uninstall Play copies first — signature mismatch) ⬜ KP's hands
+- [ ] Play test-track update with v2.2.0 AAB — optional, KP's choice ⬜
 
 ---
 
