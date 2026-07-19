@@ -320,6 +320,7 @@
 
 | ID | Description | Status |
 |----|-------------|--------|
+| B2 | **Fragment editing: sliders move, no changes happen (v2.3.0, phone, KP 2026-07-19 — first dwelling finding on the native engine day):** cutting/saving/loading fragments works; editing does not — sliders respond visually but produce no change. Triage with device in hand: (a) if Studio layer sliders (volume/pan/fade) — note the Studio applies changes at EXPORT, not live; if KP expected live audible feedback, that's a real UX gap (either add live preview or say "applies on export" plainly); verify a re-export actually reflects moved sliders (engine applies vol/pan — unit-tested — but the UI→payload path needs checking); (b) if the capture modal markers — check marker drag → preview seek wiring on Android webview | ⬜ open — next Compass sitting |
 | B1 | **EQ settings design issue (v2.2.0, S-device; CORRECTED at KP's word 2026-07-19 — originally misread as a launch-time MiniPlayer flash):** KP 2026-07-18: "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — the *it* is the **Equalizer**: toggling EQ on in Settings pops the slider bank in like a phantom player surface, shifting the layout and jumping the scroll. For the sitting: reserve the section's space (or animate the expansion) so enabling never shoves the page; rethink the 10-slider bank's presentation on phone widths; check the `#eq` deep-link auto-expand path too | ⬜ open — v3/next Compass sitting |
 
 ---
