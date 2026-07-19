@@ -317,7 +317,7 @@
 
 | ID | Description | Status |
 |----|-------------|--------|
-| — | — | — |
+| B1 | **Phantom MiniPlayer on launch (v2.2.0, S-device, KP 2026-07-18):** "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — during startup/options a player surface appears uninvoked, causing scroll + layout shift. Suspects for the sitting: MiniPlayer mounting before `restoreState` decides there's no track (render gate on `currentTrack` may flash), and/or the layout's `hideChrome` derivation racing the first route; check onboarding/settings first-paint on device | ⬜ open — triage next Compass sitting |
 
 ---
 
