@@ -13,6 +13,7 @@ use tauri_plugin_sql::{Migration, MigrationKind};
 
 mod audio;
 mod equalizer;
+mod fragment_engine;
 mod media_permission;
 mod visualizer;
 
@@ -398,13 +399,6 @@ async fn create_fragment(
     end_secs: f64,
     output_name: String,
 ) -> Result<String, String> {
-    let source = Path::new(&source_path);
-    let ext = source
-        .extension()
-        .and_then(|e| e.to_str())
-        .unwrap_or("mp3")
-        .to_lowercase();
-
     let fragments_dir = app_handle
         .path()
         .app_data_dir()
@@ -422,33 +416,18 @@ async fn create_fragment(
         })
         .collect();
 
-    let output_path = fragments_dir.join(format!("{}.{}", safe_name, ext));
+    // The native engine renders fragments as WAV regardless of source
+    // format (v3 Phase 1 — no ffmpeg, works on phones).
+    let output_path = fragments_dir.join(format!("{}.wav", safe_name));
     let output_str = output_path.to_string_lossy().to_string();
 
-    let result = std::process::Command::new("ffmpeg")
-        .args([
-            "-y",
-            "-i",
-            &source_path,
-            "-ss",
-            &format!("{:.3}", start_secs),
-            "-to",
-            &format!("{:.3}", end_secs),
-            "-c",
-            "copy",
-            &output_str,
-        ])
-        .output();
-
-    match result {
-        Ok(out) if out.status.success() => Ok(output_str),
-        Ok(out) => Err(format!(
-            "ffmpeg failed: {}",
-            String::from_utf8_lossy(&out.stderr)
-        )),
-        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Err("ffmpeg_not_found".to_string()),
-        Err(e) => Err(format!("Failed to run ffmpeg: {e}")),
-    }
+    tauri::async_runtime::spawn_blocking(move || {
+        let samples = fragment_engine::decode_window(&source_path, start_secs, end_secs)?;
+        fragment_engine::write_wav(Path::new(&output_path), &samples)?;
+        Ok(output_str)
+    })
+    .await
+    .map_err(|e| format!("fragment task failed: {e}"))?
 }
 
 // ── Fragment Studio: mix export ───────────────────────────────────────────────
@@ -461,6 +440,9 @@ pub struct MixLayer {
     pub pan: f64,
     pub fade_in: f64,
     pub fade_out: f64,
+    /// Kept for API compatibility with the studio UI; the native engine
+    /// (v3 Phase 1) anchors fade-out to the true decoded length instead.
+    #[allow(dead_code)]
     pub duration: f64,
 }
 
@@ -493,62 +475,28 @@ async fn export_mix(
     let output_path = mixes_dir.join(format!("{}.wav", safe_name));
     let output_str = output_path.to_string_lossy().to_string();
 
-    let mut cmd = std::process::Command::new("ffmpeg");
-    cmd.arg("-y");
+    // The native engine (v3 Phase 1): decode/fade/pan/delay/sum in-process.
+    // Same laws as the old ffmpeg chain; fade-out now anchors to each
+    // layer's true decoded length instead of the UI-carried duration.
+    let specs: Vec<fragment_engine::LayerSpec> = layers
+        .iter()
+        .map(|l| fragment_engine::LayerSpec {
+            path: l.path.clone(),
+            offset_secs: l.offset_secs,
+            volume: l.volume,
+            pan: l.pan,
+            fade_in: l.fade_in,
+            fade_out: l.fade_out,
+        })
+        .collect();
 
-    for layer in &layers {
-        cmd.args(["-i", &layer.path]);
-    }
-
-    let mut filters: Vec<String> = Vec::new();
-    let mut mix_inputs = String::new();
-
-    for (i, layer) in layers.iter().enumerate() {
-        let vol = layer.volume.clamp(0.0, 2.0);
-        let pan = layer.pan.clamp(-1.0, 1.0);
-        let left = if pan <= 0.0 { 1.0 } else { 1.0 - pan };
-        let right = if pan >= 0.0 { 1.0 } else { 1.0 + pan };
-        let delay_ms = (layer.offset_secs.max(0.0) * 1000.0).round() as u64;
-        let fade_out_start = (layer.duration - layer.fade_out).max(0.0);
-
-        let mut chain = format!("[{i}:a]aresample=44100,aformat=channel_layouts=stereo");
-        if layer.fade_in > 0.0 {
-            chain.push_str(&format!(",afade=t=in:st=0:d={:.3}", layer.fade_in));
-        }
-        if layer.fade_out > 0.0 {
-            chain.push_str(&format!(
-                ",afade=t=out:st={:.3}:d={:.3}",
-                fade_out_start, layer.fade_out
-            ));
-        }
-        chain.push_str(&format!(",volume={:.3}", vol));
-        chain.push_str(&format!(",pan=stereo|c0={:.3}*c0|c1={:.3}*c1", left, right));
-        chain.push_str(&format!(",adelay={delay_ms}|{delay_ms}[a{i}]"));
-
-        filters.push(chain);
-        mix_inputs.push_str(&format!("[a{i}]"));
-    }
-
-    filters.push(format!(
-        "{}amix=inputs={}:duration=longest:normalize=0[out]",
-        mix_inputs,
-        layers.len()
-    ));
-
-    cmd.args(["-filter_complex", &filters.join(";")]);
-    cmd.args(["-map", "[out]", "-c:a", "pcm_s16le", &output_str]);
-
-    let result = cmd.output();
-
-    match result {
-        Ok(out) if out.status.success() => Ok(output_str),
-        Ok(out) => Err(format!(
-            "ffmpeg failed: {}",
-            String::from_utf8_lossy(&out.stderr)
-        )),
-        Err(e) if e.kind() == std::io::ErrorKind::NotFound => Err("ffmpeg_not_found".to_string()),
-        Err(e) => Err(format!("Failed to run ffmpeg: {e}")),
-    }
+    tauri::async_runtime::spawn_blocking(move || {
+        let master = fragment_engine::mix_layers(&specs)?;
+        fragment_engine::write_wav(Path::new(&output_path), &master)?;
+        Ok(output_str)
+    })
+    .await
+    .map_err(|e| format!("mix task failed: {e}"))?
 }
 
 // Full-sovereignty companion to the DB purge: the fragments/mixes tables lose

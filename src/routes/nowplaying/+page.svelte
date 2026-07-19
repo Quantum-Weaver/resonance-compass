@@ -175,10 +175,8 @@
 			fragSaveState = 'saved';
 			setTimeout(() => { fragOpen = false; fragSaveState = 'idle'; }, 1000);
 		} catch (e) {
-			const msg = String(e);
-			fragError = msg.includes('ffmpeg_not_found')
-				? 'ffmpeg not found. Install ffmpeg and add it to your PATH.'
-				: msg;
+			// v3 Phase 1: the native engine needs no ffmpeg — errors are its own words
+			fragError = String(e);
 			fragSaveState = 'error';
 		} finally {
 			fragSaving = false;

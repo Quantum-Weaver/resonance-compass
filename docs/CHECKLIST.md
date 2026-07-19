@@ -303,10 +303,12 @@
 ### Phase 0: The Summons (research) ⬜
 - [ ] Cartographer/Indexer/Echo market + user-voice scan → `docs/V3-LANDSCAPE.md`
 
-### Phase 1: Native Audio Engine ⬜ (the keel — first)
-- [ ] symphonia decode → native trim/mix → hound WAV (rubato resample)
-- [ ] `create_fragment` / `export_mix` freed of ffmpeg, parity proven
-- [ ] **Exit gate:** fragment + mix exported on the S25, no ffmpeg ⬜
+### Phase 1: Native Audio Engine ⚠️ ENGINE BUILT (2026-07-19) — device gate open
+- [x] The engine (`src-tauri/src/fragment_engine.rs`): decode via **rodio** (symphonia inside — the same trusted path every played track takes) → windowing with fast-seek + decode-discard fallback → hand-rolled stereo fold + linear resample (ffmpeg-aresample parity; rubato unneeded at parity — a windowed-sinc upgrade is a later nicety) → **hound** WAV out. Fades/volume/pan/offset/sum carry the exact ffmpeg-chain laws; fade-out now anchors to TRUE decoded length (an honest improvement). Fragments are WAV regardless of source format now.
+- [x] `create_fragment` / `export_mix` freed of ffmpeg (spawn_blocking, no shell-outs); `ffmpeg_not_found` hints removed from Now Playing + Studio
+- [x] Parity proven by engine self-test with real audio: window length exact, WAV round-trip holds, 2-layer offset mix at expected length, fade-in verified near-silent at t=0 (`cargo test fragment_engine` ✓); `cargo build` clean; `svelte-check` 387 files, 0 errors
+- [x] Discovery for the record: rodio's `UniformSourceIterator` panics on exhausted inner sources — channel fold + resample done manually instead
+- [ ] **Exit gate:** fragment + mix exported on the S25, no ffmpeg ⬜ (android build → sign → KP's hands)
 
 ### Phase 2: Recording ⬜ · Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
 - [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
@@ -317,7 +319,7 @@
 
 | ID | Description | Status |
 |----|-------------|--------|
-| B1 | **Phantom MiniPlayer on launch (v2.2.0, S-device, KP 2026-07-18):** "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — during startup/options a player surface appears uninvoked, causing scroll + layout shift. Suspects for the sitting: MiniPlayer mounting before `restoreState` decides there's no track (render gate on `currentTrack` may flash), and/or the layout's `hideChrome` derivation racing the first route; check onboarding/settings first-paint on device | ⬜ open — triage next Compass sitting |
+| B1 | **EQ settings design issue (v2.2.0, S-device; CORRECTED at KP's word 2026-07-19 — originally misread as a launch-time MiniPlayer flash):** KP 2026-07-18: "in the options when turning it on it scrolls like a phantom player pops up, and shifts the design" — the *it* is the **Equalizer**: toggling EQ on in Settings pops the slider bank in like a phantom player surface, shifting the layout and jumping the scroll. For the sitting: reserve the section's space (or animate the expansion) so enabling never shoves the page; rethink the 10-slider bank's presentation on phone widths; check the `#eq` deep-link auto-expand path too | ⬜ open — v3/next Compass sitting |
 
 ---
 

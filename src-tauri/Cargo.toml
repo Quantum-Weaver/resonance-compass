@@ -21,6 +21,7 @@ tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 rodio = { version = "0.20", features = ["symphonia-all"] }
+hound = "3.5"
 lofty = "0.22"
 base64 = "0.22"
 crossbeam = "0.8"

@@ -3688,6 +3688,7 @@ version = "2.2.0"
 dependencies = [
  "base64 0.22.1",
  "crossbeam",
+ "hound",
  "jni",
  "lofty",
  "ndk-context",

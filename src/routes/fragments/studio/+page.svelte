@@ -119,10 +119,8 @@
 				outputName: mixName || 'My Mix',
 			});
 		} catch (e) {
-			const msg = String(e);
-			exportError = msg.includes('ffmpeg_not_found')
-				? 'ffmpeg not found. Install ffmpeg and add it to your PATH.'
-				: msg;
+			// v3 Phase 1: the native engine needs no ffmpeg — errors are its own words
+			exportError = String(e);
 		} finally {
 			exporting = false;
 		}
