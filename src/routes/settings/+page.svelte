@@ -11,6 +11,34 @@
 	import { moodStore } from '$lib/stores/mood.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 
+	// ── Mic spike (v3 Phase 2 device gate — temporary dev surface) ──────────────
+	let spikeState = $state<'idle' | 'running' | 'done' | 'error'>('idle');
+	let spikeResult = $state('');
+	async function runMicSpike() {
+		spikeState = 'running';
+		spikeResult = 'requesting permission…';
+		try {
+			const granted = await invoke<boolean>('request_mic_permission');
+			if (!granted) {
+				spikeState = 'error';
+				spikeResult = 'mic permission not granted';
+				return;
+			}
+			spikeResult = 'listening for 2 seconds — say something…';
+			const r = await invoke<{
+				host: string; device: string; sample_rate: number; channels: number;
+				frames_captured: number; peak: number; rms: number;
+			}>('run_mic_spike', { seconds: 2.0 });
+			spikeState = 'done';
+			spikeResult =
+				`${r.host} · ${r.device} · ${r.sample_rate} Hz × ${r.channels}ch · ` +
+				`${r.frames_captured} frames · peak ${r.peak.toFixed(3)} · rms ${r.rms.toFixed(4)}`;
+		} catch (e) {
+			spikeState = 'error';
+			spikeResult = String(e);
+		}
+	}
+
 	// ── Privacy & About links ───────────────────────────────────────────────────
 	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
 	const SANCTUARY_URL = 'https://audhdities.com';
@@ -679,6 +707,13 @@
 				<button class="privacy-link" onclick={openSanctuary}>audhdities.com — the Sanctuary</button>
 				<button class="privacy-link" onclick={openPrivacy}>Privacy Policy</button>
 			</div>
+			<!-- v3 Phase 2 device gate — temporary spike surface; leaves with the real recorder -->
+			<div class="spike-row">
+				<button class="privacy-link" onclick={runMicSpike} disabled={spikeState === 'running'}>
+					🎙 mic spike (v3 dev) — {spikeState}
+				</button>
+				{#if spikeResult}<p class="spike-result">{spikeResult}</p>{/if}
+			</div>
 		</div>
 	</section>
 </div>
@@ -941,6 +976,15 @@
 		display: flex;
 		gap: 0.5rem;
 		justify-content: flex-end;
+	}
+
+	/* ── Mic spike (temporary) ── */
+	.spike-row { margin-top: 0.6rem; }
+	.spike-result {
+		font-size: 0.75rem;
+		opacity: 0.75;
+		margin: 0.35rem 0 0;
+		word-break: break-word;
 	}
 
 	/* ── About ── */

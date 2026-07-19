@@ -15,6 +15,7 @@ mod audio;
 mod equalizer;
 mod fragment_engine;
 mod media_permission;
+mod mic_spike;
 mod visualizer;
 
 // ── TrackInfo (returned by scan_paths; field names mirror the Track TS interface) ──
@@ -389,6 +390,34 @@ async fn fetch_lyrics(artist: String, title: String) -> Result<Option<LyricsResu
     }))
 }
 
+// ── Mic spike (v3 Phase 2 gate) ───────────────────────────────────────────────
+
+#[tauri::command]
+async fn request_mic_permission(app_handle: tauri::AppHandle) -> Result<bool, String> {
+    #[cfg(target_os = "android")]
+    {
+        // run_mobile_plugin blocks until the vessel answers the system dialog —
+        // keep that wait off the async runtime's core threads.
+        return tauri::async_runtime::spawn_blocking(move || {
+            media_permission::mic_request(&app_handle)
+        })
+        .await
+        .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = app_handle;
+        Ok(true)
+    }
+}
+
+#[tauri::command]
+async fn run_mic_spike(seconds: f32) -> Result<mic_spike::MicSpikeResult, String> {
+    tauri::async_runtime::spawn_blocking(move || mic_spike::run_mic_spike(seconds))
+        .await
+        .map_err(|e| format!("spike task: {e}"))?
+}
+
 // ── Fragment commands ─────────────────────────────────────────────────────────
 
 #[tauri::command]
@@ -654,6 +683,8 @@ pub fn run() {
             scan_paths,
             check_audio_permission,
             request_audio_permission,
+            request_mic_permission,
+            run_mic_spike,
             fetch_cover_art,
             fetch_lyrics,
             create_fragment,

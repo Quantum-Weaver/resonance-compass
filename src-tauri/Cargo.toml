@@ -1,6 +1,6 @@
 [package]
 name = "resonance-compass"
-version = "2.3.0"
+version = "2.3.1"
 description = "A sovereign music player and self-understanding system"
 authors = ["Quantum Weaver"]
 edition = "2021"
@@ -21,6 +21,7 @@ tauri-plugin-sql = { version = "2", features = ["sqlite"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 rodio = { version = "0.20", features = ["symphonia-all"] }
+cpal = "0.15"
 hound = "3.5"
 lofty = "0.22"
 base64 = "0.22"

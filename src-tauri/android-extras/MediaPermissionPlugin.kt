@@ -28,11 +28,13 @@ import app.tauri.plugin.Plugin
 
 private const val ALIAS_AUDIO = "audio"
 private const val ALIAS_STORAGE = "storage"
+private const val ALIAS_MIC = "mic"
 
 @TauriPlugin(
   permissions = [
     Permission(strings = ["android.permission.READ_MEDIA_AUDIO"], alias = ALIAS_AUDIO),
-    Permission(strings = ["android.permission.READ_EXTERNAL_STORAGE"], alias = ALIAS_STORAGE)
+    Permission(strings = ["android.permission.READ_EXTERNAL_STORAGE"], alias = ALIAS_STORAGE),
+    Permission(strings = ["android.permission.RECORD_AUDIO"], alias = ALIAS_MIC)
   ]
 )
 class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
@@ -107,6 +109,33 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
   private fun stateResult(): JSObject {
     val res = JSObject()
     res.put("granted", getPermissionState(alias) == PermissionState.GRANTED)
+    return res
+  }
+
+  // ── The microphone (RECORD_AUDIO) — v3 Phase 2 ──────────────────────────────
+
+  @Command
+  fun checkMicPermission(invoke: Invoke) {
+    invoke.resolve(micStateResult())
+  }
+
+  @Command
+  fun requestMicPermission(invoke: Invoke) {
+    if (getPermissionState(ALIAS_MIC) == PermissionState.GRANTED) {
+      invoke.resolve(micStateResult())
+    } else {
+      requestPermissionForAlias(ALIAS_MIC, invoke, "micPermissionCallback")
+    }
+  }
+
+  @PermissionCallback
+  fun micPermissionCallback(invoke: Invoke) {
+    invoke.resolve(micStateResult())
+  }
+
+  private fun micStateResult(): JSObject {
+    val res = JSObject()
+    res.put("granted", getPermissionState(ALIAS_MIC) == PermissionState.GRANTED)
     return res
   }
 }

@@ -52,6 +52,15 @@ mod android {
             .map_err(|e| e.to_string())
     }
 
+    /// RECORD_AUDIO — the microphone (v3 Phase 2). Same plugin, mic alias.
+    pub fn mic_request<R: Runtime>(app: &AppHandle<R>) -> Result<bool, String> {
+        app.state::<MediaPermission<R>>()
+            .0
+            .run_mobile_plugin::<PermissionResponse>("requestMicPermission", ())
+            .map(|r| r.granted)
+            .map_err(|e| e.to_string())
+    }
+
     /// Called once from MediaPermissionPlugin's init block (Kotlin). cpal's
     /// oboe backend reads the JNI context via the ndk-context crate, but
     /// nothing in the tauri/wry/tao stack initializes it — without this every

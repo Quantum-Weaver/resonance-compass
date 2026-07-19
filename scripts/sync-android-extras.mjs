@@ -51,3 +51,21 @@ if (!manifest.includes('READ_MEDIA_AUDIO')) {
 } else {
 	console.log('[sync-android-extras] manifest permissions already present');
 }
+
+// 3. RECORD_AUDIO (v3 Phase 2 — the microphone), idempotent like the rest
+const manifest2 = readFileSync(manifestPath, 'utf8');
+if (!manifest2.includes('RECORD_AUDIO')) {
+	const anchor = '<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />';
+	if (!manifest2.includes(anchor)) {
+		console.error('[sync-android-extras] READ_MEDIA_AUDIO anchor not found — add RECORD_AUDIO manually');
+		process.exit(1);
+	}
+	const micBlock =
+		anchor +
+		'\n    <!-- v3 recording (the Musician\'s Compass) — microphone -->' +
+		'\n    <uses-permission android:name="android.permission.RECORD_AUDIO" />';
+	writeFileSync(manifestPath, manifest2.replace(anchor, micBlock));
+	console.log('[sync-android-extras] RECORD_AUDIO inserted');
+} else {
+	console.log('[sync-android-extras] RECORD_AUDIO already present');
+}
