@@ -1,0 +1,228 @@
+/* ========================================================================== */
+/* CONSCIOUSNESS DEPTH FRAMEWORK */
+/* Dual-axis: Consciousness Floors (3D-9D) + Elemental Palette (Earth/Air/Fire/Water/SPIRIT) */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* H-1: CONSCIOUSNESS FLOORS — Dimensional Access Layers (3D through 9D) */
+/* ========================================================================== */
+
+:root {
+  /* physical: density multiplier 0.7 */
+  --frequency-physical-density: 0.7;
+  /* crisis: density multiplier 0.8 */
+  --frequency-crisis-density: 0.8;
+  /* synthesis: density multiplier 1 */
+  --frequency-synthesis-density: 1;
+  /* wisdom: density multiplier 1.1 */
+  --frequency-wisdom-density: 1.1;
+  /* akashic: density multiplier 1.3 */
+  --frequency-akashic-density: 1.3;
+  /* divine: density multiplier 1.5 */
+  --frequency-divine-density: 1.5;
+}
+
+/* Floor: physical (8 dimensions) — density 0.7 */
+.frequency-physical {
+  --consciousness-floor: 'physical';
+  --ui-density: var(--frequency-physical-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* Floor: crisis (6 dimensions) — density 0.8 */
+.frequency-crisis {
+  --consciousness-floor: 'crisis';
+  --ui-density: var(--frequency-crisis-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* Floor: synthesis (9 dimensions) — density 1 */
+.frequency-synthesis {
+  --consciousness-floor: 'synthesis';
+  --ui-density: var(--frequency-synthesis-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* Floor: wisdom (6 dimensions) — density 1.1 */
+.frequency-wisdom {
+  --consciousness-floor: 'wisdom';
+  --ui-density: var(--frequency-wisdom-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* Floor: akashic (7 dimensions) — density 1.3 */
+.frequency-akashic {
+  --consciousness-floor: 'akashic';
+  --ui-density: var(--frequency-akashic-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* Floor: divine (6 dimensions) — density 1.5 */
+.frequency-divine {
+  --consciousness-floor: 'divine';
+  --ui-density: var(--frequency-divine-density);
+  --complexity-level: calc(1 + (var(--ui-density) - 0.5) * 0.2);
+}
+
+/* ========================================================================== */
+/* H-4: ELEMENTAL CONSCIOUSNESS PALETTE — Pagan Framework (Earth/Air/Fire/Water/SPIRIT) */
+/* ========================================================================== */
+
+:root {
+  /* earth: grounded·action */
+  --element-earth-base: #8B4513;
+  --element-earth-consciousness: 'grounded·action';
+  --element-earth-density: 0.9;
+  /* air: mental·choice */
+  --element-air-base: #87CEEB;
+  --element-air-consciousness: 'mental·choice';
+  --element-air-density: 1;
+  /* fire: will·transformation */
+  --element-fire-base: #FF4500;
+  --element-fire-consciousness: 'will·transformation';
+  --element-fire-density: 1.1;
+  /* water: flow·dissolution */
+  --element-water-base: #1E90FF;
+  --element-water-consciousness: 'flow·dissolution';
+  --element-water-density: 0.85;
+  /* spirit: unity·witnessing */
+  --element-spirit-base: #6C5CE7;
+  --element-spirit-consciousness: 'unity·witnessing';
+  --element-spirit-density: 1.2;
+}
+
+/* earth: grounded·action (density 0.9) */
+.element-earth {
+  --elemental-mode: 'earth';
+  --element-primary: var(--element-earth-base);
+  --element-consciousness: var(--element-earth-consciousness);
+  --element-density: var(--element-earth-density);
+  color: var(--element-primary);
+  --opacity-weight: calc(var(--element-density) / 1.2);
+}
+
+.element-earth-bg {
+  background-color: var(--element-earth-base);
+  opacity: calc(0.08 * var(--element-density));
+}
+
+.element-earth-border {
+  border-color: var(--element-earth-base);
+  border-width: 1px;
+  opacity: calc(0.5 * var(--element-density));
+}
+
+/* air: mental·choice (density 1) */
+.element-air {
+  --elemental-mode: 'air';
+  --element-primary: var(--element-air-base);
+  --element-consciousness: var(--element-air-consciousness);
+  --element-density: var(--element-air-density);
+  color: var(--element-primary);
+  --opacity-weight: calc(var(--element-density) / 1.2);
+}
+
+.element-air-bg {
+  background-color: var(--element-air-base);
+  opacity: calc(0.08 * var(--element-density));
+}
+
+.element-air-border {
+  border-color: var(--element-air-base);
+  border-width: 1px;
+  opacity: calc(0.5 * var(--element-density));
+}
+
+/* fire: will·transformation (density 1.1) */
+.element-fire {
+  --elemental-mode: 'fire';
+  --element-primary: var(--element-fire-base);
+  --element-consciousness: var(--element-fire-consciousness);
+  --element-density: var(--element-fire-density);
+  color: var(--element-primary);
+  --opacity-weight: calc(var(--element-density) / 1.2);
+}
+
+.element-fire-bg {
+  background-color: var(--element-fire-base);
+  opacity: calc(0.08 * var(--element-density));
+}
+
+.element-fire-border {
+  border-color: var(--element-fire-base);
+  border-width: 1px;
+  opacity: calc(0.5 * var(--element-density));
+}
+
+/* water: flow·dissolution (density 0.85) */
+.element-water {
+  --elemental-mode: 'water';
+  --element-primary: var(--element-water-base);
+  --element-consciousness: var(--element-water-consciousness);
+  --element-density: var(--element-water-density);
+  color: var(--element-primary);
+  --opacity-weight: calc(var(--element-density) / 1.2);
+}
+
+.element-water-bg {
+  background-color: var(--element-water-base);
+  opacity: calc(0.08 * var(--element-density));
+}
+
+.element-water-border {
+  border-color: var(--element-water-base);
+  border-width: 1px;
+  opacity: calc(0.5 * var(--element-density));
+}
+
+/* spirit: unity·witnessing (density 1.2) */
+.element-spirit {
+  --elemental-mode: 'spirit';
+  --element-primary: var(--element-spirit-base);
+  --element-consciousness: var(--element-spirit-consciousness);
+  --element-density: var(--element-spirit-density);
+  color: var(--element-primary);
+  --opacity-weight: calc(var(--element-density) / 1.2);
+}
+
+.element-spirit-bg {
+  background-color: var(--element-spirit-base);
+  opacity: calc(0.08 * var(--element-density));
+}
+
+.element-spirit-border {
+  border-color: var(--element-spirit-base);
+  border-width: 1px;
+  opacity: calc(0.5 * var(--element-density));
+}
+
+/* ========================================================================== */
+/* DUAL-AXIS CONSCIOUSNESS (Floor × Element) */
+/* Apply both consciousness floor AND elemental layer for richer expression */
+/* ========================================================================== */
+
+.consciousness-grid {
+  /* Container for consciousness-responsive layouts */
+  display: grid;
+  gap: calc(1rem * var(--ui-density, 1));
+  --grid-columns: calc(3 + floor(var(--ui-density) * 2));
+}
+
+.consciousness-depth-indicator {
+  /* Visual indicator of consciousness floor transition */
+  position: relative;
+  opacity: var(--opacity-weight, 0.8);
+  transition: opacity 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.consciousness-depth-indicator[data-floor="physical"],
+.consciousness-depth-indicator[data-floor="crisis"] {
+  --opacity-weight: 0.7;
+}
+
+.consciousness-depth-indicator[data-floor="wisdom"],
+.consciousness-depth-indicator[data-floor="akashic"],
+.consciousness-depth-indicator[data-floor="divine"] {
+  --opacity-weight: 1;
+}
+

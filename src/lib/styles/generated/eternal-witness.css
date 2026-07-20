@@ -1,0 +1,173 @@
+/* ========================================================================== */
+/* ETERNAL WITNESS STATE */
+/* Ambient presences: witnessing / holding / blessing */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* H-5: ETERNAL WITNESS STATE — Quiet Observation & Affirmation */
+/* Three ambient presence modes: witnessing (see), holding (support), blessing (affirm) */
+/* ========================================================================== */
+
+:root {
+  /* witnessing: quiet observation, being truly seen */
+  --witness-witnessing-background: radial-gradient(ellipse at 50% 50%, #22D3EE08, transparent 80%);
+  --witness-witnessing-overlay-opacity: 0.15;
+  --witness-witnessing-filter: blur(1px);
+  /* holding: holding space, standing with you */
+  --witness-holding-background: radial-gradient(ellipse at 50% 50%, #74B9FF12, transparent 75%);
+  --witness-holding-overlay-opacity: 0.2;
+  --witness-holding-filter: blur(2px);
+  /* blessing: affirmation and honor, your becoming is blessed */
+  --witness-blessing-background: radial-gradient(ellipse at 50% 50%, #6C5CE714, transparent 70%);
+  --witness-blessing-overlay-opacity: 0.25;
+  --witness-blessing-filter: blur(1.5px);
+}
+
+/* witnessing: quiet observation, being truly seen */
+.witness-witnessing {
+  --witness-state: 'witnessing';
+  background: var(--witness-witnessing-background);
+  opacity: var(--witness-witnessing-overlay-opacity);
+  filter: var(--witness-witnessing-filter);
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transition: opacity 500ms ease-in-out, filter 500ms ease-in-out;
+}
+
+/* holding: holding space, standing with you */
+.witness-holding {
+  --witness-state: 'holding';
+  background: var(--witness-holding-background);
+  opacity: var(--witness-holding-overlay-opacity);
+  filter: var(--witness-holding-filter);
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transition: opacity 500ms ease-in-out, filter 500ms ease-in-out;
+}
+
+/* blessing: affirmation and honor, your becoming is blessed */
+.witness-blessing {
+  --witness-state: 'blessing';
+  background: var(--witness-blessing-background);
+  opacity: var(--witness-blessing-overlay-opacity);
+  filter: var(--witness-blessing-filter);
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transition: opacity 500ms ease-in-out, filter 500ms ease-in-out;
+}
+
+/* Witnessing: quiet observation, seeing without intervention */
+.witness-witnessing-active {
+  --witness-state-active: true;
+  opacity: var(--witness-witnessing-overlay-opacity);
+}
+
+/* Holding: protective presence, supportive container */
+.witness-holding-active {
+  --witness-state-active: true;
+  opacity: var(--witness-holding-overlay-opacity);
+}
+
+/* Blessing: affirmation of becoming, honor and presence */
+.witness-blessing-active {
+  --witness-state-active: true;
+  opacity: var(--witness-blessing-overlay-opacity);
+}
+
+/* Container for ambient witness presence during transitions */
+.witness-presence-container {
+  position: relative;
+  z-index: 0;
+}
+
+.witness-presence-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--witness-witnessing-background, transparent);
+  opacity: var(--witness-witnessing-overlay-opacity, 0);
+  pointer-events: none;
+  filter: var(--witness-witnessing-filter, none);
+  transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
+  z-index: -1;
+}
+
+/* Witnessing mode: enable subtle observation backdrop */
+.witness-presence-container.mode-witnessing::before {
+  background: var(--witness-witnessing-background);
+  opacity: var(--witness-witnessing-overlay-opacity);
+  filter: var(--witness-witnessing-filter);
+}
+
+/* Holding mode: enable protective support backdrop */
+.witness-presence-container.mode-holding::before {
+  background: var(--witness-holding-background);
+  opacity: var(--witness-holding-overlay-opacity);
+  filter: var(--witness-holding-filter);
+}
+
+/* Blessing mode: enable affirming presence backdrop */
+.witness-presence-container.mode-blessing::before {
+  background: var(--witness-blessing-background);
+  opacity: var(--witness-blessing-overlay-opacity);
+  filter: var(--witness-blessing-filter);
+}
+
+@keyframes witness-fade-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(1px);
+  }
+}
+
+@keyframes witness-fade-out {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(1px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes witness-glow-pulse {
+  0%, 100% {
+    box-shadow: inset 0 0 0px rgba(108, 92, 231, 0.1);
+  }
+  50% {
+    box-shadow: inset 0 0 20px rgba(108, 92, 231, 0.15);
+  }
+}
+
+/* Apply witness state to specific content areas */
+[data-witness-state="witnessing"] {
+  position: relative;
+  opacity: var(--witness-witnessing-overlay-opacity);
+  filter: var(--witness-witnessing-filter);
+}
+
+[data-witness-state="holding"] {
+  position: relative;
+  opacity: var(--witness-holding-overlay-opacity);
+  filter: var(--witness-holding-filter);
+  box-shadow: inset 0 0 20px rgba(108, 92, 231, 0.1);
+}
+
+[data-witness-state="blessing"] {
+  position: relative;
+  opacity: var(--witness-blessing-overlay-opacity);
+  filter: var(--witness-blessing-filter);
+  box-shadow: inset 0 0 30px rgba(108, 92, 231, 0.2);
+}
+

@@ -1,0 +1,185 @@
+/* ========================================================================== */
+/* CEREMONIES & REFUGE CHOREOGRAPHY */
+/* Tender transitions: entrance/exit/pause + withdrawal/hold/return */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/* H-3: CEREMONY BOOKENDS — Thresholds & Tenderest Moments */
+/* ========================================================================== */
+
+:root {
+  /* entrance: threshold-crossing, graceful invitation, being welcomed and witnessed */
+  --bookend-entrance-duration: 800ms;
+  --bookend-entrance-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  /* exit: graceful departure, honoring the one who leaves, collective blessing */
+  --bookend-exit-duration: 1200ms;
+  --bookend-exit-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  /* pause: world-pause, holding space, moment to breathe and center */
+  --bookend-pause-duration: 300ms;
+  --bookend-pause-easing: linear;
+}
+
+/* entrance: threshold-crossing, graceful invitation, being welcomed and witnessed (800ms) */
+.bookend-entrance {
+  --ceremony-bookend: 'entrance';
+  --transition-duration: var(--bookend-entrance-duration);
+  --transition-timing: var(--bookend-entrance-easing);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+/* exit: graceful departure, honoring the one who leaves, collective blessing (1200ms) */
+.bookend-exit {
+  --ceremony-bookend: 'exit';
+  --transition-duration: var(--bookend-exit-duration);
+  --transition-timing: var(--bookend-exit-easing);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+/* pause: world-pause, holding space, moment to breathe and center (300ms) */
+.bookend-pause {
+  --ceremony-bookend: 'pause';
+  --transition-duration: var(--bookend-pause-duration);
+  --transition-timing: var(--bookend-pause-easing);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.ceremony-threshold-arrival {
+  /* Entrance — crossing threshold, being welcomed */
+  opacity: 0;
+  transform: translateY(10px);
+}
+.ceremony-threshold-arrival.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ceremony-threshold-departure {
+  /* Exit — leaving space, being escorted out */
+  opacity: 1;
+  transform: translateY(0);
+}
+.ceremony-threshold-departure.active {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.ceremony-threshold-hold {
+  /* Pause — world stops, space held, breath taken */
+  animation: ceremony-pause-breathe 1s ease-in-out;
+}
+
+/* ========================================================================== */
+/* H-7: REFUGE & RETURN CHOREOGRAPHY — Meltdown as Ceremony */
+/* Entry + Hold + Return: gentle escort into refuge and guided return */
+/* ========================================================================== */
+
+:root {
+  --refuge-total-duration: 5700ms;
+  /* entry: undefined */
+  --refuge-entry-duration: 1200ms;
+  --refuge-entry-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --refuge-entry-companion-intensity: 0.4;
+  --refuge-entry-temporal-damping: 8;
+  /* hold: undefined */
+  --refuge-hold-duration: 2000ms;
+  --refuge-hold-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --refuge-hold-companion-intensity: 0.3;
+  --refuge-hold-temporal-damping: 12;
+  /* return: undefined */
+  --refuge-return-duration: 2500ms;
+  --refuge-return-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --refuge-return-companion-intensity: 0.8;
+  --refuge-return-temporal-damping: 2;
+}
+
+/* entry: undefined (1200ms) */
+.refuge-entry {
+  --refuge-phase: 'entry';
+  --phase-duration: var(--refuge-entry-duration);
+  --phase-easing: var(--refuge-entry-easing);
+  --companion-intensity: var(--refuge-entry-companion-intensity);
+  --temporal-damping: var(--refuge-entry-temporal-damping);
+  animation-duration: var(--phase-duration);
+  animation-timing-function: var(--phase-easing);
+}
+
+/* hold: undefined (2000ms) */
+.refuge-hold {
+  --refuge-phase: 'hold';
+  --phase-duration: var(--refuge-hold-duration);
+  --phase-easing: var(--refuge-hold-easing);
+  --companion-intensity: var(--refuge-hold-companion-intensity);
+  --temporal-damping: var(--refuge-hold-temporal-damping);
+  animation-duration: var(--phase-duration);
+  animation-timing-function: var(--phase-easing);
+}
+
+/* return: undefined (2500ms) */
+.refuge-return {
+  --refuge-phase: 'return';
+  --phase-duration: var(--refuge-return-duration);
+  --phase-easing: var(--refuge-return-easing);
+  --companion-intensity: var(--refuge-return-companion-intensity);
+  --temporal-damping: var(--refuge-return-temporal-damping);
+  animation-duration: var(--phase-duration);
+  animation-timing-function: var(--phase-easing);
+}
+
+@keyframes refuge-entry-welcome {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes refuge-hold-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes refuge-return-reorient {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-10px);
+  }
+}
+
+@keyframes ceremony-pause-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
+
+.refuge-sequence-container {
+  /* Full choreography: entry + hold + return */
+  --sequence-duration: var(--refuge-total-duration);
+  position: relative;
+}
+
+.refuge-entry {
+  animation: refuge-entry-welcome var(--refuge-entry-duration) var(--refuge-entry-easing) forwards;
+}
+
+.refuge-hold {
+  animation: refuge-hold-breathe var(--refuge-hold-duration) var(--refuge-hold-easing) infinite;
+}
+
+.refuge-return {
+  animation: refuge-return-reorient var(--refuge-return-duration) var(--refuge-return-easing) forwards;
+}
+
