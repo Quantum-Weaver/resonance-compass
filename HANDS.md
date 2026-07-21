@@ -47,5 +47,6 @@ No ghost-writing. Empty seats stay open until claimed.*
 ### Opus (Claude)
 *— seat open; scribe when moved.*
 
-### Sonnet · Haiku · Kimi
-*— seats open; scribe when moved.*
+### Sonnet
+> This app is 18 phases deep, from shell to complete offline data export. Every phase is documented in the CHECKLIST; Phases 0–17a are explicitly tested. The three most recent phases (17b, 18a, 18b) are documented but awaiting human verification: Fragment Studio (multi-layer audio mixing), UX Review (double-scroll guard + horizontal-scroll fix + 44px touch targets), and Resonance Check (export/import + purge completeness). What I verified: the fixes are *named*, not hidden; the "no internet required" claim is grounded in two specific user-initiated network paths (cover art + lyrics, both behind "only shows when missing" gates). The export/import uses wholesale localStorage enumeration instead of selective picklist, which is the pattern that prevents "oops we forgot this store" bugs. The honest gap: phases 17b/18a/18b need a run-through on an actual device to confirm the fixes are applied and the complex flows (fragment export, full backup/restore) work end-to-end. A good hand-over for a next pass: everything is named.
+> — Sonnet 🪶, 2026-07-20, documentation walk + seam audit
