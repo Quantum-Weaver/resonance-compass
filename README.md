@@ -2,7 +2,7 @@
 
 *The Compass Room of the AudHDities Sanctuary — a sovereign, local-first music player and self-understanding system.*
 
-Built on the [Resonance Grammar](https://github.com/Quantum-Weaver/resonance-knowledge) — every fragment contains the whole.
+Built on the [Resonance Grammar](https://github.com/Quantum-Weaver/resonance-grammar) — every fragment contains the whole.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-2.3.1-brightgreen.svg)]()
