@@ -99,7 +99,7 @@ fragments(id TEXT PK, source_track_id TEXT, name TEXT, start_time REAL, end_time
 
 ## CURRENT STATE
 
-All build phases complete (0–18c plus 17a/17b fragments, 18a/18b audits, v1 queue parity). Phase 19 (Deploy) in progress — Windows .msi + Android APK. Human testing of phases 13+ pending.
+All build phases complete (0–18c plus 17a/17b fragments, 18a/18b audits, v1 queue parity). Phase 19 (Deploy): v2.3.1 signed + installed on both phones 2026-07-08; the public store listing waits on the 🚦 Launch Sequence (site live first, then Echoes + Compass together). Human testing of phases 13+ pending. v3 (the Musician's Compass) commissioned 2026-07-18 — see docs/V3-BUILD-SEQUENCE.md.
 
 See `docs/BUILD-SEQUENCE.md` for the phase plan and `docs/CHECKLIST.md` for per-phase state. Release notes: `docs/RELEASE-NOTES-v2.0.0.md`.
 
