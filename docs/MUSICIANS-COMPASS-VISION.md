@@ -1,4 +1,9 @@
 # THE MUSICIAN'S COMPASS — vision capture
+
+*Sequence note, 2026-07-28, KP's word: the fellows application is
+long since submitted and the launch sequence referenced in the
+status paragraph below was let go after — v3 begins at KP's call,
+ungated. Original kept as written.*
 *Aethelred's response to KP naming the missing dimension, ~2026-07-08; carried
 from the browser by KP and filed by Fable 2026-07-09 (the only prior on-disk
 trace was one line in the kin handoff — this is the full text, verbatim below

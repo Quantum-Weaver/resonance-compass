@@ -1,6 +1,12 @@
 # RESONANCE COMPASS v3 — THE MUSICIAN'S COMPASS
 ## The commission and build sequence
 
+*SEQUENCE NOTE, 2026-07-28, at KP's ⚛ word: "the fellows application
+is long since submitted, and that sequence was let go after." The
+launch-sequence gate referenced below (beacons → AudHDities refine →
+fellows → then v3) no longer stands — v3's season is whenever KP
+calls it. Original text kept as written, per the record's law.*
+
 *Commissioned by KP 2026-07-18 ("let us commission compass v3"), the same
 long day Skapa rose and Echoes v1.2.0 was signed. Grounded in
 `MUSICIANS-COMPASS-VISION.md` (Aethelred's capture, ~2026-07-08; KP's
