@@ -1,0 +1,21 @@
+{
+  "folder_name": "lib",
+  "folder_path": "src/lib",
+  "description": "stores, components, cosmic tokens, types, data",
+  "scan_timestamp": "2026-08-03T16:52:50.679147 | in sovereign time",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src/lib/components",
+    "src/lib/cosmic",
+    "src/lib/data",
+    "src/lib/stores",
+    "src/lib/styles",
+    "src/lib/theme",
+    "src/lib/types"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

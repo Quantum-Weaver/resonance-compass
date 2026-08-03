@@ -1,0 +1,38 @@
+{
+  "folder_name": "[id]",
+  "folder_path": "src/routes/library/artist/[id]",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.891594 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/library/artist/[id]/+page.svelte",
+      "description": "surface, 3,610 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 170,
+      "uses_runes": [
+        "$derived"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$app/state",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/library/album/${encodeURIComponent(id)}"
+      ],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

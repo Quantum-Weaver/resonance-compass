@@ -1,0 +1,18 @@
+{
+  "folder_name": "scripts",
+  "folder_path": "scripts",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:50.661953 | in sovereign time",
+  "files": [
+    {
+      "path": "scripts/sync-android-extras.mjs",
+      "description": "Syncs committed Android customizations into the gitignored, regenerable"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

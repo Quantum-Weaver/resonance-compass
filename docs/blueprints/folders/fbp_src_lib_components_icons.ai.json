@@ -1,0 +1,493 @@
+{
+  "folder_name": "icons",
+  "folder_path": "src/lib/components/icons",
+  "description": "28 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.253664 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/components/icons/IconChevron.svelte",
+      "description": "surface, 555 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconCompass.svelte",
+      "description": "surface, 427 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconEqualizer.svelte",
+      "description": "surface, 678 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconFocus.svelte",
+      "description": "surface, 589 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconFragment.svelte",
+      "description": "surface, 510 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconHeart.svelte",
+      "description": "surface, 485 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconHistory.svelte",
+      "description": "surface, 420 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconHome.svelte",
+      "description": "surface, 374 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconLibrary.svelte",
+      "description": "surface, 446 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconLyrics.svelte",
+      "description": "surface, 508 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconPause.svelte",
+      "description": "surface, 342 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconPlay.svelte",
+      "description": "surface, 270 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconPlaylist.svelte",
+      "description": "surface, 491 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconProfiles.svelte",
+      "description": "surface, 461 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconRepeat.svelte",
+      "description": "surface, 457 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconRepeatOne.svelte",
+      "description": "surface, 500 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconResonance.svelte",
+      "description": "surface, 449 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/Icons.svelte",
+      "description": "surface, 3,066 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconSattva.svelte",
+      "description": "surface, 785 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconSearch.svelte",
+      "description": "surface, 381 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconSettings.svelte",
+      "description": "surface, 963 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconShuffle.svelte",
+      "description": "surface, 504 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconSkipBack.svelte",
+      "description": "surface, 328 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconSkipForward.svelte",
+      "description": "surface, 326 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconTimer.svelte",
+      "description": "surface, 456 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconVisualizer.svelte",
+      "description": "surface, 446 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconVolume.svelte",
+      "description": "surface, 468 bytes"
+    },
+    {
+      "path": "src/lib/components/icons/IconVolumeMuted.svelte",
+      "description": "surface, 461 bytes"
+    }
+  ],
+  "file_count": 28,
+  "subdirectories": [],
+  "code_analysis": {
+    "IconChevron.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$derived",
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconCompass.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconEqualizer.svelte": {
+      "language": "svelte",
+      "lines": 15,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconFocus.svelte": {
+      "language": "svelte",
+      "lines": 13,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconFragment.svelte": {
+      "language": "svelte",
+      "lines": 11,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconHeart.svelte": {
+      "language": "svelte",
+      "lines": 7,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconHistory.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconHome.svelte": {
+      "language": "svelte",
+      "lines": 7,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconLibrary.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconLyrics.svelte": {
+      "language": "svelte",
+      "lines": 11,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconPause.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconPlay.svelte": {
+      "language": "svelte",
+      "lines": 7,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconPlaylist.svelte": {
+      "language": "svelte",
+      "lines": 10,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconProfiles.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconRepeat.svelte": {
+      "language": "svelte",
+      "lines": 10,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconRepeatOne.svelte": {
+      "language": "svelte",
+      "lines": 11,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconResonance.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "Icons.svelte": {
+      "language": "svelte",
+      "lines": 90,
+      "uses_runes": [
+        "$derived",
+        "$props"
+      ],
+      "imports": [
+        "./IconChevron.svelte",
+        "./IconCompass.svelte",
+        "./IconEqualizer.svelte",
+        "./IconFocus.svelte",
+        "./IconFragment.svelte",
+        "./IconHeart.svelte",
+        "./IconHistory.svelte",
+        "./IconHome.svelte",
+        "./IconLibrary.svelte",
+        "./IconLyrics.svelte",
+        "./IconPause.svelte",
+        "./IconPlay.svelte",
+        "./IconPlaylist.svelte",
+        "./IconProfiles.svelte",
+        "./IconRepeat.svelte",
+        "./IconRepeatOne.svelte",
+        "./IconResonance.svelte",
+        "./IconSattva.svelte",
+        "./IconSearch.svelte",
+        "./IconSettings.svelte",
+        "./IconShuffle.svelte",
+        "./IconSkipBack.svelte",
+        "./IconSkipForward.svelte",
+        "./IconTimer.svelte",
+        "./IconVisualizer.svelte",
+        "./IconVolume.svelte",
+        "./IconVolumeMuted.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconSattva.svelte": {
+      "language": "svelte",
+      "lines": 15,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconSearch.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconSettings.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconShuffle.svelte": {
+      "language": "svelte",
+      "lines": 11,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconSkipBack.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconSkipForward.svelte": {
+      "language": "svelte",
+      "lines": 8,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconTimer.svelte": {
+      "language": "svelte",
+      "lines": 10,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconVisualizer.svelte": {
+      "language": "svelte",
+      "lines": 10,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconVolume.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "IconVolumeMuted.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

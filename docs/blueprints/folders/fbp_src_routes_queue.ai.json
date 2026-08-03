@@ -1,0 +1,34 @@
+{
+  "folder_name": "queue",
+  "folder_path": "src/routes/queue",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.066552 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/queue/+page.svelte",
+      "description": "surface, 2,289 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 97,
+      "uses_runes": [
+        "$derived"
+      ],
+      "imports": [
+        "$lib/components/TrackItem.svelte",
+        "$lib/stores/player.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

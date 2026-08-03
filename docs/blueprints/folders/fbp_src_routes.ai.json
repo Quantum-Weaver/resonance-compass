@@ -1,0 +1,116 @@
+{
+  "folder_name": "routes",
+  "folder_path": "src/routes",
+  "description": "the surfaces \u2014 every screen the hand reaches",
+  "scan_timestamp": "2026-08-03T16:52:51.732411 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/+layout.svelte",
+      "description": "surface, 2,989 bytes"
+    },
+    {
+      "path": "src/routes/+layout.ts",
+      "description": "Tauri doesn't have a Node.js server to do proper SSR"
+    },
+    {
+      "path": "src/routes/+page.svelte",
+      "description": "surface, 8,958 bytes"
+    }
+  ],
+  "file_count": 3,
+  "subdirectories": [
+    "src/routes/focus",
+    "src/routes/fragments",
+    "src/routes/history",
+    "src/routes/library",
+    "src/routes/liked",
+    "src/routes/lyrics",
+    "src/routes/nowplaying",
+    "src/routes/onboarding",
+    "src/routes/playlists",
+    "src/routes/profiles",
+    "src/routes/queue",
+    "src/routes/resonance",
+    "src/routes/sattva",
+    "src/routes/search",
+    "src/routes/settings",
+    "src/routes/timer",
+    "src/routes/visualizer"
+  ],
+  "code_analysis": {
+    "+layout.svelte": {
+      "language": "svelte",
+      "lines": 102,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$props"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$app/state",
+        "$lib/components/MediaPermissionDialog.svelte",
+        "$lib/components/MiniPlayer.svelte",
+        "$lib/components/Sidebar.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/mood.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/stores/profile.svelte",
+        "$lib/stores/theme.svelte",
+        "$lib/theme/theme",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/onboarding"
+      ],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "+layout.ts": {
+      "language": "typescript",
+      "lines": 6,
+      "exported_functions": [],
+      "exported_consts": [
+        "ssr"
+      ],
+      "types": [],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 355,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$lib/components/AlbumCard.svelte",
+        "$lib/components/GradientPulse.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/types/types",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/library/album/${encodeURIComponent(album.id)}",
+        "/nowplaying"
+      ],
+      "uses_window_location": false,
+      "z_indexes": [
+        "1"
+      ]
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

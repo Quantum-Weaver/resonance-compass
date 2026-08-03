@@ -1,0 +1,36 @@
+{
+  "domain_name": "src",
+  "domain_path": "src",
+  "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
+  "integration_timestamp": "2026-08-03T16:52:52.262727 | in sovereign time",
+  "objects": [
+    {
+      "blueprint": "docs/blueprints/objects/obp_src_lib.ai.json",
+      "object_path": "src/lib",
+      "description": "stores, components, cosmic tokens, types, data",
+      "folder_count": 10,
+      "total_files": 85
+    },
+    {
+      "blueprint": "docs/blueprints/objects/obp_src_routes.ai.json",
+      "object_path": "src/routes",
+      "description": "the surfaces \u2014 every screen the hand reaches",
+      "folder_count": 24,
+      "total_files": 24
+    }
+  ],
+  "object_count": 2,
+  "folders_reporting_directly": [
+    {
+      "blueprint": "docs/blueprints/folders/fbp_src.ai.json",
+      "folder_path": "src",
+      "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
+      "file_count": 2,
+      "subdirectory_count": 2
+    }
+  ],
+  "total_folders": 35,
+  "total_files": 111,
+  "maintaining_agent": "DomainAgent",
+  "note": "Links only."
+}

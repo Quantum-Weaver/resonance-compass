@@ -1,0 +1,45 @@
+{
+  "folder_name": "search",
+  "folder_path": "src/routes/search",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.132773 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/search/+page.svelte",
+      "description": "surface, 14,046 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 516,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$lib/components/AlbumCard.svelte",
+        "$lib/components/TrackItem.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/types/types",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/library/album/${encodeURIComponent(album.id)}",
+        "/library/artist/${encodeURIComponent(artist.id)}"
+      ],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

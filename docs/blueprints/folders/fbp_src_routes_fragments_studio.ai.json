@@ -1,0 +1,41 @@
+{
+  "folder_name": "studio",
+  "folder_path": "src/routes/fragments/studio",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.805255 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/fragments/studio/+page.svelte",
+      "description": "surface, 20,206 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 627,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$lib/stores/fragment.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/studio.svelte",
+        "$lib/types/types",
+        "@tauri-apps/api/core",
+        "svelte"
+      ],
+      "invokes": [
+        "export_mix"
+      ],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

@@ -1,0 +1,271 @@
+{
+  "folder_name": "stores",
+  "folder_path": "src/lib/stores",
+  "description": "11 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.556862 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/stores/focus.svelte.ts",
+      "description": "typescript, 2,578 bytes"
+    },
+    {
+      "path": "src/lib/stores/fragment.svelte.ts",
+      "description": "typescript, 1,775 bytes"
+    },
+    {
+      "path": "src/lib/stores/library.svelte.ts",
+      "description": "typescript, 15,602 bytes"
+    },
+    {
+      "path": "src/lib/stores/mood.svelte.ts",
+      "description": "typescript, 5,791 bytes"
+    },
+    {
+      "path": "src/lib/stores/player.svelte.ts",
+      "description": "typescript, 11,767 bytes"
+    },
+    {
+      "path": "src/lib/stores/playlist.svelte.ts",
+      "description": "typescript, 2,808 bytes"
+    },
+    {
+      "path": "src/lib/stores/profile.svelte.ts",
+      "description": "typescript, 4,743 bytes"
+    },
+    {
+      "path": "src/lib/stores/studio.svelte.ts",
+      "description": "typescript, 2,036 bytes"
+    },
+    {
+      "path": "src/lib/stores/theme.svelte.ts",
+      "description": "typescript, 1,051 bytes"
+    },
+    {
+      "path": "src/lib/stores/timer.svelte.ts",
+      "description": "typescript, 3,086 bytes"
+    },
+    {
+      "path": "src/lib/stores/ui.svelte.ts",
+      "description": "Cross-component UI signals that don't belong to any domain store."
+    }
+  ],
+  "file_count": 11,
+  "subdirectories": [],
+  "code_analysis": {
+    "focus.svelte.ts": {
+      "language": "typescript",
+      "lines": 100,
+      "exported_functions": [],
+      "exported_consts": [
+        "focusStore"
+      ],
+      "types": [
+        "FocusSession",
+        "FocusRecord",
+        "FocusSettings"
+      ],
+      "imports": [
+        "$app/environment"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "fragment.svelte.ts": {
+      "language": "typescript",
+      "lines": 73,
+      "exported_functions": [],
+      "exported_consts": [
+        "fragmentStore"
+      ],
+      "types": [
+        "Fragment"
+      ],
+      "imports": [
+        "$app/environment"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "library.svelte.ts": {
+      "language": "typescript",
+      "lines": 420,
+      "exported_functions": [],
+      "exported_consts": [
+        "isAndroid",
+        "libraryStore"
+      ],
+      "types": [],
+      "imports": [
+        "$app/environment",
+        "$lib/types/types",
+        "@tauri-apps/plugin-sql"
+      ],
+      "invokes": [
+        "check_audio_permission",
+        "request_audio_permission",
+        "scan_paths"
+      ],
+      "uses_window_location": false,
+      "batch_constants": {
+        "INSERT_BATCH": 50
+      }
+    },
+    "mood.svelte.ts": {
+      "language": "typescript",
+      "lines": 192,
+      "exported_functions": [],
+      "exported_consts": [
+        "moodStore"
+      ],
+      "types": [],
+      "imports": [
+        "$app/environment",
+        "$lib/types/types",
+        "@tauri-apps/plugin-sql"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "player.svelte.ts": {
+      "language": "typescript",
+      "lines": 407,
+      "exported_functions": [],
+      "exported_consts": [
+        "playerStore"
+      ],
+      "types": [
+        "HistoryEntry"
+      ],
+      "imports": [
+        "$app/environment",
+        "$lib/stores/mood.svelte",
+        "$lib/types/types",
+        "@tauri-apps/api/core",
+        "@tauri-apps/api/event"
+      ],
+      "invokes": [
+        "pause",
+        "play_track",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "playlist.svelte.ts": {
+      "language": "typescript",
+      "lines": 99,
+      "exported_functions": [],
+      "exported_consts": [
+        "playlistStore"
+      ],
+      "types": [],
+      "imports": [
+        "$app/environment",
+        "$lib/stores/mood.svelte",
+        "$lib/types/types"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "profile.svelte.ts": {
+      "language": "typescript",
+      "lines": 151,
+      "exported_functions": [],
+      "exported_consts": [
+        "profileStore"
+      ],
+      "types": [
+        "SensoryProfile"
+      ],
+      "imports": [
+        "$app/environment",
+        "$lib/stores/theme.svelte",
+        "$lib/theme/theme",
+        "@tauri-apps/api/core"
+      ],
+      "invokes": [
+        "set_eq_preset"
+      ],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "studio.svelte.ts": {
+      "language": "typescript",
+      "lines": 83,
+      "exported_functions": [
+        "newLayer"
+      ],
+      "exported_consts": [
+        "studioStore"
+      ],
+      "types": [
+        "StudioLayer",
+        "Arrangement"
+      ],
+      "imports": [
+        "$app/environment"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "theme.svelte.ts": {
+      "language": "typescript",
+      "lines": 43,
+      "exported_functions": [],
+      "exported_consts": [
+        "themeStore"
+      ],
+      "types": [],
+      "imports": [
+        "$lib/theme/theme",
+        "$lib/types/types"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "timer.svelte.ts": {
+      "language": "typescript",
+      "lines": 103,
+      "exported_functions": [],
+      "exported_consts": [
+        "prefersReducedMotion",
+        "timerStore"
+      ],
+      "types": [
+        "TimerMode"
+      ],
+      "imports": [
+        "$app/environment",
+        "$lib/stores/player.svelte"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "ui.svelte.ts": {
+      "language": "typescript",
+      "lines": 11,
+      "exported_functions": [],
+      "exported_consts": [
+        "uiStore"
+      ],
+      "types": [],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

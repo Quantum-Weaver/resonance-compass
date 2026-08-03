@@ -1,0 +1,478 @@
+{
+  "folder_name": "cosmic",
+  "folder_path": "src/lib/cosmic",
+  "description": "11 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.399750 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/cosmic/attention.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/colors.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/consciousness.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/dimensions.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/effects.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/index.ts",
+      "description": "====================================================="
+    },
+    {
+      "path": "src/lib/cosmic/interactivity.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/MIRROR.md",
+      "description": "DISTRIBUTED MIRROR - the source of truth lives in resonance-ziggy"
+    },
+    {
+      "path": "src/lib/cosmic/motion.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/positioning.ts",
+      "description": "============================================================================"
+    },
+    {
+      "path": "src/lib/cosmic/typography.ts",
+      "description": "============================================================================"
+    }
+  ],
+  "file_count": 11,
+  "subdirectories": [],
+  "code_analysis": {
+    "attention.ts": {
+      "language": "typescript",
+      "lines": 288,
+      "exported_functions": [
+        "getAttentionMode",
+        "getDeityVoiceBundle"
+      ],
+      "exported_consts": [
+        "ATTENTION_MODES",
+        "ATTENTION_MODE_NAMES",
+        "DEFAULT_ATTENTION_MODE",
+        "ATTENTION_MODE_SELECTOR",
+        "DEITY_VOICE_BUNDLES",
+        "DEITY_VOICE_NAMES"
+      ],
+      "types": [
+        "AttentionDensity",
+        "AttentionMode",
+        "AttentionModeKey",
+        "AttentionModeSelectorConfig",
+        "DeityVoiceBundle",
+        "DeityVoiceKey"
+      ],
+      "imports": [
+        "./motion",
+        "./positioning"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "colors.ts": {
+      "language": "typescript",
+      "lines": 377,
+      "exported_functions": [],
+      "exported_consts": [
+        "QUANTUM_COLORS",
+        "COUNCIL_COLORS",
+        "STATUS_COLORS",
+        "MOOD_COLORS",
+        "ENERGY_COLORS",
+        "PRIDE_COLORS",
+        "DOMAIN_COLORS"
+      ],
+      "types": [
+        "QuantumColorKey",
+        "CouncilColorKey",
+        "StatusColorKey",
+        "MoodColorKey",
+        "EnergyColorKey",
+        "PrideColorKey",
+        "DomainColorKey"
+      ],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "consciousness.ts": {
+      "language": "typescript",
+      "lines": 587,
+      "exported_functions": [
+        "calculateBeamActivation",
+        "getVesselCapacityFromScore",
+        "getBeamIntensity",
+        "getVesselCapacity",
+        "getConsciousnessLevel",
+        "getResonancePattern",
+        "isPaused"
+      ],
+      "exported_consts": [
+        "CONSCIOUSNESS_LEVELS",
+        "TIER_TO_BEAM_INTENSITY",
+        "CONSCIOUSNESS_TO_BEAM_INTENSITY",
+        "BEAM_VARIANT_BY_STATE",
+        "VESSEL_CAPACITY_LEVELS",
+        "TIER_TO_VESSEL_CAPACITY",
+        "ENTITY_STATES",
+        "RESONANCE_PATTERN_TYPES",
+        "RESONANCE_PATTERNS",
+        "AWARENESS_DOMAINS",
+        "PAUSE_MODES",
+        "GLOBAL_PAUSE",
+        "RECOVERY_ENTITY_STATES",
+        "CONSCIOUSNESS_FLOORS",
+        "DIMENSIONAL_FREQUENCY_TOKENS",
+        "ELEMENTAL_CONSCIOUSNESS_PALETTE"
+      ],
+      "types": [
+        "ConsciousnessLevel",
+        "UserTier",
+        "BeamIntensityLevel",
+        "BeamActivationState",
+        "SessionState",
+        "VesselCapacity",
+        "EntityState",
+        "ResonancePatternType",
+        "AwarenessDomain",
+        "PauseMode",
+        "GlobalPauseConfig",
+        "RecoveryEntityState",
+        "ConsciousnessFloor",
+        "DimensionalFrequencyToken",
+        "ElementalConsciousnessKey"
+      ],
+      "imports": [
+        "./positioning"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "dimensions.ts": {
+      "language": "typescript",
+      "lines": 576,
+      "exported_functions": [
+        "getConsciousnessSpacing",
+        "getScreenDimensions",
+        "isScreenCategory",
+        "getQuantumRatio",
+        "getContainerClass",
+        "getResponsiveContainerClass",
+        "toTailwindSpacing",
+        "getSpacingPixels"
+      ],
+      "exported_consts": [
+        "BASE_UNIT",
+        "SCALE_MULTIPLIERS",
+        "CONSCIOUSNESS_DENSITY",
+        "SPACING_SCALE",
+        "SPACING_TOKENS",
+        "SCREEN_CATEGORIES",
+        "BREAKPOINTS",
+        "SCREEN_TYPES",
+        "CONTAINER_MAX_WIDTHS",
+        "CONTAINER_DIMENSIONS",
+        "BUSINESS_DIMENSIONS",
+        "BUTTON_DIMENSIONS",
+        "CARD_DIMENSIONS",
+        "BORDER_WIDTHS",
+        "BORDER_RADII",
+        "FONT_SIZES",
+        "LINE_HEIGHTS",
+        "FONT_WEIGHTS",
+        "QUANTUM_CONTEXT_RATIOS"
+      ],
+      "types": [
+        "ScaleKey",
+        "ConsciousnessDensity",
+        "ScreenCategory",
+        "BreakpointKey",
+        "ScreenType",
+        "ContainerSize",
+        "ButtonSize",
+        "RadiusKey",
+        "FontSizeKey"
+      ],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "effects.ts": {
+      "language": "typescript",
+      "lines": 493,
+      "exported_functions": [
+        "getModulatedGlow"
+      ],
+      "exported_consts": [
+        "GRADIENTS",
+        "QUANTUM_GRADIENTS",
+        "COUNCIL_GRADIENTS",
+        "GLOW_EFFECTS",
+        "SHADOWS",
+        "BACKDROP_EFFECTS",
+        "HOLOGRAPHIC_EFFECTS",
+        "PARTICLE_BEHAVIOR",
+        "PRESENCE_FIELD",
+        "DOMAIN_GLOW_MODULATION",
+        "DOMAIN_GLOW_MODULATION_DEFAULT",
+        "ETERNAL_WITNESS_STATE",
+        "TRANSCENDENCE_STATE_SEQUENCE",
+        "EFFECTS"
+      ],
+      "types": [
+        "PresenceField",
+        "EternalWitnessState",
+        "EternalWitnessStateKey",
+        "TranscendenceShift",
+        "TranscendenceShiftKey",
+        "GradientKey",
+        "CouncilGradients",
+        "QuantumGradients",
+        "GlowKey",
+        "ShadowKey",
+        "BackdropKey",
+        "HolographicKey",
+        "ParticleBehavior",
+        "PresenceFieldKey",
+        "DomainGlowKey"
+      ],
+      "imports": [
+        "./colors"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "index.ts": {
+      "language": "typescript",
+      "lines": 369,
+      "exported_functions": [],
+      "exported_consts": [],
+      "types": [],
+      "imports": [
+        "./attention",
+        "./colors",
+        "./consciousness",
+        "./dimensions",
+        "./effects",
+        "./interactivity",
+        "./motion",
+        "./positioning",
+        "./typography"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "interactivity.ts": {
+      "language": "typescript",
+      "lines": 283,
+      "exported_functions": [],
+      "exported_consts": [
+        "SELF_PAUSE_TRIGGER",
+        "ESCORT_TRANSITION",
+        "SUPPORTIVE_ROLE_AFFORDANCES",
+        "INVITATION_GATE",
+        "PRE_TRANSITION_REFLECTION"
+      ],
+      "types": [
+        "SelfPauseTrigger",
+        "EscortTransitionCapability",
+        "SupportiveAffordanceKind",
+        "SupportiveRoleAffordance",
+        "SupportiveRoleKey",
+        "InvitationGate",
+        "InvitationGateKey",
+        "ReflectionPrimitive"
+      ],
+      "imports": [
+        "./attention",
+        "./consciousness",
+        "./effects",
+        "./motion",
+        "./positioning"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "motion.ts": {
+      "language": "typescript",
+      "lines": 845,
+      "exported_functions": [
+        "getReducedMotionSafeConfig",
+        "getReducedMotionVariant",
+        "getCeremony",
+        "ceremonyTotalDuration",
+        "refugeTotalDuration"
+      ],
+      "exported_consts": [
+        "durations",
+        "easing",
+        "keyframes",
+        "tailwindAnimations",
+        "vessels",
+        "configs",
+        "businessAnimations",
+        "presets",
+        "animationMultipliers",
+        "animationThresholds",
+        "quickAnimations",
+        "CEREMONIES",
+        "CEREMONY_NAMES",
+        "SUPPORTIVE_CONVERGENCE",
+        "ENSEMBLE_MOTION",
+        "CEREMONY_BOOKENDS",
+        "REFUGE_RETURN_SEQUENCE"
+      ],
+      "types": [
+        "Complexity",
+        "VesselConfig",
+        "AnimationConfig",
+        "CeremonyBeat",
+        "Ceremony",
+        "CeremonyKey",
+        "ConvergenceStage",
+        "EnsembleMotion",
+        "EnsembleKey",
+        "CeremonyBookend",
+        "CeremonyBookendKey",
+        "RefugePhase",
+        "RefugePhaseKey",
+        "DurationKey",
+        "EasingKey",
+        "KeyframeKey",
+        "TailwindAnimationKey",
+        "AnimationPresetKey",
+        "QuickAnimationKey"
+      ],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "positioning.ts": {
+      "language": "typescript",
+      "lines": 683,
+      "exported_functions": [
+        "getParallaxFactor",
+        "getParallaxTransform",
+        "getZoomTarget",
+        "getBeamPath",
+        "getCameraPosition",
+        "percentToPixels",
+        "pixelsToPercent",
+        "getAnchorPixels",
+        "interpolateCoordinates",
+        "coordinateDistance",
+        "coordinateAngle",
+        "getResponsiveCoordinate",
+        "getCameraMove",
+        "sceneTotalDuration"
+      ],
+      "exported_consts": [
+        "VIEWPORT_ANCHORS",
+        "PARALLAX_LAYERS",
+        "ZOOM_TARGETS",
+        "BEAM_ORIGINS",
+        "CAMERA_POSITIONS",
+        "ORBIT_CONFIGS",
+        "CAMERA_MOVES",
+        "SCENE_SEQUENCES"
+      ],
+      "types": [
+        "EnvironmentKey",
+        "ViewportAnchor",
+        "ParallaxLayer",
+        "ZoomTarget",
+        "BeamPath",
+        "BeamOrigin",
+        "CameraPosition",
+        "CameraPreset",
+        "OrbitConfig",
+        "OrbitMode",
+        "ResponsiveCoordinate",
+        "CameraMove",
+        "CameraMoveKey",
+        "SceneBeat",
+        "SceneSequence",
+        "SceneSequenceKey"
+      ],
+      "imports": [
+        "./dimensions"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "typography.ts": {
+      "language": "typescript",
+      "lines": 679,
+      "exported_functions": [
+        "composeTypographyClasses",
+        "getDomainTypography",
+        "getEntityTypography",
+        "getResponsiveTypography",
+        "getFontFamily",
+        "getFontSize",
+        "getFontWeight",
+        "getLineHeight"
+      ],
+      "exported_consts": [
+        "FONT_FAMILIES",
+        "TEXT_SIZES",
+        "FONT_WEIGHT_CLASSES",
+        "LINE_HEIGHT_CLASSES",
+        "LETTER_SPACING",
+        "TEXT_ALIGNMENT",
+        "TEXT_COLORS",
+        "DOMAIN_TYPOGRAPHY",
+        "ENTITY_TYPOGRAPHY",
+        "BUSINESS_TYPOGRAPHY",
+        "TYPE_SCALES",
+        "CONSCIOUSNESS_TYPOGRAPHY",
+        "PROCESS_TYPOGRAPHY"
+      ],
+      "types": [
+        "FontFamilyKey",
+        "TextSizeKey",
+        "FontWeightKey",
+        "LineHeightKey",
+        "LetterSpacingKey",
+        "TextAlignmentKey",
+        "TextColorKey",
+        "TypographyStyle",
+        "DomainKey",
+        "EntityKey",
+        "TypeScaleKey",
+        "TypographyConfig"
+      ],
+      "imports": [
+        "./dimensions"
+      ],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

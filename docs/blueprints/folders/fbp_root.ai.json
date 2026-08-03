@@ -1,0 +1,82 @@
+{
+  "folder_name": "resonance-compass",
+  "folder_path": ".",
+  "description": "Resonance Compass \u2014 a sovereign, local-first music player and self-understanding system",
+  "scan_timestamp": "2026-08-03T16:52:50.628217 | in sovereign time",
+  "files": [
+    {
+      "path": ".gitignore",
+      "description": "file, 1,584 bytes"
+    },
+    {
+      "path": "CLAUDE.md",
+      "description": "CLAUDE.md"
+    },
+    {
+      "path": "FABLE-KERNEL.md",
+      "description": "FABLE-KERNEL"
+    },
+    {
+      "path": "HANDS.md",
+      "description": "The Hands"
+    },
+    {
+      "path": "LICENSE",
+      "description": "file, 1,092 bytes"
+    },
+    {
+      "path": "package-lock.json",
+      "description": "data, 84,797 bytes"
+    },
+    {
+      "path": "package.json",
+      "description": "data, 1,123 bytes"
+    },
+    {
+      "path": "PHILOSOPHY.md",
+      "description": "THE RESONANCE LICENSE"
+    },
+    {
+      "path": "PRIVACY.md",
+      "description": "AudHDities Sanctuary"
+    },
+    {
+      "path": "README.md",
+      "description": "\ud83c\udfbb Resonance Compass"
+    },
+    {
+      "path": "svelte.config.js",
+      "description": "Tauri doesn't have a Node.js server to do proper SSR"
+    },
+    {
+      "path": "tsconfig.json",
+      "description": "data, 340 bytes"
+    },
+    {
+      "path": "vite.config.js",
+      "description": "file, 562 bytes"
+    }
+  ],
+  "file_count": 13,
+  "subdirectories": [
+    ".cargo",
+    "docs",
+    "release",
+    "reports",
+    "screenshots",
+    "scripts",
+    "src",
+    "src-tauri",
+    "static",
+    "tools"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [
+    ".git",
+    ".svelte-kit",
+    "build",
+    "node_modules"
+  ],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

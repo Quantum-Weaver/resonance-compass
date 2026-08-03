@@ -1,0 +1,220 @@
+{
+  "folder_name": "src",
+  "folder_path": "src-tauri/src",
+  "description": "8 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.243221 | in sovereign time",
+  "files": [
+    {
+      "path": "src-tauri/src/audio.rs",
+      "description": "audio.rs"
+    },
+    {
+      "path": "src-tauri/src/equalizer.rs",
+      "description": "equalizer.rs"
+    },
+    {
+      "path": "src-tauri/src/fragment_engine.rs",
+      "description": "\u2500\u2500 THE NATIVE AUDIO ENGINE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "description": "rust, 25,358 bytes"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "description": "Prevents additional console window on Windows in release, DO NOT REMOVE!!"
+    },
+    {
+      "path": "src-tauri/src/media_permission.rs",
+      "description": "media_permission.rs"
+    },
+    {
+      "path": "src-tauri/src/mic_spike.rs",
+      "description": "\u2500\u2500 THE MIC SPIKE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "src-tauri/src/visualizer.rs",
+      "description": "visualizer.rs"
+    }
+  ],
+  "file_count": 8,
+  "subdirectories": [],
+  "code_analysis": {
+    "audio.rs": {
+      "language": "rust",
+      "lines": 273,
+      "tauri_commands": [
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "public_fns": [
+        "init",
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop",
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "structs": [
+        "CurrentPlayback",
+        "AudioState"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "equalizer.rs": {
+      "language": "rust",
+      "lines": 273,
+      "tauri_commands": [
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "toggle_eq",
+        "set_eq_preset"
+      ],
+      "public_fns": [
+        "from_state",
+        "preset_bands",
+        "new",
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "toggle_eq",
+        "set_eq_preset"
+      ],
+      "structs": [
+        "EqState",
+        "EqStateResponse",
+        "EqFilter"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "fragment_engine.rs": {
+      "language": "rust",
+      "lines": 253,
+      "tauri_commands": [],
+      "public_fns": [
+        "decode_window",
+        "write_wav",
+        "mix_layers"
+      ],
+      "structs": [
+        "LayerSpec"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "lib.rs": {
+      "language": "rust",
+      "lines": 709,
+      "tauri_commands": [
+        "scan_paths",
+        "check_audio_permission",
+        "request_audio_permission",
+        "fetch_cover_art",
+        "fetch_lyrics",
+        "request_mic_permission",
+        "run_mic_spike",
+        "create_fragment",
+        "export_mix",
+        "purge_fragment_files",
+        "export_fragments"
+      ],
+      "public_fns": [
+        "run"
+      ],
+      "structs": [
+        "TrackInfo",
+        "ScanProgress",
+        "LyricsResult",
+        "LrclibResponse",
+        "MixLayer"
+      ],
+      "tables_created": [
+        "songs",
+        "mood_events",
+        "favorites",
+        "playlists",
+        "fragments"
+      ],
+      "sql_default_count": 10,
+      "non_ascii_defaults": []
+    },
+    "main.rs": {
+      "language": "rust",
+      "lines": 7,
+      "tauri_commands": [],
+      "public_fns": [],
+      "structs": [],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "media_permission.rs": {
+      "language": "rust",
+      "lines": 94,
+      "tauri_commands": [],
+      "public_fns": [
+        "init",
+        "check",
+        "request",
+        "mic_request"
+      ],
+      "structs": [
+        "MediaPermission",
+        "PermissionResponse"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "mic_spike.rs": {
+      "language": "rust",
+      "lines": 100,
+      "tauri_commands": [],
+      "public_fns": [
+        "run_mic_spike"
+      ],
+      "structs": [
+        "MicSpikeResult"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    },
+    "visualizer.rs": {
+      "language": "rust",
+      "lines": 221,
+      "tauri_commands": [],
+      "public_fns": [
+        "make_channel",
+        "new",
+        "start"
+      ],
+      "structs": [
+        "SampleTap"
+      ],
+      "tables_created": [],
+      "sql_default_count": 0,
+      "non_ascii_defaults": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

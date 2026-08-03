@@ -1,0 +1,37 @@
+{
+  "folder_name": "[id]",
+  "folder_path": "src/routes/playlists/[id]",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.026797 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/playlists/[id]/+page.svelte",
+      "description": "surface, 3,177 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 146,
+      "uses_runes": [
+        "$derived"
+      ],
+      "imports": [
+        "$app/state",
+        "$lib/components/TrackItem.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

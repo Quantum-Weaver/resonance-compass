@@ -1,0 +1,44 @@
+{
+  "folder_name": "[id]",
+  "folder_path": "src/routes/library/album/[id]",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.869415 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/library/album/[id]/+page.svelte",
+      "description": "surface, 9,484 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 402,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$app/state",
+        "$lib/components/TrackItem.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "@tauri-apps/api/core"
+      ],
+      "invokes": [
+        "fetch_cover_art"
+      ],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": [
+        "10",
+        "9"
+      ]
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

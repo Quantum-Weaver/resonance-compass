@@ -1,0 +1,40 @@
+{
+  "folder_name": "liked",
+  "folder_path": "src/routes/liked",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.912358 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/liked/+page.svelte",
+      "description": "surface, 10,371 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 417,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$lib/components/TrackItem.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/mood.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/types/types",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

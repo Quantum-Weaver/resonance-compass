@@ -1,0 +1,25 @@
+{
+  "folder_name": "src",
+  "folder_path": "src",
+  "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
+  "scan_timestamp": "2026-08-03T16:52:50.677541 | in sovereign time",
+  "files": [
+    {
+      "path": "src/app.css",
+      "description": "stylesheet, 3,981 bytes"
+    },
+    {
+      "path": "src/app.html",
+      "description": "file, 704 bytes"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [
+    "src/lib",
+    "src/routes"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

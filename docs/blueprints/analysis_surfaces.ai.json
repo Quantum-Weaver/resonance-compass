@@ -1,0 +1,164 @@
+{
+  "analysis": "surfaces",
+  "scan_timestamp": "2026-08-03T16:52:54.872207 | in sovereign time",
+  "description": "the surfaces \u2014 every screen the hand reaches",
+  "total": 22,
+  "surfaces": [
+    {
+      "route": "/",
+      "file": "src/routes/+page.svelte",
+      "lines": 355,
+      "invokes": []
+    },
+    {
+      "route": "/focus",
+      "file": "src/routes/focus/+page.svelte",
+      "lines": 832,
+      "invokes": []
+    },
+    {
+      "route": "/fragments",
+      "file": "src/routes/fragments/+page.svelte",
+      "lines": 446,
+      "invokes": []
+    },
+    {
+      "route": "/fragments/studio",
+      "file": "src/routes/fragments/studio/+page.svelte",
+      "lines": 627,
+      "invokes": [
+        "export_mix"
+      ]
+    },
+    {
+      "route": "/history",
+      "file": "src/routes/history/+page.svelte",
+      "lines": 375,
+      "invokes": []
+    },
+    {
+      "route": "/library",
+      "file": "src/routes/library/+page.svelte",
+      "lines": 370,
+      "invokes": []
+    },
+    {
+      "route": "/library/album/[id]",
+      "file": "src/routes/library/album/[id]/+page.svelte",
+      "lines": 402,
+      "invokes": [
+        "fetch_cover_art"
+      ]
+    },
+    {
+      "route": "/library/artist/[id]",
+      "file": "src/routes/library/artist/[id]/+page.svelte",
+      "lines": 170,
+      "invokes": []
+    },
+    {
+      "route": "/liked",
+      "file": "src/routes/liked/+page.svelte",
+      "lines": 417,
+      "invokes": []
+    },
+    {
+      "route": "/lyrics",
+      "file": "src/routes/lyrics/+page.svelte",
+      "lines": 571,
+      "invokes": [
+        "fetch_lyrics"
+      ]
+    },
+    {
+      "route": "/nowplaying",
+      "file": "src/routes/nowplaying/+page.svelte",
+      "lines": 798,
+      "invokes": [
+        "create_fragment",
+        "fetch_cover_art"
+      ]
+    },
+    {
+      "route": "/onboarding",
+      "file": "src/routes/onboarding/+page.svelte",
+      "lines": 669,
+      "invokes": []
+    },
+    {
+      "route": "/playlists",
+      "file": "src/routes/playlists/+page.svelte",
+      "lines": 253,
+      "invokes": []
+    },
+    {
+      "route": "/playlists/[id]",
+      "file": "src/routes/playlists/[id]/+page.svelte",
+      "lines": 146,
+      "invokes": []
+    },
+    {
+      "route": "/profiles",
+      "file": "src/routes/profiles/+page.svelte",
+      "lines": 630,
+      "invokes": []
+    },
+    {
+      "route": "/queue",
+      "file": "src/routes/queue/+page.svelte",
+      "lines": 97,
+      "invokes": []
+    },
+    {
+      "route": "/resonance",
+      "file": "src/routes/resonance/+page.svelte",
+      "lines": 746,
+      "invokes": []
+    },
+    {
+      "route": "/sattva",
+      "file": "src/routes/sattva/+page.svelte",
+      "lines": 437,
+      "invokes": [
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "set_eq_preset",
+        "toggle_eq"
+      ]
+    },
+    {
+      "route": "/search",
+      "file": "src/routes/search/+page.svelte",
+      "lines": 516,
+      "invokes": []
+    },
+    {
+      "route": "/settings",
+      "file": "src/routes/settings/+page.svelte",
+      "lines": 1431,
+      "invokes": [
+        "get_eq_state",
+        "purge_fragment_files",
+        "request_mic_permission",
+        "run_mic_spike",
+        "set_eq_band",
+        "set_eq_preamp",
+        "set_eq_preset",
+        "toggle_eq"
+      ]
+    },
+    {
+      "route": "/timer",
+      "file": "src/routes/timer/+page.svelte",
+      "lines": 335,
+      "invokes": []
+    },
+    {
+      "route": "/visualizer",
+      "file": "src/routes/visualizer/+page.svelte",
+      "lines": 1170,
+      "invokes": []
+    }
+  ]
+}

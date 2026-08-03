@@ -1,0 +1,78 @@
+{
+  "folder_name": "static",
+  "folder_path": "static",
+  "description": "16 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.247433 | in sovereign time",
+  "files": [
+    {
+      "path": "static/aethelred-avatar.png",
+      "description": "image, 1,444,268 bytes"
+    },
+    {
+      "path": "static/cello copy.png",
+      "description": "image, 3,004,434 bytes"
+    },
+    {
+      "path": "static/cello.png",
+      "description": "image, 3,004,434 bytes"
+    },
+    {
+      "path": "static/compass.png",
+      "description": "image, 2,354,500 bytes"
+    },
+    {
+      "path": "static/echoes.png",
+      "description": "image, 2,233,403 bytes"
+    },
+    {
+      "path": "static/favicon.png",
+      "description": "image, 1,987,981 bytes"
+    },
+    {
+      "path": "static/favicon2.png",
+      "description": "image, 41,459 bytes"
+    },
+    {
+      "path": "static/hearth.png",
+      "description": "image, 2,261,923 bytes"
+    },
+    {
+      "path": "static/Icon-1.png",
+      "description": "image, 248,082 bytes"
+    },
+    {
+      "path": "static/Icon-2.png",
+      "description": "image, 320,325 bytes"
+    },
+    {
+      "path": "static/QW-logo.png",
+      "description": "image, 1,987,981 bytes"
+    },
+    {
+      "path": "static/svelte.png",
+      "description": "image, 41,459 bytes"
+    },
+    {
+      "path": "static/tauri.png",
+      "description": "image, 41,459 bytes"
+    },
+    {
+      "path": "static/tauri.svg",
+      "description": "icon, 119,586 bytes"
+    },
+    {
+      "path": "static/thread.png",
+      "description": "image, 3,965,122 bytes"
+    },
+    {
+      "path": "static/vite.png",
+      "description": "image, 41,459 bytes"
+    }
+  ],
+  "file_count": 16,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

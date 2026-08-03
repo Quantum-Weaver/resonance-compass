@@ -1,0 +1,47 @@
+{
+  "folder_name": "lyrics",
+  "folder_path": "src/routes/lyrics",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.938390 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/lyrics/+page.svelte",
+      "description": "surface, 15,269 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 571,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$app/environment",
+        "$app/state",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "@tauri-apps/api/core",
+        "svelte"
+      ],
+      "invokes": [
+        "fetch_lyrics"
+      ],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ]
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

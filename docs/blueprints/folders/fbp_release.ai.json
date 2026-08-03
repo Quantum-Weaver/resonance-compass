@@ -1,0 +1,66 @@
+{
+  "folder_name": "release",
+  "folder_path": "release",
+  "description": "13 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:50.640211 | in sovereign time",
+  "files": [
+    {
+      "path": "release/Resonance Compass_2.3.0_x64_en-US.msi",
+      "description": "file, 24,014,848 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.3.aab",
+      "description": "file, 71,998,123 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.3.apk",
+      "description": "file, 110,348,532 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.1.3.apk.idsig",
+      "description": "file, 878,159 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.2.0.aab",
+      "description": "file, 71,998,123 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.2.0.apk",
+      "description": "file, 37,410,585 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.2.0.apk.idsig",
+      "description": "file, 300,623 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.0.aab",
+      "description": "file, 99,487,124 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.0.apk",
+      "description": "file, 137,894,132 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.0.apk.idsig",
+      "description": "file, 1,099,343 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.1.aab",
+      "description": "file, 99,584,658 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.1.apk",
+      "description": "file, 138,279,156 bytes"
+    },
+    {
+      "path": "release/resonance-compass-v2.3.1.apk.idsig",
+      "description": "file, 1,099,343 bytes"
+    }
+  ],
+  "file_count": 13,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

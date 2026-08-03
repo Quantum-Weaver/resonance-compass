@@ -1,0 +1,44 @@
+{
+  "folder_name": "fragments",
+  "folder_path": "src/routes/fragments",
+  "description": "1 files, 1 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.781216 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/fragments/+page.svelte",
+      "description": "surface, 13,945 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [
+    "src/routes/fragments/studio"
+  ],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 446,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$lib/data/emojis",
+        "$lib/stores/fragment.svelte",
+        "$lib/stores/library.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/types/types",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": [
+        "50"
+      ]
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

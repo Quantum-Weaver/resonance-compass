@@ -1,0 +1,18 @@
+{
+  "folder_name": "capabilities",
+  "folder_path": "src-tauri/capabilities",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.216195 | in sovereign time",
+  "files": [
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "description": "data, 470 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

@@ -1,0 +1,21 @@
+{
+  "folder_name": "android",
+  "folder_path": "src-tauri/icons/android",
+  "description": "0 files, 7 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.222606 | in sovereign time",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src-tauri/icons/android/mipmap-anydpi-v26",
+    "src-tauri/icons/android/mipmap-hdpi",
+    "src-tauri/icons/android/mipmap-mdpi",
+    "src-tauri/icons/android/mipmap-xhdpi",
+    "src-tauri/icons/android/mipmap-xxhdpi",
+    "src-tauri/icons/android/mipmap-xxxhdpi",
+    "src-tauri/icons/android/values"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

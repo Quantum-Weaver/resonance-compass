@@ -1,0 +1,36 @@
+{
+  "folder_name": "profiles",
+  "folder_path": "src/routes/profiles",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.050291 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/profiles/+page.svelte",
+      "description": "surface, 17,536 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 630,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$lib/stores/playlist.svelte",
+        "$lib/stores/profile.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

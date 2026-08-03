@@ -1,0 +1,18 @@
+{
+  "folder_name": "mipmap-anydpi-v26",
+  "folder_path": "src-tauri/icons/android/mipmap-anydpi-v26",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.224199 | in sovereign time",
+  "files": [
+    {
+      "path": "src-tauri/icons/android/mipmap-anydpi-v26/ic_launcher.xml",
+      "description": "file, 265 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

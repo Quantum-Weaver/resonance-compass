@@ -1,0 +1,39 @@
+{
+  "folder_name": "resonance",
+  "folder_path": "src/routes/resonance",
+  "description": "1 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.088752 | in sovereign time",
+  "files": [
+    {
+      "path": "src/routes/resonance/+page.svelte",
+      "description": "surface, 18,518 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 746,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$lib/components/TrackItem.svelte",
+        "$lib/data/emojis",
+        "$lib/stores/library.svelte",
+        "$lib/stores/mood.svelte",
+        "$lib/stores/player.svelte",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

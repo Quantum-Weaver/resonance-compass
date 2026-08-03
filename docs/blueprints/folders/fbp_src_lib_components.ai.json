@@ -1,0 +1,221 @@
+{
+  "folder_name": "components",
+  "folder_path": "src/lib/components",
+  "description": "9 files, 1 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:50.845625 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/components/AlbumCard.svelte",
+      "description": "surface, 2,620 bytes"
+    },
+    {
+      "path": "src/lib/components/EmojiPalette.svelte",
+      "description": "surface, 4,067 bytes"
+    },
+    {
+      "path": "src/lib/components/GradientPulse.svelte",
+      "description": "surface, 1,005 bytes"
+    },
+    {
+      "path": "src/lib/components/MediaPermissionDialog.svelte",
+      "description": "surface, 2,679 bytes"
+    },
+    {
+      "path": "src/lib/components/MiniPlayer.svelte",
+      "description": "surface, 10,076 bytes"
+    },
+    {
+      "path": "src/lib/components/PlayerControls.svelte",
+      "description": "surface, 4,474 bytes"
+    },
+    {
+      "path": "src/lib/components/Sidebar.svelte",
+      "description": "surface, 5,819 bytes"
+    },
+    {
+      "path": "src/lib/components/TimerVisualization.svelte",
+      "description": "surface, 18,253 bytes"
+    },
+    {
+      "path": "src/lib/components/TrackItem.svelte",
+      "description": "surface, 7,481 bytes"
+    }
+  ],
+  "file_count": 9,
+  "subdirectories": [
+    "src/lib/components/icons"
+  ],
+  "code_analysis": {
+    "AlbumCard.svelte": {
+      "language": "svelte",
+      "lines": 110,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [
+        "$lib/types/types"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "EmojiPalette.svelte": {
+      "language": "svelte",
+      "lines": 166,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "imports": [
+        "$lib/data/emojis",
+        "$lib/stores/mood.svelte",
+        "$lib/stores/player.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "GradientPulse.svelte": {
+      "language": "svelte",
+      "lines": 55,
+      "uses_runes": [
+        "$props"
+      ],
+      "imports": [
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "MediaPermissionDialog.svelte": {
+      "language": "svelte",
+      "lines": 114,
+      "uses_runes": [
+        "$derived"
+      ],
+      "imports": [
+        "$lib/stores/library.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": [
+        "199",
+        "200"
+      ]
+    },
+    "MiniPlayer.svelte": {
+      "language": "svelte",
+      "lines": 382,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$app/state",
+        "$lib/components/EmojiPalette.svelte",
+        "$lib/components/PlayerControls.svelte",
+        "$lib/stores/player.svelte",
+        "$lib/stores/playlist.svelte",
+        "$lib/stores/profile.svelte",
+        "$lib/stores/ui.svelte"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/nowplaying"
+      ],
+      "uses_window_location": false,
+      "z_indexes": [
+        "110"
+      ]
+    },
+    "PlayerControls.svelte": {
+      "language": "svelte",
+      "lines": 201,
+      "uses_runes": [
+        "$derived",
+        "$props"
+      ],
+      "imports": [
+        "$lib/stores/player.svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "Sidebar.svelte": {
+      "language": "svelte",
+      "lines": 214,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$app/state",
+        "$lib/components/icons/Icons.svelte",
+        "$lib/stores/ui.svelte",
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": [
+        "120",
+        "49",
+        "50"
+      ]
+    },
+    "TimerVisualization.svelte": {
+      "language": "svelte",
+      "lines": 595,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$props",
+        "$state"
+      ],
+      "imports": [
+        "svelte"
+      ],
+      "invokes": [],
+      "navigations": [],
+      "uses_window_location": false,
+      "z_indexes": []
+    },
+    "TrackItem.svelte": {
+      "language": "svelte",
+      "lines": 342,
+      "uses_runes": [
+        "$derived",
+        "$props",
+        "$state"
+      ],
+      "imports": [
+        "$app/navigation",
+        "$lib/stores/playlist.svelte",
+        "$lib/types/types"
+      ],
+      "invokes": [],
+      "navigations": [
+        "/lyrics?trackId=${encodeURIComponent(track.id)}"
+      ],
+      "uses_window_location": false,
+      "z_indexes": [
+        "10",
+        "9"
+      ]
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

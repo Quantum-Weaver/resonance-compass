@@ -1,0 +1,35 @@
+{
+  "report": "declared versus present",
+  "law": "Findings are REPORTED, never repaired.",
+  "checked_against": [
+    "CLAUDE.md ESSENTIAL RULES",
+    "CLAUDE.md DATABASE block",
+    "CLAUDE.md PROJECT STRUCTURE block",
+    "docs/SCREEN-INVENTORY.md"
+  ],
+  "total_findings": 2,
+  "by_kind": {
+    "structure-block-undeclares-modules": 1,
+    "screen-undeclared": 1
+  },
+  "findings": [
+    {
+      "kind": "structure-block-undeclares-modules",
+      "what": "CLAUDE.md's PROJECT STRUCTURE block names the Rust modules",
+      "declared": "5 named",
+      "present": "9 on disk",
+      "address": "CLAUDE.md",
+      "note": "On disk but not named: build.rs, fragment_engine.rs, media_permission.rs, mic_spike.rs \u2014 a voiced file: reported, never auto-written."
+    },
+    {
+      "kind": "screen-undeclared",
+      "what": "SCREEN-INVENTORY lists the screens",
+      "declared": "18 named",
+      "present": "22 routes on disk",
+      "address": "docs/SCREEN-INVENTORY.md",
+      "note": "Not in the inventory: /fragments, /fragments/studio, /library/album/[id], /library/artist/[id] \u2014 a voiced file: reported, never auto-written."
+    }
+  ],
+  "note": "Zero findings is a real result, not an empty section.",
+  "scan_timestamp": "2026-08-03T16:52:54.893523 | in sovereign time"
+}

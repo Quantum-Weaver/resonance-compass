@@ -1,0 +1,54 @@
+{
+  "folder_name": "data",
+  "folder_path": "src/lib/data",
+  "description": "2 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.403567 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/data/emojis.ts",
+      "description": "typescript, 4,195 bytes"
+    },
+    {
+      "path": "src/lib/data/senses.ts",
+      "description": "typescript, 2,586 bytes"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [],
+  "code_analysis": {
+    "emojis.ts": {
+      "language": "typescript",
+      "lines": 100,
+      "exported_functions": [],
+      "exported_consts": [
+        "EMOJI_DEFS"
+      ],
+      "types": [
+        "EmojiDef"
+      ],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    },
+    "senses.ts": {
+      "language": "typescript",
+      "lines": 110,
+      "exported_functions": [],
+      "exported_consts": [
+        "SENSES"
+      ],
+      "types": [
+        "Sense",
+        "Subcategory"
+      ],
+      "imports": [],
+      "invokes": [],
+      "uses_window_location": false,
+      "batch_constants": {}
+    }
+  },
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

@@ -1,0 +1,77 @@
+{
+  "folder_name": "docs",
+  "folder_path": "docs",
+  "description": "the voiced documents \u2014 build sequence, checklist, screens, android notes",
+  "scan_timestamp": "2026-08-03T16:52:50.636043 | in sovereign time",
+  "files": [
+    {
+      "path": "docs/ANDROID-BUILD-NOTES.md",
+      "description": "Android Build Notes"
+    },
+    {
+      "path": "docs/BUILD-SEQUENCE.md",
+      "description": "BUILD SEQUENCE"
+    },
+    {
+      "path": "docs/CHECKLIST.md",
+      "description": "RESONANCE COMPASS v2"
+    },
+    {
+      "path": "docs/CLAUDE-CONTEXT.md",
+      "description": "CLAUDE CONTEXT"
+    },
+    {
+      "path": "docs/CONTRIBUTING.md",
+      "description": "CONTRIBUTING"
+    },
+    {
+      "path": "docs/FEATURE-BOARD.md",
+      "description": "COMPASS"
+    },
+    {
+      "path": "docs/GALAXY-LISTING.md",
+      "description": "Compass"
+    },
+    {
+      "path": "docs/GIT-HYGIENE.md",
+      "description": "SANCTUARY GIT HYGIENE GUIDE"
+    },
+    {
+      "path": "docs/MUSICIANS-COMPASS-VISION.md",
+      "description": "THE MUSICIAN'S COMPASS"
+    },
+    {
+      "path": "docs/RELEASE-NOTES-v2.0.0.md",
+      "description": "Resonance Compass v2.0.0"
+    },
+    {
+      "path": "docs/RESONANCE-GRAMMAR.md",
+      "description": "THE RESONANCE GRAMMAR"
+    },
+    {
+      "path": "docs/SCREEN-INVENTORY.md",
+      "description": "SCREEN INVENTORY"
+    },
+    {
+      "path": "docs/v1-v2-gap-report.md",
+      "description": "v1 \u2192 v2 Gap Report"
+    },
+    {
+      "path": "docs/V3-BUILD-SEQUENCE.md",
+      "description": "RESONANCE COMPASS v3"
+    },
+    {
+      "path": "docs/VISUALIZER-PLAYABLE-MODE.md",
+      "description": "Visualizer Playable Mode"
+    }
+  ],
+  "file_count": 15,
+  "subdirectories": [
+    "docs/blueprints",
+    "docs/session-reports"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

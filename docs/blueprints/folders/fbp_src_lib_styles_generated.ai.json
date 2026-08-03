@@ -1,0 +1,98 @@
+{
+  "folder_name": "generated",
+  "folder_path": "src/lib/styles/generated",
+  "description": "21 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.661265 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/styles/generated/animations.css",
+      "description": "stylesheet, 9,488 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/attention-modes.css",
+      "description": "stylesheet, 4,141 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/attention-selector.css",
+      "description": "stylesheet, 4,051 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/ceremonies-refuge.css",
+      "description": "stylesheet, 5,776 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/ceremonies.css",
+      "description": "stylesheet, 10,026 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/consciousness-depth.css",
+      "description": "stylesheet, 7,392 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/deity-voices.css",
+      "description": "stylesheet, 8,284 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/domains.css",
+      "description": "stylesheet, 33,689 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/ensemble.css",
+      "description": "stylesheet, 6,473 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/eternal-witness.css",
+      "description": "stylesheet, 5,380 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/gates.css",
+      "description": "stylesheet, 3,392 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/glow-field.css",
+      "description": "stylesheet, 5,788 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/parallax.css",
+      "description": "stylesheet, 11,077 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/pause-state.css",
+      "description": "stylesheet, 2,344 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/scene.css",
+      "description": "stylesheet, 4,450 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/supportive-affordances.css",
+      "description": "stylesheet, 2,363 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/text-effects.css",
+      "description": "stylesheet, 11,992 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/transcendence.css",
+      "description": "stylesheet, 3,871 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/typography.css",
+      "description": "stylesheet, 25,509 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/variables.css",
+      "description": "stylesheet, 22,689 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/zoom.css",
+      "description": "stylesheet, 25,467 bytes"
+    }
+  ],
+  "file_count": 21,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

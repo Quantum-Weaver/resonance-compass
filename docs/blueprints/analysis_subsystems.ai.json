@@ -1,0 +1,143 @@
+{
+  "analysis": "subsystems",
+  "scan_timestamp": "2026-08-03T16:52:54.873152 | in sovereign time",
+  "description": "the backend subsystems \u2014 one Rust module each",
+  "total_modules": 9,
+  "total_commands": 22,
+  "modules": [
+    {
+      "module": "lib",
+      "file": "src-tauri/src/lib.rs",
+      "lines": 709,
+      "tauri_commands": [
+        "scan_paths",
+        "check_audio_permission",
+        "request_audio_permission",
+        "fetch_cover_art",
+        "fetch_lyrics",
+        "request_mic_permission",
+        "run_mic_spike",
+        "create_fragment",
+        "export_mix",
+        "purge_fragment_files",
+        "export_fragments"
+      ],
+      "command_count": 11,
+      "structs": [
+        "TrackInfo",
+        "ScanProgress",
+        "LyricsResult",
+        "LrclibResponse",
+        "MixLayer"
+      ],
+      "tables_created": [
+        "songs",
+        "mood_events",
+        "favorites",
+        "playlists",
+        "fragments"
+      ]
+    },
+    {
+      "module": "audio",
+      "file": "src-tauri/src/audio.rs",
+      "lines": 273,
+      "tauri_commands": [
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "command_count": 6,
+      "structs": [
+        "CurrentPlayback",
+        "AudioState"
+      ],
+      "tables_created": []
+    },
+    {
+      "module": "equalizer",
+      "file": "src-tauri/src/equalizer.rs",
+      "lines": 273,
+      "tauri_commands": [
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "toggle_eq",
+        "set_eq_preset"
+      ],
+      "command_count": 5,
+      "structs": [
+        "EqState",
+        "EqStateResponse",
+        "EqFilter"
+      ],
+      "tables_created": []
+    },
+    {
+      "module": "build",
+      "file": "src-tauri/build.rs",
+      "lines": 26,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [],
+      "tables_created": []
+    },
+    {
+      "module": "fragment_engine",
+      "file": "src-tauri/src/fragment_engine.rs",
+      "lines": 253,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [
+        "LayerSpec"
+      ],
+      "tables_created": []
+    },
+    {
+      "module": "main",
+      "file": "src-tauri/src/main.rs",
+      "lines": 7,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [],
+      "tables_created": []
+    },
+    {
+      "module": "media_permission",
+      "file": "src-tauri/src/media_permission.rs",
+      "lines": 94,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [
+        "MediaPermission",
+        "PermissionResponse"
+      ],
+      "tables_created": []
+    },
+    {
+      "module": "mic_spike",
+      "file": "src-tauri/src/mic_spike.rs",
+      "lines": 100,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [
+        "MicSpikeResult"
+      ],
+      "tables_created": []
+    },
+    {
+      "module": "visualizer",
+      "file": "src-tauri/src/visualizer.rs",
+      "lines": 221,
+      "tauri_commands": [],
+      "command_count": 0,
+      "structs": [
+        "SampleTap"
+      ],
+      "tables_created": []
+    }
+  ]
+}

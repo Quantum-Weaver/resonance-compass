@@ -1,0 +1,89 @@
+{
+  "folder_name": "icons",
+  "folder_path": "src-tauri/icons",
+  "description": "18 files, 2 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:52.220378 | in sovereign time",
+  "files": [
+    {
+      "path": "src-tauri/icons/128x128.png",
+      "description": "image, 31,807 bytes"
+    },
+    {
+      "path": "src-tauri/icons/128x128@2x.png",
+      "description": "image, 101,764 bytes"
+    },
+    {
+      "path": "src-tauri/icons/32x32.png",
+      "description": "image, 2,844 bytes"
+    },
+    {
+      "path": "src-tauri/icons/64x64.png",
+      "description": "image, 9,711 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.icns",
+      "description": "file, 1,870,679 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.ico",
+      "description": "file, 122,945 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.png",
+      "description": "image, 317,164 bytes"
+    },
+    {
+      "path": "src-tauri/icons/source.png",
+      "description": "image, 53,185 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square107x107Logo.png",
+      "description": "image, 23,463 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square142x142Logo.png",
+      "description": "image, 38,112 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square150x150Logo.png",
+      "description": "image, 41,636 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square284x284Logo.png",
+      "description": "image, 120,822 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square30x30Logo.png",
+      "description": "image, 2,546 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square310x310Logo.png",
+      "description": "image, 139,700 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square44x44Logo.png",
+      "description": "image, 4,998 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square71x71Logo.png",
+      "description": "image, 11,647 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square89x89Logo.png",
+      "description": "image, 17,194 bytes"
+    },
+    {
+      "path": "src-tauri/icons/StoreLogo.png",
+      "description": "image, 6,287 bytes"
+    }
+  ],
+  "file_count": 18,
+  "subdirectories": [
+    "src-tauri/icons/android",
+    "src-tauri/icons/ios"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

@@ -1,0 +1,15 @@
+{
+  "folder_name": "artist",
+  "folder_path": "src/routes/library/artist",
+  "description": "0 files, 1 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:51.870755 | in sovereign time",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src/routes/library/artist/[id]"
+  ],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

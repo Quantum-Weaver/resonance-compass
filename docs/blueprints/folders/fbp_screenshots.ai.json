@@ -1,0 +1,78 @@
+{
+  "folder_name": "screenshots",
+  "folder_path": "screenshots",
+  "description": "16 files, 0 subfolders",
+  "scan_timestamp": "2026-08-03T16:52:50.645564 | in sovereign time",
+  "files": [
+    {
+      "path": "screenshots/compass-01.jpg",
+      "description": "image, 188,524 bytes"
+    },
+    {
+      "path": "screenshots/compass-02.jpg",
+      "description": "image, 337,612 bytes"
+    },
+    {
+      "path": "screenshots/compass-03.jpg",
+      "description": "image, 445,814 bytes"
+    },
+    {
+      "path": "screenshots/compass-04.jpg",
+      "description": "image, 249,107 bytes"
+    },
+    {
+      "path": "screenshots/compass-05.jpg",
+      "description": "image, 169,945 bytes"
+    },
+    {
+      "path": "screenshots/compass-06.jpg",
+      "description": "image, 314,646 bytes"
+    },
+    {
+      "path": "screenshots/compass-07.jpg",
+      "description": "image, 166,172 bytes"
+    },
+    {
+      "path": "screenshots/compass-08.jpg",
+      "description": "image, 173,998 bytes"
+    },
+    {
+      "path": "screenshots/compass-09.jpg",
+      "description": "image, 191,288 bytes"
+    },
+    {
+      "path": "screenshots/compass-10.jpg",
+      "description": "image, 156,601 bytes"
+    },
+    {
+      "path": "screenshots/compass-11.jpg",
+      "description": "image, 305,096 bytes"
+    },
+    {
+      "path": "screenshots/compass-12.jpg",
+      "description": "image, 197,022 bytes"
+    },
+    {
+      "path": "screenshots/compass-13.jpg",
+      "description": "image, 128,970 bytes"
+    },
+    {
+      "path": "screenshots/compass-14.jpg",
+      "description": "image, 73,187 bytes"
+    },
+    {
+      "path": "screenshots/compass-15.jpg",
+      "description": "image, 262,313 bytes"
+    },
+    {
+      "path": "screenshots/compass-16.jpg",
+      "description": "image, 202,431 bytes"
+    }
+  ],
+  "file_count": 16,
+  "subdirectories": [],
+  "code_analysis": {},
+  "package_folders_excluded": [],
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address."
+}

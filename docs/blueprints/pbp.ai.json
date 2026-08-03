@@ -1,0 +1,137 @@
+{
+  "project_name": "resonance-compass",
+  "project_path": ".",
+  "description": "Resonance Compass - a sovereign, local-first music player and self-understanding system.",
+  "generated": "2026-08-03T16:52:54.895716 | in sovereign time",
+  "tier_ladder": "file -> folder (fbp) -> object (obp) -> domain (dbp) -> project (pbp)",
+  "law": "Each tier links to where the details live. Nothing above the folder tier duplicates a body.",
+  "supersedes": {
+    "tool": "generate_blueprint.py (moved to awen's spring 2026-07-28)",
+    "removed": "2026-08-03 at KP's word; the old set inlined bodies upward"
+  },
+  "domains": [
+    {
+      "blueprint": "docs/blueprints/dbp_src.ai.json",
+      "domain_path": "src",
+      "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
+      "object_count": 2,
+      "total_files": 111,
+      "total_folders": 35
+    },
+    {
+      "blueprint": "docs/blueprints/dbp_src_tauri.ai.json",
+      "domain_path": "src-tauri",
+      "description": "the backend \u2014 audio, equalizer, visualizer, fragments, permissions",
+      "object_count": 1,
+      "total_files": 69,
+      "total_folders": 15
+    }
+  ],
+  "domain_count": 2,
+  "folders_reporting_directly": [
+    {
+      "blueprint": "docs/blueprints/folders/fbp_root.ai.json",
+      "folder_path": ".",
+      "description": "Resonance Compass \u2014 a sovereign, local-first music player and self-understanding system",
+      "file_count": 13,
+      "subdirectory_count": 10
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_cargo.ai.json",
+      "folder_path": ".cargo",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_docs.ai.json",
+      "folder_path": "docs",
+      "description": "the voiced documents \u2014 build sequence, checklist, screens, android notes",
+      "file_count": 15,
+      "subdirectory_count": 2
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_docs_session_reports.ai.json",
+      "folder_path": "docs/session-reports",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_release.ai.json",
+      "folder_path": "release",
+      "description": "13 files, 0 subfolders",
+      "file_count": 13,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_reports.ai.json",
+      "folder_path": "reports",
+      "description": "5 files, 0 subfolders",
+      "file_count": 5,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_screenshots.ai.json",
+      "folder_path": "screenshots",
+      "description": "16 files, 0 subfolders",
+      "file_count": 16,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_scripts.ai.json",
+      "folder_path": "scripts",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_static.ai.json",
+      "folder_path": "static",
+      "description": "16 files, 0 subfolders",
+      "file_count": 16,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_tools.ai.json",
+      "folder_path": "tools",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "analysis": [
+    {
+      "blueprint": "docs/blueprints/analysis_surfaces.ai.json",
+      "description": "the surfaces \u2014 every screen the hand reaches"
+    },
+    {
+      "blueprint": "docs/blueprints/analysis_subsystems.ai.json",
+      "description": "the backend subsystems \u2014 one Rust module each"
+    },
+    {
+      "blueprint": "docs/blueprints/analysis_guards.ai.json",
+      "description": "Compass' ESSENTIAL RULES, tested \u2014 a regression guard"
+    },
+    {
+      "blueprint": "docs/blueprints/reconciliation.ai.json",
+      "description": "declared versus present - 2 findings"
+    }
+  ],
+  "the_app": {
+    "surfaces": 22,
+    "backend_modules": 9,
+    "tauri_commands": 22,
+    "versions": {
+      "package.json": "2.3.1",
+      "Cargo.toml": "2.3.1",
+      "tauri.conf.json": "2.3.1"
+    },
+    "guards_all_passing": true
+  },
+  "totals": {
+    "folders_blueprinted": 60,
+    "files_described": 262
+  },
+  "maintaining_agent": "ProjectAgent"
+}

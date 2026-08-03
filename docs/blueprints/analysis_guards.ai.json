@@ -1,0 +1,112 @@
+{
+  "analysis": "guards",
+  "scan_timestamp": "2026-08-03T16:52:54.873904 | in sovereign time",
+  "description": "Compass' ESSENTIAL RULES, tested \u2014 a regression guard",
+  "not_checked": "rules 4, 5, 6 (album-ID format, theme injection, rune usage) cannot be tested from a substring without manufacturing findings",
+  "note": "A guard's value is the day it fires, not the day it passes.",
+  "total": 7,
+  "all_passing": true,
+  "guards": [
+    {
+      "rule": 1,
+      "law": "navigation uses goto(), never window.location.href",
+      "silent_failure": false,
+      "passing": true,
+      "found": "none"
+    },
+    {
+      "rule": 2,
+      "law": "z-index layers \u2014 MiniPlayer 110, backdrop 49, visualizer 100",
+      "silent_failure": false,
+      "passing": true,
+      "declared_layers": {
+        "MiniPlayer": 110,
+        "backdrop": 49,
+        "visualizer": 100
+      },
+      "declared_present": [
+        49,
+        100,
+        110
+      ],
+      "declared_absent": "none",
+      "other_z_values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        50,
+        120,
+        130,
+        199,
+        200,
+        250,
+        9997,
+        9998,
+        9999
+      ],
+      "note": "Other z-values are NOT a violation \u2014 the rule names three layers, it does not forbid others. Listed so a stacking surprise is legible."
+    },
+    {
+      "rule": 3,
+      "law": "SQLite batch limit 999 params \u00b7 INSERT_BATCH = 50 rows",
+      "silent_failure": false,
+      "passing": true,
+      "batch_constants": {
+        "INSERT_BATCH": {
+          "value": 50,
+          "file": "src/lib/stores/library.svelte.ts"
+        }
+      },
+      "over_limit": "none",
+      "note": "A batch of N rows uses N x (columns) params. This reader checks the CONSTANT against the ceiling; it cannot compute columns-per-row from a substring and does not pretend to. A hand multiplies."
+    },
+    {
+      "rule": 7,
+      "law": "Android: capabilities/default.json needs explicit sql:allow-* permissions",
+      "silent_failure": true,
+      "passing": true,
+      "address": "src-tauri/capabilities/default.json",
+      "required": [
+        "sql:allow-close",
+        "sql:allow-execute",
+        "sql:allow-load",
+        "sql:allow-select"
+      ],
+      "missing": "none"
+    },
+    {
+      "rule": 8,
+      "law": "Android: scanning public Music/Download needs READ_MEDIA_AUDIO",
+      "silent_failure": false,
+      "passing": true,
+      "manifests": [
+        "src-tauri/gen/android/app/src/main/AndroidManifest.xml",
+        "src-tauri/gen/android/app/build/intermediates/packaged_manifests/universalRelease/processUniversalReleaseManifestForPackage/AndroidManifest.xml",
+        "src-tauri/gen/android/app/build/intermediates/merged_manifests/universalRelease/processUniversalReleaseManifest/AndroidManifest.xml",
+        "src-tauri/gen/android/app/build/intermediates/merged_manifest/universalRelease/processUniversalReleaseMainManifest/AndroidManifest.xml",
+        "src-tauri/gen/android/app/build/intermediates/bundle_manifest/universalRelease/processApplicationManifestUniversalReleaseForBundle/AndroidManifest.xml"
+      ],
+      "note": "gen/ is gitignored and regenerated (rule 10), so an absent manifest here is NOT a finding \u2014 it means the Android project has not been generated in this working tree. Absence of a file this reader cannot expect is not a defect."
+    },
+    {
+      "rule": 9,
+      "law": "Android: no emoji or non-ASCII in SQL DEFAULT values \u2014 silent JNI failure",
+      "silent_failure": true,
+      "passing": true,
+      "found": "none"
+    },
+    {
+      "rule": 10,
+      "law": "Android: gen/ gitignored and regenerated; extras auto-sync via scripts/sync-android-extras.mjs each build",
+      "silent_failure": true,
+      "passing": true,
+      "gen_gitignored": true,
+      "sync_script": "scripts/sync-android-extras.mjs",
+      "sync_present": true
+    }
+  ]
+}
