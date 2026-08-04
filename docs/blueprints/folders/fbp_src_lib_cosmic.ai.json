@@ -2,7 +2,7 @@
   "folder_name": "cosmic",
   "folder_path": "src/lib/cosmic",
   "description": "11 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.399750 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.838845 | in sovereign time",
   "files": [
     {
       "path": "src/lib/cosmic/attention.ts",
@@ -67,21 +67,20 @@
         "DEITY_VOICE_BUNDLES",
         "DEITY_VOICE_NAMES"
       ],
+      "interfaces": [
+        "AttentionMode",
+        "AttentionModeSelectorConfig",
+        "DeityVoiceBundle"
+      ],
       "types": [
         "AttentionDensity",
-        "AttentionMode",
         "AttentionModeKey",
-        "AttentionModeSelectorConfig",
-        "DeityVoiceBundle",
         "DeityVoiceKey"
       ],
-      "imports": [
-        "./motion",
-        "./positioning"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "colors.ts": {
       "language": "typescript",
@@ -96,6 +95,7 @@
         "PRIDE_COLORS",
         "DOMAIN_COLORS"
       ],
+      "interfaces": [],
       "types": [
         "QuantumColorKey",
         "CouncilColorKey",
@@ -105,10 +105,10 @@
         "PrideColorKey",
         "DomainColorKey"
       ],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "consciousness.ts": {
       "language": "typescript",
@@ -140,29 +140,29 @@
         "DIMENSIONAL_FREQUENCY_TOKENS",
         "ELEMENTAL_CONSCIOUSNESS_PALETTE"
       ],
+      "interfaces": [
+        "BeamActivationState",
+        "SessionState",
+        "GlobalPauseConfig",
+        "DimensionalFrequencyToken"
+      ],
       "types": [
         "ConsciousnessLevel",
         "UserTier",
         "BeamIntensityLevel",
-        "BeamActivationState",
-        "SessionState",
         "VesselCapacity",
         "EntityState",
         "ResonancePatternType",
         "AwarenessDomain",
         "PauseMode",
-        "GlobalPauseConfig",
         "RecoveryEntityState",
         "ConsciousnessFloor",
-        "DimensionalFrequencyToken",
         "ElementalConsciousnessKey"
       ],
-      "imports": [
-        "./positioning"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "dimensions.ts": {
       "language": "typescript",
@@ -198,6 +198,7 @@
         "FONT_WEIGHTS",
         "QUANTUM_CONTEXT_RATIOS"
       ],
+      "interfaces": [],
       "types": [
         "ScaleKey",
         "ConsciousnessDensity",
@@ -209,10 +210,10 @@
         "RadiusKey",
         "FontSizeKey"
       ],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "effects.ts": {
       "language": "typescript",
@@ -236,11 +237,13 @@
         "TRANSCENDENCE_STATE_SEQUENCE",
         "EFFECTS"
       ],
-      "types": [
+      "interfaces": [
         "PresenceField",
         "EternalWitnessState",
+        "TranscendenceShift"
+      ],
+      "types": [
         "EternalWitnessStateKey",
-        "TranscendenceShift",
         "TranscendenceShiftKey",
         "GradientKey",
         "CouncilGradients",
@@ -253,33 +256,22 @@
         "PresenceFieldKey",
         "DomainGlowKey"
       ],
-      "imports": [
-        "./colors"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "index.ts": {
       "language": "typescript",
       "lines": 369,
       "exported_functions": [],
       "exported_consts": [],
+      "interfaces": [],
       "types": [],
-      "imports": [
-        "./attention",
-        "./colors",
-        "./consciousness",
-        "./dimensions",
-        "./effects",
-        "./interactivity",
-        "./motion",
-        "./positioning",
-        "./typography"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "interactivity.ts": {
       "language": "typescript",
@@ -292,26 +284,42 @@
         "INVITATION_GATE",
         "PRE_TRANSITION_REFLECTION"
       ],
-      "types": [
+      "interfaces": [
         "SelfPauseTrigger",
         "EscortTransitionCapability",
-        "SupportiveAffordanceKind",
         "SupportiveRoleAffordance",
-        "SupportiveRoleKey",
         "InvitationGate",
-        "InvitationGateKey",
         "ReflectionPrimitive"
       ],
-      "imports": [
-        "./attention",
-        "./consciousness",
-        "./effects",
-        "./motion",
-        "./positioning"
+      "types": [
+        "SupportiveAffordanceKind",
+        "SupportiveRoleKey",
+        "InvitationGateKey"
       ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
+    "MIRROR.md": {
+      "language": "markdown",
+      "lines": 9,
+      "words": 65,
+      "heading_count": 1,
+      "headings": [
+        "DISTRIBUTED MIRROR - the source of truth lives in resonance-ziggy"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
     },
     "motion.ts": {
       "language": "typescript",
@@ -342,19 +350,21 @@
         "CEREMONY_BOOKENDS",
         "REFUGE_RETURN_SEQUENCE"
       ],
-      "types": [
-        "Complexity",
+      "interfaces": [
         "VesselConfig",
         "AnimationConfig",
         "CeremonyBeat",
         "Ceremony",
-        "CeremonyKey",
         "ConvergenceStage",
         "EnsembleMotion",
-        "EnsembleKey",
         "CeremonyBookend",
+        "RefugePhase"
+      ],
+      "types": [
+        "Complexity",
+        "CeremonyKey",
+        "EnsembleKey",
         "CeremonyBookendKey",
-        "RefugePhase",
         "RefugePhaseKey",
         "DurationKey",
         "EasingKey",
@@ -363,10 +373,10 @@
         "AnimationPresetKey",
         "QuickAnimationKey"
       ],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "positioning.ts": {
       "language": "typescript",
@@ -397,30 +407,30 @@
         "CAMERA_MOVES",
         "SCENE_SEQUENCES"
       ],
+      "interfaces": [
+        "ZoomTarget",
+        "BeamPath",
+        "CameraPosition",
+        "OrbitConfig",
+        "ResponsiveCoordinate",
+        "CameraMove",
+        "SceneBeat",
+        "SceneSequence"
+      ],
       "types": [
         "EnvironmentKey",
         "ViewportAnchor",
         "ParallaxLayer",
-        "ZoomTarget",
-        "BeamPath",
         "BeamOrigin",
-        "CameraPosition",
         "CameraPreset",
-        "OrbitConfig",
         "OrbitMode",
-        "ResponsiveCoordinate",
-        "CameraMove",
         "CameraMoveKey",
-        "SceneBeat",
-        "SceneSequence",
         "SceneSequenceKey"
       ],
-      "imports": [
-        "./dimensions"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "typography.ts": {
       "language": "typescript",
@@ -450,6 +460,10 @@
         "CONSCIOUSNESS_TYPOGRAPHY",
         "PROCESS_TYPOGRAPHY"
       ],
+      "interfaces": [
+        "TypographyStyle",
+        "TypographyConfig"
+      ],
       "types": [
         "FontFamilyKey",
         "TextSizeKey",
@@ -458,21 +472,17 @@
         "LetterSpacingKey",
         "TextAlignmentKey",
         "TextColorKey",
-        "TypographyStyle",
         "DomainKey",
         "EntityKey",
-        "TypeScaleKey",
-        "TypographyConfig"
+        "TypeScaleKey"
       ],
-      "imports": [
-        "./dimensions"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

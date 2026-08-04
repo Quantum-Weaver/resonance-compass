@@ -2,7 +2,7 @@
   "folder_name": "screenshots",
   "folder_path": "screenshots",
   "description": "16 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:50.645564 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.801724 | in sovereign time",
   "files": [
     {
       "path": "screenshots/compass-01.jpg",
@@ -71,8 +71,153 @@
   ],
   "file_count": 16,
   "subdirectories": [],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "compass-01.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-01.jpg",
+      "location": "screenshots",
+      "bytes": 188524,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-02.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-02.jpg",
+      "location": "screenshots",
+      "bytes": 337612,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-03.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-03.jpg",
+      "location": "screenshots",
+      "bytes": 445814,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-04.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-04.jpg",
+      "location": "screenshots",
+      "bytes": 249107,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-05.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-05.jpg",
+      "location": "screenshots",
+      "bytes": 169945,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-06.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-06.jpg",
+      "location": "screenshots",
+      "bytes": 314646,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-07.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-07.jpg",
+      "location": "screenshots",
+      "bytes": 166172,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-08.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-08.jpg",
+      "location": "screenshots",
+      "bytes": 173998,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-09.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-09.jpg",
+      "location": "screenshots",
+      "bytes": 191288,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-10.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-10.jpg",
+      "location": "screenshots",
+      "bytes": 156601,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-11.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-11.jpg",
+      "location": "screenshots",
+      "bytes": 305096,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-12.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-12.jpg",
+      "location": "screenshots",
+      "bytes": 197022,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-13.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-13.jpg",
+      "location": "screenshots",
+      "bytes": 128970,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-14.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-14.jpg",
+      "location": "screenshots",
+      "bytes": 73187,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-15.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-15.jpg",
+      "location": "screenshots",
+      "bytes": 262313,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass-16.jpg": {
+      "language": "content-file",
+      "format": "jpg",
+      "name": "compass-16.jpg",
+      "location": "screenshots",
+      "bytes": 202431,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

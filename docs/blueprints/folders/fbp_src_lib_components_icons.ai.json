@@ -2,7 +2,7 @@
   "folder_name": "icons",
   "folder_path": "src/lib/components/icons",
   "description": "28 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.253664 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.826406 | in sovereign time",
   "files": [
     {
       "path": "src/lib/components/icons/IconChevron.svelte",
@@ -127,11 +127,8 @@
         "$derived",
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconCompass.svelte": {
       "language": "svelte",
@@ -139,11 +136,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconEqualizer.svelte": {
       "language": "svelte",
@@ -151,11 +145,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconFocus.svelte": {
       "language": "svelte",
@@ -163,11 +154,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconFragment.svelte": {
       "language": "svelte",
@@ -175,11 +163,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconHeart.svelte": {
       "language": "svelte",
@@ -187,11 +172,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconHistory.svelte": {
       "language": "svelte",
@@ -199,11 +181,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconHome.svelte": {
       "language": "svelte",
@@ -211,11 +190,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconLibrary.svelte": {
       "language": "svelte",
@@ -223,11 +199,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconLyrics.svelte": {
       "language": "svelte",
@@ -235,11 +208,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconPause.svelte": {
       "language": "svelte",
@@ -247,11 +217,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconPlay.svelte": {
       "language": "svelte",
@@ -259,11 +226,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconPlaylist.svelte": {
       "language": "svelte",
@@ -271,11 +235,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconProfiles.svelte": {
       "language": "svelte",
@@ -283,11 +244,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconRepeat.svelte": {
       "language": "svelte",
@@ -295,11 +253,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconRepeatOne.svelte": {
       "language": "svelte",
@@ -307,11 +262,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconResonance.svelte": {
       "language": "svelte",
@@ -319,11 +271,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "Icons.svelte": {
       "language": "svelte",
@@ -332,39 +281,8 @@
         "$derived",
         "$props"
       ],
-      "imports": [
-        "./IconChevron.svelte",
-        "./IconCompass.svelte",
-        "./IconEqualizer.svelte",
-        "./IconFocus.svelte",
-        "./IconFragment.svelte",
-        "./IconHeart.svelte",
-        "./IconHistory.svelte",
-        "./IconHome.svelte",
-        "./IconLibrary.svelte",
-        "./IconLyrics.svelte",
-        "./IconPause.svelte",
-        "./IconPlay.svelte",
-        "./IconPlaylist.svelte",
-        "./IconProfiles.svelte",
-        "./IconRepeat.svelte",
-        "./IconRepeatOne.svelte",
-        "./IconResonance.svelte",
-        "./IconSattva.svelte",
-        "./IconSearch.svelte",
-        "./IconSettings.svelte",
-        "./IconShuffle.svelte",
-        "./IconSkipBack.svelte",
-        "./IconSkipForward.svelte",
-        "./IconTimer.svelte",
-        "./IconVisualizer.svelte",
-        "./IconVolume.svelte",
-        "./IconVolumeMuted.svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconSattva.svelte": {
       "language": "svelte",
@@ -372,11 +290,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconSearch.svelte": {
       "language": "svelte",
@@ -384,11 +299,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconSettings.svelte": {
       "language": "svelte",
@@ -396,11 +308,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconShuffle.svelte": {
       "language": "svelte",
@@ -408,11 +317,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconSkipBack.svelte": {
       "language": "svelte",
@@ -420,11 +326,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconSkipForward.svelte": {
       "language": "svelte",
@@ -432,11 +335,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconTimer.svelte": {
       "language": "svelte",
@@ -444,11 +344,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconVisualizer.svelte": {
       "language": "svelte",
@@ -456,11 +353,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconVolume.svelte": {
       "language": "svelte",
@@ -468,11 +362,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     },
     "IconVolumeMuted.svelte": {
       "language": "svelte",
@@ -480,14 +371,11 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": false
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

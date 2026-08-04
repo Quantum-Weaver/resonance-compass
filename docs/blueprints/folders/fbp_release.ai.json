@@ -2,7 +2,7 @@
   "folder_name": "release",
   "folder_path": "release",
   "description": "13 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:50.640211 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.791263 | in sovereign time",
   "files": [
     {
       "path": "release/Resonance Compass_2.3.0_x64_en-US.msi",
@@ -60,7 +60,7 @@
   "file_count": 13,
   "subdirectories": [],
   "code_analysis": {},
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -1,0 +1,19 @@
+{
+  "object_name": "src_tauri_cargo",
+  "object_path": "src-tauri/.cargo",
+  "description": "0 files, 0 subfolders",
+  "integration_timestamp": "2026-08-04T11:09:36.956698 | in sovereign time",
+  "folders": [
+    {
+      "blueprint": "docs/blueprints/folders/fbp_src_tauri_cargo.ai.json",
+      "folder_path": "src-tauri/.cargo",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 1,
+  "total_files": 1,
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

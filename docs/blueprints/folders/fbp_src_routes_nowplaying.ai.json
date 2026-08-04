@@ -2,7 +2,7 @@
   "folder_name": "nowplaying",
   "folder_path": "src/routes/nowplaying",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.964359 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.886694 | in sovereign time",
   "files": [
     {
       "path": "src/routes/nowplaying/+page.svelte",
@@ -19,29 +19,11 @@
         "$derived",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/components/EmojiPalette.svelte",
-        "$lib/components/GradientPulse.svelte",
-        "$lib/components/PlayerControls.svelte",
-        "$lib/stores/fragment.svelte",
-        "$lib/stores/library.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "@tauri-apps/api/core"
-      ],
-      "invokes": [
-        "create_fragment",
-        "fetch_cover_art"
-      ],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "130"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

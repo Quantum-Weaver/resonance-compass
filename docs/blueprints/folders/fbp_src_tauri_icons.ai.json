@@ -2,7 +2,7 @@
   "folder_name": "icons",
   "folder_path": "src-tauri/icons",
   "description": "18 files, 2 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.220378 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.916220 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/icons/128x128.png",
@@ -82,8 +82,153 @@
     "src-tauri/icons/android",
     "src-tauri/icons/ios"
   ],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "128x128.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "128x128.png",
+      "location": "src-tauri/icons",
+      "bytes": 31807,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "128x128@2x.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "128x128@2x.png",
+      "location": "src-tauri/icons",
+      "bytes": 101764,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "32x32.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "32x32.png",
+      "location": "src-tauri/icons",
+      "bytes": 2844,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "64x64.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "64x64.png",
+      "location": "src-tauri/icons",
+      "bytes": 9711,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "icon.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "icon.png",
+      "location": "src-tauri/icons",
+      "bytes": 317164,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "source.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "source.png",
+      "location": "src-tauri/icons",
+      "bytes": 53185,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square107x107Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square107x107Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 23463,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square142x142Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square142x142Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 38112,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square150x150Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square150x150Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 41636,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square284x284Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square284x284Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 120822,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square30x30Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square30x30Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 2546,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square310x310Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square310x310Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 139700,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square44x44Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square44x44Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 4998,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square71x71Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square71x71Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 11647,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square89x89Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square89x89Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 17194,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "StoreLogo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "StoreLogo.png",
+      "location": "src-tauri/icons",
+      "bytes": 6287,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

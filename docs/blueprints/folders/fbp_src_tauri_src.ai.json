@@ -2,7 +2,7 @@
   "folder_name": "src",
   "folder_path": "src-tauri/src",
   "description": "8 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.243221 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.940347 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/src/audio.rs",
@@ -43,15 +43,7 @@
     "audio.rs": {
       "language": "rust",
       "lines": 273,
-      "tauri_commands": [
-        "play_track",
-        "pause",
-        "resume",
-        "seek",
-        "set_volume",
-        "stop"
-      ],
-      "public_fns": [
+      "pub_fns": [
         "init",
         "play_track",
         "pause",
@@ -70,21 +62,13 @@
         "CurrentPlayback",
         "AudioState"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 6,
+      "uses_unsafe": false
     },
     "equalizer.rs": {
       "language": "rust",
       "lines": 273,
-      "tauri_commands": [
-        "get_eq_state",
-        "set_eq_band",
-        "set_eq_preamp",
-        "toggle_eq",
-        "set_eq_preset"
-      ],
-      "public_fns": [
+      "pub_fns": [
         "from_state",
         "preset_bands",
         "new",
@@ -99,15 +83,13 @@
         "EqStateResponse",
         "EqFilter"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 5,
+      "uses_unsafe": false
     },
     "fragment_engine.rs": {
       "language": "rust",
       "lines": 253,
-      "tauri_commands": [],
-      "public_fns": [
+      "pub_fns": [
         "decode_window",
         "write_wav",
         "mix_layers"
@@ -115,27 +97,13 @@
       "structs": [
         "LayerSpec"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": false
     },
     "lib.rs": {
       "language": "rust",
       "lines": 709,
-      "tauri_commands": [
-        "scan_paths",
-        "check_audio_permission",
-        "request_audio_permission",
-        "fetch_cover_art",
-        "fetch_lyrics",
-        "request_mic_permission",
-        "run_mic_spike",
-        "create_fragment",
-        "export_mix",
-        "purge_fragment_files",
-        "export_fragments"
-      ],
-      "public_fns": [
+      "pub_fns": [
         "run"
       ],
       "structs": [
@@ -145,31 +113,21 @@
         "LrclibResponse",
         "MixLayer"
       ],
-      "tables_created": [
-        "songs",
-        "mood_events",
-        "favorites",
-        "playlists",
-        "fragments"
-      ],
-      "sql_default_count": 10,
-      "non_ascii_defaults": []
+      "tauri_commands": 11,
+      "uses_unsafe": false
     },
     "main.rs": {
       "language": "rust",
       "lines": 7,
-      "tauri_commands": [],
-      "public_fns": [],
+      "pub_fns": [],
       "structs": [],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": false
     },
     "media_permission.rs": {
       "language": "rust",
       "lines": 94,
-      "tauri_commands": [],
-      "public_fns": [
+      "pub_fns": [
         "init",
         "check",
         "request",
@@ -179,29 +137,25 @@
         "MediaPermission",
         "PermissionResponse"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": true
     },
     "mic_spike.rs": {
       "language": "rust",
       "lines": 100,
-      "tauri_commands": [],
-      "public_fns": [
+      "pub_fns": [
         "run_mic_spike"
       ],
       "structs": [
         "MicSpikeResult"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": false
     },
     "visualizer.rs": {
       "language": "rust",
       "lines": 221,
-      "tauri_commands": [],
-      "public_fns": [
+      "pub_fns": [
         "make_channel",
         "new",
         "start"
@@ -209,12 +163,11 @@
       "structs": [
         "SampleTap"
       ],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": false
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

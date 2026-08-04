@@ -2,7 +2,7 @@
   "folder_name": "mipmap-xxxhdpi",
   "folder_path": "src-tauri/icons/android/mipmap-xxxhdpi",
   "description": "3 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.232146 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.927585 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher.png",
@@ -19,8 +19,36 @@
   ],
   "file_count": 3,
   "subdirectories": [],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "ic_launcher.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "ic_launcher.png",
+      "location": "src-tauri/icons/android/mipmap-xxxhdpi",
+      "bytes": 21149,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "ic_launcher_foreground.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "ic_launcher_foreground.png",
+      "location": "src-tauri/icons/android/mipmap-xxxhdpi",
+      "bytes": 118814,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "ic_launcher_round.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "ic_launcher_round.png",
+      "location": "src-tauri/icons/android/mipmap-xxxhdpi",
+      "bytes": 24299,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

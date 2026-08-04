@@ -2,7 +2,7 @@
   "folder_name": "theme",
   "folder_path": "src/lib/theme",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.674081 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.861575 | in sovereign time",
   "files": [
     {
       "path": "src/lib/theme/theme.ts",
@@ -20,17 +20,15 @@
         "PRESET_THEMES",
         "getThemeColors"
       ],
+      "interfaces": [],
       "types": [],
-      "imports": [
-        "$lib/cosmic",
-        "$lib/types/types"
-      ],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

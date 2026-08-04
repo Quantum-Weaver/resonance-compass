@@ -2,7 +2,7 @@
   "folder_name": "sattva",
   "folder_path": "src/routes/sattva",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.112165 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.896538 | in sovereign time",
   "files": [
     {
       "path": "src/routes/sattva/+page.svelte",
@@ -18,34 +18,11 @@
       "uses_runes": [
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/stores/library.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "$lib/stores/theme.svelte",
-        "$lib/types/types",
-        "@tauri-apps/api/core",
-        "svelte"
-      ],
-      "invokes": [
-        "get_eq_state",
-        "set_eq_band",
-        "set_eq_preamp",
-        "set_eq_preset",
-        "toggle_eq"
-      ],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "1",
-        "10",
-        "200",
-        "3"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

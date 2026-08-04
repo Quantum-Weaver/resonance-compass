@@ -2,7 +2,7 @@
   "folder_name": "data",
   "folder_path": "src/lib/data",
   "description": "2 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.403567 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.840721 | in sovereign time",
   "files": [
     {
       "path": "src/lib/data/emojis.ts",
@@ -23,13 +23,14 @@
       "exported_consts": [
         "EMOJI_DEFS"
       ],
-      "types": [
+      "interfaces": [
         "EmojiDef"
       ],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "senses.ts": {
       "language": "typescript",
@@ -38,17 +39,18 @@
       "exported_consts": [
         "SENSES"
       ],
-      "types": [
+      "interfaces": [
         "Sense",
         "Subcategory"
       ],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

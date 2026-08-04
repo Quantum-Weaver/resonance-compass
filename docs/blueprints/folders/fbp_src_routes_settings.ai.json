@@ -2,7 +2,7 @@
   "folder_name": "settings",
   "folder_path": "src/routes/settings",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.161443 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.900298 | in sovereign time",
   "files": [
     {
       "path": "src/routes/settings/+page.svelte",
@@ -19,37 +19,11 @@
         "$derived",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$app/state",
-        "$lib/stores/library.svelte",
-        "$lib/stores/mood.svelte",
-        "$lib/stores/profile.svelte",
-        "$lib/stores/theme.svelte",
-        "$lib/theme/theme",
-        "@tauri-apps/api/app",
-        "@tauri-apps/api/core",
-        "@tauri-apps/plugin-opener",
-        "svelte"
-      ],
-      "invokes": [
-        "get_eq_state",
-        "purge_fragment_files",
-        "request_mic_permission",
-        "run_mic_spike",
-        "set_eq_band",
-        "set_eq_preamp",
-        "set_eq_preset",
-        "toggle_eq"
-      ],
-      "navigations": [
-        "/settings#eq"
-      ],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

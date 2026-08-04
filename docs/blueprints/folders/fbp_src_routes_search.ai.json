@@ -2,7 +2,7 @@
   "folder_name": "search",
   "folder_path": "src/routes/search",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.132773 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.898269 | in sovereign time",
   "files": [
     {
       "path": "src/routes/search/+page.svelte",
@@ -20,26 +20,11 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/components/AlbumCard.svelte",
-        "$lib/components/TrackItem.svelte",
-        "$lib/stores/library.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "$lib/types/types",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/library/album/${encodeURIComponent(album.id)}",
-        "/library/artist/${encodeURIComponent(artist.id)}"
-      ],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

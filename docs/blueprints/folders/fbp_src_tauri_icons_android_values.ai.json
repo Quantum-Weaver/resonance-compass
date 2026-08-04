@@ -2,7 +2,7 @@
   "folder_name": "values",
   "folder_path": "src-tauri/icons/android/values",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.233318 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.928674 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/icons/android/values/ic_launcher_background.xml",
@@ -12,7 +12,7 @@
   "file_count": 1,
   "subdirectories": [],
   "code_analysis": {},
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

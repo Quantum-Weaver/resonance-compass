@@ -1,13 +1,13 @@
 {
   "object_name": "src_lib",
   "object_path": "src/lib",
-  "description": "stores, components, cosmic tokens, types, data",
-  "integration_timestamp": "2026-08-03T16:52:52.251056 | in sovereign time",
+  "description": "0 files, 0 subfolders",
+  "integration_timestamp": "2026-08-04T11:09:36.952637 | in sovereign time",
   "folders": [
     {
       "blueprint": "docs/blueprints/folders/fbp_src_lib.ai.json",
       "folder_path": "src/lib",
-      "description": "stores, components, cosmic tokens, types, data",
+      "description": "0 files, 7 subfolders",
       "file_count": 0,
       "subdirectory_count": 7
     },
@@ -78,5 +78,5 @@
   "folder_count": 10,
   "total_files": 85,
   "maintaining_agent": "ObjectAgent",
-  "note": "Links only."
+  "note": "Links only. Every folder's details live at its own address."
 }

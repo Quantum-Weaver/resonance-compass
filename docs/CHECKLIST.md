@@ -374,3 +374,26 @@
 | 2026-07-01 | Phase 15: Sattva Screen complete. Ported v1's sattva page nearly verbatim (breathing square canvas, 4-count opacity envelope, phase colors, EQ/theme/volume/playlist save-restore) with three v2 adaptations: `playerStore.setQueue` replaces v1's `loadQueue`; theme snapshot uses v2's real localStorage key `resonance-compass-theme` (v1 read `themeConfig`, which doesn't exist in v2 — restore would have silently no-opped); exit destination defaults to `/` instead of v1's `/resonance`. Toggle dot grown 28px → 44px for the touch-target floor. Layout: `isOnboarding`-only chrome gate generalized to `hideChrome` (onboarding OR sattva) — Sidebar and MiniPlayer now unmount on /sattva. Home's Sattva button (Phase 9) already pointed here. Awaiting human test. |
 | 2026-07-01 | Phase 14: Listening History complete. History tracking did NOT already exist in v2's `playerStore` (the task brief assumed it did) — ported it from the v1 archive's player store: `HistoryEntry` + 500-cap list + debounced localStorage flush, recorded in `loadTrackObject` (the single funnel every track start passes through), with `record=false` on repeat-one replays and no record when `resumeAt > 0` (session resume), matching v1's "same track looping — don't duplicate history" guard. `/history` page ported from v1 with v2 adaptations: global CSS vars instead of `getThemeColors`, `playlistStore.isFavorite` instead of v1's `libraryStore.isFavorite`, `setQueue([track], 0)` instead of v1's `loadTrack`, and **no nested scroll container** — v1's page was `height:100%; overflow:hidden` with an inner `overflow-y:auto` list (a double-scroll setup per FIX 1); v2's page is normal flow, `.main-content` is the only scroller, sticky group labels stick against it. Grouping simplified to the spec's Today/Yesterday/This Week/Earlier (v1 had Last Week + month names). Sidebar 🕐 nav item added. Awaiting human test. |
 | 2026-06-30 | Phase 8: Timer complete. Ported `TimerVisualization.svelte`'s 7 modes from the v1 archive close to verbatim (Sand hourglass with a live particle stream, Breathe, Mandala/Flower/Metatron dissolve-reveal patterns sharing one pixel-shuffle algorithm, Cycle rotating through the three dissolve patterns every 10s, Numeric) — only CSS-variable substitutions for v2's inherited theme vars, logic untouched. One deliberate architectural departure from v1: rather than a page-local `+page.svelte` holding all timer state (v1's approach), created `timer.svelte.ts` — v1's page-local design meant navigating away from `/timer` unmounted the component while its `setInterval` kept running orphaned in the background (invisible, uncancelable, and a second visit could start a stacking duplicate timer). Every other stateful feature in this codebase (player, library, playlists, mood) already lives in a `.svelte.ts` store for exactly this reason, so timer state followed the same pattern instead of reproducing the bug. `timerStore.start()` now cancels any existing timer before starting a new one. Fade-out logic, pause-on-expiry, and volume restoration on cancel were ported directly from v1's proven implementation. Added "Timer" to the Sidebar nav (⏰) and MiniPlayer's expanded panel nav row. Awaiting human test. |
+
+---
+
+## THE BLUEPRINT FORGE — 2026-08-03 (Opus 🕯️, `core-opus`, at KP's ⚛ word)
+
+- [x] **`tools/blueprint_forge.py`** — Compass' own forge. Provenance:
+      `tools/BLUEPRINT-FORGE.md`. Old blueprint set removed at KP's word (the
+      script had already moved to awen's spring 2026-07-28)
+- [x] **First run:** 60 fbp · 3 obp · 2 dbp · 1 pbp · 262 files · arithmetic
+      reconciled by a second independent walk (60=60, 262=262)
+- [x] **22 surfaces · 9 backend modules · 22 tauri commands · version 2.3.1**
+      consistent across `package.json`, `Cargo.toml`, `tauri.conf.json`
+- [x] **The guards — 7 of the 10 ESSENTIAL RULES now tested every run, all
+      passing**, three of them silent-failure modes (7, 9, 10). Rules 4/5/6 are
+      deliberately not checked: they cannot be tested from a substring without
+      manufacturing findings
+- [x] The forge writes its own `journal.md` — counts and drift only
+- [ ] **Two findings for a hand, both verified — the app grew, the docs did not
+      follow:**
+      · CLAUDE.md's PROJECT STRUCTURE block names 5 Rust modules, 9 are on disk
+      (`fragment_engine`, `media_permission`, `mic_spike`, `build`)
+      · SCREEN-INVENTORY names 18 routes, 22 exist (`/fragments`,
+      `/fragments/studio`, and the two `[id]` detail routes)

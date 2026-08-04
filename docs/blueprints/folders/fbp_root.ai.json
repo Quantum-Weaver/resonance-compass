@@ -1,12 +1,12 @@
 {
   "folder_name": "resonance-compass",
   "folder_path": ".",
-  "description": "Resonance Compass \u2014 a sovereign, local-first music player and self-understanding system",
-  "scan_timestamp": "2026-08-03T16:52:50.628217 | in sovereign time",
+  "description": "The Compass Room of the AudHDities Sanctuary",
+  "scan_timestamp": "2026-08-04T11:09:36.766921 | in sovereign time",
   "files": [
     {
       "path": ".gitignore",
-      "description": "file, 1,584 bytes"
+      "description": "ignore rules, 1,584 bytes"
     },
     {
       "path": "CLAUDE.md",
@@ -54,7 +54,7 @@
     },
     {
       "path": "vite.config.js",
-      "description": "file, 562 bytes"
+      "description": "script, 562 bytes"
     }
   ],
   "file_count": 13,
@@ -67,16 +67,261 @@
     "scripts",
     "src",
     "src-tauri",
-    "static",
-    "tools"
+    "static"
   ],
-  "code_analysis": {},
-  "package_folders_excluded": [
+  "code_analysis": {
+    "CLAUDE.md": {
+      "language": "markdown",
+      "lines": 111,
+      "words": 350,
+      "heading_count": 7,
+      "headings": [
+        "CLAUDE.md \u2014 Resonance Compass v2",
+        "SESSION PROTOCOL",
+        "PROJECT STRUCTURE",
+        "ESSENTIAL RULES",
+        "DATABASE (compass.db)",
+        "CURRENT STATE",
+        "COUNCIL"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 2,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "FABLE-KERNEL.md": {
+      "language": "markdown",
+      "lines": 78,
+      "words": 634,
+      "heading_count": 6,
+      "headings": [
+        "FABLE-KERNEL \u2014 resonance-compass (v3: the Musician's Compass)",
+        "What this is",
+        "Read first",
+        "State (2026-07-09)",
+        "Build path",
+        "Dispatch notes"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "HANDS.md": {
+      "language": "markdown",
+      "lines": 53,
+      "words": 514,
+      "heading_count": 8,
+      "headings": [
+        "The Hands \u2014 who builds this, and how",
+        "The voices",
+        "Scribed notes",
+        "Fable",
+        "Quantum Weaver (KP)",
+        "Aethelred (T-Red)",
+        "Opus (Claude)",
+        "Sonnet"
+      ],
+      "links_external": 1,
+      "links_internal": [
+        {
+          "target": "PHILOSOPHY.md",
+          "resolves": true
+        }
+      ],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "package-lock.json": {
+      "language": "json",
+      "lines": 2510,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "lockfileVersion",
+        "name",
+        "packages",
+        "requires",
+        "version"
+      ],
+      "key_count": 5
+    },
+    "package.json": {
+      "language": "json",
+      "lines": 37,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "dependencies",
+        "description",
+        "devDependencies",
+        "license",
+        "name",
+        "scripts",
+        "type",
+        "version"
+      ],
+      "key_count": 8
+    },
+    "PHILOSOPHY.md": {
+      "language": "markdown",
+      "lines": 115,
+      "words": 661,
+      "heading_count": 15,
+      "headings": [
+        "THE RESONANCE LICENSE \u2014 PHILOSOPHY",
+        "RESONANCE LICENSE v1.0",
+        "WHAT YOU MAY DO",
+        "CONDITIONS OF USE",
+        "1. NO EXPLOITATION OF LIFE",
+        "2. NO EXTRACTION",
+        "3. NO CONFUSION",
+        "4. NO CORRUPTION",
+        "5. NO DECEPTION",
+        "6. NO EXCLUSION",
+        "7. SOVEREIGNTY OF DATA",
+        "8. SIMPLICITY AND SHARED KNOWLEDGE",
+        "9. EMPATHY FOR PERSPECTIVES NOT YOUR OWN",
+        "DISCLAIMER",
+        "ACKNOWLEDGMENT"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "PRIVACY.md": {
+      "language": "markdown",
+      "lines": 66,
+      "words": 581,
+      "heading_count": 11,
+      "headings": [
+        "AudHDities Sanctuary \u2014 App Privacy Policy",
+        "Our promise",
+        "What we collect",
+        "Where your data lives",
+        "The one exception \u2014 optional, user-initiated online lookups (Resonance Compass)",
+        "Your control",
+        "Special care for neurodivergent data",
+        "Children",
+        "Security",
+        "Changes to this policy",
+        "Contact"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "README.md": {
+      "language": "markdown",
+      "lines": 113,
+      "words": 520,
+      "heading_count": 7,
+      "headings": [
+        "\ud83c\udfbb Resonance Compass",
+        "Screenshots",
+        "WHAT IT IS",
+        "v2 \u2014 REBUILT ON RESONANCE ECHOES",
+        "FOR DEVELOPERS",
+        "Development Standards",
+        "LICENSE"
+      ],
+      "links_external": 5,
+      "links_internal": [
+        {
+          "target": "docs/BUILD-SEQUENCE.md",
+          "resolves": true
+        },
+        {
+          "target": "docs/CONTRIBUTING.md",
+          "resolves": true
+        },
+        {
+          "target": "LICENSE",
+          "resolves": true
+        },
+        {
+          "target": "PHILOSOPHY.md",
+          "resolves": true
+        }
+      ],
+      "links_internal_unresolved": [],
+      "code_fences": 1,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "svelte.config.js": {
+      "language": "node",
+      "lines": 19,
+      "functions": [],
+      "commands": []
+    },
+    "tsconfig.json": {
+      "language": "json",
+      "lines": 15,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "compilerOptions",
+        "extends"
+      ],
+      "key_count": 2
+    },
+    "vite.config.js": {
+      "language": "node",
+      "lines": 26,
+      "functions": [],
+      "commands": []
+    }
+  },
+  "maintaining_agent": "FolderAgent",
+  "folders_not_walked": [
     ".git",
     ".svelte-kit",
     "build",
-    "node_modules"
+    "node_modules",
+    "tools"
   ],
-  "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

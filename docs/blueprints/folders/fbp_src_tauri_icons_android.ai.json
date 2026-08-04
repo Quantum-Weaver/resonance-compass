@@ -2,7 +2,7 @@
   "folder_name": "android",
   "folder_path": "src-tauri/icons/android",
   "description": "0 files, 7 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.222606 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.919039 | in sovereign time",
   "files": [],
   "file_count": 0,
   "subdirectories": [
@@ -15,7 +15,7 @@
     "src-tauri/icons/android/values"
   ],
   "code_analysis": {},
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

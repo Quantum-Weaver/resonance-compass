@@ -2,7 +2,7 @@
   "folder_name": "playlists",
   "folder_path": "src/routes/playlists",
   "description": "1 files, 1 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.007977 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.889740 | in sovereign time",
   "files": [
     {
       "path": "src/routes/playlists/+page.svelte",
@@ -21,19 +21,11 @@
         "$derived",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/stores/playlist.svelte"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/playlists/${id}"
-      ],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

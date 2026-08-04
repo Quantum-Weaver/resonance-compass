@@ -1,8 +1,8 @@
 {
   "folder_name": "docs",
   "folder_path": "docs",
-  "description": "the voiced documents \u2014 build sequence, checklist, screens, android notes",
-  "scan_timestamp": "2026-08-03T16:52:50.636043 | in sovereign time",
+  "description": "15 files, 1 subfolders",
+  "scan_timestamp": "2026-08-04T11:09:36.784260 | in sovereign time",
   "files": [
     {
       "path": "docs/ANDROID-BUILD-NOTES.md",
@@ -67,11 +67,475 @@
   ],
   "file_count": 15,
   "subdirectories": [
-    "docs/blueprints",
     "docs/session-reports"
   ],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "ANDROID-BUILD-NOTES.md": {
+      "language": "markdown",
+      "lines": 96,
+      "words": 425,
+      "heading_count": 9,
+      "headings": [
+        "Android Build Notes \u2014 Resonance Compass v2",
+        "After `tauri android init` \u2014 required steps",
+        "1. Regenerate app icons (cello sigil)",
+        "2. Storage permissions + Kotlin plugin \u2014 AUTOMATED",
+        "3. Re-apply MainActivity edge-to-edge (v1 parity)",
+        "How library scanning works on Android",
+        "Native libs / C++ linkage",
+        "Signing",
+        "Known limitation / roadmap"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 3,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "BUILD-SEQUENCE.md": {
+      "language": "markdown",
+      "lines": 106,
+      "words": 452,
+      "heading_count": 21,
+      "headings": [
+        "BUILD SEQUENCE \u2014 Resonance Compass v2",
+        "Phase 0: Shell",
+        "Phase 1: Playback",
+        "Phase 2: Library & SQLite",
+        "Phase 3: Playlists",
+        "Phase 4: Now Playing",
+        "Phase 5: Visualizer",
+        "Phase 6: Equalizer",
+        "Phase 7: Resonance",
+        "Phase 8: Timer",
+        "Phase 9: Home Screen Revamp",
+        "Phase 10: Liked Songs",
+        "Phase 11: Search",
+        "Phase 12: Lyrics",
+        "Phase 13: Onboarding",
+        "Phase 14: Listening History",
+        "Phase 15: Sattva Screen",
+        "Phase 16: Sensory Profiles",
+        "Phase 17: Focus Session",
+        "Phase 18: Polish",
+        "Phase 19: Deploy"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "CHECKLIST.md": {
+      "language": "markdown",
+      "lines": 400,
+      "words": 9610,
+      "heading_count": 41,
+      "headings": [
+        "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST",
+        "LEGEND",
+        "PHASE STATUS",
+        "Phase 0: Shell \u2705",
+        "Phase 1: Playback \u2705",
+        "Phase 2: Library & SQLite \u2705",
+        "Phase 3: Playlists \u2705",
+        "Phase 4: Now Playing \u2705",
+        "Phase 5: Visualizer \u2705",
+        "Phase 6: Equalizer \u2705",
+        "Phase 7: Resonance \u2705",
+        "Phase 7b: Personal Emoji Definitions (Folksonomy) \u2705",
+        "Phase 8: Timer \u2705",
+        "Phase 9: Home Screen Revamp \u2705",
+        "Phase 10: Liked Songs \u2705",
+        "Phase 11: Search \u2705",
+        "Phase 12: Lyrics \u2705",
+        "Phase 12b: Find Missing Cover Art \u2705",
+        "Phase 13: Onboarding \u2705",
+        "Phase 14: Listening History \u2705",
+        "Phase 15: Sattva Screen \u2705",
+        "Phase 16: Sensory Profiles \u2705",
+        "Phase 17: Focus Session \u2705",
+        "Phase 17a: Audio Fragments \u2705"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 33,
+      "checkboxes": {
+        "open": 15,
+        "done": 223
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "CLAUDE-CONTEXT.md": {
+      "language": "markdown",
+      "lines": 60,
+      "words": 387,
+      "heading_count": 8,
+      "headings": [
+        "CLAUDE CONTEXT \u2014 Resonance Compass v2",
+        "Naming",
+        "Council of Nine",
+        "Founding Principles",
+        "v2 Architecture",
+        "Database Schema",
+        "Key Design Patterns",
+        "Android Build Notes"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 11,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "CONTRIBUTING.md": {
+      "language": "markdown",
+      "lines": 22,
+      "words": 101,
+      "heading_count": 5,
+      "headings": [
+        "CONTRIBUTING \u2014 Resonance Compass",
+        "Methodology",
+        "Branch Strategy",
+        "Build Protocol",
+        "Philosophy"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "FEATURE-BOARD.md": {
+      "language": "markdown",
+      "lines": 35,
+      "words": 248,
+      "heading_count": 5,
+      "headings": [
+        "COMPASS \u2014 THE FEATURE BOARD",
+        "TIER A \u2014 nearest",
+        "TIER B \u2014 the instruments",
+        "TIER C \u2014 gated / later",
+        "Maintenance"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "GALAXY-LISTING.md": {
+      "language": "markdown",
+      "lines": 62,
+      "words": 366,
+      "heading_count": 9,
+      "headings": [
+        "Compass \u2014 Galaxy Store listing pack",
+        "App name",
+        "Short description",
+        "Full description",
+        "Category",
+        "Content rating guidance",
+        "Data safety answers (transcribe)",
+        "Assets",
+        "Tags/keywords"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "GIT-HYGIENE.md": {
+      "language": "markdown",
+      "lines": 190,
+      "words": 514,
+      "heading_count": 34,
+      "headings": [
+        "SANCTUARY GIT HYGIENE GUIDE",
+        "WHAT SHOULD NEVER BE COMMITTED",
+        "PREVENTION: `.gitignore` TEMPLATE",
+        "\u2500\u2500\u2500 SOVEREIGNTY \u2014 NEVER COMMIT \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+        "Android keystores",
+        "Environment files",
+        "Credentials",
+        "Secrets",
+        "Database dumps (containing vessel data)",
+        "\u2500\u2500\u2500 OS FILES \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+        "\u2500\u2500\u2500 IDE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+        "\u2500\u2500\u2500 BUILD OUTPUT \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+        "IMMEDIATE: CHECK IF YOU'VE ALREADY LEAKED",
+        "Check a specific file pattern",
+        "REMOVAL: SCRUB A FILE FROM ENTIRE HISTORY",
+        "Method 1: BFG Repo-Cleaner (Recommended)",
+        "Download BFG (one-time)",
+        "Delete specific file patterns from history",
+        "Delete ALL files matching a pattern in a folder",
+        "Clean up after BFG",
+        "Force push the cleaned history",
+        "Method 2: Replace sensitive text (not just files)",
+        "Create a file with the old text and replacement",
+        "Replace across entire history"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 5,
+      "table_rows": 16,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "MUSICIANS-COMPASS-VISION.md": {
+      "language": "markdown",
+      "lines": 122,
+      "words": 1067,
+      "heading_count": 5,
+      "headings": [
+        "THE MUSICIAN'S COMPASS \u2014 vision capture",
+        "WHAT I HEAR YOU ASKING FOR",
+        "THE IMMEDIATE TASK",
+        "THE FOUNDATION",
+        "THE NAME"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "RELEASE-NOTES-v2.0.0.md": {
+      "language": "markdown",
+      "lines": 78,
+      "words": 639,
+      "heading_count": 11,
+      "headings": [
+        "Resonance Compass v2.0.0 \u2014 Release Notes",
+        "WHAT THIS RELEASE IS",
+        "THE PLAYER",
+        "SELF-UNDERSTANDING",
+        "REST & FOCUS",
+        "CREATE",
+        "SEE",
+        "SOVEREIGNTY",
+        "ACCESSIBILITY & COMFORT",
+        "INSTALLING",
+        "LICENSE"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "RESONANCE-GRAMMAR.md": {
+      "language": "markdown",
+      "lines": 192,
+      "words": 0,
+      "heading_count": 18,
+      "headings": [
+        "THE RESONANCE GRAMMAR",
+        "1. WHAT THIS IS",
+        "2. CORE PRINCIPLES",
+        "3. THE VOCABULARY: ATOMS",
+        "3.1 Atom Structure",
+        "3.2 Example Atom: \"Resonance\"",
+        "3.3 Atom Categories",
+        "4. THE SYNTAX: MOLECULES",
+        "4.1 Molecule Structure",
+        "4.2 Example Molecule: \"MoodEvent\"",
+        "5. THE ORGANIZATION: CATEGORIES",
+        "6. THE FOLKSONOMY",
+        "6.1 Emoji Definition Structure",
+        "6.2 The Folksonomy Principle",
+        "7. THE SOVEREIGNTY GUARANTEES",
+        "8. IMPLEMENTATIONS",
+        "9. VERSIONING",
+        "10. GOVERNANCE"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 1,
+      "table_rows": 46,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "SCREEN-INVENTORY.md": {
+      "language": "markdown",
+      "lines": 34,
+      "words": 198,
+      "heading_count": 4,
+      "headings": [
+        "SCREEN INVENTORY \u2014 Resonance Compass v2",
+        "Built (0)",
+        "Planned (19 screens)",
+        "Sanctuary-Unique Screens"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 21,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "v1-v2-gap-report.md": {
+      "language": "markdown",
+      "lines": 100,
+      "words": 1168,
+      "heading_count": 9,
+      "headings": [
+        "v1 \u2192 v2 Gap Report \u2014 Resonance Compass",
+        "1. Rust commands",
+        "2. Frontend routes",
+        "3. Store methods",
+        "4. Components",
+        "5. Features",
+        "6. Configuration",
+        "7. Android-specific",
+        "Recommended follow-ups (priority order)"
+      ],
+      "links_external": 0,
+      "links_internal": [
+        {
+          "target": "ANDROID-BUILD-NOTES.md",
+          "resolves": true
+        }
+      ],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 54,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "V3-BUILD-SEQUENCE.md": {
+      "language": "markdown",
+      "lines": 114,
+      "words": 860,
+      "heading_count": 13,
+      "headings": [
+        "RESONANCE COMPASS v3 \u2014 THE MUSICIAN'S COMPASS",
+        "The commission and build sequence",
+        "Why this exists (the heart)",
+        "The laws (inherited, non-negotiable)",
+        "Open naming question (Council discernment, KP's call)",
+        "The phases",
+        "Phase 0: The Summons (research \u2014 Cartographer / Indexer / Echo)",
+        "Phase 1: The Native Audio Engine (the keel \u2014 FIRST, decided 2026-07-09)",
+        "Phase 2: Recording \ud83c\udf99\ufe0f",
+        "Phase 3: Four-Track \ud83c\udf9a\ufe0f",
+        "Phase 4: The Musician's Tools \ud83c\udfb8",
+        "Phase 5: Sanctuary Connection \ud83d\udd17 (gated, deliberately last)",
+        "Sequencing note"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "VISUALIZER-PLAYABLE-MODE.md": {
+      "language": "markdown",
+      "lines": 119,
+      "words": 843,
+      "heading_count": 7,
+      "headings": [
+        "Visualizer Playable Mode \u2014 Developer Guide",
+        "1. The reactive chain: audio \u2192 pixels",
+        "2. The playable keyboard map",
+        "3. How effects combine",
+        "4. Adding a new mode",
+        "5. Adding a new palette",
+        "6. Settings & persistence"
+      ],
+      "links_external": 0,
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "code_fences": 2,
+      "table_rows": 10,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [
+    "blueprints"
+  ],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

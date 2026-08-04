@@ -1,12 +1,12 @@
 {
   "folder_name": "src-tauri",
   "folder_path": "src-tauri",
-  "description": "the backend \u2014 audio, equalizer, visualizer, fragments, permissions",
-  "scan_timestamp": "2026-08-03T16:52:52.211533 | in sovereign time",
+  "description": "5 files, 5 subfolders",
+  "scan_timestamp": "2026-08-04T11:09:36.908095 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/.gitignore",
-      "description": "file, 173 bytes"
+      "description": "ignore rules, 173 bytes"
     },
     {
       "path": "src-tauri/build.rs",
@@ -18,7 +18,7 @@
     },
     {
       "path": "src-tauri/Cargo.toml",
-      "description": "manifest, 1,127 bytes"
+      "description": "config, 1,127 bytes"
     },
     {
       "path": "src-tauri/tauri.conf.json",
@@ -37,18 +37,44 @@
     "build.rs": {
       "language": "rust",
       "lines": 26,
-      "tauri_commands": [],
-      "public_fns": [],
+      "pub_fns": [],
       "structs": [],
-      "tables_created": [],
-      "sql_default_count": 0,
-      "non_ascii_defaults": []
+      "tauri_commands": 0,
+      "uses_unsafe": false
+    },
+    "Cargo.toml": {
+      "language": "toml",
+      "lines": 42,
+      "sections": [
+        "package",
+        "lib",
+        "build-dependencies",
+        "dependencies",
+        "target.'cfg(target_os = \"android\")'.dependencies",
+        "profile.release"
+      ]
+    },
+    "tauri.conf.json": {
+      "language": "json",
+      "lines": 38,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "$schema",
+        "app",
+        "build",
+        "bundle",
+        "identifier",
+        "productName",
+        "version"
+      ],
+      "key_count": 7
     }
   },
-  "package_folders_excluded": [
+  "maintaining_agent": "FolderAgent",
+  "folders_not_walked": [
     "gen",
     "target"
   ],
-  "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

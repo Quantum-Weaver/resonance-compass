@@ -2,7 +2,7 @@
   "folder_name": "onboarding",
   "folder_path": "src/routes/onboarding",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.986258 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.888240 | in sovereign time",
   "files": [
     {
       "path": "src/routes/onboarding/+page.svelte",
@@ -20,23 +20,11 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/components/GradientPulse.svelte",
-        "$lib/data/emojis",
-        "$lib/stores/library.svelte",
-        "$lib/stores/theme.svelte",
-        "$lib/theme/theme"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/"
-      ],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

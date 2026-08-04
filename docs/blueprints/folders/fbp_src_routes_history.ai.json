@@ -2,7 +2,7 @@
   "folder_name": "history",
   "folder_path": "src/routes/history",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:51.826287 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.875234 | in sovereign time",
   "files": [
     {
       "path": "src/routes/history/+page.svelte",
@@ -19,22 +19,11 @@
         "$derived",
         "$state"
       ],
-      "imports": [
-        "$lib/stores/library.svelte",
-        "$lib/stores/mood.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "1"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -1,8 +1,8 @@
 {
   "folder_name": "routes",
   "folder_path": "src/routes",
-  "description": "the surfaces \u2014 every screen the hand reaches",
-  "scan_timestamp": "2026-08-03T16:52:51.732411 | in sovereign time",
+  "description": "3 files, 17 subfolders",
+  "scan_timestamp": "2026-08-04T11:09:36.868824 | in sovereign time",
   "files": [
     {
       "path": "src/routes/+layout.svelte",
@@ -46,27 +46,8 @@
         "$effect",
         "$props"
       ],
-      "imports": [
-        "$app/navigation",
-        "$app/state",
-        "$lib/components/MediaPermissionDialog.svelte",
-        "$lib/components/MiniPlayer.svelte",
-        "$lib/components/Sidebar.svelte",
-        "$lib/stores/library.svelte",
-        "$lib/stores/mood.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "$lib/stores/profile.svelte",
-        "$lib/stores/theme.svelte",
-        "$lib/theme/theme",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/onboarding"
-      ],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "+layout.ts": {
       "language": "typescript",
@@ -75,11 +56,12 @@
       "exported_consts": [
         "ssr"
       ],
+      "interfaces": [],
       "types": [],
-      "imports": [],
-      "invokes": [],
-      "uses_window_location": false,
-      "batch_constants": {}
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
     },
     "+page.svelte": {
       "language": "svelte",
@@ -89,28 +71,11 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/components/AlbumCard.svelte",
-        "$lib/components/GradientPulse.svelte",
-        "$lib/stores/library.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "$lib/types/types",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/library/album/${encodeURIComponent(album.id)}",
-        "/nowplaying"
-      ],
-      "uses_window_location": false,
-      "z_indexes": [
-        "1"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

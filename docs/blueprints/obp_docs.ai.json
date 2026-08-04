@@ -1,0 +1,26 @@
+{
+  "object_name": "docs",
+  "object_path": "docs",
+  "description": "0 files, 0 subfolders",
+  "integration_timestamp": "2026-08-04T11:09:36.966106 | in sovereign time",
+  "folders": [
+    {
+      "blueprint": "docs/blueprints/folders/fbp_docs.ai.json",
+      "folder_path": "docs",
+      "description": "15 files, 1 subfolders",
+      "file_count": 15,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_docs_session_reports.ai.json",
+      "folder_path": "docs/session-reports",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 2,
+  "total_files": 16,
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

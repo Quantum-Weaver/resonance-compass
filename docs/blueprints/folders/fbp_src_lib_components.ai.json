@@ -2,7 +2,7 @@
   "folder_name": "components",
   "folder_path": "src/lib/components",
   "description": "9 files, 1 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:50.845625 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.815234 | in sovereign time",
   "files": [
     {
       "path": "src/lib/components/AlbumCard.svelte",
@@ -52,13 +52,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [
-        "$lib/types/types"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "EmojiPalette.svelte": {
       "language": "svelte",
@@ -67,15 +62,8 @@
         "$derived",
         "$state"
       ],
-      "imports": [
-        "$lib/data/emojis",
-        "$lib/stores/mood.svelte",
-        "$lib/stores/player.svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "GradientPulse.svelte": {
       "language": "svelte",
@@ -83,13 +71,8 @@
       "uses_runes": [
         "$props"
       ],
-      "imports": [
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "MediaPermissionDialog.svelte": {
       "language": "svelte",
@@ -97,16 +80,8 @@
       "uses_runes": [
         "$derived"
       ],
-      "imports": [
-        "$lib/stores/library.svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "199",
-        "200"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "MiniPlayer.svelte": {
       "language": "svelte",
@@ -116,24 +91,8 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$app/state",
-        "$lib/components/EmojiPalette.svelte",
-        "$lib/components/PlayerControls.svelte",
-        "$lib/stores/player.svelte",
-        "$lib/stores/playlist.svelte",
-        "$lib/stores/profile.svelte",
-        "$lib/stores/ui.svelte"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/nowplaying"
-      ],
-      "uses_window_location": false,
-      "z_indexes": [
-        "110"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "PlayerControls.svelte": {
       "language": "svelte",
@@ -142,13 +101,8 @@
         "$derived",
         "$props"
       ],
-      "imports": [
-        "$lib/stores/player.svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "Sidebar.svelte": {
       "language": "svelte",
@@ -158,21 +112,8 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$app/state",
-        "$lib/components/icons/Icons.svelte",
-        "$lib/stores/ui.svelte",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "120",
-        "49",
-        "50"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "TimerVisualization.svelte": {
       "language": "svelte",
@@ -183,13 +124,8 @@
         "$props",
         "$state"
       ],
-      "imports": [
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": []
+      "fetch_calls": [],
+      "has_style_block": true
     },
     "TrackItem.svelte": {
       "language": "svelte",
@@ -199,23 +135,11 @@
         "$props",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/stores/playlist.svelte",
-        "$lib/types/types"
-      ],
-      "invokes": [],
-      "navigations": [
-        "/lyrics?trackId=${encodeURIComponent(track.id)}"
-      ],
-      "uses_window_location": false,
-      "z_indexes": [
-        "10",
-        "9"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

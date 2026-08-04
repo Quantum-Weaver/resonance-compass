@@ -2,7 +2,7 @@
   "folder_name": "visualizer",
   "folder_path": "src/routes/visualizer",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.207347 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.903541 | in sovereign time",
   "files": [
     {
       "path": "src/routes/visualizer/+page.svelte",
@@ -20,21 +20,11 @@
         "$effect",
         "$state"
       ],
-      "imports": [
-        "$app/navigation",
-        "$lib/stores/player.svelte",
-        "@tauri-apps/api/event",
-        "svelte"
-      ],
-      "invokes": [],
-      "navigations": [],
-      "uses_window_location": false,
-      "z_indexes": [
-        "100"
-      ]
+      "fetch_calls": [],
+      "has_style_block": true
     }
   },
-  "package_folders_excluded": [],
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

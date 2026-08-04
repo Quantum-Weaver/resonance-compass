@@ -2,7 +2,7 @@
   "folder_name": "scripts",
   "folder_path": "scripts",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:50.661953 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.803078 | in sovereign time",
   "files": [
     {
       "path": "scripts/sync-android-extras.mjs",
@@ -11,8 +11,15 @@
   ],
   "file_count": 1,
   "subdirectories": [],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "sync-android-extras.mjs": {
+      "language": "node",
+      "lines": 72,
+      "functions": [],
+      "commands": []
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

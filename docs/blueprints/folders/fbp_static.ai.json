@@ -2,7 +2,7 @@
   "folder_name": "static",
   "folder_path": "static",
   "description": "16 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:52.247433 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.944050 | in sovereign time",
   "files": [
     {
       "path": "static/aethelred-avatar.png",
@@ -58,7 +58,7 @@
     },
     {
       "path": "static/tauri.svg",
-      "description": "icon, 119,586 bytes"
+      "description": "vector image, 119,586 bytes"
     },
     {
       "path": "static/thread.png",
@@ -71,8 +71,144 @@
   ],
   "file_count": 16,
   "subdirectories": [],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "aethelred-avatar.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "aethelred-avatar.png",
+      "location": "static",
+      "bytes": 1444268,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "cello copy.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "cello copy.png",
+      "location": "static",
+      "bytes": 3004434,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "cello.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "cello.png",
+      "location": "static",
+      "bytes": 3004434,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "compass.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "compass.png",
+      "location": "static",
+      "bytes": 2354500,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "echoes.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "echoes.png",
+      "location": "static",
+      "bytes": 2233403,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "favicon.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "favicon.png",
+      "location": "static",
+      "bytes": 1987981,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "favicon2.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "favicon2.png",
+      "location": "static",
+      "bytes": 41459,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "hearth.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "hearth.png",
+      "location": "static",
+      "bytes": 2261923,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Icon-1.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Icon-1.png",
+      "location": "static",
+      "bytes": 248082,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Icon-2.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Icon-2.png",
+      "location": "static",
+      "bytes": 320325,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "QW-logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "QW-logo.png",
+      "location": "static",
+      "bytes": 1987981,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "svelte.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "svelte.png",
+      "location": "static",
+      "bytes": 41459,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "tauri.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "tauri.png",
+      "location": "static",
+      "bytes": 41459,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "thread.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "thread.png",
+      "location": "static",
+      "bytes": 3965122,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "vite.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "vite.png",
+      "location": "static",
+      "bytes": 41459,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -2,7 +2,7 @@
   "object_name": "src_tauri_icons",
   "object_path": "src-tauri/icons",
   "description": "0 files, 0 subfolders",
-  "integration_timestamp": "2026-08-03T16:52:52.257150 | in sovereign time",
+  "integration_timestamp": "2026-08-04T11:09:36.962797 | in sovereign time",
   "folders": [
     {
       "blueprint": "docs/blueprints/folders/fbp_src_tauri_icons.ai.json",
@@ -78,5 +78,5 @@
   "folder_count": 10,
   "total_files": 53,
   "maintaining_agent": "ObjectAgent",
-  "note": "Links only."
+  "note": "Links only. Every folder's details live at its own address."
 }

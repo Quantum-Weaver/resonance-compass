@@ -1,20 +1,20 @@
 {
   "domain_name": "src",
   "domain_path": "src",
-  "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
-  "integration_timestamp": "2026-08-03T16:52:52.262727 | in sovereign time",
+  "description": "0 files, 0 subfolders",
+  "integration_timestamp": "2026-08-04T11:09:36.966952 | in sovereign time",
   "objects": [
     {
-      "blueprint": "docs/blueprints/objects/obp_src_lib.ai.json",
+      "blueprint": "docs/blueprints/obp_src_lib.ai.json",
       "object_path": "src/lib",
-      "description": "stores, components, cosmic tokens, types, data",
+      "description": "0 files, 0 subfolders",
       "folder_count": 10,
       "total_files": 85
     },
     {
-      "blueprint": "docs/blueprints/objects/obp_src_routes.ai.json",
+      "blueprint": "docs/blueprints/obp_src_routes.ai.json",
       "object_path": "src/routes",
-      "description": "the surfaces \u2014 every screen the hand reaches",
+      "description": "0 files, 0 subfolders",
       "folder_count": 24,
       "total_files": 24
     }
@@ -24,7 +24,7 @@
     {
       "blueprint": "docs/blueprints/folders/fbp_src.ai.json",
       "folder_path": "src",
-      "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
+      "description": "2 files, 2 subfolders",
       "file_count": 2,
       "subdirectory_count": 2
     }
@@ -32,5 +32,5 @@
   "total_folders": 35,
   "total_files": 111,
   "maintaining_agent": "DomainAgent",
-  "note": "Links only."
+  "note": "Links only. Every object's details live at its own address."
 }

@@ -1,8 +1,8 @@
 {
   "folder_name": "src",
   "folder_path": "src",
-  "description": "the frontend \u2014 22 surfaces, stores, components, cosmic tokens",
-  "scan_timestamp": "2026-08-03T16:52:50.677541 | in sovereign time",
+  "description": "2 files, 2 subfolders",
+  "scan_timestamp": "2026-08-04T11:09:36.805201 | in sovereign time",
   "files": [
     {
       "path": "src/app.css",
@@ -10,7 +10,7 @@
     },
     {
       "path": "src/app.html",
-      "description": "file, 704 bytes"
+      "description": "markup, 704 bytes"
     }
   ],
   "file_count": 2,
@@ -18,8 +18,37 @@
     "src/lib",
     "src/routes"
   ],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "app.css": {
+      "language": "css",
+      "lines": 112,
+      "classes_defined": 1,
+      "animations": [],
+      "custom_properties": 0,
+      "imports": [
+        "tailwindcss",
+        "./lib/styles/generated/variables.css",
+        "./lib/styles/generated/animations.css",
+        "./lib/styles/generated/text-effects.css",
+        "./lib/styles/generated/domains.css",
+        "./lib/styles/generated/typography.css",
+        "./lib/styles/generated/zoom.css",
+        "./lib/styles/generated/parallax.css",
+        "./lib/styles/generated/ceremonies.css",
+        "./lib/styles/generated/pause-state.css",
+        "./lib/styles/generated/ensemble.css",
+        "./lib/styles/generated/attention-modes.css",
+        "./lib/styles/generated/attention-selector.css",
+        "./lib/styles/generated/scene.css",
+        "./lib/styles/generated/glow-field.css",
+        "./lib/styles/generated/deity-voices.css",
+        "./lib/styles/generated/transcendence.css",
+        "./lib/styles/generated/gates.css",
+        "./lib/styles/generated/supportive-affordances.css"
+      ]
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

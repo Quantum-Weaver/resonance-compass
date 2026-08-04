@@ -2,17 +2,26 @@
   "folder_name": ".cargo",
   "folder_path": ".cargo",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-03T16:52:50.629776 | in sovereign time",
+  "scan_timestamp": "2026-08-04T11:09:36.768778 | in sovereign time",
   "files": [
     {
       "path": ".cargo/config.toml",
-      "description": "manifest, 522 bytes"
+      "description": "Android 16 KB memory-page-size support (Play requirement for Android 15+"
     }
   ],
   "file_count": 1,
   "subdirectories": [],
-  "code_analysis": {},
-  "package_folders_excluded": [],
+  "code_analysis": {
+    "config.toml": {
+      "language": "toml",
+      "lines": 12,
+      "sections": [
+        "target.aarch64-linux-android",
+        "target.x86_64-linux-android"
+      ]
+    }
+  },
   "maintaining_agent": "FolderAgent",
-  "note": "The details live here. Upper tiers link to this address."
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }
