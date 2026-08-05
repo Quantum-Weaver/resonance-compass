@@ -2,83 +2,83 @@
   "folder_name": "generated",
   "folder_path": "src/lib/styles/generated",
   "description": "21 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.859932 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.492917 | in sovereign time",
   "files": [
     {
       "path": "src/lib/styles/generated/animations.css",
-      "description": "stylesheet, 9,488 bytes"
+      "description": "ANIMATION VARIANTS - Generated from consciousness.ts and motion.ts"
     },
     {
       "path": "src/lib/styles/generated/attention-modes.css",
-      "description": "stylesheet, 4,141 bytes"
+      "description": "ATTENTION MODES - Generated from attention.ts (ATTENTION_MODES)"
     },
     {
       "path": "src/lib/styles/generated/attention-selector.css",
-      "description": "stylesheet, 4,051 bytes"
+      "description": "ATTENTION SELECTOR - Generated from attention.ts (ATTENTION_MODE_SELECTOR, ATTENTION_MODES)"
     },
     {
       "path": "src/lib/styles/generated/ceremonies-refuge.css",
-      "description": "stylesheet, 5,776 bytes"
+      "description": "CEREMONIES & REFUGE CHOREOGRAPHY"
     },
     {
       "path": "src/lib/styles/generated/ceremonies.css",
-      "description": "stylesheet, 10,026 bytes"
+      "description": "CEREMONIES - Generated from motion.ts (CEREMONIES)"
     },
     {
       "path": "src/lib/styles/generated/consciousness-depth.css",
-      "description": "stylesheet, 7,392 bytes"
+      "description": "CONSCIOUSNESS DEPTH FRAMEWORK"
     },
     {
       "path": "src/lib/styles/generated/deity-voices.css",
-      "description": "stylesheet, 8,284 bytes"
+      "description": "PER-DEITY VOICE BUNDLES"
     },
     {
       "path": "src/lib/styles/generated/domains.css",
-      "description": "stylesheet, 33,689 bytes"
+      "description": "DOMAIN STYLES - Generated from DOMAIN_COLORS"
     },
     {
       "path": "src/lib/styles/generated/ensemble.css",
-      "description": "stylesheet, 6,473 bytes"
+      "description": "ENSEMBLE - Generated from motion.ts (SUPPORTIVE_CONVERGENCE, ENSEMBLE_MOTION)"
     },
     {
       "path": "src/lib/styles/generated/eternal-witness.css",
-      "description": "stylesheet, 5,380 bytes"
+      "description": "ETERNAL WITNESS STATE"
     },
     {
       "path": "src/lib/styles/generated/gates.css",
-      "description": "stylesheet, 3,392 bytes"
+      "description": "GATES - Generated from constants/interactivity.ts (SELF_PAUSE_TRIGGER, INVITATION_GATE)"
     },
     {
       "path": "src/lib/styles/generated/glow-field.css",
-      "description": "stylesheet, 5,788 bytes"
+      "description": "GLOW FIELD - Generated from effects.ts (PRESENCE_FIELD, DOMAIN_GLOW_MODULATION)"
     },
     {
       "path": "src/lib/styles/generated/parallax.css",
-      "description": "stylesheet, 11,077 bytes"
+      "description": "PARALLAX CLASSES - Generated from positioning.ts"
     },
     {
       "path": "src/lib/styles/generated/pause-state.css",
-      "description": "stylesheet, 2,344 bytes"
+      "description": "PAUSE STATE - Generated from consciousness.ts (GLOBAL_PAUSE)"
     },
     {
       "path": "src/lib/styles/generated/scene.css",
-      "description": "stylesheet, 4,450 bytes"
+      "description": "SCENE - Generated from positioning.ts (CAMERA_MOVES, SCENE_SEQUENCES)"
     },
     {
       "path": "src/lib/styles/generated/supportive-affordances.css",
-      "description": "stylesheet, 2,363 bytes"
+      "description": "SUPPORTIVE AFFORDANCES - Generated from constants/interactivity.ts (SUPPORTIVE_ROLE_AFFORDANCES)"
     },
     {
       "path": "src/lib/styles/generated/text-effects.css",
-      "description": "stylesheet, 11,992 bytes"
+      "description": "TEXT EFFECTS - Generated from motion.ts and colors.ts"
     },
     {
       "path": "src/lib/styles/generated/transcendence.css",
-      "description": "stylesheet, 3,871 bytes"
+      "description": "TRANSCENDENCE STATE SEQUENCE"
     },
     {
       "path": "src/lib/styles/generated/typography.css",
-      "description": "stylesheet, 25,509 bytes"
+      "description": "TYPOGRAPHY CLASSES - Generated from typography.ts and dimensions.ts"
     },
     {
       "path": "src/lib/styles/generated/variables.css",
@@ -86,7 +86,7 @@
     },
     {
       "path": "src/lib/styles/generated/zoom.css",
-      "description": "stylesheet, 25,467 bytes"
+      "description": "ZOOM TARGETS - Generated from positioning.ts"
     }
   ],
   "file_count": 21,

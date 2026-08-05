@@ -2,7 +2,7 @@
   "folder_name": "settings",
   "folder_path": "src/routes/settings",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.900298 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.533041 | in sovereign time",
   "files": [
     {
       "path": "src/routes/settings/+page.svelte",

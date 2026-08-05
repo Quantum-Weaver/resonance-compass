@@ -2,7 +2,7 @@
   "folder_name": "src",
   "folder_path": "src-tauri/src",
   "description": "8 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.940347 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.687775 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/src/audio.rs",

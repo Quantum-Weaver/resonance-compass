@@ -2,11 +2,11 @@
   "folder_name": "src",
   "folder_path": "src",
   "description": "2 files, 2 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.805201 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.437379 | in sovereign time",
   "files": [
     {
       "path": "src/app.css",
-      "description": "stylesheet, 3,981 bytes"
+      "description": "APP.CSS"
     },
     {
       "path": "src/app.html",

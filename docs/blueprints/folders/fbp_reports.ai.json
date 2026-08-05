@@ -2,7 +2,7 @@
   "folder_name": "reports",
   "folder_path": "reports",
   "description": "5 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.797573 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.417238 | in sovereign time",
   "files": [
     {
       "path": "reports/2026-06-30-assessment-manual.md",
@@ -49,8 +49,10 @@
         "6. RECOMMENDATIONS (priority order, before Phase 0 begins)"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 1,
       "table_rows": 90,
       "checkboxes": {
@@ -75,8 +77,10 @@
         "Recommendations"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 7,
       "checkboxes": {
@@ -101,8 +105,10 @@
         "Recommendations"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 7,
       "checkboxes": {

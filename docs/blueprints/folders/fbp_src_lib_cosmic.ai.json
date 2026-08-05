@@ -2,35 +2,35 @@
   "folder_name": "cosmic",
   "folder_path": "src/lib/cosmic",
   "description": "11 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.838845 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.470036 | in sovereign time",
   "files": [
     {
       "path": "src/lib/cosmic/attention.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM ATTENTION SYSTEM"
     },
     {
       "path": "src/lib/cosmic/colors.ts",
-      "description": "============================================================================"
+      "description": "PURE VALUES ONLY"
     },
     {
       "path": "src/lib/cosmic/consciousness.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM CONSCIOUSNESS SYSTEM - SINGLE SOURCE OF TRUTH"
     },
     {
       "path": "src/lib/cosmic/dimensions.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM DIMENSIONS SYSTEM - SINGLE SOURCE OF TRUTH"
     },
     {
       "path": "src/lib/cosmic/effects.ts",
-      "description": "============================================================================"
+      "description": "PROPERLY DERIVED FROM COLORS"
     },
     {
       "path": "src/lib/cosmic/index.ts",
-      "description": "====================================================="
+      "description": "FILE: index.ts"
     },
     {
       "path": "src/lib/cosmic/interactivity.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM INTERACTIVITY SYSTEM"
     },
     {
       "path": "src/lib/cosmic/MIRROR.md",
@@ -38,15 +38,15 @@
     },
     {
       "path": "src/lib/cosmic/motion.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM MOTION SYSTEM - SINGLE SOURCE OF TRUTH"
     },
     {
       "path": "src/lib/cosmic/positioning.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM POSITIONING SYSTEM - COORDINATE GRAPHING FOR IMMERSIVE EXPERIENCES"
     },
     {
       "path": "src/lib/cosmic/typography.ts",
-      "description": "============================================================================"
+      "description": "QUANTUM TYPOGRAPHY SYSTEM - DERIVED FROM DIMENSIONS.TS"
     }
   ],
   "file_count": 11,
@@ -310,8 +310,10 @@
         "DISTRIBUTED MIRROR - the source of truth lives in resonance-ziggy"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {

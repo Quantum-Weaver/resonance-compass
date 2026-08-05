@@ -2,7 +2,7 @@
   "folder_name": "docs",
   "folder_path": "docs",
   "description": "15 files, 1 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.784260 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.354484 | in sovereign time",
   "files": [
     {
       "path": "docs/ANDROID-BUILD-NOTES.md",
@@ -87,8 +87,10 @@
         "Known limitation / roadmap"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 3,
       "table_rows": 0,
       "checkboxes": {
@@ -127,8 +129,10 @@
         "Phase 19: Deploy"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -170,8 +174,10 @@
         "Phase 17a: Audio Fragments \u2705"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 33,
       "checkboxes": {
@@ -197,8 +203,10 @@
         "Android Build Notes"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 11,
       "checkboxes": {
@@ -221,8 +229,10 @@
         "Philosophy"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -245,8 +255,10 @@
         "Maintenance"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -273,8 +285,10 @@
         "Tags/keywords"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -316,8 +330,10 @@
         "Replace across entire history"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 5,
       "table_rows": 16,
       "checkboxes": {
@@ -340,8 +356,10 @@
         "THE NAME"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -370,8 +388,10 @@
         "LICENSE"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -407,8 +427,10 @@
         "10. GOVERNANCE"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 1,
       "table_rows": 46,
       "checkboxes": {
@@ -430,8 +452,10 @@
         "Sanctuary-Unique Screens"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 21,
       "checkboxes": {
@@ -458,13 +482,16 @@
         "Recommended follow-ups (priority order)"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [
         {
           "target": "ANDROID-BUILD-NOTES.md",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         }
       ],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 54,
       "checkboxes": {
@@ -495,8 +522,10 @@
         "Sequencing note"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -521,8 +550,10 @@
         "6. Settings & persistence"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 2,
       "table_rows": 10,
       "checkboxes": {

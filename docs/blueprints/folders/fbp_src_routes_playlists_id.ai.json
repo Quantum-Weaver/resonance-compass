@@ -2,7 +2,7 @@
   "folder_name": "[id]",
   "folder_path": "src/routes/playlists/[id]",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T11:09:36.890959 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.524377 | in sovereign time",
   "files": [
     {
       "path": "src/routes/playlists/[id]/+page.svelte",

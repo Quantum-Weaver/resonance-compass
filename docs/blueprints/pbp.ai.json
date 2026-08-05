@@ -2,7 +2,7 @@
   "project_name": "resonance-compass",
   "project_path": "C:\\_superposition\\resonance-compass",
   "description": "The Compass Room of the AudHDities Sanctuary",
-  "generated": "2026-08-04T11:09:36.991549 | in sovereign time",
+  "generated": "2026-08-04T19:11:43.753135 | in sovereign time",
   "tier_ladder": "file -> folder (fbp) -> object (obp) -> domain (dbp) -> project (pbp)",
   "law": "Each tier links to where the details live. Nothing above the folder tier duplicates a body.",
   "domains": [
@@ -118,6 +118,7 @@
       "dist",
       "env",
       "gen",
+      "mimirs-well",
       "node_modules",
       "out",
       "target",

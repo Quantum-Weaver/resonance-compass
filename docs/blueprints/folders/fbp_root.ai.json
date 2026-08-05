@@ -2,7 +2,7 @@
   "folder_name": "resonance-compass",
   "folder_path": ".",
   "description": "The Compass Room of the AudHDities Sanctuary",
-  "scan_timestamp": "2026-08-04T11:09:36.766921 | in sovereign time",
+  "scan_timestamp": "2026-08-04T19:11:43.169829 | in sovereign time",
   "files": [
     {
       "path": ".gitignore",
@@ -85,8 +85,10 @@
         "COUNCIL"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 2,
       "table_rows": 0,
       "checkboxes": {
@@ -110,8 +112,10 @@
         "Dispatch notes"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -137,13 +141,16 @@
         "Sonnet"
       ],
       "links_external": 1,
+      "links_site_absolute": [],
       "links_internal": [
         {
           "target": "PHILOSOPHY.md",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         }
       ],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -207,8 +214,10 @@
         "ACKNOWLEDGMENT"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -237,8 +246,10 @@
         "Contact"
       ],
       "links_external": 0,
+      "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
@@ -263,25 +274,31 @@
         "LICENSE"
       ],
       "links_external": 5,
+      "links_site_absolute": [],
       "links_internal": [
         {
           "target": "docs/BUILD-SEQUENCE.md",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         },
         {
           "target": "docs/CONTRIBUTING.md",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         },
         {
           "target": "LICENSE",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         },
         {
           "target": "PHILOSOPHY.md",
-          "resolves": true
+          "resolves": true,
+          "outside_checkout": false
         }
       ],
       "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
       "code_fences": 1,
       "table_rows": 0,
       "checkboxes": {
