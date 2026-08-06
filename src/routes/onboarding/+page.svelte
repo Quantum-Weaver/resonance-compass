@@ -5,6 +5,19 @@
 	import { PRESET_THEMES } from '$lib/theme/theme';
 	import { EMOJI_DEFS } from '$lib/data/emojis';
 	import GradientPulse from '$lib/components/GradientPulse.svelte';
+	import {
+		beginWalk,
+		enter,
+		toggleChoice,
+		skip,
+		advance,
+		taskBegun,
+		taskDone,
+		taskTrouble,
+		current,
+		dots as walkDots,
+		completion,
+	} from '$lib/epagoge';
 
 	const MOOD_EMOJIS = EMOJI_DEFS.slice(0, 8);
 
@@ -19,17 +32,32 @@
 		{ key: 'amoled', label: 'AMOLED Black', icon: '⚫', accent: PRESET_THEMES.amoled.accentColor, desc: 'True black'   },
 	];
 
-	let step = $state(0);
-	let vesselName = $state('');
-	let selectedEmojis = $state<string[]>([]);
+	// THE WALK — the-epagoge consumed by mirror (the carve's gate line 2):
+	// the walk is the water's, the particulars are Compass's. Choices ride
+	// by KEY — THE KEY LAW, born of this very screen's U13 mend and now
+	// enforced by the water itself.
 	// presetName ('AMOLED Black') is a display name, not the key ('amoled') —
-	// match against the table rather than lowercasing, or the active card
-	// silently fails to highlight.
-	let selectedPreset = $state(
+	// match against the table, or the preset silently fails.
+	const initialThemeKey =
 		Object.entries(PRESET_THEMES).find(
 			([, t]) => t.presetName === themeStore.config.presetName
-		)?.[0] ?? 'dark'
-	);
+		)?.[0] ?? 'dark';
+
+	const begun = beginWalk([
+		{ id: 'welcome', kind: 'entry' },
+		{ id: 'library', kind: 'task' },
+		{ id: 'senses', kind: 'choose', atMost: 3, offers: MOOD_EMOJIS.map((m) => ({ key: m.emoji })) },
+		{ id: 'theme', kind: 'choose', atMost: 1, preset: [initialThemeKey], offers: THEMES.map((t) => ({ key: t.key })) },
+		{ id: 'ready', kind: 'threshold' },
+	]);
+	// Static steps — beginWalk's data trouble cannot arise; the assertion is honest.
+	let walk = $state(begun.walk!);
+
+	let vesselName = $state('');
+	const stepId = $derived(current(walk)?.id ?? 'ready');
+	const senses = $derived(walk.choices['senses'] ?? []);
+	const themeChoice = $derived((walk.choices['theme'] ?? [initialThemeKey])[0]);
+	const dotsView = $derived(walkDots(walk));
 
 	type ScanPhase = 'idle' | 'scanning' | 'done';
 	let scanPhase = $state<ScanPhase>('idle');
@@ -47,41 +75,53 @@
 	});
 
 	function saveNameAndAdvance() {
+		walk = enter(walk, vesselName);
 		if (vesselName.trim()) {
 			try { localStorage.setItem('resonance-compass-vessel-name', vesselName.trim()); } catch {}
 		}
-		step = 1;
+		walk = advance(walk);
+	}
+
+	// Skip is lawful anywhere, and a skipped step is NAMED, never papered
+	// over — the water's law; completion() reports every absence.
+	function skipStep() {
+		walk = skip(walk);
+	}
+
+	function advanceStep() {
+		walk = advance(walk);
 	}
 
 	function toggleEmoji(emoji: string) {
-		if (selectedEmojis.includes(emoji)) {
-			selectedEmojis = selectedEmojis.filter((e) => e !== emoji);
-		} else if (selectedEmojis.length < 3) {
-			selectedEmojis = [...selectedEmojis, emoji];
-		}
+		// Capacity (atMost 3) is the water's calm no.
+		walk = toggleChoice(walk, emoji);
 	}
 
 	function saveSensoryProfile() {
-		if (selectedEmojis.length > 0) {
-			try { localStorage.setItem('sensory_profile', JSON.stringify(selectedEmojis)); } catch {}
+		if (senses.length > 0) {
+			try { localStorage.setItem('sensory_profile', JSON.stringify(senses)); } catch {}
 		}
-		step = 3;
+		walk = advance(walk);
 	}
 
 	function selectTheme(key: string) {
-		selectedPreset = key;
+		if (themeChoice !== key) walk = toggleChoice(walk, key);
 		themeStore.setPreset(key);
 	}
 
 	function completeOnboarding() {
-		themeStore.setPreset(selectedPreset);
+		const gathered = completion(walk);
+		themeStore.setPreset((gathered.choices['theme'] ?? [initialThemeKey])[0] ?? initialThemeKey);
 		try { localStorage.setItem('onboarding_complete', 'true'); } catch {}
 		goto('/');
 	}
 
 	async function startLibraryScan() {
 		scanPhase = 'idle';
+		walk = taskBegun(walk);
 		await libraryStore.scanLibrary();
+		// Trouble is told as data with its reason; "later" stays lawful.
+		walk = libraryStore.scanError ? taskTrouble(walk, libraryStore.scanError) : taskDone(walk);
 	}
 </script>
 
@@ -89,7 +129,7 @@
 	<div class="screen-wrap">
 
 		<!-- ── Screen 0: Welcome ── -->
-		{#if step === 0}
+		{#if stepId === 'welcome'}
 			<div class="screen">
 				<div class="screen-body">
 					<div class="sigil-wrap">
@@ -120,12 +160,12 @@
 
 				<div class="screen-actions">
 					<button class="btn-primary" onclick={saveNameAndAdvance}>Begin</button>
-					<button class="btn-skip" onclick={saveNameAndAdvance}>Skip setup</button>
+					<button class="btn-skip" onclick={skipStep}>Skip setup</button>
 				</div>
 			</div>
 
 		<!-- ── Screen 1: Library Setup ── -->
-		{:else if step === 1}
+		{:else if stepId === 'library'}
 			<div class="screen">
 				<div class="screen-body">
 					<div class="step-icon">📂</div>
@@ -140,7 +180,7 @@
 							{#if isAndroid}
 								<p class="scan-hint">Scans the Music and Download folders on this device</p>
 							{/if}
-							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
+							<button class="btn-skip" onclick={skipStep}>I'll do this later</button>
 						</div>
 
 					{:else if scanPhase === 'scanning'}
@@ -157,14 +197,14 @@
 						</div>
 						<div class="screen-actions inner">
 							<button class="btn-primary" onclick={startLibraryScan}>Try Again</button>
-							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
+							<button class="btn-skip" onclick={skipStep}>I'll do this later</button>
 						</div>
 
 					{:else if scanError}
 						<p class="scan-error-msg">{scanError}</p>
 						<div class="screen-actions inner">
 							<button class="btn-primary" onclick={startLibraryScan}>Retry</button>
-							<button class="btn-skip" onclick={() => step = 2}>I'll do this later</button>
+							<button class="btn-skip" onclick={skipStep}>I'll do this later</button>
 						</div>
 
 					{:else}
@@ -173,7 +213,7 @@
 							<span>Found {trackCount} track{trackCount !== 1 ? 's' : ''}</span>
 						</div>
 						<div class="screen-actions inner">
-							<button class="btn-primary" onclick={() => step = 2}>Continue</button>
+							<button class="btn-primary" onclick={advanceStep}>Continue</button>
 							<button class="btn-secondary" onclick={startLibraryScan}>Rescan</button>
 						</div>
 					{/if}
@@ -181,7 +221,7 @@
 			</div>
 
 		<!-- ── Screen 2: Sensory Profile ── -->
-		{:else if step === 2}
+		{:else if stepId === 'senses'}
 			<div class="screen">
 				<div class="screen-body">
 					<div class="step-icon">✨</div>
@@ -192,10 +232,10 @@
 						{#each MOOD_EMOJIS as item (item.emoji)}
 							<button
 								class="emoji-btn"
-								class:selected={selectedEmojis.includes(item.emoji)}
+								class:selected={senses.includes(item.emoji)}
 								style="--ec: {item.color}"
 								onclick={() => toggleEmoji(item.emoji)}
-								aria-pressed={selectedEmojis.includes(item.emoji)}
+								aria-pressed={senses.includes(item.emoji)}
 								aria-label={item.label}
 							>
 								<span class="emoji-glyph">{item.emoji}</span>
@@ -209,12 +249,12 @@
 
 				<div class="screen-actions">
 					<button class="btn-primary" onclick={saveSensoryProfile}>Continue</button>
-					<button class="btn-skip" onclick={() => step = 3}>Skip</button>
+					<button class="btn-skip" onclick={skipStep}>Skip</button>
 				</div>
 			</div>
 
 		<!-- ── Screen 3: Theme ── -->
-		{:else if step === 3}
+		{:else if stepId === 'theme'}
 			<div class="screen">
 				<div class="screen-body">
 					<div class="step-icon">🎨</div>
@@ -225,15 +265,15 @@
 						{#each THEMES as t (t.key)}
 							<button
 								class="theme-card"
-								class:selected={selectedPreset === t.key}
+								class:selected={themeChoice === t.key}
 								style="--tc: {t.accent}"
 								onclick={() => selectTheme(t.key)}
-								aria-pressed={selectedPreset === t.key}
+								aria-pressed={themeChoice === t.key}
 							>
 								<span class="theme-icon">{t.icon}</span>
 								<span class="theme-name">{t.label}</span>
 								<span class="theme-desc">{t.desc}</span>
-								{#if selectedPreset === t.key}
+								{#if themeChoice === t.key}
 									<span class="theme-check" aria-hidden="true">✓</span>
 								{/if}
 							</button>
@@ -244,12 +284,12 @@
 				</div>
 
 				<div class="screen-actions">
-					<button class="btn-primary" onclick={() => step = 4}>Continue</button>
+					<button class="btn-primary" onclick={advanceStep}>Continue</button>
 				</div>
 			</div>
 
 		<!-- ── Screen 4: Complete ── -->
-		{:else if step === 4}
+		{:else if stepId === 'ready'}
 			<div class="screen">
 				<div class="screen-body center">
 					<div class="sigil-wrap">
@@ -277,17 +317,18 @@
 
 	</div>
 
-	<!-- Progress dots -->
+	<!-- Progress dots — DERIVED: the walk knows its own progression and
+	     its own accessibility words; Compass only draws them. -->
 	<div
 		class="dots"
 		role="progressbar"
-		aria-valuenow={step + 1}
-		aria-valuemin={1}
-		aria-valuemax={5}
-		aria-label="Step {step + 1} of 5"
+		aria-valuenow={dotsView.valuenow}
+		aria-valuemin={dotsView.valuemin}
+		aria-valuemax={dotsView.valuemax}
+		aria-label={dotsView.label}
 	>
-		{#each [0, 1, 2, 3, 4] as n (n)}
-			<span class="dot" class:active={n === step} class:past={n < step}></span>
+		{#each dotsView.states as s, n (n)}
+			<span class="dot" class:active={s === 'active'} class:past={s === 'past'}></span>
 		{/each}
 	</div>
 </div>

@@ -277,6 +277,13 @@
 			>✂️</button>
 		</div>
 
+		<!-- The Listen-surface door to sensory profiles — KP's ⚛ ruling
+		     ("also link to it from listening"): sensory switching happens
+		     mid-listening; the door meets the hand where the need arises. -->
+		<button class="profiles-door" onclick={() => goto('/profiles')}>
+			<span aria-hidden="true">✨</span><span>Sensory profiles</span>
+		</button>
+
 		<div class="mood-section">
 			<EmojiPalette />
 		</div>
@@ -522,6 +529,28 @@
 		justify-content: center;
 		gap: 2rem;
 		margin-top: 1rem;
+	}
+
+	.profiles-door {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin: 0.75rem auto 0;
+		min-height: 44px;
+		padding: 0.35rem 0.9rem;
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		background: none;
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: border-color 0.15s ease, color 0.15s ease;
+	}
+
+	.profiles-door:hover {
+		border-color: var(--accent);
+		color: var(--text);
 	}
 
 	.ctrl-btn {

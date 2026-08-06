@@ -2,8 +2,6 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { playerStore } from '$lib/stores/player.svelte';
-	import { playlistStore } from '$lib/stores/playlist.svelte';
-	import { profileStore } from '$lib/stores/profile.svelte';
 	import { uiStore } from '$lib/stores/ui.svelte';
 	import PlayerControls from '$lib/components/PlayerControls.svelte';
 	import EmojiPalette from '$lib/components/EmojiPalette.svelte';
@@ -30,11 +28,6 @@
 	const volume = $derived(playerStore.volume);
 	const playbackError = $derived(playerStore.playbackError);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
-	const isFav = $derived(track ? playlistStore.isFavorite(track.id) : false);
-
-	function toggleFav() {
-		if (track) playlistStore.toggleFavorite(track.id);
-	}
 
 	function toggleExpanded() {
 		expanded = !expanded;
@@ -56,66 +49,16 @@
 			{/if}
 
 			{#if track}
+				<!-- THE SHED (U7+U8, the ruled outline): seek · volume · the
+				     mood palette · ONE link (the track line above, to Now
+				     Playing). The nav row and profile chips left for their
+				     hats; the panel stopped being a second sidebar. -->
 				<PlayerControls />
-				<div class="mp-nav-row">
-					<button class="mp-nav-btn" onclick={() => goto('/')} aria-label="Home">
-						🏠
-					</button>
-					<button
-						class="mp-nav-btn"
-						onclick={toggleFav}
-						aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
-						aria-pressed={isFav}
-					>
-						{isFav ? '❤️' : '🤍'}
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/visualizer')} aria-label="Visualizer">
-						🌊
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/settings#eq')} aria-label="Equalizer">
-						🎛️
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/timer')} aria-label="Timer">
-						⏰
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/sattva')} aria-label="Sattva">
-						🧘
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/focus')} aria-label="Focus">
-						🎯
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/history')} aria-label="History">
-						📜
-					</button>
-					<button class="mp-nav-btn" onclick={() => goto('/fragments')} aria-label="Fragments">
-						✂️
-					</button>
-				</div>
 				<div class="mp-emoji-row">
 					<EmojiPalette />
 				</div>
 			{:else}
 				<div class="mp-stats">Your library will appear here</div>
-			{/if}
-
-			{#if profileStore.showInMiniPlayer && profileStore.profiles.length > 0}
-				<div class="mp-profile-row" role="group" aria-label="Sensory profiles">
-					{#each profileStore.profiles as prof (prof.id)}
-						{@const isActiveProf = profileStore.activeProfileId === prof.id}
-						<button
-							class="mp-profile-chip"
-							class:prof-active={isActiveProf}
-							onclick={() => isActiveProf ? profileStore.deactivateProfile() : profileStore.activateProfile(prof.id)}
-							aria-label="{isActiveProf ? 'Deactivate' : 'Activate'} {prof.name}"
-							aria-pressed={isActiveProf}
-							title={prof.name}
-						>
-							<span class="chip-emoji">{prof.emoji}</span>
-							<span class="chip-name">{prof.name}</span>
-						</button>
-					{/each}
-					<button class="mp-profile-chip manage" onclick={() => goto('/profiles')} aria-label="Manage profiles">⚙</button>
-				</div>
 			{/if}
 		</div>
 	{:else}
@@ -124,6 +67,18 @@
 				{#if playbackError}<span class="mp-error-dot" title={playbackError} aria-label="Playback error">⚠</span>{/if}
 				{trackLabel}
 			</button>
+			<!-- The five transports (U8): play/pause · previous · next · mute,
+			     right here where a hand reaches a hundred times a day. -->
+			<button class="mp-skip" onclick={() => playerStore.previous()} aria-label="Previous track" disabled={!track}>⏮</button>
+			<button
+				class="mp-play-pause"
+				onclick={() => playerStore.togglePlay()}
+				aria-label={isPlaying ? 'Pause' : 'Play'}
+				disabled={!track}
+			>
+				{isPlaying ? '⏸' : '▶'}
+			</button>
+			<button class="mp-skip" onclick={() => playerStore.next()} aria-label="Next track" disabled={!track}>⏭</button>
 			<button
 				class="mp-mute"
 				onclick={() => playerStore.toggleMute()}
@@ -132,14 +87,6 @@
 				disabled={!track}
 			>
 				{volume === 0 ? '🔇' : '🔊'}
-			</button>
-			<button
-				class="mp-play-pause"
-				onclick={() => playerStore.togglePlay()}
-				aria-label={isPlaying ? 'Pause' : 'Play'}
-				disabled={!track}
-			>
-				{isPlaying ? '⏸' : '▶'}
 			</button>
 			<button class="mp-expand" onclick={toggleExpanded} aria-label="Expand" disabled={!track}>⌃</button>
 		</div>
@@ -303,13 +250,6 @@
 		margin-right: 0.3rem;
 	}
 
-	.mp-nav-row {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.5rem 1rem;
-	}
-
 	.mp-emoji-row {
 		display: flex;
 		justify-content: center;
@@ -320,57 +260,21 @@
 		margin: 0 auto;
 	}
 
-	.mp-nav-btn {
+	/* The bar's skip buttons — 44px floors per U8's ruling. */
+	.mp-skip {
 		background: none;
 		border: none;
 		cursor: pointer;
-		font-size: 1.1rem;
-		padding: 0.25rem 0.5rem;
+		font-size: 1rem;
 		line-height: 1;
+		flex-shrink: 0;
 		min-width: 44px;
 		min-height: 44px;
 	}
 
-	/* Profile quick-switch */
-	.mp-profile-row {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 0.35rem;
-		padding: 0.4rem 0.75rem 0.55rem;
-	}
-
-	.mp-profile-chip {
-		display: flex;
-		align-items: center;
-		gap: 0.3rem;
-		padding: 0.4rem 0.7rem;
-		min-height: 36px;
-		background: none;
-		border: 1px solid var(--border-color);
-		border-radius: 18px;
-		color: var(--text-secondary);
-		font-size: 0.75rem;
-		font-weight: 600;
-		cursor: pointer;
-		font-family: inherit;
-		transition: border-color 0.15s, background 0.15s;
-		max-width: 40vw;
-	}
-	.mp-profile-chip:hover { border-color: var(--accent); }
-	.mp-profile-chip.prof-active {
-		border-color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 20%, transparent);
-		color: var(--text);
-	}
-	.mp-profile-chip.manage { padding: 0.4rem 0.55rem; }
-
-	.chip-emoji { line-height: 1; }
-
-	.chip-name {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+	.mp-skip:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

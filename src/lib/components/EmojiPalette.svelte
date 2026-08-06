@@ -46,6 +46,7 @@
 					aria-label="Tag mood: {def.label}"
 				>
 					<span class="emoji-glyph">{def.emoji}</span>
+					<span class="emoji-word">{def.label}</span>
 				</button>
 			{/each}
 		</div>
@@ -113,19 +114,22 @@
 		border: 1px solid var(--border-color);
 	}
 
+	/* Every face wears its word — the U7 law, engraved at the shed sitting:
+	   an emoji may FACE a word, never replace it. */
 	.emoji-btn {
 		flex-shrink: 0;
-		width: var(--spacing-10);
-		height: var(--spacing-10);
-		border-radius: var(--radius-full);
+		min-width: var(--spacing-10);
+		border-radius: var(--radius-lg);
 		border: 2px solid transparent;
 		background: transparent;
 		cursor: pointer;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		gap: 0.18rem;
 		font-size: 1.2rem;
-		padding: 0;
+		padding: 0.3rem 0.45rem;
 		line-height: 1;
 		transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 	}
@@ -145,6 +149,13 @@
 
 	.emoji-glyph {
 		line-height: 1;
+	}
+
+	.emoji-word {
+		font-size: 0.58rem;
+		line-height: 1;
+		color: var(--text-secondary);
+		white-space: nowrap;
 	}
 
 	.personal-hint {

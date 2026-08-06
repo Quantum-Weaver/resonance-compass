@@ -57,8 +57,7 @@
 				label: 'Settle',
 				doors: [
 					door('sattva', '/sattva', 'sattva', 'Sattva'),
-					door('focus', '/focus', 'focus', 'Focus'),
-					door('timer', '/timer', 'timer', 'Timer'),
+					door('time', '/timer', 'timer', 'Timer & Focus'),
 				],
 			},
 			{

@@ -66,6 +66,15 @@ function start(minutes: number) {
 			stopFade(true);
 			playerStore.pause();
 			totalSecs = 0;
+			// The end-of-timer chime (KP's ⚛ ruled feature) — played from the
+			// STORE so it sounds even when the vessel has left the timer
+			// screen; opt-in, and natural expiry only (cancel() never lands
+			// here). Tone: the-chimes' chime-single, mirrored in static/.
+			try {
+				if (localStorage.getItem('timer_end_chime') === 'true') {
+					new Audio('/chimes/chime-single.wav').play().catch(() => {});
+				}
+			} catch {}
 		}
 	}, 1000);
 }

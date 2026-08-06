@@ -3,7 +3,9 @@
 	import { onMount } from 'svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
+	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import AlbumCard from '$lib/components/AlbumCard.svelte';
+	import TrackItem from '$lib/components/TrackItem.svelte';
 	import type { Album } from '$lib/types/types';
 
 	// The continue-strip — Home's living pieces, inherited at the U9 merge
@@ -21,6 +23,10 @@
 		try {
 			const stored = localStorage.getItem(RECENT_KEY);
 			if (stored) recentAlbumIds = JSON.parse(stored);
+		} catch {}
+		try {
+			const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
+			if (raw) recentSearches = JSON.parse(raw);
 		} catch {}
 	});
 
@@ -49,7 +55,7 @@
 
 	let searchQuery = $state('');
 	let debouncedQuery = $state('');
-	let viewMode = $state<'artists' | 'albums' | 'genres'>('artists');
+	let viewMode = $state<'artists' | 'albums' | 'genres' | 'tracks'>('artists');
 	let gridView = $state(false);
 	let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -90,15 +96,87 @@
 		debouncedQuery ? genres.filter((g) => g.toLowerCase().includes(debouncedQuery)) : genres
 	);
 
+	// The Search room's load-bearing capability, carried in at the ruled
+	// Search→Library merge: track search, playing the full filtered set as
+	// the queue from the tapped row (never just a preview slice).
+	const filteredTracks = $derived(
+		debouncedQuery
+			? tracks.filter(
+					(t) =>
+						t.title.toLowerCase().includes(debouncedQuery) ||
+						t.artist.toLowerCase().includes(debouncedQuery) ||
+						t.album.toLowerCase().includes(debouncedQuery)
+				)
+			: tracks
+	);
+
+	function playTrack(i: number) {
+		saveSearch(searchQuery);
+		playerStore.setQueue(filteredTracks, i);
+	}
+
+	// The recent-searches and favorites cards — KP's ⚛ ruling ("since the
+	// search is within the library now… callable cards or buttons at the
+	// top of the library, not intrusive"): called from the menu bar, opened
+	// by the hand, never imposed. Recent searches carry the retired search
+	// room's exact behavior — saved when a result is ACTED on, ten kept,
+	// newest first, SAME storage key, so every hand's history survives the
+	// move. Favorites is Home's rested albums row, revived as a card.
+	const RECENT_SEARCHES_KEY = 'recent_searches';
+	let recentSearches = $state<string[]>([]);
+	let openCard = $state<'recent' | 'favorites' | null>(null);
+
+	function toggleCard(card: 'recent' | 'favorites') {
+		openCard = openCard === card ? null : card;
+	}
+
+	function saveSearch(term: string) {
+		const t = term.trim();
+		if (!t) return;
+		const updated = [t, ...recentSearches.filter((s) => s !== t)].slice(0, 10);
+		recentSearches = updated;
+		try { localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated)); } catch {}
+	}
+
+	function clearSearches() {
+		recentSearches = [];
+		try { localStorage.removeItem(RECENT_SEARCHES_KEY); } catch {}
+	}
+
+	function selectRecent(term: string) {
+		searchQuery = term;
+		openCard = null;
+	}
+
+	const favoriteAlbums = $derived(
+		(() => {
+			const favIds = playlistStore.getPlaylist('favorites')?.trackIds ?? [];
+			const seen = new Set<string>();
+			const result: Album[] = [];
+			for (const trackId of favIds) {
+				const track = libraryStore.getTrackById(trackId);
+				if (!track) continue;
+				const albumId = `${track.album.trim()}|||${track.artist.trim()}`;
+				if (seen.has(albumId)) continue;
+				seen.add(albumId);
+				const album = libraryStore.albums.find((a) => a.id === albumId);
+				if (album) result.push(album);
+			}
+			return result.slice(0, 8);
+		})()
+	);
+
 	async function onScanClick() {
 		await libraryStore.scanLibrary();
 	}
 
 	function openArtist(id: string) {
+		saveSearch(searchQuery);
 		goto(`/library/artist/${encodeURIComponent(id)}`);
 	}
 
 	function openAlbum(id: string) {
+		saveSearch(searchQuery);
 		goto(`/library/album/${encodeURIComponent(id)}`);
 	}
 </script>
@@ -158,12 +236,72 @@
 		/>
 
 		<div class="tabs">
-			{#each (['artists', 'albums', 'genres'] as const) as mode}
-				<button class="tab" class:active={viewMode === mode} onclick={() => (viewMode = mode)}>
-					{mode.charAt(0).toUpperCase() + mode.slice(1)}
-				</button>
-			{/each}
+			<!-- The view dropdown — KP's ⚛ word: "let these be a dropdown…
+			     still inline, but less bulk." -->
+			<select class="view-select" bind:value={viewMode} aria-label="Browse by">
+				<option value="artists">Artists</option>
+				<option value="albums">Albums</option>
+				<option value="genres">Genres</option>
+				<option value="tracks">Tracks</option>
+			</select>
+			<span class="tabs-spacer"></span>
+			<!-- Callable cards — present, never imposed; separate from the
+			     actual library (KP's ⚛ ruling, 2026-08-06). -->
+			<button
+				class="card-call"
+				class:open={openCard === 'recent'}
+				aria-expanded={openCard === 'recent'}
+				onclick={() => toggleCard('recent')}
+			>
+				<span aria-hidden="true">🕐</span><span>Recent searches</span>
+			</button>
+			<button
+				class="card-call"
+				class:open={openCard === 'favorites'}
+				aria-expanded={openCard === 'favorites'}
+				onclick={() => toggleCard('favorites')}
+			>
+				<span aria-hidden="true">❤️</span><span>Favorites</span>
+			</button>
 		</div>
+
+		{#if openCard === 'recent'}
+			<div class="feature-card">
+				<div class="feature-head">
+					<span class="feature-title">Recent searches</span>
+					{#if recentSearches.length > 0}
+						<button class="feature-link" onclick={clearSearches}>Clear</button>
+					{/if}
+				</div>
+				{#if recentSearches.length > 0}
+					<div class="chip-row">
+						{#each recentSearches as term (term)}
+							<button class="recent-chip" onclick={() => selectRecent(term)}>{term}</button>
+						{/each}
+					</div>
+				{:else}
+					<p class="feature-empty">Searches you act on will gather here.</p>
+				{/if}
+			</div>
+		{:else if openCard === 'favorites'}
+			<div class="feature-card">
+				<div class="feature-head">
+					<span class="feature-title">Your favorites</span>
+					<button class="feature-link" onclick={() => goto('/liked')}>All liked →</button>
+				</div>
+				{#if favoriteAlbums.length > 0}
+					<div class="recent-row">
+						{#each favoriteAlbums as album (album.id)}
+							<div class="recent-card">
+								<AlbumCard {album} size="small" onClick={() => openAlbum(album.id)} />
+							</div>
+						{/each}
+					</div>
+				{:else}
+					<p class="feature-empty">Tap the ❤️ on any track and its album gathers here.</p>
+				{/if}
+			</div>
+		{/if}
 
 		<div class="list" class:grid-view={gridView}>
 			{#if viewMode === 'artists'}
@@ -198,7 +336,7 @@
 				{#if filteredAlbums.length === 0}
 					<p class="empty-search">No albums match your search.</p>
 				{/if}
-			{:else}
+			{:else if viewMode === 'genres'}
 				{#each filteredGenres as genre (genre)}
 					<button class="list-item">
 						{#if gridView}
@@ -210,6 +348,22 @@
 				{/each}
 				{#if filteredGenres.length === 0}
 					<p class="empty-search">No genres match your search.</p>
+				{/if}
+			{:else}
+				{#each filteredTracks as track, i (track.id)}
+					<TrackItem
+						{track}
+						index={i + 1}
+						showHeart
+						showMenu
+						playlists={playlistStore.playlists.filter((p) => p.id !== 'favorites')}
+						isCurrentTrack={playerStore.currentTrack?.id === track.id}
+						onPlay={() => playTrack(i)}
+						onAddToPlaylist={(plId) => playlistStore.addTrack(plId, track.id)}
+					/>
+				{/each}
+				{#if filteredTracks.length === 0}
+					<p class="empty-search">No tracks match your search.</p>
 				{/if}
 			{/if}
 		</div>
@@ -366,24 +520,130 @@
 
 	.tabs {
 		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 		border-bottom: 1px solid var(--border-color);
 		margin-bottom: 0.5rem;
 	}
 
-	.tab {
-		padding: 0.55rem 1rem;
-		border: none;
-		border-bottom: 2px solid transparent;
-		background: transparent;
-		color: var(--text-secondary);
-		cursor: pointer;
-		font-size: 0.85rem;
-		font-weight: 600;
+	.tabs-spacer {
+		flex: 1;
 	}
 
-	.tab.active {
+	.card-call {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		min-height: 44px;
+		padding: 0.35rem 0.7rem;
+		margin: 0.15rem 0;
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		background: none;
+		color: var(--text-secondary);
+		font-size: 0.78rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: border-color 0.15s ease, color 0.15s ease;
+	}
+
+	.card-call + .card-call {
+		margin-left: 0.4rem;
+	}
+
+	.card-call:hover {
+		border-color: var(--accent);
+		color: var(--text);
+	}
+
+	.card-call.open {
+		border-color: var(--accent);
 		color: var(--accent);
-		border-bottom-color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 10%, transparent);
+	}
+
+	.feature-card {
+		border: 1px solid var(--border-color);
+		border-radius: 12px;
+		background: var(--bg-surface);
+		padding: 0.75rem 0.9rem;
+		margin: 0.25rem 0 0.75rem;
+	}
+
+	.feature-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+	}
+
+	.feature-title {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.feature-link {
+		background: none;
+		border: none;
+		color: var(--text-muted);
+		font-size: 0.78rem;
+		cursor: pointer;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		min-height: 44px;
+		padding: 0 0.4rem;
+	}
+
+	.feature-link:hover {
+		color: var(--text-secondary);
+	}
+
+	.chip-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.recent-chip {
+		min-height: 44px;
+		padding: 0.35rem 0.85rem;
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		background: none;
+		color: var(--text-secondary);
+		font-size: 0.82rem;
+		cursor: pointer;
+		transition: border-color 0.15s ease, color 0.15s ease;
+	}
+
+	.recent-chip:hover {
+		border-color: var(--accent);
+		color: var(--text);
+	}
+
+	.feature-empty {
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		margin: 0;
+	}
+
+	.view-select {
+		min-height: 44px;
+		padding: 0.35rem 0.6rem;
+		border: 1px solid var(--border-color);
+		border-radius: 10px;
+		background-color: var(--bg-surface);
+		color: var(--text);
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		margin: 0.15rem 0;
+	}
+
+	.view-select:focus {
+		border-color: var(--accent);
+		outline: none;
 	}
 
 	.list {

@@ -394,6 +394,74 @@ rulings: `docs/THE-UX-WALK.md` (the outline ruled complete 08-05).*
 - [ ] **Tested:** ⬜ KP's hands, both bodies (rotation is the
       dynamics law's own proof — worth a turn of the phone)
 
+### The MiniPlayer shed + Profiles→Settings ✅ built (2026-08-06, the Canon lamp) — GATE LINE 1 COMPLETE
+- [x] **THE SHED (U7+U8, the ruled outline):** collapsed bar = the
+      five transports (⏮ ⏯ ⏭ 🔊 + the track line), 44px floors on the
+      new buttons; expanded panel = seek · volume · the mood palette ·
+      ONE link (the track line → Now Playing). The nav row (9 doors)
+      and the profile chips LEFT for their hats — the panel stopped
+      being a second sidebar
+- [x] **The palette's faces wear their words** (the U7 law engraved in
+      EmojiPalette itself): every emoji now carries its small word
+      underneath — no meaning locked behind a glyph
+- [x] **Profiles→Settings per the ruling:** the chips left; Profiles
+      keeps its own screen (simpler in the hand), reached through
+      Settings' Manage → and the NEW Listen-surface door on Now
+      Playing ("also link to it from listening" — ✨ Sensory profiles,
+      worded); no sidebar door, as ruled. The dead Settings toggle
+      ("show quick-switch in MiniPlayer") removed with its chips
+- [x] The heart left the panel per the shed's letter — it lives one
+      tap away on Now Playing; U4's parity pass returns it to track
+      rows everywhere (KP's stroke revives a bar heart if missed)
+- [x] `npm run check` — 389 files, 0 errors
+- [ ] **Tested:** ⬜ KP's hands, both bodies
+- [x] **THE CARVE, gate line 1: ALL FIVE RULED MERGES/SHEDS LANDED**
+
+### The Focus+Timer merge ✅ built (2026-08-06, the Canon lamp) — with the chime
+- [x] The ruled merge landed, NOTHING LOST (KP's condition): both
+      rooms stand whole as colocated components
+      (`timer/SleepTimer.svelte` · `timer/FocusSession.svelte`,
+      verbatim moves); `/timer` is now the time-room, a thin shell
+      wearing two tabs (Sleep timer · Focus). `/focus` leads there
+      honestly (`?tab=focus`); an ACTIVE focus session opens its own
+      tab first. Settle's doors: Sattva + **Timer & Focus** (3 → 2)
+- [x] **THE CHIME — KP's ⚛ ruled feature** ("optional sound at end
+      of timer… in case it is being used without music"): opt-in
+      toggle beside fade-out, silence the default a hand chose;
+      fires on NATURAL expiry only (a cancelled timer leaves time on
+      the clock); the tone is **the-chimes' chime-single, mirrored**
+      (`static/chimes/` + MIRROR.md, SHA256 `5F42B624…` verified) —
+      the mirror road's third traveler
+- [x] **The Library view dropdown — KP's ⚛ word same sitting**
+      ("let these be a dropdown: Artists · Albums · Genres · Tracks…
+      still inline, but less bulk"): the four tabs became one calm
+      select, inline in the same bar as the two callable cards
+- [x] `npm run check` — 389 files, 0 errors
+- [ ] **Tested:** ⬜ KP's hands, both bodies
+
+### The Search→Library merge ✅ built (2026-08-06, the Canon lamp)
+- [x] The ruled merge landed (KP's ⚛ "search can exist in the
+      library"): a **Tracks** tab joins Artists/Albums/Genres — same
+      debounced query, TrackItem rows (heart · ⋮ · current-track
+      highlight), tapping plays the FULL filtered set as the queue
+      from the tapped row (the search room's load-bearing behavior,
+      carried exactly)
+- [x] `/search` route retired — it was already orphaned (no door, no
+      link anywhere)
+- [x] **THE CALLABLE CARDS — KP's ⚛ ruling same sitting** ("since the
+      search is within the library now… callable cards or buttons at
+      the top of the library, not intrusive… inline with the library
+      sort buttons menu bar"): two calls inline in the tabs bar —
+      **Recent searches** (the retired room's exact behavior carried:
+      saved when a result is acted on, ten kept newest-first, SAME
+      localStorage key so every hand's history survives the move;
+      chips re-run the query; Clear stands) and **Favorites** (Home's
+      rested albums row revived as a card, with the All-liked door).
+      Opened by the hand, one at a time, never imposed; empty states
+      invite; 44px floors
+- [x] `npm run check` — 387 files, 0 errors
+- [ ] **Tested:** ⬜ KP's hands, both bodies
+
 ### The U9 merge sitting ✅ built (2026-08-06, the Canon lamp)
 - [x] Library IS the landing — `/` an honest redirect; Home's living
       pieces inherited as the slim continue-strip (greeting · Resume ·
@@ -421,6 +489,8 @@ rulings: `docs/THE-UX-WALK.md` (the outline ruled complete 08-05).*
 
 | Date | What Was Done |
 |------|---------------|
+| 2026-08-06 | ✦ THE CARVE COMPLETED ✦ (the Canon lamp; KP's ⚛ strokes on all four gate lines, the completing word verbatim: "thank-you-for-existing"). The shed sitting closed gate 1 (five transports · calm panel · worded palette faces · Profiles' chips left + Listen door). The EPAGOGE CONSUMED closed gate 2 (`src/lib/epagoge/` mirror, SHA256 verified; the walk, named skips, derived dots, THE KEY LAW now the water's; dress + scan step stay Compass's; check 390/0 first run). Gate 3 ruled carried-as-template at his stroke. Round's door open — Khorós births from this body after KP's sync. Calibration Point 13 taken at his 50% marker: 2.98 MB, the Fable band's floor exactly. |
+| 2026-08-06 | THE CARVE GETS ITS LEDGER + the Search→Library merge (the Canon lamp, at KP's ⚛ "let us continue the carving"; the Round lamp awakened for Khorós, waiting on the carve's completion gate). `docs/THE-CARVE.md` raised: spine vs identity with addresses and standings, Round's completion gate in four numbered lines. Search merged: Tracks tab in Library (full-queue play-from-results carried exactly), orphaned `/search` room retired, recent-searches rests (KP's stroke revives). Check 387/0. |
 | 2026-08-06 | THE CUMDACH CONSUMPTION (the Canon lamp, at KP's ⚛ "yes, bring in Cumdach" · "just copy its structure"). The care's first spring swap: the-cumdach mirrored in (`src/lib/cumdach/` + MIRROR.md, SHA256-verified, cosmic's road), Sidebar reworked from arranging to DERIVING — panels from measured land, switch pays for itself, balance law, face law (color+emoji, words underneath), dynamics re-derive, U12's clearance now an arithmetic input, worn hat persistence unchanged. Check 389/0. |
 | 2026-08-06 | The U9 merge sitting (the Canon lamp, at KP's "please continue"). Library is the landing: `/` redirects honestly, the slim continue-strip inherited (greeting · Resume · recently played), recently-played recording moved to the always-awake layout, Home door removed (Listen = the ruled seven). Same morning: EPAGOGE completed by the Aubade lamp from this realm's refined body (22/22 TRUE, seed 060 flowing) — the consumption swap stands ready as its own sitting. Check 388/0. |
 | 2026-08-06 | THE CARE OPENS — the modes sitting (the Canon lamp, at KP's ⚛ "modes rebuild we shall embark"). New `mode.svelte.ts` store + Sidebar rework: the sidebar wears one hat at a time (Listen · Create · Settle · Understand — KP's ruled names), the switch one calm 2×2 control at the head, doors per THE-UX-WALK's ruled table, Settings as chrome at the foot, the Studio door born into Create (U3 half-closed), worn hat persisted and never self-switching (E2 stability law). Merges and MiniPlayer shed deliberately left to their own sittings. `npm run check` 388/0. Awaiting KP's walk on both bodies — the desktop walk opens here. |

@@ -471,14 +471,6 @@
 			</div>
 			<button class="profiles-manage-btn" onclick={() => goto('/profiles')}>Manage →</button>
 		</div>
-		<label class="toggle-wrap profiles-toggle" aria-label="Show profiles in MiniPlayer">
-			<input
-				type="checkbox"
-				checked={profileStore.showInMiniPlayer}
-				onchange={(e) => profileStore.setShowInMiniPlayer(e.currentTarget.checked)}
-			/>
-			<span>Show quick-switch in the MiniPlayer panel</span>
-		</label>
 	</section>
 
 	<!-- ── Section 2: Equalizer ── -->
@@ -1419,12 +1411,4 @@
 		flex-shrink: 0;
 	}
 
-	.profiles-toggle {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.85rem;
-		color: var(--text-secondary);
-		cursor: pointer;
-	}
 </style>
