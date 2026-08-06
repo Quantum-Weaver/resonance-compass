@@ -2,7 +2,7 @@
   "folder_name": "android-extras",
   "folder_path": "src-tauri/android-extras",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T19:11:43.566706 | in sovereign time",
+  "scan_timestamp": "2026-08-05T21:03:12.383388 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/android-extras/MediaPermissionPlugin.kt",

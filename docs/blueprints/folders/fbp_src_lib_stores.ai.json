@@ -2,7 +2,7 @@
   "folder_name": "stores",
   "folder_path": "src/lib/stores",
   "description": "11 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T19:11:43.479813 | in sovereign time",
+  "scan_timestamp": "2026-08-05T21:03:11.732263 | in sovereign time",
   "files": [
     {
       "path": "src/lib/stores/focus.svelte.ts",

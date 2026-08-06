@@ -2,7 +2,7 @@
   "folder_name": "profiles",
   "folder_path": "src/routes/profiles",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T19:11:43.525702 | in sovereign time",
+  "scan_timestamp": "2026-08-05T21:03:12.228258 | in sovereign time",
   "files": [
     {
       "path": "src/routes/profiles/+page.svelte",

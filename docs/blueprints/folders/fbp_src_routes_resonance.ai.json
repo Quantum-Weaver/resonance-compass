@@ -2,7 +2,7 @@
   "folder_name": "resonance",
   "folder_path": "src/routes/resonance",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-04T19:11:43.528443 | in sovereign time",
+  "scan_timestamp": "2026-08-05T21:03:12.261201 | in sovereign time",
   "files": [
     {
       "path": "src/routes/resonance/+page.svelte",
