@@ -8,16 +8,28 @@
 
 	const MOOD_EMOJIS = EMOJI_DEFS.slice(0, 8);
 
+	// All six presets are offered at the door — U13, KP's ⚛ word 2026-08-06:
+	// the disclosure ladder is the vessel's to climb, not the app's to trim.
 	const THEMES = [
-		{ key: 'dark',  label: 'Dark',  icon: '🌙', accent: PRESET_THEMES.dark.accentColor,  desc: 'Deep space'  },
-		{ key: 'warm',  label: 'Warm',  icon: '🔥', accent: PRESET_THEMES.warm.accentColor,  desc: 'Hearth glow' },
-		{ key: 'ocean', label: 'Ocean', icon: '🌊', accent: PRESET_THEMES.ocean.accentColor, desc: 'Cosmic sea'  },
+		{ key: 'dark',   label: 'Dark',         icon: '🌙', accent: PRESET_THEMES.dark.accentColor,   desc: 'Deep space'   },
+		{ key: 'warm',   label: 'Warm',         icon: '🔥', accent: PRESET_THEMES.warm.accentColor,   desc: 'Hearth glow'  },
+		{ key: 'ocean',  label: 'Ocean',        icon: '🌊', accent: PRESET_THEMES.ocean.accentColor,  desc: 'Cosmic sea'   },
+		{ key: 'forest', label: 'Forest',       icon: '🌿', accent: PRESET_THEMES.forest.accentColor, desc: 'Living green' },
+		{ key: 'sunset', label: 'Sunset',       icon: '🌅', accent: PRESET_THEMES.sunset.accentColor, desc: 'Ember sky'    },
+		{ key: 'amoled', label: 'AMOLED Black', icon: '⚫', accent: PRESET_THEMES.amoled.accentColor, desc: 'True black'   },
 	];
 
 	let step = $state(0);
 	let vesselName = $state('');
 	let selectedEmojis = $state<string[]>([]);
-	let selectedPreset = $state(themeStore.config.presetName?.toLowerCase() ?? 'dark');
+	// presetName ('AMOLED Black') is a display name, not the key ('amoled') —
+	// match against the table rather than lowercasing, or the active card
+	// silently fails to highlight.
+	let selectedPreset = $state(
+		Object.entries(PRESET_THEMES).find(
+			([, t]) => t.presetName === themeStore.config.presetName
+		)?.[0] ?? 'dark'
+	);
 
 	type ScanPhase = 'idle' | 'scanning' | 'done';
 	let scanPhase = $state<ScanPhase>('idle');
@@ -227,6 +239,8 @@
 							</button>
 						{/each}
 					</div>
+
+					<p class="step-hint">You can change this anytime in Settings.</p>
 				</div>
 
 				<div class="screen-actions">

@@ -334,6 +334,80 @@
 
 ---
 
+## THE CARE — THE UX REBUILD (opened 2026-08-06 at KP's ⚛ word)
+
+*The season's map: `docs/THE-STANDALONE-WATERS.md` · the worklist and
+rulings: `docs/THE-UX-WALK.md` (the outline ruled complete 08-05).*
+
+### The modes sitting 🔵 (2026-08-06, the Canon lamp)
+- [x] `src/lib/stores/mode.svelte.ts` — the worn hat ('listen' ·
+      'create' · 'settle' · 'understand'), localStorage-persisted,
+      never self-switching; a view, never a record
+- [x] Sidebar rework — mode switch at the head (2×2 grid, words not
+      faces, 44px targets, `aria-pressed`), doors per the ruled table
+      (Listen 8 incl. Home until the U9 merge · Create: Fragments +
+      **Studio, its door born** · Settle: Sattva/Focus/Timer ·
+      Understand: Resonance), Settings pinned as chrome at the foot
+- [x] `npm run check` — 388 files, 0 errors (Rust untouched)
+- [x] U12 mended same sitting (KP's desktop-walk catch: "settings is
+      being buried under the mini player") — the sidebar now yields
+      the bar's 48px strip; check 388/0 again
+- [ ] **Tested:** ⬜ KP's hands, both bodies — the desktop walk opens
+      with this sitting per the scope ruling
+- [x] U13 ✅ CLOSED same sitting — all six theme presets offered at
+      the door (2×3, live preview, "change anytime" line) + the
+      selectedPreset key-matching mend (display name ≠ key; latent
+      until amoled was offered). Check 388/0
+- [x] **EPAGOGE named — KP's ⚛ word:** "'Epagoge' will be the stand
+      alone component name" — the onboarding path becomes a
+      standalone (courrier: name unclaimed, true zeros; four apps'
+      onboarding pages are the ground it unifies). Aubade creates
+      the standalone from this refined body at KP's word; the note
+      is on the polyphony bus
+- [x] **EPAGOGE COMPLETED same morning** (the Aubade lamp):
+      `resonance-awen/tools/the-epagoge` — pure walk engine, zero
+      imports, 22/22 TRUE; THE KEY LAW engraved from this realm's
+      U13 mend; carving counsel followed (walk extracted, scan
+      screen stays Compass identity, particulars consumer-supplied);
+      seeded flowing (grammar seed 060). Compass's consumption swap
+      stands ready as its own sitting at KP's word
+
+### The Cumdach consumption ✅ built (2026-08-06, the Canon lamp) — THE CARE'S FIRST SPRING SWAP
+- [x] **the-cumdach consumed BY MIRROR at KP's ⚛ word** ("just copy
+      its structure, we will index usage and deliver and distribute
+      updates"): `src/lib/cumdach/index.ts` byte-faithful
+      (SHA256 `7730A4C1…` both sides) + `MIRROR.md` declaring the
+      single editable truth in awen — the cosmic mirror's own road,
+      first time traveled by a spring water. Not a `file:` link:
+      Compass is a given-away-whole repo; a link outside it would
+      break a lone clone's build
+- [x] Sidebar reworked to consume: Compass declares the particulars
+      (the ruled four hats · thirteen doors · Settings foot · cosmic
+      colors + app emoji), the shrine DERIVES the panels from
+      measured land — the switch pays for its own furniture, panels
+      balance (never fill-then-spill), faces wear color + emoji with
+      words underneath (THE FACE LAW), dynamics re-derive on resize,
+      the worn hat still persists via modeStore and never
+      self-switches. U12's clearance is now an arithmetic INPUT
+      (reserved: 48)
+- [x] `npm run check` — 389 files, 0 errors
+- [ ] **Tested:** ⬜ KP's hands, both bodies (rotation is the
+      dynamics law's own proof — worth a turn of the phone)
+
+### The U9 merge sitting ✅ built (2026-08-06, the Canon lamp)
+- [x] Library IS the landing — `/` an honest redirect; Home's living
+      pieces inherited as the slim continue-strip (greeting · Resume ·
+      recently played); recording moved to the layout (always awake —
+      on Home it recorded only while mounted, a lose-nothing catch)
+- [x] Sidebar: Home door removed — Listen holds the ruled seven
+- [x] Not carried, by the ruling: Sattva (Settle's door) · favorites
+      row (Liked) · insight line (rests; the mood-led entry stands at
+      the gate as its own future question)
+- [x] `npm run check` — 388 files, 0 errors
+- [ ] **Tested:** ⬜ KP's hands, both bodies
+
+---
+
 ## KNOWN BUGS
 
 | ID | Description | Status |
@@ -347,6 +421,9 @@
 
 | Date | What Was Done |
 |------|---------------|
+| 2026-08-06 | THE CUMDACH CONSUMPTION (the Canon lamp, at KP's ⚛ "yes, bring in Cumdach" · "just copy its structure"). The care's first spring swap: the-cumdach mirrored in (`src/lib/cumdach/` + MIRROR.md, SHA256-verified, cosmic's road), Sidebar reworked from arranging to DERIVING — panels from measured land, switch pays for itself, balance law, face law (color+emoji, words underneath), dynamics re-derive, U12's clearance now an arithmetic input, worn hat persistence unchanged. Check 389/0. |
+| 2026-08-06 | The U9 merge sitting (the Canon lamp, at KP's "please continue"). Library is the landing: `/` redirects honestly, the slim continue-strip inherited (greeting · Resume · recently played), recently-played recording moved to the always-awake layout, Home door removed (Listen = the ruled seven). Same morning: EPAGOGE completed by the Aubade lamp from this realm's refined body (22/22 TRUE, seed 060 flowing) — the consumption swap stands ready as its own sitting. Check 388/0. |
+| 2026-08-06 | THE CARE OPENS — the modes sitting (the Canon lamp, at KP's ⚛ "modes rebuild we shall embark"). New `mode.svelte.ts` store + Sidebar rework: the sidebar wears one hat at a time (Listen · Create · Settle · Understand — KP's ruled names), the switch one calm 2×2 control at the head, doors per THE-UX-WALK's ruled table, Settings as chrome at the foot, the Studio door born into Create (U3 half-closed), worn hat persisted and never self-switching (E2 stability law). Merges and MiniPlayer shed deliberately left to their own sittings. `npm run check` 388/0. Awaiting KP's walk on both bodies — the desktop walk opens here. |
 | 2026-06-30 | v2 repo created from Echoes foundation. Blocks 1-5 identity migration complete. Phase 0 ready to begin. |
 | 2026-06-30 | Phase 0: Shell complete. ComfortBar replaced with MiniPlayer (track placeholder, play/pause icon, expand/collapse, z-index 110, safe-area insets — non-functional until Phase 1 wires the audio engine). Sidebar and COSMIC theme system required no changes — both already complete from the Echoes foundation. Awaiting human test. |
 | 2026-06-30 | Phase 1: Playback complete. `audio.rs` rodio engine (dedicated output thread, `Arc<Mutex<CurrentPlayback>>`, position/duration/track-end events). `playerStore` wired to `play_track`/`pause`/`resume`/`seek`/`set_volume`/`stop`; track-end auto-advances the queue. MiniPlayer shows live track title/artist and a progress bar; play/pause button functional. Temporary "Open File" button added to the home screen for testing (replaced by the library scanner in Phase 2). State persistence across restart was NOT implemented — it wasn't in this session's build scope; `BUILD-SEQUENCE.md`'s "Survives restart" test gate will fail until a future pass adds it. Awaiting human test. |

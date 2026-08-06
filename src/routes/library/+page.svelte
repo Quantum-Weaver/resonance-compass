@@ -1,6 +1,51 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { libraryStore } from '$lib/stores/library.svelte';
+	import { playerStore } from '$lib/stores/player.svelte';
+	import AlbumCard from '$lib/components/AlbumCard.svelte';
+	import type { Album } from '$lib/types/types';
+
+	// The continue-strip — Home's living pieces, inherited at the U9 merge
+	// (KP's ⚛ ruling: Library is the landing; greeting · resume · recently
+	// played carry over, slim). Recording of recent albums lives in the
+	// layout, which is always awake; this page only reads.
+	const VESSEL_KEY = 'resonance-compass-vessel-name';
+	const RECENT_KEY = 'recent_albums';
+
+	let vesselName = $state('');
+	let recentAlbumIds = $state<string[]>([]);
+
+	onMount(() => {
+		vesselName = localStorage.getItem(VESSEL_KEY) ?? '';
+		try {
+			const stored = localStorage.getItem(RECENT_KEY);
+			if (stored) recentAlbumIds = JSON.parse(stored);
+		} catch {}
+	});
+
+	const greeting = $derived(() => {
+		const h = new Date().getHours();
+		const base =
+			h >= 5 && h < 12 ? 'Good morning'
+			: h >= 12 && h < 17 ? 'Good afternoon'
+			: 'Good evening';
+		return vesselName ? `${base}, ${vesselName}` : base;
+	});
+
+	const recentAlbums = $derived(
+		recentAlbumIds
+			.map((id) => libraryStore.albums.find((a) => a.id === id))
+			.filter((a): a is Album => a !== undefined)
+			.slice(0, 8)
+	);
+
+	function resume() {
+		if (playerStore.currentTrack) {
+			playerStore.play();
+			goto('/nowplaying');
+		}
+	}
 
 	let searchQuery = $state('');
 	let debouncedQuery = $state('');
@@ -79,6 +124,23 @@
 
 	{#if libraryStore.scanError}
 		<p class="scan-error">{libraryStore.scanError}</p>
+	{/if}
+
+	<div class="continue-strip">
+		<p class="strip-greeting">{greeting()}</p>
+		{#if playerStore.currentTrack}
+			<button class="resume-btn" onclick={resume}>▶ Resume</button>
+		{/if}
+	</div>
+
+	{#if recentAlbums.length > 0}
+		<div class="recent-row">
+			{#each recentAlbums as album (album.id)}
+				<div class="recent-card">
+					<AlbumCard {album} size="small" onClick={() => openAlbum(album.id)} />
+				</div>
+			{/each}
+		</div>
 	{/if}
 
 	{#if tracks.length === 0 && !libraryStore.isScanning}
@@ -211,6 +273,51 @@
 		color: var(--heart, #e74c3c);
 		font-size: 0.85rem;
 		margin: 0 0 0.75rem;
+	}
+
+	.continue-strip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.strip-greeting {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	.resume-btn {
+		padding: 0.5rem 1.1rem;
+		border-radius: 20px;
+		border: none;
+		background: var(--accent);
+		color: #fff;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		flex-shrink: 0;
+	}
+
+	.resume-btn:hover {
+		filter: brightness(1.1);
+	}
+
+	.recent-row {
+		display: flex;
+		gap: 0.6rem;
+		overflow-x: auto;
+		padding-bottom: 0.5rem;
+		margin-bottom: 0.75rem;
+		scrollbar-width: thin;
+	}
+
+	.recent-card {
+		flex-shrink: 0;
+		width: 110px;
 	}
 
 	.empty-state {

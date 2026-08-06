@@ -1,30 +1,121 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import { uiStore } from '$lib/stores/ui.svelte';
 	import Icons from '$lib/components/icons/Icons.svelte';
 	import type { IconName } from '$lib/components/icons/Icons.svelte';
+	import { derive, rederive, wear, type Menu, type Shrine, type Door } from '$lib/cumdach';
+	import { QUANTUM_COLORS } from '$lib/cosmic';
+
+	import { modeStore, type ModeName } from '$lib/stores/mode.svelte';
 
 	let open = $state(false);
 	let isMobile = $state(true);
 
-	// Visualizer, Equalizer, Profiles, History, and Fragments live in
-	// the MiniPlayer's expanded nav row instead — keeps this list short enough
-	// to fit without scrolling on mobile screens. Search is reachable from the
-	// Library page. (Sattva was promoted back into this list 2026-07-08 — grouped
-	// with Resonance & Focus as the self-understanding / sensory tools.)
-	const navItems: { href: string; icon: IconName; label: string }[] = [
-		{ href: '/', icon: 'home', label: 'Home' },
-		{ href: '/library', icon: 'library', label: 'Library' },
-		{ href: '/liked', icon: 'heart', label: 'Liked' },
-		{ href: '/playlists', icon: 'playlist', label: 'Playlists' },
-		{ href: '/timer', icon: 'timer', label: 'Timer' },
-		{ href: '/resonance', icon: 'resonance', label: 'Resonance' },
-		{ href: '/focus', icon: 'focus', label: 'Focus' },
-		{ href: '/sattva', icon: 'sattva', label: 'Sattva' },
-		{ href: '/settings', icon: 'settings', label: 'Settings' },
-	];
+	// THE SHRINE — the sidebar consumes the-cumdach (the spring's navigation
+	// shell; this very menu is its proving fixture, and Compass its first
+	// consumer). Compass declares the particulars — hats, doors, faces, the
+	// foot — and the panels are DERIVED from the screen's own measure, never
+	// arranged by opinion. The hats are KP's ruled four; Library IS home
+	// (the U9 merge). The worn hat persists through modeStore and never
+	// switches itself.
+	type CompassDoor = Door & { href: string; icon: IconName };
+
+	const door = (id: string, href: string, icon: IconName, label: string): CompassDoor => ({
+		id,
+		href,
+		icon,
+		label,
+	});
+
+	const MENU: Menu = {
+		hats: [
+			{
+				id: 'listen',
+				label: 'Listen',
+				doors: [
+					door('library', '/library', 'library', 'Library'),
+					door('nowplaying', '/nowplaying', 'compass', 'Now Playing'),
+					door('queue', '/queue', 'skip-forward', 'Queue'),
+					door('playlists', '/playlists', 'playlist', 'Playlists'),
+					door('liked', '/liked', 'heart', 'Liked'),
+					door('history', '/history', 'history', 'History'),
+					door('visualizer', '/visualizer', 'visualizer', 'Visualizer'),
+				],
+			},
+			{
+				id: 'create',
+				label: 'Create',
+				doors: [
+					door('fragments', '/fragments', 'fragment', 'Fragments'),
+					door('studio', '/fragments/studio', 'equalizer', 'Studio'),
+				],
+			},
+			{
+				id: 'settle',
+				label: 'Settle',
+				doors: [
+					door('sattva', '/sattva', 'sattva', 'Sattva'),
+					door('focus', '/focus', 'focus', 'Focus'),
+					door('timer', '/timer', 'timer', 'Timer'),
+				],
+			},
+			{
+				id: 'understand',
+				label: 'Understand',
+				doors: [door('resonance', '/resonance', 'resonance', 'Resonance')],
+			},
+		],
+		foot: { door: door('settings', '/settings', 'settings', 'Settings') },
+	};
+
+	// The shrine's costs in this app's own pixels (the 44px calm floor lives
+	// inside the door cost, gap included; over-reserving errs safe), and the
+	// faces — cosmic's colors, the app's emoji; words always ride underneath.
+	const COSTS = { door: 48, head: 64, switchButton: 58, switchColumns: 2 };
+	const PALETTE = {
+		colors: [
+			QUANTUM_COLORS['cosmic.blue'], // Listen
+			QUANTUM_COLORS['hearth.gold'], // Create
+			QUANTUM_COLORS['sanctuary.green'], // Settle
+			QUANTUM_COLORS['quantum.purple'], // Understand
+		],
+		emojis: ['🎧', '🎛️', '🧘', '🌀'],
+	};
+	// The MiniPlayer bar is a declared edge, honored by arithmetic — the
+	// clearance that was once a CSS-only mend (U12) is an INPUT now.
+	const RESERVED = 48;
+
+	let land = $state({ height: 900, reserved: RESERVED });
+	let shrine = $state<Shrine>(derive(MENU, { height: 900, reserved: RESERVED }, COSTS, PALETTE));
+
+	function measure() {
+		land = { height: window.innerHeight, reserved: RESERVED };
+	}
+
+	// DYNAMICS ALWAYS RE-DERIVE — any new land re-runs the pure formula; the
+	// worn panel survives by its hat's identity.
+	$effect(() => {
+		const l = land;
+		shrine = rederive(
+			untrack(() => shrine),
+			MENU,
+			l,
+			COSTS,
+			PALETTE
+		);
+	});
+
+	function wearPanel(i: number) {
+		shrine = wear(shrine, i);
+		const hatId = shrine.panels[i]?.hatId;
+		if (hatId) modeStore.setMode(hatId as ModeName);
+	}
+
+	const wornPanel = $derived(shrine.panels[shrine.worn] ?? null);
+	const wornDoors = $derived((wornPanel?.doors ?? []) as CompassDoor[]);
+	const footDoor = MENU.foot.door as CompassDoor;
 
 	// The visualizer is a full-screen immersive experience — no hamburger, no
 	// sidebar. Its own z-index (100) sits above the sidebar panel (50) but below
@@ -43,6 +134,13 @@
 
 	onMount(() => {
 		isMobile = window.innerWidth < 768;
+		modeStore.load();
+		measure();
+		// Wake wearing the persisted hat — the vessel's choice, not the app's.
+		const i = shrine.panels.findIndex((p) => p.hatId === modeStore.current && !p.continued);
+		if (i >= 0) shrine = wear(shrine, i);
+		window.addEventListener('resize', measure);
+		return () => window.removeEventListener('resize', measure);
 	});
 
 	function navigate(href: string) {
@@ -88,8 +186,33 @@
 		<span class="sidebar__wordmark cosmic-sparkle-text">Compass</span>
 	</div>
 
+	<!-- The switch — derived, never arranged. Faces wear color + emoji (THE
+	     FACE LAW), the words always ride underneath; the worn panel holds
+	     until tapped again. At one panel, no switch is derived at all. -->
+	{#if shrine.switchShown}
+		<div
+			class="mode-switch"
+			role="group"
+			aria-label="Menu panels"
+			style="grid-template-columns: repeat({COSTS.switchColumns}, 1fr);"
+		>
+			{#each shrine.panels as panel, i (i)}
+				<button
+					class="mode-btn"
+					class:worn={i === shrine.worn}
+					style="--face: {panel.face.color}"
+					aria-pressed={i === shrine.worn}
+					onclick={() => wearPanel(i)}
+				>
+					<span class="face-emoji" aria-hidden="true">{panel.face.emoji}</span>
+					<span class="face-words">{panel.face.words}</span>
+				</button>
+			{/each}
+		</div>
+	{/if}
+
 	<ul class="sidebar__nav">
-		{#each navItems as item}
+		{#each wornDoors as item (item.id)}
 			<li>
 				<button
 					class="nav-item"
@@ -102,6 +225,18 @@
 			</li>
 		{/each}
 	</ul>
+
+	<!-- The foot — one chrome door, outside every panel, always reachable. -->
+	<div class="sidebar__foot">
+		<button
+			class="nav-item"
+			class:active={page.url.pathname === footDoor.href}
+			onclick={() => navigate(footDoor.href)}
+		>
+			<span class="nav-icon"><Icons name={footDoor.icon} size={18} /></span>
+			<span class="nav-label">{footDoor.label}</span>
+		</button>
+	</div>
 </nav>
 
 <style>
@@ -147,6 +282,10 @@
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
+		/* The MiniPlayer bar (48px, fixed, z-index 110) always paints over the
+		   sidebar (50) — the foot must clear it or Settings is buried (KP's
+		   desktop-walk catch, 2026-08-06). */
+		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
 	}
 
 	.sidebar.open {
@@ -165,12 +304,63 @@
 		letter-spacing: 0.02em;
 	}
 
+	.mode-switch {
+		display: grid;
+		gap: 0.35rem;
+		padding: 0.75rem 0.5rem 0.5rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.mode-btn {
+		min-height: 52px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.15rem;
+		padding: 0.3rem 0.4rem;
+		border-radius: 8px;
+		background: none;
+		border: 1.5px solid color-mix(in srgb, var(--face) 45%, var(--border-color));
+		color: var(--text-secondary);
+		cursor: pointer;
+		transition: background-color 0.15s ease, border-color 0.15s ease;
+	}
+
+	.mode-btn:hover {
+		background-color: color-mix(in srgb, var(--face) 10%, transparent);
+		color: var(--text);
+	}
+
+	.mode-btn.worn {
+		border-color: var(--face);
+		background-color: color-mix(in srgb, var(--face) 16%, transparent);
+		color: var(--text);
+		font-weight: 600;
+	}
+
+	.face-emoji {
+		font-size: 1.1rem;
+		line-height: 1;
+	}
+
+	.face-words {
+		font-size: 0.68rem;
+		line-height: 1.1;
+	}
+
 	.sidebar__nav {
 		list-style: none;
 		padding: 0.75rem 0.5rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+		flex: 1;
+	}
+
+	.sidebar__foot {
+		padding: 0.5rem;
+		border-top: 1px solid var(--border-color);
 	}
 
 	.nav-item {

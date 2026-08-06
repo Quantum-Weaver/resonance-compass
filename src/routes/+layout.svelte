@@ -34,6 +34,22 @@
 		}
 	});
 
+	// Recently-played recording lived on the Home page and only ran while
+	// that room was mounted; with Library as the landing (the U9 merge) it
+	// lives here, where it is always awake. The library page only reads.
+	const RECENT_KEY = 'recent_albums';
+	$effect(() => {
+		const track = playerStore.currentTrack;
+		if (!track) return;
+		const albumId = `${track.album.trim()}|||${track.artist.trim()}`;
+		try {
+			const stored = localStorage.getItem(RECENT_KEY);
+			const prev: string[] = stored ? JSON.parse(stored) : [];
+			const updated = [albumId, ...prev.filter((id) => id !== albumId)].slice(0, 20);
+			localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
+		} catch {}
+	});
+
 	const config = $derived(themeStore.config);
 	const colors = $derived(getThemeColors(config));
 
