@@ -69,3 +69,22 @@ if (!manifest2.includes('RECORD_AUDIO')) {
 } else {
 	console.log('[sync-android-extras] RECORD_AUDIO already present');
 }
+
+// 4. POST_NOTIFICATIONS (U1 — the MediaSession bridge's lockscreen controls
+// ride a MediaStyle notification; API 33+ gates all notifications behind this)
+const manifest3 = readFileSync(manifestPath, 'utf8');
+if (!manifest3.includes('POST_NOTIFICATIONS')) {
+	const anchor = '<uses-permission android:name="android.permission.RECORD_AUDIO" />';
+	if (!manifest3.includes(anchor)) {
+		console.error('[sync-android-extras] RECORD_AUDIO anchor not found — add POST_NOTIFICATIONS manually');
+		process.exit(1);
+	}
+	const notifBlock =
+		anchor +
+		'\n    <!-- U1 MediaSession bridge — lockscreen media controls (API 33+) -->' +
+		'\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />';
+	writeFileSync(manifestPath, manifest3.replace(anchor, notifBlock));
+	console.log('[sync-android-extras] POST_NOTIFICATIONS inserted');
+} else {
+	console.log('[sync-android-extras] POST_NOTIFICATIONS already present');
+}

@@ -93,6 +93,7 @@ function ensureListeners() {
 	listen<number>('audio://duration', (event) => {
 		duration = event.payload;
 		if (currentTrack) currentTrack = { ...currentTrack, duration: event.payload };
+		mediaMetadataSync(); // the lockscreen seekbar learns the true length
 	});
 
 	listen('audio://track-end', () => {
@@ -110,7 +111,49 @@ function ensureListeners() {
 		if (isPlaying) pause();
 	}).catch(() => {});
 
+	// Android: transport commands from the system — Bluetooth/AVRCP buttons,
+	// wired headset clicks, the lockscreen's media controls — relayed by
+	// MediaSessionPlugin (U1). This store stays the only authority; the plugin
+	// never touches the audio engine itself. Desktop rejection ignored, same
+	// as above.
+	addPluginListener('media-session', 'mediaCommand', (e: { action: string; positionMs?: number }) => {
+		switch (e.action) {
+			case 'play': play(); break;
+			case 'pause': pause(); break;
+			case 'next': next(); break;
+			case 'previous': previous(); break;
+			case 'seek': if (typeof e.positionMs === 'number') seek(e.positionMs / 1000); break;
+			case 'stop': stopPlayback(); break;
+		}
+	}).catch(() => {});
+
 	window.addEventListener('beforeunload', persistState);
+}
+
+// ── Android MediaSession bridge (U1) ───────────────────────────────────────
+// The Rust commands no-op Ok on desktop, so every call is unconditional and
+// every failure swallowed — the bridge must never be able to break playback.
+
+let notifPermissionAsked = false;
+
+function mediaMetadataSync() {
+	if (!currentTrack) return;
+	invoke('media_update_metadata', {
+		title: currentTrack.title,
+		artist: currentTrack.artist,
+		album: currentTrack.album,
+		durationMs: Math.round((currentTrack.duration || 0) * 1000),
+		artBase64: currentTrack.coverArt ?? null,
+	}).catch(() => {});
+}
+
+// Sent on transitions only (load/play/pause/seek) — the system extrapolates
+// position from state + speed, so no per-tick chatter crosses the bridge.
+function mediaPlaybackSync() {
+	invoke('media_update_playback', {
+		isPlaying,
+		positionMs: Math.round(position * 1000),
+	}).catch(() => {});
 }
 
 interface PersistedPlayerState {
@@ -175,6 +218,14 @@ async function loadTrackObject(track: Track, resumeAt = 0, record = true) {
 		if (resumeAt > 0) {
 			await invoke('seek', { positionSecs: resumeAt });
 		}
+		if (!notifPermissionAsked) {
+			notifPermissionAsked = true;
+			// First playback is the honest moment to ask: the lockscreen
+			// controls this permission unlocks serve exactly this act.
+			invoke('request_notification_permission').catch(() => {});
+		}
+		mediaMetadataSync();
+		mediaPlaybackSync();
 	} catch (e) {
 		isPlaying = false;
 		playbackError = e instanceof Error ? e.message : String(e);
@@ -193,6 +244,7 @@ async function play() {
 		await invoke('resume');
 		isPlaying = true;
 		playbackError = null;
+		mediaPlaybackSync();
 	} catch (e) {
 		playbackError = e instanceof Error ? e.message : String(e);
 		console.error('[playerStore] resume failed:', e);
@@ -204,6 +256,7 @@ async function pause() {
 		await invoke('pause');
 		isPlaying = false;
 		persistState();
+		mediaPlaybackSync();
 	} catch (e) {
 		console.error('[playerStore] pause failed:', e);
 	}
@@ -227,6 +280,7 @@ async function stopPlayback() {
 	isPlaying = false;
 	position = 0;
 	trackLoadedInBackend = false;
+	invoke('media_release').catch(() => {});
 }
 
 // Logs a mood event for the track being skipped away from. Called before the
@@ -343,6 +397,7 @@ async function seek(seconds: number) {
 	} catch (e) {
 		console.error('[playerStore] seek failed:', e);
 	}
+	mediaPlaybackSync();
 }
 
 function setQueue(tracks: Track[], startIndex = 0) {

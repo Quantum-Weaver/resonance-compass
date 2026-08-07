@@ -15,6 +15,7 @@ mod audio;
 mod equalizer;
 mod fragment_engine;
 mod media_permission;
+mod media_session;
 mod mic_spike;
 mod visualizer;
 
@@ -676,7 +677,9 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init());
 
     #[cfg(target_os = "android")]
-    let builder = builder.plugin(media_permission::init());
+    let builder = builder
+        .plugin(media_permission::init())
+        .plugin(media_session::init());
 
     builder
         .invoke_handler(tauri::generate_handler![
@@ -702,6 +705,10 @@ pub fn run() {
             equalizer::set_eq_preamp,
             equalizer::toggle_eq,
             equalizer::set_eq_preset,
+            media_session::media_update_metadata,
+            media_session::media_update_playback,
+            media_session::media_release,
+            media_session::request_notification_permission,
         ])
         .run(tauri::generate_context!())
         .expect("error while running Resonance Compass");

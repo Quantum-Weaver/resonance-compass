@@ -19,15 +19,18 @@ If the CLI writes to `src-tauri/icons/android/` instead of `gen/`, copy that tre
 `gen/android/app/src/main/res/` (including `mipmap-anydpi-v26/` and
 `values/ic_launcher_background.xml`).
 
-### 2. Storage permissions + Kotlin plugin — AUTOMATED
+### 2. Manifest permissions + Kotlin plugins — AUTOMATED
 
 `scripts/sync-android-extras.mjs` runs from `beforeBuildCommand`/`beforeDevCommand`
 (also manually via `npm run sync-android`) and re-applies on every build:
 
-- the manifest permissions (`READ_MEDIA_AUDIO`, `READ_EXTERNAL_STORAGE` maxSdk 32) —
-  inserted idempotently after the INTERNET permission
+- the manifest permissions, each inserted idempotently: `READ_MEDIA_AUDIO`,
+  `READ_EXTERNAL_STORAGE` (maxSdk 32), `RECORD_AUDIO` (v3 recording), and
+  `POST_NOTIFICATIONS` (U1 — the lockscreen media controls' gate on API 33+)
 - `src-tauri/android-extras/*.kt` → `gen/.../java/com/audhd/resonance_compass/plugin/`
-  (currently `MediaPermissionPlugin.kt`, the runtime permission bridge)
+  (`MediaPermissionPlugin.kt`, the runtime permission bridge, and
+  `MediaSessionPlugin.kt`, the U1 MediaSession bridge — Bluetooth/headset/
+  lockscreen transport, platform APIs only, no androidx dependency)
 
 No manual manifest editing needed anymore. Without the permissions, the Settings
 toggle never appears and scanning finds nothing (see below).
