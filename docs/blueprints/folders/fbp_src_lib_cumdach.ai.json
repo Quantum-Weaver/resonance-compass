@@ -1,0 +1,72 @@
+{
+  "folder_name": "cumdach",
+  "folder_path": "src/lib/cumdach",
+  "description": "2 files, 0 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.823254 | in sovereign time",
+  "files": [
+    {
+      "path": "src/lib/cumdach/index.ts",
+      "description": "the-cumdach"
+    },
+    {
+      "path": "src/lib/cumdach/MIRROR.md",
+      "description": "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [],
+  "code_analysis": {
+    "index.ts": {
+      "language": "typescript",
+      "lines": 224,
+      "exported_functions": [
+        "balancedSizes",
+        "derive",
+        "wear",
+        "rederive"
+      ],
+      "exported_consts": [],
+      "interfaces": [
+        "Door",
+        "Hat",
+        "Menu",
+        "Land",
+        "Costs",
+        "Palette",
+        "Face",
+        "Panel",
+        "Shrine"
+      ],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
+    "MIRROR.md": {
+      "language": "markdown",
+      "lines": 19,
+      "words": 134,
+      "heading_count": 1,
+      "headings": [
+        "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    }
+  },
+  "maintaining_agent": "FolderAgent",
+  "folders_not_walked": [],
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

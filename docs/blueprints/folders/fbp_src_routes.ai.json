@@ -1,12 +1,12 @@
 {
   "folder_name": "routes",
   "folder_path": "src/routes",
-  "description": "3 files, 17 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:11.952950 | in sovereign time",
+  "description": "3 files, 16 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.858728 | in sovereign time",
   "files": [
     {
       "path": "src/routes/+layout.svelte",
-      "description": "surface, 2,989 bytes"
+      "description": "surface, 3,691 bytes"
     },
     {
       "path": "src/routes/+layout.ts",
@@ -14,7 +14,7 @@
     },
     {
       "path": "src/routes/+page.svelte",
-      "description": "surface, 8,958 bytes"
+      "description": "surface, 398 bytes"
     }
   ],
   "file_count": 3,
@@ -32,7 +32,6 @@
     "src/routes/queue",
     "src/routes/resonance",
     "src/routes/sattva",
-    "src/routes/search",
     "src/routes/settings",
     "src/routes/timer",
     "src/routes/visualizer"
@@ -40,7 +39,7 @@
   "code_analysis": {
     "+layout.svelte": {
       "language": "svelte",
-      "lines": 102,
+      "lines": 118,
       "uses_runes": [
         "$derived",
         "$effect",
@@ -65,14 +64,10 @@
     },
     "+page.svelte": {
       "language": "svelte",
-      "lines": 355,
-      "uses_runes": [
-        "$derived",
-        "$effect",
-        "$state"
-      ],
+      "lines": 12,
+      "uses_runes": [],
       "fetch_calls": [],
-      "has_style_block": true
+      "has_style_block": false
     }
   },
   "maintaining_agent": "FolderAgent",

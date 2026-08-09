@@ -1,0 +1,26 @@
+{
+  "object_name": "static",
+  "object_path": "static",
+  "description": "0 files, 0 subfolders",
+  "integration_timestamp": "2026-08-08T17:55:03.962072 | in sovereign time",
+  "folders": [
+    {
+      "blueprint": "docs/blueprints/folders/fbp_static.ai.json",
+      "folder_path": "static",
+      "description": "16 files, 1 subfolders",
+      "file_count": 16,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "docs/blueprints/folders/fbp_static_chimes.ai.json",
+      "folder_path": "static/chimes",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 2,
+  "total_files": 18,
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

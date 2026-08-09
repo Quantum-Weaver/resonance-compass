@@ -16,7 +16,7 @@ mod equalizer;
 mod fragment_engine;
 mod media_permission;
 mod media_session;
-mod mic_spike;
+mod recorder;
 mod visualizer;
 
 // ── TrackInfo (returned by scan_paths; field names mirror the Track TS interface) ──
@@ -253,142 +253,32 @@ async fn request_audio_permission(app_handle: tauri::AppHandle) -> Result<bool, 
 }
 
 // ── fetch_cover_art (MusicBrainz + Cover Art Archive, opt-in, user-initiated) ─
+// The body is the spring's (the-art-finder, consumed 2026-08-08) — the tauri
+// command tail stays app-side, wearing the app's own compliant User-Agent
+// (version self-healing from Cargo). The water's walk-the-five-editions
+// growth rides in: editions the Cover Art Archive lacks art for no longer
+// end the search (the origin only ever tried the first of the five).
+
+fn compass_user_agent() -> String {
+    format!("ResonanceCompass/{} ( https://audhdities.com )", env!("CARGO_PKG_VERSION"))
+}
 
 #[tauri::command]
 async fn fetch_cover_art(artist: String, album: String) -> Result<Option<String>, String> {
-    // Ok(None) = no matching release / no front image (honest "not found").
-    // Err(..) = transient failure (network, timeout, MusicBrainz 503 rate-limit)
-    // so the UI can retry rather than falsely report "not found". The compliant
-    // User-Agent (app name/version + contact URL) is REQUIRED by MusicBrainz —
-    // a vague one gets throttled, a prime cause of the same-album flakiness.
-    let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(15))
-        .user_agent("ResonanceCompass/2.1.3 ( https://audhdities.com )")
-        .build()
-        .map_err(|e| format!("HTTP client error: {e}"))?;
-
-    // Step 1: MusicBrainz — find the release MBID
-    let query = format!("artist:{} release:{}", artist, album);
-    let mb_resp = client
-        .get("https://musicbrainz.org/ws/2/release/")
-        .query(&[("query", query.as_str()), ("fmt", "json"), ("limit", "5")])
-        .send()
-        .await
-        .map_err(|e| format!("Could not reach MusicBrainz: {e}"))?;
-
-    if !mb_resp.status().is_success() {
-        return Err(format!("MusicBrainz returned {}", mb_resp.status()));
-    }
-
-    let mb_json = mb_resp
-        .json::<serde_json::Value>()
-        .await
-        .map_err(|e| format!("Could not read MusicBrainz response: {e}"))?;
-
-    let mbid = match mb_json
-        .get("releases")
-        .and_then(|r| r.as_array())
-        .and_then(|arr| arr.first())
-        .and_then(|rel| rel.get("id"))
-        .and_then(|id| id.as_str())
-    {
-        Some(id) => id.to_string(),
-        None => return Ok(None),
-    };
-
-    // Step 2: Cover Art Archive — download front image as base64 data URI
-    let caa_url = format!("https://coverartarchive.org/release/{}/front", mbid);
-    let caa_resp = client
-        .get(&caa_url)
-        .send()
-        .await
-        .map_err(|e| format!("Could not reach Cover Art Archive: {e}"))?;
-
-    if caa_resp.status() == reqwest::StatusCode::NOT_FOUND {
-        return Ok(None);
-    }
-    if !caa_resp.status().is_success() {
-        return Err(format!("Cover Art Archive returned {}", caa_resp.status()));
-    }
-
-    let mime = caa_resp
-        .headers()
-        .get("content-type")
-        .and_then(|ct| ct.to_str().ok())
-        .map(|ct| ct.split(';').next().unwrap_or("image/jpeg").trim().to_string())
-        .unwrap_or_else(|| "image/jpeg".to_string());
-
-    let bytes = caa_resp
-        .bytes()
-        .await
-        .map_err(|e| format!("Could not download cover image: {e}"))?;
-
-    if bytes.is_empty() {
-        return Ok(None);
-    }
-
-    Ok(Some(format!("data:{};base64,{}", mime, BASE64_STANDARD.encode(&bytes))))
+    the_art_finder::fetch_cover_art_as(&compass_user_agent(), artist, album).await
 }
 
 // ── fetch_lyrics (LRCLIB, opt-in, user-initiated only) ──────────────────────
-
-#[derive(Serialize)]
-pub struct LyricsResult {
-    #[serde(rename = "syncedLyrics")]
-    synced_lyrics: Option<String>,
-    #[serde(rename = "plainLyrics")]
-    plain_lyrics: Option<String>,
-}
-
-#[derive(Deserialize)]
-struct LrclibResponse {
-    #[serde(rename = "syncedLyrics")]
-    synced_lyrics: Option<String>,
-    #[serde(rename = "plainLyrics")]
-    plain_lyrics: Option<String>,
-}
+// The body is the spring's (the-lyric-finder, consumed 2026-08-08); the wire
+// shape to the frontend (syncedLyrics/plainLyrics) is the crate's own,
+// carried from this very organ at the re-homing.
 
 #[tauri::command]
-async fn fetch_lyrics(artist: String, title: String) -> Result<Option<LyricsResult>, String> {
-    // Ok(None) means LRCLIB genuinely has no lyrics for this track.
-    // Err(..) means a *transient* failure (network, timeout, rate-limit) so the
-    // UI can offer a retry instead of falsely reporting "no lyrics found" — the
-    // silent Ok(None)-on-everything was why lyrics appeared once and not the next
-    // time for the same song.
-    let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(12))
-        .user_agent("ResonanceCompass/2.1.3 ( https://audhdities.com )")
-        .build()
-        .map_err(|e| format!("HTTP client error: {e}"))?;
-
-    let resp = client
-        .get("https://lrclib.net/api/get")
-        .query(&[("artist_name", &artist), ("track_name", &title)])
-        .send()
-        .await
-        .map_err(|e| format!("Could not reach LRCLIB: {e}"))?;
-
-    // 404 is LRCLIB's honest "not found"; any other non-2xx is transient.
-    if resp.status() == reqwest::StatusCode::NOT_FOUND {
-        return Ok(None);
-    }
-    if !resp.status().is_success() {
-        return Err(format!("LRCLIB returned {}", resp.status()));
-    }
-
-    let body: LrclibResponse = resp
-        .json()
-        .await
-        .map_err(|e| format!("Could not read LRCLIB response: {e}"))?;
-
-    if body.synced_lyrics.is_none() && body.plain_lyrics.is_none() {
-        return Ok(None);
-    }
-
-    Ok(Some(LyricsResult {
-        synced_lyrics: body.synced_lyrics,
-        plain_lyrics: body.plain_lyrics,
-    }))
+async fn fetch_lyrics(
+    artist: String,
+    title: String,
+) -> Result<Option<the_lyric_finder::LyricsResult>, String> {
+    the_lyric_finder::fetch_lyrics_as(&compass_user_agent(), artist, title).await
 }
 
 // ── Mic spike (v3 Phase 2 gate) ───────────────────────────────────────────────
@@ -412,12 +302,11 @@ async fn request_mic_permission(app_handle: tauri::AppHandle) -> Result<bool, St
     }
 }
 
-#[tauri::command]
-async fn run_mic_spike(seconds: f32) -> Result<mic_spike::MicSpikeResult, String> {
-    tauri::async_runtime::spawn_blocking(move || mic_spike::run_mic_spike(seconds))
-        .await
-        .map_err(|e| format!("spike task: {e}"))?
-}
+// (The mic spike — Phase 2's device gate — retired 2026-08-09, exactly as it
+// planned for itself: "the temporary spike surface leaves when the real
+// recorder arrives." The real recorder lives in recorder.rs, on the spring's
+// water. The spike's answer stands in the record: cpal opens a real mic
+// inside the Tauri process, on-device, proven on the S25.)
 
 // ── Fragment commands ─────────────────────────────────────────────────────────
 
@@ -538,7 +427,7 @@ async fn purge_fragment_files(app_handle: tauri::AppHandle) -> Result<(), String
         .path()
         .app_data_dir()
         .map_err(|e| e.to_string())?;
-    for sub in ["fragments", "mixes"] {
+    for sub in ["fragments", "mixes", "takes"] {
         let dir = data_dir.join(sub);
         if dir.exists() {
             fs::remove_dir_all(&dir).map_err(|e| format!("Cannot remove {sub}: {e}"))?;
@@ -665,6 +554,7 @@ pub fn run() {
             visualizer::start(app.handle().clone(), vis_rx);
             let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx, eq_state);
             app.manage(audio_state);
+            app.manage(recorder::RecorderState::default());
             Ok(())
         })
         .plugin(
@@ -687,7 +577,13 @@ pub fn run() {
             check_audio_permission,
             request_audio_permission,
             request_mic_permission,
-            run_mic_spike,
+            recorder::list_input_devices,
+            recorder::start_recording,
+            recorder::recording_status,
+            recorder::stop_recording,
+            recorder::list_takes,
+            recorder::delete_take,
+            recorder::export_take,
             fetch_cover_art,
             fetch_lyrics,
             create_fragment,

@@ -1,8 +1,8 @@
 {
   "folder_name": "src",
   "folder_path": "src-tauri/src",
-  "description": "8 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.500490 | in sovereign time",
+  "description": "9 files, 0 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.931564 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/src/audio.rs",
@@ -18,7 +18,7 @@
     },
     {
       "path": "src-tauri/src/lib.rs",
-      "description": "rust, 25,358 bytes"
+      "description": "rust, 25,634 bytes"
     },
     {
       "path": "src-tauri/src/main.rs",
@@ -29,6 +29,10 @@
       "description": "media_permission.rs"
     },
     {
+      "path": "src-tauri/src/media_session.rs",
+      "description": "media_session.rs"
+    },
+    {
       "path": "src-tauri/src/mic_spike.rs",
       "description": "\u2500\u2500 THE MIC SPIKE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
     },
@@ -37,7 +41,7 @@
       "description": "visualizer.rs"
     }
   ],
-  "file_count": 8,
+  "file_count": 9,
   "subdirectories": [],
   "code_analysis": {
     "audio.rs": {
@@ -102,7 +106,7 @@
     },
     "lib.rs": {
       "language": "rust",
-      "lines": 709,
+      "lines": 716,
       "pub_fns": [
         "run"
       ],
@@ -139,6 +143,30 @@
       ],
       "tauri_commands": 0,
       "uses_unsafe": true
+    },
+    "media_session.rs": {
+      "language": "rust",
+      "lines": 182,
+      "pub_fns": [
+        "media_update_metadata",
+        "media_update_playback",
+        "media_release",
+        "request_notification_permission",
+        "init",
+        "update_metadata",
+        "update_playback",
+        "release",
+        "request_notifications"
+      ],
+      "structs": [
+        "MetadataPayload",
+        "PlaybackPayload",
+        "MediaSessionHandle",
+        "PermissionResponse",
+        "Empty"
+      ],
+      "tauri_commands": 4,
+      "uses_unsafe": false
     },
     "mic_spike.rs": {
       "language": "rust",

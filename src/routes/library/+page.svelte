@@ -206,9 +206,17 @@
 
 	<div class="continue-strip">
 		<p class="strip-greeting">{greeting()}</p>
-		{#if playerStore.currentTrack}
-			<button class="resume-btn" onclick={resume}>▶ Resume</button>
-		{/if}
+		<div class="strip-actions">
+			<!-- The EQ door in the continue-strip — KP's ⚛ word 2026-08-08:
+			     "a button in listen continued that opens the eq directly."
+			     Rides the MiniPlayer's existing deep link; calm, never imposed. -->
+			<button class="eq-btn" onclick={() => goto('/settings#eq')} title="Open the equalizer">
+				🎛️ EQ
+			</button>
+			{#if playerStore.currentTrack}
+				<button class="resume-btn" onclick={resume}>▶ Resume</button>
+			{/if}
+		</div>
 	</div>
 
 	{#if recentAlbums.length > 0}
@@ -444,6 +452,13 @@
 		margin: 0;
 	}
 
+	.strip-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-shrink: 0;
+	}
+
 	.resume-btn {
 		padding: 0.5rem 1.1rem;
 		border-radius: 20px;
@@ -458,6 +473,23 @@
 
 	.resume-btn:hover {
 		filter: brightness(1.1);
+	}
+
+	.eq-btn {
+		padding: 0.5rem 1.1rem;
+		border-radius: 20px;
+		border: 1px solid var(--border);
+		background: transparent;
+		color: var(--text-secondary);
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		flex-shrink: 0;
+	}
+
+	.eq-btn:hover {
+		border-color: var(--accent);
+		color: var(--text-primary);
 	}
 
 	.recent-row {

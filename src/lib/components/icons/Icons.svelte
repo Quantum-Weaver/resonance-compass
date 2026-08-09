@@ -26,6 +26,7 @@
   import IconProfiles from './IconProfiles.svelte';
   import IconLyrics from './IconLyrics.svelte';
   import IconCompass from './IconCompass.svelte';
+  import IconMicrophone from './IconMicrophone.svelte';
 
   export type IconName =
     | 'play' | 'pause' | 'skip-forward' | 'skip-back'
@@ -35,7 +36,7 @@
     | 'home' | 'library' | 'playlist' | 'timer'
     | 'settings' | 'resonance' | 'visualizer' | 'equalizer'
     | 'sattva' | 'focus' | 'fragment' | 'history'
-    | 'profiles' | 'lyrics' | 'compass';
+    | 'profiles' | 'lyrics' | 'compass' | 'microphone';
 
   let {
     name,
@@ -79,6 +80,7 @@
     'profiles': IconProfiles,
     'lyrics': IconLyrics,
     'compass': IconCompass,
+    'microphone': IconMicrophone,
   };
 
   const Component = $derived(components[name]);

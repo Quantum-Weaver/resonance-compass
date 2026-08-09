@@ -1,8 +1,8 @@
 {
   "folder_name": "stores",
   "folder_path": "src/lib/stores",
-  "description": "11 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:11.732263 | in sovereign time",
+  "description": "12 files, 0 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.836149 | in sovereign time",
   "files": [
     {
       "path": "src/lib/stores/focus.svelte.ts",
@@ -17,12 +17,16 @@
       "description": "typescript, 15,602 bytes"
     },
     {
+      "path": "src/lib/stores/mode.svelte.ts",
+      "description": "The sidebar wears one MODE at a time"
+    },
+    {
       "path": "src/lib/stores/mood.svelte.ts",
       "description": "typescript, 5,791 bytes"
     },
     {
       "path": "src/lib/stores/player.svelte.ts",
-      "description": "typescript, 11,767 bytes"
+      "description": "typescript, 14,002 bytes"
     },
     {
       "path": "src/lib/stores/playlist.svelte.ts",
@@ -42,14 +46,14 @@
     },
     {
       "path": "src/lib/stores/timer.svelte.ts",
-      "description": "typescript, 3,086 bytes"
+      "description": "typescript, 3,526 bytes"
     },
     {
       "path": "src/lib/stores/ui.svelte.ts",
       "description": "Cross-component UI signals that don't belong to any domain store"
     }
   ],
-  "file_count": 11,
+  "file_count": 12,
   "subdirectories": [],
   "code_analysis": {
     "focus.svelte.ts": {
@@ -101,6 +105,22 @@
       "writes_files": false,
       "env_names_read": []
     },
+    "mode.svelte.ts": {
+      "language": "typescript",
+      "lines": 36,
+      "exported_functions": [],
+      "exported_consts": [
+        "modeStore"
+      ],
+      "interfaces": [],
+      "types": [
+        "ModeName"
+      ],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
     "mood.svelte.ts": {
       "language": "typescript",
       "lines": 192,
@@ -117,7 +137,7 @@
     },
     "player.svelte.ts": {
       "language": "typescript",
-      "lines": 407,
+      "lines": 462,
       "exported_functions": [],
       "exported_consts": [
         "playerStore"
@@ -196,7 +216,7 @@
     },
     "timer.svelte.ts": {
       "language": "typescript",
-      "lines": 103,
+      "lines": 112,
       "exported_functions": [],
       "exported_consts": [
         "prefersReducedMotion",

@@ -10,34 +10,10 @@
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { moodStore } from '$lib/stores/mood.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
+	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
-	// ── Mic spike (v3 Phase 2 device gate — temporary dev surface) ──────────────
-	let spikeState = $state<'idle' | 'running' | 'done' | 'error'>('idle');
-	let spikeResult = $state('');
-	async function runMicSpike() {
-		spikeState = 'running';
-		spikeResult = 'requesting permission…';
-		try {
-			const granted = await invoke<boolean>('request_mic_permission');
-			if (!granted) {
-				spikeState = 'error';
-				spikeResult = 'mic permission not granted';
-				return;
-			}
-			spikeResult = 'listening for 2 seconds — say something…';
-			const r = await invoke<{
-				host: string; device: string; sample_rate: number; channels: number;
-				frames_captured: number; peak: number; rms: number;
-			}>('run_mic_spike', { seconds: 2.0 });
-			spikeState = 'done';
-			spikeResult =
-				`${r.host} · ${r.device} · ${r.sample_rate} Hz × ${r.channels}ch · ` +
-				`${r.frames_captured} frames · peak ${r.peak.toFixed(3)} · rms ${r.rms.toFixed(4)}`;
-		} catch (e) {
-			spikeState = 'error';
-			spikeResult = String(e);
-		}
-	}
+	// (The mic spike surface retired 2026-08-09 with the real recorder's
+	// arrival — its own planned exit. The room lives at /record.)
 
 	// ── Privacy & About links ───────────────────────────────────────────────────
 	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
@@ -273,25 +249,22 @@
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
-	interface CompassExport {
-		format: string;
-		version: number;
-		exportedAt: string;
+	// The snapshot's inner shape — carried by BOTH generations: the family
+	// envelope's `data` (new exports, sealed by the water) and the legacy v2
+	// object (old files, honored forever at import).
+	interface CompassSnapshot extends Record<string, unknown> {
 		library: unknown[];
 		moodEvents: unknown[];
 		localStorage: Record<string, string>;
 	}
 
-	async function buildSnapshot(): Promise<CompassExport> {
+	async function buildSnapshot(): Promise<CompassSnapshot> {
 		const ls: Record<string, string> = {};
 		for (let i = 0; i < localStorage.length; i++) {
 			const k = localStorage.key(i);
 			if (k !== null) ls[k] = localStorage.getItem(k) ?? '';
 		}
 		return {
-			format: 'resonance-compass-export',
-			version: 2,
-			exportedAt: new Date().toISOString(),
 			library: libraryStore.tracks,
 			moodEvents: await moodStore.getAllMoodEvents(),
 			localStorage: ls,
@@ -299,13 +272,18 @@
 	}
 
 	async function exportData() {
-		const json = JSON.stringify(await buildSnapshot(), null, 2);
+		const data = await buildSnapshot();
+		const envelope = seal('resonance-compass', appVersion, data, {
+			tracks: data.library.length,
+			moodEvents: data.moodEvents.length,
+			settingsEntries: Object.keys(data.localStorage).length,
+		});
+		const json = JSON.stringify(envelope, null, 2);
 		const blob = new Blob([json], { type: 'application/json' });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
-		const date = new Date().toISOString().split('T')[0];
 		a.href = url;
-		a.download = `resonance-compass-export-${date}.json`;
+		a.download = filename('resonance-compass');
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
@@ -317,8 +295,16 @@
 	let importState = $state<'idle' | 'confirm' | 'importing' | 'error'>('idle');
 	let importError = $state<string | null>(null);
 	let importFileEl = $state<HTMLInputElement | null>(null);
-	let pendingImport: CompassExport | null = null;
+	let pendingImport: CompassSnapshot | null = null;
 	let importSummary = $state('');
+
+	// Legacy shape: Compass's own v2 export (pre-envelope), honored forever.
+	interface LegacyCompassExport {
+		format?: string;
+		library?: unknown[];
+		moodEvents?: unknown[];
+		localStorage?: Record<string, string>;
+	}
 
 	function onImportFile(e: Event) {
 		const file = (e.currentTarget as HTMLInputElement).files?.[0];
@@ -326,14 +312,30 @@
 		const reader = new FileReader();
 		reader.onload = () => {
 			try {
-				const data = JSON.parse(String(reader.result)) as CompassExport;
-				if (data.format !== 'resonance-compass-export') {
-					throw new Error('Not a Resonance Compass export file.');
+				const parsed = JSON.parse(String(reader.result)) as unknown;
+				const legacy = parsed as LegacyCompassExport;
+				if (legacy && legacy.format === 'resonance-compass-export') {
+					// The app's own pre-envelope generation — a vessel's old
+					// backup must never be told it's worthless.
+					pendingImport = {
+						library: Array.isArray(legacy.library) ? legacy.library : [],
+						moodEvents: Array.isArray(legacy.moodEvents) ? legacy.moodEvents : [],
+						localStorage: legacy.localStorage ?? {},
+					};
+				} else {
+					const reading = open<CompassSnapshot>(parsed, 'resonance-compass');
+					if (reading.kind !== 'envelope') {
+						throw new Error('Not a Resonance Compass export file.');
+					}
+					pendingImport = {
+						library: Array.isArray(reading.data.library) ? reading.data.library : [],
+						moodEvents: Array.isArray(reading.data.moodEvents) ? reading.data.moodEvents : [],
+						localStorage: reading.data.localStorage ?? {},
+					};
 				}
-				pendingImport = data;
-				const nTracks = Array.isArray(data.library) ? data.library.length : 0;
-				const nMoods = Array.isArray(data.moodEvents) ? data.moodEvents.length : 0;
-				const nKeys = Object.keys(data.localStorage ?? {}).length;
+				const nTracks = pendingImport.library.length;
+				const nMoods = pendingImport.moodEvents.length;
+				const nKeys = Object.keys(pendingImport.localStorage).length;
 				importSummary = `${nTracks} tracks · ${nMoods} mood events · ${nKeys} settings entries`;
 				importState = 'confirm';
 				importError = null;
@@ -350,13 +352,13 @@
 		if (!pendingImport) return;
 		importState = 'importing';
 		try {
-			for (const [k, v] of Object.entries(pendingImport.localStorage ?? {})) {
+			for (const [k, v] of Object.entries(pendingImport.localStorage)) {
 				localStorage.setItem(k, v);
 			}
-			if (Array.isArray(pendingImport.library) && pendingImport.library.length > 0) {
+			if (pendingImport.library.length > 0) {
 				await libraryStore.importTracks(pendingImport.library as never[]);
 			}
-			if (Array.isArray(pendingImport.moodEvents) && pendingImport.moodEvents.length > 0) {
+			if (pendingImport.moodEvents.length > 0) {
 				await moodStore.importMoodEvents(pendingImport.moodEvents as never[]);
 			}
 			location.reload();
@@ -390,13 +392,17 @@
 	async function executePurge() {
 		purgeError = null;
 		try {
-			if (pendingExport) await exportData();
-			await libraryStore.purgeAllData();
-			await moodStore.purgeAll();
-			// The DB purge removes fragment/mix rows; this removes their audio
-			// files from app-data so no bytes survive the purge.
-			await invoke('purge_fragment_files');
-			localStorage.clear();
+			// Law 2, the water's own hand: the export completes IN HAND before
+			// anything deletes. The DB purge removes fragment/mix rows; the
+			// purge_fragment_files step removes their audio from app-data so no
+			// bytes survive; localStorage.clear() last, never a curated list.
+			await purgeAfter(
+				pendingExport ? exportData : null,
+				() => libraryStore.purgeAllData(),
+				() => moodStore.purgeAll(),
+				() => invoke('purge_fragment_files'),
+				() => localStorage.clear()
+			);
 		} catch (err) {
 			// Stay on the confirm step and say what failed — the old silent
 			// rejection here was 'purge never purges'.
@@ -699,13 +705,6 @@
 				<button class="privacy-link" onclick={openSanctuary}>audhdities.com — the Sanctuary</button>
 				<button class="privacy-link" onclick={openPrivacy}>Privacy Policy</button>
 			</div>
-			<!-- v3 Phase 2 device gate — temporary spike surface; leaves with the real recorder -->
-			<div class="spike-row">
-				<button class="privacy-link" onclick={runMicSpike} disabled={spikeState === 'running'}>
-					🎙 mic spike (v3 dev) — {spikeState}
-				</button>
-				{#if spikeResult}<p class="spike-result">{spikeResult}</p>{/if}
-			</div>
 		</div>
 	</section>
 </div>
@@ -972,15 +971,6 @@
 		display: flex;
 		gap: 0.5rem;
 		justify-content: flex-end;
-	}
-
-	/* ── Mic spike (temporary) ── */
-	.spike-row { margin-top: 0.6rem; }
-	.spike-result {
-		font-size: 0.75rem;
-		opacity: 0.75;
-		margin: 0.35rem 0 0;
-		word-break: break-word;
 	}
 
 	/* ── About ── */

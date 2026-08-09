@@ -2,11 +2,11 @@
   "folder_name": "focus",
   "folder_path": "src/routes/focus",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:11.973807 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.860176 | in sovereign time",
   "files": [
     {
       "path": "src/routes/focus/+page.svelte",
-      "description": "surface, 26,119 bytes"
+      "description": "surface, 364 bytes"
     }
   ],
   "file_count": 1,
@@ -14,14 +14,10 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 832,
-      "uses_runes": [
-        "$derived",
-        "$effect",
-        "$state"
-      ],
+      "lines": 12,
+      "uses_runes": [],
       "fetch_calls": [],
-      "has_style_block": true
+      "has_style_block": false
     }
   },
   "maintaining_agent": "FolderAgent",

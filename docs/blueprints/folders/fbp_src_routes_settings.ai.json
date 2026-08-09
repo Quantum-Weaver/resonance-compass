@@ -2,11 +2,11 @@
   "folder_name": "settings",
   "folder_path": "src/routes/settings",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.323249 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.890631 | in sovereign time",
   "files": [
     {
       "path": "src/routes/settings/+page.svelte",
-      "description": "surface, 39,510 bytes"
+      "description": "surface, 39,027 bytes"
     }
   ],
   "file_count": 1,
@@ -14,7 +14,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 1431,
+      "lines": 1415,
       "uses_runes": [
         "$derived",
         "$state"

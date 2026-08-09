@@ -2,14 +2,14 @@
   "object_name": "src_routes",
   "object_path": "src/routes",
   "description": "0 files, 0 subfolders",
-  "integration_timestamp": "2026-08-05T21:03:12.514016 | in sovereign time",
+  "integration_timestamp": "2026-08-08T17:55:03.948580 | in sovereign time",
   "folders": [
     {
       "blueprint": "docs/blueprints/folders/fbp_src_routes.ai.json",
       "folder_path": "src/routes",
-      "description": "3 files, 17 subfolders",
+      "description": "3 files, 16 subfolders",
       "file_count": 3,
-      "subdirectory_count": 17
+      "subdirectory_count": 16
     },
     {
       "blueprint": "docs/blueprints/folders/fbp_src_routes_focus.ai.json",
@@ -145,13 +145,6 @@
       "subdirectory_count": 0
     },
     {
-      "blueprint": "docs/blueprints/folders/fbp_src_routes_search.ai.json",
-      "folder_path": "src/routes/search",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
-      "subdirectory_count": 0
-    },
-    {
       "blueprint": "docs/blueprints/folders/fbp_src_routes_settings.ai.json",
       "folder_path": "src/routes/settings",
       "description": "1 files, 0 subfolders",
@@ -161,8 +154,8 @@
     {
       "blueprint": "docs/blueprints/folders/fbp_src_routes_timer.ai.json",
       "folder_path": "src/routes/timer",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
       "subdirectory_count": 0
     },
     {
@@ -173,8 +166,8 @@
       "subdirectory_count": 0
     }
   ],
-  "folder_count": 24,
-  "total_files": 24,
+  "folder_count": 23,
+  "total_files": 25,
   "maintaining_agent": "ObjectAgent",
   "note": "Links only. Every folder's details live at its own address."
 }

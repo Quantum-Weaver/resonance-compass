@@ -1,12 +1,13 @@
-<script lang="ts">
+﻿<script lang="ts">
 	import { onMount } from 'svelte';
 	import { invoke } from '@tauri-apps/api/core';
 	import { fragmentStore, type Fragment } from '$lib/stores/fragment.svelte';
+	import { recorderStore, type Take } from '$lib/stores/recorder.svelte';
 	import { studioStore, newLayer, type StudioLayer } from '$lib/stores/studio.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import type { Track } from '$lib/types/types';
 
-	// ── Working arrangement ────────────────────────────────────────────────────
+	// â”€â”€ Working arrangement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 	let layers = $state<StudioLayer[]>([]);
 	let mixName = $state('My Mix');
@@ -22,27 +23,62 @@
 
 	onMount(() => {
 		fragmentStore.loadFragments();
+		recorderStore.refreshTakes();
 		studioStore.loadArrangements();
 	});
 
-	function fragFor(layer: StudioLayer): Fragment | undefined {
+	// A layer's source is a fragment OR a take (KP's âš› word 2026-08-09:
+	// "the fragment studio should be able to see the takes"). Takes ride the
+	// existing layer model with `take:`-prefixed ids â€” arrangements persist
+	// them like any layer, and a deleted take reads as a missing source,
+	// exactly as a deleted fragment does.
+	interface StudioSource {
+		id: string;
+		name: string;
+		filePath: string;
+		duration: number;
+		emoji?: string | null;
+	}
+
+	function takeToSource(t: Take): StudioSource {
+		return {
+			id: `take:${t.file_name}`,
+			name: t.file_name.replace(/\.wav$/, ''),
+			filePath: t.path,
+			duration: t.seconds,
+			emoji: 'ðŸŽ™',
+		};
+	}
+
+	function sourceFor(layer: StudioLayer): StudioSource | undefined {
+		if (layer.fragmentId.startsWith('take:')) {
+			const t = recorderStore.takes.find((tk) => `take:${tk.file_name}` === layer.fragmentId);
+			return t ? takeToSource(t) : undefined;
+		}
 		return fragmentStore.fragments.find((f) => f.id === layer.fragmentId);
 	}
 
-	const validLayers = $derived(layers.filter((l) => fragFor(l) !== undefined));
+	const validLayers = $derived(layers.filter((l) => sourceFor(l) !== undefined));
 
 	const totalDuration = $derived(
 		validLayers.reduce((max, l) => {
-			const f = fragFor(l);
+			const f = sourceFor(l);
 			return Math.max(max, l.offsetSecs + (f?.duration ?? 0));
 		}, 0)
 	);
 
-	// ── Layer operations ───────────────────────────────────────────────────────
+	// â”€â”€ Layer operations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 	function addFragment(frag: Fragment) {
 		const lastEnd = totalDuration;
 		layers = [...layers, newLayer(frag.id, lastEnd)];
+		pickerOpen = false;
+		clearExport();
+	}
+
+	function addTake(t: Take) {
+		const lastEnd = totalDuration;
+		layers = [...layers, newLayer(`take:${t.file_name}`, lastEnd)];
 		pickerOpen = false;
 		clearExport();
 	}
@@ -66,7 +102,7 @@
 		layers = next;
 	}
 
-	// ── Auto-crossfade ─────────────────────────────────────────────────────────
+	// â”€â”€ Auto-crossfade â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 	// Lays layers end-to-end in list order, each overlapping the previous by
 	// crossfadeSecs, with matching fade-out/fade-in applied at every seam.
 
@@ -74,7 +110,7 @@
 		const xf = Math.max(0, crossfadeSecs);
 		let cursor = 0;
 		layers = layers.map((l, i) => {
-			const f = fragFor(l);
+			const f = sourceFor(l);
 			const dur = f?.duration ?? 0;
 			const isFirst = i === 0;
 			const isLast = i === layers.length - 1;
@@ -90,7 +126,7 @@
 		clearExport();
 	}
 
-	// ── Export ─────────────────────────────────────────────────────────────────
+	// â”€â”€ Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 	function clearExport() {
 		exportedPath = null;
@@ -103,7 +139,7 @@
 		clearExport();
 		try {
 			const payload = validLayers.map((l) => {
-				const f = fragFor(l)!;
+				const f = sourceFor(l)!;
 				return {
 					path: f.filePath,
 					offset_secs: l.offsetSecs,
@@ -119,7 +155,7 @@
 				outputName: mixName || 'My Mix',
 			});
 		} catch (e) {
-			// v3 Phase 1: the native engine needs no ffmpeg — errors are its own words
+			// v3 Phase 1: the native engine needs no ffmpeg â€” errors are its own words
 			exportError = String(e);
 		} finally {
 			exporting = false;
@@ -142,7 +178,7 @@
 		playerStore.setQueue([track], 0);
 	}
 
-	// ── Arrangements ───────────────────────────────────────────────────────────
+	// â”€â”€ Arrangements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 	function saveCurrent() {
 		const saved = studioStore.saveArrangement(mixName, layers, loadedArrangementId ?? undefined);
@@ -159,7 +195,7 @@
 		clearExport();
 	}
 
-	// ── Helpers ────────────────────────────────────────────────────────────────
+	// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 	function fmtSec(s: number): string {
 		const m = Math.floor(s / 60);
@@ -172,15 +208,15 @@
 
 <div class="studio-page">
 	<header class="studio-header">
-		<a class="back-link" href="/fragments">← Fragments</a>
-		<h1 class="studio-title">🎚 Fragment Studio</h1>
+		<a class="back-link" href="/fragments">â† Fragments</a>
+		<h1 class="studio-title">ðŸŽš Fragment Studio</h1>
 	</header>
 
 	<div class="name-row">
 		<input class="mix-name-input" type="text" bind:value={mixName} maxlength="40" aria-label="Mix name" />
-		<button class="ghost-btn" onclick={saveCurrent} disabled={layers.length === 0}>💾 Save</button>
+		<button class="ghost-btn" onclick={saveCurrent} disabled={layers.length === 0}>ðŸ’¾ Save</button>
 		<button class="ghost-btn" onclick={() => (arrangementsOpen = !arrangementsOpen)} aria-expanded={arrangementsOpen}>
-			📂 Load
+			ðŸ“‚ Load
 		</button>
 	</div>
 
@@ -195,7 +231,7 @@
 							<span class="arr-name">{arr.name}</span>
 							<span class="arr-meta">{arr.layers.length} layer{arr.layers.length !== 1 ? 's' : ''}</span>
 						</button>
-						<button class="arr-delete" onclick={() => studioStore.deleteArrangement(arr.id)} aria-label="Delete {arr.name}">✕</button>
+						<button class="arr-delete" onclick={() => studioStore.deleteArrangement(arr.id)} aria-label="Delete {arr.name}">âœ•</button>
 					</div>
 				{/each}
 			{/if}
@@ -206,7 +242,7 @@
 	{#if validLayers.length > 0 && totalDuration > 0}
 		<div class="timeline-viz" aria-hidden="true">
 			{#each validLayers as l, i (l.id)}
-				{@const f = fragFor(l)}
+				{@const f = sourceFor(l)}
 				<div class="viz-lane">
 					<div
 						class="viz-bar"
@@ -226,22 +262,22 @@
 	<!-- Layers -->
 	{#if layers.length === 0}
 		<div class="empty-state">
-			<span class="empty-icon">🎚</span>
+			<span class="empty-icon">ðŸŽš</span>
 			<p class="empty-title">No layers yet</p>
 			<p class="empty-sub">Add fragments and layer them into a mix.</p>
 		</div>
 	{:else}
 		<div class="layer-list">
 			{#each layers as layer, i (layer.id)}
-				{@const frag = fragFor(layer)}
+				{@const frag = sourceFor(layer)}
 				<div class="layer-card" style="--layer-color: {LAYER_COLORS[i % LAYER_COLORS.length]}">
 					<div class="layer-head">
 						<span class="layer-dot"></span>
-						<span class="layer-name">{frag?.name ?? 'Missing fragment'}</span>
-						<span class="layer-dur">{frag ? fmtSec(frag.duration) : '—'}</span>
-						<button class="layer-move" onclick={() => moveLayer(layer.id, -1)} disabled={i === 0} aria-label="Move up">↑</button>
-						<button class="layer-move" onclick={() => moveLayer(layer.id, 1)} disabled={i === layers.length - 1} aria-label="Move down">↓</button>
-						<button class="layer-remove" onclick={() => removeLayer(layer.id)} aria-label="Remove layer">✕</button>
+						<span class="layer-name">{frag?.name ?? 'Missing source'}</span>
+						<span class="layer-dur">{frag ? fmtSec(frag.duration) : 'â€”'}</span>
+						<button class="layer-move" onclick={() => moveLayer(layer.id, -1)} disabled={i === 0} aria-label="Move up">â†‘</button>
+						<button class="layer-move" onclick={() => moveLayer(layer.id, 1)} disabled={i === layers.length - 1} aria-label="Move down">â†“</button>
+						<button class="layer-remove" onclick={() => removeLayer(layer.id)} aria-label="Remove layer">âœ•</button>
 					</div>
 
 					{#if frag}
@@ -288,7 +324,7 @@
 							</label>
 						</div>
 					{:else}
-						<p class="layer-missing">This fragment was deleted. Remove the layer.</p>
+						<p class="layer-missing">This source was deleted. Remove the layer.</p>
 					{/if}
 				</div>
 			{/each}
@@ -297,10 +333,10 @@
 
 	<!-- Actions -->
 	<div class="action-row">
-		<button class="add-btn" onclick={() => (pickerOpen = !pickerOpen)} aria-expanded={pickerOpen}>+ Add Fragment</button>
+		<button class="add-btn" onclick={() => (pickerOpen = !pickerOpen)} aria-expanded={pickerOpen}>+ Add Layer</button>
 		{#if layers.length >= 2}
 			<div class="xfade-group">
-				<button class="ghost-btn" onclick={autoCrossfade}>⤨ Crossfade</button>
+				<button class="ghost-btn" onclick={autoCrossfade}>â¤¨ Crossfade</button>
 				<input
 					type="number" class="xfade-input" min="0" max="30" step="0.5"
 					bind:value={crossfadeSecs}
@@ -313,16 +349,29 @@
 
 	{#if pickerOpen}
 		<div class="picker-panel">
-			{#if fragmentStore.fragments.length === 0}
-				<p class="panel-empty">No fragments yet. Capture some with ✂️ on Now Playing.</p>
+			{#if fragmentStore.fragments.length === 0 && recorderStore.takes.length === 0}
+				<p class="panel-empty">No fragments or takes yet. Capture fragments with âœ‚ï¸ on Now Playing, or record a take in ðŸŽ™ Record.</p>
 			{:else}
-				{#each fragmentStore.fragments as frag (frag.id)}
-					<button class="picker-row" onclick={() => addFragment(frag)}>
-						{#if frag.emoji}<span>{frag.emoji}</span>{/if}
-						<span class="picker-name">{frag.name}</span>
-						<span class="picker-dur">{fmtSec(frag.duration)}</span>
-					</button>
-				{/each}
+				{#if recorderStore.takes.length > 0}
+					<p class="picker-heading">ðŸŽ™ Takes</p>
+					{#each recorderStore.takes as t (t.file_name)}
+						<button class="picker-row" onclick={() => addTake(t)}>
+							<span>ðŸŽ™</span>
+							<span class="picker-name">{t.file_name.replace(/\.wav$/, '')}</span>
+							<span class="picker-dur">{fmtSec(t.seconds)}</span>
+						</button>
+					{/each}
+				{/if}
+				{#if fragmentStore.fragments.length > 0}
+					{#if recorderStore.takes.length > 0}<p class="picker-heading">âœ‚ï¸ Fragments</p>{/if}
+					{#each fragmentStore.fragments as frag (frag.id)}
+						<button class="picker-row" onclick={() => addFragment(frag)}>
+							{#if frag.emoji}<span>{frag.emoji}</span>{/if}
+							<span class="picker-name">{frag.name}</span>
+							<span class="picker-dur">{fmtSec(frag.duration)}</span>
+						</button>
+					{/each}
+				{/if}
 			{/if}
 		</div>
 	{/if}
@@ -330,15 +379,15 @@
 	<!-- Export -->
 	<div class="export-section">
 		<button class="export-btn" onclick={exportMix} disabled={validLayers.length === 0 || exporting}>
-			{exporting ? 'Mixing…' : '⬇ Export Mix'}
+			{exporting ? 'Mixingâ€¦' : 'â¬‡ Export Mix'}
 		</button>
 		{#if exportError}
 			<p class="export-error">{exportError}</p>
 		{/if}
 		{#if exportedPath}
 			<div class="export-done">
-				<p class="export-path">✓ Mix saved: {exportedPath}</p>
-				<button class="ghost-btn" onclick={playMix}>▶ Play Mix</button>
+				<p class="export-path">âœ“ Mix saved: {exportedPath}</p>
+				<button class="ghost-btn" onclick={playMix}>â–¶ Play Mix</button>
 			</div>
 		{/if}
 	</div>
@@ -359,7 +408,7 @@
 	.back-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; align-self: flex-start; }
 	.studio-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
 
-	/* ── Name / save / load ── */
+	/* â”€â”€ Name / save / load â”€â”€ */
 	.name-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 	.mix-name-input {
@@ -392,7 +441,7 @@
 	.ghost-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 	.ghost-btn:disabled { opacity: 0.4; cursor: default; }
 
-	/* ── Panels ── */
+	/* â”€â”€ Panels â”€â”€ */
 	.arrangements-panel,
 	.picker-panel {
 		background: var(--bg-surface);
@@ -440,6 +489,16 @@
 	}
 	.arr-delete:hover { color: #e17055; background: rgba(225, 112, 85, 0.08); }
 
+	.picker-heading {
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin: 0.35rem 0 0.15rem;
+		padding: 0 0.75rem;
+	}
+
 	.picker-row {
 		display: flex;
 		align-items: center;
@@ -459,7 +518,7 @@
 	.picker-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	.picker-dur { font-size: 0.78rem; color: var(--accent); flex-shrink: 0; }
 
-	/* ── Timeline viz ── */
+	/* â”€â”€ Timeline viz â”€â”€ */
 	.timeline-viz {
 		position: relative;
 		background: var(--bg-surface);
@@ -490,7 +549,7 @@
 		font-variant-numeric: tabular-nums;
 	}
 
-	/* ── Empty state ── */
+	/* â”€â”€ Empty state â”€â”€ */
 	.empty-state {
 		display: flex;
 		flex-direction: column;
@@ -503,7 +562,7 @@
 	.empty-title { font-size: 1rem; font-weight: 600; margin: 0; }
 	.empty-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
 
-	/* ── Layers ── */
+	/* â”€â”€ Layers â”€â”€ */
 	.layer-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
 	.layer-card {
@@ -565,7 +624,7 @@
 
 	.layer-missing { font-size: 0.8rem; color: #e17055; margin: 0; }
 
-	/* ── Actions ── */
+	/* â”€â”€ Actions â”€â”€ */
 	.action-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 
 	.add-btn {
@@ -595,7 +654,7 @@
 	}
 	.xfade-unit { font-size: 0.8rem; color: var(--text-muted); }
 
-	/* ── Export ── */
+	/* â”€â”€ Export â”€â”€ */
 	.export-section {
 		display: flex;
 		flex-direction: column;

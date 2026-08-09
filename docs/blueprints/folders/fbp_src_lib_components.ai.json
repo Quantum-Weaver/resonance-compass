@@ -2,7 +2,7 @@
   "folder_name": "components",
   "folder_path": "src/lib/components",
   "description": "9 files, 1 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:11.119608 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.797150 | in sovereign time",
   "files": [
     {
       "path": "src/lib/components/AlbumCard.svelte",
@@ -10,7 +10,7 @@
     },
     {
       "path": "src/lib/components/EmojiPalette.svelte",
-      "description": "surface, 4,067 bytes"
+      "description": "surface, 4,396 bytes"
     },
     {
       "path": "src/lib/components/GradientPulse.svelte",
@@ -22,7 +22,7 @@
     },
     {
       "path": "src/lib/components/MiniPlayer.svelte",
-      "description": "surface, 10,076 bytes"
+      "description": "surface, 7,353 bytes"
     },
     {
       "path": "src/lib/components/PlayerControls.svelte",
@@ -30,7 +30,7 @@
     },
     {
       "path": "src/lib/components/Sidebar.svelte",
-      "description": "surface, 5,819 bytes"
+      "description": "surface, 11,432 bytes"
     },
     {
       "path": "src/lib/components/TimerVisualization.svelte",
@@ -57,7 +57,7 @@
     },
     "EmojiPalette.svelte": {
       "language": "svelte",
-      "lines": 166,
+      "lines": 177,
       "uses_runes": [
         "$derived",
         "$state"
@@ -85,7 +85,7 @@
     },
     "MiniPlayer.svelte": {
       "language": "svelte",
-      "lines": 382,
+      "lines": 286,
       "uses_runes": [
         "$derived",
         "$effect",
@@ -106,7 +106,7 @@
     },
     "Sidebar.svelte": {
       "language": "svelte",
-      "lines": 214,
+      "lines": 403,
       "uses_runes": [
         "$derived",
         "$effect",

@@ -2,7 +2,7 @@
   "folder_name": "src-tauri",
   "folder_path": "src-tauri",
   "description": "5 files, 5 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.380209 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.898865 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/.gitignore",
@@ -73,7 +73,6 @@
   },
   "maintaining_agent": "FolderAgent",
   "folders_not_walked": [
-    "gen",
     "target"
   ],
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."

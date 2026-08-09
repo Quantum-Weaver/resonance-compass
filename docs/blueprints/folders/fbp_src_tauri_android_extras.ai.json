@@ -1,15 +1,19 @@
 {
   "folder_name": "android-extras",
   "folder_path": "src-tauri/android-extras",
-  "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.383388 | in sovereign time",
+  "description": "2 files, 0 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.901490 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/android-extras/MediaPermissionPlugin.kt",
       "description": "file, 5,276 bytes"
+    },
+    {
+      "path": "src-tauri/android-extras/MediaSessionPlugin.kt",
+      "description": "file, 9,094 bytes"
     }
   ],
-  "file_count": 1,
+  "file_count": 2,
   "subdirectories": [],
   "code_analysis": {},
   "maintaining_agent": "FolderAgent",

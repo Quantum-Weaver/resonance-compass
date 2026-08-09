@@ -2,11 +2,11 @@
   "folder_name": "onboarding",
   "folder_path": "src/routes/onboarding",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.174981 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.879598 | in sovereign time",
   "files": [
     {
       "path": "src/routes/onboarding/+page.svelte",
-      "description": "surface, 17,786 bytes"
+      "description": "surface, 20,358 bytes"
     }
   ],
   "file_count": 1,
@@ -14,7 +14,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 669,
+      "lines": 724,
       "uses_runes": [
         "$derived",
         "$effect",

@@ -2,7 +2,7 @@
   "project_name": "resonance-compass",
   "project_path": "C:\\_superposition\\resonance-compass",
   "description": "The Compass Room of the AudHDities Sanctuary",
-  "generated": "2026-08-05T21:03:12.562033 | in sovereign time",
+  "generated": "2026-08-08T17:55:04.000172 | in sovereign time",
   "tier_ladder": "file -> folder (fbp) -> object (obp) -> domain (dbp) -> project (pbp)",
   "law": "Each tier links to where the details live. Nothing above the folder tier duplicates a body.",
   "domains": [
@@ -11,8 +11,8 @@
       "domain_path": "src",
       "description": "0 files, 0 subfolders",
       "object_count": 2,
-      "total_folders": 35,
-      "total_files": 111
+      "total_folders": 36,
+      "total_files": 117
     },
     {
       "blueprint": "docs/blueprints/dbp_src_tauri.ai.json",
@@ -20,7 +20,7 @@
       "description": "0 files, 0 subfolders",
       "object_count": 5,
       "total_folders": 15,
-      "total_files": 69
+      "total_files": 71
     }
   ],
   "domain_count": 2,
@@ -30,7 +30,14 @@
       "object_path": "docs",
       "description": "0 files, 0 subfolders",
       "folder_count": 2,
-      "total_files": 16
+      "total_files": 19
+    },
+    {
+      "blueprint": "docs/blueprints/obp_static.ai.json",
+      "object_path": "static",
+      "description": "0 files, 0 subfolders",
+      "folder_count": 2,
+      "total_files": 18
     }
   ],
   "folders_reporting_directly": [
@@ -75,13 +82,6 @@
       "description": "1 files, 0 subfolders",
       "file_count": 1,
       "subdirectory_count": 0
-    },
-    {
-      "blueprint": "docs/blueprints/folders/fbp_static.ai.json",
-      "folder_path": "static",
-      "description": "16 files, 0 subfolders",
-      "file_count": 16,
-      "subdirectory_count": 0
     }
   ],
   "analysis": [
@@ -95,8 +95,8 @@
     }
   ],
   "totals": {
-    "folders_blueprinted": 59,
-    "files_described": 261
+    "folders_blueprinted": 61,
+    "files_described": 274
   },
   "not_walked": {
     "reason": "package-class trees, this repo's own gitignored trees, reparse points, and this tool's own output",

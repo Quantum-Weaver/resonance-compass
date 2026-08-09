@@ -1,8 +1,8 @@
 {
   "folder_name": "docs",
   "folder_path": "docs",
-  "description": "15 files, 1 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:10.858743 | in sovereign time",
+  "description": "18 files, 1 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.768821 | in sovereign time",
   "files": [
     {
       "path": "docs/ANDROID-BUILD-NOTES.md",
@@ -53,6 +53,18 @@
       "description": "SCREEN INVENTORY"
     },
     {
+      "path": "docs/THE-CARVE.md",
+      "description": "THE CARVE"
+    },
+    {
+      "path": "docs/THE-STANDALONE-WATERS.md",
+      "description": "THE STANDALONE WATERS"
+    },
+    {
+      "path": "docs/THE-UX-WALK.md",
+      "description": "THE UX WALK"
+    },
+    {
       "path": "docs/v1-v2-gap-report.md",
       "description": "v1 \u2192 v2 Gap Report"
     },
@@ -65,21 +77,21 @@
       "description": "Visualizer Playable Mode"
     }
   ],
-  "file_count": 15,
+  "file_count": 18,
   "subdirectories": [
     "docs/session-reports"
   ],
   "code_analysis": {
     "ANDROID-BUILD-NOTES.md": {
       "language": "markdown",
-      "lines": 96,
-      "words": 425,
+      "lines": 99,
+      "words": 451,
       "heading_count": 9,
       "headings": [
         "Android Build Notes \u2014 Resonance Compass v2",
         "After `tauri android init` \u2014 required steps",
         "1. Regenerate app icons (cello sigil)",
-        "2. Storage permissions + Kotlin plugin \u2014 AUTOMATED",
+        "2. Manifest permissions + Kotlin plugins \u2014 AUTOMATED",
         "3. Re-apply MainActivity edge-to-edge (v1 parity)",
         "How library scanning works on Android",
         "Native libs / C++ linkage",
@@ -144,9 +156,9 @@
     },
     "CHECKLIST.md": {
       "language": "markdown",
-      "lines": 400,
-      "words": 9610,
-      "heading_count": 41,
+      "lines": 549,
+      "words": 11603,
+      "heading_count": 48,
       "headings": [
         "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST",
         "LEGEND",
@@ -179,10 +191,10 @@
       "links_internal_unresolved": [],
       "links_internal_outside_checkout": [],
       "code_fences": 0,
-      "table_rows": 33,
+      "table_rows": 40,
       "checkboxes": {
-        "open": 15,
-        "done": 223
+        "open": 19,
+        "done": 253
       },
       "has_story_block": false,
       "declares_mirror_class": false
@@ -450,6 +462,88 @@
         "Built (0)",
         "Planned (19 screens)",
         "Sanctuary-Unique Screens"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 21,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "THE-CARVE.md": {
+      "language": "markdown",
+      "lines": 72,
+      "words": 734,
+      "heading_count": 5,
+      "headings": [
+        "THE CARVE \u2014 the ledger of spine and identity",
+        "THE SPINE \u2014 what every Resonance app inherits",
+        "COMPASS'S IDENTITY \u2014 stays its own, never carved out",
+        "WHAT KHOR\u00d3S RE-POINTS (Round's map, from the Resemblance Ruling)",
+        "THE COMPLETION GATE \u2014 what \"the carve is completed\" means"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 13,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "THE-STANDALONE-WATERS.md": {
+      "language": "markdown",
+      "lines": 172,
+      "words": 1466,
+      "heading_count": 8,
+      "headings": [
+        "THE STANDALONE WATERS \u2014 Compass deconstructed to the standards",
+        "Why Compass first (the standing rulings)",
+        "THE CENTER OF THE SEASON \u2014 KP's \u269b word, same sitting",
+        "LIST ONE \u2014 THE SWAP LIST (organs with proven spring twins)",
+        "LIST TWO \u2014 THE RAISING LIST (standards that arrived after Compass)",
+        "LIST THREE \u2014 THE CARVING LIST (spine vs identity, for Khor\u00f3s's sake)",
+        "THE WATERS AGAINST V3'S PHASES",
+        "Open strokes \u2014 KP's"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 12,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "THE-UX-WALK.md": {
+      "language": "markdown",
+      "lines": 182,
+      "words": 3322,
+      "heading_count": 6,
+      "headings": [
+        "THE UX WALK \u2014 the love list, one line at a time",
+        "THE METHOD RULING \u2014 KP's \u269b word, 2026-08-05, verbatim",
+        "The walk's scope \u2014 KP's \u269b word, 2026-08-05",
+        "The findings",
+        "THE SIMPLIFICATION PROPOSAL \u2014 laid for KP's strokes, 2026-08-05",
+        "THE REBUILD OPENS \u2014 the modes sitting, 2026-08-06 (the Canon lamp)"
       ],
       "links_external": 0,
       "links_site_absolute": [],

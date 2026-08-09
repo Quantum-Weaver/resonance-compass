@@ -1,8 +1,8 @@
 {
   "folder_name": "static",
   "folder_path": "static",
-  "description": "16 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.504055 | in sovereign time",
+  "description": "16 files, 1 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.935768 | in sovereign time",
   "files": [
     {
       "path": "static/aethelred-avatar.png",
@@ -70,7 +70,9 @@
     }
   ],
   "file_count": 16,
-  "subdirectories": [],
+  "subdirectories": [
+    "static/chimes"
+  ],
   "code_analysis": {
     "aethelred-avatar.png": {
       "language": "content-file",

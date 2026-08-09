@@ -1,14 +1,16 @@
 {
   "folder_name": "lib",
   "folder_path": "src/lib",
-  "description": "0 files, 7 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:10.963490 | in sovereign time",
+  "description": "0 files, 9 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.791529 | in sovereign time",
   "files": [],
   "file_count": 0,
   "subdirectories": [
     "src/lib/components",
     "src/lib/cosmic",
+    "src/lib/cumdach",
     "src/lib/data",
+    "src/lib/epagoge",
     "src/lib/stores",
     "src/lib/styles",
     "src/lib/theme",

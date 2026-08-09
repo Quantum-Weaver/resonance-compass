@@ -1,26 +1,26 @@
 import { browser } from '$app/environment';
 import { playerStore } from '$lib/stores/player.svelte';
+import { createTimer, prefersReducedMotion as coreReducedMotion } from '$lib/timer-core/core';
+import type { TimerMode } from '$lib/timer-core/core';
 
-export type TimerMode = 'sand' | 'breathing' | 'dissolve' | 'flower' | 'metatron' | 'cycle' | 'numeric';
-
-const MODE_ORDER: TimerMode[] = ['sand', 'breathing', 'dissolve', 'flower', 'metatron', 'cycle', 'numeric'];
+export type { TimerMode } from '$lib/timer-core/core';
 
 // Locks to numeric and hides the cycle control when the OS prefers reduced motion.
-export const prefersReducedMotion =
-	browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+export const prefersReducedMotion = browser && coreReducedMotion();
 
+// Reactive snapshot of the core's state — the dress's window into the water.
+// The core lives at $lib/timer-core (mirrored from awen's the-timer, see its
+// MIRROR.md); this store is the Compass coupling the re-homing transmuted
+// into hooks: the music-fade organ on onTick, the pause + ⚛-ruled WAV
+// end-chime on onComplete.
 let totalSecs = $state(0);
 let remainingSecs = $state(0);
 let isRunning = $state(false);
 let fadeOut = $state(false);
 let mode = $state<TimerMode>(prefersReducedMotion ? 'numeric' : 'sand');
 
-// Kept as module state (not component-local) so the timer survives navigating
-// away from /timer — a page-local implementation would unmount and remount
-// on every visit, losing track of (but not actually stopping) any interval
-// already running, letting it silently orphan or letting a second timer
-// stack on top of it.
-let tickInterval: ReturnType<typeof setInterval> | null = null;
+// The music fade stays Compass's own: fades player volume over the final
+// 60 seconds when enabled, restoring on cancel or completion.
 let fadeInterval: ReturnType<typeof setInterval> | null = null;
 let preTimerVolume = 0;
 
@@ -49,43 +49,40 @@ function stopFade(restore: boolean) {
 	}
 }
 
+// ONE core instance at module scope (the water's own law) so the timer
+// survives navigating away from /timer. The core's synthesized chime system
+// ships OFF: Compass's end-of-timer chime is its own ⚛-ruled dress below —
+// the mirrored WAV, opt-in, natural expiry only (cancel never lands there).
+const core = createTimer({
+	storage: null,
+	onTick: (remaining, total) => {
+		if (fadeOut && remaining === 60 && total > 60 && !fadeInterval) startFade();
+	},
+	onComplete: () => {
+		stopFade(true);
+		playerStore.pause();
+		try {
+			if (localStorage.getItem('timer_end_chime') === 'true') {
+				new Audio('/chimes/chime-single.wav').play().catch(() => {});
+			}
+		} catch {}
+	},
+});
+core.setSoundOn(false);
+core.subscribe((s) => {
+	totalSecs = s.totalSecs;
+	remainingSecs = s.remainingSecs;
+	isRunning = s.isRunning;
+	mode = s.mode;
+});
+
 function start(minutes: number) {
-	cancel(); // replace rather than stack if one's already running
-	totalSecs = minutes * 60;
-	remainingSecs = minutes * 60;
-	isRunning = true;
-	tickInterval = setInterval(() => {
-		remainingSecs -= 1;
-		if (fadeOut && remainingSecs === 60 && totalSecs > 60 && !fadeInterval) {
-			startFade();
-		}
-		if (remainingSecs <= 0) {
-			isRunning = false;
-			if (tickInterval) clearInterval(tickInterval);
-			tickInterval = null;
-			stopFade(true);
-			playerStore.pause();
-			totalSecs = 0;
-			// The end-of-timer chime (KP's ⚛ ruled feature) — played from the
-			// STORE so it sounds even when the vessel has left the timer
-			// screen; opt-in, and natural expiry only (cancel() never lands
-			// here). Tone: the-chimes' chime-single, mirrored in static/.
-			try {
-				if (localStorage.getItem('timer_end_chime') === 'true') {
-					new Audio('/chimes/chime-single.wav').play().catch(() => {});
-				}
-			} catch {}
-		}
-	}, 1000);
+	core.start(minutes); // the core replaces rather than stacks
 }
 
 function cancel() {
-	isRunning = false;
-	totalSecs = 0;
-	remainingSecs = 0;
-	if (tickInterval) clearInterval(tickInterval);
-	tickInterval = null;
 	stopFade(true);
+	core.cancel();
 }
 
 function setFadeOut(v: boolean) {
@@ -93,9 +90,7 @@ function setFadeOut(v: boolean) {
 }
 
 function cycleMode() {
-	if (prefersReducedMotion) return;
-	const idx = MODE_ORDER.indexOf(mode);
-	mode = MODE_ORDER[(idx + 1) % MODE_ORDER.length];
+	core.cycleMode();
 }
 
 export const timerStore = {

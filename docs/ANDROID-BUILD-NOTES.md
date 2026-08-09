@@ -74,6 +74,22 @@ Failure signals still surfaced in the UI as fallbacks:
 - Zero tracks found — scoped storage hides unpermitted media instead of erroring
   (Android 11+) → guidance appended to the scan error.
 
+## The 16 KB page-size dialog (found on the S25, 2026-08-09)
+
+Android 15+ devices in 16 KB page mode show a PageSizeMismatchDialog at
+launch (`PAGE_SIZE_APP_COMPAT_FLAG_ELF_NOT_ALIGNED` in logcat). Measured with
+the NDK's own llvm-readelf: **our Rust lib is already 16 KB aligned (0x4000)**;
+the 4 KB culprit is **NDK 26.2's prebuilt `libc++_shared.so` (0x1000)**, which
+Tauri symlinks into the APK each build. The fix is the NDK itself — **r27+
+ships 16 KB-aligned prebuilts** and Tauri auto-picks the newest installed:
+
+```
+sdkmanager "ndk;27.2.12479018"
+```
+
+Dismissible for dev (the app runs in compat mode); required truly before the
+Play listing — Play mandates 16 KB support for new/updated apps.
+
 ## Native libs / C++ linkage
 
 The Tauri CLI symlinks `libc++_shared.so` (from the NDK sysroot) and the built Rust

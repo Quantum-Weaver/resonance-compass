@@ -2,7 +2,7 @@
   "folder_name": "lyrics",
   "folder_path": "src/routes/lyrics",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.133278 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.876183 | in sovereign time",
   "files": [
     {
       "path": "src/routes/lyrics/+page.svelte",

@@ -40,6 +40,7 @@ src/
 │   ├── profiles/         # Sensory profiles (Phase 16)
 │   ├── focus/            # Focus sessions (Phase 17)
 │   ├── fragments/        # Fragment list + studio/ (Phases 17a, 17b)
+│   ├── record/           # Recording room (v3 Phase 2)
 │   ├── timer/            # Sleep timer (Phase 8)
 │   ├── settings/         # Theme, EQ, profiles, export/import/purge
 │   └── onboarding/       # First-launch welcome (Phase 13)
@@ -55,12 +56,22 @@ src/
 └── app.css
 
 src-tauri/src/
-├── lib.rs           # App setup, migrations, commands (scan, lyrics, cover art,
-│                    #   create_fragment, export_fragments, export_mix)
-├── main.rs          # Entry point
-├── audio.rs         # Playback engine (Phase 1)
-├── equalizer.rs     # 10-band EQ (Phase 6)
-└── visualizer.rs    # FFT pipeline (Phase 5)
+├── lib.rs               # App setup, migrations, commands (scan, permissions,
+│                        #   fragments/mixes, purge; lyrics + cover art delegate
+│                        #   to the spring's finder crates)
+├── main.rs              # Entry point
+├── audio.rs             # Playback engine (Phase 1)
+├── equalizer.rs         # EQ command tail (DSP body = the-equalizer crate)
+├── fragment_engine.rs   # Native fragment/mix engine (v3 Phase 1 keel)
+├── recorder.rs          # Recording room tail (v3 Phase 2; the-recorder crate)
+├── media_permission.rs  # Android media/mic permission plugin
+├── media_session.rs     # Android media session / notification
+└── visualizer.rs        # FFT pipeline (Phase 5)
+
+Spring crates consumed via path deps (resonance-awen/tools): the-art-finder ·
+the-lyric-finder · the-equalizer · the-recorder. TS waters mirrored under
+src/lib/ (timer-core · breath-core · envelope-core · emojis.gen — see each
+folder's MIRROR.md).
 ```
 
 ---
@@ -99,7 +110,7 @@ fragments(id TEXT PK, source_track_id TEXT, name TEXT, start_time REAL, end_time
 
 ## CURRENT STATE
 
-All build phases complete (0–18c plus 17a/17b fragments, 18a/18b audits, v1 queue parity). Phase 19 (Deploy): v2.3.1 signed + installed on both phones 2026-07-08; the public store listing waits on the 🚦 Launch Sequence (site live first, then Echoes + Compass together). Human testing of phases 13+ pending. v3 (the Musician's Compass) commissioned 2026-07-18 — see docs/V3-BUILD-SEQUENCE.md.
+All v2 build phases complete (0–18c plus 17a/17b fragments, 18a/18b audits, v1 queue parity). Phase 19 (Deploy): v2.3.1 signed + installed on both phones 2026-07-08; the public store listing waits on the 🚦 Launch Sequence (site live first, then Echoes + Compass together). v3 (the Musician's Compass, docs/V3-BUILD-SEQUENCE.md): Phase 1 keel CLOSED 07-19; Phase 0 landscape drafted 08-09 (docs/V3-LANDSCAPE.md, KP's eye pending); **Phase 2 recording room BUILT 08-09** (/record — the-recorder water, takes in app-data with sovereign export; BT-latency calibration rides to Phase 3 with overdub sync). The standalone-waters swap season (08-08): seven waters consumed — see docs/THE-STANDALONE-WATERS.md + CHECKLIST.
 
 See `docs/BUILD-SEQUENCE.md` for the phase plan and `docs/CHECKLIST.md` for per-phase state. Release notes: `docs/RELEASE-NOTES-v2.0.0.md`.
 

@@ -7,6 +7,8 @@
 	import { libraryStore } from '$lib/stores/library.svelte';
 	import { invoke } from '@tauri-apps/api/core';
 	import type { Track } from '$lib/types/types';
+	import { createBreath, drawSquarePulse, PHASE_COLORS } from '$lib/breath-core/index';
+	import type { BreathDuration } from '$lib/breath-core/index';
 
 	// ── Settings ──────────────────────────────────────────────────────────────
 
@@ -15,7 +17,7 @@
 		theme: 'warm_amber' | 'deep_space' | 'cosmic_purple';
 		eq: 'reduced_bass' | 'flat' | 'custom';
 		breathingEnabled: boolean;
-		breathDuration: '4-4' | '4-6' | '4-8' | '5-5';
+		breathDuration: BreathDuration;
 		volumeReduction: 0 | 10 | 25 | 50;
 		exitTransition: 'fade' | 'instant';
 		exitDestination: string;
@@ -43,17 +45,6 @@
 		return { ...DEFAULTS };
 	}
 
-	// ── Animation constants ──────────────────────────────────────────────────
-
-	const PHASE_COLORS: [string, string] = ['#FDCB6E', '#6C5CE7'];
-
-	const BREATH_DURATIONS: Record<string, [number, number]> = {
-		'4-4': [8000, 8000],
-		'4-6': [8000, 12000],
-		'4-8': [8000, 16000],
-		'5-5': [10000, 10000],
-	};
-
 	// ── Reactive state ────────────────────────────────────────────────────────
 
 	let visible = $state(false);
@@ -63,14 +54,16 @@
 	let currentCount = $state(1);
 	let countOpacity = $state(0.04);
 	let phaseIdx = $state(0);
-	let borderAlpha = $state(0.1);
 
 	let borderCanvas = $state<HTMLCanvasElement | null>(null);
 
 	// ── Non-reactive session state ────────────────────────────────────────────
 
+	// The pacer is the water's (see $lib/breath-core/MIRROR.md); recreated at
+	// mount with the session's chosen duration. This page keeps the dressing
+	// room only.
+	let breath = createBreath(DEFAULTS.breathDuration);
 	let rafId = 0;
-	let phaseStartTime = 0;
 	let sessionSettings = DEFAULTS;
 	let exiting = false;
 
@@ -87,100 +80,21 @@
 		typeof window !== 'undefined' &&
 		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	// ── Canvas border glow ────────────────────────────────────────────────────
-
-	function hexToRgb(hex: string): [number, number, number] {
-		const n = parseInt(hex.slice(1), 16);
-		return [(n >> 16) & 0xff, (n >> 8) & 0xff, n & 0xff];
-	}
-
-	type RoundRectCtx = CanvasRenderingContext2D & { roundRect?: (x: number, y: number, w: number, h: number, r: number) => void };
-
-	function drawSquarePulse(canvas: HTMLCanvasElement, color: string, alpha: number) {
-		const ctx = canvas.getContext('2d') as RoundRectCtx | null;
-		if (!ctx) return;
-		const W = canvas.width;
-		const H = canvas.height;
-		ctx.clearRect(0, 0, W, H);
-		if (alpha <= 0) return;
-
-		const dim = Math.min(W, H);
-		const sqSz = dim * 0.6;
-		const x = (W - sqSz) / 2;
-		const y = (H - sqSz) / 2;
-		const cr = 10;
-
-		const [r, g, b] = hexToRgb(color);
-
-		ctx.save();
-
-		ctx.shadowBlur = 36;
-		ctx.shadowColor = `rgba(${r},${g},${b},${alpha * 0.6})`;
-
-		ctx.beginPath();
-		if (ctx.roundRect) {
-			ctx.roundRect(x, y, sqSz, sqSz, cr);
-		} else {
-			ctx.rect(x, y, sqSz, sqSz);
-		}
-		ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.45})`;
-		ctx.lineWidth = 6 + alpha * 6;
-		ctx.stroke();
-
-		ctx.shadowBlur = 14;
-		ctx.shadowColor = `rgba(${r},${g},${b},${alpha})`;
-		ctx.beginPath();
-		if (ctx.roundRect) {
-			ctx.roundRect(x, y, sqSz, sqSz, cr);
-		} else {
-			ctx.rect(x, y, sqSz, sqSz);
-		}
-		ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.85})`;
-		ctx.lineWidth = 1.2;
-		ctx.stroke();
-
-		ctx.shadowBlur = 0;
-		ctx.globalAlpha = alpha * 0.04;
-		ctx.fillStyle = `rgb(${r},${g},${b})`;
-		ctx.fill();
-
-		ctx.restore();
-	}
-
 	// ── Animation loop ────────────────────────────────────────────────────────
 
 	function animLoop() {
 		if (!visible || fadingOut) return;
 
-		const now = performance.now();
-		if (phaseStartTime === 0) phaseStartTime = now;
-
-		const durations = BREATH_DURATIONS[sessionSettings.breathDuration] ?? [8000, 8000];
-		const phaseDur = durations[phaseIdx];
-		const elapsed = now - phaseStartTime;
-		const t = Math.min(1, elapsed / phaseDur);
-
-		currentCount = Math.min(4, Math.floor(t * 4) + 1);
-
-		if (t < 0.75) {
-			countOpacity = 0.04 + (t / 0.75) * 0.17;
-		} else {
-			const ft = (t - 0.75) / 0.25;
-			countOpacity = 0.21 - ft * 0.17;
-		}
-
-		borderAlpha = 0.09 + Math.sin(t * Math.PI) * 0.09;
+		const s = breath.sample(performance.now());
+		currentCount = s.count;
+		countOpacity = s.countOpacity;
+		phaseIdx = s.phaseIdx;
 
 		if (borderCanvas && !prefersReduced && breathingOn) {
-			drawSquarePulse(borderCanvas, PHASE_COLORS[phaseIdx], borderAlpha);
+			drawSquarePulse(borderCanvas, s.color, s.borderAlpha);
 		} else if (borderCanvas && !prefersReduced) {
 			const ctx = borderCanvas.getContext('2d');
 			if (ctx) ctx.clearRect(0, 0, borderCanvas.width, borderCanvas.height);
-		}
-
-		if (t >= 1) {
-			phaseIdx = phaseIdx === 0 ? 1 : 0;
-			phaseStartTime = now;
 		}
 
 		rafId = requestAnimationFrame(animLoop);
@@ -305,6 +219,7 @@
 	onMount(async () => {
 		sessionSettings = loadSettings();
 		breathingOn = sessionSettings.breathingEnabled;
+		breath = createBreath(sessionSettings.breathDuration);
 
 		await applyEntryState(sessionSettings);
 
@@ -316,7 +231,6 @@
 		requestAnimationFrame(() => {
 			visible = true;
 			if (!prefersReduced) {
-				phaseStartTime = performance.now();
 				rafId = requestAnimationFrame(animLoop);
 			}
 		});
@@ -347,7 +261,7 @@
 		class="count-number"
 		style="
 			opacity: {prefersReduced ? 0.15 : countOpacity};
-			color: {phaseIdx === 0 ? '#FDCB6E' : '#6C5CE7'};
+			color: {PHASE_COLORS[phaseIdx]};
 		"
 		aria-hidden="true"
 	>{currentCount}</div>

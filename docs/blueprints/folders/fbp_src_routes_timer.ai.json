@@ -1,20 +1,48 @@
 {
   "folder_name": "timer",
   "folder_path": "src/routes/timer",
-  "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.338578 | in sovereign time",
+  "description": "3 files, 0 subfolders",
+  "scan_timestamp": "2026-08-08T17:55:03.893044 | in sovereign time",
   "files": [
     {
       "path": "src/routes/timer/+page.svelte",
-      "description": "surface, 7,785 bytes"
+      "description": "surface, 1,828 bytes"
+    },
+    {
+      "path": "src/routes/timer/FocusSession.svelte",
+      "description": "surface, 26,119 bytes"
+    },
+    {
+      "path": "src/routes/timer/SleepTimer.svelte",
+      "description": "surface, 8,877 bytes"
     }
   ],
-  "file_count": 1,
+  "file_count": 3,
   "subdirectories": [],
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 335,
+      "lines": 76,
+      "uses_runes": [
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "FocusSession.svelte": {
+      "language": "svelte",
+      "lines": 832,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "SleepTimer.svelte": {
+      "language": "svelte",
+      "lines": 375,
       "uses_runes": [
         "$derived",
         "$state"

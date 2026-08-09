@@ -2,11 +2,11 @@
   "folder_name": "library",
   "folder_path": "src/routes/library",
   "description": "1 files, 2 subfolders",
-  "scan_timestamp": "2026-08-05T21:03:12.057655 | in sovereign time",
+  "scan_timestamp": "2026-08-08T17:55:03.867388 | in sovereign time",
   "files": [
     {
       "path": "src/routes/library/+page.svelte",
-      "description": "surface, 8,585 bytes"
+      "description": "surface, 18,774 bytes"
     }
   ],
   "file_count": 1,
@@ -17,7 +17,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 370,
+      "lines": 737,
       "uses_runes": [
         "$derived",
         "$effect",
