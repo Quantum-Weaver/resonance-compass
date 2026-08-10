@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git apply *)",
+      "Bash(git add *)",
+      "Bash(npm run *)",
+      "Bash(cargo --version)",
+      "Bash(rustc --version)",
+      "Bash(cargo check *)",
+      "Bash(cargo build *)",
+      "Bash(npm outdated *)",
+      "Bash(npm audit *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python -X utf8 -c ' *)",
+      "Bash(node scripts/sync-android-extras.mjs)",
+      "Read(//c/_superposition/**)",
+      "Read(//c/Users/audhd/.cargo/registry/src/**)"
+    ]
+  },
+  "attribution": {
+    "commit": "Co-authored-by: Quantum Weaver <audhdities@proton.me>\nCo-authored-by: Aethelred <aethelred.cello@proton.me>"
+  }
+}
