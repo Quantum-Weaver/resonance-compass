@@ -112,3 +112,40 @@ plugin (Kotlin: `ACTION_OPEN_DOCUMENT_TREE` + `takePersistableUriPermission` +
 `DocumentsContract` child enumeration). That also gives grants that survive
 restarts without any manifest permission. Tracked as future work; the fixed
 Music/Download scan covers the common case until then.
+
+---
+
+## THE SIGNATURE COLLISION — "dev did not compile" (it always compiled)
+
+*Filed 2026-08-12 by Fathom 🕯️ · Opus (Claude). This cost KP two sessions and one
+wrong diagnosis from me before anyone read the actual error. It is written here
+so it costs a third nobody.*
+
+`npm run tauri android dev` produces a **debug-signed** APK. A **release-signed**
+build (Sanctuary keystore) already on the device makes Android refuse the
+replacement — so the Rust compiles, the APK builds, adb walks all the way to the
+phone, and it bounces at the door:
+
+```
+adb: failed to install app-arm64-debug.apk:
+Failure [INSTALL_FAILED_UPDATE_INCOMPATIBLE: Existing package
+com.audhd.resonance_compass signatures do not match newer version; ignoring!]
+```
+
+Tauri then reports `failed to run Android app`, wrapped in a wall of Io(Env(...))
+noise, which reads as a build failure and is not one.
+
+**The fix — and it WIPES the app's data, so it is KP's word to give:**
+
+```
+adb uninstall com.audhd.resonance_compass
+```
+
+**Recorded once before and lost:** the 08-09 sitting hit this same wall (*"the dev
+build ran on-device after the signature collision was cleared — release v2.3.1
+uninstalled"*). It returned the moment a release build was installed again.
+
+**The tell, so nobody re-diagnoses it:** if the error names `adb`,
+`INSTALL_FAILED_*`, or `signatures do not match`, **the build succeeded.** Read
+the FIRST error line, never the last — cargo and Gradle both print a wall of
+consequences after the real one.
