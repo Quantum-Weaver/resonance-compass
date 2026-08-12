@@ -921,12 +921,27 @@ drifts.*
 **Measured: 11 occurrences in 6 files, of 229 source files scanned.** It splits
 in two, and only one half is this repo's:
 
-- [ ] **`src/routes/fragments/studio/+page.svelte` — 6 hits, and they are VISIBLE
-      UI, not comments:** L190 `🎚 Fragment Studio` · L195 `💾 Save` · L197
-      `📂 Load` · L243 the empty-state icon · L317 `⤨ Crossfade` · L349 `…` and
-      `⬇ Export Mix`. **~10 minutes**, character by character against a known
-      mapping — **never a bulk re-decode of the file**, because it now holds BOTH
-      mojibake and correct UTF-8 and a blanket pass would corrupt the healthy half
+- [x] **`src/routes/fragments/studio/+page.svelte` — CLOSED 2026-08-12, byte-exact.**
+      Fathom's law honored exactly: **no bulk re-decode.** One targeted byte-sequence
+      replacement per glyph, counted before and verified after.
+      **The measurement grew under the light, twice:**
+    - **7 glyph sequences, not 6.** The back-link at **L189 `← Fragments`** was
+      double-encoded too and was not on the list — found by dumping the bytes rather
+      than trusting the count.
+    - **And 392 more in the same file**, every one the same character: `─` (U+2500)
+      in the comment separators. The emoji-shaped signature never matched them, which
+      is why a scan of 229 files reported 11 occurrences while one file held 399.
+      **399 sequences fixed in total.**
+      **Method:** the file read as Latin-1 so string operations *are* byte
+      operations, each mojibake run mapped to its true codepoint — 🎚 U+1F39A ·
+      💾 U+1F4BE · 📂 U+1F4C2 · ⤨ U+2928 · … U+2026 · ⬇ U+2B07 · ← U+2190 ·
+      ─ U+2500 — and written back as bytes. Immune to any encoding the tooling
+      might impose on the way through.
+      **Verified after, not assumed:** the file is valid UTF-8 · **0 mojibake
+      signatures remain** · `npm run check` **395 files, 0 errors, 0 warnings**.
+      **And the mirror is clean:** the same byte scan across `resonance-sistrum` and
+      `resonance-echoes` found **zero** in either — the Sistrum body carried none of
+      this out of the Compass.
 - [x] **`src/lib/cosmic/*.ts` — 9 hits — CLOSED, DO NOT TOUCH.** KP's ⚛ word:
       **"no touchy the cosmic tokens."** That folder is a DISTRIBUTED MIRROR whose
       single truth is `resonance-ziggy/modules/cosmic/`, refreshed by

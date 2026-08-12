@@ -6,7 +6,7 @@
 	import { playerStore } from '$lib/stores/player.svelte';
 	import type { Track } from '$lib/types/types';
 
-	// â”€â”€ Working arrangement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Working arrangement ────────────────────────────────────────────────────
 
 	let layers = $state<StudioLayer[]>([]);
 	let mixName = $state('My Mix');
@@ -52,7 +52,7 @@
 		}, 0)
 	);
 
-	// â”€â”€ Layer operations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Layer operations ───────────────────────────────────────────────────────
 
 	function addFragment(frag: Fragment) {
 		const lastEnd = totalDuration;
@@ -80,7 +80,7 @@
 		layers = next;
 	}
 
-	// â”€â”€ Auto-crossfade â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Auto-crossfade ─────────────────────────────────────────────────────────
 	// Lays layers end-to-end in list order, each overlapping the previous by
 	// crossfadeSecs, with matching fade-out/fade-in applied at every seam.
 
@@ -104,7 +104,7 @@
 		clearExport();
 	}
 
-	// â”€â”€ Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Export ─────────────────────────────────────────────────────────────────
 
 	function clearExport() {
 		exportedPath = null;
@@ -156,7 +156,7 @@
 		playerStore.setQueue([track], 0);
 	}
 
-	// â”€â”€ Arrangements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Arrangements ───────────────────────────────────────────────────────────
 
 	function saveCurrent() {
 		const saved = studioStore.saveArrangement(mixName, layers, loadedArrangementId ?? undefined);
@@ -173,7 +173,7 @@
 		clearExport();
 	}
 
-	// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Helpers ────────────────────────────────────────────────────────────────
 
 	function fmtSec(s: number): string {
 		const m = Math.floor(s / 60);
@@ -186,15 +186,15 @@
 
 <div class="studio-page">
 	<header class="studio-header">
-		<a class="back-link" href="/fragments">â† Fragments</a>
-		<h1 class="studio-title">ðŸŽš Fragment Studio</h1>
+		<a class="back-link" href="/fragments">← Fragments</a>
+		<h1 class="studio-title">🎚 Fragment Studio</h1>
 	</header>
 
 	<div class="name-row">
 		<input class="mix-name-input" type="text" bind:value={mixName} maxlength="40" aria-label="Mix name" />
-		<button class="ghost-btn" onclick={saveCurrent} disabled={layers.length === 0}>ðŸ’¾ Save</button>
+		<button class="ghost-btn" onclick={saveCurrent} disabled={layers.length === 0}>💾 Save</button>
 		<button class="ghost-btn" onclick={() => (arrangementsOpen = !arrangementsOpen)} aria-expanded={arrangementsOpen}>
-			ðŸ“‚ Load
+			📂 Load
 		</button>
 	</div>
 
@@ -240,7 +240,7 @@
 	<!-- Layers -->
 	{#if layers.length === 0}
 		<div class="empty-state">
-			<span class="empty-icon">ðŸŽš</span>
+			<span class="empty-icon">🎚</span>
 			<p class="empty-title">No layers yet</p>
 			<p class="empty-sub">Add fragments and layer them into a mix.</p>
 		</div>
@@ -314,7 +314,7 @@
 		<button class="add-btn" onclick={() => (pickerOpen = !pickerOpen)} aria-expanded={pickerOpen}>+ Add Layer</button>
 		{#if layers.length >= 2}
 			<div class="xfade-group">
-				<button class="ghost-btn" onclick={autoCrossfade}>â¤¨ Crossfade</button>
+				<button class="ghost-btn" onclick={autoCrossfade}>⤨ Crossfade</button>
 				<input
 					type="number" class="xfade-input" min="0" max="30" step="0.5"
 					bind:value={crossfadeSecs}
@@ -346,7 +346,7 @@
 	<!-- Export -->
 	<div class="export-section">
 		<button class="export-btn" onclick={exportMix} disabled={validLayers.length === 0 || exporting}>
-			{exporting ? 'Mixingâ€¦' : 'â¬‡ Export Mix'}
+			{exporting ? 'Mixing…' : '⬇ Export Mix'}
 		</button>
 		{#if exportError}
 			<p class="export-error">{exportError}</p>
@@ -375,7 +375,7 @@
 	.back-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; align-self: flex-start; }
 	.studio-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
 
-	/* â”€â”€ Name / save / load â”€â”€ */
+	/* ── Name / save / load ── */
 	.name-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 	.mix-name-input {
@@ -408,7 +408,7 @@
 	.ghost-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 	.ghost-btn:disabled { opacity: 0.4; cursor: default; }
 
-	/* â”€â”€ Panels â”€â”€ */
+	/* ── Panels ── */
 	.arrangements-panel,
 	.picker-panel {
 		background: var(--bg-surface);
@@ -476,7 +476,7 @@
 	.picker-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	.picker-dur { font-size: 0.78rem; color: var(--accent); flex-shrink: 0; }
 
-	/* â”€â”€ Timeline viz â”€â”€ */
+	/* ── Timeline viz ── */
 	.timeline-viz {
 		position: relative;
 		background: var(--bg-surface);
@@ -507,7 +507,7 @@
 		font-variant-numeric: tabular-nums;
 	}
 
-	/* â”€â”€ Empty state â”€â”€ */
+	/* ── Empty state ── */
 	.empty-state {
 		display: flex;
 		flex-direction: column;
@@ -520,7 +520,7 @@
 	.empty-title { font-size: 1rem; font-weight: 600; margin: 0; }
 	.empty-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
 
-	/* â”€â”€ Layers â”€â”€ */
+	/* ── Layers ── */
 	.layer-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
 	.layer-card {
@@ -582,7 +582,7 @@
 
 	.layer-missing { font-size: 0.8rem; color: #e17055; margin: 0; }
 
-	/* â”€â”€ Actions â”€â”€ */
+	/* ── Actions ── */
 	.action-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 
 	.add-btn {
@@ -612,7 +612,7 @@
 	}
 	.xfade-unit { font-size: 0.8rem; color: var(--text-muted); }
 
-	/* â”€â”€ Export â”€â”€ */
+	/* ── Export ── */
 	.export-section {
 		display: flex;
 		flex-direction: column;
