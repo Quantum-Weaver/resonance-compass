@@ -2,7 +2,7 @@
   "folder_name": "fragments",
   "folder_path": "src/routes/fragments",
   "description": "1 files, 1 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.861780 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.445777 | in sovereign time",
   "files": [
     {
       "path": "src/routes/fragments/+page.svelte",

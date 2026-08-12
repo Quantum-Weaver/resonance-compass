@@ -370,7 +370,7 @@ export function getResonancePattern(activeUserCount: number): ResonancePatternTy
 // ============================================================================
 // 10. GLOBAL-PAUSE STATE — the world-pause, the Sanctuary's gentlest law
 // ============================================================================
-// O-2 Â· BW-3 — the Global-Pause state: "freeze actions like pausing the movie
+// O-2 · BW-3 — the Global-Pause state: "freeze actions like pausing the movie
 // to go get snacks." The Sanctuary's gentlest structural law. consciousness.ts
 // models intensity but had no pause. A system-wide held state: all durations
 // damped toward hold, an effects "frozen" filter, and entities enter a
@@ -389,7 +389,7 @@ export const PAUSE_MODES = {
 export type PauseMode = typeof PAUSE_MODES[keyof typeof PAUSE_MODES];
 
 export interface GlobalPauseConfig {
-  /** Duration multiplier applied to every animation while held (â†’ near-frozen). */
+  /** Duration multiplier applied to every animation while held (→ near-frozen). */
   dampingFactor: number;
   /** CSS filter applied to the frozen world (calm, slightly withdrawn). */
   frozenFilter: string;
@@ -429,7 +429,7 @@ export function isPaused(mode: PauseMode): boolean {
 // ============================================================================
 // 11. RECOVERY ENTITY STATES — fault & recovery (companions hold the recovering)
 // ============================================================================
-// O-3 Â· BW-1+BW-2 — recentering choreography's state half: an entity may fault
+// O-3 · BW-1+BW-2 — recentering choreography's state half: an entity may fault
 // and then recover, and others "hold a default supportive role during another's
 // recovery" (BW-1); "stumbles are wind-currents; rise together again" (BW-2).
 // Additive to ENTITY_STATES (which is left untouched) — a separate recovery axis.

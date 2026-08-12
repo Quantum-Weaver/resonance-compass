@@ -1,8 +1,8 @@
 {
   "folder_name": "docs",
   "folder_path": "docs",
-  "description": "18 files, 1 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.768821 | in sovereign time",
+  "description": "19 files, 1 subfolders",
+  "scan_timestamp": "2026-08-12T14:54:50.345528 | in sovereign time",
   "files": [
     {
       "path": "docs/ANDROID-BUILD-NOTES.md",
@@ -73,20 +73,24 @@
       "description": "RESONANCE COMPASS v3"
     },
     {
+      "path": "docs/V3-LANDSCAPE.md",
+      "description": "V3-LANDSCAPE"
+    },
+    {
       "path": "docs/VISUALIZER-PLAYABLE-MODE.md",
       "description": "Visualizer Playable Mode"
     }
   ],
-  "file_count": 18,
+  "file_count": 19,
   "subdirectories": [
     "docs/session-reports"
   ],
   "code_analysis": {
     "ANDROID-BUILD-NOTES.md": {
       "language": "markdown",
-      "lines": 99,
-      "words": 451,
-      "heading_count": 9,
+      "lines": 152,
+      "words": 766,
+      "heading_count": 11,
       "headings": [
         "Android Build Notes \u2014 Resonance Compass v2",
         "After `tauri android init` \u2014 required steps",
@@ -94,16 +98,18 @@
         "2. Manifest permissions + Kotlin plugins \u2014 AUTOMATED",
         "3. Re-apply MainActivity edge-to-edge (v1 parity)",
         "How library scanning works on Android",
+        "The 16 KB page-size dialog (found on the S25, 2026-08-09)",
         "Native libs / C++ linkage",
         "Signing",
-        "Known limitation / roadmap"
+        "Known limitation / roadmap",
+        "THE SIGNATURE COLLISION \u2014 \"dev did not compile\" (it always compiled)"
       ],
       "links_external": 0,
       "links_site_absolute": [],
       "links_internal": [],
       "links_internal_unresolved": [],
       "links_internal_outside_checkout": [],
-      "code_fences": 3,
+      "code_fences": 6,
       "table_rows": 0,
       "checkboxes": {
         "open": 0,
@@ -156,9 +162,9 @@
     },
     "CHECKLIST.md": {
       "language": "markdown",
-      "lines": 549,
-      "words": 11603,
-      "heading_count": 48,
+      "lines": 963,
+      "words": 15670,
+      "heading_count": 60,
       "headings": [
         "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST",
         "LEGEND",
@@ -193,8 +199,8 @@
       "code_fences": 0,
       "table_rows": 40,
       "checkboxes": {
-        "open": 19,
-        "done": 253
+        "open": 31,
+        "done": 307
       },
       "has_story_block": false,
       "declares_mirror_class": false
@@ -454,13 +460,12 @@
     },
     "SCREEN-INVENTORY.md": {
       "language": "markdown",
-      "lines": 34,
-      "words": 198,
-      "heading_count": 4,
+      "lines": 45,
+      "words": 367,
+      "heading_count": 3,
       "headings": [
-        "SCREEN INVENTORY \u2014 Resonance Compass v2",
-        "Built (0)",
-        "Planned (19 screens)",
+        "SCREEN INVENTORY \u2014 Resonance Compass",
+        "Standing routes (23)",
         "Sanctuary-Unique Screens"
       ],
       "links_external": 0,
@@ -469,7 +474,7 @@
       "links_internal_unresolved": [],
       "links_internal_outside_checkout": [],
       "code_fences": 0,
-      "table_rows": 21,
+      "table_rows": 23,
       "checkboxes": {
         "open": 0,
         "done": 0
@@ -622,6 +627,38 @@
       "links_internal_outside_checkout": [],
       "code_fences": 0,
       "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "V3-LANDSCAPE.md": {
+      "language": "markdown",
+      "lines": 268,
+      "words": 2844,
+      "heading_count": 11,
+      "headings": [
+        "V3-LANDSCAPE \u2014 the mobile music-recording territory",
+        "1. The map \u2014 existing mobile recording apps",
+        "What the map says, plainly",
+        "2. What musicians beg for \u2014 the voice of the user",
+        "Recurring complaints",
+        "Recurring wishes",
+        "3. The sort",
+        "TABLE STAKES \u2014 every serious app has it; v3 cannot ship without",
+        "DIFFERENTIATORS \u2014 rare or absent in the market",
+        "WHAT MAKES A NEURODIVERGENT MUSICIAN FEEL SEEN \u2014 absent as a category",
+        "4. What this means for Phases 2\u20134"
+      ],
+      "links_external": 96,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 24,
       "checkboxes": {
         "open": 0,
         "done": 0

@@ -2,11 +2,11 @@
   "folder_name": "sattva",
   "folder_path": "src/routes/sattva",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.888233 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.469237 | in sovereign time",
   "files": [
     {
       "path": "src/routes/sattva/+page.svelte",
-      "description": "surface, 13,196 bytes"
+      "description": "surface, 10,785 bytes"
     }
   ],
   "file_count": 1,
@@ -14,7 +14,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 437,
+      "lines": 351,
       "uses_runes": [
         "$state"
       ],

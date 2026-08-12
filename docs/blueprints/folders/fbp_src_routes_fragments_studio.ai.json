@@ -2,11 +2,11 @@
   "folder_name": "studio",
   "folder_path": "src/routes/fragments/studio",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.863726 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.447315 | in sovereign time",
   "files": [
     {
       "path": "src/routes/fragments/studio/+page.svelte",
-      "description": "surface, 20,206 bytes"
+      "description": "surface, 20,848 bytes"
     }
   ],
   "file_count": 1,
@@ -14,7 +14,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 627,
+      "lines": 644,
       "uses_runes": [
         "$derived",
         "$state"

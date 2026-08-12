@@ -1,43 +1,41 @@
 {
-  "folder_name": "cumdach",
-  "folder_path": "src/lib/cumdach",
+  "folder_name": "timer-core",
+  "folder_path": "src/lib/timer-core",
   "description": "2 files, 0 subfolders",
-  "scan_timestamp": "2026-08-12T14:54:50.404023 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.435519 | in sovereign time",
   "files": [
     {
-      "path": "src/lib/cumdach/index.ts",
-      "description": "the-cumdach"
+      "path": "src/lib/timer-core/core.ts",
+      "description": "the-timer"
     },
     {
-      "path": "src/lib/cumdach/MIRROR.md",
-      "description": "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+      "path": "src/lib/timer-core/MIRROR.md",
+      "description": "DISTRIBUTED MIRROR"
     }
   ],
   "file_count": 2,
   "subdirectories": [],
   "code_analysis": {
-    "index.ts": {
+    "core.ts": {
       "language": "typescript",
-      "lines": 224,
+      "lines": 323,
       "exported_functions": [
-        "balancedSizes",
-        "derive",
-        "wear",
-        "rederive"
+        "prefersReducedMotion",
+        "createTimer"
       ],
-      "exported_consts": [],
+      "exported_consts": [
+        "MODE_ORDER",
+        "CHIME_DEFS"
+      ],
       "interfaces": [
-        "Door",
-        "Hat",
-        "Menu",
-        "Land",
-        "Costs",
-        "Palette",
-        "Face",
-        "Panel",
-        "Shrine"
+        "TimerStorage",
+        "TimerOptions",
+        "TimerState"
       ],
-      "types": [],
+      "types": [
+        "TimerMode",
+        "ChimeId"
+      ],
       "imports_node": [],
       "spawns_process": false,
       "writes_files": false,
@@ -45,11 +43,11 @@
     },
     "MIRROR.md": {
       "language": "markdown",
-      "lines": 19,
-      "words": 134,
+      "lines": 28,
+      "words": 220,
       "heading_count": 1,
       "headings": [
-        "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+        "DISTRIBUTED MIRROR \u2014 the source of truth lives in resonance-awen"
       ],
       "links_external": 0,
       "links_site_absolute": [],

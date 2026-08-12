@@ -1,8 +1,8 @@
 {
   "folder_name": "icons",
   "folder_path": "src/lib/components/icons",
-  "description": "28 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.808267 | in sovereign time",
+  "description": "29 files, 0 subfolders",
+  "scan_timestamp": "2026-08-12T14:54:50.389424 | in sovereign time",
   "files": [
     {
       "path": "src/lib/components/icons/IconChevron.svelte",
@@ -45,6 +45,10 @@
       "description": "surface, 508 bytes"
     },
     {
+      "path": "src/lib/components/icons/IconMicrophone.svelte",
+      "description": "surface, 426 bytes"
+    },
+    {
       "path": "src/lib/components/icons/IconPause.svelte",
       "description": "surface, 342 bytes"
     },
@@ -74,7 +78,7 @@
     },
     {
       "path": "src/lib/components/icons/Icons.svelte",
-      "description": "surface, 3,066 bytes"
+      "description": "surface, 3,173 bytes"
     },
     {
       "path": "src/lib/components/icons/IconSattva.svelte",
@@ -117,7 +121,7 @@
       "description": "surface, 461 bytes"
     }
   ],
-  "file_count": 28,
+  "file_count": 29,
   "subdirectories": [],
   "code_analysis": {
     "IconChevron.svelte": {
@@ -211,6 +215,15 @@
       "fetch_calls": [],
       "has_style_block": false
     },
+    "IconMicrophone.svelte": {
+      "language": "svelte",
+      "lines": 9,
+      "uses_runes": [
+        "$props"
+      ],
+      "fetch_calls": [],
+      "has_style_block": false
+    },
     "IconPause.svelte": {
       "language": "svelte",
       "lines": 8,
@@ -276,7 +289,7 @@
     },
     "Icons.svelte": {
       "language": "svelte",
-      "lines": 90,
+      "lines": 92,
       "uses_runes": [
         "$derived",
         "$props"

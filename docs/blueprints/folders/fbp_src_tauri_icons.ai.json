@@ -2,31 +2,31 @@
   "folder_name": "icons",
   "folder_path": "src-tauri/icons",
   "description": "18 files, 2 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.907112 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.487456 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/icons/128x128.png",
-      "description": "image, 31,807 bytes"
+      "description": "image, 31,958 bytes"
     },
     {
       "path": "src-tauri/icons/128x128@2x.png",
-      "description": "image, 101,764 bytes"
+      "description": "image, 102,856 bytes"
     },
     {
       "path": "src-tauri/icons/32x32.png",
-      "description": "image, 2,844 bytes"
+      "description": "image, 2,851 bytes"
     },
     {
       "path": "src-tauri/icons/64x64.png",
-      "description": "image, 9,711 bytes"
+      "description": "image, 9,736 bytes"
     },
     {
       "path": "src-tauri/icons/icon.icns",
-      "description": "file, 1,870,679 bytes"
+      "description": "file, 1,788,896 bytes"
     },
     {
       "path": "src-tauri/icons/icon.ico",
-      "description": "file, 122,945 bytes"
+      "description": "file, 124,033 bytes"
     },
     {
       "path": "src-tauri/icons/icon.png",
@@ -34,7 +34,7 @@
     },
     {
       "path": "src-tauri/icons/source.png",
-      "description": "image, 53,185 bytes"
+      "description": "image, 317,164 bytes"
     },
     {
       "path": "src-tauri/icons/Square107x107Logo.png",
@@ -42,39 +42,39 @@
     },
     {
       "path": "src-tauri/icons/Square142x142Logo.png",
-      "description": "image, 38,112 bytes"
+      "description": "image, 38,215 bytes"
     },
     {
       "path": "src-tauri/icons/Square150x150Logo.png",
-      "description": "image, 41,636 bytes"
+      "description": "image, 41,729 bytes"
     },
     {
       "path": "src-tauri/icons/Square284x284Logo.png",
-      "description": "image, 120,822 bytes"
+      "description": "image, 122,550 bytes"
     },
     {
       "path": "src-tauri/icons/Square30x30Logo.png",
-      "description": "image, 2,546 bytes"
+      "description": "image, 2,547 bytes"
     },
     {
       "path": "src-tauri/icons/Square310x310Logo.png",
-      "description": "image, 139,700 bytes"
+      "description": "image, 141,963 bytes"
     },
     {
       "path": "src-tauri/icons/Square44x44Logo.png",
-      "description": "image, 4,998 bytes"
+      "description": "image, 4,988 bytes"
     },
     {
       "path": "src-tauri/icons/Square71x71Logo.png",
-      "description": "image, 11,647 bytes"
+      "description": "image, 11,643 bytes"
     },
     {
       "path": "src-tauri/icons/Square89x89Logo.png",
-      "description": "image, 17,194 bytes"
+      "description": "image, 17,226 bytes"
     },
     {
       "path": "src-tauri/icons/StoreLogo.png",
-      "description": "image, 6,287 bytes"
+      "description": "image, 6,304 bytes"
     }
   ],
   "file_count": 18,
@@ -88,7 +88,7 @@
       "format": "png",
       "name": "128x128.png",
       "location": "src-tauri/icons",
-      "bytes": 31807,
+      "bytes": 31958,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -97,7 +97,7 @@
       "format": "png",
       "name": "128x128@2x.png",
       "location": "src-tauri/icons",
-      "bytes": 101764,
+      "bytes": 102856,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -106,7 +106,7 @@
       "format": "png",
       "name": "32x32.png",
       "location": "src-tauri/icons",
-      "bytes": 2844,
+      "bytes": 2851,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -115,7 +115,7 @@
       "format": "png",
       "name": "64x64.png",
       "location": "src-tauri/icons",
-      "bytes": 9711,
+      "bytes": 9736,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -133,7 +133,7 @@
       "format": "png",
       "name": "source.png",
       "location": "src-tauri/icons",
-      "bytes": 53185,
+      "bytes": 317164,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -151,7 +151,7 @@
       "format": "png",
       "name": "Square142x142Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 38112,
+      "bytes": 38215,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -160,7 +160,7 @@
       "format": "png",
       "name": "Square150x150Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 41636,
+      "bytes": 41729,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -169,7 +169,7 @@
       "format": "png",
       "name": "Square284x284Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 120822,
+      "bytes": 122550,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -178,7 +178,7 @@
       "format": "png",
       "name": "Square30x30Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 2546,
+      "bytes": 2547,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -187,7 +187,7 @@
       "format": "png",
       "name": "Square310x310Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 139700,
+      "bytes": 141963,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -196,7 +196,7 @@
       "format": "png",
       "name": "Square44x44Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 4998,
+      "bytes": 4988,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -205,7 +205,7 @@
       "format": "png",
       "name": "Square71x71Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 11647,
+      "bytes": 11643,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -214,7 +214,7 @@
       "format": "png",
       "name": "Square89x89Logo.png",
       "location": "src-tauri/icons",
-      "bytes": 17194,
+      "bytes": 17226,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     },
@@ -223,7 +223,7 @@
       "format": "png",
       "name": "StoreLogo.png",
       "location": "src-tauri/icons",
-      "bytes": 6287,
+      "bytes": 6304,
       "opened": false,
       "law": "Name and location only. The file is never opened."
     }

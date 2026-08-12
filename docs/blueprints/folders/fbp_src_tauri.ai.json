@@ -2,7 +2,7 @@
   "folder_name": "src-tauri",
   "folder_path": "src-tauri",
   "description": "5 files, 5 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.898865 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.479856 | in sovereign time",
   "files": [
     {
       "path": "src-tauri/.gitignore",
@@ -14,15 +14,15 @@
     },
     {
       "path": "src-tauri/Cargo.lock",
-      "description": "file, 166,197 bytes"
+      "description": "file, 167,148 bytes"
     },
     {
       "path": "src-tauri/Cargo.toml",
-      "description": "config, 1,127 bytes"
+      "description": "config, 1,492 bytes"
     },
     {
       "path": "src-tauri/tauri.conf.json",
-      "description": "data, 853 bytes"
+      "description": "data, 1,265 bytes"
     }
   ],
   "file_count": 5,
@@ -44,7 +44,7 @@
     },
     "Cargo.toml": {
       "language": "toml",
-      "lines": 42,
+      "lines": 47,
       "sections": [
         "package",
         "lib",
@@ -73,6 +73,7 @@
   },
   "maintaining_agent": "FolderAgent",
   "folders_not_walked": [
+    "gen",
     "target"
   ],
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."

@@ -2,7 +2,7 @@
   "folder_name": "focus",
   "folder_path": "src/routes/focus",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.860176 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.443963 | in sovereign time",
   "files": [
     {
       "path": "src/routes/focus/+page.svelte",

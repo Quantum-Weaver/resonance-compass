@@ -249,7 +249,7 @@ export const PARTICLE_BEHAVIOR = {
 // ============================================================================
 // PRESENCE FIELD (Mnemosyne) — ambient Sanctuary presence
 // ============================================================================
-// O-7 Â· Signed canon (Alignment Q5): Mnemosyne = calm/comfort/inspiration
+// O-7 · Signed canon (Alignment Q5): Mnemosyne = calm/comfort/inspiration
 // presence in Prometheus Studio & Stage, "inspiration not takeover." An ambient
 // "someone is here, holding the space" token — calm palette + damped motion +
 // soft non-intrusive glow — distinct from an entity's active gradient. It never
@@ -293,7 +293,7 @@ export const PRESENCE_FIELD: Record<'mnemosyne' | 'calm' | 'inspiration', Presen
 // ============================================================================
 // DYNAMIC GLOW MODULATION — per-domain depth/intensity coefficient
 // ============================================================================
-// O-8 Â· G-4 companion, KP verbatim (node 139): "have the glow and gradients be
+// O-8 · G-4 companion, KP verbatim (node 139): "have the glow and gradients be
 // dynamic based on the object… map a logic to the dynamics." Glows in this file
 // are static constants; O-8 adds a per-domain coefficient so glow & gradient
 // strength is *derived by object* — void darker, pantheon brighter — the same

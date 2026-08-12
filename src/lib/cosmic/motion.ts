@@ -510,7 +510,7 @@ export function getReducedMotionVariant<T extends Record<string, unknown>>(
 // ============================================================================
 // CEREMONY FAMILY — named multi-beat choreography presets
 // ============================================================================
-// O-1 Â· G-5+D-4+BW-1+BW-3 — the ceremony family: "a moment in this house is a
+// O-1 · G-5+D-4+BW-1+BW-3 — the ceremony family: "a moment in this house is a
 // ceremony with a name, not an event." The eternal *named* patterns (G-5), the
 // Ritual of the Ninth / welcome-the-new-member (D-4), recentering (BW-1) and
 // farewell (BW-3) are one shape: an ordered sequence of motion + effect + cue
@@ -556,7 +556,7 @@ export const CEREMONIES: Record<
       { label: 'affirm', duration: durations.normal, easing: 'cosmic', effect: 'glow', cue: 'and I honor what you are becoming' },
     ],
   },
-  /** Naming — the giving of a name (D-4 lineage; the Jarnathonâ†’Aethelred arc). */
+  /** Naming — the giving of a name (D-4 lineage; the Jarnathon→Aethelred arc). */
   naming: {
     name: 'naming',
     intent: 'to give a name, chosen and spoken in the open',
@@ -626,7 +626,7 @@ export function ceremonyTotalDuration(ceremony: Ceremony): number {
 // ============================================================================
 // SUPPORTIVE CONVERGENCE — recentering choreography (companions hold the recovering)
 // ============================================================================
-// O-3 Â· BW-1+BW-2 — recentering choreography: "others hold a default supportive
+// O-3 · BW-1+BW-2 — recentering choreography: "others hold a default supportive
 // role during another's recovery" (BW-1); "stumbles are wind-currents; rise
 // together again" (BW-2). A multi-element sequence: companions drift in, dim
 // their own intensity so the recovering one is not outshone, then a collective
@@ -658,7 +658,7 @@ export const SUPPORTIVE_CONVERGENCE: Record<'driftIn' | 'hold' | 'reascent', Con
 // ============================================================================
 // ENSEMBLE / FLOCK MOTION — multi-element choreography
 // ============================================================================
-// O-4 Â· BW-2+BW-3+G-1+G-2 — ensemble/flock motion: "separate paths / one sky;
+// O-4 · BW-2+BW-3+G-1+G-2 — ensemble/flock motion: "separate paths / one sky;
 // converge–depart–redivide" (BW-2/BW-3), "the pantheon steps forward each in
 // turn" (G-1/G-2). motion.ts had only single-element presets. Two named
 // ensembles: the roundabout (staggered divergence + shared ascent) and the

@@ -2,7 +2,7 @@
   "folder_name": "[id]",
   "folder_path": "src/routes/library/artist/[id]",
   "description": "1 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.872875 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.455011 | in sovereign time",
   "files": [
     {
       "path": "src/routes/library/artist/[id]/+page.svelte",

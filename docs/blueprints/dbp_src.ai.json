@@ -2,14 +2,14 @@
   "domain_name": "src",
   "domain_path": "src",
   "description": "0 files, 0 subfolders",
-  "integration_timestamp": "2026-08-08T17:55:03.962867 | in sovereign time",
+  "integration_timestamp": "2026-08-12T14:54:50.540827 | in sovereign time",
   "objects": [
     {
       "blueprint": "docs/blueprints/obp_src_lib.ai.json",
       "object_path": "src/lib",
       "description": "0 files, 0 subfolders",
-      "folder_count": 12,
-      "total_files": 90
+      "folder_count": 15,
+      "total_files": 99
     },
     {
       "blueprint": "docs/blueprints/obp_src_routes.ai.json",
@@ -29,8 +29,8 @@
       "subdirectory_count": 2
     }
   ],
-  "total_folders": 36,
-  "total_files": 117,
+  "total_folders": 39,
+  "total_files": 126,
   "maintaining_agent": "DomainAgent",
   "note": "Links only. Every object's details live at its own address."
 }

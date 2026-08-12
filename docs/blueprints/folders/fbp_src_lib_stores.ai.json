@@ -2,7 +2,7 @@
   "folder_name": "stores",
   "folder_path": "src/lib/stores",
   "description": "12 files, 0 subfolders",
-  "scan_timestamp": "2026-08-08T17:55:03.836149 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.419868 | in sovereign time",
   "files": [
     {
       "path": "src/lib/stores/focus.svelte.ts",
@@ -14,7 +14,7 @@
     },
     {
       "path": "src/lib/stores/library.svelte.ts",
-      "description": "typescript, 15,602 bytes"
+      "description": "typescript, 18,344 bytes"
     },
     {
       "path": "src/lib/stores/mode.svelte.ts",
@@ -46,7 +46,7 @@
     },
     {
       "path": "src/lib/stores/timer.svelte.ts",
-      "description": "typescript, 3,526 bytes"
+      "description": "typescript, 3,202 bytes"
     },
     {
       "path": "src/lib/stores/ui.svelte.ts",
@@ -92,13 +92,15 @@
     },
     "library.svelte.ts": {
       "language": "typescript",
-      "lines": 420,
+      "lines": 486,
       "exported_functions": [],
       "exported_consts": [
         "isAndroid",
         "libraryStore"
       ],
-      "interfaces": [],
+      "interfaces": [
+        "MissingTrack"
+      ],
       "types": [],
       "imports_node": [],
       "spawns_process": false,
@@ -216,16 +218,14 @@
     },
     "timer.svelte.ts": {
       "language": "typescript",
-      "lines": 112,
+      "lines": 107,
       "exported_functions": [],
       "exported_consts": [
         "prefersReducedMotion",
         "timerStore"
       ],
       "interfaces": [],
-      "types": [
-        "TimerMode"
-      ],
+      "types": [],
       "imports_node": [],
       "spawns_process": false,
       "writes_files": false,

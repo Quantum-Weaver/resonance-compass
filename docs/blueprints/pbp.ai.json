@@ -2,7 +2,7 @@
   "project_name": "resonance-compass",
   "project_path": "C:\\_superposition\\resonance-compass",
   "description": "The Compass Room of the AudHDities Sanctuary",
-  "generated": "2026-08-08T17:55:04.000172 | in sovereign time",
+  "generated": "2026-08-12T14:54:50.576342 | in sovereign time",
   "tier_ladder": "file -> folder (fbp) -> object (obp) -> domain (dbp) -> project (pbp)",
   "law": "Each tier links to where the details live. Nothing above the folder tier duplicates a body.",
   "domains": [
@@ -11,8 +11,8 @@
       "domain_path": "src",
       "description": "0 files, 0 subfolders",
       "object_count": 2,
-      "total_folders": 36,
-      "total_files": 117
+      "total_folders": 39,
+      "total_files": 126
     },
     {
       "blueprint": "docs/blueprints/dbp_src_tauri.ai.json",
@@ -20,7 +20,7 @@
       "description": "0 files, 0 subfolders",
       "object_count": 5,
       "total_folders": 15,
-      "total_files": 71
+      "total_files": 70
     }
   ],
   "domain_count": 2,
@@ -30,7 +30,7 @@
       "object_path": "docs",
       "description": "0 files, 0 subfolders",
       "folder_count": 2,
-      "total_files": 19
+      "total_files": 20
     },
     {
       "blueprint": "docs/blueprints/obp_static.ai.json",
@@ -45,8 +45,8 @@
       "blueprint": "docs/blueprints/folders/fbp_root.ai.json",
       "folder_path": ".",
       "description": "The Compass Room of the AudHDities Sanctuary",
-      "file_count": 13,
-      "subdirectory_count": 9
+      "file_count": 14,
+      "subdirectory_count": 10
     },
     {
       "blueprint": "docs/blueprints/folders/fbp_cargo.ai.json",
@@ -56,10 +56,17 @@
       "subdirectory_count": 0
     },
     {
+      "blueprint": "docs/blueprints/folders/fbp_claude.ai.json",
+      "folder_path": ".claude",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
       "blueprint": "docs/blueprints/folders/fbp_release.ai.json",
       "folder_path": "release",
-      "description": "13 files, 0 subfolders",
-      "file_count": 13,
+      "description": "18 files, 0 subfolders",
+      "file_count": 18,
       "subdirectory_count": 0
     },
     {
@@ -95,8 +102,8 @@
     }
   ],
   "totals": {
-    "folders_blueprinted": 61,
-    "files_described": 274
+    "folders_blueprinted": 65,
+    "files_described": 290
   },
   "not_walked": {
     "reason": "package-class trees, this repo's own gitignored trees, reparse points, and this tool's own output",

@@ -4,7 +4,7 @@
 // Named attention modes (pace / density / dwell / transition-style), ADHD-friendly
 // by design. A NEW cosmic constants file (Run 04 unlock, O-5).
 // ============================================================================
-// O-5 Â· BW-5 — the Bird-Wisdom Spectrum: five bird-species mapped to five modes
+// O-5 · BW-5 — the Bird-Wisdom Spectrum: five bird-species mapped to five modes
 // of attention, explicitly ADHD-friendly (the Hummingbird mode most of all).
 // consciousness.ts had AWARENESS_DOMAINS (which information layers are active)
 // but no attention *modes* (the pace and shape of attending). This file is the

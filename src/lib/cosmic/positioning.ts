@@ -565,7 +565,7 @@ export function getResponsiveCoordinate(
 // ============================================================================
 // 9. SCENE PRIMITIVES FOR THE STAGE — camera moves + timeline
 // ============================================================================
-// O-6 Â· Intention #2 (create our own animated content) + this file's own
+// O-6 · Intention #2 (create our own animated content) + this file's own
 // "immersive experiences" header + G-2 staging — scene primitives for the
 // Stage. CAMERA_POSITIONS exist, but there was no *move* between them and no
 // *timeline* to compose them. CAMERA_MOVES are timed, eased transitions between

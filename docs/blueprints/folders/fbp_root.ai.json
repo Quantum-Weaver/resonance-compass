@@ -2,11 +2,11 @@
   "folder_name": "resonance-compass",
   "folder_path": ".",
   "description": "The Compass Room of the AudHDities Sanctuary",
-  "scan_timestamp": "2026-08-08T17:55:03.747698 | in sovereign time",
+  "scan_timestamp": "2026-08-12T14:54:50.318885 | in sovereign time",
   "files": [
     {
       "path": ".gitignore",
-      "description": "ignore rules, 1,584 bytes"
+      "description": "ignore rules, 1,601 bytes"
     },
     {
       "path": "CLAUDE.md",
@@ -30,7 +30,7 @@
     },
     {
       "path": "package.json",
-      "description": "data, 1,123 bytes"
+      "description": "data, 1,159 bytes"
     },
     {
       "path": "PHILOSOPHY.md",
@@ -45,6 +45,10 @@
       "description": "\ud83c\udfbb Resonance Compass"
     },
     {
+      "path": "RUN-LOG.md",
+      "description": "2026-08-08 18:00 \u00b7 the-lexicon \u00b7 set 'Compass' \u00b7 12 defs"
+    },
+    {
       "path": "svelte.config.js",
       "description": "Tauri doesn't have a Node.js server to do proper SSR"
     },
@@ -57,9 +61,10 @@
       "description": "script, 562 bytes"
     }
   ],
-  "file_count": 13,
+  "file_count": 14,
   "subdirectories": [
     ".cargo",
+    ".claude",
     "docs",
     "release",
     "reports",
@@ -72,8 +77,8 @@
   "code_analysis": {
     "CLAUDE.md": {
       "language": "markdown",
-      "lines": 111,
-      "words": 350,
+      "lines": 122,
+      "words": 393,
       "heading_count": 7,
       "headings": [
         "CLAUDE.md \u2014 Resonance Compass v2",
@@ -300,6 +305,26 @@
       "links_internal_unresolved": [],
       "links_internal_outside_checkout": [],
       "code_fences": 1,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "RUN-LOG.md": {
+      "language": "markdown",
+      "lines": 3,
+      "words": 22,
+      "heading_count": 0,
+      "headings": [],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
       "table_rows": 0,
       "checkboxes": {
         "open": 0,
