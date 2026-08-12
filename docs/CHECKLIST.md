@@ -875,6 +875,67 @@ but **promoted**, becoming v3 Phase 1's keel.*
       and **the CSP on a production build**: a wrong CSP fails quietly, and dev is
       not proof of it
 
+---
+
+## THE RECORDER LEAVES — 2026-08-12 (💫 · Opus 🕯️, at KP's ⚛ ruling)
+
+*KP's ⚛ split, verbatim: **"we need to separate the resonance compass and musicians
+compass to make this right… the compass remains a media player of licensed
+materials the user holds rights to."** The creator's half is born as
+**resonance-sistrum** (`Quantum-Weaver/resonance-sistrum`, created 2026-08-12).*
+
+**THE BOUNDARY IS RIGHTS, NOT TASTE — his own line, and it is objective:** *does
+this create NEW sound, or work with sound you already own?* Fragments and the
+Fragment Studio **STAY**, at his ⚛ word — *"fragments will stay, not recording.
+dj's may still wish to use the app."* Slicing what you own is a DJ's work, and a
+DJ is a performer.
+
+- [x] **Removed:** `src-tauri/src/recorder.rs` · `src/routes/record/` ·
+      `recorder.svelte.ts` · `recordPrefs.svelte.ts` · `mod recorder` · nine
+      handler rows · the `the-recorder` path dep · the 🎙 sidebar door · the
+      Recording settings section (the hold choice) · the Takes half of the Studio
+      picker
+- [x] **Deliberately KEPT, each for a reason:** `request_mic_permission` (Android
+      permission infrastructure, not the recorder) · `"takes"` in
+      `purge_fragment_files` (guarded by `if dir.exists()` — **a purge must truly
+      purge**, including leftovers from the recorder era)
+- [x] **Nothing lost.** The uncommitted work — the 08-12 freeze fix, KP's ⚛ prop
+      hand-off, the instrumentation trail — was **preserved BEFORE any deletion**
+      to `resonance-assets/sistrum-inheritance/` at his ⚛ word ("in
+      resonance-assets in a new folder… store it"). Everything else stood
+      committed at `b516f1d`
+- [x] **Known and honest:** arrangements saved in the takes era keep their
+      `take:`-prefixed layers and read as *"This source was deleted"* — the
+      Studio's own existing honesty. Nothing crashes, nothing lies
+- [x] `cargo check` clean · `npm run check` — **395 files, 0 errors, 0 warnings**
+      (399 → 395; the removed `.picker-heading` CSS closed the last warning)
+
+### ⚠ FINDING — the mojibake, measured not guessed (2026-08-12)
+
+*Found while removing the Takes block: the Studio page defeated the edit tool's
+round-trip because it carries double-encoded UTF-8 from an earlier session. The
+block was cut by line number instead, and **the encoding was deliberately NOT
+"fixed" in passing** — silently rewriting bytes across a file is how a repo
+drifts.*
+
+**Measured: 11 occurrences in 6 files, of 229 source files scanned.** It splits
+in two, and only one half is this repo's:
+
+- [ ] **`src/routes/fragments/studio/+page.svelte` — 6 hits, and they are VISIBLE
+      UI, not comments:** L190 `🎚 Fragment Studio` · L195 `💾 Save` · L197
+      `📂 Load` · L243 the empty-state icon · L317 `⤨ Crossfade` · L349 `…` and
+      `⬇ Export Mix`. **~10 minutes**, character by character against a known
+      mapping — **never a bulk re-decode of the file**, because it now holds BOTH
+      mojibake and correct UTF-8 and a blanket pass would corrupt the healthy half
+- [x] **`src/lib/cosmic/*.ts` — 9 hits — CLOSED, DO NOT TOUCH.** KP's ⚛ word:
+      **"no touchy the cosmic tokens."** That folder is a DISTRIBUTED MIRROR whose
+      single truth is `resonance-ziggy/modules/cosmic/`, refreshed by
+      `distribute.ts` and **hash-verified** — editing it from the consumer side
+      would be overwritten on the next distribution AND would fail its own hash.
+      All nine are the same character (`Â·` where a `·` middot belongs, in
+      comments). **It is a ziggy job, and doing it there fixes every realm at
+      once**
+
 ### The EQ door in the continue-strip ✅ built (2026-08-08, the Etude lamp — KP's ⚛ word: "a button in listen continued that opens the eq directly")
 
 - [x] A calm outline `🎛️ EQ` button beside Resume in the Library's

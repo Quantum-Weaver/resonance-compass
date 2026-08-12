@@ -1,8 +1,7 @@
-﻿<script lang="ts">
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { invoke } from '@tauri-apps/api/core';
 	import { fragmentStore, type Fragment } from '$lib/stores/fragment.svelte';
-	import { recorderStore, type Take } from '$lib/stores/recorder.svelte';
 	import { studioStore, newLayer, type StudioLayer } from '$lib/stores/studio.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import type { Track } from '$lib/types/types';
@@ -23,15 +22,10 @@
 
 	onMount(() => {
 		fragmentStore.loadFragments();
-		recorderStore.refreshTakes();
 		studioStore.loadArrangements();
 	});
 
-	// A layer's source is a fragment OR a take (KP's âš› word 2026-08-09:
-	// "the fragment studio should be able to see the takes"). Takes ride the
-	// existing layer model with `take:`-prefixed ids â€” arrangements persist
-	// them like any layer, and a deleted take reads as a missing source,
-	// exactly as a deleted fragment does.
+	// A layer's source is a fragment.
 	interface StudioSource {
 		id: string;
 		name: string;
@@ -40,21 +34,12 @@
 		emoji?: string | null;
 	}
 
-	function takeToSource(t: Take): StudioSource {
-		return {
-			id: `take:${t.file_name}`,
-			name: t.file_name.replace(/\.wav$/, ''),
-			filePath: t.path,
-			duration: t.seconds,
-			emoji: 'ðŸŽ™',
-		};
-	}
-
+	// Takes left with the recorder on 2026-08-12 — they belong to
+	// resonance-sistrum now. An arrangement saved in the takes era keeps its
+	// `take:`-prefixed layers and simply reads them as a missing source, exactly
+	// as a deleted fragment does. Nothing crashes and nothing lies: the layer
+	// row says so plainly and offers to remove itself.
 	function sourceFor(layer: StudioLayer): StudioSource | undefined {
-		if (layer.fragmentId.startsWith('take:')) {
-			const t = recorderStore.takes.find((tk) => `take:${tk.file_name}` === layer.fragmentId);
-			return t ? takeToSource(t) : undefined;
-		}
 		return fragmentStore.fragments.find((f) => f.id === layer.fragmentId);
 	}
 
@@ -72,13 +57,6 @@
 	function addFragment(frag: Fragment) {
 		const lastEnd = totalDuration;
 		layers = [...layers, newLayer(frag.id, lastEnd)];
-		pickerOpen = false;
-		clearExport();
-	}
-
-	function addTake(t: Take) {
-		const lastEnd = totalDuration;
-		layers = [...layers, newLayer(`take:${t.file_name}`, lastEnd)];
 		pickerOpen = false;
 		clearExport();
 	}
@@ -349,21 +327,10 @@
 
 	{#if pickerOpen}
 		<div class="picker-panel">
-			{#if fragmentStore.fragments.length === 0 && recorderStore.takes.length === 0}
-				<p class="panel-empty">No fragments or takes yet. Capture fragments with âœ‚ï¸ on Now Playing, or record a take in ðŸŽ™ Record.</p>
+			{#if fragmentStore.fragments.length === 0}
+				<p class="panel-empty">No fragments yet. Capture one with the scissors on Now Playing.</p>
 			{:else}
-				{#if recorderStore.takes.length > 0}
-					<p class="picker-heading">ðŸŽ™ Takes</p>
-					{#each recorderStore.takes as t (t.file_name)}
-						<button class="picker-row" onclick={() => addTake(t)}>
-							<span>ðŸŽ™</span>
-							<span class="picker-name">{t.file_name.replace(/\.wav$/, '')}</span>
-							<span class="picker-dur">{fmtSec(t.seconds)}</span>
-						</button>
-					{/each}
-				{/if}
 				{#if fragmentStore.fragments.length > 0}
-					{#if recorderStore.takes.length > 0}<p class="picker-heading">âœ‚ï¸ Fragments</p>{/if}
 					{#each fragmentStore.fragments as frag (frag.id)}
 						<button class="picker-row" onclick={() => addFragment(frag)}>
 							{#if frag.emoji}<span>{frag.emoji}</span>{/if}
@@ -489,15 +456,6 @@
 	}
 	.arr-delete:hover { color: #e17055; background: rgba(225, 112, 85, 0.08); }
 
-	.picker-heading {
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: var(--text-secondary);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		margin: 0.35rem 0 0.15rem;
-		padding: 0 0.75rem;
-	}
 
 	.picker-row {
 		display: flex;

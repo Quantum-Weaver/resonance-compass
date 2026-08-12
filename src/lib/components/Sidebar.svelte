@@ -48,7 +48,6 @@
 				id: 'create',
 				label: 'Create',
 				doors: [
-					door('record', '/record', 'microphone', 'Record'),
 					door('fragments', '/fragments', 'fragment', 'Fragments'),
 					door('studio', '/fragments/studio', 'equalizer', 'Studio'),
 				],

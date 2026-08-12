@@ -16,7 +16,6 @@ mod equalizer;
 mod fragment_engine;
 mod media_permission;
 mod media_session;
-mod recorder;
 mod visualizer;
 
 // ── TrackInfo (returned by scan_paths; field names mirror the Track TS interface) ──
@@ -331,9 +330,20 @@ async fn request_mic_permission(app_handle: tauri::AppHandle) -> Result<bool, St
 
 // (The mic spike — Phase 2's device gate — retired 2026-08-09, exactly as it
 // planned for itself: "the temporary spike surface leaves when the real
-// recorder arrives." The real recorder lives in recorder.rs, on the spring's
-// water. The spike's answer stands in the record: cpal opens a real mic
-// inside the Tauri process, on-device, proven on the S25.)
+// recorder arrives." The spike's answer stands in the record: cpal opens a real
+// mic inside the Tauri process, on-device, proven on the S25.
+//
+// THE RECORDER LEFT THIS HOUSE 2026-08-12, at KP's ⚛ ruling that the Compass is
+// a media player for material the user holds the rights to, and that making NEW
+// sound is a different instrument: resonance-sistrum. Recording, takes, and the
+// four-track go there; fragments and the Fragment Studio STAY, because slicing
+// what you already own is a DJ's work and this is still their room. The boundary
+// is rights, not taste: does this create new sound, or work with sound you
+// already hold?
+//
+// `request_mic_permission` above is deliberately left standing — it is Android
+// permission infrastructure, not the recorder, and the plugin it speaks to has
+// other uses.)
 
 // ── Fragment commands ─────────────────────────────────────────────────────────
 
@@ -581,7 +591,6 @@ pub fn run() {
             visualizer::start(app.handle().clone(), vis_rx);
             let audio_state = audio::AudioState::init(app.handle().clone(), vis_tx, eq_state);
             app.manage(audio_state);
-            app.manage(recorder::RecorderState::default());
             Ok(())
         })
         .plugin(
@@ -604,16 +613,7 @@ pub fn run() {
             check_audio_permission,
             request_audio_permission,
             request_mic_permission,
-            recorder::list_input_devices,
-            recorder::start_recording,
             find_missing_tracks,
-            recorder::recording_status,
-            recorder::pause_recording,
-            recorder::resume_recording,
-            recorder::stop_recording,
-            recorder::list_takes,
-            recorder::delete_take,
-            recorder::export_take,
             fetch_cover_art,
             fetch_lyrics,
             create_fragment,

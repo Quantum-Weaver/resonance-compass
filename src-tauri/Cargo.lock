@@ -3707,7 +3707,6 @@ dependencies = [
  "the-art-finder",
  "the-equalizer",
  "the-lyric-finder",
- "the-recorder",
 ]
 
 [[package]]
@@ -5258,14 +5257,6 @@ dependencies = [
  "serde",
  "serde_json",
  "tokio",
-]
-
-[[package]]
-name = "the-recorder"
-version = "0.1.0"
-dependencies = [
- "cpal",
- "hound",
 ]
 
 [[package]]

@@ -9,20 +9,14 @@
 	import { libraryStore, type MissingTrack } from '$lib/stores/library.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { moodStore } from '$lib/stores/mood.svelte';
-	import { recordPrefs, MAX_CHOICES, fmtMax, type HoldMode } from '$lib/stores/recordPrefs.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
 	// (The mic spike surface retired 2026-08-09 with the real recorder's
 	// arrival — its own planned exit. The room lives at /record.)
 
-	// ── Recording: the hold choice ──────────────────────────────────────────────
-	// An autonomy choice, not a tuning knob — it decides when the microphone is
-	// allowed to be open at all. Offered at KP's ⚛ word, 2026-08-12.
-	onMount(() => recordPrefs.load());
-	function setHold(mode: HoldMode) {
-		recordPrefs.setMode(mode);
-	}
+	// (The Recording hold-choice left with the recorder, 2026-08-12 — it belongs
+	// to resonance-sistrum, where making new sound lives now.)
 
 	// ── Privacy & About links ───────────────────────────────────────────────────
 	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
@@ -522,56 +516,6 @@
 			</div>
 			<button class="profiles-manage-btn" onclick={() => goto('/profiles')}>Manage →</button>
 		</div>
-	</section>
-
-	<!-- ── Section: Recording (the hold choice — KP's ⚛ word, 2026-08-12) ── -->
-	<section class="section">
-		<h2 class="section-title">🎙️ Recording</h2>
-		<p class="rec-pref-lead">When the microphone is allowed to be open.</p>
-
-		<div class="rec-pref-options">
-			<button
-				class="rec-pref-option"
-				class:chosen={recordPrefs.mode === 'hold'}
-				onclick={() => setHold('hold')}
-				aria-pressed={recordPrefs.mode === 'hold'}
-			>
-				<span class="rec-pref-name">Takes can be held</span>
-				<span class="rec-pref-note">
-					Pause a take and pick it back up — one take, one file. The mic stays
-					open while held, so your phone may show its microphone light.
-				</span>
-			</button>
-
-			<button
-				class="rec-pref-option"
-				class:chosen={recordPrefs.mode === 'bounded'}
-				onclick={() => setHold('bounded')}
-				aria-pressed={recordPrefs.mode === 'bounded'}
-			>
-				<span class="rec-pref-name">Nothing is held</span>
-				<span class="rec-pref-note">
-					No pause. Every take runs to a maximum length or stops when you say,
-					so the mic is open only while it is actually recording.
-				</span>
-			</button>
-		</div>
-
-		{#if recordPrefs.mode === 'bounded'}
-			<div class="rec-max">
-				<span class="rec-max-label">Maximum take length</span>
-				<div class="rec-max-choices">
-					{#each MAX_CHOICES as secs (secs)}
-						<button
-							class="rec-max-chip"
-							class:chosen={recordPrefs.maxSecs === secs}
-							onclick={() => recordPrefs.setMaxSecs(secs)}
-							aria-pressed={recordPrefs.maxSecs === secs}>{fmtMax(secs)}</button
-						>
-					{/each}
-				</div>
-			</div>
-		{/if}
 	</section>
 
 	<!-- ── Section 2: Equalizer ── -->
@@ -1604,84 +1548,6 @@
 		color: var(--text-muted);
 	}
 
-	/* ── Recording: the hold choice ── */
-	.rec-pref-lead {
-		font-size: 0.85rem;
-		color: var(--text-secondary);
-		margin: 0 0 0.75rem;
-	}
-
-	.rec-pref-options {
-		display: flex;
-		flex-direction: column;
-		gap: 0.6rem;
-	}
-
-	.rec-pref-option {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3rem;
-		width: 100%;
-		text-align: left;
-		padding: 0.85rem 1rem;
-		min-height: 44px;
-		border: 1px solid var(--border-color);
-		border-radius: 14px;
-		background: transparent;
-		color: var(--text);
-		cursor: pointer;
-	}
-
-	.rec-pref-option.chosen {
-		border-color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 12%, transparent);
-	}
-
-	.rec-pref-name {
-		font-size: 0.95rem;
-		font-weight: 600;
-	}
-
-	.rec-pref-note {
-		font-size: 0.8rem;
-		line-height: 1.45;
-		color: var(--text-secondary);
-	}
-
-	.rec-max {
-		margin-top: 0.9rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.rec-max-label {
-		font-size: 0.85rem;
-		color: var(--text-secondary);
-	}
-
-	.rec-max-choices {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
-
-	.rec-max-chip {
-		padding: 0.5rem 0.9rem;
-		min-height: 44px;
-		border: 1px solid var(--border-color);
-		border-radius: 22px;
-		background: transparent;
-		color: var(--text);
-		font-size: 0.85rem;
-		cursor: pointer;
-	}
-
-	.rec-max-chip.chosen {
-		border-color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 16%, transparent);
-		font-weight: 600;
-	}
 
 	.profiles-manage-btn {
 		padding: 0.5rem 0.9rem;

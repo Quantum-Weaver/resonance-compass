@@ -33,7 +33,6 @@ reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-feature
 the-art-finder = { path = "../../resonance-awen/tools/the-art-finder" }
 the-lyric-finder = { path = "../../resonance-awen/tools/the-lyric-finder" }
 the-equalizer = { path = "../../resonance-awen/tools/the-equalizer" }
-the-recorder = { path = "../../resonance-awen/tools/the-recorder" }
 
 # cpal's oboe backend reads the JNI context via ndk-context; the tauri stack
 # never initializes it, so we do (see media_permission.rs nativeInitNdkContext).
