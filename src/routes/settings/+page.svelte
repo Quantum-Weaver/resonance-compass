@@ -6,14 +6,23 @@
 	import { openUrl } from '@tauri-apps/plugin-opener';
 	import { getVersion } from '@tauri-apps/api/app';
 	import { themeStore } from '$lib/stores/theme.svelte';
-	import { libraryStore } from '$lib/stores/library.svelte';
+	import { libraryStore, type MissingTrack } from '$lib/stores/library.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { moodStore } from '$lib/stores/mood.svelte';
+	import { recordPrefs, MAX_CHOICES, fmtMax, type HoldMode } from '$lib/stores/recordPrefs.svelte';
 	import { PRESET_THEMES } from '$lib/theme/theme';
 	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
 	// (The mic spike surface retired 2026-08-09 with the real recorder's
 	// arrival — its own planned exit. The room lives at /record.)
+
+	// ── Recording: the hold choice ──────────────────────────────────────────────
+	// An autonomy choice, not a tuning knob — it decides when the microphone is
+	// allowed to be open at all. Offered at KP's ⚛ word, 2026-08-12.
+	onMount(() => recordPrefs.load());
+	function setHold(mode: HoldMode) {
+		recordPrefs.setMode(mode);
+	}
 
 	// ── Privacy & About links ───────────────────────────────────────────────────
 	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
@@ -249,6 +258,42 @@
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
+	// ── The missing-track sweep (the 2026-07-02 gap report's #1, built 08-12) ──
+	// Two acts, never one: find and show first, remove only on a second tap.
+	let sweepState = $state<'idle' | 'checking' | 'found' | 'removing'>('idle');
+	let missing = $state<MissingTrack[]>([]);
+	let sweepError = $state<string | null>(null);
+	let sweepResult = $state<string | null>(null);
+
+	const sweepable = $derived(missing.filter((m) => m.moodCount === 0 && m.fragmentCount === 0));
+	const keptWithData = $derived(missing.filter((m) => m.moodCount > 0 || m.fragmentCount > 0));
+
+	async function checkMissing() {
+		sweepError = null;
+		sweepResult = null;
+		sweepState = 'checking';
+		try {
+			missing = await libraryStore.findMissingTracks();
+			sweepState = 'found';
+		} catch (e) {
+			sweepError = e instanceof Error ? e.message : String(e);
+			sweepState = 'idle';
+		}
+	}
+
+	async function removeMissing() {
+		sweepState = 'removing';
+		try {
+			const n = await libraryStore.removeTracksByIds(sweepable.map((m) => m.id));
+			sweepResult = `${n} ${n === 1 ? 'track' : 'tracks'} removed from the library.`;
+			missing = [];
+			sweepState = 'idle';
+		} catch (e) {
+			sweepError = e instanceof Error ? e.message : String(e);
+			sweepState = 'found';
+		}
+	}
+
 	// The snapshot's inner shape — carried by BOTH generations: the family
 	// envelope's `data` (new exports, sealed by the water) and the legacy v2
 	// object (old files, honored forever at import).
@@ -479,6 +524,56 @@
 		</div>
 	</section>
 
+	<!-- ── Section: Recording (the hold choice — KP's ⚛ word, 2026-08-12) ── -->
+	<section class="section">
+		<h2 class="section-title">🎙️ Recording</h2>
+		<p class="rec-pref-lead">When the microphone is allowed to be open.</p>
+
+		<div class="rec-pref-options">
+			<button
+				class="rec-pref-option"
+				class:chosen={recordPrefs.mode === 'hold'}
+				onclick={() => setHold('hold')}
+				aria-pressed={recordPrefs.mode === 'hold'}
+			>
+				<span class="rec-pref-name">Takes can be held</span>
+				<span class="rec-pref-note">
+					Pause a take and pick it back up — one take, one file. The mic stays
+					open while held, so your phone may show its microphone light.
+				</span>
+			</button>
+
+			<button
+				class="rec-pref-option"
+				class:chosen={recordPrefs.mode === 'bounded'}
+				onclick={() => setHold('bounded')}
+				aria-pressed={recordPrefs.mode === 'bounded'}
+			>
+				<span class="rec-pref-name">Nothing is held</span>
+				<span class="rec-pref-note">
+					No pause. Every take runs to a maximum length or stops when you say,
+					so the mic is open only while it is actually recording.
+				</span>
+			</button>
+		</div>
+
+		{#if recordPrefs.mode === 'bounded'}
+			<div class="rec-max">
+				<span class="rec-max-label">Maximum take length</span>
+				<div class="rec-max-choices">
+					{#each MAX_CHOICES as secs (secs)}
+						<button
+							class="rec-max-chip"
+							class:chosen={recordPrefs.maxSecs === secs}
+							onclick={() => recordPrefs.setMaxSecs(secs)}
+							aria-pressed={recordPrefs.maxSecs === secs}>{fmtMax(secs)}</button
+						>
+					{/each}
+				</div>
+			</div>
+		{/if}
+	</section>
+
 	<!-- ── Section 2: Equalizer ── -->
 	<section class="section" id="eq-section">
 		<button class="section-toggle" onclick={() => (eqOpen = !eqOpen)} aria-expanded={eqOpen}>
@@ -587,6 +682,72 @@
 			<button class="btn-data warning" onclick={() => startPurge(true)} disabled={trackCount === 0}>
 				Export &amp; Purge
 			</button>
+		</div>
+
+		<!-- The missing-track sweep: find and show, then remove on a second tap -->
+		<div class="sweep">
+			<button
+				class="btn-data"
+				onclick={checkMissing}
+				disabled={trackCount === 0 || sweepState === 'checking'}
+			>
+				{sweepState === 'checking' ? 'Checking…' : 'Check for missing tracks'}
+			</button>
+
+			{#if sweepError}<p class="sweep-error" role="alert">{sweepError}</p>{/if}
+			{#if sweepResult}<p class="sweep-note">{sweepResult}</p>{/if}
+
+			{#if sweepState === 'found' || sweepState === 'removing'}
+				{#if missing.length === 0}
+					<p class="sweep-note">Every track in your library is still on disk.</p>
+				{:else}
+					<p class="sweep-note">
+						{missing.length}
+						{missing.length === 1 ? 'track is' : 'tracks are'} no longer on disk.
+					</p>
+
+					<ul class="sweep-list">
+						{#each missing.slice(0, 12) as m (m.id)}
+							<li class="sweep-row">
+								<span class="sweep-title">{m.title || m.uri}</span>
+								{#if m.artist}<span class="sweep-artist">{m.artist}</span>{/if}
+								{#if m.moodCount > 0 || m.fragmentCount > 0}
+									<span class="sweep-kept">
+										kept — carries
+										{#if m.moodCount > 0}{m.moodCount} mood tag{m.moodCount === 1 ? '' : 's'}{/if}
+										{#if m.moodCount > 0 && m.fragmentCount > 0}and{/if}
+										{#if m.fragmentCount > 0}{m.fragmentCount} fragment{m.fragmentCount === 1
+												? ''
+												: 's'}{/if}
+									</span>
+								{/if}
+							</li>
+						{/each}
+					</ul>
+					{#if missing.length > 12}
+						<p class="sweep-note">…and {missing.length - 12} more.</p>
+					{/if}
+
+					{#if keptWithData.length > 0}
+						<p class="sweep-note">
+							{keptWithData.length} of these are kept: they carry your mood tags or fragments, and
+							removing the track would take those with it.
+						</p>
+					{/if}
+
+					{#if sweepable.length > 0}
+						<button
+							class="btn-data warning"
+							onclick={removeMissing}
+							disabled={sweepState === 'removing'}
+						>
+							{sweepState === 'removing'
+								? 'Removing…'
+								: `Remove ${sweepable.length} ${sweepable.length === 1 ? 'track' : 'tracks'}`}
+						</button>
+					{/if}
+				{/if}
+			{/if}
 		</div>
 
 		<p class="privacy-line">
@@ -827,6 +988,62 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+	}
+
+	/* ── The missing-track sweep ── */
+	.sweep {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+	}
+
+	.sweep-note {
+		font-size: 0.8rem;
+		line-height: 1.45;
+		color: var(--text-muted);
+		margin: 0;
+	}
+
+	.sweep-error {
+		font-size: 0.8rem;
+		color: var(--error, #e17055);
+		margin: 0;
+	}
+
+	.sweep-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		max-height: 15rem;
+		overflow-y: auto;
+	}
+
+	.sweep-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		padding: 0.4rem 0.6rem;
+		border: 1px solid var(--border-color);
+		border-radius: 10px;
+	}
+
+	.sweep-title {
+		font-size: 0.85rem;
+		word-break: break-word;
+	}
+
+	.sweep-artist {
+		font-size: 0.75rem;
+		color: var(--text-muted);
+	}
+
+	.sweep-kept {
+		font-size: 0.72rem;
+		color: var(--accent);
 	}
 
 	.privacy-line {
@@ -1385,6 +1602,85 @@
 	.profiles-hint {
 		font-size: 0.78rem;
 		color: var(--text-muted);
+	}
+
+	/* ── Recording: the hold choice ── */
+	.rec-pref-lead {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		margin: 0 0 0.75rem;
+	}
+
+	.rec-pref-options {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.rec-pref-option {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		width: 100%;
+		text-align: left;
+		padding: 0.85rem 1rem;
+		min-height: 44px;
+		border: 1px solid var(--border-color);
+		border-radius: 14px;
+		background: transparent;
+		color: var(--text);
+		cursor: pointer;
+	}
+
+	.rec-pref-option.chosen {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+	}
+
+	.rec-pref-name {
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	.rec-pref-note {
+		font-size: 0.8rem;
+		line-height: 1.45;
+		color: var(--text-secondary);
+	}
+
+	.rec-max {
+		margin-top: 0.9rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.rec-max-label {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+	}
+
+	.rec-max-choices {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.rec-max-chip {
+		padding: 0.5rem 0.9rem;
+		min-height: 44px;
+		border: 1px solid var(--border-color);
+		border-radius: 22px;
+		background: transparent;
+		color: var(--text);
+		font-size: 0.85rem;
+		cursor: pointer;
+	}
+
+	.rec-max-chip.chosen {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 16%, transparent);
+		font-weight: 600;
 	}
 
 	.profiles-manage-btn {

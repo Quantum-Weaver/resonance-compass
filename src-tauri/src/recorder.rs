@@ -9,7 +9,7 @@
 use serde::Serialize;
 use std::fs;
 use std::sync::{Arc, Mutex};
-use std::time::Instant;
+use std::time::{Duration, Instant};
 use tauri::Manager;
 use the_recorder::{list_inputs, start_session, Level, RecordingSession};
 
@@ -19,6 +19,14 @@ pub struct RecorderState {
     // between takes.
     level: Mutex<Option<Arc<Level>>>,
     started_at: Mutex<Option<Instant>>,
+    // Pause bookkeeping (2026-08-12, at KP's ⚛ word "like a voice recorder
+    // works"). The spring holds the take; the harness holds the arithmetic,
+    // so elapsed reports RECORDED time and not wall time across a hold.
+    paused_at: Mutex<Option<Instant>>,
+    paused_total: Mutex<Duration>,
+    // The cap this take was started with, kept so a capped take's clock can
+    // rest at its true length instead of counting on past it.
+    cap: Mutex<Option<Duration>>,
 }
 
 impl Default for RecorderState {
@@ -27,6 +35,9 @@ impl Default for RecorderState {
             session: Mutex::new(None),
             level: Mutex::new(None),
             started_at: Mutex::new(None),
+            paused_at: Mutex::new(None),
+            paused_total: Mutex::new(Duration::ZERO),
+            cap: Mutex::new(None),
         }
     }
 }
@@ -41,6 +52,11 @@ pub struct InputDeviceInfo {
 #[derive(Serialize)]
 pub struct RecordingStatus {
     pub recording: bool,
+    /// Held, not ended — the take is still open and resume appends to it.
+    pub paused: bool,
+    /// The take reached its maximum length. The device is ALREADY released;
+    /// the samples wait here to be saved.
+    pub capped: bool,
     pub device: Option<String>,
     pub sample_rate: Option<u32>,
     pub channels: Option<u16>,
@@ -98,6 +114,9 @@ pub async fn list_input_devices() -> Result<Vec<InputDeviceInfo>, String> {
 pub async fn start_recording(
     state: tauri::State<'_, RecorderState>,
     device: Option<String>,
+    // The no-holding mode's cap (KP's ⚛ shape, 2026-08-12: "all are a set max
+    // length or stopped early"). None = runs until the musician says stop.
+    max_secs: Option<f64>,
 ) -> Result<RecordingStatus, String> {
     // Refuse rather than replace: an accidental restart would destroy a
     // running take, and takes are the musician's — never silently lost.
@@ -115,14 +134,17 @@ pub async fn start_recording(
     // never felt it because WASAPI opens in milliseconds.
     let level = Arc::new(Level::new());
     let level_for_open = Arc::clone(&level);
+    let max = max_secs.filter(|s| *s > 0.0).map(Duration::from_secs_f64);
     let session = tauri::async_runtime::spawn_blocking(move || {
-        start_session(device.as_deref(), level_for_open)
+        start_session(device.as_deref(), level_for_open, max)
     })
     .await
     .map_err(|e| e.to_string())??;
 
     let status = RecordingStatus {
         recording: true,
+        paused: false,
+        capped: false,
         device: Some(session.info.device.clone()),
         sample_rate: Some(session.info.sample_rate),
         channels: Some(session.info.channels),
@@ -144,7 +166,40 @@ pub async fn start_recording(
     }
     *state.level.lock().map_err(|e| e.to_string())? = Some(level);
     *state.started_at.lock().map_err(|e| e.to_string())? = Some(Instant::now());
+    // A fresh take carries no held time from the one before it.
+    *state.paused_at.lock().map_err(|e| e.to_string())? = None;
+    *state.paused_total.lock().map_err(|e| e.to_string())? = Duration::ZERO;
+    *state.cap.lock().map_err(|e| e.to_string())? = max;
     Ok(status)
+}
+
+/// Hold the take. The device stays ours and the take stays open — this is a
+/// voice recorder's pause, never a stop. Idempotent: pausing a held take
+/// changes nothing rather than double-counting the hold.
+#[tauri::command]
+pub fn pause_recording(state: tauri::State<RecorderState>) -> Result<(), String> {
+    let session_slot = state.session.lock().map_err(|e| e.to_string())?;
+    let session = session_slot.as_ref().ok_or("no take is running")?;
+    let mut paused_at = state.paused_at.lock().map_err(|e| e.to_string())?;
+    if paused_at.is_none() {
+        session.pause();
+        *paused_at = Some(Instant::now());
+    }
+    Ok(())
+}
+
+/// Resume the same take. What follows joins what came before — one take,
+/// one file. Idempotent.
+#[tauri::command]
+pub fn resume_recording(state: tauri::State<RecorderState>) -> Result<(), String> {
+    let session_slot = state.session.lock().map_err(|e| e.to_string())?;
+    let session = session_slot.as_ref().ok_or("no take is running")?;
+    let mut paused_at = state.paused_at.lock().map_err(|e| e.to_string())?;
+    if let Some(since) = paused_at.take() {
+        *state.paused_total.lock().map_err(|e| e.to_string())? += since.elapsed();
+    }
+    session.resume();
+    Ok(())
 }
 
 #[tauri::command]
@@ -152,18 +207,46 @@ pub fn recording_status(state: tauri::State<RecorderState>) -> Result<RecordingS
     let session_slot = state.session.lock().map_err(|e| e.to_string())?;
     let level_slot = state.level.lock().map_err(|e| e.to_string())?;
     let started = state.started_at.lock().map_err(|e| e.to_string())?;
+    let paused_at = state.paused_at.lock().map_err(|e| e.to_string())?;
+    let paused_total = state.paused_total.lock().map_err(|e| e.to_string())?;
+    let cap = state.cap.lock().map_err(|e| e.to_string())?;
     match (session_slot.as_ref(), level_slot.as_ref()) {
-        (Some(session), Some(level)) => Ok(RecordingStatus {
-            recording: true,
-            device: Some(session.info.device.clone()),
-            sample_rate: Some(session.info.sample_rate),
-            channels: Some(session.info.channels),
-            elapsed_secs: started.map(|t| t.elapsed().as_secs_f64()).unwrap_or(0.0),
-            peak: level.take_peak(),
-            clipped: level.clipped(),
-        }),
+        (Some(session), Some(level)) => {
+            // Held time is subtracted so the clock shows what was RECORDED.
+            let held = *paused_total + paused_at.map(|p| p.elapsed()).unwrap_or_default();
+            // A capped take has already dropped its stream on the capture
+            // thread, so it is neither capturing nor held — it is simply done
+            // and waiting to be saved.
+            let capped = session.is_finished();
+            let capturing = !capped && session.is_capturing();
+            Ok(RecordingStatus {
+                recording: true,
+                paused: !capped && !capturing,
+                capped,
+                device: Some(session.info.device.clone()),
+                sample_rate: Some(session.info.sample_rate),
+                channels: Some(session.info.channels),
+                elapsed_secs: started
+                    .map(|t| {
+                        let run = t.elapsed().saturating_sub(held);
+                        // A capped take stopped at its cap; the clock rests
+                        // there rather than counting on while it waits.
+                        match *cap {
+                            Some(c) if run > c => c.as_secs_f64(),
+                            _ => run.as_secs_f64(),
+                        }
+                    })
+                    .unwrap_or(0.0),
+                // A held take feeds the level nothing, so the meter must read
+                // zero rather than sit at whatever it held when paused.
+                peak: if capturing { level.take_peak() } else { 0.0 },
+                clipped: level.clipped(),
+            })
+        }
         _ => Ok(RecordingStatus {
             recording: false,
+            paused: false,
+            capped: false,
             device: None,
             sample_rate: None,
             channels: None,
@@ -189,6 +272,11 @@ pub async fn stop_recording(
         .ok_or("no take is running")?;
     let level = state.level.lock().map_err(|e| e.to_string())?.take();
     *state.started_at.lock().map_err(|e| e.to_string())? = None;
+    // A take saved while held seals exactly what was recorded — the held
+    // stretches were never kept, so nothing needs trimming here.
+    *state.paused_at.lock().map_err(|e| e.to_string())? = None;
+    *state.paused_total.lock().map_err(|e| e.to_string())? = Duration::ZERO;
+    *state.cap.lock().map_err(|e| e.to_string())? = None;
 
     if !keep {
         // The discard half: ended plainly, nothing written.

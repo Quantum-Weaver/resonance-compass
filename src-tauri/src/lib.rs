@@ -218,6 +218,33 @@ fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<Tr
     Ok(tracks)
 }
 
+// ── Library maintenance: the missing-track sweep ────────────────────────────
+// v2 scans are additive upserts — multi-folder scanning requires it — so a file
+// deleted from disk keeps its row forever. Named in the 2026-07-02 v1→v2 gap
+// report as "the only data-correctness gap" and standing open since; built
+// 2026-08-12 at KP's ⚛ word.
+//
+// THIS COMMAND ONLY REPORTS. Nothing is deleted here. Removal is a separate act
+// the user confirms, per the house law: verify before any deletion, always, and
+// KP deletes by signature.
+//
+// A URI we cannot verify is reported as PRESENT, never as missing. Anything
+// wearing a scheme (content:// on Android) answers to a ContentResolver rather
+// than to the filesystem, and lose-nothing means an unverifiable row is kept
+// rather than swept on a guess.
+#[tauri::command]
+fn find_missing_tracks(uris: Vec<String>) -> Result<Vec<String>, String> {
+    Ok(uris
+        .into_iter()
+        .filter(|uri| {
+            if uri.contains("://") {
+                return false; // unverifiable — kept
+            }
+            !Path::new(uri).exists()
+        })
+        .collect())
+}
+
 // ── Media permission commands (Android runtime prompt; desktop always granted) ─
 
 #[tauri::command]
@@ -579,7 +606,10 @@ pub fn run() {
             request_mic_permission,
             recorder::list_input_devices,
             recorder::start_recording,
+            find_missing_tracks,
             recorder::recording_status,
+            recorder::pause_recording,
+            recorder::resume_recording,
             recorder::stop_recording,
             recorder::list_takes,
             recorder::delete_take,

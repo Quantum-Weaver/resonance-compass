@@ -389,6 +389,70 @@ function search(query: string): { tracks: Track[]; albums: Album[]; artists: Art
 	};
 }
 
+// ── The missing-track sweep (2026-08-12, at KP's ⚛ word) ────────────────────
+// The gap the 2026-07-02 v1→v2 report named as the only data-correctness one:
+// v2 scans are additive upserts, so a file deleted from disk keeps its row
+// forever. This half REPORTS ONLY — it deletes nothing, because verification
+// comes before deletion, always.
+//
+// A missing track that carries mood tags or fragments is reported as KEPT, not
+// as sweepable. mood_events, favorites and fragments each hold a FOREIGN KEY to
+// songs(id), so removing such a row would take the tags — and the fragment
+// rows, whose WAVs are real files on disk — down with it. Lose-nothing decides
+// that: the row stays, and the room says why.
+export interface MissingTrack {
+	id: string;
+	uri: string;
+	title: string;
+	artist: string;
+	moodCount: number;
+	fragmentCount: number;
+}
+
+async function findMissingTracks(): Promise<MissingTrack[]> {
+	await initDB();
+	if (!db) throw new Error('Database not ready — nothing was checked');
+	const rows = await db.select<Record<string, unknown>[]>(
+		`SELECT s.id, s.uri, s.title, s.artist,
+		        (SELECT COUNT(*) FROM mood_events m WHERE m.track_id = s.id) AS mood_count,
+		        (SELECT COUNT(*) FROM fragments f WHERE f.source_track_id = s.id) AS fragment_count
+		 FROM songs s`
+	);
+	const { invoke } = await import('@tauri-apps/api/core');
+	const gone = new Set(
+		await invoke<string[]>('find_missing_tracks', { uris: rows.map((r) => r.uri as string) })
+	);
+	return rows
+		.filter((r) => gone.has(r.uri as string))
+		.map((r) => ({
+			id: r.id as string,
+			uri: r.uri as string,
+			title: (r.title as string) ?? '',
+			artist: (r.artist as string) ?? '',
+			moodCount: Number(r.mood_count ?? 0),
+			fragmentCount: Number(r.fragment_count ?? 0),
+		}));
+}
+
+// The removal half, and it only ever runs on ids the caller confirmed. Chunked
+// under SQLite's 999-parameter ceiling (CLAUDE.md rule 3). `favorites` is swept
+// alongside because it holds the same FK; it is reserved-and-unused today, so
+// this is FK hygiene rather than data loss.
+async function removeTracksByIds(ids: string[]): Promise<number> {
+	if (!db || ids.length === 0) return 0;
+	const CHUNK = 400;
+	let removed = 0;
+	for (let i = 0; i < ids.length; i += CHUNK) {
+		const slice = ids.slice(i, i + CHUNK);
+		const marks = slice.map((_, n) => `$${n + 1}`).join(',');
+		await db.execute(`DELETE FROM favorites WHERE track_id IN (${marks})`, slice);
+		await db.execute(`DELETE FROM songs WHERE id IN (${marks})`, slice);
+		removed += slice.length;
+	}
+	await loadTracks();
+	return removed;
+}
+
 export const libraryStore = {
 	get tracks() { return tracks; },
 	get albums() { return albums; },
@@ -397,6 +461,8 @@ export const libraryStore = {
 	get dbError() { return dbError; },
 	get isScanning() { return isScanning; },
 	get scanProgress() { return scanProgress; },
+	findMissingTracks,
+	removeTracksByIds,
 	get scanError() { return scanError; },
 	get lastScanned() { return lastScanned; },
 	get permissionNeeded() { return permissionNeeded; },

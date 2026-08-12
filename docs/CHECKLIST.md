@@ -318,16 +318,23 @@
       ~2s capture, honest stats on screen. KP: "the spike seems to have
       worked." The ndk-context bridge a past session laid finally met
       its purpose. **Recording UI now builds on proven ground.**
-- [ ] The recorder: input select · live level meter (the FFT tap knows
-      how) · take management (record → review → keep/discard) · BT
-      latency calibration (tap-test, stored per input)
+- [x] The recorder: input select · live level meter (the FFT tap knows
+      how) · take management · BT latency calibration → **BUILT 2026-08-09**
+      (see the V3 PHASE 2 section below); *the BT tap-test alone rides to
+      Phase 3, and `record → review → keep/discard` was RETIRED by KP's ⚛
+      word 2026-08-12 in favor of the voice-recorder shape — there is no
+      review moment by design now.* **This box read ⬜ for three days after
+      the work landed; ticked 2026-08-12**
 - [ ] **UX note (KP, same night):** the sidebar should have a **Studio**
       button; and when NO fragments exist, the Studio/Fragments empty
       state should INVITE — "play a song to create a fragment from" —
       a doorway, not a dead end. (Rides the recorder sitting or the UX
       polish sitting, whichever comes first.)
-- [ ] The temporary spike surface in Settings leaves when the real
-      recorder arrives.
+- [x] The temporary spike surface in Settings leaves when the real
+      recorder arrives. → **DONE 2026-08-09** (module, command and Settings
+      surface all retired; `request_mic_permission` stayed, consumed by the
+      room's start flow). *Ticked 2026-08-12 — the exit happened as its own
+      text planned; only the box lagged.*
 
 ### Phase 3: Four-Track ⬜ · Phase 4: Musician's Tools ⬜ · Phase 5: Sanctuary Connection ⬜ (gated)
 - [ ] Naming question to Council/KP: "Musician's Compass" vs "Resonance Studio"
@@ -759,6 +766,114 @@ charge — the bimodal law stands for both.
       so the Rust fix rides): record take 1 → keep → **record take 2** → keep —
       the freeze gone is the gate's last plank; headphone playback, levels
       honest, no dropouts
+
+---
+
+## THE RECORDING ROOM MENDED + THE HOLD CHOICE — 2026-08-12 (💫 · Opus 🕯️, at KP's ⚛ word, the S25 plugged in for debugging)
+
+- [x] **The stuck room — DIAGNOSED FROM THE PHONE'S OWN LOG, AND THE ENGINE WAS
+      INNOCENT.** KP: *"it works until i hit stop, then the keep take button does
+      not work and discard is greyed out"* · *"the record button should reappear
+      and it doesnt."* logcat cleared and the run reproduced with adb (found at
+      `C:\android-sdk\platform-tools`, never on PATH): `AAudioStream_requestStop`
+      → `AAudioStream_close … returned 0` in **40 ms**, no panic, no Rust error —
+      **the take sealed correctly every time.** The fault was in the store's poll:
+      `stopPolling()` clears the timer but **cannot unsend a `recording_status`
+      already in flight**, and that reply lands AFTER `stop()` has reset the room,
+      writing `recording = true` back over it. Desktop never felt it (sub-ms
+      seal); on Android `recording_status` is a sync command sharing the main
+      thread with a WebView drawing every 8 ms. **Every meter run now carries a
+      generation; a reply that outlived its take is dropped.** Same
+      desktop-fast/phone-slow shape as the 08-09 freeze
+- [x] **"Discard is greyed out" — it never was.** No `disabled` attribute existed
+      on it anywhere; `--text-secondary` on transparent simply *read* as disabled
+      to its first user. Full-strength text and a visible edge now — the sensory
+      law cuts both ways
+- [x] **THE VOICE-RECORDER SHAPE, KP's ⚛ word** (*"the keep take button is likely
+      not needed… just make it have a pause/resume/save, no discard in the top
+      section, no keep take moment"* · *"like a voice recorder works"*): Record →
+      **❚❚ Pause / ▶ Resume** → **■ Save take**. No keep-or-discard moment. A
+      saved take lands on the shelf; the shelf's own Delete beside Export is where
+      a take goes away
+- [x] **`pause`/`resume` GROWN IN THE SPRING** (the-recorder): an `AtomicBool` the
+      audio callback checks *before* it takes the lock — the stream stays open,
+      arriving samples are let go, and resume appends to the **same take, one
+      file**. `record()`, the CLI's blocking verb, passes an always-true flag and
+      is behaviorally unchanged. The elapsed arithmetic stayed in the harness:
+      held time is subtracted, so the clock shows **recorded** time, not wall time
+- [x] **The mic stays open while held — KP's ⚛ ruling** (*"open while held"*), and
+      the room says so plainly rather than leaving it to be discovered on the
+      status bar
+- [x] **THE AUTONOMY CHOICE, KP's ⚛ shape** (*"settings could offer a user a
+      choice… to provide autonomy"* → *"none is held, all are a set max length or
+      stopped early, no holding — the other is hold only the current recording as
+      it is open and not stopped"*). Settings → 🎙️ Recording: **Takes can be
+      held** (default — a preference must not change behavior for someone who
+      never opened it) · **Nothing is held** (no Pause at all; every take runs to
+      a maximum or stops early — 15s/30s/45s/1m/2m/5m). **The cap is enforced on
+      the capture thread in Rust** (`recv_timeout`, the stream dropped right
+      there) and never by a timer in the window: *a promise about a microphone
+      must not rest on a webview Android is free to throttle.* A capped take
+      seals and lands by itself
+- [x] `cargo check` clean · `npm run check` — 399 files, 0 errors, 0 warnings
+- [ ] **Tested:** ⬜ KP's hands, the S25 — **this run also closes the Phase 2 EXIT
+      GATE**: record → pause → resume → save, then a **second** take (the 08-09
+      freeze fix has still never been proven on device)
+
+---
+
+## THE GAP REPORT'S OWN FOLLOW-UPS — 2026-08-12 (💫 · Opus 🕯️, at KP's ⚛ word: "1-, then 2")
+
+*KP asked what was planned before the Musician's Compass path and never done. The
+answer was already written: `docs/v1-v2-gap-report.md` (2026-07-02, **sixteen days
+before v3 was commissioned**) closes with its own priority-ordered follow-up list.
+Two of the six were done — display mode was ported later, and #5 was not skipped
+but **promoted**, becoming v3 Phase 1's keel.*
+
+- [x] **#1 Remove missing tracks — BUILT.** The report's own *"only
+      data-correctness gap"*, open since 2026-07-02: v2 scans are additive upserts
+      (multi-folder requires it), so a file deleted from disk kept its row
+      forever. `find_missing_tracks` in Rust **REPORTS ONLY** — a URI wearing a
+      scheme (`content://` on Android) answers to a ContentResolver rather than
+      the filesystem and is reported **present**, never swept on a guess. Settings
+      → Data Sovereignty gained a two-act sweep: **Check** shows what is gone and
+      waits; **Remove** runs only on a second tap — *verify before any deletion,
+      always.* **A missing track carrying mood tags or fragments is KEPT**: all
+      three child tables hold a FK to `songs(id)` (the 787 lesson), so removing
+      such a row would take his tags — and his fragment rows, whose WAVs are real
+      files on disk — down with it. Lose-nothing decides that, and the room says why
+- [x] **#2 CSP hardening — CLOSED.** `"csp": null` permitted everything, including
+      remote script loads and exfiltration to any host. The webview was found to
+      make **no external request at all** (cover art and lyrics are fetched in
+      Rust, audio plays through rodio, external links open in the system browser
+      via plugin-opener), so the policy could be strict: `default-src 'self'` ·
+      **`connect-src 'self' ipc: …` — which turns PRIVACY.md's "never leaves this
+      device" from a stated promise into an enforced property** · `object-src
+      'none'` · `base-uri 'self'` · `frame-ancestors 'none'` · `form-action
+      'none'`; `img-src`/`media-src` carry `data:` (cover art IS a data URI, built
+      in `lib.rs`) plus the asset protocol, and `'self'` covers the chime wav.
+      **`'unsafe-inline'` remains on script-src and style-src, deliberately and
+      named:** SvelteKit's SPA build emits an inline bootstrap script and the theme
+      injects CSS variables inline, so a bare `script-src 'self'` bricks the app.
+      Tightening it further means `kit.csp` hash mode — its own sitting
+- [x] **#3 `songs.db` migration — RULED CLOSED, KP's ⚛ word: *"nothin to
+      migrate."*** For the record and against a later surprise: a `songs.db` DOES
+      exist (98 KB, 2026-06-23,
+      `AppData/Roaming/com.audhd.sovereign-music-player/`). Nothing deletes it, so
+      the ruling costs nothing
+- [ ] **#4 Settings ports — accent color ⬜ · display mode ✅ (ported after the
+      report) · album art shape ⬜.** KP's ⚛ direction for this one: *"grammar base
+      may hold answers for 4, knowledge keys on bridge, tools in bridge and awen to
+      query"* — **the live base is to be probed before anything is built**
+- [x] **#5 Fragments-on-Android via pure-Rust cutting — ✅ done long since.** It
+      was never skipped; it was **promoted** into v3 Phase 1, the keel, proven on
+      the S22 on 2026-07-19. KP: *"5-yay!"*
+- [ ] **#6 SAF folder-picker plugin ⬜ — *"last of the bunch"*, KP's ⚛ word.**
+      Android still scans a fixed `/Music` + `/Download`; there is no folder choice
+      on the phone
+- [ ] **Tested:** ⬜ KP's hands — the sweep against a library with a deleted file,
+      and **the CSP on a production build**: a wrong CSP fails quietly, and dev is
+      not proof of it
 
 ### The EQ door in the continue-strip ✅ built (2026-08-08, the Etude lamp — KP's ⚛ word: "a button in listen continued that opens the eq directly")
 

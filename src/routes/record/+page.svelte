@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { recorderStore, type Take } from '$lib/stores/recorder.svelte';
+	import { recordPrefs, fmtMax } from '$lib/stores/recordPrefs.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import type { Track } from '$lib/types/types';
 
@@ -15,6 +16,11 @@
 	let lastExported = $state<string | null>(null);
 
 	const recording = $derived(recorderStore.recording);
+	const paused = $derived(recorderStore.paused);
+	const capped = $derived(recorderStore.capped);
+	// Holding is a choice made in Settings — an autonomy call about when the
+	// microphone may be open at all, not a tuning knob.
+	const canHold = $derived(recordPrefs.mode === 'hold');
 	const peak = $derived(recorderStore.peak);
 	const clipped = $derived(recorderStore.clipped);
 	const takes = $derived(recorderStore.takes);
@@ -41,16 +47,15 @@
 
 	async function startTake() {
 		lastExported = null;
-		await recorderStore.start(selectedDevice);
+		await recorderStore.start(selectedDevice, recordPrefs.capSecs);
 	}
 
-	async function stopTake() {
+	// The room works like a voice recorder (KP's ⚛ shape, 2026-08-12): record,
+	// hold, resume, save. There is no keep-or-discard moment at the end of a
+	// take — a saved take simply lands on the shelf, and the shelf's own
+	// Delete, already standing beside Export, is where a take goes away.
+	async function saveTake() {
 		await recorderStore.stop(true, takeName.trim() ? takeName.trim() : null);
-		takeName = '';
-	}
-
-	async function discardTake() {
-		await recorderStore.stop(false, null);
 		takeName = '';
 	}
 
@@ -84,9 +89,25 @@
 		if (dest) lastExported = dest;
 	}
 
+	// A capped take has ALREADY released the device, on the capture thread in
+	// Rust — the samples are simply waiting. Seal them at once: the no-holding
+	// mode's whole promise is that a take ends by itself at its maximum with
+	// nothing left for anyone to do. The flag is a plain let, not $state, so
+	// sealing cannot re-trigger the effect that started it.
+	let sealingCap = false;
+	$effect(() => {
+		if (capped && !sealingCap) {
+			sealingCap = true;
+			saveTake().finally(() => {
+				sealingCap = false;
+			});
+		}
+	});
+
 	onMount(() => {
 		// Fast-arm: the record button is live immediately (a null device hint
 		// means the platform default); the device list fills in behind it.
+		recordPrefs.load();
 		recorderStore.loadDevices();
 		recorderStore.refreshTakes();
 	});
@@ -138,11 +159,17 @@
 		</div>
 	{:else}
 		<div class="live-panel">
-			<p class="listening" aria-live="polite">● Listening</p>
+			<p class="listening" class:held={paused} aria-live="polite">
+				{paused ? '❚❚ Held' : '● Listening'}
+			</p>
 			<p class="live-elapsed">{fmtElapsed(recorderStore.elapsedSecs)}</p>
 			<p class="live-device">
 				{recorderStore.device} · {recorderStore.sampleRate} Hz · {recorderStore.channels === 1 ? 'mono' : `${recorderStore.channels}ch`}
 			</p>
+
+			{#if !canHold}
+				<p class="cap-note">Saves itself at {fmtMax(recordPrefs.maxSecs)}.</p>
+			{/if}
 
 			<div class="meter" role="img" aria-label="Input level">
 				<div
@@ -156,9 +183,23 @@
 				<p class="clip-note">clipped ×{clipped}</p>
 			{/if}
 
+			{#if paused}
+				<p class="held-note">
+					The mic stays open while held, so your phone may still show its
+					microphone light. Nothing is heard and nothing is kept — resume
+					picks the same take back up where it left off.
+				</p>
+			{/if}
+
 			<div class="live-actions">
-				<button class="stop-btn" onclick={stopTake}>■ Keep take</button>
-				<button class="discard-btn" onclick={discardTake}>Discard</button>
+				{#if canHold}
+					{#if paused}
+						<button class="hold-btn" onclick={() => recorderStore.resume()}>▶ Resume</button>
+					{:else}
+						<button class="hold-btn" onclick={() => recorderStore.pause()}>❚❚ Pause</button>
+					{/if}
+				{/if}
+				<button class="stop-btn" onclick={saveTake}>■ Save take</button>
 			</div>
 		</div>
 	{/if}
@@ -347,15 +388,42 @@
 		min-height: 44px;
 	}
 
-	.discard-btn {
+	.hold-btn {
 		padding: 0.7rem 1.4rem;
 		border-radius: 22px;
-		border: 1px solid var(--border);
+		/* Full-strength text and a visible edge. The button this replaced was
+		   never disabled, but --text-secondary on transparent read as
+		   greyed-out to its first user (KP, S25, 2026-08-12). A live action
+		   must look live — the sensory law cuts both ways. */
+		border: 1px solid var(--text-secondary);
 		background: transparent;
-		color: var(--text-secondary);
+		color: var(--text);
 		font-size: 0.95rem;
 		cursor: pointer;
 		min-height: 44px;
+	}
+
+	/* Held is a resting state, not an alarm: the word goes quiet rather than
+	   red, and the meter falls to nothing on its own because a held take
+	   feeds the level no samples. */
+	.listening.held {
+		color: var(--text-secondary);
+	}
+
+	.cap-note {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		margin: 0.25rem 0 0;
+	}
+
+	/* Said plainly rather than left to be discovered on the status bar —
+	   KP's ⚛ ruling 2026-08-12 that the stream stays open while held. */
+	.held-note {
+		font-size: 0.85rem;
+		line-height: 1.45;
+		color: var(--text-secondary);
+		max-width: 34rem;
+		margin: 0.25rem 0 0;
 	}
 
 	.export-note {
