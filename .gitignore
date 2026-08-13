@@ -52,3 +52,4 @@ desktop.ini
 helper.md
 generate_blueprint.py
 tools/
+*.msi
