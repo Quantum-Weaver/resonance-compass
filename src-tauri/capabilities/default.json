@@ -12,6 +12,8 @@
     "sql:allow-load",
     "fs:default",
     "opener:default",
-    "dialog:default"
+    "dialog:default",
+    "media-session:default",
+    "media-permission:default"
   ]
 }

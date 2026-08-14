@@ -1,5 +1,27 @@
 fn main() {
-    tauri_build::build();
+    // The two app-local Android plugins (media_permission.rs, media_session.rs)
+    // must be declared to the ACL or the webview's addPluginListener is denied
+    // at the permission wall — "registerListener not allowed. Plugin not found."
+    // That denial is exactly what killed Bluetooth/AVRCP transport commands and
+    // the audio-becoming-noisy auto-pause (found 2026-08-13, the car ride).
+    // Their capability grants live in capabilities/default.json as
+    // media-session:default / media-permission:default.
+    tauri_build::try_build(
+        tauri_build::Attributes::new()
+            .plugin(
+                "media-session",
+                tauri_build::InlinedPlugin::new()
+                    .commands(&["registerListener", "removeListener"])
+                    .default_permission(tauri_build::DefaultPermissionRule::AllowAllCommands),
+            )
+            .plugin(
+                "media-permission",
+                tauri_build::InlinedPlugin::new()
+                    .commands(&["registerListener", "removeListener"])
+                    .default_permission(tauri_build::DefaultPermissionRule::AllowAllCommands),
+            ),
+    )
+    .expect("failed to run tauri-build");
 
     if std::env::var("CARGO_CFG_TARGET_OS").as_deref() == Ok("android") {
         let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();

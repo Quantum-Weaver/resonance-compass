@@ -109,7 +109,7 @@ function ensureListeners() {
 	// Android-only, so a rejected listener on desktop is expected and ignored.
 	addPluginListener('media-permission', 'audioBecomingNoisy', () => {
 		if (isPlaying) pause();
-	}).catch(() => {});
+	}).catch((e) => console.error('[media-permission] audioBecomingNoisy listener failed:', e));
 
 	// Android: transport commands from the system — Bluetooth/AVRCP buttons,
 	// wired headset clicks, the lockscreen's media controls — relayed by
@@ -125,7 +125,7 @@ function ensureListeners() {
 			case 'seek': if (typeof e.positionMs === 'number') seek(e.positionMs / 1000); break;
 			case 'stop': stopPlayback(); break;
 		}
-	}).catch(() => {});
+	}).catch((e) => console.error('[media-session] mediaCommand listener failed:', e));
 
 	window.addEventListener('beforeunload', persistState);
 }
