@@ -39,7 +39,7 @@ do not outrank it. What the record already holds toward it:
   fragment from") — **doorways, not dead ends.**
 - **The E2 UX study's harvest** (the study pair's 8 rounds +
   synthesis, fleet-era record at
-  `resonance-chamber/constellation/fable/lanes/study/e2-the-ux-study-bus.md`,
+  `resonance-chamber/desk/records/fable-lanes/study/e2-the-ux-study-bus.md`,
   whole in the archive besides) — real UX knowledge already paid
   for; read before the pass, not rediscovered.
 - **The bimodal law governs:** KP's hands are the test — he is the
