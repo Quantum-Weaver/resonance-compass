@@ -463,13 +463,153 @@ export type TranscendenceShiftKey = keyof typeof TRANSCENDENCE_STATE_SEQUENCE;
 // MASTER EXPORT
 // ============================================================================
 
+// ============================================================================
+// MARBLE — generated stone, 2026-08-17
+// ============================================================================
+//
+// Added at KP's ⚛ word, at the source and as an addition, for the dice room in
+// resonance-tarocchi — the house's first 3D surface. It is written to be
+// reusable: any app wanting a generated stone face reads these recipes rather
+// than inventing veining of its own.
+//
+// THE ANCESTOR IS THE HOUSE'S OWN. `resonance-ziggy/modules/plate-forge/
+// plate_forge.py` has painted the family plate from this palette since
+// 2026-07-12 — deterministic, seeded, six composited layers. `chrome-bands`
+// below is that module's own `chrome_bands()` carried over constant for
+// constant, and the layer order of both recipes is its layer order. KP's line
+// in that module's docstring governs the whole approach: "it should not take
+// ai to generate a square." A stone that can be specified is specified.
+//
+// EVERY NUMBER HERE IS A KNOB WITH A REASON, because these recipes are meant
+// to be shown and adjusted, not buried. `why` is rendered to the person
+// turning the dial.
+
+export interface MarbleParam {
+  key: string;
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  /** One line, in plain words, for whoever is turning this. */
+  why: string;
+}
+
+export interface MarbleRecipe {
+  key: string;
+  label: string;
+  /** What this recipe is, said once, plainly. */
+  describes: string;
+  /** The SVG filter primitives it composes, in order — the honest ingredient list. */
+  primitives: readonly string[];
+  params: readonly MarbleParam[];
+  /** Where it came from, because provenance rides on every claim. */
+  provenance: string;
+}
+
+/** Shared across both recipes: how the ground under the veins is mixed. */
+export const STONE_GROUND = {
+  /** plate-forge's own core mix — `lerp(SURFACE, hue, 0.55)`, a violet heart, unapologetic. */
+  coreMix: 0.55,
+  /** The rim falls to deep space, as the plate's radial base does. */
+  rim: QUANTUM_COLORS['deepSpace'],
+  /** Radial falloff exponent — plate-forge uses d ** 1.35. */
+  falloff: 1.35,
+} as const;
+
+/** A few house stones, so an app can marble something without keying its own. */
+export const STONE_PALETTES = {
+  quantum: [QUANTUM_COLORS['quantum.purple'], QUANTUM_COLORS['quantum.light'], QUANTUM_COLORS['neurospark']],
+  hearth: [QUANTUM_COLORS['hearth.orange'], QUANTUM_COLORS['hearth.gold'], QUANTUM_COLORS['fire.base']],
+  sanctuary: [QUANTUM_COLORS['sanctuary.green'], QUANTUM_COLORS['sanctuary.emerald'], QUANTUM_COLORS['library.light']],
+  cosmic: [QUANTUM_COLORS['cosmic.dark'], QUANTUM_COLORS['cosmic.blue'], QUANTUM_COLORS['info']],
+  greatWork: [QUANTUM_COLORS['mystical.nigredo'], QUANTUM_COLORS['mystical.citrinitas'], QUANTUM_COLORS['mystical.rubedo']],
+  void: [QUANTUM_COLORS['void.dark'], QUANTUM_COLORS['void.base'], QUANTUM_COLORS['starDust']],
+} as const;
+
+export const MARBLE_RECIPES: Record<string, MarbleRecipe> = {
+  'stone-veins': {
+    key: 'stone-veins',
+    label: 'Stone veins',
+    describes:
+      'Fractal noise warps the ground into veining, the way mineral runs through cut stone. The classic marble, and the one that reads as rock rather than as metal.',
+    primitives: ['feTurbulence', 'feDisplacementMap', 'feGaussianBlur', 'feComposite'],
+    provenance: 'The default, chosen 2026-08-17 because marble is what was asked for.',
+    params: [
+      {
+        key: 'baseFrequency', label: 'Vein frequency', min: 0.004, max: 0.09, step: 0.002, value: 0.018,
+        why: 'How tightly the veins pack. Low is broad river-marble; high turns to granite speckle.',
+      },
+      {
+        key: 'octaves', label: 'Detail passes', min: 1, max: 6, step: 1, value: 4,
+        why: 'Layers of finer noise on top of coarse. Each one costs, and past four the eye stops collecting them.',
+      },
+      {
+        key: 'displacement', label: 'Warp', min: 0, max: 90, step: 1, value: 38,
+        why: 'How far the noise drags the ground. Zero is a plain gradient; too high and the stone shreds.',
+      },
+      {
+        key: 'veinContrast', label: 'Vein contrast', min: 0, max: 1, step: 0.02, value: 0.46,
+        why: 'How sharply the light mineral stands out of the dark. Taste, mostly.',
+      },
+      {
+        key: 'sheen', label: 'Sheen', min: 0, max: 1, step: 0.02, value: 0.24,
+        why: 'The broad specular sweep from the upper left — plate-forge lights from the same corner.',
+      },
+    ],
+  },
+
+  'chrome-bands': {
+    key: 'chrome-bands',
+    label: 'Chrome bands',
+    describes:
+      "The house's own banding: two sine waves beat against each other and laid on the diagonal, giving the polished-metal shimmer of the family plate.",
+    primitives: ['linearGradient (computed stops)', 'feGaussianBlur', 'feComposite'],
+    provenance:
+      'Ported constant-for-constant from plate_forge.py chrome_bands(), 2026-07-12 — v = 0.5 + 0.5·sin(y/52)·sin(y/17), rotated 45°.',
+    params: [
+      {
+        key: 'bandA', label: 'Slow wave', min: 8, max: 160, step: 1, value: 52,
+        why: "plate-forge's own 52.0 — the broad swell the banding rides on.",
+      },
+      {
+        key: 'bandB', label: 'Fast wave', min: 3, max: 60, step: 1, value: 17,
+        why: "plate-forge's own 17.0. Beating it against the slow wave is what stops the bands looking printed.",
+      },
+      {
+        key: 'angle', label: 'Lay', min: 0, max: 180, step: 1, value: 45,
+        why: 'The diagonal the bands are laid at. Forty-five reads as turned metal.',
+      },
+      {
+        key: 'strength', label: 'Band strength', min: 0, max: 0.4, step: 0.01, value: 0.102,
+        why: "plate-forge's BAND_ALPHA of 26/255. Subtle on purpose — this is a sheen, not a stripe.",
+      },
+      {
+        key: 'sheen', label: 'Sheen', min: 0, max: 1, step: 0.02, value: 0.235,
+        why: "plate-forge's SHEEN_ALPHA of 60/255, the one broad highlight sweeping upper-left.",
+      },
+    ],
+  },
+};
+
+/** The cut edge: light ring up-left, shadow ring down-right — plate-forge's
+ *  `bevel_frame()`, and the same illusion the tarocchi card cuts its numerals
+ *  with in `text-shadow`. Kept here so relief means one thing house-wide. */
+export const BEVEL_RELIEF = {
+  offset: 0.9,
+  lightAlpha: 0.55,
+  shadowAlpha: 0.7,
+  blur: 1.5,
+} as const;
+
 export const EFFECTS = {
   gradients: GRADIENTS,
   glows: GLOW_EFFECTS,
   shadows: SHADOWS,
   backdrop: BACKDROP_EFFECTS,
   holographic: HOLOGRAPHIC_EFFECTS,
-  particles: PARTICLE_BEHAVIOR
+  particles: PARTICLE_BEHAVIOR,
+  marble: MARBLE_RECIPES
 } as const;
 
 // Type exports
@@ -481,6 +621,9 @@ export type ShadowKey = keyof typeof SHADOWS;
 export type BackdropKey = keyof typeof BACKDROP_EFFECTS;
 export type HolographicKey = keyof typeof HOLOGRAPHIC_EFFECTS;
 export type ParticleBehavior = keyof typeof PARTICLE_BEHAVIOR;
+// 2026-08-17 — generated stone, for the house's first 3D surface
+export type MarbleRecipeKey = keyof typeof MARBLE_RECIPES;
+export type StonePaletteKey = keyof typeof STONE_PALETTES;
 // O-7 / O-8 — the ambient presence field and the per-domain glow coefficient
 export type PresenceFieldKey = keyof typeof PRESENCE_FIELD;
 export type DomainGlowKey = keyof typeof DOMAIN_GLOW_MODULATION;

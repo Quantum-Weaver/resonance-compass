@@ -663,6 +663,141 @@ export function sceneTotalDuration(sequence: SceneSequence): number {
 }
 
 // ============================================================================
+// 11. DIMENSIONAL PROJECTION — the house's first 3D, 2026-08-17
+// ============================================================================
+//
+// Added at KP's ⚛ word ("this will be the house's first 3d experience") beside
+// the camera and parallax work this file already owns, because a projection is
+// a camera with its sleeves rolled up. Shapes come from `solids.ts`; this
+// section turns them into something a screen can draw.
+//
+// THE SPACE, STATED ONCE SO NOTHING HAS TO GUESS: x runs right, y runs DOWN
+// (screen convention, not textbook), z runs TOWARD the viewer. Rotations are
+// applied X, then Y, then Z — v′ = Rz·Ry·Rx·v — and every function below
+// assumes that order.
+
+/** Where the house's light stands: upper-left and slightly in front, which is
+ *  the same corner plate-forge lights from (`sheen()` sweeps upper-left, and
+ *  `bevel_frame()` catches light up-left, pools shadow down-right). One light,
+ *  house-wide, so two surfaces never disagree about where the sun is. */
+export const LIGHT_VECTOR: readonly [number, number, number] = [-0.4243, -0.5657, 0.7071];
+
+/** Ambient floor and diffuse reach. Ambient is deliberately generous: a face
+ *  turned away should read as *stone in shadow*, never as a hole in the shape. */
+export const SURFACE_LIGHTING = {
+  ambient: 0.42,
+  diffuse: 0.58,
+  /** How far a face may be darkened below its own colour, at most. */
+  floor: 0.28,
+  /** Tightness of the highlight. High is a small hard glint on polished
+   *  stone or metal; low is the broad sheen of something matte. */
+  shininess: 26,
+  /** How strong that highlight is allowed to be. */
+  specular: 0.55,
+} as const;
+
+/** Focal length for the perspective divide. Larger is flatter; this is chosen
+ *  so a unit solid reads as dimensional without the near faces ballooning. */
+export const PROJECTION_FOCAL = 4.2;
+
+/** Rotate a point. Order is X, then Y, then Z. */
+export function rotate3(
+  v: readonly [number, number, number],
+  rx: number,
+  ry: number,
+  rz: number
+): [number, number, number] {
+  const [sx, cx] = [Math.sin(rx), Math.cos(rx)];
+  const [sy, cy] = [Math.sin(ry), Math.cos(ry)];
+  const [sz, cz] = [Math.sin(rz), Math.cos(rz)];
+
+  // Rx
+  let x = v[0];
+  let y = v[1] * cx - v[2] * sx;
+  let z = v[1] * sx + v[2] * cx;
+  // Ry
+  const x1 = x * cy + z * sy;
+  const z1 = -x * sy + z * cy;
+  x = x1;
+  z = z1;
+  // Rz
+  const x2 = x * cz - y * sz;
+  const y2 = x * sz + y * cz;
+
+  return [x2, y2, z];
+}
+
+/** Perspective projection to the plane. Returns the screen point and the depth
+ *  it should sort by — the caller never has to recompute z. */
+export function project(
+  v: readonly [number, number, number],
+  focal: number = PROJECTION_FOCAL
+): { x: number; y: number; depth: number } {
+  const k = focal / (focal - v[2]);
+  return { x: v[0] * k, y: v[1] * k, depth: v[2] };
+}
+
+/** A face is drawn only when its outward normal has turned toward the viewer. */
+export function faceIsFacing(normal: readonly [number, number, number]): boolean {
+  return normal[2] > 0;
+}
+
+/** Painter's order: furthest first, so nearer faces land on top of them. */
+export function painterSort<T>(items: T[], depthOf: (item: T) => number): T[] {
+  return [...items].sort((a, b) => depthOf(a) - depthOf(b));
+}
+
+/** Lambertian shade in [floor, 1] for a face, against the house light. */
+export function diffuse(
+  normal: readonly [number, number, number],
+  light: readonly [number, number, number] = LIGHT_VECTOR,
+  ambient: number = SURFACE_LIGHTING.ambient,
+  strength: number = SURFACE_LIGHTING.diffuse
+): number {
+  const lambert = Math.max(0, normal[0] * light[0] + normal[1] * light[1] + normal[2] * light[2]);
+  return Math.max(SURFACE_LIGHTING.floor, Math.min(1, ambient + strength * lambert));
+}
+
+/**
+ * THE GLINT — Blinn-Phong specular, and it is what separates a surface that
+ * was PHOTOGRAPHED from one that was drawn. Diffuse alone gives a shape its
+ * volume; the highlight is what tells the eye the material is polished.
+ *
+ *     ĥ    = normalize(l̂ + v̂)          the half vector, viewer at +z
+ *     spec = max(0, n̂·ĥ) ^ shininess
+ *
+ * Kept beside `diffuse` rather than in an app, because a house whose two
+ * surfaces disagree about where the light is has two lights.
+ */
+export function specular(
+  normal: readonly [number, number, number],
+  light: readonly [number, number, number] = LIGHT_VECTOR,
+  shininess: number = SURFACE_LIGHTING.shininess
+): number {
+  // The viewer stands at +z, so the half vector is the light plus (0,0,1).
+  const hx = light[0];
+  const hy = light[1];
+  const hz = light[2] + 1;
+  const len = Math.hypot(hx, hy, hz) || 1;
+  const dot = (normal[0] * hx + normal[1] * hy + normal[2] * hz) / len;
+  return Math.pow(Math.max(0, dot), shininess);
+}
+
+/**
+ * THE SETTLE. Given a face's outward normal, the rotation that turns that face
+ * to the viewer — so a result decided beforehand can be *shown* rather than
+ * gambled for. Solved, not searched: rx lays the normal into the y = 0 plane,
+ * ry swings it onto +z, and rz is left free for the tumble's final spin.
+ */
+export function orientationFacing(
+  normal: readonly [number, number, number]
+): { rx: number; ry: number } {
+  const rx = Math.atan2(normal[1], normal[2]);
+  const ry = Math.atan2(-normal[0], Math.hypot(normal[1], normal[2]));
+  return { rx, ry };
+}
+
+// ============================================================================
 // 10. TYPE EXPORTS
 // ============================================================================
 

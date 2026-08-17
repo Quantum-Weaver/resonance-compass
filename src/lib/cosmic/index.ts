@@ -104,6 +104,17 @@ export {
   getCameraMove,
   SCENE_SEQUENCES,
   sceneTotalDuration,
+  // 2026-08-17 — dimensional projection, the house's first 3D
+  LIGHT_VECTOR,
+  SURFACE_LIGHTING,
+  PROJECTION_FOCAL,
+  rotate3,
+  project,
+  faceIsFacing,
+  painterSort,
+  diffuse,
+  specular,
+  orientationFacing,
 } from './positioning';
 
 export type {
@@ -346,6 +357,11 @@ export {
   // H-5 / H-6 — eternal witness state and transcendence sequence
   ETERNAL_WITNESS_STATE,
   TRANSCENDENCE_STATE_SEQUENCE,
+  // 2026-08-17 — generated stone, for the house's first 3D surface
+  MARBLE_RECIPES,
+  STONE_GROUND,
+  STONE_PALETTES,
+  BEVEL_RELIEF,
 } from './effects';
 
 export type {
@@ -366,4 +382,40 @@ export type {
   EternalWitnessStateKey,
   TranscendenceShift,
   TranscendenceShiftKey,
+  // 2026-08-17
+  MarbleRecipe,
+  MarbleParam,
+  MarbleRecipeKey,
+  StonePaletteKey,
 } from './effects';
+
+// ============================================================================
+// SOLIDS — the dimensional vocabulary (2026-08-17, a new cosmic constants file)
+// ============================================================================
+// Polyhedra as vertices and faces, and the honest answer to a side count that
+// no fair solid can carry. Authored at KP's ⚛ word for the house's first 3D
+// experience; the geometry KP's own facet-object design at skapa.md asks for.
+
+export {
+  PLATONIC_SOLIDS,
+  FAIR_SOLID_BY_SIDES,
+  solidForSides,
+  trapezohedron,
+  barrel,
+  faceNormal,
+  faceCentroid,
+  verifySolids,
+  vecAdd,
+  vecSub,
+  vecScale,
+  vecDot,
+  vecCross,
+  vecLength,
+  vecNormalize,
+} from './solids';
+
+export type {
+  Vec3,
+  Solid,
+  PlatonicKey,
+} from './solids';

@@ -47,6 +47,10 @@ export const durations = {
   quantumPulse: 2000,
   /** Cross-session awareness */
   continuityBeam: 3000,
+  /** A solid tumbling to rest — the house's first 3D, 2026-08-17 */
+  tumble: 1100,
+  /** The last quarter-turn as a face comes to the viewer */
+  settle: 420,
 } as const;
 
 // ============================================================================
@@ -63,6 +67,12 @@ export const easing = {
   cosmic: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   /** Vibrational resonance pattern */
   resonance: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+
+  // ===== Dimensional Motion (2026-08-17) =====
+  /** A tumbling solid slowing into its rest — fast out, long decelerating
+   *  tail, and NO overshoot: a die that bounces back past its face has told
+   *  the eye the number was still being decided. */
+  settle: 'cubic-bezier(0.16, 0.84, 0.24, 1)',
 
   // ===== Consciousness State Transitions =====
   /** Gentle emergence */
