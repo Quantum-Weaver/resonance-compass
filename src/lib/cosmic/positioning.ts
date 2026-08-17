@@ -783,6 +783,59 @@ export function specular(
   return Math.pow(Math.max(0, dot), shininess);
 }
 
+// ----------------------------------------------------------------------------
+// THE FIRST-PERSON TABLE — a surface seen from where someone sits
+// ----------------------------------------------------------------------------
+//
+// Added 2026-08-17 at KP's ⚛ word: "the table top tarot experience should be
+// data driven, but i would like the 3d first person view effect if possible",
+// and "a sense of glancing in a direction toward a card as it is being
+// interacted with."
+//
+// THIS IS A DIFFERENT 3D FROM THE SOLIDS ABOVE, deliberately. A die is a shape
+// we generate, so we project it ourselves. A card is a photograph, and the
+// browser's own perspective engine is better at photographs than we are. These
+// constants are for a CSS 3D plane; `rotate3`/`project` are for our own.
+
+export const FIRST_PERSON_TABLE = {
+  /** How far the eye sits from the surface, in CSS pixels. */
+  perspective: 900,
+  /** How far the plane lies back. Higher is more tabletop, less card. */
+  tiltDegrees: 54,
+  /** How far a turned card rises off the table toward the reader. */
+  liftPx: 90,
+  /** How far it rotates back upright once lifted, so it can be READ. */
+  readDegrees: 46,
+  /** The glance: how far the surface turns toward what you are touching. */
+  glanceYawDegrees: 6,
+  glancePitchDegrees: 3,
+  /** How long the glance takes to arrive, and to return when you let go. */
+  glanceMs: 260,
+} as const;
+
+/**
+ * THE GLANCE. Given where a card sits on the table in normalised coordinates
+ * (0..1 across and down, with 0.5,0.5 at centre), the small rotation that turns
+ * the surface toward it — the way a head moves before a hand arrives.
+ *
+ * Deliberately small, and deliberately NOT overshooting. A viewport that swings
+ * is a viewport that costs somebody their afternoon; this house builds for
+ * people who feel motion. Consumers must gate it on `prefers-reduced-motion`
+ * and should expose its amplitude as a knob rather than baking it in.
+ */
+export function glanceToward(
+  x: number,
+  y: number,
+  amplitude = 1
+): { yaw: number; pitch: number } {
+  const dx = Math.max(-1, Math.min(1, (x - 0.5) * 2));
+  const dy = Math.max(-1, Math.min(1, (y - 0.5) * 2));
+  return {
+    yaw: -dx * FIRST_PERSON_TABLE.glanceYawDegrees * amplitude,
+    pitch: dy * FIRST_PERSON_TABLE.glancePitchDegrees * amplitude,
+  };
+}
+
 /**
  * THE SETTLE. Given a face's outward normal, the rotation that turns that face
  * to the viewer — so a result decided beforehand can be *shown* rather than

@@ -115,6 +115,9 @@ export {
   diffuse,
   specular,
   orientationFacing,
+  // 2026-08-17 — the first-person tabletop and its glance
+  FIRST_PERSON_TABLE,
+  glanceToward,
 } from './positioning';
 
 export type {
@@ -402,6 +405,7 @@ export {
   solidForSides,
   trapezohedron,
   barrel,
+  disc,
   faceNormal,
   faceCentroid,
   verifySolids,

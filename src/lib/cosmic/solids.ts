@@ -377,6 +377,57 @@ export function barrel(n: number, waist = 0.62, point = 1.25): Solid {
 }
 
 // ============================================================================
+// THE DISC — the two-faced thing that is not a die
+// ============================================================================
+
+/**
+ * A COIN. `solidForSides` refuses two on purpose — "a two-faced die is a coin,
+ * and a coin is not a solid" — and this is the honest shape that refusal was
+ * holding the door open for: a wide, thin n-gonal disc with a rim.
+ *
+ * Two faces carry a mark and the rim carries none, which is the truth about a
+ * coin: it *can* land on its edge and essentially never does, so the rim is
+ * built, lit and never numbered. `rim` is its one real knob — thin enough to
+ * read as a coin, thick enough to catch the light as it turns edge-on, which
+ * is the whole drama of a toss.
+ *
+ * `fair: true`, and unlike the barrel that is not a courtesy: the two flat
+ * faces are congruent and opposite, so the shape is as fair as the throw.
+ */
+export function disc(rim = 0.11, segments = 32): Solid {
+	const n = Math.max(8, Math.floor(segments));
+	const top: Vec3[] = [];
+	const bottom: Vec3[] = [];
+	for (let k = 0; k < n; k++) {
+		const a = (2 * Math.PI * k) / n;
+		top.push([Math.cos(a), Math.sin(a), rim]);
+		bottom.push([Math.cos(a), Math.sin(a), -rim]);
+	}
+
+	const vertices: Vec3[] = [...top, ...bottom];
+	const faces: number[][] = [];
+
+	// The two marked faces, first and second, so heads is always face 0.
+	faces.push(Array.from({ length: n }, (_, k) => k));
+	faces.push(Array.from({ length: n }, (_, k) => n + (n - 1 - k)));
+
+	// The rim: never numbered, never landed on, always lit.
+	for (let k = 0; k < n; k++) {
+		const nx = (k + 1) % n;
+		faces.push([k, nx, n + nx, n + k]);
+	}
+
+	return ensureOutward({
+		name: 'disc',
+		sides: 2,
+		vertices,
+		faces,
+		numbered: [0, 1],
+		fair: true
+	});
+}
+
+// ============================================================================
 // THE BAG — resolving a side count to a shape
 // ============================================================================
 
@@ -427,7 +478,7 @@ export function solidForSides(sides: number): Solid {
  */
 export function verifySolids(epsilon = 1e-9): string[] {
   const complaints: string[] = [];
-  const all: Solid[] = [...Object.values(PLATONIC_SOLIDS), trapezohedron(), barrel(7)];
+  const all: Solid[] = [...Object.values(PLATONIC_SOLIDS), trapezohedron(), barrel(7), disc()];
 
   for (const solid of all) {
     solid.faces.forEach((face, i) => {
