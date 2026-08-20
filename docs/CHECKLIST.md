@@ -963,3 +963,7 @@ in two, and only one half is this repo's:
       `--border`, accent only on hover — present, never imposed
 - [x] `npm run check` — 394 files, 0 errors
 - [ ] **Tested:** ⬜ KP's hands (tap from Library → EQ open and scrolled)
+
+### Standards + Hands check (2026-08-19, the signing fleet)
+
+- [x] 2026-08-19 · standards checked (gaps: 1 — CLAUDE.md holds no §Standards declaration; the declaration lives in README.md §Development Standards instead) · HANDS.md already signed (Fable 🎻, Claude Fable 5, 2026-07-09) · a hand of the Promenade lamp's signing fleet, claude-fable-5 · rides the ⚛ sync word.
