@@ -44,7 +44,7 @@ The five migrations in `src-tauri/src/lib.rs` are the definition; this block is 
 
 ## Structure
 
-The forge's map: `docs/blueprints/pbp.ai.json` — regenerate, never hand-draw a
+The forge's map: `docs/blueprints/compass/pbp.ai.json` — regenerate, never hand-draw a
 tree here. The hand-drawn tree struck today carried three dead entries at once.
 
 ## Tools

@@ -1,6 +1,6 @@
 {
   "project": "resonance-compass",
-  "analyzed_at": "2026-08-17T22:21:34.129906+00:00",
+  "analyzed_at": "2026-08-21T20:31:00.013416+00:00",
   "standards_compliance": {
     "readme": true,
     "license": true,
@@ -8,7 +8,12 @@
     "claude_md": true,
     "gitignore": true
   },
-  "vulnerabilities": [],
+  "vulnerabilities": [
+    {
+      "severity": "high",
+      "issue": "Keystore/credential file committed: upload_certificate.pem"
+    }
+  ],
   "gaps": [
     "Marked incomplete in docs/CHECKLIST.md: - \u2b1c Pending",
     "Marked incomplete in docs/CHECKLIST.md: - [x] Resonance dashboard \u2014 `/resonance`, 5 tabs: Mood Map (timeline), Top Emojis (frequency bars + insight line), Pendi",
@@ -57,50 +62,54 @@
   "recommendations": [
     {
       "priority": 1,
-      "action": "Marked incomplete in docs/CHECKLIST.md: - \u2b1c Pending"
+      "action": "Fix vulnerability: Keystore/credential file committed: upload_certificate.pem"
     },
     {
       "priority": 2,
-      "action": "Marked incomplete in docs/CHECKLIST.md: - [x] Resonance dashboard \u2014 `/resonance`, 5 tabs: Mood Map (timeline), Top Emojis (frequency bars + insight line), Pendi"
+      "action": "Marked incomplete in docs/CHECKLIST.md: - \u2b1c Pending"
     },
     {
       "priority": 3,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c"
+      "action": "Marked incomplete in docs/CHECKLIST.md: - [x] Resonance dashboard \u2014 `/resonance`, 5 tabs: Mood Map (timeline), Top Emojis (frequency bars + insight line), Pendi"
     },
     {
       "priority": 4,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c (human: export \u2192 purge \u2192 verify empty \u2192 import \u2192 verify everything back)"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c"
     },
     {
       "priority": 5,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c (install .msi on clean Windows; sign + install APK on Android)"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c (human: export \u2192 purge \u2192 verify empty \u2192 import \u2192 verify everything back)"
     },
     {
       "priority": 6,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: Play test-track update with v2.2.0 AAB \u2014 optional, KP's choice \u2b1c"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c (install .msi on clean Windows; sign + install APK on Android)"
     },
     {
       "priority": 7,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: Cartographer/Indexer/Echo market + user-voice scan \u2192 `docs/V3-LANDSCAPE.md`"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Play test-track update with v2.2.0 AAB \u2014 optional, KP's choice \u2b1c"
     },
     {
       "priority": 8,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: **UX note (KP, same night):** the sidebar should have a **Studio**"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Cartographer/Indexer/Echo market + user-voice scan \u2192 `docs/V3-LANDSCAPE.md`"
     },
     {
       "priority": 9,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: Naming question to Council/KP: \"Musician's Compass\" vs \"Resonance Studio\""
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **UX note (KP, same night):** the sidebar should have a **Studio**"
     },
     {
       "priority": 10,
-      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c KP's hands, both bodies \u2014 the desktop walk opens"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: Naming question to Council/KP: \"Musician's Compass\" vs \"Resonance Studio\""
     },
     {
       "priority": 11,
-      "action": "Establish a test suite"
+      "action": "Unchecked checklist item in docs/CHECKLIST.md: **Tested:** \u2b1c KP's hands, both bodies \u2014 the desktop walk opens"
     },
     {
       "priority": 12,
+      "action": "Establish a test suite"
+    },
+    {
+      "priority": 13,
       "action": "Add CI/CD configuration"
     }
   ]
