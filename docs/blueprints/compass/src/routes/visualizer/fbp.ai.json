@@ -1,0 +1,33 @@
+{
+  "tier": "folder",
+  "folder_name": "visualizer",
+  "folder_path": "src/routes/visualizer",
+  "self": "compass/src/routes/visualizer/fbp.ai.json",
+  "parent": "compass/src/routes/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/routes/visualizer/+page.svelte",
+      "description": "surface, 36,316 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 1170,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.321402 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

@@ -1,0 +1,120 @@
+{
+  "tier": "object",
+  "object_name": "lib",
+  "object_path": "src/lib",
+  "self": "compass/src/lib/obp.ai.json",
+  "parent": "compass/src/dbp.ai.json",
+  "description": "0 files, 12 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src/lib/fbp.ai.json",
+      "folder_path": "src/lib",
+      "description": "0 files, 12 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 12
+    },
+    {
+      "blueprint": "compass/src/lib/breath-core/fbp.ai.json",
+      "folder_path": "src/lib/breath-core",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/components/fbp.ai.json",
+      "folder_path": "src/lib/components",
+      "description": "9 files, 1 subfolders",
+      "file_count": 9,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/lib/components/icons/fbp.ai.json",
+      "folder_path": "src/lib/components/icons",
+      "description": "29 files, 0 subfolders",
+      "file_count": 29,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/cosmic/fbp.ai.json",
+      "folder_path": "src/lib/cosmic",
+      "description": "12 files, 0 subfolders",
+      "file_count": 12,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/cumdach/fbp.ai.json",
+      "folder_path": "src/lib/cumdach",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/data/fbp.ai.json",
+      "folder_path": "src/lib/data",
+      "description": "4 files, 0 subfolders",
+      "file_count": 4,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/envelope-core/fbp.ai.json",
+      "folder_path": "src/lib/envelope-core",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/epagoge/fbp.ai.json",
+      "folder_path": "src/lib/epagoge",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/stores/fbp.ai.json",
+      "folder_path": "src/lib/stores",
+      "description": "12 files, 0 subfolders",
+      "file_count": 12,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/styles/fbp.ai.json",
+      "folder_path": "src/lib/styles",
+      "description": "1 files, 1 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/lib/styles/generated/fbp.ai.json",
+      "folder_path": "src/lib/styles/generated",
+      "description": "21 files, 0 subfolders",
+      "file_count": 21,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/theme/fbp.ai.json",
+      "folder_path": "src/lib/theme",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/timer-core/fbp.ai.json",
+      "folder_path": "src/lib/timer-core",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/lib/types/fbp.ai.json",
+      "folder_path": "src/lib/types",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 15,
+  "total_files": 100,
+  "integration_timestamp": "2026-08-21T15:19:25.466178 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

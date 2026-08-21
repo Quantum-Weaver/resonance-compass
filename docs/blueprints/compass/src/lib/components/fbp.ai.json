@@ -1,0 +1,148 @@
+{
+  "tier": "folder",
+  "folder_name": "components",
+  "folder_path": "src/lib/components",
+  "self": "compass/src/lib/components/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "9 files, 1 subfolders",
+  "files": [
+    {
+      "path": "src/lib/components/AlbumCard.svelte",
+      "description": "surface, 2,620 bytes"
+    },
+    {
+      "path": "src/lib/components/EmojiPalette.svelte",
+      "description": "surface, 4,396 bytes"
+    },
+    {
+      "path": "src/lib/components/GradientPulse.svelte",
+      "description": "surface, 1,005 bytes"
+    },
+    {
+      "path": "src/lib/components/MediaPermissionDialog.svelte",
+      "description": "surface, 2,679 bytes"
+    },
+    {
+      "path": "src/lib/components/MiniPlayer.svelte",
+      "description": "surface, 7,353 bytes"
+    },
+    {
+      "path": "src/lib/components/PlayerControls.svelte",
+      "description": "surface, 4,474 bytes"
+    },
+    {
+      "path": "src/lib/components/Sidebar.svelte",
+      "description": "surface, 11,432 bytes"
+    },
+    {
+      "path": "src/lib/components/TimerVisualization.svelte",
+      "description": "surface, 18,253 bytes"
+    },
+    {
+      "path": "src/lib/components/TrackItem.svelte",
+      "description": "surface, 7,481 bytes"
+    }
+  ],
+  "file_count": 9,
+  "subdirectories": [
+    "src/lib/components/icons"
+  ],
+  "code_analysis": {
+    "AlbumCard.svelte": {
+      "language": "svelte",
+      "lines": 110,
+      "uses_runes": [
+        "$props"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "EmojiPalette.svelte": {
+      "language": "svelte",
+      "lines": 177,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "GradientPulse.svelte": {
+      "language": "svelte",
+      "lines": 55,
+      "uses_runes": [
+        "$props"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "MediaPermissionDialog.svelte": {
+      "language": "svelte",
+      "lines": 114,
+      "uses_runes": [
+        "$derived"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "MiniPlayer.svelte": {
+      "language": "svelte",
+      "lines": 286,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "PlayerControls.svelte": {
+      "language": "svelte",
+      "lines": 201,
+      "uses_runes": [
+        "$derived",
+        "$props"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "Sidebar.svelte": {
+      "language": "svelte",
+      "lines": 403,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "TimerVisualization.svelte": {
+      "language": "svelte",
+      "lines": 595,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$props",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "TrackItem.svelte": {
+      "language": "svelte",
+      "lines": 342,
+      "uses_runes": [
+        "$derived",
+        "$props",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.194975 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

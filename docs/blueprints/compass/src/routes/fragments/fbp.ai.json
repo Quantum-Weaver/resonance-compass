@@ -1,0 +1,34 @@
+{
+  "tier": "folder",
+  "folder_name": "fragments",
+  "folder_path": "src/routes/fragments",
+  "self": "compass/src/routes/fragments/fbp.ai.json",
+  "parent": "compass/src/routes/obp.ai.json",
+  "description": "1 files, 1 subfolders",
+  "files": [
+    {
+      "path": "src/routes/fragments/+page.svelte",
+      "description": "surface, 13,945 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [
+    "src/routes/fragments/studio"
+  ],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 446,
+      "uses_runes": [
+        "$derived",
+        "$state"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.278556 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

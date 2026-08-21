@@ -1,0 +1,85 @@
+{
+  "tier": "object",
+  "object_name": "icons",
+  "object_path": "src-tauri/icons",
+  "self": "compass/src-tauri/icons/obp.ai.json",
+  "parent": "compass/src-tauri/dbp.ai.json",
+  "description": "18 files, 2 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src-tauri/icons/fbp.ai.json",
+      "folder_path": "src-tauri/icons",
+      "description": "18 files, 2 subfolders",
+      "file_count": 18,
+      "subdirectory_count": 2
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android",
+      "description": "0 files, 7 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 7
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-anydpi-v26/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-anydpi-v26",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-hdpi/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-hdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-mdpi/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-mdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-xhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-xhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-xxhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-xxhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/mipmap-xxxhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/mipmap-xxxhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/android/values/fbp.ai.json",
+      "folder_path": "src-tauri/icons/android/values",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/icons/ios/fbp.ai.json",
+      "folder_path": "src-tauri/icons/ios",
+      "description": "18 files, 0 subfolders",
+      "file_count": 18,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 10,
+  "total_files": 53,
+  "integration_timestamp": "2026-08-21T15:19:25.487673 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

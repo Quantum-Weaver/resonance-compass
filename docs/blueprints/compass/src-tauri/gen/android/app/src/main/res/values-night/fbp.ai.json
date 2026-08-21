@@ -1,0 +1,21 @@
+{
+  "tier": "folder",
+  "folder_name": "values-night",
+  "folder_path": "src-tauri/gen/android/app/src/main/res/values-night",
+  "self": "compass/src-tauri/gen/android/app/src/main/res/values-night/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/gen/android/app/src/main/res/values-night/themes.xml",
+      "description": "file, 270 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.398210 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

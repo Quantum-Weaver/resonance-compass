@@ -1,0 +1,36 @@
+{
+  "tier": "folder",
+  "folder_name": "capabilities",
+  "folder_path": "src-tauri/capabilities",
+  "self": "compass/src-tauri/capabilities/fbp.ai.json",
+  "parent": "compass/src-tauri/capabilities/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/capabilities/default.json",
+      "description": "data, 533 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "default.json": {
+      "language": "json",
+      "lines": 20,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "$schema",
+        "description",
+        "identifier",
+        "permissions",
+        "windows"
+      ],
+      "key_count": 5
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.331799 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

@@ -1,0 +1,39 @@
+{
+  "tier": "folder",
+  "folder_name": "buildSrc",
+  "folder_path": "src-tauri/gen/android/buildSrc",
+  "self": "compass/src-tauri/gen/android/buildSrc/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "1 files, 2 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/gen/android/buildSrc/build.gradle.kts",
+      "description": "file, 368 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [
+    "src-tauri/gen/android/buildSrc/.kotlin",
+    "src-tauri/gen/android/buildSrc/src"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [
+    {
+      "name": ".gradle",
+      "address": "src-tauri/gen/android/buildSrc/.gradle",
+      "files_on_disk": 6,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    },
+    {
+      "name": "build",
+      "address": "src-tauri/gen/android/buildSrc/build",
+      "files_on_disk": 114,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    }
+  ],
+  "scan_timestamp": "2026-08-21T15:19:25.402362 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

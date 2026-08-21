@@ -1,0 +1,82 @@
+{
+  "tier": "folder",
+  "folder_name": "epagoge",
+  "folder_path": "src/lib/epagoge",
+  "self": "compass/src/lib/epagoge/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "2 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/lib/epagoge/index.ts",
+      "description": "the-epagoge"
+    },
+    {
+      "path": "src/lib/epagoge/MIRROR.md",
+      "description": "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [],
+  "code_analysis": {
+    "index.ts": {
+      "language": "typescript",
+      "lines": 193,
+      "exported_functions": [
+        "beginWalk",
+        "isDone",
+        "current",
+        "advance",
+        "retreat",
+        "skip",
+        "enter",
+        "toggleChoice",
+        "taskBegun",
+        "taskDone",
+        "taskTrouble",
+        "dots",
+        "completion"
+      ],
+      "exported_consts": [],
+      "interfaces": [
+        "Offer",
+        "StepDef",
+        "TaskState",
+        "Walk",
+        "BegunWalk",
+        "Dots",
+        "Completion"
+      ],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
+    "MIRROR.md": {
+      "language": "markdown",
+      "lines": 17,
+      "words": 115,
+      "heading_count": 1,
+      "headings": [
+        "DISTRIBUTED MIRROR - the source of truth lives in resonance-awen"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.235061 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

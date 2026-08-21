@@ -1,0 +1,44 @@
+{
+  "tier": "folder",
+  "folder_name": "types",
+  "folder_path": "src/lib/types",
+  "self": "compass/src/lib/types/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/lib/types/types.ts",
+      "description": "Theme customization"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "types.ts": {
+      "language": "typescript",
+      "lines": 94,
+      "exported_functions": [],
+      "exported_consts": [],
+      "interfaces": [
+        "ThemeConfig",
+        "Track",
+        "MoodEvent",
+        "Album",
+        "Artist",
+        "Playlist",
+        "PlayerState",
+        "Sense",
+        "Subcategory"
+      ],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.266568 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

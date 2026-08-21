@@ -1,0 +1,81 @@
+{
+  "tier": "folder",
+  "folder_name": "src-tauri",
+  "folder_path": "src-tauri",
+  "self": "compass/src-tauri/fbp.ai.json",
+  "parent": "compass/src-tauri/dbp.ai.json",
+  "description": "5 files, 6 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/.gitignore",
+      "description": "ignore rules, 173 bytes"
+    },
+    {
+      "path": "src-tauri/build.rs",
+      "description": "rust, 2,395 bytes"
+    },
+    {
+      "path": "src-tauri/Cargo.lock",
+      "description": "file, 167,148 bytes"
+    },
+    {
+      "path": "src-tauri/Cargo.toml",
+      "description": "config, 1,492 bytes"
+    },
+    {
+      "path": "src-tauri/tauri.conf.json",
+      "description": "data, 1,265 bytes"
+    }
+  ],
+  "file_count": 5,
+  "subdirectories": [
+    "src-tauri/.cargo",
+    "src-tauri/android-extras",
+    "src-tauri/capabilities",
+    "src-tauri/gen",
+    "src-tauri/icons",
+    "src-tauri/src"
+  ],
+  "code_analysis": {
+    "build.rs": {
+      "language": "rust",
+      "lines": 48,
+      "pub_fns": [],
+      "structs": [],
+      "tauri_commands": 0,
+      "uses_unsafe": false
+    },
+    "Cargo.toml": {
+      "language": "toml",
+      "lines": 47,
+      "sections": [
+        "package",
+        "lib",
+        "build-dependencies",
+        "dependencies",
+        "target.'cfg(target_os = \"android\")'.dependencies",
+        "profile.release"
+      ]
+    },
+    "tauri.conf.json": {
+      "language": "json",
+      "lines": 38,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "$schema",
+        "app",
+        "build",
+        "bundle",
+        "identifier",
+        "productName",
+        "version"
+      ],
+      "key_count": 7
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.326698 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

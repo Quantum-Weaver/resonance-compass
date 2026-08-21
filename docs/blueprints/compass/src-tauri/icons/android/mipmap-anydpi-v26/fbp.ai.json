@@ -1,0 +1,21 @@
+{
+  "tier": "folder",
+  "folder_name": "mipmap-anydpi-v26",
+  "folder_path": "src-tauri/icons/android/mipmap-anydpi-v26",
+  "self": "compass/src-tauri/icons/android/mipmap-anydpi-v26/fbp.ai.json",
+  "parent": "compass/src-tauri/icons/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/icons/android/mipmap-anydpi-v26/ic_launcher.xml",
+      "description": "file, 265 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.431136 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

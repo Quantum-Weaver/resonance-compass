@@ -1,0 +1,24 @@
+{
+  "tier": "folder",
+  "folder_name": "android",
+  "folder_path": "src-tauri/icons/android",
+  "self": "compass/src-tauri/icons/android/fbp.ai.json",
+  "parent": "compass/src-tauri/icons/obp.ai.json",
+  "description": "0 files, 7 subfolders",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src-tauri/icons/android/mipmap-anydpi-v26",
+    "src-tauri/icons/android/mipmap-hdpi",
+    "src-tauri/icons/android/mipmap-mdpi",
+    "src-tauri/icons/android/mipmap-xhdpi",
+    "src-tauri/icons/android/mipmap-xxhdpi",
+    "src-tauri/icons/android/mipmap-xxxhdpi",
+    "src-tauri/icons/android/values"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.429756 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

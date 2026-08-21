@@ -1,0 +1,22 @@
+{
+  "tier": "analysis",
+  "analysis": "sovereignty",
+  "self": "compass/analysis_sovereignty.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "law": "Trees this repo's .gitignore declares uncommittable must not be tracked.",
+  "git_available": true,
+  "ignored_trees": {
+    "release": {
+      "address": "release",
+      "files_on_disk": 38,
+      "walked": false,
+      "reason": "gitignored by this repo's own .gitignore \u2014 named and counted, never described, never opened",
+      "tracked_files_LEAKED": []
+    }
+  },
+  "secret_files": [],
+  "secret_files_found": 0,
+  "note": "Existence reported, contents never read. NEVER A VALUE.",
+  "verdict": "HELD",
+  "scan_timestamp": "2026-08-21T15:19:25.526303 | in sovereign time"
+}

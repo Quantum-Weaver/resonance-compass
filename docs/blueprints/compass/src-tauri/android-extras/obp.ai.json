@@ -1,0 +1,22 @@
+{
+  "tier": "object",
+  "object_name": "android-extras",
+  "object_path": "src-tauri/android-extras",
+  "self": "compass/src-tauri/android-extras/obp.ai.json",
+  "parent": "compass/src-tauri/dbp.ai.json",
+  "description": "2 files, 0 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src-tauri/android-extras/fbp.ai.json",
+      "folder_path": "src-tauri/android-extras",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 1,
+  "total_files": 2,
+  "integration_timestamp": "2026-08-21T15:19:25.477429 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

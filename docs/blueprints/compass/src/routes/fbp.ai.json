@@ -1,0 +1,79 @@
+{
+  "tier": "folder",
+  "folder_name": "routes",
+  "folder_path": "src/routes",
+  "self": "compass/src/routes/fbp.ai.json",
+  "parent": "compass/src/routes/obp.ai.json",
+  "description": "3 files, 16 subfolders",
+  "files": [
+    {
+      "path": "src/routes/+layout.svelte",
+      "description": "surface, 3,691 bytes"
+    },
+    {
+      "path": "src/routes/+layout.ts",
+      "description": "Tauri doesn't have a Node.js server to do proper SSR"
+    },
+    {
+      "path": "src/routes/+page.svelte",
+      "description": "surface, 398 bytes"
+    }
+  ],
+  "file_count": 3,
+  "subdirectories": [
+    "src/routes/focus",
+    "src/routes/fragments",
+    "src/routes/history",
+    "src/routes/library",
+    "src/routes/liked",
+    "src/routes/lyrics",
+    "src/routes/nowplaying",
+    "src/routes/onboarding",
+    "src/routes/playlists",
+    "src/routes/profiles",
+    "src/routes/queue",
+    "src/routes/resonance",
+    "src/routes/sattva",
+    "src/routes/settings",
+    "src/routes/timer",
+    "src/routes/visualizer"
+  ],
+  "code_analysis": {
+    "+layout.svelte": {
+      "language": "svelte",
+      "lines": 118,
+      "uses_runes": [
+        "$derived",
+        "$effect",
+        "$props"
+      ],
+      "fetch_calls": [],
+      "has_style_block": true
+    },
+    "+layout.ts": {
+      "language": "typescript",
+      "lines": 6,
+      "exported_functions": [],
+      "exported_consts": [
+        "ssr"
+      ],
+      "interfaces": [],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 12,
+      "uses_runes": [],
+      "fetch_calls": [],
+      "has_style_block": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.274760 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

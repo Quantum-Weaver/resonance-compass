@@ -1,0 +1,32 @@
+{
+  "tier": "folder",
+  "folder_name": "styles",
+  "folder_path": "src/lib/styles",
+  "self": "compass/src/lib/styles/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "1 files, 1 subfolders",
+  "files": [
+    {
+      "path": "src/lib/styles/custom_overrides.css",
+      "description": "styles/custom-overrides.css"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [
+    "src/lib/styles/generated"
+  ],
+  "code_analysis": {
+    "custom_overrides.css": {
+      "language": "css",
+      "lines": 52,
+      "classes_defined": 4,
+      "animations": [],
+      "custom_properties": 1,
+      "imports": []
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.246599 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

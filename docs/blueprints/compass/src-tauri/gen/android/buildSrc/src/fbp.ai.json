@@ -1,0 +1,18 @@
+{
+  "tier": "folder",
+  "folder_name": "src",
+  "folder_path": "src-tauri/gen/android/buildSrc/src",
+  "self": "compass/src-tauri/gen/android/buildSrc/src/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "0 files, 1 subfolders",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src-tauri/gen/android/buildSrc/src/main"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.407293 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

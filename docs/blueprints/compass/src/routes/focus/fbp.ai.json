@@ -1,0 +1,29 @@
+{
+  "tier": "folder",
+  "folder_name": "focus",
+  "folder_path": "src/routes/focus",
+  "self": "compass/src/routes/focus/fbp.ai.json",
+  "parent": "compass/src/routes/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/routes/focus/+page.svelte",
+      "description": "surface, 364 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "+page.svelte": {
+      "language": "svelte",
+      "lines": 12,
+      "uses_runes": [],
+      "fetch_calls": [],
+      "has_style_block": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.276281 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

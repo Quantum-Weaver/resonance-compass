@@ -1,0 +1,30 @@
+{
+  "tier": "folder",
+  "folder_name": ".cargo",
+  "folder_path": ".cargo",
+  "self": "compass/.cargo/fbp.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": ".cargo/config.toml",
+      "description": "Android 16 KB memory-page-size support (Play requirement for Android 15+"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "config.toml": {
+      "language": "toml",
+      "lines": 12,
+      "sections": [
+        "target.aarch64-linux-android",
+        "target.x86_64-linux-android"
+      ]
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.122559 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

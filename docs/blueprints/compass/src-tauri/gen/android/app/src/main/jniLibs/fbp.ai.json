@@ -1,0 +1,21 @@
+{
+  "tier": "folder",
+  "folder_name": "jniLibs",
+  "folder_path": "src-tauri/gen/android/app/src/main/jniLibs",
+  "self": "compass/src-tauri/gen/android/app/src/main/jniLibs/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "0 files, 4 subfolders",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a",
+    "src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a",
+    "src-tauri/gen/android/app/src/main/jniLibs/x86",
+    "src-tauri/gen/android/app/src/main/jniLibs/x86_64"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.360916 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

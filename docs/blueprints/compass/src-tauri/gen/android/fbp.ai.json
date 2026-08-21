@@ -1,0 +1,68 @@
+{
+  "tier": "folder",
+  "folder_name": "android",
+  "folder_path": "src-tauri/gen/android",
+  "self": "compass/src-tauri/gen/android/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "8 files, 3 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/gen/android/.editorconfig",
+      "description": "file, 241 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/.gitignore",
+      "description": "ignore rules, 309 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/build.gradle.kts",
+      "description": "file, 399 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/gradle.properties",
+      "description": "file, 1,410 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/gradlew",
+      "description": "file, 5,951 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/gradlew.bat",
+      "description": "file, 2,763 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/settings.gradle",
+      "description": "file, 55 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/tauri.settings.gradle",
+      "description": "file, 829 bytes"
+    }
+  ],
+  "file_count": 8,
+  "subdirectories": [
+    "src-tauri/gen/android/app",
+    "src-tauri/gen/android/buildSrc",
+    "src-tauri/gen/android/gradle"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [
+    {
+      "name": ".gradle",
+      "address": "src-tauri/gen/android/.gradle",
+      "files_on_disk": 14,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    },
+    {
+      "name": "build",
+      "address": "src-tauri/gen/android/build",
+      "files_on_disk": 1,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    }
+  ],
+  "scan_timestamp": "2026-08-21T15:19:25.338236 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

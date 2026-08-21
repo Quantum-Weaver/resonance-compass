@@ -1,0 +1,28 @@
+{
+  "tier": "folder",
+  "folder_name": "scripts",
+  "folder_path": "scripts",
+  "self": "compass/scripts/fbp.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "scripts/sync-android-extras.mjs",
+      "description": "Syncs committed Android customizations into the gitignored, regenerable"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "sync-android-extras.mjs": {
+      "language": "node",
+      "lines": 91,
+      "functions": [],
+      "commands": []
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.174448 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

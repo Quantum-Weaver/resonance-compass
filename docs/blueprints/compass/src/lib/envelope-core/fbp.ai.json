@@ -1,0 +1,73 @@
+{
+  "tier": "folder",
+  "folder_name": "envelope-core",
+  "folder_path": "src/lib/envelope-core",
+  "self": "compass/src/lib/envelope-core/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "2 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/lib/envelope-core/index.ts",
+      "description": "the-envelope"
+    },
+    {
+      "path": "src/lib/envelope-core/MIRROR.md",
+      "description": "DISTRIBUTED MIRROR"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [],
+  "code_analysis": {
+    "index.ts": {
+      "language": "typescript",
+      "lines": 134,
+      "exported_functions": [
+        "seal",
+        "filename",
+        "open",
+        "mergeNonDestructive",
+        "purgeAfter"
+      ],
+      "exported_consts": [
+        "ENVELOPE",
+        "ENVELOPE_VERSION"
+      ],
+      "interfaces": [
+        "Envelope"
+      ],
+      "types": [
+        "Reading"
+      ],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    },
+    "MIRROR.md": {
+      "language": "markdown",
+      "lines": 24,
+      "words": 167,
+      "heading_count": 1,
+      "headings": [
+        "DISTRIBUTED MIRROR \u2014 the source of truth lives in resonance-awen"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.232648 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

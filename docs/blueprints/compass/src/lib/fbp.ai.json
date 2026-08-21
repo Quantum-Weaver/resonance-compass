@@ -1,0 +1,29 @@
+{
+  "tier": "folder",
+  "folder_name": "lib",
+  "folder_path": "src/lib",
+  "self": "compass/src/lib/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "0 files, 12 subfolders",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    "src/lib/breath-core",
+    "src/lib/components",
+    "src/lib/cosmic",
+    "src/lib/cumdach",
+    "src/lib/data",
+    "src/lib/envelope-core",
+    "src/lib/epagoge",
+    "src/lib/stores",
+    "src/lib/styles",
+    "src/lib/theme",
+    "src/lib/timer-core",
+    "src/lib/types"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.183433 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

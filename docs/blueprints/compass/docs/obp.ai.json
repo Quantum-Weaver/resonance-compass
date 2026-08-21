@@ -1,0 +1,29 @@
+{
+  "tier": "object",
+  "object_name": "docs",
+  "object_path": "docs",
+  "self": "compass/docs/obp.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "description": "20 files, 1 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/docs/fbp.ai.json",
+      "folder_path": "docs",
+      "description": "20 files, 1 subfolders",
+      "file_count": 20,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/docs/session-reports/fbp.ai.json",
+      "folder_path": "docs/session-reports",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 2,
+  "total_files": 21,
+  "integration_timestamp": "2026-08-21T15:19:25.494853 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

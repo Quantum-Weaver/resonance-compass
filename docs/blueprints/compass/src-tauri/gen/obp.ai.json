@@ -1,0 +1,302 @@
+{
+  "tier": "object",
+  "object_name": "gen",
+  "object_path": "src-tauri/gen",
+  "self": "compass/src-tauri/gen/obp.ai.json",
+  "parent": "compass/src-tauri/dbp.ai.json",
+  "description": "0 files, 1 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src-tauri/gen/fbp.ai.json",
+      "folder_path": "src-tauri/gen",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android",
+      "description": "8 files, 3 subfolders",
+      "file_count": 8,
+      "subdirectory_count": 3
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app",
+      "description": "6 files, 1 subfolders",
+      "file_count": 6,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main",
+      "description": "1 files, 4 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 4
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/assets/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/assets",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/java/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/java",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/java/com/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/java/com",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/java/com/audhd/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/java/com/audhd",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass",
+      "description": "1 files, 1 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/plugin/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/plugin",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/jniLibs",
+      "description": "0 files, 4 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 4
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/x86/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/x86",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/x86_64/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/x86_64",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res",
+      "description": "0 files, 12 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 12
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/drawable/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/drawable",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/drawable-v24/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/drawable-v24",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/layout/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/layout",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-anydpi-v26/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-anydpi-v26",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-hdpi/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-hdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-mdpi/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-mdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-xhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-xhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-xxhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-xxhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/mipmap-xxxhdpi/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/mipmap-xxxhdpi",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/values/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/values",
+      "description": "4 files, 0 subfolders",
+      "file_count": 4,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/values-night/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/values-night",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/app/src/main/res/xml/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/app/src/main/res/xml",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc",
+      "description": "1 files, 2 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 2
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/.kotlin/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/.kotlin",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/.kotlin/sessions/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/.kotlin/sessions",
+      "description": "0 files, 0 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/java/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main/java",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/java/com/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main/java/com",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/java/com/audhd/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main/java/com/audhd",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass/kotlin/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/buildSrc/src/main/java/com/audhd/resonance_compass/kotlin",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/gradle/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/gradle",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src-tauri/gen/android/gradle/wrapper/fbp.ai.json",
+      "folder_path": "src-tauri/gen/android/gradle/wrapper",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 41,
+  "total_files": 53,
+  "integration_timestamp": "2026-08-21T15:19:25.484015 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

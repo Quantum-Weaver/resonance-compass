@@ -1,0 +1,51 @@
+{
+  "tier": "folder",
+  "folder_name": "app",
+  "folder_path": "src-tauri/gen/android/app",
+  "self": "compass/src-tauri/gen/android/app/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "6 files, 1 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/gen/android/app/.gitignore",
+      "description": "ignore rules, 148 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/build.gradle.kts",
+      "description": "file, 2,322 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/proguard-rules.pro",
+      "description": "file, 770 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/proguard-tauri.pro",
+      "description": "file, 184 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/tauri.build.gradle.kts",
+      "description": "file, 373 bytes"
+    },
+    {
+      "path": "src-tauri/gen/android/app/tauri.properties",
+      "description": "file, 131 bytes"
+    }
+  ],
+  "file_count": 6,
+  "subdirectories": [
+    "src-tauri/gen/android/app/src"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [
+    {
+      "name": "build",
+      "address": "src-tauri/gen/android/app/build",
+      "files_on_disk": 2234,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    }
+  ],
+  "scan_timestamp": "2026-08-21T15:19:25.340997 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

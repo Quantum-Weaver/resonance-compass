@@ -1,0 +1,37 @@
+{
+  "tier": "folder",
+  "folder_name": "theme",
+  "folder_path": "src/lib/theme",
+  "self": "compass/src/lib/theme/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/lib/theme/theme.ts",
+      "description": "typescript, 1,894 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [],
+  "code_analysis": {
+    "theme.ts": {
+      "language": "typescript",
+      "lines": 61,
+      "exported_functions": [],
+      "exported_consts": [
+        "PRESET_THEMES",
+        "getThemeColors"
+      ],
+      "interfaces": [],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.262214 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

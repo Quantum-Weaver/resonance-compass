@@ -1,0 +1,22 @@
+{
+  "tier": "object",
+  "object_name": "capabilities",
+  "object_path": "src-tauri/capabilities",
+  "self": "compass/src-tauri/capabilities/obp.ai.json",
+  "parent": "compass/src-tauri/dbp.ai.json",
+  "description": "1 files, 0 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src-tauri/capabilities/fbp.ai.json",
+      "folder_path": "src-tauri/capabilities",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 1,
+  "total_files": 1,
+  "integration_timestamp": "2026-08-21T15:19:25.480685 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

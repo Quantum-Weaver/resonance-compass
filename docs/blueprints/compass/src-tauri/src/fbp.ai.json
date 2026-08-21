@@ -1,0 +1,179 @@
+{
+  "tier": "folder",
+  "folder_name": "src",
+  "folder_path": "src-tauri/src",
+  "self": "compass/src-tauri/src/fbp.ai.json",
+  "parent": "compass/src-tauri/src/obp.ai.json",
+  "description": "8 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/src/audio.rs",
+      "description": "audio.rs"
+    },
+    {
+      "path": "src-tauri/src/equalizer.rs",
+      "description": "equalizer.rs"
+    },
+    {
+      "path": "src-tauri/src/fragment_engine.rs",
+      "description": "\u2500\u2500 THE NATIVE AUDIO ENGINE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "src-tauri/src/lib.rs",
+      "description": "rust, 23,914 bytes"
+    },
+    {
+      "path": "src-tauri/src/main.rs",
+      "description": "Prevents additional console window on Windows in release, DO NOT REMOVE!!"
+    },
+    {
+      "path": "src-tauri/src/media_permission.rs",
+      "description": "media_permission.rs"
+    },
+    {
+      "path": "src-tauri/src/media_session.rs",
+      "description": "media_session.rs"
+    },
+    {
+      "path": "src-tauri/src/visualizer.rs",
+      "description": "visualizer.rs"
+    }
+  ],
+  "file_count": 8,
+  "subdirectories": [],
+  "code_analysis": {
+    "audio.rs": {
+      "language": "rust",
+      "lines": 273,
+      "pub_fns": [
+        "init",
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop",
+        "play_track",
+        "pause",
+        "resume",
+        "seek",
+        "set_volume",
+        "stop"
+      ],
+      "structs": [
+        "CurrentPlayback",
+        "AudioState"
+      ],
+      "tauri_commands": 6,
+      "uses_unsafe": false
+    },
+    "equalizer.rs": {
+      "language": "rust",
+      "lines": 51,
+      "pub_fns": [
+        "get_eq_state",
+        "set_eq_band",
+        "set_eq_preamp",
+        "toggle_eq",
+        "set_eq_preset"
+      ],
+      "structs": [],
+      "tauri_commands": 5,
+      "uses_unsafe": false
+    },
+    "fragment_engine.rs": {
+      "language": "rust",
+      "lines": 253,
+      "pub_fns": [
+        "decode_window",
+        "write_wav",
+        "mix_layers"
+      ],
+      "structs": [
+        "LayerSpec"
+      ],
+      "tauri_commands": 0,
+      "uses_unsafe": false
+    },
+    "lib.rs": {
+      "language": "rust",
+      "lines": 642,
+      "pub_fns": [
+        "run"
+      ],
+      "structs": [
+        "TrackInfo",
+        "ScanProgress",
+        "MixLayer"
+      ],
+      "tauri_commands": 11,
+      "uses_unsafe": false
+    },
+    "main.rs": {
+      "language": "rust",
+      "lines": 7,
+      "pub_fns": [],
+      "structs": [],
+      "tauri_commands": 0,
+      "uses_unsafe": false
+    },
+    "media_permission.rs": {
+      "language": "rust",
+      "lines": 94,
+      "pub_fns": [
+        "init",
+        "check",
+        "request",
+        "mic_request"
+      ],
+      "structs": [
+        "MediaPermission",
+        "PermissionResponse"
+      ],
+      "tauri_commands": 0,
+      "uses_unsafe": true
+    },
+    "media_session.rs": {
+      "language": "rust",
+      "lines": 182,
+      "pub_fns": [
+        "media_update_metadata",
+        "media_update_playback",
+        "media_release",
+        "request_notification_permission",
+        "init",
+        "update_metadata",
+        "update_playback",
+        "release",
+        "request_notifications"
+      ],
+      "structs": [
+        "MetadataPayload",
+        "PlaybackPayload",
+        "MediaSessionHandle",
+        "PermissionResponse",
+        "Empty"
+      ],
+      "tauri_commands": 4,
+      "uses_unsafe": false
+    },
+    "visualizer.rs": {
+      "language": "rust",
+      "lines": 221,
+      "pub_fns": [
+        "make_channel",
+        "new",
+        "start"
+      ],
+      "structs": [
+        "SampleTap"
+      ],
+      "tauri_commands": 0,
+      "uses_unsafe": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.456297 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

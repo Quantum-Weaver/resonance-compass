@@ -1,0 +1,176 @@
+{
+  "tier": "object",
+  "object_name": "routes",
+  "object_path": "src/routes",
+  "self": "compass/src/routes/obp.ai.json",
+  "parent": "compass/src/dbp.ai.json",
+  "description": "3 files, 16 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/src/routes/fbp.ai.json",
+      "folder_path": "src/routes",
+      "description": "3 files, 16 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 16
+    },
+    {
+      "blueprint": "compass/src/routes/focus/fbp.ai.json",
+      "folder_path": "src/routes/focus",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/fragments/fbp.ai.json",
+      "folder_path": "src/routes/fragments",
+      "description": "1 files, 1 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/routes/fragments/studio/fbp.ai.json",
+      "folder_path": "src/routes/fragments/studio",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/history/fbp.ai.json",
+      "folder_path": "src/routes/history",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/library/fbp.ai.json",
+      "folder_path": "src/routes/library",
+      "description": "1 files, 2 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 2
+    },
+    {
+      "blueprint": "compass/src/routes/library/album/fbp.ai.json",
+      "folder_path": "src/routes/library/album",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/routes/library/album/[id]/fbp.ai.json",
+      "folder_path": "src/routes/library/album/[id]",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/library/artist/fbp.ai.json",
+      "folder_path": "src/routes/library/artist",
+      "description": "0 files, 1 subfolders",
+      "file_count": 0,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/routes/library/artist/[id]/fbp.ai.json",
+      "folder_path": "src/routes/library/artist/[id]",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/liked/fbp.ai.json",
+      "folder_path": "src/routes/liked",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/lyrics/fbp.ai.json",
+      "folder_path": "src/routes/lyrics",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/nowplaying/fbp.ai.json",
+      "folder_path": "src/routes/nowplaying",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/onboarding/fbp.ai.json",
+      "folder_path": "src/routes/onboarding",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/playlists/fbp.ai.json",
+      "folder_path": "src/routes/playlists",
+      "description": "1 files, 1 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/src/routes/playlists/[id]/fbp.ai.json",
+      "folder_path": "src/routes/playlists/[id]",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/profiles/fbp.ai.json",
+      "folder_path": "src/routes/profiles",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/queue/fbp.ai.json",
+      "folder_path": "src/routes/queue",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/resonance/fbp.ai.json",
+      "folder_path": "src/routes/resonance",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/sattva/fbp.ai.json",
+      "folder_path": "src/routes/sattva",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/settings/fbp.ai.json",
+      "folder_path": "src/routes/settings",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/timer/fbp.ai.json",
+      "folder_path": "src/routes/timer",
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
+      "subdirectory_count": 0
+    },
+    {
+      "blueprint": "compass/src/routes/visualizer/fbp.ai.json",
+      "folder_path": "src/routes/visualizer",
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 23,
+  "total_files": 25,
+  "integration_timestamp": "2026-08-21T15:19:25.469365 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

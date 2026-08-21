@@ -1,0 +1,29 @@
+{
+  "tier": "object",
+  "object_name": "static",
+  "object_path": "static",
+  "self": "compass/static/obp.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "description": "16 files, 1 subfolders",
+  "folders": [
+    {
+      "blueprint": "compass/static/fbp.ai.json",
+      "folder_path": "static",
+      "description": "16 files, 1 subfolders",
+      "file_count": 16,
+      "subdirectory_count": 1
+    },
+    {
+      "blueprint": "compass/static/chimes/fbp.ai.json",
+      "folder_path": "static/chimes",
+      "description": "2 files, 0 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 0
+    }
+  ],
+  "folder_count": 2,
+  "total_files": 18,
+  "integration_timestamp": "2026-08-21T15:19:25.498749 | in sovereign time",
+  "maintaining_agent": "ObjectAgent",
+  "note": "Links only. Every folder's details live at its own address."
+}

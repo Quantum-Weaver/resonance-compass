@@ -1,0 +1,237 @@
+{
+  "tier": "folder",
+  "folder_name": "icons",
+  "folder_path": "src-tauri/icons",
+  "self": "compass/src-tauri/icons/fbp.ai.json",
+  "parent": "compass/src-tauri/icons/obp.ai.json",
+  "description": "18 files, 2 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/icons/128x128.png",
+      "description": "image, 31,958 bytes"
+    },
+    {
+      "path": "src-tauri/icons/128x128@2x.png",
+      "description": "image, 102,856 bytes"
+    },
+    {
+      "path": "src-tauri/icons/32x32.png",
+      "description": "image, 2,851 bytes"
+    },
+    {
+      "path": "src-tauri/icons/64x64.png",
+      "description": "image, 9,736 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.icns",
+      "description": "file, 1,788,896 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.ico",
+      "description": "file, 124,033 bytes"
+    },
+    {
+      "path": "src-tauri/icons/icon.png",
+      "description": "image, 317,164 bytes"
+    },
+    {
+      "path": "src-tauri/icons/source.png",
+      "description": "image, 317,164 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square107x107Logo.png",
+      "description": "image, 23,463 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square142x142Logo.png",
+      "description": "image, 38,215 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square150x150Logo.png",
+      "description": "image, 41,729 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square284x284Logo.png",
+      "description": "image, 122,550 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square30x30Logo.png",
+      "description": "image, 2,547 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square310x310Logo.png",
+      "description": "image, 141,963 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square44x44Logo.png",
+      "description": "image, 4,988 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square71x71Logo.png",
+      "description": "image, 11,643 bytes"
+    },
+    {
+      "path": "src-tauri/icons/Square89x89Logo.png",
+      "description": "image, 17,226 bytes"
+    },
+    {
+      "path": "src-tauri/icons/StoreLogo.png",
+      "description": "image, 6,304 bytes"
+    }
+  ],
+  "file_count": 18,
+  "subdirectories": [
+    "src-tauri/icons/android",
+    "src-tauri/icons/ios"
+  ],
+  "code_analysis": {
+    "128x128.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "128x128.png",
+      "location": "src-tauri/icons",
+      "bytes": 31958,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "128x128@2x.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "128x128@2x.png",
+      "location": "src-tauri/icons",
+      "bytes": 102856,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "32x32.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "32x32.png",
+      "location": "src-tauri/icons",
+      "bytes": 2851,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "64x64.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "64x64.png",
+      "location": "src-tauri/icons",
+      "bytes": 9736,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "icon.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "icon.png",
+      "location": "src-tauri/icons",
+      "bytes": 317164,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "source.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "source.png",
+      "location": "src-tauri/icons",
+      "bytes": 317164,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square107x107Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square107x107Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 23463,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square142x142Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square142x142Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 38215,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square150x150Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square150x150Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 41729,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square284x284Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square284x284Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 122550,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square30x30Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square30x30Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 2547,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square310x310Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square310x310Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 141963,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square44x44Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square44x44Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 4988,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square71x71Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square71x71Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 11643,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "Square89x89Logo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "Square89x89Logo.png",
+      "location": "src-tauri/icons",
+      "bytes": 17226,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    },
+    "StoreLogo.png": {
+      "language": "content-file",
+      "format": "png",
+      "name": "StoreLogo.png",
+      "location": "src-tauri/icons",
+      "bytes": 6304,
+      "opened": false,
+      "law": "Name and location only. The file is never opened."
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.425962 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

@@ -1,0 +1,26 @@
+{
+  "tier": "folder",
+  "folder_name": "main",
+  "folder_path": "src-tauri/gen/android/app/src/main",
+  "self": "compass/src-tauri/gen/android/app/src/main/fbp.ai.json",
+  "parent": "compass/src-tauri/gen/obp.ai.json",
+  "description": "1 files, 4 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/gen/android/app/src/main/AndroidManifest.xml",
+      "description": "file, 2,206 bytes"
+    }
+  ],
+  "file_count": 1,
+  "subdirectories": [
+    "src-tauri/gen/android/app/src/main/assets",
+    "src-tauri/gen/android/app/src/main/java",
+    "src-tauri/gen/android/app/src/main/jniLibs",
+    "src-tauri/gen/android/app/src/main/res"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.345895 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

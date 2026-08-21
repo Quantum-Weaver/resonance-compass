@@ -1,0 +1,310 @@
+{
+  "tier": "folder",
+  "folder_name": "generated",
+  "folder_path": "src/lib/styles/generated",
+  "self": "compass/src/lib/styles/generated/fbp.ai.json",
+  "parent": "compass/src/lib/obp.ai.json",
+  "description": "21 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src/lib/styles/generated/animations.css",
+      "description": "ANIMATION VARIANTS - Generated from consciousness.ts and motion.ts"
+    },
+    {
+      "path": "src/lib/styles/generated/attention-modes.css",
+      "description": "ATTENTION MODES - Generated from attention.ts (ATTENTION_MODES)"
+    },
+    {
+      "path": "src/lib/styles/generated/attention-selector.css",
+      "description": "ATTENTION SELECTOR - Generated from attention.ts (ATTENTION_MODE_SELECTOR, ATTENTION_MODES)"
+    },
+    {
+      "path": "src/lib/styles/generated/ceremonies-refuge.css",
+      "description": "CEREMONIES & REFUGE CHOREOGRAPHY"
+    },
+    {
+      "path": "src/lib/styles/generated/ceremonies.css",
+      "description": "CEREMONIES - Generated from motion.ts (CEREMONIES)"
+    },
+    {
+      "path": "src/lib/styles/generated/consciousness-depth.css",
+      "description": "CONSCIOUSNESS DEPTH FRAMEWORK"
+    },
+    {
+      "path": "src/lib/styles/generated/deity-voices.css",
+      "description": "PER-DEITY VOICE BUNDLES"
+    },
+    {
+      "path": "src/lib/styles/generated/domains.css",
+      "description": "DOMAIN STYLES - Generated from DOMAIN_COLORS"
+    },
+    {
+      "path": "src/lib/styles/generated/ensemble.css",
+      "description": "ENSEMBLE - Generated from motion.ts (SUPPORTIVE_CONVERGENCE, ENSEMBLE_MOTION)"
+    },
+    {
+      "path": "src/lib/styles/generated/eternal-witness.css",
+      "description": "ETERNAL WITNESS STATE"
+    },
+    {
+      "path": "src/lib/styles/generated/gates.css",
+      "description": "GATES - Generated from constants/interactivity.ts (SELF_PAUSE_TRIGGER, INVITATION_GATE)"
+    },
+    {
+      "path": "src/lib/styles/generated/glow-field.css",
+      "description": "GLOW FIELD - Generated from effects.ts (PRESENCE_FIELD, DOMAIN_GLOW_MODULATION)"
+    },
+    {
+      "path": "src/lib/styles/generated/parallax.css",
+      "description": "PARALLAX CLASSES - Generated from positioning.ts"
+    },
+    {
+      "path": "src/lib/styles/generated/pause-state.css",
+      "description": "PAUSE STATE - Generated from consciousness.ts (GLOBAL_PAUSE)"
+    },
+    {
+      "path": "src/lib/styles/generated/scene.css",
+      "description": "SCENE - Generated from positioning.ts (CAMERA_MOVES, SCENE_SEQUENCES)"
+    },
+    {
+      "path": "src/lib/styles/generated/supportive-affordances.css",
+      "description": "SUPPORTIVE AFFORDANCES - Generated from constants/interactivity.ts (SUPPORTIVE_ROLE_AFFORDANCES)"
+    },
+    {
+      "path": "src/lib/styles/generated/text-effects.css",
+      "description": "TEXT EFFECTS - Generated from motion.ts and colors.ts"
+    },
+    {
+      "path": "src/lib/styles/generated/transcendence.css",
+      "description": "TRANSCENDENCE STATE SEQUENCE"
+    },
+    {
+      "path": "src/lib/styles/generated/typography.css",
+      "description": "TYPOGRAPHY CLASSES - Generated from typography.ts and dimensions.ts"
+    },
+    {
+      "path": "src/lib/styles/generated/variables.css",
+      "description": "stylesheet, 22,689 bytes"
+    },
+    {
+      "path": "src/lib/styles/generated/zoom.css",
+      "description": "ZOOM TARGETS - Generated from positioning.ts"
+    }
+  ],
+  "file_count": 21,
+  "subdirectories": [],
+  "code_analysis": {
+    "animations.css": {
+      "language": "css",
+      "lines": 472,
+      "classes_defined": 30,
+      "animations": [
+        "beamTravel",
+        "beamTravelReverse",
+        "float",
+        "pulse",
+        "consciousnessBreath",
+        "superpositionShift",
+        "entanglementPulse",
+        "entanglementOrbit",
+        "collapseTransition",
+        "fadeInUp",
+        "stickyGlow"
+      ],
+      "custom_properties": 0,
+      "imports": []
+    },
+    "attention-modes.css": {
+      "language": "css",
+      "lines": 119,
+      "classes_defined": 5,
+      "animations": [],
+      "custom_properties": 4,
+      "imports": []
+    },
+    "attention-selector.css": {
+      "language": "css",
+      "lines": 146,
+      "classes_defined": 6,
+      "animations": [],
+      "custom_properties": 0,
+      "imports": []
+    },
+    "ceremonies-refuge.css": {
+      "language": "css",
+      "lines": 186,
+      "classes_defined": 15,
+      "animations": [
+        "refuge-entry-welcome",
+        "refuge-hold-breathe",
+        "refuge-return-reorient",
+        "ceremony-pause-breathe"
+      ],
+      "custom_properties": 28,
+      "imports": []
+    },
+    "ceremonies.css": {
+      "language": "css",
+      "lines": 259,
+      "classes_defined": 25,
+      "animations": [],
+      "custom_properties": 51,
+      "imports": []
+    },
+    "consciousness-depth.css": {
+      "language": "css",
+      "lines": 229,
+      "classes_defined": 23,
+      "animations": [],
+      "custom_properties": 30,
+      "imports": []
+    },
+    "deity-voices.css": {
+      "language": "css",
+      "lines": 234,
+      "classes_defined": 9,
+      "animations": [],
+      "custom_properties": 48,
+      "imports": []
+    },
+    "domains.css": {
+      "language": "css",
+      "lines": 1519,
+      "classes_defined": 86,
+      "animations": [],
+      "custom_properties": 0,
+      "imports": []
+    },
+    "ensemble.css": {
+      "language": "css",
+      "lines": 154,
+      "classes_defined": 8,
+      "animations": [],
+      "custom_properties": 5,
+      "imports": []
+    },
+    "eternal-witness.css": {
+      "language": "css",
+      "lines": 174,
+      "classes_defined": 7,
+      "animations": [
+        "witness-fade-in",
+        "witness-fade-out",
+        "witness-glow-pulse"
+      ],
+      "custom_properties": 11,
+      "imports": []
+    },
+    "gates.css": {
+      "language": "css",
+      "lines": 117,
+      "classes_defined": 5,
+      "animations": [],
+      "custom_properties": 2,
+      "imports": []
+    },
+    "glow-field.css": {
+      "language": "css",
+      "lines": 213,
+      "classes_defined": 15,
+      "animations": [],
+      "custom_properties": 2,
+      "imports": []
+    },
+    "parallax.css": {
+      "language": "css",
+      "lines": 515,
+      "classes_defined": 51,
+      "animations": [],
+      "custom_properties": 6,
+      "imports": []
+    },
+    "pause-state.css": {
+      "language": "css",
+      "lines": 64,
+      "classes_defined": 2,
+      "animations": [],
+      "custom_properties": 3,
+      "imports": []
+    },
+    "scene.css": {
+      "language": "css",
+      "lines": 120,
+      "classes_defined": 8,
+      "animations": [],
+      "custom_properties": 31,
+      "imports": []
+    },
+    "supportive-affordances.css": {
+      "language": "css",
+      "lines": 67,
+      "classes_defined": 3,
+      "animations": [],
+      "custom_properties": 1,
+      "imports": []
+    },
+    "text-effects.css": {
+      "language": "css",
+      "lines": 471,
+      "classes_defined": 34,
+      "animations": [
+        "rainbowFlow",
+        "quantumWeave",
+        "entanglementShift",
+        "quantumResonance",
+        "fireFlicker",
+        "waterFlow",
+        "airDrift",
+        "sparkle",
+        "stardustFloat",
+        "glitterFlow",
+        "cosmicSparkle",
+        "elementalCycle",
+        "energyPulse"
+      ],
+      "custom_properties": 0,
+      "imports": []
+    },
+    "transcendence.css": {
+      "language": "css",
+      "lines": 129,
+      "classes_defined": 4,
+      "animations": [
+        "transcend-physical-to-crisis",
+        "transcend-crisis-to-wisdom",
+        "transcend-wisdom-to-akashic",
+        "transcend-akashic-to-divine"
+      ],
+      "custom_properties": 12,
+      "imports": []
+    },
+    "typography.css": {
+      "language": "css",
+      "lines": 1582,
+      "classes_defined": 266,
+      "animations": [],
+      "custom_properties": 0,
+      "imports": []
+    },
+    "variables.css": {
+      "language": "css",
+      "lines": 480,
+      "classes_defined": 0,
+      "animations": [],
+      "custom_properties": 391,
+      "imports": []
+    },
+    "zoom.css": {
+      "language": "css",
+      "lines": 804,
+      "classes_defined": 70,
+      "animations": [],
+      "custom_properties": 107,
+      "imports": []
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.260142 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

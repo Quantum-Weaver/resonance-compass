@@ -1,0 +1,39 @@
+{
+  "tier": "domain",
+  "domain_name": "src",
+  "domain_path": "src",
+  "self": "compass/src/dbp.ai.json",
+  "parent": "compass/pbp.ai.json",
+  "description": "2 files, 2 subfolders",
+  "objects": [
+    {
+      "blueprint": "compass/src/lib/obp.ai.json",
+      "object_path": "src/lib",
+      "description": "0 files, 12 subfolders",
+      "folder_count": 15,
+      "total_files": 100
+    },
+    {
+      "blueprint": "compass/src/routes/obp.ai.json",
+      "object_path": "src/routes",
+      "description": "3 files, 16 subfolders",
+      "folder_count": 23,
+      "total_files": 25
+    }
+  ],
+  "object_count": 2,
+  "folders_reporting_directly": [
+    {
+      "blueprint": "compass/src/fbp.ai.json",
+      "folder_path": "src",
+      "description": "2 files, 2 subfolders",
+      "file_count": 2,
+      "subdirectory_count": 2
+    }
+  ],
+  "total_folders": 39,
+  "total_files": 127,
+  "integration_timestamp": "2026-08-21T15:19:25.500074 | in sovereign time",
+  "maintaining_agent": "DomainAgent",
+  "note": "Links only. Every object's details live at its own address."
+}

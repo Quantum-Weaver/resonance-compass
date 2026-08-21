@@ -1,0 +1,25 @@
+{
+  "tier": "folder",
+  "folder_name": "android-extras",
+  "folder_path": "src-tauri/android-extras",
+  "self": "compass/src-tauri/android-extras/fbp.ai.json",
+  "parent": "compass/src-tauri/android-extras/obp.ai.json",
+  "description": "2 files, 0 subfolders",
+  "files": [
+    {
+      "path": "src-tauri/android-extras/MediaPermissionPlugin.kt",
+      "description": "file, 5,276 bytes"
+    },
+    {
+      "path": "src-tauri/android-extras/MediaSessionPlugin.kt",
+      "description": "file, 9,094 bytes"
+    }
+  ],
+  "file_count": 2,
+  "subdirectories": [],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-08-21T15:19:25.330170 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}
