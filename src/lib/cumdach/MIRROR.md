@@ -7,7 +7,7 @@ editable truth is:
 C:\_superposition\resonance-awen\tools\the-cumdach\src\index.ts
 
 Do not edit index.ts in THIS folder - it is a byte-faithful mirror
-(SHA256 verified at the copy: 7730A4C16E6FA044), to be refreshed by
+(SHA256 verified at the copy: 07BB8DBA494A5F04), to be refreshed by
 distribution runs as the house's delivery pipeline stands up, the
 same road the cosmic mirror travels. This app's Sidebar imports from
 here; formula changes happen in the water. Why a mirror and not a

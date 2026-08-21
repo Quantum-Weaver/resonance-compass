@@ -23,10 +23,21 @@
 //     colors are the consumer's particulars; the shrine is the
 //     constant.
 //   · DYNAMICS ALWAYS RE-DERIVE: the derivation is pure and cheap —
-//     any change of land (rotation, keyboard, an expanded foot)
-//     re-runs it; the worn panel survives when it still exists.
+//     any change of land (rotation, keyboard, an expanded foot, and
+//     A CHANGE OF THE VESSEL'S TEXT SIZE) re-runs it; the worn panel
+//     survives when it still exists.
 //   · THE FOOT is one chrome door outside every panel, optionally
 //     expandable; its expansion costs capacity like any other truth.
+//     It renders PINNED TO THE BOTTOM of the box `reserved` leaves —
+//     which is what makes the next law load-bearing.
+//   · THE RESERVED EDGE IS A SUM, NOT A BAR: `land.reserved` is every
+//     occupied edge ADDED TOGETHER — bottom bars, safe-area insets,
+//     and any FLOATING control the consumer pins into that band. An
+//     uncounted edge does not shrink the menu; it BURIES THE FOOT.
+//     The shrine derives perfectly and the vessel still cannot reach
+//     Settings. (Paid for in Echoes, 2026-08-21: a toggle at z-index
+//     120 sat on the Settings door for weeks while this arithmetic
+//     was correct the whole time.)
 //   · Everything is TOLD: capacity, panels, and every flag — a menu
 //     never runs off the edge of a vessel's world silently.
 //   · Pure absolutely: no DOM, no clock, no disk — the consumer
@@ -55,16 +66,47 @@ export interface Menu {
 
 /** The land as the consumer measured it — numbers, never DOM. */
 export interface Land {
-	height: number; // what the screen offers the shrine
-	reserved: number; // occupied edges: player bars, safe insets — declared, honored
+	/** What the screen offers the shrine. */
+	height: number;
+	/**
+	 * EVERY occupied edge, SUMMED — not one bar.
+	 *
+	 * The foot door renders pinned to the BOTTOM of the box this leaves, so
+	 * `reserved` is not a capacity haircut — it is the clearance the foot
+	 * stands on. Anything that paints over the shrine in that bottom band
+	 * and is NOT counted here lands on top of the foot.
+	 *
+	 * Count them all: bottom bars, safe-area insets, AND any floating
+	 * control pinned into the band — a toggle, a FAB, a chip. The floating
+	 * one is the one that has actually cost this house, because it is the
+	 * one nobody thinks of as an edge.
+	 *
+	 * MEASURE IT; DO NOT PICK A CONSTANT. A control sized in `rem` but
+	 * pinned in `px` occupies a band whose height MOVES with the root
+	 * font-size — one 2.5rem button is 35 / 40 / 45px tall as the vessel
+	 * changes its own text setting. A `reserved` computed at one root size
+	 * under-reserves at a larger one, and the failure appears only for the
+	 * readers who most needed the larger text.
+	 */
+	reserved: number;
 }
 
-/** The shrine's fixed costs, in the consumer's own pixels. */
+/**
+ * The shrine's fixed costs, in the consumer's own pixels.
+ *
+ * PIXELS AS THEY RESOLVE RIGHT NOW: if the consumer's chrome is sized in
+ * `rem`, these values change when the vessel changes its text size, and the
+ * derivation must be re-run with both these and `land.reserved` measured
+ * afresh. A text-size change is a change of land.
+ */
 export interface Costs {
-	door: number; // one door's height, gap included (the 44px calm floor lives here)
+	/** One door's height, gap included (the 44px calm floor lives here). */
+	door: number;
 	head: number;
-	switchButton: number; // one mode button's height
-	switchColumns: number; // the switch grid's columns
+	/** One mode button's height. */
+	switchButton: number;
+	/** The switch grid's columns. */
+	switchColumns: number;
 }
 
 /** The faces the consumer supplies — cosmic's colors, the app's emoji. */
