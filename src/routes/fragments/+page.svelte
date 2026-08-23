@@ -62,6 +62,9 @@
 			artist: src?.artist ?? 'Unknown',
 			album: src?.album ?? 'Fragment',
 			duration: frag.duration,
+			// A fragment is not a library song: it has no album folder, so it
+			// derives no folder art.
+			folder: '',
 			dateAdded: frag.createdAt,
 			lastScanned: frag.createdAt,
 		};
@@ -184,6 +187,12 @@
 							<button class="menu-item" onclick={() => { fragmentStore.toggleFavorite(frag.id); menuOpenId = null; }} role="menuitem">
 								{frag.favorite ? '💔 Unfavorite' : '❤️ Favorite'}
 							</button>
+
+							<button
+								class="menu-item"
+								onclick={() => { playerStore.addToQueue(fragmentToTrack(frag)); menuOpenId = null; }}
+								role="menuitem"
+							>⏭ Add to Queue</button>
 
 							<button
 								class="menu-item"

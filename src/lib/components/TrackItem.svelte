@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import type { Track, Playlist } from '$lib/types/types';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
+	import { playerStore } from '$lib/stores/player.svelte';
 
 	let {
 		track,
@@ -49,6 +50,17 @@
 	function openMenu(e: MouseEvent) {
 		e.stopPropagation();
 		menuOpen = !menuOpen;
+	}
+
+	// Beside every "add to playlist" there is an "add to queue" — KP's ⚛ word,
+	// 2026-08-22. The queue is the player's, so this needs no prop from the room.
+	function addToQueue() {
+		playerStore.addToQueue(track);
+		menuOpen = false;
+	}
+	function playNext() {
+		playerStore.playNext(track);
+		menuOpen = false;
 	}
 
 	function addToPlaylist(playlistId: string) {
@@ -103,6 +115,8 @@
 					<button class="dropdown-item" onclick={openLyrics}>
 						🎤 {track.lyrics ? 'Lyrics' : 'Find Lyrics'}
 					</button>
+					<button class="dropdown-item" onclick={addToQueue}>⏭ Add to queue</button>
+					<button class="dropdown-item" onclick={playNext}>⏵ Play next</button>
 					<p class="dropdown-label">Add to playlist</p>
 					{#if playlists.length === 0}
 						<p class="dropdown-empty">No playlists yet</p>

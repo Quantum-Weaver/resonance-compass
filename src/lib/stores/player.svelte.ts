@@ -430,6 +430,36 @@ function clearQueue() {
 	persistState();
 }
 
+// ADD TO QUEUE and PLAY NEXT — 2026-08-22, at KP's ⚛ word: "where every we
+// have 'add to playlist' there should also be 'add to queue'". Appending never
+// interrupts what is playing; with nothing loaded the first added track is
+// loaded (not started) so the bar shows what the queue now holds. A track
+// already in the queue is appended again on purpose — a queue is an order, not
+// a set, and repeating a song is a thing people do.
+function addToQueue(tracks: Track | Track[]) {
+	const list = Array.isArray(tracks) ? tracks : [tracks];
+	if (list.length === 0) return;
+	const wasEmpty = queue.length === 0;
+	queue = [...queue, ...list];
+	if (wasEmpty) {
+		queueIndex = 0;
+		if (!currentTrack) loadTrackObject(queue[0]).then(persistState);
+		else persistState();
+	} else {
+		persistState();
+	}
+}
+
+// Slots the track(s) right after the one playing, so they come up next.
+function playNext(tracks: Track | Track[]) {
+	const list = Array.isArray(tracks) ? tracks : [tracks];
+	if (list.length === 0) return;
+	if (queue.length === 0) return addToQueue(list);
+	const at = queueIndex + 1;
+	queue = [...queue.slice(0, at), ...list, ...queue.slice(at)];
+	persistState();
+}
+
 export const playerStore = {
 	get currentTrack() { return currentTrack; },
 	get queue() { return queue; },
@@ -455,6 +485,8 @@ export const playerStore = {
 	playFromQueue,
 	removeFromQueue,
 	clearQueue,
+	addToQueue,
+	playNext,
 	toggleShuffle,
 	cycleRepeat,
 	restoreState,

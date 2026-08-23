@@ -16,10 +16,37 @@ let lastScanned = $state<number | null>(null);
 // SQLite bound-parameter limit is 999. 13 cols x 50 rows = 650 params per batch.
 const INSERT_BATCH = 50;
 
+// ── Album art hangs on the FOLDER ───────────────────────────────────────────
+// KP's ⚛ word, 2026-08-22, verbatim: "album art should be stored in the album
+// folders and songs should derive the art from the album, not each song needing
+// the art separately fetched."
+//
+// So the art is a FILE in the album's own folder, `album_art` maps folder →
+// that file, and a song's `coverArt` is read from it ONCE per folder and shared
+// by every track in it. The read result is cached here, in module memory only —
+// never back into the DB, which is the whole point.
+const coverCache = new Map<string, string>();
+
+/** The album folder a URI lives in — the raw parent directory, byte-for-byte
+ *  what Rust's `folder_of` returns, because it is the key both sides share.
+ *  Deliberately NOT the disc-stripped `folderOf` below: art sits in the real
+ *  directory, so a "Disc 2" subfolder keeps its own cover file. */
+function dirOf(uri: string): string {
+	if (uri.includes('://')) return ''; // content:// has no folder we may write into
+	const cut = Math.max(uri.lastIndexOf('/'), uri.lastIndexOf('\\'));
+	if (cut < 0) return '';
+	// A root keeps its separator, exactly as Rust's Path::parent() reports it:
+	// "/a.mp3" → "/", "D:\a.mp3" → "D:\" — never the bare, drive-relative "D:".
+	let dir = cut === 0 ? uri.slice(0, 1) : uri.slice(0, cut);
+	if (/^[A-Za-z]:$/.test(dir)) dir += uri[cut];
+	return dir;
+}
+
 function rowToTrack(row: Record<string, unknown>): Track {
+	const uri = row.uri as string;
 	return {
 		id: row.id as string,
-		uri: row.uri as string,
+		uri,
 		filename: row.filename as string,
 		title: row.title as string,
 		artist: row.artist as string,
@@ -28,6 +55,7 @@ function rowToTrack(row: Record<string, unknown>): Track {
 		year: row.year != null ? (row.year as number) : undefined,
 		trackNumber: row.track_number != null ? (row.track_number as number) : undefined,
 		duration: row.duration as number,
+		folder: dirOf(uri),
 		coverArt: row.cover_art != null ? (row.cover_art as string) : undefined,
 		lyrics: row.lyrics != null ? (row.lyrics as string) : undefined,
 		dateAdded: row.date_added as number,
@@ -71,11 +99,121 @@ async function loadTracks() {
 			'SELECT * FROM songs ORDER BY artist, album, track_number'
 		);
 		const saved = rows.map(rowToTrack);
+		await sweepEmbeddedCoversIntoFolders(saved);
+		await applyFolderArt(saved);
 		if (saved.length > 0) setTracks(saved);
 	} catch (e) {
 		console.error('[libraryStore] loadTracks failed:', e);
 	} finally {
 		loading = false;
+	}
+}
+
+async function readAlbumArtRows(): Promise<Map<string, string>> {
+	if (!db) return new Map();
+	const rows = await db.select<{ folder: string; path: string }[]>(
+		'SELECT folder, path FROM album_art'
+	);
+	return new Map(rows.map((r) => [r.folder, r.path]));
+}
+
+async function upsertAlbumArt(folder: string, path: string) {
+	if (!db) return;
+	await db.execute(
+		`INSERT INTO album_art (folder, path, updated_at) VALUES ($1, $2, $3)
+		 ON CONFLICT(folder) DO UPDATE SET path = excluded.path, updated_at = excluded.updated_at`,
+		[folder, path, Math.floor(Date.now() / 1000)]
+	);
+}
+
+// ONE read per album folder, shared by every song in it — the derivation KP
+// asked for. A folder whose cover file has since been deleted is warned about
+// and left alone: the album_art row stays (lose-nothing), and the track keeps
+// whatever art it already had.
+async function applyFolderArt(list: Track[]) {
+	const byFolder = await readAlbumArtRows();
+	if (byFolder.size === 0) return;
+
+	const wanted = new Set<string>();
+	for (const t of list) {
+		if (t.folder && byFolder.has(t.folder)) wanted.add(t.folder);
+	}
+
+	const { invoke } = await import('@tauri-apps/api/core');
+	for (const folder of wanted) {
+		if (coverCache.has(folder)) continue;
+		try {
+			coverCache.set(folder, await invoke<string>('read_cover', { path: byFolder.get(folder)! }));
+		} catch (e) {
+			console.warn(`[libraryStore] cover unreadable for ${folder}:`, e);
+		}
+	}
+
+	for (const t of list) {
+		if (!t.folder) continue;
+		const path = byFolder.get(t.folder);
+		if (path) t.coverPath = path;
+		const art = coverCache.get(t.folder);
+		if (art) t.coverArt = art;
+	}
+}
+
+// ── The one-time sweep (2026-08-22, at KP's ⚛ word) ─────────────────────────
+// Every library scanned before tonight holds one base64 copy of the same album
+// cover in every song row — 100-500 KB each, all of it inside compass.db. This
+// lifts the FIRST copy in each folder out to a real file in that folder, records
+// it in album_art, and only THEN clears the song rows. Order is the whole
+// safety: nothing is dropped from the DB before its replacement is on disk.
+//
+// Idempotent by construction — a folder already in album_art is skipped — and
+// quiet: it logs counts and nothing else.
+async function sweepEmbeddedCoversIntoFolders(list: Track[]) {
+	if (!db) return;
+
+	const known = await readAlbumArtRows();
+	const candidates = new Map<string, { art: string; ids: string[] }>();
+	for (const t of list) {
+		if (!t.folder || !t.coverArt?.startsWith('data:') || known.has(t.folder)) continue;
+		const entry = candidates.get(t.folder);
+		if (entry) entry.ids.push(t.id);
+		else candidates.set(t.folder, { art: t.coverArt, ids: [t.id] });
+	}
+	if (candidates.size === 0) return;
+
+	const { invoke } = await import('@tauri-apps/api/core');
+	const emptied = new Set<string>();
+	let folders = 0;
+
+	for (const [folder, { art, ids }] of candidates) {
+		try {
+			// adopt, not save: a folder that already holds a cover file keeps it,
+			// and the row simply learns to point at what was always there.
+			const path = await invoke<string>('adopt_album_cover', { folder, dataUri: art });
+			await upsertAlbumArt(folder, path);
+			folders++;
+			// Only now: the art is on disk and recorded, so the rows may let go.
+			for (let i = 0; i < ids.length; i += INSERT_BATCH) {
+				const slice = ids.slice(i, i + INSERT_BATCH);
+				const marks = slice.map((_, n) => `$${n + 1}`).join(',');
+				await db.execute(`UPDATE songs SET cover_art = NULL WHERE id IN (${marks})`, slice);
+				for (const id of slice) emptied.add(id);
+			}
+		} catch (e) {
+			console.warn(`[libraryStore] could not move art into ${folder}:`, e);
+		}
+	}
+
+	// The in-memory rows follow the DB; applyFolderArt hands the folder's file
+	// back to them a moment later.
+	for (const t of list) {
+		if (emptied.has(t.id)) t.coverArt = undefined;
+	}
+
+	if (folders > 0) {
+		const cleared = emptied.size;
+		console.log(
+			`[libraryStore] album art moved into ${folders} folder(s); ${cleared} song row(s) cleared of embedded art`
+		);
 	}
 }
 
@@ -135,6 +273,8 @@ function setTracks(newTracks: Track[]) {
 				name: albumName,
 				artist: artistName,
 				tracks: subTracks,
+				// The album's art IS its folder's art — every track already carries
+				// the same string, read once from the one cover file.
 				coverArt: subTracks.find((t) => t.coverArt)?.coverArt,
 				year: subTracks.find((t) => t.year != null)?.year,
 				genre: subTracks[0].genre,
@@ -186,9 +326,25 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 		await db.execute(stmt, params);
 	}
 
-	// Cover art: one UPDATE per track so no single IPC call carries more than one image.
+	// Album art: ONE row per folder, pointing at the cover file the Rust scan
+	// found or wrote there — not one base64 copy per song (KP ⚛ 2026-08-22).
+	const artByFolder = new Map<string, string>();
 	for (const t of scannedTracks) {
-		if (t.coverArt) {
+		if (t.folder && t.coverPath && !artByFolder.has(t.folder)) {
+			artByFolder.set(t.folder, t.coverPath);
+		}
+	}
+	for (const [folder, path] of artByFolder) {
+		await upsertAlbumArt(folder, path);
+		coverCache.delete(folder); // re-read on the next load; the file may be new
+	}
+
+	// The one door that still writes songs.cover_art: restoring a backup taken
+	// before tonight, whose tracks carry base64 and no cover file. The sweep at
+	// the next load lifts it into its folder like any other legacy row — nothing
+	// imported is dropped for arriving in the old shape.
+	for (const t of scannedTracks) {
+		if (t.coverArt && !t.coverPath) {
 			await db.execute('UPDATE songs SET cover_art = $1 WHERE id = $2', [t.coverArt, t.id]);
 		}
 	}
@@ -277,7 +433,7 @@ async function runScan() {
 	try {
 		const scanned = await invoke<Track[]>('scan_paths', { paths: selected });
 		const now = Math.floor(Date.now() / 1000);
-		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now }));
+		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now, folder: dirOf(t.uri) }));
 		await saveScannedTracks(withTimestamps);
 		if (isAndroid && scanned.length > 0 && db) {
 			// Rows from the interim file-picker build hold content:// URIs whose
@@ -303,19 +459,36 @@ async function runScan() {
 	}
 }
 
+// Art the vessel chose (a Cover Art Archive fetch) lands as a FILE in the album's
+// folder — the same place a scan would have put it — and album_art records it.
+// An album spanning several folders (a multi-disc rip in per-disc subfolders)
+// gets the cover saved into EVERY folder that holds its tracks: each folder is a
+// complete album folder in its own right, and a later scan of only one of them
+// must still find art there.
 async function updateAlbumCoverArt(albumId: string, coverArt: string) {
 	if (!db) return;
 	const album = albums.find((a) => a.id === albumId);
 	if (!album) return;
-	// Per-track updates — a WHERE artist+album match would also restamp
-	// same-named sibling albums (split apart by year/folder) with this art.
-	for (const t of album.tracks) {
-		await db.execute('UPDATE songs SET cover_art = $1 WHERE id = $2', [coverArt, t.id]);
+
+	const folders = [...new Set(album.tracks.map((t) => t.folder).filter(Boolean))];
+	const { invoke } = await import('@tauri-apps/api/core');
+	const landed = new Set<string>();
+
+	for (const folder of folders) {
+		try {
+			const path = await invoke<string>('save_album_cover', { folder, dataUri: coverArt });
+			await upsertAlbumArt(folder, path);
+			coverCache.set(folder, coverArt);
+			landed.add(folder);
+		} catch (e) {
+			console.error(`[libraryStore] could not save album art into ${folder}:`, e);
+		}
 	}
+	if (landed.size === 0) return;
+
 	// Update in-memory tracks + album so UI reacts without a full reload.
-	const ids = new Set(album.tracks.map((t) => t.id));
 	for (const track of tracks) {
-		if (ids.has(track.id)) track.coverArt = coverArt;
+		if (landed.has(track.folder)) track.coverArt = coverArt;
 	}
 	album.coverArt = coverArt;
 }
@@ -343,6 +516,11 @@ async function purgeAllData() {
 	await db.execute('DELETE FROM favorites');
 	await db.execute('DELETE FROM playlists');
 	await db.execute('DELETE FROM songs');
+	// The folder → cover mapping goes too, and the in-memory cache with it: the
+	// purge truly purges. The cover FILES stay where they are — they live in the
+	// vessel's own music folders, which this app does not get to empty.
+	await db.execute('DELETE FROM album_art');
+	coverCache.clear();
 	tracks = [];
 	albums = [];
 	artists = [];

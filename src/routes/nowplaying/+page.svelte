@@ -53,8 +53,13 @@
 
 	async function saveCoverArt() {
 		if (!fetchedArt || !currentTrack) return;
-		const albumId = `${currentTrack.album.trim()}|||${currentTrack.artist.trim()}`;
-		await libraryStore.updateAlbumCoverArt(albumId, fetchedArt);
+		// Find the album by the track it CONTAINS, not by rebuilding its id: an
+		// album split by year or folder wears a "|||discriminator" suffix, and the
+		// rebuilt id missed it — the save silently did nothing (fixed 2026-08-22,
+		// alongside the folder-art work, because that no-op now costs a real file).
+		const album = libraryStore.albums.find((a) => a.tracks.some((t) => t.id === currentTrack.id));
+		if (!album) return;
+		await libraryStore.updateAlbumCoverArt(album.id, fetchedArt);
 		localArt = fetchedArt;
 		artFetch = 'idle';
 		fetchedArt = null;

@@ -4,6 +4,7 @@ use lofty::file::TaggedFileExt;
 use lofty::tag::Accessor;
 use lofty::tag::ItemKey;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 use std::sync::{Arc, Mutex};
@@ -33,8 +34,14 @@ pub struct TrackInfo {
     #[serde(rename = "trackNumber")]
     pub track_number: Option<u32>,
     pub duration: f64,
+    /// Kept for the wire's shape and for anything still restoring an old
+    /// backup — the scan itself no longer fills it. Art rides on `cover_path`
+    /// now (KP ⚛ 2026-08-22); see the album-art section below.
     #[serde(rename = "coverArt")]
     pub cover_art: Option<String>,
+    /// Path to the ONE cover file that serves this song's album folder.
+    #[serde(rename = "coverPath")]
+    pub cover_path: Option<String>,
     pub lyrics: Option<String>,
     #[serde(rename = "dateAdded")]
     pub date_added: u64,
@@ -53,7 +60,21 @@ fn display_name_from_uri(uri: &str) -> String {
     uri.rsplit('/').next().unwrap_or(uri).to_string()
 }
 
-fn parse_metadata(app_handle: &tauri::AppHandle, uri: &str) -> TrackInfo {
+/// One embedded picture lifted out of a file's tags — raw bytes, never base64.
+/// It exists only long enough to become a cover file in the album's folder.
+struct EmbeddedArt {
+    data: Vec<u8>,
+    ext: &'static str,
+}
+
+/// `want_picture` is false once the folder already has its cover: the tags are
+/// still read for everything else, but the 100-500 KB picture is not copied out
+/// of them eleven more times for the rest of the album.
+fn parse_metadata(
+    app_handle: &tauri::AppHandle,
+    uri: &str,
+    want_picture: bool,
+) -> (TrackInfo, Option<EmbeddedArt>) {
     let filename = display_name_from_uri(uri);
     let id = uri.to_string();
 
@@ -68,7 +89,7 @@ fn parse_metadata(app_handle: &tauri::AppHandle, uri: &str) -> TrackInfo {
     let mut genre: Option<String> = None;
     let mut year: Option<u32> = None;
     let mut track_number: Option<u32> = None;
-    let mut cover_art: Option<String> = None;
+    let mut embedded: Option<EmbeddedArt> = None;
     let mut lyrics: Option<String> = None;
     let mut duration = 0.0f64;
     let mut date_added = 0u64;
@@ -115,17 +136,17 @@ fn parse_metadata(app_handle: &tauri::AppHandle, uri: &str) -> TrackInfo {
                     .and_then(|s| s.parse::<u32>().ok());
                 lyrics = tag.get_string(&ItemKey::Lyrics).map(|s| s.to_string());
 
-                if let Some(pic) = tag.pictures().first() {
-                    let mime = match pic.mime_type() {
-                        Some(lofty::picture::MimeType::Jpeg) => "image/jpeg",
-                        Some(lofty::picture::MimeType::Png) => "image/png",
-                        Some(lofty::picture::MimeType::Gif) => "image/gif",
-                        Some(lofty::picture::MimeType::Tiff) => "image/tiff",
-                        Some(lofty::picture::MimeType::Bmp) => "image/bmp",
-                        _ => "image/jpeg",
-                    };
-                    let encoded = BASE64_STANDARD.encode(pic.data());
-                    cover_art = Some(format!("data:{};base64,{}", mime, encoded));
+                if want_picture {
+                    if let Some(pic) = tag.pictures().first() {
+                        let ext = match pic.mime_type() {
+                            Some(lofty::picture::MimeType::Png) => "png",
+                            Some(lofty::picture::MimeType::Gif) => "gif",
+                            Some(lofty::picture::MimeType::Tiff) => "tiff",
+                            Some(lofty::picture::MimeType::Bmp) => "bmp",
+                            _ => "jpg",
+                        };
+                        embedded = Some(EmbeddedArt { data: pic.data().to_vec(), ext });
+                    }
                 }
             }
         }
@@ -139,21 +160,231 @@ fn parse_metadata(app_handle: &tauri::AppHandle, uri: &str) -> TrackInfo {
         }
     }
 
-    TrackInfo {
-        id,
-        uri: uri.to_string(),
-        filename,
-        title,
-        artist,
-        album,
-        genre,
-        year,
-        track_number,
-        duration,
-        cover_art,
-        lyrics,
-        date_added,
+    (
+        TrackInfo {
+            id,
+            uri: uri.to_string(),
+            filename,
+            title,
+            artist,
+            album,
+            genre,
+            year,
+            track_number,
+            duration,
+            cover_art: None,
+            cover_path: None,
+            lyrics,
+            date_added,
+        },
+        embedded,
+    )
+}
+
+// ── Album art lives with the ALBUM ──────────────────────────────────────────
+// KP's ⚛ word, 2026-08-22, verbatim: "album art should be stored in the album
+// folders and songs should derive the art from the album, not each song needing
+// the art separately fetched."
+//
+// So the scan no longer base64s a picture into every TrackInfo — 100-500 KB per
+// song, twelve near-identical copies per album, all of it landing in compass.db.
+// It resolves each file's FOLDER once, finds or writes ONE cover file there, and
+// hands back that path. Every song in the folder derives its art from that file.
+
+/// Cover file stems recognised in an album folder, case-insensitively, in
+/// preference order.
+const COVER_STEMS: &[&str] = &["cover", "folder", "front", "album", "albumart", "artwork"];
+
+/// Image extensions recognised in an album folder, case-insensitively.
+const IMAGE_EXTENSIONS: &[&str] = &["jpg", "jpeg", "png", "webp", "gif"];
+
+fn split_name(name: &str) -> Option<(String, String)> {
+    let (stem, ext) = name.rsplit_once('.')?;
+    Some((stem.to_lowercase(), ext.to_lowercase()))
+}
+
+/// Chooses a folder's cover from a plain directory listing — pure, so the rule
+/// itself is testable without touching a disk. A named cover wins in
+/// COVER_STEMS order; failing that, a folder holding EXACTLY ONE image is read
+/// as an album folder with its art in it. Two unnamed images are ambiguous, and
+/// an ambiguous folder is left alone rather than guessed at.
+fn pick_cover_name(names: &[String]) -> Option<String> {
+    let images: Vec<(&String, String)> = names
+        .iter()
+        .filter_map(|n| {
+            let (stem, ext) = split_name(n)?;
+            IMAGE_EXTENSIONS.contains(&ext.as_str()).then_some((n, stem))
+        })
+        .collect();
+
+    for want in COVER_STEMS {
+        if let Some((name, _)) = images.iter().find(|(_, stem)| stem.as_str() == *want) {
+            return Some(name.to_string());
+        }
     }
+    if images.len() == 1 {
+        return Some(images[0].0.clone());
+    }
+    None
+}
+
+fn find_folder_cover(dir: &Path) -> Option<String> {
+    let names: Vec<String> = fs::read_dir(dir)
+        .ok()?
+        .flatten()
+        .filter(|e| e.path().is_file())
+        .filter_map(|e| e.file_name().to_str().map(str::to_string))
+        .collect();
+    let picked = pick_cover_name(&names)?;
+    Some(dir.join(picked).to_string_lossy().to_string())
+}
+
+/// The directory a track lives in. Anything wearing a scheme (content:// from
+/// the retired Android file-picker build) answers to a ContentResolver, not to
+/// a filesystem — it has no folder we may write into, so it gets none.
+fn folder_of(uri: &str) -> Option<String> {
+    if uri.contains("://") {
+        return None;
+    }
+    Path::new(uri)
+        .parent()
+        .map(|p| p.to_string_lossy().to_string())
+        .filter(|s| !s.is_empty())
+}
+
+fn ext_for_mime(mime: &str) -> &'static str {
+    match mime {
+        "image/png" => "png",
+        "image/webp" => "webp",
+        "image/gif" => "gif",
+        "image/bmp" => "bmp",
+        "image/tiff" => "tiff",
+        _ => "jpg",
+    }
+}
+
+fn mime_for_ext(ext: &str) -> &'static str {
+    match ext {
+        "png" => "image/png",
+        "webp" => "image/webp",
+        "gif" => "image/gif",
+        "bmp" => "image/bmp",
+        "tif" | "tiff" => "image/tiff",
+        _ => "image/jpeg",
+    }
+}
+
+/// FNV-1a, 64-bit. A stable name for a folder whose own directory refused the
+/// write. Stdlib-only on purpose: no new crate earns its keep for a filename.
+fn folder_hash(folder: &str) -> u64 {
+    let mut hash: u64 = 0xcbf2_9ce4_8422_2325;
+    for byte in folder.as_bytes() {
+        hash ^= *byte as u64;
+        hash = hash.wrapping_mul(0x0000_0100_0000_01b3);
+    }
+    hash
+}
+
+fn app_data_cover_name(folder: &str, ext: &str) -> String {
+    format!("{:016x}.{}", folder_hash(folder), ext)
+}
+
+/// First choice, always: the album's own folder — the art belongs with the
+/// music. Android 11+ scoped storage refuses that write (so does any read-only
+/// mount), and there the art still lands ONCE per album, just in the app's own
+/// data dir under a stable name derived from the folder path.
+fn write_cover_bytes(
+    app_handle: &tauri::AppHandle,
+    folder: &str,
+    data: &[u8],
+    ext: &str,
+) -> Result<String, String> {
+    let in_folder = Path::new(folder).join(format!("cover.{ext}"));
+    if fs::write(&in_folder, data).is_ok() {
+        return Ok(in_folder.to_string_lossy().to_string());
+    }
+
+    let dir = app_handle
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("covers");
+    fs::create_dir_all(&dir).map_err(|e| format!("Cannot create covers dir: {e}"))?;
+    let fallback = dir.join(app_data_cover_name(folder, ext));
+    fs::write(&fallback, data).map_err(|e| format!("Cannot write cover: {e}"))?;
+    Ok(fallback.to_string_lossy().to_string())
+}
+
+/// "data:image/png;base64,AAAA" → ("png", bytes). Anything else is refused
+/// rather than guessed at.
+fn decode_data_uri(data_uri: &str) -> Result<(&'static str, Vec<u8>), String> {
+    let rest = data_uri
+        .strip_prefix("data:")
+        .ok_or_else(|| "Not a data: URI".to_string())?;
+    let (meta, payload) = rest
+        .split_once(',')
+        .ok_or_else(|| "Malformed data: URI (no comma)".to_string())?;
+    let meta_lower = meta.to_ascii_lowercase();
+    if !meta_lower.contains(";base64") {
+        return Err("Only base64 data: URIs are supported".to_string());
+    }
+    let mime = meta_lower.split(';').next().unwrap_or("").trim().to_string();
+    let bytes = BASE64_STANDARD
+        .decode(payload.trim())
+        .map_err(|e| format!("Bad base64 in data URI: {e}"))?;
+    Ok((ext_for_mime(&mime), bytes))
+}
+
+/// One read per album folder, not one per song: the frontend caches the answer
+/// against the folder and hands the same string to every track in it.
+#[tauri::command]
+fn read_cover(path: String) -> Result<String, String> {
+    let bytes = fs::read(&path).map_err(|e| format!("Cannot read cover {path}: {e}"))?;
+    let ext = Path::new(&path)
+        .extension()
+        .map(|e| e.to_string_lossy().to_lowercase())
+        .unwrap_or_default();
+    Ok(format!(
+        "data:{};base64,{}",
+        mime_for_ext(&ext),
+        BASE64_STANDARD.encode(bytes)
+    ))
+}
+
+/// Lands art the vessel chose (a Cover Art Archive fetch, or the one-time sweep
+/// of art already sitting in compass.db) into the album's folder as a file.
+#[tauri::command]
+fn save_album_cover(
+    app_handle: tauri::AppHandle,
+    folder: String,
+    data_uri: String,
+) -> Result<String, String> {
+    if folder.is_empty() {
+        return Err("No album folder to save into".to_string());
+    }
+    let (ext, bytes) = decode_data_uri(&data_uri)?;
+    write_cover_bytes(&app_handle, &folder, &bytes, ext)
+}
+
+/// The one-time sweep's door, and it is deliberately gentler than
+/// `save_album_cover`: a folder that ALREADY holds a cover file keeps it. Art
+/// the vessel put there with their own hands is never overwritten by a picture
+/// lifted out of a song's tags — only a folder with no cover of its own gets
+/// the embedded one written in.
+#[tauri::command]
+fn adopt_album_cover(
+    app_handle: tauri::AppHandle,
+    folder: String,
+    data_uri: String,
+) -> Result<String, String> {
+    if folder.is_empty() {
+        return Err("No album folder to adopt art into".to_string());
+    }
+    if let Some(existing) = find_folder_cover(Path::new(&folder)) {
+        return Ok(existing);
+    }
+    let (ext, bytes) = decode_data_uri(&data_uri)?;
+    write_cover_bytes(&app_handle, &folder, &bytes, ext)
 }
 
 #[derive(Serialize, Clone)]
@@ -210,8 +441,45 @@ fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<Tr
 
     let total = files.len();
     let mut tracks = Vec::with_capacity(total);
+
+    // folder → its cover file, resolved ONCE per folder. A key present with a
+    // None value means "this directory has been listed and holds no cover file
+    // yet" — later tracks in it may still carry an embedded picture worth
+    // writing, so those keep offering theirs until one lands.
+    let mut folder_covers: HashMap<String, Option<String>> = HashMap::new();
+
     for (i, uri) in files.iter().enumerate() {
-        tracks.push(parse_metadata(&app_handle, uri));
+        let folder = folder_of(uri);
+
+        if let Some(dir) = &folder {
+            if !folder_covers.contains_key(dir) {
+                folder_covers.insert(dir.clone(), find_folder_cover(Path::new(dir)));
+            }
+        }
+
+        let want_picture = match &folder {
+            Some(dir) => folder_covers.get(dir).map(Option::is_none).unwrap_or(false),
+            None => false,
+        };
+
+        let (mut info, embedded) = parse_metadata(&app_handle, uri, want_picture);
+
+        if let (Some(dir), Some(art)) = (&folder, embedded) {
+            match write_cover_bytes(&app_handle, dir, &art.data, art.ext) {
+                Ok(path) => {
+                    folder_covers.insert(dir.clone(), Some(path));
+                }
+                Err(e) => eprintln!("[scan_paths] cover write failed for {dir}: {e}"),
+            }
+        }
+
+        info.cover_path = folder
+            .as_ref()
+            .and_then(|dir| folder_covers.get(dir))
+            .cloned()
+            .flatten();
+
+        tracks.push(info);
         let _ = app_handle.emit("scan-progress", ScanProgress { current: i + 1, total });
     }
     Ok(tracks)
@@ -584,6 +852,21 @@ pub fn run() {
             );",
             kind: MigrationKind::Up,
         },
+        // The art moves out of the songs table and into the album folders
+        // (KP ⚛ 2026-08-22). One row per folder, pointing at the ONE cover file
+        // that serves every song in it. songs.cover_art is deliberately LEFT
+        // STANDING and left populated until the one-time sweep clears it —
+        // lose-nothing: nothing is dropped before its replacement is on disk.
+        Migration {
+            version: 6,
+            description: "create_album_art_table",
+            sql: "CREATE TABLE IF NOT EXISTS album_art (
+                folder TEXT PRIMARY KEY,
+                path TEXT NOT NULL,
+                updated_at INTEGER
+            );",
+            kind: MigrationKind::Up,
+        },
     ];
 
     let builder = tauri::Builder::default()
@@ -615,6 +898,9 @@ pub fn run() {
             request_mic_permission,
             find_missing_tracks,
             fetch_cover_art,
+            read_cover,
+            save_album_cover,
+            adopt_album_cover,
             fetch_lyrics,
             create_fragment,
             export_fragments,
@@ -638,4 +924,158 @@ pub fn run() {
         ])
         .run(tauri::generate_context!())
         .expect("error while running Resonance Compass");
+}
+
+// ── Tests: the album-art rules ───────────────────────────────────────────────
+// The cover logic is the only part of this file that can be proven without a
+// running vessel, so it is proven here. Everything below is pure or touches
+// nothing but a scratch directory of its own making.
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn names(list: &[&str]) -> Vec<String> {
+        list.iter().map(|s| s.to_string()).collect()
+    }
+
+    #[test]
+    fn named_cover_is_found() {
+        for stem in COVER_STEMS {
+            let file = format!("{stem}.jpg");
+            let listing = names(&["01 - track.mp3", &file, "notes.txt"]);
+            assert_eq!(pick_cover_name(&listing).as_deref(), Some(file.as_str()));
+        }
+    }
+
+    #[test]
+    fn cover_name_match_is_case_insensitive() {
+        let listing = names(&["Folder.JPG", "01.flac"]);
+        assert_eq!(pick_cover_name(&listing).as_deref(), Some("Folder.JPG"));
+
+        let listing = names(&["AlbumArt.PnG"]);
+        assert_eq!(pick_cover_name(&listing).as_deref(), Some("AlbumArt.PnG"));
+    }
+
+    #[test]
+    fn named_cover_beats_a_stray_image_and_follows_preference_order() {
+        // A named cover wins even where another image is present...
+        let listing = names(&["scan_back.png", "cover.jpg"]);
+        assert_eq!(pick_cover_name(&listing).as_deref(), Some("cover.jpg"));
+        // ...and among named covers, COVER_STEMS order decides.
+        let listing = names(&["artwork.png", "front.jpg", "cover.webp"]);
+        assert_eq!(pick_cover_name(&listing).as_deref(), Some("cover.webp"));
+    }
+
+    #[test]
+    fn exactly_one_image_is_taken_as_the_cover() {
+        let listing = names(&["01.mp3", "02.mp3", "sleeve.jpeg", "info.nfo"]);
+        assert_eq!(pick_cover_name(&listing).as_deref(), Some("sleeve.jpeg"));
+    }
+
+    #[test]
+    fn two_unnamed_images_are_ambiguous_and_neither_is_guessed() {
+        let listing = names(&["scan_front.jpg", "scan_back.jpg"]);
+        assert_eq!(pick_cover_name(&listing), None);
+    }
+
+    #[test]
+    fn a_folder_with_no_image_has_no_cover() {
+        let listing = names(&["01.mp3", "cover.txt", "cover", "album.mp3"]);
+        assert_eq!(pick_cover_name(&listing), None);
+    }
+
+    #[test]
+    fn find_folder_cover_returns_a_full_path() {
+        let dir = std::env::temp_dir().join(format!("compass-cover-{:016x}", folder_hash("test")));
+        let _ = fs::remove_dir_all(&dir);
+        fs::create_dir_all(&dir).unwrap();
+        fs::write(dir.join("01 - track.mp3"), b"not audio").unwrap();
+        fs::write(dir.join("Cover.png"), b"not an image").unwrap();
+
+        let found = find_folder_cover(&dir).expect("cover should be found");
+        assert_eq!(found, dir.join("Cover.png").to_string_lossy().to_string());
+
+        // Adding a second image does not unseat the NAMED cover.
+        fs::write(dir.join("back.jpg"), b"not an image").unwrap();
+        assert_eq!(
+            find_folder_cover(&dir).as_deref(),
+            Some(dir.join("Cover.png").to_string_lossy().to_string().as_str())
+        );
+
+        fs::remove_dir_all(&dir).unwrap();
+    }
+
+    #[test]
+    fn find_folder_cover_on_a_missing_directory_is_none() {
+        let dir = std::env::temp_dir().join("compass-cover-no-such-directory-ever");
+        let _ = fs::remove_dir_all(&dir);
+        assert_eq!(find_folder_cover(&dir), None);
+    }
+
+    #[test]
+    fn mime_and_extension_map_both_ways() {
+        for (mime, ext) in [
+            ("image/jpeg", "jpg"),
+            ("image/png", "png"),
+            ("image/webp", "webp"),
+            ("image/gif", "gif"),
+            ("image/bmp", "bmp"),
+            ("image/tiff", "tiff"),
+        ] {
+            assert_eq!(ext_for_mime(mime), ext, "mime → ext for {mime}");
+            assert_eq!(mime_for_ext(ext), mime, "ext → mime for {ext}");
+        }
+        // Unknown falls back to JPEG at both ends rather than erroring.
+        assert_eq!(ext_for_mime("image/heic"), "jpg");
+        assert_eq!(mime_for_ext("jpeg"), "image/jpeg");
+        assert_eq!(mime_for_ext(""), "image/jpeg");
+    }
+
+    #[test]
+    fn data_uri_decodes_to_extension_and_bytes() {
+        // "hi" in base64 is "aGk=".
+        let (ext, bytes) = decode_data_uri("data:image/png;base64,aGk=").unwrap();
+        assert_eq!(ext, "png");
+        assert_eq!(bytes, b"hi");
+
+        let (ext, _) = decode_data_uri("data:IMAGE/WEBP;base64,aGk=").unwrap();
+        assert_eq!(ext, "webp");
+    }
+
+    #[test]
+    fn a_malformed_data_uri_is_refused_not_guessed() {
+        assert!(decode_data_uri("https://example.invalid/art.jpg").is_err());
+        assert!(decode_data_uri("data:image/png,not-base64-marked").is_err());
+        assert!(decode_data_uri("data:image/png;base64").is_err());
+        assert!(decode_data_uri("data:image/png;base64,!!!!").is_err());
+    }
+
+    #[test]
+    fn app_data_cover_name_is_stable_and_distinct() {
+        let a = app_data_cover_name("/storage/emulated/0/Music/Kid A", "jpg");
+        let b = app_data_cover_name("/storage/emulated/0/Music/Kid A", "jpg");
+        let c = app_data_cover_name("/storage/emulated/0/Music/Amnesiac", "jpg");
+
+        assert_eq!(a, b, "the same folder always names the same file");
+        assert_ne!(a, c, "different folders name different files");
+
+        let (stem, ext) = a.rsplit_once('.').unwrap();
+        assert_eq!(ext, "jpg");
+        assert_eq!(stem.len(), 16, "16 hex characters: {a}");
+        assert!(stem.chars().all(|ch| ch.is_ascii_hexdigit()));
+        // No path separators — this is a filename, never a path.
+        assert!(!a.contains('/') && !a.contains('\\'));
+    }
+
+    #[test]
+    fn folder_of_takes_the_directory_and_refuses_a_scheme() {
+        assert_eq!(
+            folder_of("/storage/emulated/0/Music/Kid A/01.mp3").as_deref(),
+            Some("/storage/emulated/0/Music/Kid A")
+        );
+        // content:// answers to a ContentResolver, not to a filesystem.
+        assert_eq!(folder_of("content://com.android.providers/document/1"), None);
+        assert_eq!(folder_of("bare-file.mp3"), None);
+    }
 }

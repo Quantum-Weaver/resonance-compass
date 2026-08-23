@@ -34,6 +34,12 @@
 		albumMenuOpen = false;
 	}
 
+	// The whole album onto the end of the queue — beside Add to Playlist, at
+	// KP's ⚛ word 2026-08-22. Does not interrupt what is playing.
+	function addAlbumToQueue() {
+		playerStore.addToQueue(albumTracks);
+	}
+
 	function goBack() {
 		history.back();
 	}
@@ -118,6 +124,7 @@
 		</p>
 		<div class="hero-actions">
 			<button class="play-btn" onclick={playAll} disabled={albumTracks.length === 0}>▶ Play Album</button>
+			<button class="playlist-btn" onclick={addAlbumToQueue} disabled={albumTracks.length === 0}>⏭ Add to Queue</button>
 			<div class="album-menu-wrap">
 				<button class="playlist-btn" onclick={() => (albumMenuOpen = !albumMenuOpen)}>⊕ Add to Playlist</button>
 				{#if albumMenuOpen}

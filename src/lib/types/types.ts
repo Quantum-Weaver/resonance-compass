@@ -25,6 +25,13 @@ export interface Track {
   year?: number;
   trackNumber?: number;
   duration: number;
+  /** The album folder this song lives in — the key its art hangs on. Empty for
+   *  anything with no filesystem folder (content:// URIs, fragments, mixes). */
+  folder: string;
+  /** Path to the folder's ONE cover file, when the album has one on disk. */
+  coverPath?: string;
+  /** A displayable src, always — derived from the album folder's cover file,
+   *  never fetched or stored per song (KP ⚛ 2026-08-22). */
   coverArt?: string;
   lyrics?: string;
   dateAdded: number;
@@ -49,6 +56,7 @@ export interface Album {
   artist: string;
   year?: number;
   genre?: string;
+  /** A displayable src — the folder art its tracks derive from. */
   coverArt?: string;
   tracks: Track[];
 }

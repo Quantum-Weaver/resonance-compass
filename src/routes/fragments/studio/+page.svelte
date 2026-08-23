@@ -150,6 +150,8 @@
 			artist: 'Fragment Studio',
 			album: 'Mixes',
 			duration: totalDuration,
+			// A mix is not a library song: no album folder, no folder art.
+			folder: '',
 			dateAdded: Date.now(),
 			lastScanned: Date.now(),
 		};

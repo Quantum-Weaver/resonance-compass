@@ -38,9 +38,23 @@ favorites(track_id TEXT PK, timestamp INT)
 playlists(id TEXT PK, name TEXT, description TEXT, track_ids TEXT, created_at INT, updated_at INT)
 fragments(id TEXT PK, source_track_id TEXT, name TEXT, start_time REAL, end_time REAL,
           duration REAL, file_path TEXT, emoji TEXT, favorite INT, created_at INT)
+
+album_art(folder TEXT PK, path TEXT NOT NULL, updated_at INT)
 ```
 
-The five migrations in `src-tauri/src/lib.rs` are the definition; this block is a reading of them, taken 2026-08-14.
+The six migrations in `src-tauri/src/lib.rs` are the definition; this block is a
+reading of them, taken 2026-08-14, re-read 2026-08-22.
+
+**Album art is a FILE in the album's folder** — KP's ⚛ word, 2026-08-22: "album
+art should be stored in the album folders and songs should derive the art from
+the album, not each song needing the art separately fetched." `album_art` maps
+one folder to its one cover file; `read_cover` turns that file into a data URI
+ONCE per folder and every track in it shares the string. `songs.cover_art` is
+left standing (lose-nothing) but the app no longer writes it on a scan — a
+one-time sweep at load lifts any base64 already in there out to its folder and
+then clears those rows. Where the music folder refuses a write (Android 11+
+scoped storage), the cover lands in `app_data_dir()/covers/<folder-hash>.<ext>`
+instead — still once per album, never once per song.
 
 ## Structure
 

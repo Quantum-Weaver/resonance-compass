@@ -45,7 +45,6 @@
 					door('playlists', '/playlists', 'playlist', 'Playlists'),
 					door('liked', '/liked', 'heart', 'Liked'),
 					door('history', '/history', 'history', 'History'),
-					door('visualizer', '/visualizer', 'visualizer', 'Visualizer'),
 				],
 			},
 			{
@@ -67,7 +66,12 @@
 			{
 				id: 'understand',
 				label: 'Understand',
-				doors: [door('resonance', '/resonance', 'resonance', 'Resonance')],
+				// The visualizer moved here from Listen on 2026-08-22 at KP's ⚛ word:
+				// "visualizer should be in the understand menu not listening."
+				doors: [
+					door('resonance', '/resonance', 'resonance', 'Resonance'),
+					door('visualizer', '/visualizer', 'visualizer', 'Visualizer'),
+				],
 			},
 		],
 		foot: { door: door('settings', '/settings', 'settings', 'Settings') },
