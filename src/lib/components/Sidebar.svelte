@@ -10,7 +10,11 @@
 
 	import { modeStore, type ModeName } from '$lib/stores/mode.svelte';
 
-	let open = $state(false);
+	// Default-collapsed on every platform: the content is the destination, the
+	// nav is a drawer — even on desktop. The open flag lives in uiStore because
+	// the control that toggles it is in the MiniPlayer bar (2026-08-22, the
+	// Echoes remedy of 2026-08-21).
+	const open = $derived(uiStore.navOpen);
 	let isMobile = $state(true);
 
 	// THE SHRINE — the sidebar consumes the-cumdach (the spring's navigation
@@ -83,7 +87,10 @@
 		emojis: ['🎧', '🎛️', '🧘', '🌀'],
 	};
 	// The MiniPlayer bar is a declared edge, honored by arithmetic — the
-	// clearance that was once a CSS-only mend (U12) is an INPUT now.
+	// clearance that was once a CSS-only mend (U12) is an INPUT now. It is the
+	// ONLY edge again: the floating hamburger that used to claim bottom 56–101px
+	// moved inside the bar on 2026-08-22 (the Echoes remedy of 2026-08-21), so
+	// nothing else paints over the sidebar's foot.
 	const RESERVED = 48;
 
 	let land = $state({ height: 900, reserved: RESERVED });
@@ -116,19 +123,19 @@
 	const wornDoors = $derived((wornPanel?.doors ?? []) as CompassDoor[]);
 	const footDoor = MENU.foot.door as CompassDoor;
 
-	// The visualizer is a full-screen immersive experience — no hamburger, no
-	// sidebar. Its own z-index (100) sits above the sidebar panel (50) but below
-	// the hamburger (120), so an opened panel would be invisible but the toggle
-	// would still be clickable if left alone. Hide it and force-close instead.
+	// The visualizer is a full-screen immersive experience — no nav toggle, no
+	// sidebar. Its own z-index (100) sits above the sidebar panel (50), so an
+	// opened panel would be invisible; the MiniPlayer hides its toggle there
+	// (see MiniPlayer.svelte) and this force-closes the drawer.
 	const isVisualizer = $derived(page.url.pathname === '/visualizer');
 
 	$effect(() => {
-		if (isVisualizer) open = false;
+		if (isVisualizer) uiStore.setNavOpen(false);
 	});
 
 	// The vessel opened the MiniPlayer panel — they want to see it, not the nav.
 	$effect(() => {
-		if (uiStore.miniPlayerExpanded) open = false;
+		if (uiStore.miniPlayerExpanded) uiStore.setNavOpen(false);
 	});
 
 	onMount(() => {
@@ -144,34 +151,24 @@
 
 	function navigate(href: string) {
 		goto(href);
-		open = false;
-	}
-
-	function toggle() {
-		open = !open;
+		uiStore.setNavOpen(false);
 	}
 </script>
 
-<!-- Hamburger — always visible except on the full-screen visualizer -->
-{#if !isVisualizer}
-	<button
-		class="hamburger"
-		onclick={toggle}
-		aria-label={open ? 'Close navigation' : 'Open navigation'}
-		aria-expanded={open}
-	>
-		{open ? '✕' : '☰'}
-	</button>
-{/if}
+<!-- The toggle lives in the MiniPlayer bar (see MiniPlayer.svelte). It used to
+     float here at bottom:56px/left:1rem, z-index 120 — the same band and the
+     same column as this drawer's own Settings foot. Removing the floating
+     button was the mend that freed it (the Echoes remedy, 2026-08-21; carried
+     here 2026-08-22). -->
 
 <!-- Backdrop — dismisses the sidebar on outside interaction whenever it's open,
-     desktop or mobile, since the hamburger toggle is always visible on both. -->
+     desktop or mobile, since the MiniPlayer's toggle is always visible on both. -->
 {#if open && !isVisualizer}
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="backdrop"
-		onclick={() => (open = false)}
-		onkeydown={(e) => { if (e.key === 'Escape') open = false; }}
+		onclick={() => uiStore.setNavOpen(false)}
+		onkeydown={(e) => { if (e.key === 'Escape') uiStore.setNavOpen(false); }}
 		role="presentation"
 	></div>
 {/if}
@@ -239,25 +236,6 @@
 </nav>
 
 <style>
-	.hamburger {
-		position: fixed;
-		bottom: calc(56px + env(safe-area-inset-bottom, 0px));
-		left: 1rem;
-		z-index: 120;
-		background-color: var(--bg-surface);
-		border: 1px solid var(--border-color);
-		color: var(--text);
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: 8px;
-		font-size: 1.1rem;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-	}
-
 	.backdrop {
 		position: fixed;
 		inset: 0;
@@ -283,7 +261,8 @@
 		overflow-y: auto;
 		/* The MiniPlayer bar (48px, fixed, z-index 110) always paints over the
 		   sidebar (50) — the foot must clear it or Settings is buried (KP's
-		   desktop-walk catch, 2026-08-06). */
+		   desktop-walk catch, 2026-08-06). Must stay equal to RESERVED in the
+		   script above: one edge, declared once, honored twice. */
 		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
 	}
 

@@ -9,7 +9,7 @@
 	import { libraryStore, type MissingTrack } from '$lib/stores/library.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { moodStore } from '$lib/stores/mood.svelte';
-	import { PRESET_THEMES } from '$lib/theme/theme';
+	import { PRESET_THEMES, presetSwatch } from '$lib/theme/theme';
 	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
 	// (The mic spike surface retired 2026-08-09 with the real recorder's
@@ -43,14 +43,21 @@
 
 	// ── Theme section ──────────────────────────────────────────────────────────
 
-	const themeOptions = [
-		{ key: 'dark', icon: '🌙', name: 'Dark', accent: PRESET_THEMES.dark.accentColor },
-		{ key: 'warm', icon: '🔥', name: 'Warm', accent: PRESET_THEMES.warm.accentColor },
-		{ key: 'ocean', icon: '🌊', name: 'Ocean', accent: PRESET_THEMES.ocean.accentColor },
-		{ key: 'forest', icon: '🌲', name: 'Forest', accent: PRESET_THEMES.forest.accentColor },
-		{ key: 'sunset', icon: '🌅', name: 'Sunset', accent: PRESET_THEMES.sunset.accentColor },
-		{ key: 'amoled', icon: '⚫', name: 'AMOLED', accent: PRESET_THEMES.amoled.accentColor }
-	];
+	// Every preset the shelf holds — derived, never hardcoded, so a new preset
+	// appears here the day it is born (the law the onboarding walk already keeps;
+	// Rose, Rainbow and Progress Pride arrived this way 2026-08-22 at KP's word).
+	// The six founding faces are this app's own dress; the shelf's icon stands in
+	// for any it does not name, and a flag preset shows its stripes as the swatch.
+	const PRESET_ICONS: Record<string, string> = {
+		dark: '🌙', warm: '🔥', ocean: '🌊', forest: '🌲', sunset: '🌅', amoled: '⚫'
+	};
+	const themeOptions = Object.entries(PRESET_THEMES).map(([key, t]) => ({
+		key,
+		icon: PRESET_ICONS[key] ?? t.icon ?? '✨',
+		name: key === 'amoled' ? 'AMOLED' : t.presetName,
+		accent: t.accentColor,
+		swatch: presetSwatch(t)
+	}));
 
 	// Matched on presetName, not accent — Dark and AMOLED share an accent color.
 	const activePreset = $derived.by(() => {
@@ -64,6 +71,12 @@
 		{ key: 'light' as const, label: '☀️ Light' },
 		{ key: 'dark' as const, label: '🌙 Dark' },
 		{ key: 'amoled' as const, label: '⚫ AMOLED' }
+	];
+
+	const tintLevels = [
+		{ key: 'off' as const, label: 'Off' },
+		{ key: 'subtle' as const, label: 'Subtle' },
+		{ key: 'full' as const, label: 'Full' }
 	];
 
 	const fontSizes = [
@@ -472,7 +485,7 @@
 				>
 					<span class="theme-icon">{opt.icon}</span>
 					<span class="theme-name">{opt.name}</span>
-					<div class="theme-swatch" style="background: {opt.accent};"></div>
+					<div class="theme-swatch" style="background: {opt.swatch};"></div>
 				</button>
 			{/each}
 		</div>
@@ -485,6 +498,19 @@
 						class="font-btn"
 						class:active={themeStore.config.mode === key}
 						onclick={() => themeStore.setMode(key)}
+					>{label}</button>
+				{/each}
+			</div>
+		</div>
+
+		<div class="font-row">
+			<span class="font-label">Background tint</span>
+			<div class="font-btns" role="group" aria-label="Background tint">
+				{#each tintLevels as { key, label }}
+					<button
+						class="font-btn"
+						class:active={themeStore.config.tint === key}
+						onclick={() => themeStore.setTint(key)}
 					>{label}</button>
 				{/each}
 			</div>

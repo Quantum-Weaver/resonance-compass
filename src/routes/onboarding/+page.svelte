@@ -21,16 +21,29 @@
 
 	const MOOD_EMOJIS = EMOJI_DEFS.slice(0, 8);
 
-	// All six presets are offered at the door — U13, KP's ⚛ word 2026-08-06:
+	// All presets are offered at the door — U13, KP's ⚛ word 2026-08-06:
 	// the disclosure ladder is the vessel's to climb, not the app's to trim.
-	const THEMES = [
-		{ key: 'dark',   label: 'Dark',         icon: '🌙', accent: PRESET_THEMES.dark.accentColor,   desc: 'Deep space'   },
-		{ key: 'warm',   label: 'Warm',         icon: '🔥', accent: PRESET_THEMES.warm.accentColor,   desc: 'Hearth glow'  },
-		{ key: 'ocean',  label: 'Ocean',        icon: '🌊', accent: PRESET_THEMES.ocean.accentColor,  desc: 'Cosmic sea'   },
-		{ key: 'forest', label: 'Forest',       icon: '🌿', accent: PRESET_THEMES.forest.accentColor, desc: 'Living green' },
-		{ key: 'sunset', label: 'Sunset',       icon: '🌅', accent: PRESET_THEMES.sunset.accentColor, desc: 'Ember sky'    },
-		{ key: 'amoled', label: 'AMOLED Black', icon: '⚫', accent: PRESET_THEMES.amoled.accentColor, desc: 'True black'   },
-	];
+	// Derived from the shelf, never hardcoded, so a new preset appears here the
+	// day it is born (Rose, Rainbow, Progress Pride — 2026-08-22, KP's word); the
+	// founding six keep their own faces and descriptions, this app's dress.
+	const THEME_DRESS: Record<string, { icon: string; desc: string }> = {
+		dark:    { icon: '🌙', desc: 'Deep space' },
+		warm:    { icon: '🔥', desc: 'Hearth glow' },
+		ocean:   { icon: '🌊', desc: 'Cosmic sea' },
+		forest:  { icon: '🌿', desc: 'Living green' },
+		sunset:  { icon: '🌅', desc: 'Ember sky' },
+		amoled:  { icon: '⚫', desc: 'True black' },
+		rose:    { icon: '🌹', desc: 'A calm rose' },
+		rainbow: { icon: '🌈', desc: 'The rainbow flag' },
+		pride:   { icon: '🏳️‍🌈', desc: 'The progress flag' },
+	};
+	const THEMES = Object.entries(PRESET_THEMES).map(([key, t]) => ({
+		key,
+		label: t.presetName,
+		icon: THEME_DRESS[key]?.icon ?? t.icon ?? '✨',
+		accent: t.accentColor,
+		desc: THEME_DRESS[key]?.desc ?? '',
+	}));
 
 	// THE WALK — the-epagoge consumed by mirror (the carve's gate line 2):
 	// the walk is the water's, the particulars are Compass's. Choices ride

@@ -29,6 +29,10 @@
 	const playbackError = $derived(playerStore.playbackError);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
 
+	// The visualizer is full-screen and drawerless; the nav toggle hides there,
+	// as the old floating hamburger did (the Sidebar force-closes itself too).
+	const isVisualizer = $derived(page.url.pathname === '/visualizer');
+
 	function toggleExpanded() {
 		expanded = !expanded;
 	}
@@ -63,6 +67,18 @@
 		</div>
 	{:else}
 		<div class="mini-player__minimized">
+			<!-- The navigation toggle. It lives in the bar rather than floating above
+			     it (the Echoes remedy, 2026-08-21; carried here 2026-08-22): a floating
+			     button at bottom-left sat on the drawer's own Settings foot. Inside the
+			     bar it shares the bar's own layer and can cover nothing. -->
+			{#if !isVisualizer}
+				<button
+					class="mp-nav"
+					onclick={() => uiStore.toggleNav()}
+					aria-label={uiStore.navOpen ? 'Close navigation' : 'Open navigation'}
+					aria-expanded={uiStore.navOpen}
+				>{uiStore.navOpen ? '✕' : '☰'}</button>
+			{/if}
 			<button class="mp-track-btn" onclick={openNowPlaying} disabled={!track}>
 				{#if playbackError}<span class="mp-error-dot" title={playbackError} aria-label="Playback error">⚠</span>{/if}
 				{trackLabel}
@@ -123,6 +139,27 @@
 		gap: 0.5rem;
 		height: 48px;
 		padding: 0 1rem;
+	}
+
+	.mp-nav {
+		flex-shrink: 0;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		color: var(--text);
+		font-size: 1.05rem;
+		line-height: 1;
+		cursor: pointer;
+		transition: border-color 0.15s ease;
+	}
+
+	.mp-nav:hover {
+		border-color: var(--accent);
 	}
 
 	.mp-track-btn {
@@ -254,9 +291,9 @@
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		/* Keeps the strip clear of the fixed hamburger (bottom-left, z-index 120)
-		   even though it's visually below this panel's own stacking context. */
-		max-width: calc(100% - 3.5rem);
+		/* Once narrowed by 3.5rem to clear the fixed hamburger at bottom-left; that
+		   button moved inside this bar on 2026-08-22, so the strip has the whole
+		   width again. */
 		margin: 0 auto;
 	}
 

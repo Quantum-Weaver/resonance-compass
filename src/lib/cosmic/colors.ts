@@ -23,6 +23,12 @@ export const QUANTUM_COLORS = {
   'hearth.orange': '#C44B2D',
   'hearth.gold': '#FDCB6E',
   
+  // Sirens' founding rose (resonance-sirens, 2026-08-18): "an app someone opens
+  // on a hard day." Its first build carried `--accent: #a63d62` light /
+  // `#e78fae` dark; brought home to the one truth 2026-08-22 at KP's word.
+  'sirens.rose': '#E78FAE',
+  'sirens.deep': '#A63D62',
+  
   'sanctuary.green': '#00B894',
   'sanctuary.emerald': '#00CEC9',
   

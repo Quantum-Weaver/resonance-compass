@@ -1,6 +1,6 @@
 /* ============================================================================
  * TYPOGRAPHY CLASSES - Generated from typography.ts and dimensions.ts
- * Generated: 2026-08-22T02:07:14.019Z
+ * Generated: 2026-08-23T02:21:28.707Z
  * ============================================================================ */
 
 /* ========================================================================== */
@@ -343,6 +343,14 @@
 
 .text-hearth-gold {
   color: #FDCB6E;
+}
+
+.text-sirens-rose {
+  color: #E78FAE;
+}
+
+.text-sirens-deep {
+  color: #A63D62;
 }
 
 .text-sanctuary-green {

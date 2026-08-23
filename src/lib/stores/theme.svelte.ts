@@ -1,9 +1,9 @@
-import { PRESET_THEMES } from '$lib/theme/theme';
-import type { ThemeConfig } from '$lib/types/types';
+import { DEFAULT_THEME, PRESET_THEMES } from '$lib/theme/theme';
+import type { ThemeConfig, TintLevel } from '$lib/types/types';
 
 const STORAGE_KEY = 'resonance-compass-theme';
 
-let config = $state<ThemeConfig>(PRESET_THEMES.dark);
+let config = $state<ThemeConfig>({ ...DEFAULT_THEME });
 
 function persist() {
 	if (typeof localStorage !== 'undefined') {
@@ -20,15 +20,27 @@ export const themeStore = {
 		const stored = localStorage.getItem(STORAGE_KEY);
 		if (!stored) return;
 		try {
-			config = JSON.parse(stored) as ThemeConfig;
+			// Merged over the default, never cast blind: a config saved before a
+			// field existed keeps working instead of arriving undefined.
+			config = { ...DEFAULT_THEME, ...(JSON.parse(stored) as Partial<ThemeConfig>) };
 		} catch {
-			config = { ...PRESET_THEMES.dark };
+			config = { ...DEFAULT_THEME };
 		}
 	},
+	/**
+	 * Take a preset's COLOUR only. Display mode, font size and tint are the
+	 * reader's own choices and survive untouched - the one exception being a
+	 * preset that declares a mode because its identity IS a mode (AMOLED).
+	 */
 	setPreset(presetName: string) {
 		const preset = PRESET_THEMES[presetName];
 		if (!preset) return;
-		config = { ...preset };
+		config = {
+			...config,
+			accentColor: preset.accentColor,
+			presetName: preset.presetName,
+			...(preset.mode ? { mode: preset.mode } : {})
+		};
 		persist();
 	},
 	setMode(mode: 'dark' | 'light' | 'amoled') {
@@ -37,6 +49,10 @@ export const themeStore = {
 	},
 	setFontSize(size: 'small' | 'medium' | 'large') {
 		config = { ...config, fontSize: size };
+		persist();
+	},
+	setTint(tint: TintLevel) {
+		config = { ...config, tint };
 		persist();
 	}
 };
