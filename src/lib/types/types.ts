@@ -6,10 +6,8 @@ export interface ThemeConfig {
   accentColor: string;
   presetName?: string;
   fontSize: 'small' | 'medium' | 'large';
-  /** How far the accent bleeds into the background. The reader's choice, not
-   *  the app's - added 2026-08-21 at KP's word, "which i like, but others may
-   *  not." A config saved before this field existed is merged over the default
-   *  and reads as 'subtle', which is what its owner was already seeing. */
+  /** How far the accent bleeds into the background. A config saved before
+   *  this field existed merges over the default and reads as 'subtle'. */
   tint: TintLevel;
 }
 
@@ -31,7 +29,7 @@ export interface Track {
   /** Path to the folder's ONE cover file, when the album has one on disk. */
   coverPath?: string;
   /** A displayable src, always — derived from the album folder's cover file,
-   *  never fetched or stored per song (KP ⚛ 2026-08-22). */
+   *  never fetched or stored per song. */
   coverArt?: string;
   lyrics?: string;
   dateAdded: number;

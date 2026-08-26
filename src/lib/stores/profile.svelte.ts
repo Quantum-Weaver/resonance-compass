@@ -3,7 +3,7 @@ import { invoke } from '@tauri-apps/api/core';
 import { themeStore } from '$lib/stores/theme.svelte';
 import { PRESET_THEMES } from '$lib/theme/theme';
 
-// ── Types ──────────────────────────────────────────────────────────────────
+// Types
 
 export interface SensoryProfile {
 	id: string;
@@ -16,7 +16,7 @@ export interface SensoryProfile {
 	createdAt: number;
 }
 
-// ── Persistence keys ───────────────────────────────────────────────────────
+// Persistence keys
 
 const PROFILES_KEY = 'sensory_profiles';
 const ACTIVE_KEY = 'active_profile_id';
@@ -24,7 +24,7 @@ const PREV_THEME_KEY = 'profile_prev_theme';
 const SHOW_MP_KEY = 'profile_show_mp';
 const THEME_KEY = 'resonance-compass-theme';
 
-// ── State ──────────────────────────────────────────────────────────────────
+// State
 
 let profiles = $state<SensoryProfile[]>([]);
 let activeProfileId = $state<string | null>(null);
@@ -56,7 +56,7 @@ function restorePrevTheme() {
 	}
 }
 
-// ── Store export ───────────────────────────────────────────────────────────
+// Store export
 
 export const profileStore = {
 	get profiles() { return profiles; },

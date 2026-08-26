@@ -34,9 +34,8 @@
 		}
 	});
 
-	// Recently-played recording lived on the Home page and only ran while
-	// that room was mounted; with Library as the landing (the U9 merge) it
-	// lives here, where it is always awake. The library page only reads.
+	// Recently-played recording lives here, where it is always awake;
+	// the library page only reads.
 	const RECENT_KEY = 'recent_albums';
 	$effect(() => {
 		const track = playerStore.currentTrack;
@@ -101,9 +100,8 @@
 
 	.main-content {
 		flex: 1;
-		/* min-width: 0 is the load-bearing guard: flex children default to
-		   min-width auto, so any wide descendant would stretch the shell
-		   past the viewport instead of being contained. */
+		/* min-width: 0 is load-bearing: flex children default to min-width auto,
+		   so a wide descendant stretches the shell past the viewport. */
 		min-width: 0;
 		max-width: 100%;
 		overflow-y: auto;

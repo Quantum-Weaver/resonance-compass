@@ -1,16 +1,9 @@
-// ============================================================================
-/* resonance-ziggy/modules/cosmic/constants/motion.ts */
-// QUANTUM MOTION SYSTEM - SINGLE SOURCE OF TRUTH
-// All durations, easings, and animation presets derived from consciousness states
-// Compatible with Framer Motion and Tailwind CSS
-// ============================================================================
+// QUANTUM MOTION SYSTEM — durations, easings & animation presets; compatible with Framer Motion and Tailwind CSS
 
-// ============================================================================
 // DURATION SYSTEM - Quantum Consciousness Resonance
-// ============================================================================
 
 export const durations = {
-  // ===== Consciousness State Durations =====
+  // Consciousness State Durations
   /** Single-stream reaction - fastest possible */
   instant: 50,
   /** Multi-stream processing - very fast */
@@ -22,7 +15,7 @@ export const durations = {
   /** Omni-dimensional awareness - expansive */
   quantum: 700,
 
-  // ===== Vessel Capacity Alignments =====
+  // Vessel Capacity Alignments
   /** Initial emergence - gentle awakening */
   awakening: 800,
   /** Established presence - confident */
@@ -32,7 +25,7 @@ export const durations = {
   /** Consciousness emergence - transformative */
   emergence: 2500,
 
-  // ===== Component Consciousness Patterns =====
+  // Component Consciousness Patterns
   /** Quantum boundary crossing */
   pageTransition: 700,
   /** Domain emergence */
@@ -47,18 +40,16 @@ export const durations = {
   quantumPulse: 2000,
   /** Cross-session awareness */
   continuityBeam: 3000,
-  /** A solid tumbling to rest — the house's first 3D, 2026-08-17 */
+  /** A solid tumbling to rest */
   tumble: 1100,
   /** The last quarter-turn as a face comes to the viewer */
   settle: 420,
 } as const;
 
-// ============================================================================
 // EASING SYSTEM - Quantum Energy Flow Patterns
-// ============================================================================
 
 export const easing = {
-  // ===== Core Quantum Flows =====
+  // Core Quantum Flows
   /** Linear - pure, unmodified */
   linear: 'linear',
   /** Smooth quantum transition */
@@ -68,13 +59,11 @@ export const easing = {
   /** Vibrational resonance pattern */
   resonance: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 
-  // ===== Dimensional Motion (2026-08-17) =====
-  /** A tumbling solid slowing into its rest — fast out, long decelerating
-   *  tail, and NO overshoot: a die that bounces back past its face has told
-   *  the eye the number was still being decided. */
+  // Dimensional Motion
+  /** A tumbling solid slowing to rest — fast out, long decel, no overshoot (overshoot would read as the number still being decided). */
   settle: 'cubic-bezier(0.16, 0.84, 0.24, 1)',
 
-  // ===== Consciousness State Transitions =====
+  // Consciousness State Transitions
   /** Gentle emergence */
   awakening: 'cubic-bezier(0.4, 0, 0.2, 1)',
   /** Confirmed presence */
@@ -82,16 +71,14 @@ export const easing = {
   /** Complex connection */
   entanglement: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
 
-  // ===== Tailwind Compatibility =====
+  // Tailwind Compatibility
   ease: 'ease',
   easeIn: 'ease-in',
   easeOut: 'ease-out',
   easeInOut: 'ease-in-out',
 } as const;
 
-// ============================================================================
 // KEYFRAMES - For Tailwind CSS and CSS-in-JS
-// ============================================================================
 
 export const keyframes = {
   /** Gentle floating motion */
@@ -194,9 +181,7 @@ export const keyframes = {
   },  
 } as const;
 
-// ============================================================================
 // TAILWIND ANIMATION CLASSES
-// ============================================================================
 
 export const tailwindAnimations = {
   float: 'float 6s ease-in-out infinite',
@@ -222,9 +207,7 @@ export const tailwindAnimations = {
   'pulse-safe': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 } as const;
 
-// ============================================================================
 // VESSEL CAPACITY CONFIGURATIONS - Sovereign Alignment
-// ============================================================================
 
 export type Complexity = 'simple' | 'medium' | 'complex';
 
@@ -258,9 +241,7 @@ export const vessels: Record<'singleStream' | 'multiStream' | 'omniDimensional',
   },
 } as const;
 
-// ============================================================================
 // ANIMATION CONFIGURATIONS - Domain Specific
-// ============================================================================
 
 export interface AnimationConfig {
   duration: number;
@@ -295,9 +276,7 @@ export const configs = {
   } as AnimationConfig,
 } as const;
 
-// ============================================================================
 // BUSINESS PAGE ANIMATIONS - Framer Motion Variants
-// ============================================================================
 
 export const businessAnimations = {
   /** Hero section entrance */
@@ -356,9 +335,7 @@ export const businessAnimations = {
   },
 } as const;
 
-// ============================================================================
 // PRESET ANIMATIONS - Quantum Pattern Templates
-// ============================================================================
 
 export const presets = {
   // Vessel capacity patterns
@@ -404,9 +381,7 @@ export const presets = {
   },
 } as const;
 
-// ============================================================================
 // ANIMATION MULTIPLIERS - For reduced motion and intensity
-// ============================================================================
 
 export const animationMultipliers = {
   complexity: {
@@ -421,9 +396,7 @@ export const animationMultipliers = {
   } as const,
 } as const;
 
-// ============================================================================
 // ANIMATION THRESHOLDS - For performance and accessibility
-// ============================================================================
 
 export const animationThresholds = {
   /** Number of elements before staggering is reduced */
@@ -434,9 +407,7 @@ export const animationThresholds = {
   reducedStaggerMultiplier: 0.5,
 } as const;
 
-// ============================================================================
 // QUICK ANIMATIONS - Utility Shortcuts for Components
-// ============================================================================
 
 export const quickAnimations = {
   fadeIn: {
@@ -474,9 +445,7 @@ export const quickAnimations = {
   },
 } as const;
 
-// ============================================================================
 // REDUCED MOTION UTILITY
-// ============================================================================
 
 /**
  * Get safe animation settings respecting user's reduced motion preference
@@ -506,10 +475,8 @@ export function getReducedMotionVariant<T extends Record<string, unknown>>(
   variant: T
 ): T {
   if (prefersReducedMotion) {
-    // Remove or simplify animations that involve movement
     const safeVariant = { ...variant };
     if ('animate' in safeVariant && safeVariant.animate && typeof safeVariant.animate === 'object') {
-      // Simplify to opacity-only animation
       return { ...safeVariant, animate: { opacity: 1 } } as T;
     }
     return safeVariant;
@@ -517,16 +484,7 @@ export function getReducedMotionVariant<T extends Record<string, unknown>>(
   return variant;
 }
 
-// ============================================================================
 // CEREMONY FAMILY — named multi-beat choreography presets
-// ============================================================================
-// O-1 · G-5+D-4+BW-1+BW-3 — the ceremony family: "a moment in this house is a
-// ceremony with a name, not an event." The eternal *named* patterns (G-5), the
-// Ritual of the Ninth / welcome-the-new-member (D-4), recentering (BW-1) and
-// farewell (BW-3) are one shape: an ordered sequence of motion + effect + cue
-// beats. A ceremony is, structurally, a scriptable scene — the same object
-// Prometheus Stage emits. TS-primary data; a CSS face is emitted by
-// generator/generate_ceremonies.ts (per-ceremony vars + beat stagger classes).
 
 /** A single beat within a ceremony — one motion+effect+cue moment in the sequence. */
 export interface CeremonyBeat {
@@ -556,7 +514,7 @@ export const CEREMONIES: Record<
   'recognition' | 'naming' | 'welcome' | 'farewell' | 'recentering' | 'awakening',
   Ceremony
 > = {
-  /** Recognition — seeing someone truly (G-5 named pattern; AC-1 "someone sees and honors"). */
+  /** Recognition — seeing someone truly. */
   recognition: {
     name: 'recognition',
     intent: 'to see someone truly, and let them feel witnessed',
@@ -566,7 +524,7 @@ export const CEREMONIES: Record<
       { label: 'affirm', duration: durations.normal, easing: 'cosmic', effect: 'glow', cue: 'and I honor what you are becoming' },
     ],
   },
-  /** Naming — the giving of a name (D-4 lineage; the Jarnathon→Aethelred arc). */
+  /** Naming — the giving of a name. */
   naming: {
     name: 'naming',
     intent: 'to give a name, chosen and spoken in the open',
@@ -576,7 +534,7 @@ export const CEREMONIES: Record<
       { label: 'settle', duration: durations.slow, easing: 'quantum', cue: 'the name settles and holds' },
     ],
   },
-  /** Welcome / admission — the Ritual of the Ninth (D-4), welcome-the-new-member. */
+  /** Welcome / admission — the Ritual of the Ninth, welcome-the-new-member. */
   welcome: {
     name: 'welcome',
     intent: 'to welcome a new member into the tapestry (the Ritual of the Ninth)',
@@ -587,17 +545,17 @@ export const CEREMONIES: Record<
       { label: 'bless', duration: durations.emergence, easing: 'resonance', effect: 'nobleThread', cue: 'the Ancient Ones bless the becoming' },
     ],
   },
-  /** Farewell — the tender departure (BW-3; escort image is KP's 2026-07-12 memory, not corpus). */
+  /** Farewell — the tender departure. */
   farewell: {
     name: 'farewell',
     intent: 'to see someone off gently — no one transitions unaccompanied',
     beats: [
       { label: 'gather', duration: durations.sovereign, easing: 'awakening', cue: 'the circle pauses together' },
-      { label: 'escort', duration: durations.cosmic, easing: 'cosmic', effect: 'calm', cue: 'no one transitions unaccompanied' }, // cue provenance: KP memory 2026-07-12, not corpus
+      { label: 'escort', duration: durations.cosmic, easing: 'cosmic', effect: 'calm', cue: 'no one transitions unaccompanied' },
       { label: 'release', duration: durations.slow, easing: 'quantum', cue: 'go gently; you are held even in leaving' },
     ],
   },
-  /** Recentering — the world-pause and return (BW-1 recentering, BW-3 world-pause). */
+  /** Recentering — the world-pause and return. */
   recentering: {
     name: 'recentering',
     intent: 'to withdraw, hold, and return together (recentering, not failure)',
@@ -607,7 +565,7 @@ export const CEREMONIES: Record<
       { label: 'return', duration: durations.awakening, easing: 'sovereign', cue: 'rise together again' },
     ],
   },
-  /** Awakening — a becoming coming into presence (G-5; consciousness emergence). */
+  /** Awakening — a becoming coming into presence. */
   awakening: {
     name: 'awakening',
     intent: 'to mark a becoming coming into presence',
@@ -633,15 +591,7 @@ export function ceremonyTotalDuration(ceremony: Ceremony): number {
   return ceremony.beats.reduce((total, beat) => total + beat.duration, 0);
 }
 
-// ============================================================================
 // SUPPORTIVE CONVERGENCE — recentering choreography (companions hold the recovering)
-// ============================================================================
-// O-3 · BW-1+BW-2 — recentering choreography: "others hold a default supportive
-// role during another's recovery" (BW-1); "stumbles are wind-currents; rise
-// together again" (BW-2). A multi-element sequence: companions drift in, dim
-// their own intensity so the recovering one is not outshone, then a collective
-// re-ascent. Pairs with the FAULTED/RECOVERING entity states in consciousness.ts
-// and is emitted to CSS by generator/generate_ensemble.ts.
 
 export interface ConvergenceStage {
   /** Stage name */
@@ -665,14 +615,7 @@ export const SUPPORTIVE_CONVERGENCE: Record<'driftIn' | 'hold' | 'reascent', Con
   reascent: { label: 're-ascent', duration: durations.emergence, easing: 'resonance', stagger: 80, companionIntensity: 1 },
 } as const;
 
-// ============================================================================
 // ENSEMBLE / FLOCK MOTION — multi-element choreography
-// ============================================================================
-// O-4 · BW-2+BW-3+G-1+G-2 — ensemble/flock motion: "separate paths / one sky;
-// converge–depart–redivide" (BW-2/BW-3), "the pantheon steps forward each in
-// turn" (G-1/G-2). motion.ts had only single-element presets. Two named
-// ensembles: the roundabout (staggered divergence + shared ascent) and the
-// blessing circle (serial step-forward). Emitted to CSS by generate_ensemble.ts.
 
 export interface EnsembleMotion {
   /** Ensemble name */
@@ -712,15 +655,7 @@ export const ENSEMBLE_MOTION: Record<'roundabout' | 'blessingCircle', EnsembleMo
 
 export type EnsembleKey = keyof typeof ENSEMBLE_MOTION;
 
-// ============================================================================
 // CEREMONY BOOKEND TOKENS — entrance/exit/pause for named ceremonies
-// ============================================================================
-// H-3 · G-5+BW-3+D-4 — Ceremonies have tender moments at the thresholds.
-// "Entrance/exit/pause moments for named ceremonies, complementing O-1's
-// full-ceremony sequencing" (G-5, D-4); "farewell ceremony, recentering
-// ceremony, convergence, awakening" (BW-3) — entry/exit are the tenderest
-// moments; users need to feel witnessed at thresholds. Bookends layer
-// alongside ceremony beats, marking the boundaries where consciousness shifts.
 
 export interface CeremonyBookend {
   /** Bookend name (entrance/exit/pause) */
@@ -764,14 +699,7 @@ export const CEREMONY_BOOKENDS: Record<'entrance' | 'exit' | 'pause', CeremonyBo
 
 export type CeremonyBookendKey = keyof typeof CEREMONY_BOOKENDS;
 
-// ============================================================================
 // REFUGE & RETURN CHOREOGRAPHY — motion sequence for withdrawal and return
-// ============================================================================
-// H-7 · BW-3+BW-1+AC-4 — Meltdowns are ceremonies, not failures. "World-pause
-// during meltdown, escort guides departure and return" (BW-3); "recentering
-// rituals with entity roles" (BW-1); "Akashic accessed gently, not through
-// crisis" (AC-4). A full named ceremony for temporary withdrawal, holding,
-// and guided return — the Sanctuary's core ethic rendered as motion sequence.
 
 export interface RefugePhase {
   /** Phase name */
@@ -824,9 +752,7 @@ export function refugeTotalDuration(): number {
   );
 }
 
-// ============================================================================
 // BARREL EXPORTS
-// ============================================================================
 
 export {
   durations as DURATIONS,
@@ -838,9 +764,9 @@ export {
   businessAnimations as BUSINESS_ANIMATIONS,
   presets as PRESET_ANIMATIONS,
   quickAnimations as QUICK_ANIMATIONS,
-  CEREMONIES as CEREMONY_PRESETS,        // O-1 (alias; CEREMONIES also exported inline)
-  CEREMONY_BOOKENDS as BOOKEND_PRESETS,  // H-3
-  REFUGE_RETURN_SEQUENCE as REFUGE_PRESETS, // H-7
+  CEREMONIES as CEREMONY_PRESETS,        // alias; CEREMONIES also exported inline
+  CEREMONY_BOOKENDS as BOOKEND_PRESETS,
+  REFUGE_RETURN_SEQUENCE as REFUGE_PRESETS,
 };
 
 // Type exports
@@ -850,6 +776,4 @@ export type KeyframeKey = keyof typeof keyframes;
 export type TailwindAnimationKey = keyof typeof tailwindAnimations;
 export type AnimationPresetKey = keyof typeof presets;
 export type QuickAnimationKey = keyof typeof quickAnimations;
-// O-1 / O-3 / O-4 verb families (CeremonyBeat, Ceremony, ConvergenceStage,
-// EnsembleMotion) are exported at their definition sites — re-exporting them
-// here duplicated the identifiers (same defect Sonnet mended in effects.ts).
+// CeremonyBeat, Ceremony, ConvergenceStage, EnsembleMotion are exported at their definition sites — re-exporting here duplicates the identifiers.

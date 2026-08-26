@@ -21,11 +21,9 @@
 
 	const MOOD_EMOJIS = EMOJI_DEFS.slice(0, 8);
 
-	// All presets are offered at the door — U13, KP's ⚛ word 2026-08-06:
-	// the disclosure ladder is the vessel's to climb, not the app's to trim.
-	// Derived from the shelf, never hardcoded, so a new preset appears here the
-	// day it is born (Rose, Rainbow, Progress Pride — 2026-08-22, KP's word); the
-	// founding six keep their own faces and descriptions, this app's dress.
+	// All presets are offered at the door, derived from the shelf and never
+	// hardcoded, so a new preset appears here the day it is born. The
+	// founding six keep their own faces and descriptions.
 	const THEME_DRESS: Record<string, { icon: string; desc: string }> = {
 		dark:    { icon: '🌙', desc: 'Deep space' },
 		warm:    { icon: '🔥', desc: 'Hearth glow' },
@@ -45,12 +43,9 @@
 		desc: THEME_DRESS[key]?.desc ?? '',
 	}));
 
-	// THE WALK — the-epagoge consumed by mirror (the carve's gate line 2):
-	// the walk is the water's, the particulars are Compass's. Choices ride
-	// by KEY — THE KEY LAW, born of this very screen's U13 mend and now
-	// enforced by the water itself.
-	// presetName ('AMOLED Black') is a display name, not the key ('amoled') —
-	// match against the table, or the preset silently fails.
+	// The walk is the-epagoge's; the particulars are this app's. Choices ride
+	// by KEY: presetName ('AMOLED Black') is a display name, not the key
+	// ('amoled') — match against the table, or the preset silently fails.
 	const initialThemeKey =
 		Object.entries(PRESET_THEMES).find(
 			([, t]) => t.presetName === themeStore.config.presetName
@@ -63,7 +58,7 @@
 		{ id: 'theme', kind: 'choose', atMost: 1, preset: [initialThemeKey], offers: THEMES.map((t) => ({ key: t.key })) },
 		{ id: 'ready', kind: 'threshold' },
 	]);
-	// Static steps — beginWalk's data trouble cannot arise; the assertion is honest.
+	// Static steps, so beginWalk's data trouble cannot arise.
 	let walk = $state(begun.walk!);
 
 	let vesselName = $state('');
@@ -95,8 +90,7 @@
 		walk = advance(walk);
 	}
 
-	// Skip is lawful anywhere, and a skipped step is NAMED, never papered
-	// over — the water's law; completion() reports every absence.
+	// Skip is lawful anywhere; completion() reports every absence.
 	function skipStep() {
 		walk = skip(walk);
 	}
@@ -106,7 +100,7 @@
 	}
 
 	function toggleEmoji(emoji: string) {
-		// Capacity (atMost 3) is the water's calm no.
+		// At capacity (atMost 3) an unselected key leaves the walk unchanged.
 		walk = toggleChoice(walk, emoji);
 	}
 
@@ -141,7 +135,7 @@
 <div class="onboarding" style="padding-top: env(safe-area-inset-top, 0px);">
 	<div class="screen-wrap">
 
-		<!-- ── Screen 0: Welcome ── -->
+		<!-- Screen 0: Welcome -->
 		{#if stepId === 'welcome'}
 			<div class="screen">
 				<div class="screen-body">
@@ -177,7 +171,7 @@
 				</div>
 			</div>
 
-		<!-- ── Screen 1: Library Setup ── -->
+		<!-- Screen 1: Library Setup -->
 		{:else if stepId === 'library'}
 			<div class="screen">
 				<div class="screen-body">
@@ -233,7 +227,7 @@
 				</div>
 			</div>
 
-		<!-- ── Screen 2: Sensory Profile ── -->
+		<!-- Screen 2: Sensory Profile -->
 		{:else if stepId === 'senses'}
 			<div class="screen">
 				<div class="screen-body">
@@ -266,7 +260,7 @@
 				</div>
 			</div>
 
-		<!-- ── Screen 3: Theme ── -->
+		<!-- Screen 3: Theme -->
 		{:else if stepId === 'theme'}
 			<div class="screen">
 				<div class="screen-body">
@@ -301,7 +295,7 @@
 				</div>
 			</div>
 
-		<!-- ── Screen 4: Complete ── -->
+		<!-- Screen 4: Complete -->
 		{:else if stepId === 'ready'}
 			<div class="screen">
 				<div class="screen-body center">
@@ -347,7 +341,7 @@
 </div>
 
 <style>
-	/* ── Layout ── */
+	/* Layout */
 	.onboarding {
 		width: 100%;
 		height: 100%;
@@ -393,7 +387,7 @@
 		justify-content: center;
 	}
 
-	/* ── Sigil ── */
+	/* Sigil */
 	.sigil-wrap {
 		width: 100px;
 		height: 100px;
@@ -423,7 +417,7 @@
 		filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent) 40%, transparent));
 	}
 
-	/* ── Typography ── */
+	/* Typography */
 	.ob-title {
 		font-size: 1.8rem;
 		font-weight: 700;
@@ -447,7 +441,7 @@
 		margin: 0;
 	}
 
-	/* ── Welcome: name input ── */
+	/* Welcome: name input */
 	.name-section {
 		display: flex;
 		flex-direction: column;
@@ -484,7 +478,7 @@
 		margin: 0;
 	}
 
-	/* ── Library scan ── */
+	/* Library scan */
 	.scan-status {
 		font-size: 0.95rem;
 		color: var(--text-secondary);
@@ -555,7 +549,7 @@
 
 	.done-check { color: var(--accent); font-size: 1.25rem; }
 
-	/* ── Sensory profile emoji picker ── */
+	/* Sensory profile emoji picker */
 	.emoji-picker {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -593,7 +587,7 @@
 	.emoji-glyph { font-size: 1.65rem; line-height: 1; }
 	.emoji-name  { font-size: 0.7rem; color: var(--text-secondary); line-height: 1; }
 
-	/* ── Theme cards ── */
+	/* Theme cards */
 	.theme-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -641,7 +635,7 @@
 		font-weight: 700;
 	}
 
-	/* ── Buttons ── */
+	/* Buttons */
 	.screen-actions {
 		display: flex;
 		flex-direction: column;
@@ -703,7 +697,7 @@
 
 	.btn-skip:hover { color: var(--text-secondary); text-decoration-color: currentColor; }
 
-	/* ── Progress dots ── */
+	/* Progress dots */
 	.dots {
 		display: flex;
 		justify-content: center;
@@ -723,7 +717,7 @@
 	.dot.past   { background: color-mix(in srgb, var(--accent) 50%, transparent); }
 	.dot.active { background: var(--accent); width: 20px; }
 
-	/* ── Reduced motion ── */
+	/* Reduced motion */
 	@media (prefers-reduced-motion: reduce) {
 		.screen        { animation: none; }
 		.btn-primary   { transition: filter 0.15s; }

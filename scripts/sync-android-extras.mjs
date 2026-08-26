@@ -52,7 +52,7 @@ if (!manifest.includes('READ_MEDIA_AUDIO')) {
 	console.log('[sync-android-extras] manifest permissions already present');
 }
 
-// 3. RECORD_AUDIO (v3 Phase 2 — the microphone), idempotent like the rest
+// 3. RECORD_AUDIO — the microphone, idempotent like the rest
 const manifest2 = readFileSync(manifestPath, 'utf8');
 if (!manifest2.includes('RECORD_AUDIO')) {
 	const anchor = '<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />';
@@ -70,8 +70,7 @@ if (!manifest2.includes('RECORD_AUDIO')) {
 	console.log('[sync-android-extras] RECORD_AUDIO already present');
 }
 
-// 4. POST_NOTIFICATIONS (U1 — the MediaSession bridge's lockscreen controls
-// ride a MediaStyle notification; API 33+ gates all notifications behind this)
+// 4. POST_NOTIFICATIONS — API 33+ gates all notifications behind this
 const manifest3 = readFileSync(manifestPath, 'utf8');
 if (!manifest3.includes('POST_NOTIFICATIONS')) {
 	const anchor = '<uses-permission android:name="android.permission.RECORD_AUDIO" />';

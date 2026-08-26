@@ -127,10 +127,8 @@
 			// Prefer synced lyrics (LRC) over plain text.
 			const lyrics = result?.syncedLyrics ?? result?.plainLyrics ?? null;
 			if (lyrics) {
-				// Auto-persist at once via saveLyrics(): fetch_lyrics is a flaky
-				// network call, so a found result is saved immediately rather than
-				// waiting for a manual Save that, if skipped, lost it and re-fetched
-				// next visit — the "found once, gone the next time" bug.
+				// Auto-persist at once: fetch_lyrics is a flaky network call, so a
+				// found result is saved rather than waiting for a manual Save.
 				fetchedLyrics = lyrics;
 				await saveLyrics();
 			} else {
@@ -285,7 +283,7 @@
 		color: white;
 	}
 
-	/* ── Background ── */
+	/* Background */
 	.art-bg {
 		position: absolute;
 		inset: 0;
@@ -317,7 +315,7 @@
 		background: rgba(8, 10, 22, 0.55);
 	}
 
-	/* ── Header ── */
+	/* Header */
 	.header {
 		position: relative;
 		z-index: 2;
@@ -378,7 +376,7 @@
 		text-overflow: ellipsis;
 	}
 
-	/* ── Lyrics scroll ── */
+	/* Lyrics scroll */
 	.lyrics-scroll {
 		flex: 1;
 		overflow-y: auto;
@@ -415,7 +413,7 @@
 		text-shadow: 0 0 28px rgba(255, 255, 255, 0.4);
 	}
 
-	/* ── Center messages ── */
+	/* Center messages */
 	.center-message {
 		display: flex;
 		flex-direction: column;
@@ -444,7 +442,7 @@
 		margin: 0;
 	}
 
-	/* ── Find Lyrics UI ── */
+	/* Find Lyrics UI */
 	.find-lyrics-btn {
 		margin-top: 0.75rem;
 		padding: 0.45rem 1.25rem;
@@ -529,7 +527,7 @@
 
 	.dismiss-btn:hover { background: rgba(255, 255, 255, 0.14); color: white; }
 
-	/* ── Font size controls ── */
+	/* Font size controls */
 	.font-controls {
 		position: absolute;
 		bottom: 0.85rem;

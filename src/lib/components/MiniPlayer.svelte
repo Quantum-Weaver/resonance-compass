@@ -29,8 +29,7 @@
 	const playbackError = $derived(playerStore.playbackError);
 	const trackLabel = $derived(track ? `${track.title} — ${track.artist}` : 'No music playing');
 
-	// The visualizer is full-screen and drawerless; the nav toggle hides there,
-	// as the old floating hamburger did (the Sidebar force-closes itself too).
+	// The visualizer is full-screen and drawerless, so the nav toggle hides.
 	const isVisualizer = $derived(page.url.pathname === '/visualizer');
 
 	function toggleExpanded() {
@@ -120,12 +119,9 @@
 		border-top: 1px solid var(--border-color);
 		padding-bottom: env(safe-area-inset-bottom, 0px);
 		transition: background-color 0.2s ease;
-		/* Own compositor layer: large relayouts elsewhere (e.g. the settings EQ
-		   section expanding) could leave a stale painted copy of this fixed bar
-		   in the Android WebView — the "ghost MiniPlayer" artifact.
-		   translateZ alone proved insufficient on the S25 WebView (KP sighted
-		   the ghost as an empty player-sized box, 2026-07-19): promote harder
-		   and isolate — paired with per-section paint containment in Settings. */
+		/* Its own compositor layer: without it the Android WebView leaves a
+		   stale painted copy of this fixed bar after a large relayout.
+		   translateZ alone is not enough — it must also isolate. */
 		transform: translateZ(0);
 		will-change: transform;
 		backface-visibility: hidden;
@@ -291,13 +287,10 @@
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		/* Once narrowed by 3.5rem to clear the fixed hamburger at bottom-left; that
-		   button moved inside this bar on 2026-08-22, so the strip has the whole
-		   width again. */
 		margin: 0 auto;
 	}
 
-	/* The bar's skip buttons — 44px floors per U8's ruling. */
+	/* The bar's skip buttons — 44px floors. */
 	.mp-skip {
 		background: none;
 		border: none;

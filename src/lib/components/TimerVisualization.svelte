@@ -24,7 +24,7 @@
 		return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 	}
 
-	// ── SAND — The Keeper's Hourglass ──────────────────────────────────────────
+	// SAND — the hourglass
 
 	const SAND_COLORS = ['#FDCB6E', '#E17055', '#C49A6C', '#8B5A2B', '#D4A853', '#B8732A'] as const;
 
@@ -209,7 +209,7 @@
 		rafId = requestAnimationFrame(sandLoop);
 	}
 
-	// ── DISSOLVE PATTERNS — Mandala, Flower of Life, Metatron's Cube ────────────
+	// DISSOLVE PATTERNS — Mandala, Flower of Life, Metatron's Cube
 
 	let dissolveInitialized = false;
 	let dissolvePixels: Uint8ClampedArray | null = null;
@@ -394,7 +394,7 @@
 		rafId = requestAnimationFrame(dissolveLoop);
 	}
 
-	// ── BREATHING — pure SVG/CSS ─────────────────────────────────────────────────
+	// BREATHING — pure SVG/CSS
 
 	const breathCycleSecs = $derived(() => {
 		const speed = 1 - progress * 0.5;
@@ -408,7 +408,7 @@
 		return `rgb(${r},${g},${b})`;
 	});
 
-	// ── Lifecycle ──────────────────────────────────────────────────────────────
+	// Lifecycle
 
 	function isDissolveMode(m: string) {
 		return m === 'dissolve' || m === 'flower' || m === 'metatron' || m === 'cycle';

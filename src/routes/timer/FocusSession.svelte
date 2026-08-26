@@ -8,12 +8,12 @@
 	import { focusStore, type FocusSession, type FocusRecord } from '$lib/stores/focus.svelte';
 	import type { Track } from '$lib/types/types';
 
-	// ── Phase ─────────────────────────────────────────────────────────────────
+	// Phase
 
 	type Phase = 'setup' | 'active' | 'complete';
 	let phase = $state<Phase>('setup');
 
-	// ── Settings ──────────────────────────────────────────────────────────────
+	// Settings
 
 	let selectedDuration = $state(25);
 	let customDuration = $state(30);
@@ -28,7 +28,7 @@
 		isCustom ? Math.max(1, customDuration) * 60_000 : selectedDuration * 60_000
 	);
 
-	// ── Active session state ──────────────────────────────────────────────────
+	// Active session state
 
 	let remaining = $state(0);
 	let elapsed = $state(0);
@@ -37,7 +37,7 @@
 	let tracksPlayed = $state(0);
 	let completedRecord = $state<FocusRecord | null>(null);
 
-	// ── Track counting ────────────────────────────────────────────────────────
+	// Track counting
 
 	let prevTrackId = '';
 
@@ -49,7 +49,7 @@
 		}
 	});
 
-	// ── Timer ─────────────────────────────────────────────────────────────────
+	// Timer
 
 	let intervalId: ReturnType<typeof setInterval> | null = null;
 
@@ -77,7 +77,7 @@
 		if (intervalId) { clearInterval(intervalId); intervalId = null; }
 	}
 
-	// ── Hold-to-end ───────────────────────────────────────────────────────────
+	// Hold-to-end
 
 	let endHoldProgress = $state(0);
 	let endHoldRafId = 0;
@@ -110,7 +110,7 @@
 		phase = 'setup';
 	}
 
-	// ── Session lifecycle ─────────────────────────────────────────────────────
+	// Session lifecycle
 
 	async function startFocus() {
 		let queue: Track[] = [];
@@ -182,7 +182,7 @@
 		elapsed = 0;
 	}
 
-	// ── Helpers ───────────────────────────────────────────────────────────────
+	// Helpers
 
 	function fmtMs(ms: number): string {
 		const total = Math.ceil(Math.max(0, ms) / 1000);
@@ -201,7 +201,7 @@
 		});
 	}
 
-	// ── Lifecycle ─────────────────────────────────────────────────────────────
+	// Lifecycle
 
 	onMount(() => {
 		const s = focusStore.loadSettings();
@@ -239,7 +239,7 @@
 	});
 </script>
 
-<!-- ── Setup ── -->
+<!-- Setup -->
 {#if phase === 'setup'}
 	<div class="focus-page">
 		<header class="focus-header">
@@ -342,7 +342,7 @@
 		{/if}
 	</div>
 
-<!-- ── Active session ── -->
+<!-- Active session -->
 {:else if phase === 'active'}
 	{@const sess = focusStore.activeSession}
 	{@const planned = sess?.durationMs ?? 1}
@@ -433,7 +433,7 @@
 		{/if}
 	</div>
 
-<!-- ── Complete ── -->
+<!-- Complete -->
 {:else if phase === 'complete'}
 	<div class="complete-overlay">
 		<div class="complete-card">
@@ -477,7 +477,7 @@
 		border-width: 0;
 	}
 
-	/* ── Setup ── */
+	/* Setup */
 	.focus-page {
 		padding: 2rem 1.5rem 3rem;
 		max-width: 600px;
@@ -596,7 +596,7 @@
 	.start-btn:hover { opacity: 0.88; }
 	.start-btn:active { transform: scale(0.98); }
 
-	/* ── History ── */
+	/* History */
 	.history-header {
 		display: flex;
 		align-items: center;
@@ -640,7 +640,7 @@
 	}
 	.h-planned { flex-shrink: 0; font-size: 0.77rem; color: var(--text-secondary); }
 
-	/* ── Active ── */
+	/* Active */
 	.active-overlay {
 		display: flex;
 		flex-direction: column;
@@ -766,7 +766,7 @@
 		to { opacity: 1; transform: translateX(-50%) translateY(0); }
 	}
 
-	/* ── Complete ── */
+	/* Complete */
 	.complete-overlay {
 		position: fixed;
 		inset: 0;

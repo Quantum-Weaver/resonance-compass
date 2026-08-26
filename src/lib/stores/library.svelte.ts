@@ -16,27 +16,18 @@ let lastScanned = $state<number | null>(null);
 // SQLite bound-parameter limit is 999. 13 cols x 50 rows = 650 params per batch.
 const INSERT_BATCH = 50;
 
-// ── Album art hangs on the FOLDER ───────────────────────────────────────────
-// KP's ⚛ word, 2026-08-22, verbatim: "album art should be stored in the album
-// folders and songs should derive the art from the album, not each song needing
-// the art separately fetched."
-//
-// So the art is a FILE in the album's own folder, `album_art` maps folder →
-// that file, and a song's `coverArt` is read from it ONCE per folder and shared
-// by every track in it. The read result is cached here, in module memory only —
-// never back into the DB, which is the whole point.
+// Album art is a FILE in the album's folder; `album_art` maps folder → that
+// file, read once per folder and cached here in module memory only — never
+// persisted back into the DB.
 const coverCache = new Map<string, string>();
 
-/** The album folder a URI lives in — the raw parent directory, byte-for-byte
- *  what Rust's `folder_of` returns, because it is the key both sides share.
- *  Deliberately NOT the disc-stripped `folderOf` below: art sits in the real
- *  directory, so a "Disc 2" subfolder keeps its own cover file. */
+/** The album folder a URI lives in — the raw parent directory, matching
+ *  Rust's `folder_of`. Deliberately NOT the disc-stripped `folderOf` below. */
 function dirOf(uri: string): string {
 	if (uri.includes('://')) return ''; // content:// has no folder we may write into
 	const cut = Math.max(uri.lastIndexOf('/'), uri.lastIndexOf('\\'));
 	if (cut < 0) return '';
-	// A root keeps its separator, exactly as Rust's Path::parent() reports it:
-	// "/a.mp3" → "/", "D:\a.mp3" → "D:\" — never the bare, drive-relative "D:".
+	// A root keeps its separator, matching Rust's Path::parent(): never the bare "D:".
 	let dir = cut === 0 ? uri.slice(0, 1) : uri.slice(0, cut);
 	if (/^[A-Za-z]:$/.test(dir)) dir += uri[cut];
 	return dir;
@@ -63,10 +54,9 @@ function rowToTrack(row: Record<string, unknown>): Track {
 	};
 }
 
-// Builds one upsert statement for a single batch (max INSERT_BATCH rows).
-// cover_art is deliberately excluded — embedded art can be 100-500KB per
-// track, so batching 50 of those into one IPC call risks a huge/failing
-// payload. It's written separately afterward, one UPDATE per track.
+// Builds one upsert statement for a batch (max INSERT_BATCH rows). cover_art
+// is excluded — embedded art can be 100-500KB per track, so it's written
+// separately afterward, one UPDATE per track.
 function buildInsertBatch(vals: unknown[][]): [string, unknown[]] {
 	let p = 1;
 	const rows = vals.map((row) => `(${row.map(() => '$' + p++).join(',')})`);
@@ -126,10 +116,9 @@ async function upsertAlbumArt(folder: string, path: string) {
 	);
 }
 
-// ONE read per album folder, shared by every song in it — the derivation KP
-// asked for. A folder whose cover file has since been deleted is warned about
-// and left alone: the album_art row stays (lose-nothing), and the track keeps
-// whatever art it already had.
+// One read per album folder, shared by every song in it. A folder whose cover
+// file has since been deleted is left alone: the album_art row stays, and the
+// track keeps whatever art it already had.
 async function applyFolderArt(list: Track[]) {
 	const byFolder = await readAlbumArtRows();
 	if (byFolder.size === 0) return;
@@ -158,15 +147,10 @@ async function applyFolderArt(list: Track[]) {
 	}
 }
 
-// ── The one-time sweep (2026-08-22, at KP's ⚛ word) ─────────────────────────
-// Every library scanned before tonight holds one base64 copy of the same album
-// cover in every song row — 100-500 KB each, all of it inside compass.db. This
-// lifts the FIRST copy in each folder out to a real file in that folder, records
-// it in album_art, and only THEN clears the song rows. Order is the whole
-// safety: nothing is dropped from the DB before its replacement is on disk.
-//
-// Idempotent by construction — a folder already in album_art is skipped — and
-// quiet: it logs counts and nothing else.
+// One-time sweep: lifts the first embedded cover per folder into a real file,
+// records it in album_art, then clears the song rows — in that order, so
+// nothing is dropped before its replacement is on disk. Idempotent; a folder
+// already in album_art is skipped.
 async function sweepEmbeddedCoversIntoFolders(list: Track[]) {
 	if (!db) return;
 
@@ -186,12 +170,10 @@ async function sweepEmbeddedCoversIntoFolders(list: Track[]) {
 
 	for (const [folder, { art, ids }] of candidates) {
 		try {
-			// adopt, not save: a folder that already holds a cover file keeps it,
-			// and the row simply learns to point at what was always there.
+			// adopt, not save: a folder that already holds a cover file keeps it.
 			const path = await invoke<string>('adopt_album_cover', { folder, dataUri: art });
 			await upsertAlbumArt(folder, path);
 			folders++;
-			// Only now: the art is on disk and recorded, so the rows may let go.
 			for (let i = 0; i < ids.length; i += INSERT_BATCH) {
 				const slice = ids.slice(i, i + INSERT_BATCH);
 				const marks = slice.map((_, n) => `$${n + 1}`).join(',');
@@ -203,8 +185,7 @@ async function sweepEmbeddedCoversIntoFolders(list: Track[]) {
 		}
 	}
 
-	// The in-memory rows follow the DB; applyFolderArt hands the folder's file
-	// back to them a moment later.
+	// applyFolderArt hands the folder's file back to these rows a moment later.
 	for (const t of list) {
 		if (emptied.has(t.id)) t.coverArt = undefined;
 	}
@@ -230,12 +211,10 @@ function folderOf(uri: string): string {
 	return dir.replace(/[\\/](disc|cd)[\s._-]*\d+\s*$/i, '');
 }
 
-// Builds the album/artist groupings from a flat track list.
-// Artist dedup is case-insensitive (.trim().toLowerCase()); album id follows
-// the "albumName|||artistName" format (CLAUDE.md), gaining a "|||discriminator"
-// suffix only when several releases share both name and artist (e.g. three
-// self-titled albums): distinct tag years split first, source folders only when
-// no year info exists at all — a lone tagged year must not split disc folders.
+// Builds the album/artist groupings from a flat track list. Artist dedup is
+// case-insensitive; album id follows "albumName|||artistName", gaining a
+// "|||discriminator" suffix when several releases share both name and artist:
+// distinct tag years split first, source folders only when no year info exists.
 function setTracks(newTracks: Track[]) {
 	tracks = newTracks;
 
@@ -273,8 +252,7 @@ function setTracks(newTracks: Track[]) {
 				name: albumName,
 				artist: artistName,
 				tracks: subTracks,
-				// The album's art IS its folder's art — every track already carries
-				// the same string, read once from the one cover file.
+				// The album's art IS its folder's art, read once from the one cover file.
 				coverArt: subTracks.find((t) => t.coverArt)?.coverArt,
 				year: subTracks.find((t) => t.year != null)?.year,
 				genre: subTracks[0].genre,
@@ -298,10 +276,9 @@ function setTracks(newTracks: Track[]) {
 	lastScanned = Date.now();
 }
 
-// Note: explicit BEGIN/COMMIT is intentionally omitted — tauri-plugin-sql's
-// SQLx connection pool issues ROLLBACK on connection release, which silently
-// cancels explicit transactions. Each execute() call is autocommitted, and
-// batching keeps each call under SQLite's 999 bound-parameter limit.
+// Explicit BEGIN/COMMIT is intentionally omitted — tauri-plugin-sql's SQLx
+// pool issues ROLLBACK on connection release, silently cancelling explicit
+// transactions. Each execute() call is autocommitted instead.
 async function saveScannedTracks(scannedTracks: Track[]) {
 	if (!db) return;
 
@@ -326,8 +303,7 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 		await db.execute(stmt, params);
 	}
 
-	// Album art: ONE row per folder, pointing at the cover file the Rust scan
-	// found or wrote there — not one base64 copy per song (KP ⚛ 2026-08-22).
+	// Album art: one row per folder, pointing at the cover file the scan wrote there.
 	const artByFolder = new Map<string, string>();
 	for (const t of scannedTracks) {
 		if (t.folder && t.coverPath && !artByFolder.has(t.folder)) {
@@ -339,10 +315,8 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 		coverCache.delete(folder); // re-read on the next load; the file may be new
 	}
 
-	// The one door that still writes songs.cover_art: restoring a backup taken
-	// before tonight, whose tracks carry base64 and no cover file. The sweep at
-	// the next load lifts it into its folder like any other legacy row — nothing
-	// imported is dropped for arriving in the old shape.
+	// Only remaining writer of songs.cover_art: legacy backups with embedded
+	// base64 and no cover file. The sweep migrates them on the next load.
 	for (const t of scannedTracks) {
 		if (t.coverArt && !t.coverPath) {
 			await db.execute('UPDATE songs SET cover_art = $1 WHERE id = $2', [t.coverArt, t.id]);
@@ -350,11 +324,8 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 	}
 }
 
-// Android's dialog plugin rejects directory picks (FolderPickerNotImplemented
-// in tauri-plugin-dialog's mobile branch), so there the standard public music
-// locations are scanned directly instead — readable via plain paths once the
-// vessel grants Media/Audio permission (declared in AndroidManifest.xml; the
-// PERMISSION_DENIED scan error carries the Settings guidance).
+// Android's dialog plugin rejects directory picks, so the standard public
+// music locations are scanned directly instead, once Media/Audio permission is granted.
 const ANDROID_MUSIC_DIRS = ['/storage/emulated/0/Music', '/storage/emulated/0/Download'];
 
 export const isAndroid = browser && navigator.userAgent.includes('Android');
@@ -363,9 +334,8 @@ export const isAndroid = browser && navigator.userAgent.includes('Android');
 // Set by scanLibrary, consumed by MediaPermissionDialog (mounted in +layout).
 let permissionNeeded = $state(false);
 
-// Gate: on Android, make sure media access is granted before scanning — a
-// missing grant doesn't error, it just makes the music invisible (scoped
-// storage), so without this the vessel sees a silent zero-track scan.
+// Gate: on Android, a missing media-access grant doesn't error, it just makes
+// the music invisible (scoped storage) — this checks first to avoid a silent zero-track scan.
 async function scanLibrary() {
 	if (isAndroid) {
 		const { invoke } = await import('@tauri-apps/api/core');
@@ -376,8 +346,7 @@ async function scanLibrary() {
 				return;
 			}
 		} catch (e) {
-			// Bridge unavailable (stale build) — proceed; the zero-track
-			// guidance in runScan still covers the unpermitted case.
+			// Bridge unavailable (stale build) — proceed; runScan still covers the unpermitted case.
 			console.error('[libraryStore] permission check failed:', e);
 		}
 	}
@@ -436,13 +405,9 @@ async function runScan() {
 		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now, folder: dirOf(t.uri) }));
 		await saveScannedTracks(withTimestamps);
 		if (isAndroid && scanned.length > 0 && db) {
-			// Rows from the interim file-picker build hold content:// URIs whose
-			// SAF grants died with that session — permanently unplayable, so drop
-			// them now that the same files are re-scanned under real paths.
 			await db.execute("DELETE FROM songs WHERE uri LIKE 'content://%'");
 		}
-		// Reload from the DB so the view reflects the union of every scanned
-		// folder, not just this pass (scans are additive upserts).
+		// Reload from the DB so the view reflects every scanned folder, not just this pass.
 		await loadTracks();
 		if (isAndroid && scanned.length === 0 && !scanError) {
 			scanError =
@@ -459,12 +424,9 @@ async function runScan() {
 	}
 }
 
-// Art the vessel chose (a Cover Art Archive fetch) lands as a FILE in the album's
-// folder — the same place a scan would have put it — and album_art records it.
-// An album spanning several folders (a multi-disc rip in per-disc subfolders)
-// gets the cover saved into EVERY folder that holds its tracks: each folder is a
-// complete album folder in its own right, and a later scan of only one of them
-// must still find art there.
+// Art the vessel chose lands as a FILE in the album's folder, and album_art
+// records it. An album spanning several folders (a multi-disc rip in per-disc
+// subfolders) gets the cover saved into EVERY folder that holds its tracks.
 async function updateAlbumCoverArt(albumId: string, coverArt: string) {
 	if (!db) return;
 	const album = albums.find((a) => a.id === albumId);
@@ -500,15 +462,11 @@ async function updateTrackLyrics(trackId: string, lyrics: string) {
 	if (track) track.lyrics = lyrics;
 }
 
-// Full data purge: every child table with a FOREIGN KEY to songs(id) must be
-// emptied before songs itself, or SQLite rejects with a foreign-key violation
-// (code 787). The children are mood_events, favorites, and fragments (playlists
-// has no FK). mood_events is deleted HERE — not left to moodStore.purgeAll() —
-// so the entire FK-safe ordering lives in one authoritative place; the previous
-// version deleted songs while mood_events still referenced it, which is what
-// raised 787. moodStore.purgeAll() still runs afterward to reset its in-memory
-// stats (its own DELETE then no-ops). Throws instead of returning silently so
-// the purge UI can tell the vessel when nothing was actually deleted.
+// Full purge: child tables with a FOREIGN KEY to songs(id) — mood_events,
+// favorites, fragments — must be emptied before songs, or SQLite raises a
+// foreign-key violation (787). moodStore.purgeAll() runs afterward to reset
+// its own in-memory stats. Throws instead of failing silently so the UI can
+// report when nothing was purged.
 async function purgeAllData() {
 	if (!db) throw new Error('Database not ready — nothing was purged');
 	await db.execute('DELETE FROM mood_events');
@@ -516,9 +474,8 @@ async function purgeAllData() {
 	await db.execute('DELETE FROM favorites');
 	await db.execute('DELETE FROM playlists');
 	await db.execute('DELETE FROM songs');
-	// The folder → cover mapping goes too, and the in-memory cache with it: the
-	// purge truly purges. The cover FILES stay where they are — they live in the
-	// vessel's own music folders, which this app does not get to empty.
+	// The folder → cover mapping and in-memory cache are purged too. The cover
+	// FILES stay — they live in the vessel's own music folders.
 	await db.execute('DELETE FROM album_art');
 	coverCache.clear();
 	tracks = [];
@@ -567,17 +524,9 @@ function search(query: string): { tracks: Track[]; albums: Album[]; artists: Art
 	};
 }
 
-// ── The missing-track sweep (2026-08-12, at KP's ⚛ word) ────────────────────
-// The gap the 2026-07-02 v1→v2 report named as the only data-correctness one:
-// v2 scans are additive upserts, so a file deleted from disk keeps its row
-// forever. This half REPORTS ONLY — it deletes nothing, because verification
-// comes before deletion, always.
-//
-// A missing track that carries mood tags or fragments is reported as KEPT, not
-// as sweepable. mood_events, favorites and fragments each hold a FOREIGN KEY to
-// songs(id), so removing such a row would take the tags — and the fragment
-// rows, whose WAVs are real files on disk — down with it. Lose-nothing decides
-// that: the row stays, and the room says why.
+// Reports missing tracks only — deletes nothing. A missing track that still
+// carries mood tags or fragments is reported as KEPT rather than sweepable,
+// since removing it would cascade through their FOREIGN KEYs to songs(id).
 export interface MissingTrack {
 	id: string;
 	uri: string;
@@ -612,10 +561,8 @@ async function findMissingTracks(): Promise<MissingTrack[]> {
 		}));
 }
 
-// The removal half, and it only ever runs on ids the caller confirmed. Chunked
-// under SQLite's 999-parameter ceiling (CLAUDE.md rule 3). `favorites` is swept
-// alongside because it holds the same FK; it is reserved-and-unused today, so
-// this is FK hygiene rather than data loss.
+// Removal half — runs only on caller-confirmed ids, chunked under SQLite's
+// 999-parameter limit. `favorites` is swept alongside for FK hygiene (unused today).
 async function removeTracksByIds(ids: string[]): Promise<number> {
 	if (!db || ids.length === 0) return 0;
 	const CHUNK = 400;

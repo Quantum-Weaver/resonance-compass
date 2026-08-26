@@ -21,10 +21,9 @@
 	let selectedDictEmoji = $state<string | null>(null);
 	let editingPersonalDef = $state('');
 
-	// Resolved pending prompts, this session only — tagging a skip prompt logs a
-	// new mood event (matching how manual tagging works) rather than mutating or
-	// deleting the original row, so we track "answered" locally to keep the
-	// Pending list honest without adding delete/update methods to moodStore.
+	// Resolved pending prompts, this session only: tagging a skip prompt logs
+	// a new mood event rather than mutating the original row, so "answered"
+	// is tracked locally to keep the Pending list honest.
 	let resolvedPendingIds = $state<Set<number>>(new Set());
 
 	onMount(() => {
@@ -119,7 +118,7 @@
 		{/each}
 	</div>
 
-	<!-- ── Mood Map ── -->
+	<!-- Mood Map -->
 	{#if activeTab === 'map'}
 		<div class="tab-content">
 			{#if moodStore.loading}
@@ -158,7 +157,7 @@
 		</div>
 	{/if}
 
-	<!-- ── Top Emojis ── -->
+	<!-- Top Emojis -->
 	{#if activeTab === 'emojis'}
 		<div class="tab-content">
 			<p class="insight">{topInsight()}</p>
@@ -186,7 +185,7 @@
 		</div>
 	{/if}
 
-	<!-- ── Pending ── -->
+	<!-- Pending -->
 	{#if activeTab === 'pending'}
 		<div class="tab-content">
 			{#if pendingMoods.length === 0}
@@ -229,7 +228,7 @@
 		</div>
 	{/if}
 
-	<!-- ── Tag Music ── -->
+	<!-- Tag Music -->
 	{#if activeTab === 'tag'}
 		<div class="tab-content">
 			<input
@@ -274,7 +273,7 @@
 		</div>
 	{/if}
 
-	<!-- ── Emoji Dictionary ── -->
+	<!-- Emoji Dictionary -->
 	{#if activeTab === 'dict'}
 		<div class="tab-content dict-tab">
 			<div class="dict-grid">

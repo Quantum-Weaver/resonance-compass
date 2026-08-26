@@ -8,19 +8,17 @@ export type { TimerMode } from '$lib/timer-core/core';
 // Locks to numeric and hides the cycle control when the OS prefers reduced motion.
 export const prefersReducedMotion = browser && coreReducedMotion();
 
-// Reactive snapshot of the core's state — the dress's window into the water.
-// The core lives at $lib/timer-core (mirrored from awen's the-timer, see its
-// MIRROR.md); this store is the Compass coupling the re-homing transmuted
-// into hooks: the music-fade organ on onTick, the pause + ⚛-ruled WAV
-// end-chime on onComplete.
+// Reactive snapshot of the timer core's state ($lib/timer-core, mirrored from
+// awen's the-timer). This store adds the music-fade hook on tick and the
+// pause + end-chime hook on complete.
 let totalSecs = $state(0);
 let remainingSecs = $state(0);
 let isRunning = $state(false);
 let fadeOut = $state(false);
 let mode = $state<TimerMode>(prefersReducedMotion ? 'numeric' : 'sand');
 
-// The music fade stays Compass's own: fades player volume over the final
-// 60 seconds when enabled, restoring on cancel or completion.
+// Fades player volume over the final 60 seconds when enabled, restoring on
+// cancel or completion.
 let fadeInterval: ReturnType<typeof setInterval> | null = null;
 let preTimerVolume = 0;
 
@@ -49,10 +47,9 @@ function stopFade(restore: boolean) {
 	}
 }
 
-// ONE core instance at module scope (the water's own law) so the timer
-// survives navigating away from /timer. The core's synthesized chime system
-// ships OFF: Compass's end-of-timer chime is its own ⚛-ruled dress below —
-// the mirrored WAV, opt-in, natural expiry only (cancel never lands there).
+// One core instance at module scope so the timer survives navigating away
+// from /timer. The core's built-in chime ships OFF — Compass's own WAV
+// end-chime below is opt-in and fires on natural expiry only, never on cancel.
 const core = createTimer({
 	storage: null,
 	onTick: (remaining, total) => {

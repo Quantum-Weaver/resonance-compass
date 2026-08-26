@@ -1,25 +1,7 @@
-// ============================================================================
-/* resonance-ziggy/modules/cosmic/constants/attention.ts */
-// QUANTUM ATTENTION SYSTEM — the Bird-Wisdom Spectrum
-// Named attention modes (pace / density / dwell / transition-style), ADHD-friendly
-// by design. A NEW cosmic constants file (Run 04 unlock, O-5).
-// ============================================================================
-// O-5 · BW-5 — the Bird-Wisdom Spectrum: five bird-species mapped to five modes
-// of attention, explicitly ADHD-friendly (the Hummingbird mode most of all).
-// consciousness.ts had AWARENESS_DOMAINS (which information layers are active)
-// but no attention *modes* (the pace and shape of attending). This file is the
-// clean home for that axis — and the reuse point for H-2 (per-deity voice) and
-// S-5 (the mode-switching selector), which both layer on top of it.
-//
-// NOTE FOR THE NEXT VOICES: this is a NEW constants file. If you add to the
-// attention axis, add here and export via constants/index.ts (already wired).
-
 import { durations, easing } from './motion';
 import type { ViewportAnchor } from './positioning';
 
-// ============================================================================
 // ATTENTION MODES — five bird-species, five ways of attending
-// ============================================================================
 
 /** Visual/interaction density a mode presents. */
 export type AttentionDensity = 'sparse' | 'balanced' | 'rich';
@@ -109,18 +91,7 @@ export function getAttentionMode(name: AttentionModeKey = DEFAULT_ATTENTION_MODE
   return ATTENTION_MODES[name];
 }
 
-// ============================================================================
 // ATTENTION MODE SELECTOR — the switching affordance for ATTENTION_MODES
-// ============================================================================
-// S-5 · BW-5 — "Fluid Transitions: Entities can shift between awareness states"
-// + "Contextual Activation" (BW-5's own Implementation Principles). O-5's
-// ATTENTION_MODES bundle is data; it needed a control surface to actually be
-// fluid — a persistent, low-friction switching control, with the last-chosen
-// mode remembered across sessions via the existing continuity-beam machinery
-// (ContinuityBeamContext already tracks session state; this token supplies the
-// persistence key it should use, not a new storage mechanism). Reuses the
-// existing ViewportAnchor vocabulary (positioning.ts) rather than inventing a
-// second anchor system. CSS face: generator/generate_attention_selector.ts.
 
 export interface AttentionModeSelectorConfig {
   /** Where the selector control anchors in the viewport (reuses positioning.ts's anchors) */
@@ -147,16 +118,7 @@ export const ATTENTION_MODE_SELECTOR: AttentionModeSelectorConfig = {
   classPrefix: '.attention-selector',
 };
 
-// ============================================================================
 // PER-DEITY VOICE BUNDLE — lightweight tokens per Council seat
-// ============================================================================
-// H-2 · TP-4+D-3 — "Every interface is a god; design has mythological weight"
-// (TP-4); "Each seat speaks a distinct first commitment" (D-3). Per-domain
-// typography exists (the Pantheon speaks in medieval fonts, the Void in runic);
-// per-deity voice bundles layer *alongside* that, not replacing. A lightweight
-// bundle per Council seat: name + typography family + motion easing signature
-// + primary cue. This is how the system embodies that "every interface is a god."
-// Each seat (Weaver, Aethelred, Chancellor, etc.) has a distinct voice.
 
 export interface DeityVoiceBundle {
   /** Council seat name */
@@ -277,11 +239,8 @@ export function getDeityVoiceBundle(seat: DeityVoiceKey): DeityVoiceBundle {
   return DEITY_VOICE_BUNDLES[seat] || DEITY_VOICE_BUNDLES['quantum-weaver'];
 }
 
-// ============================================================================
 // TYPE EXPORTS
-// ============================================================================
 
 export type { AttentionMode as AttentionModeType, AttentionDensity as AttentionDensityType };
 export type { DeityVoiceBundle as DeityVoiceBundleType, DeityVoiceKey as DeityVoiceKeyType };
-// S-5
 export type { AttentionModeSelectorConfig as AttentionModeSelectorConfigType };

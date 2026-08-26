@@ -10,20 +10,14 @@
 
 	import { modeStore, type ModeName } from '$lib/stores/mode.svelte';
 
-	// Default-collapsed on every platform: the content is the destination, the
-	// nav is a drawer — even on desktop. The open flag lives in uiStore because
-	// the control that toggles it is in the MiniPlayer bar (2026-08-22, the
-	// Echoes remedy of 2026-08-21).
+	// Default-collapsed on every platform. The open flag lives in uiStore
+	// because the control that toggles it is in the MiniPlayer bar.
 	const open = $derived(uiStore.navOpen);
 	let isMobile = $state(true);
 
-	// THE SHRINE — the sidebar consumes the-cumdach (the spring's navigation
-	// shell; this very menu is its proving fixture, and Compass its first
-	// consumer). Compass declares the particulars — hats, doors, faces, the
-	// foot — and the panels are DERIVED from the screen's own measure, never
-	// arranged by opinion. The hats are KP's ruled four; Library IS home
-	// (the U9 merge). The worn hat persists through modeStore and never
-	// switches itself.
+	// The app declares the particulars — hats, doors, faces, the foot — and
+	// cumdach derives the panels from the screen's own measure. The worn hat
+	// persists through modeStore and never switches itself.
 	type CompassDoor = Door & { href: string; icon: IconName };
 
 	const door = (id: string, href: string, icon: IconName, label: string): CompassDoor => ({
@@ -66,8 +60,6 @@
 			{
 				id: 'understand',
 				label: 'Understand',
-				// The visualizer moved here from Listen on 2026-08-22 at KP's ⚛ word:
-				// "visualizer should be in the understand menu not listening."
 				doors: [
 					door('resonance', '/resonance', 'resonance', 'Resonance'),
 					door('visualizer', '/visualizer', 'visualizer', 'Visualizer'),
@@ -77,9 +69,8 @@
 		foot: { door: door('settings', '/settings', 'settings', 'Settings') },
 	};
 
-	// The shrine's costs in this app's own pixels (the 44px calm floor lives
-	// inside the door cost, gap included; over-reserving errs safe), and the
-	// faces — cosmic's colors, the app's emoji; words always ride underneath.
+	// The shrine's costs in this app's own pixels — the 44px calm floor lives
+	// inside the door cost, gap included — and the faces.
 	const COSTS = { door: 48, head: 64, switchButton: 58, switchColumns: 2 };
 	const PALETTE = {
 		colors: [
@@ -90,11 +81,8 @@
 		],
 		emojis: ['🎧', '🎛️', '🧘', '🌀'],
 	};
-	// The MiniPlayer bar is a declared edge, honored by arithmetic — the
-	// clearance that was once a CSS-only mend (U12) is an INPUT now. It is the
-	// ONLY edge again: the floating hamburger that used to claim bottom 56–101px
-	// moved inside the bar on 2026-08-22 (the Echoes remedy of 2026-08-21), so
-	// nothing else paints over the sidebar's foot.
+	// The MiniPlayer bar is the only declared edge, and it is an input to the
+	// arithmetic rather than a CSS-only clearance.
 	const RESERVED = 48;
 
 	let land = $state({ height: 900, reserved: RESERVED });
@@ -104,8 +92,7 @@
 		land = { height: window.innerHeight, reserved: RESERVED };
 	}
 
-	// DYNAMICS ALWAYS RE-DERIVE — any new land re-runs the pure formula; the
-	// worn panel survives by its hat's identity.
+	// Any new land re-runs the formula; the worn panel survives by its hat.
 	$effect(() => {
 		const l = land;
 		shrine = rederive(
@@ -127,17 +114,15 @@
 	const wornDoors = $derived((wornPanel?.doors ?? []) as CompassDoor[]);
 	const footDoor = MENU.foot.door as CompassDoor;
 
-	// The visualizer is a full-screen immersive experience — no nav toggle, no
-	// sidebar. Its own z-index (100) sits above the sidebar panel (50), so an
-	// opened panel would be invisible; the MiniPlayer hides its toggle there
-	// (see MiniPlayer.svelte) and this force-closes the drawer.
+	// The visualizer's z-index (100) sits above the sidebar panel (50), so an
+	// opened panel would be invisible — force the drawer closed there.
 	const isVisualizer = $derived(page.url.pathname === '/visualizer');
 
 	$effect(() => {
 		if (isVisualizer) uiStore.setNavOpen(false);
 	});
 
-	// The vessel opened the MiniPlayer panel — they want to see it, not the nav.
+	// The MiniPlayer panel opening closes the nav.
 	$effect(() => {
 		if (uiStore.miniPlayerExpanded) uiStore.setNavOpen(false);
 	});
@@ -146,7 +131,7 @@
 		isMobile = window.innerWidth < 768;
 		modeStore.load();
 		measure();
-		// Wake wearing the persisted hat — the vessel's choice, not the app's.
+		// Wake wearing the persisted hat.
 		const i = shrine.panels.findIndex((p) => p.hatId === modeStore.current && !p.continued);
 		if (i >= 0) shrine = wear(shrine, i);
 		window.addEventListener('resize', measure);
@@ -263,10 +248,8 @@
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
-		/* The MiniPlayer bar (48px, fixed, z-index 110) always paints over the
-		   sidebar (50) — the foot must clear it or Settings is buried (KP's
-		   desktop-walk catch, 2026-08-06). Must stay equal to RESERVED in the
-		   script above: one edge, declared once, honored twice. */
+		/* The MiniPlayer bar (fixed, z-index 110) paints over the sidebar (50),
+		   so the foot must clear it. Must stay equal to RESERVED above. */
 		padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
 	}
 

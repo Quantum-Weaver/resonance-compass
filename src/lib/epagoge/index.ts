@@ -1,25 +1,4 @@
 // the-epagoge — the leading-in, pure.
-//
-// Aristotle's word: being led from particulars toward the whole. This
-// water owns the WALK — ordered steps, forward flow, skip always
-// lawful, progression dots derived, completion honest — and never the
-// particulars: what a step offers, how it is dressed, where answers
-// are kept are all the consumer's (the four onboarding pages this
-// water unifies each bring their own).
-//
-// THE LAWS, AS THE CORE KEEPS THEM:
-//   · THE KEY LAW (the U13 mend, engraved): a choice is recorded by
-//     its KEY, never its shown name — display names drift; keys hold.
-//   · ADVICE NEVER GATES: no step refuses passage for an empty
-//     answer; skip is lawful wherever the walk stands.
-//   · THE DOORWAY LAW: the leading-in never locks a door — every
-//     answer is the consumer's to change later; completion says what
-//     was given and what was skipped, honestly.
-//   · Trouble is told as data, never thrown; "later" stays lawful
-//     mid-trouble (the scan screen's shape, generalized).
-//   · Unknown keys on step definitions ride whole (the erasure law).
-//   · Pure absolutely: no disk, no clock, no DOM — every move takes a
-//     walk and returns a new one; the given walk is never mutated.
 
 export interface Offer {
 	key: string;

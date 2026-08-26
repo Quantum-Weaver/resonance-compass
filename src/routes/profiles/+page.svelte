@@ -5,7 +5,7 @@
 	const profiles = $derived(profileStore.profiles);
 	const activeId = $derived(profileStore.activeProfileId);
 
-	// ── Create form ────────────────────────────────────────────────────────────
+	// Create form
 
 	let creating = $state(false);
 	let newName = $state('');
@@ -26,7 +26,7 @@
 		newEmoji = '✨';
 	}
 
-	// ── Edit state ─────────────────────────────────────────────────────────────
+	// Edit state
 
 	let editingId = $state<string | null>(null);
 	let editName = $state('');
@@ -59,7 +59,7 @@
 		editingId = null;
 	}
 
-	// ── Delete confirm ─────────────────────────────────────────────────────────
+	// Delete confirm
 
 	let confirmDeleteId = $state<string | null>(null);
 
@@ -69,7 +69,7 @@
 		if (editingId === id) editingId = null;
 	}
 
-	// ── Activation ─────────────────────────────────────────────────────────────
+	// Activation
 
 	let activating = $state<string | null>(null);
 
@@ -79,7 +79,7 @@
 		activating = null;
 	}
 
-	// ── Summary line ───────────────────────────────────────────────────────────
+	// Summary line
 
 	function summarize(p: SensoryProfile): string {
 		const parts: string[] = [];
@@ -282,7 +282,7 @@
 		padding-bottom: 1.5rem;
 	}
 
-	/* ── Header ── */
+	/* Header */
 	.page-header {
 		display: flex;
 		align-items: center;
@@ -310,7 +310,7 @@
 		margin: 0;
 	}
 
-	/* ── Create ── */
+	/* Create */
 	.create-btn {
 		padding: 0.5rem 0.9rem;
 		min-height: 44px;
@@ -418,7 +418,7 @@
 		flex-shrink: 0;
 	}
 
-	/* ── Empty state ── */
+	/* Empty state */
 	.empty-state {
 		flex: 1;
 		display: flex;
@@ -435,7 +435,7 @@
 	.empty-title { font-size: 1rem; font-weight: 600; margin: 0; }
 	.empty-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-	/* ── Cards ── */
+	/* Cards */
 	.profile-list {
 		display: flex;
 		flex-direction: column;
@@ -561,7 +561,7 @@
 		padding: 0;
 	}
 
-	/* ── Edit panel ── */
+	/* Edit panel */
 	.edit-panel {
 		border-top: 1px solid var(--border-color);
 		padding: 0.85rem 0.9rem;

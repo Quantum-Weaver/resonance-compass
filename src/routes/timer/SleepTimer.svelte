@@ -30,12 +30,9 @@
 		if (isValidCustom && customMins !== null) timerStore.start(customMins);
 	}
 
-	// The end-of-timer chime — KP's ⚛ word ("optional sound at end of
-	// timer… in case it is being used without music"): opt-in, silence the
-	// default a hand chose. This component holds only the TOGGLE; the chime
-	// itself plays from the timer STORE at natural expiry, so it sounds
-	// even when the vessel has backed out of this screen (KP's catch,
-	// same sitting). A completion is an arrival, never an alarm.
+	// The end-of-timer chime is opt-in. This component holds only the TOGGLE;
+	// the chime plays from the timer STORE at natural expiry, so it sounds
+	// even after backing out of this screen.
 	const CHIME_KEY = 'timer_end_chime';
 	let endChime = $state(false);
 

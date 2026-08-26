@@ -8,10 +8,8 @@
 	import TrackItem from '$lib/components/TrackItem.svelte';
 	import type { Album } from '$lib/types/types';
 
-	// The continue-strip — Home's living pieces, inherited at the U9 merge
-	// (KP's ⚛ ruling: Library is the landing; greeting · resume · recently
-	// played carry over, slim). Recording of recent albums lives in the
-	// layout, which is always awake; this page only reads.
+	// The continue-strip: greeting, resume, recently played. Recording of
+	// recent albums lives in the layout, which is always awake; this reads.
 	const VESSEL_KEY = 'resonance-compass-vessel-name';
 	const RECENT_KEY = 'recent_albums';
 
@@ -96,9 +94,8 @@
 		debouncedQuery ? genres.filter((g) => g.toLowerCase().includes(debouncedQuery)) : genres
 	);
 
-	// The Search room's load-bearing capability, carried in at the ruled
-	// Search→Library merge: track search, playing the full filtered set as
-	// the queue from the tapped row (never just a preview slice).
+	// Track search: playing the full filtered set as the queue from the
+	// tapped row, never just a preview slice.
 	const filteredTracks = $derived(
 		debouncedQuery
 			? tracks.filter(
@@ -115,13 +112,9 @@
 		playerStore.setQueue(filteredTracks, i);
 	}
 
-	// The recent-searches and favorites cards — KP's ⚛ ruling ("since the
-	// search is within the library now… callable cards or buttons at the
-	// top of the library, not intrusive"): called from the menu bar, opened
-	// by the hand, never imposed. Recent searches carry the retired search
-	// room's exact behavior — saved when a result is ACTED on, ten kept,
-	// newest first, SAME storage key, so every hand's history survives the
-	// move. Favorites is Home's rested albums row, revived as a card.
+	// The recent-searches and favorites cards: called from the menu bar,
+	// never imposed. Recent searches keep the SAME storage key as the
+	// retired search room — saved when a result is acted on, ten kept.
 	const RECENT_SEARCHES_KEY = 'recent_searches';
 	let recentSearches = $state<string[]>([]);
 	let openCard = $state<'recent' | 'favorites' | null>(null);
@@ -207,9 +200,7 @@
 	<div class="continue-strip">
 		<p class="strip-greeting">{greeting()}</p>
 		<div class="strip-actions">
-			<!-- The EQ door in the continue-strip — KP's ⚛ word 2026-08-08:
-			     "a button in listen continued that opens the eq directly."
-			     Rides the MiniPlayer's existing deep link; calm, never imposed. -->
+			<!-- The EQ door: rides the MiniPlayer's existing deep link. -->
 			<button class="eq-btn" onclick={() => goto('/settings#eq')} title="Open the equalizer">
 				🎛️ EQ
 			</button>
@@ -244,8 +235,7 @@
 		/>
 
 		<div class="tabs">
-			<!-- The view dropdown — KP's ⚛ word: "let these be a dropdown…
-			     still inline, but less bulk." -->
+			<!-- The view dropdown. -->
 			<select class="view-select" bind:value={viewMode} aria-label="Browse by">
 				<option value="artists">Artists</option>
 				<option value="albums">Albums</option>

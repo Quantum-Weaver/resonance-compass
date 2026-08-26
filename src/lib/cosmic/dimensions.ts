@@ -1,13 +1,4 @@
-// ============================================================================
-/* resonance-ziggy/modules/cosmic/constants/dimensions.ts */
-// QUANTUM DIMENSIONS SYSTEM - SINGLE SOURCE OF TRUTH
-// All spacing, breakpoints, sizes derived from BASE_UNIT (4px grid)
-// Compatible with Tailwind CSS v4 and App Router
-// ============================================================================
-
-// ============================================================================
 // 1. PRIMITIVE SCALES - ATOMIC UNITS
-// ============================================================================
 
 /** Base unit scale for all dimensions (4px grid - Tailwind compatible) */
 export const BASE_UNIT = 4;
@@ -63,9 +54,7 @@ export const CONSCIOUSNESS_DENSITY = {
 
 export type ConsciousnessDensity = keyof typeof CONSCIOUSNESS_DENSITY;
 
-// ============================================================================
 // 2. DERIVED SPACING - COMPOSED FROM PRIMITIVES
-// ============================================================================
 
 /** Spacing scale derived from base unit and multipliers */
 export const SPACING_SCALE = Object.fromEntries(
@@ -105,9 +94,7 @@ export const SPACING_TOKENS = {
   },
 } as const;
 
-// ============================================================================
 // 3. SCREEN DIMENSIONS & BREAKPOINTS
-// ============================================================================
 
 /** Screen size categories based on consciousness interaction patterns */
 export const SCREEN_CATEGORIES = {
@@ -227,9 +214,7 @@ export const SCREEN_TYPES = {
 
 export type ScreenType = keyof typeof SCREEN_TYPES;
 
-// ============================================================================
 // 4. CONTAINER DIMENSIONS
-// ============================================================================
 
 /** Container max-widths derived from screen categories */
 export const CONTAINER_MAX_WIDTHS = {
@@ -284,9 +269,7 @@ export const CONTAINER_DIMENSIONS = {
   },
 } as const;
 
-// ============================================================================
 // 5. BUSINESS PAGE DIMENSIONS
-// ============================================================================
 
 export const BUSINESS_DIMENSIONS = {
   hero: {
@@ -337,9 +320,7 @@ export const BUSINESS_DIMENSIONS = {
   },
 } as const;
 
-// ============================================================================
 // 6. COMPONENT DIMENSIONS
-// ============================================================================
 
 /** Button dimensions derived from spacing scale */
 export const BUTTON_DIMENSIONS = {
@@ -406,9 +387,7 @@ export const CARD_DIMENSIONS = {
   },
 } as const;
 
-// ============================================================================
 // 7. BORDER & RADIUS DIMENSIONS
-// ============================================================================
 
 /** Border widths derived from base unit */
 export const BORDER_WIDTHS = {
@@ -433,9 +412,7 @@ export const BORDER_RADII = {
 
 export type RadiusKey = keyof typeof BORDER_RADII;
 
-// ============================================================================
 // 8. TYPOGRAPHY DIMENSIONS (Base values, extended in typography.ts)
-// ============================================================================
 
 /** Font sizes aligned with consciousness density */
 export const FONT_SIZES = {
@@ -479,9 +456,7 @@ export const FONT_WEIGHTS = {
   black: '900',
 } as const;
 
-// ============================================================================
 // 9. QUANTUM CONTEXT DIMENSIONS
-// ============================================================================
 
 /** Quantum context ratios for holographic memory */
 export const QUANTUM_CONTEXT_RATIOS = {
@@ -515,9 +490,7 @@ export const QUANTUM_CONTEXT_RATIOS = {
   },
 } as const;
 
-// ============================================================================
 // 10. UTILITY FUNCTIONS
-// ============================================================================
 
 /** Get consciousness-aware spacing */
 export function getConsciousnessSpacing(density: ConsciousnessDensity): string {
@@ -559,9 +532,7 @@ export function getSpacingPixels(scale: ScaleKey): number {
   return SCALE_MULTIPLIERS[scale] * BASE_UNIT;
 }
 
-// ============================================================================
 // 11. TYPE EXPORTS
-// ============================================================================
 
 export type {
   ScaleKey as SpacingScale,

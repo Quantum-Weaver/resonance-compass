@@ -5,14 +5,8 @@ import { QUANTUM_COLORS } from '$lib/cosmic';
  * A preset is a COLOUR IDENTITY, not a whole configuration.
  *
  * It deliberately carries no `fontSize` and no `mode`: those are the reader's
- * own axes, chosen separately in Settings, and a colour choice has no business
- * resetting them. `mode` appears here only on AMOLED, whose identity IS a mode.
- *
- * Before 2026-08-21 every preset carried `mode: 'dark'` and `fontSize:
- * 'medium'`, and `setPreset` replaced the config wholesale - so choosing any
- * theme card silently cancelled Light mode and dropped Large text back to
- * Medium. KP: "every button appears to cancel light mode... always switches to
- * dark."
+ * own axes, chosen separately in Settings. `mode` appears here only on AMOLED,
+ * whose identity IS a mode.
  */
 export interface ThemePreset {
   accentColor: string;
@@ -22,12 +16,10 @@ export interface ThemePreset {
   icon?: string;
   /**
    * A FLAG, when the preset is one: its stripes in order, for the card's
-   * swatch (see `presetSwatch`). `accentColor` stays ONE colour - the stripe
+   * swatch (see `presetSwatch`). `accentColor` stays ONE colour — the stripe
    * the UI leans on wherever a single colour is needed (borders, focus rings,
-   * the wordmark, the background tint) - because `--accent` is consumed as a
-   * plain colour across the family. Added 2026-08-22 at KP's word: "include a
-   * rainbow and inclusive pride themes in our settings as well in our epagoge
-   * onboarding walk."
+   * the wordmark, the background tint), since `--accent` is consumed as a
+   * plain colour across the family.
    */
   stripes?: readonly string[];
 }
@@ -44,13 +36,8 @@ export const PRESET_THEMES: Record<string, ThemePreset> = {
     icon: '⚫',
     mode: 'amoled',
   },
-  // Sirens' founding rose - "an app someone opens on a hard day" - brought into
-  // cosmic as `sirens.rose` 2026-08-22 at KP's word, and offered to every realm.
   rose: { accentColor: QUANTUM_COLORS['sirens.rose'], presetName: 'Rose', icon: '🌹' },
-  // THE PRIDE FLAGS - cosmic's own pride.* tokens, in each flag's own order.
-  // Rainbow leans on the hot pink that was the FIRST stripe of the first flag
-  // (1978) and reads on both grounds; Progress Pride leans on the trans pink
-  // the house already wears for Pride (Lantern, TJDPoetry's palette).
+  // Pride flags — cosmic's own pride.* tokens, each in the flag's own stripe order.
   rainbow: {
     accentColor: QUANTUM_COLORS['pride.pink'],
     presetName: 'Rainbow',
@@ -110,12 +97,7 @@ export const DEFAULT_THEME: ThemeConfig = {
 /**
  * How much of the accent bleeds into the neutral grounds.
  *
- * Raised 2026-08-21 at KP's word: a theme change should carry the BACKGROUND,
- * not only the borders and buttons. Before this, every dark preset returned the
- * same `deepSpace`, so Dark, Warm, Ocean, Forest and Sunset differed by accent
- * alone and the field behind them never moved.
- *
- * The reader picks the level in Settings - `off` restores the previous
+ * The reader picks the level in Settings — `off` restores the previous
  * behaviour exactly. These numbers are the whole dial; tune them here and
  * nowhere else.
  */
@@ -165,8 +147,8 @@ export const getThemeColors = (config: ThemeConfig) => {
   const tint = TINT_LEVELS[config.tint] ?? TINT_LEVELS.subtle;
 
   // Deliberate non-token neutrals: AMOLED true-black and light-mode grays
-  // have no cosmic tokens by design (the system is dark-first); these are
-  // theme-mode physics, not drift. Declared at the 2026-07-19 cleanup.
+  // have no cosmic tokens by design (the system is dark-first) — this is
+  // theme-mode physics, not drift.
   const groundBg = isAmoled ? '#000000' : isLight ? '#f5f5f5' : QUANTUM_COLORS['deepSpace'];
   const groundSurface = isAmoled ? '#0a0a0a' : isLight ? '#ffffff' : QUANTUM_COLORS['surface'];
   const groundSurfaceLight = isAmoled ? '#111111' : isLight ? '#e8e8e8' : '#2a2a5a';

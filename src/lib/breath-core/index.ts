@@ -1,21 +1,8 @@
 // the-breath — the regulation door's engine, framework-free.
-//
-// RE-HOMED (never extracted) from resonance-compass's Sattva door
-// (src/routes/sattva/+page.svelte — the breathing loop, the phase
-// colors, the canvas glow), 2026-07-30, per KP's law: "the rehoming
-// should not mean extracting." Compass keeps its organ untouched;
-// Hearth's DESIGN-005 (the sattva door) is the designed second
-// consumer. The Sattva page's dressing room — theme, volume, EQ and
-// playlist snapshots, the gentle exit destination — stays app-side,
-// correctly: this engine paces breath; the app arranges the room.
-//
-// The curves are carried verbatim: the four-count rise, the count
-// opacity (0.04 → 0.21 by three-quarters, falling home after), the
-// border's sine pulse, the two phase colors, reduced-motion honored.
 
 export type BreathDuration = '4-4' | '4-6' | '4-8' | '5-5';
 
-/** [inhale ms, exhale ms] — the origin's exact values. */
+/** [inhale ms, exhale ms]. */
 export const BREATH_DURATIONS: Record<BreathDuration, [number, number]> = {
   '4-4': [8000, 8000],
   '4-6': [8000, 12000],
@@ -43,17 +30,15 @@ export interface BreathSample {
 }
 
 /**
- * The pacer: give it a duration name and feed it time; it tells you where
- * the breath stands. Pure — no timers of its own, so any loop drives it
- * (requestAnimationFrame, an interval, a test).
+ * The pacer: give it a duration name and feed it time; it tells you where the
+ * breath stands. Pure — no timers of its own, so any loop drives it.
  */
 export function createBreath(duration: BreathDuration = '4-4') {
   const durations = BREATH_DURATIONS[duration] ?? BREATH_DURATIONS['4-4'];
   let phaseIdx: 0 | 1 = 0;
   let phaseStartTime = 0;
-  // The origin marked "unstarted" with phaseStartTime === 0 — safe under
-  // performance.now(), which is never zero. This pure API accepts any
-  // clock, so unstarted gets its own flag; a harness mend, not a law change.
+  // Any clock may drive this, including one that starts at 0, so "unstarted"
+  // needs its own flag rather than a zero phaseStartTime.
   let started = false;
 
   function sample(nowMs: number): BreathSample {
@@ -105,11 +90,9 @@ export function createBreath(duration: BreathDuration = '4-4') {
 }
 
 /**
- * The border glow, carried whole — a rounded square that breathes.
- * Plain canvas 2D, no dependencies; draw it each frame with the
- * sample's color and borderAlpha. Honors nothing it shouldn't:
- * callers gate on prefers-reduced-motion before animating, as the
- * origin does.
+ * The border glow — a rounded square that breathes. Plain canvas 2D; draw it
+ * each frame with the sample's color and borderAlpha. The caller gates on
+ * prefers-reduced-motion before animating.
  */
 type RoundRectCtx = CanvasRenderingContext2D & {
   roundRect?: (x: number, y: number, w: number, h: number, r: number) => void;

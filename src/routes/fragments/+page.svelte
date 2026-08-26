@@ -15,7 +15,7 @@
 		fragmentStore.loadFragments();
 	});
 
-	// ── Per-row menu state ─────────────────────────────────────────────────────
+	// Per-row menu state
 
 	let menuOpenId = $state<string | null>(null);
 	let confirmDeleteId = $state<string | null>(null);
@@ -50,7 +50,7 @@
 		renamingId = null;
 	}
 
-	// ── Play a fragment ────────────────────────────────────────────────────────
+	// Play a fragment
 
 	function fragmentToTrack(frag: Fragment): Track {
 		const src = libraryStore.getTrackById(frag.sourceTrackId);
@@ -75,7 +75,7 @@
 		playerStore.setQueue([fragmentToTrack(frag)], 0);
 	}
 
-	// ── Helpers ────────────────────────────────────────────────────────────────
+	// Helpers
 
 	function fmtDur(secs: number): string {
 		const m = Math.floor(secs / 60);
@@ -266,7 +266,7 @@
 		align-items: center;
 	}
 
-	/* ── Empty state ── */
+	/* Empty state */
 	.empty-state {
 		display: flex;
 		flex-direction: column;
@@ -281,7 +281,7 @@
 	.empty-hint { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
 	.empty-quote { font-size: 0.8rem; color: var(--text-secondary); opacity: 0.55; font-style: italic; margin: 0.75rem 0 0; }
 
-	/* ── List ── */
+	/* List */
 	.frag-list {
 		list-style: none;
 		padding: 0;
@@ -347,7 +347,7 @@
 	}
 	.frag-menu-btn:hover { background: rgba(255, 255, 255, 0.05); color: var(--text); }
 
-	/* ── Menu ── */
+	/* Menu */
 	.frag-menu {
 		position: absolute;
 		top: calc(100% + 4px);

@@ -34,8 +34,7 @@
 		albumMenuOpen = false;
 	}
 
-	// The whole album onto the end of the queue — beside Add to Playlist, at
-	// KP's ⚛ word 2026-08-22. Does not interrupt what is playing.
+	// The whole album onto the end of the queue; does not interrupt play.
 	function addAlbumToQueue() {
 		playerStore.addToQueue(albumTracks);
 	}

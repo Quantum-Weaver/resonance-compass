@@ -161,7 +161,7 @@
 		min-height: 100%;
 	}
 
-	/* ── Header ── */
+	/* Header */
 	.page-header {
 		display: flex;
 		align-items: center;
@@ -245,7 +245,7 @@
 		font-family: inherit;
 	}
 
-	/* ── Empty state ── */
+	/* Empty state */
 	.empty-state {
 		flex: 1;
 		display: flex;
@@ -262,7 +262,7 @@
 	.empty-title { font-size: 1rem; font-weight: 600; margin: 0; }
 	.empty-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
 
-	/* ── Groups ── */
+	/* Groups */
 	.group-label {
 		font-size: 0.72rem;
 		font-weight: 700;
@@ -278,7 +278,7 @@
 		border-bottom: 1px solid var(--border-color);
 	}
 
-	/* ── Rows ── */
+	/* Rows */
 	.hist-row {
 		display: flex;
 		align-items: center;

@@ -6,7 +6,7 @@
 	import { playerStore } from '$lib/stores/player.svelte';
 	import type { Track } from '$lib/types/types';
 
-	// ── Working arrangement ────────────────────────────────────────────────────
+	// Working arrangement
 
 	let layers = $state<StudioLayer[]>([]);
 	let mixName = $state('My Mix');
@@ -34,11 +34,8 @@
 		emoji?: string | null;
 	}
 
-	// Takes left with the recorder on 2026-08-12 — they belong to
-	// resonance-sistrum now. An arrangement saved in the takes era keeps its
-	// `take:`-prefixed layers and simply reads them as a missing source, exactly
-	// as a deleted fragment does. Nothing crashes and nothing lies: the layer
-	// row says so plainly and offers to remove itself.
+	// An arrangement saved in the takes era keeps its `take:`-prefixed layers
+	// and reads them as a missing source, exactly as a deleted fragment does.
 	function sourceFor(layer: StudioLayer): StudioSource | undefined {
 		return fragmentStore.fragments.find((f) => f.id === layer.fragmentId);
 	}
@@ -52,7 +49,7 @@
 		}, 0)
 	);
 
-	// ── Layer operations ───────────────────────────────────────────────────────
+	// Layer operations
 
 	function addFragment(frag: Fragment) {
 		const lastEnd = totalDuration;
@@ -80,7 +77,7 @@
 		layers = next;
 	}
 
-	// ── Auto-crossfade ─────────────────────────────────────────────────────────
+	// Auto-crossfade
 	// Lays layers end-to-end in list order, each overlapping the previous by
 	// crossfadeSecs, with matching fade-out/fade-in applied at every seam.
 
@@ -104,7 +101,7 @@
 		clearExport();
 	}
 
-	// ── Export ─────────────────────────────────────────────────────────────────
+	// Export
 
 	function clearExport() {
 		exportedPath = null;
@@ -133,7 +130,7 @@
 				outputName: mixName || 'My Mix',
 			});
 		} catch (e) {
-			// v3 Phase 1: the native engine needs no ffmpeg â€” errors are its own words
+			// The native engine needs no ffmpeg; errors are its own words.
 			exportError = String(e);
 		} finally {
 			exporting = false;
@@ -158,7 +155,7 @@
 		playerStore.setQueue([track], 0);
 	}
 
-	// ── Arrangements ───────────────────────────────────────────────────────────
+	// Arrangements
 
 	function saveCurrent() {
 		const saved = studioStore.saveArrangement(mixName, layers, loadedArrangementId ?? undefined);
@@ -175,7 +172,7 @@
 		clearExport();
 	}
 
-	// ── Helpers ────────────────────────────────────────────────────────────────
+	// Helpers
 
 	function fmtSec(s: number): string {
 		const m = Math.floor(s / 60);
@@ -377,7 +374,7 @@
 	.back-link { color: var(--accent); font-size: 0.9rem; font-weight: 600; text-decoration: none; align-self: flex-start; }
 	.studio-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
 
-	/* ── Name / save / load ── */
+	/* Name / save / load */
 	.name-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
 	.mix-name-input {
@@ -410,7 +407,7 @@
 	.ghost-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 	.ghost-btn:disabled { opacity: 0.4; cursor: default; }
 
-	/* ── Panels ── */
+	/* Panels */
 	.arrangements-panel,
 	.picker-panel {
 		background: var(--bg-surface);
@@ -478,7 +475,7 @@
 	.picker-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	.picker-dur { font-size: 0.78rem; color: var(--accent); flex-shrink: 0; }
 
-	/* ── Timeline viz ── */
+	/* Timeline viz */
 	.timeline-viz {
 		position: relative;
 		background: var(--bg-surface);
@@ -509,7 +506,7 @@
 		font-variant-numeric: tabular-nums;
 	}
 
-	/* ── Empty state ── */
+	/* Empty state */
 	.empty-state {
 		display: flex;
 		flex-direction: column;
@@ -522,7 +519,7 @@
 	.empty-title { font-size: 1rem; font-weight: 600; margin: 0; }
 	.empty-sub { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
 
-	/* ── Layers ── */
+	/* Layers */
 	.layer-list { display: flex; flex-direction: column; gap: 0.6rem; }
 
 	.layer-card {
@@ -584,7 +581,7 @@
 
 	.layer-missing { font-size: 0.8rem; color: #e17055; margin: 0; }
 
-	/* ── Actions ── */
+	/* Actions */
 	.action-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 
 	.add-btn {
@@ -614,7 +611,7 @@
 	}
 	.xfade-unit { font-size: 0.8rem; color: var(--text-muted); }
 
-	/* ── Export ── */
+	/* Export */
 	.export-section {
 		display: flex;
 		flex-direction: column;

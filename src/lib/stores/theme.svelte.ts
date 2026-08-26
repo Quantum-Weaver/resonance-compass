@@ -20,8 +20,7 @@ export const themeStore = {
 		const stored = localStorage.getItem(STORAGE_KEY);
 		if (!stored) return;
 		try {
-			// Merged over the default, never cast blind: a config saved before a
-			// field existed keeps working instead of arriving undefined.
+			// Merged over the default so a config saved before a field existed still works.
 			config = { ...DEFAULT_THEME, ...(JSON.parse(stored) as Partial<ThemeConfig>) };
 		} catch {
 			config = { ...DEFAULT_THEME };

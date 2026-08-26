@@ -4,10 +4,8 @@
 // and closes itself — the vessel tapped the player, they want to see it.
 let miniPlayerExpanded = $state(false);
 
-// Whether the navigation drawer is open. It lives here rather than inside
-// Sidebar.svelte because the control that toggles it now sits in the
-// MiniPlayer bar (2026-08-22, the Echoes remedy of 2026-08-21) - the two
-// components need one shared truth, not two.
+// Whether the navigation drawer is open. Lives here rather than inside
+// Sidebar.svelte because the MiniPlayer bar's control needs the same truth.
 let navOpen = $state(false);
 
 export const uiStore = {

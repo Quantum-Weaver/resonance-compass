@@ -1,12 +1,9 @@
 // The canon's water, arranged by the app's own hand.
 //
-// The twelve definitions live in ./emojis.gen — GENERATED from the Grammar
-// base's thesaurus, folksonomy 'Compass'; never hand-edit, heal by
-// regenerating (see MIRROR.md in this folder). The palette ORDER below is
-// Compass's own: the canon carries no arrangement, and the set's row rules
-// the app sovereign from the pour forward. The order is muscle memory on
-// KP's phone — a sensory contract; reorder only at his word. Emojis that
-// join the canon later append after the designed twelve, never vanish.
+// The definitions in ./emojis.gen are GENERATED — never hand-edit them; heal
+// by regenerating (see MIRROR.md in this folder). The palette ORDER below is
+// this app's own and is a sensory contract: reorder only at KP's word. New
+// canon emojis append after the designed twelve, never vanish.
 
 import { EMOJI_DEFS as CANON_DEFS } from './emojis.gen';
 import type { EmojiDef } from './emojis.gen';

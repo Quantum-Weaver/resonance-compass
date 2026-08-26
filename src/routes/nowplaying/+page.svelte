@@ -53,10 +53,9 @@
 
 	async function saveCoverArt() {
 		if (!fetchedArt || !currentTrack) return;
-		// Find the album by the track it CONTAINS, not by rebuilding its id: an
-		// album split by year or folder wears a "|||discriminator" suffix, and the
-		// rebuilt id missed it — the save silently did nothing (fixed 2026-08-22,
-		// alongside the folder-art work, because that no-op now costs a real file).
+		// Find the album by the track it CONTAINS, never by rebuilding its id:
+		// an album split by year or folder wears a "|||discriminator" suffix,
+		// and a rebuilt id misses it, so the save silently does nothing.
 		const album = libraryStore.albums.find((a) => a.tracks.some((t) => t.id === currentTrack.id));
 		if (!album) return;
 		await libraryStore.updateAlbumCoverArt(album.id, fetchedArt);
@@ -70,7 +69,7 @@
 		fetchedArt = null;
 	}
 
-	// ── Fragment creator ────────────────────────────────────────────────────────
+	// Fragment creator
 
 	let fragOpen = $state(false);
 	let fragStart = $state(0);
@@ -180,7 +179,7 @@
 			fragSaveState = 'saved';
 			setTimeout(() => { fragOpen = false; fragSaveState = 'idle'; }, 1000);
 		} catch (e) {
-			// v3 Phase 1: the native engine needs no ffmpeg — errors are its own words
+			// The native engine needs no ffmpeg; errors are its own words.
 			fragError = String(e);
 			fragSaveState = 'error';
 		} finally {
@@ -282,9 +281,7 @@
 			>✂️</button>
 		</div>
 
-		<!-- The Listen-surface door to sensory profiles — KP's ⚛ ruling
-		     ("also link to it from listening"): sensory switching happens
-		     mid-listening; the door meets the hand where the need arises. -->
+		<!-- The Listen-surface door to sensory profiles. -->
 		<button class="profiles-door" onclick={() => goto('/profiles')}>
 			<span aria-hidden="true">✨</span><span>Sensory profiles</span>
 		</button>
@@ -648,7 +645,7 @@
 		font-family: inherit;
 	}
 
-	/* ── Fragment creator ── */
+	/* Fragment creator */
 	.frag-overlay {
 		position: fixed;
 		inset: 0;

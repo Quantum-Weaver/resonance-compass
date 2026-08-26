@@ -6,7 +6,7 @@ import { moodStore } from '$lib/stores/mood.svelte';
 
 const PERSIST_KEY = 'resonance-compass-player-state';
 
-// ── Listening History ──────────────────────────────────────────────────────
+// Listening History
 
 const HISTORY_KEY = 'listening_history';
 const HISTORY_MAX = 500;
@@ -61,14 +61,13 @@ function clearHistory() {
 	try { if (browser) localStorage.removeItem(HISTORY_KEY); } catch {}
 }
 
-// ── Player State ───────────────────────────────────────────────────────────
+// Player State
 
 let currentTrack = $state<Track | null>(null);
 let queue = $state<Track[]>([]);
 let queueIndex = $state(0);
 let isPlaying = $state(false);
-// Why play didn't produce sound (backend rejection) — shown in the MiniPlayer,
-// since on Android there's no console to see the swallowed error in.
+// Backend rejection message shown in the MiniPlayer — Android has no console to see it in.
 let playbackError = $state<string | null>(null);
 let position = $state(0);
 let duration = $state(0);
@@ -77,9 +76,9 @@ let shuffle = $state(false);
 let repeatMode = $state<'off' | 'all' | 'one'>('off');
 
 let listenersReady = false;
-// True once `play_track` has actually been invoked for currentTrack in this
-// session. False right after a localStorage restore — the Rust audio engine
-// has no sink loaded yet, so resume()/pause() would silently no-op.
+// True once `play_track` has actually been invoked for currentTrack. False
+// right after a localStorage restore — the Rust engine has no sink loaded
+// yet, so resume()/pause() would silently no-op.
 let trackLoadedInBackend = false;
 
 function ensureListeners() {
@@ -102,20 +101,16 @@ function ensureListeners() {
 		next();
 	});
 
-	// Android: pause when audio output disconnects (Bluetooth device dropped or
-	// wired headphones unplugged) so playback never jumps to the phone speaker.
-	// The MediaPermissionPlugin fires this from an ACTION_AUDIO_BECOMING_NOISY
-	// receiver. Nothing auto-plays on reconnect — by design. The plugin is
-	// Android-only, so a rejected listener on desktop is expected and ignored.
+	// Android: pause when audio output disconnects (Bluetooth dropped, headphones
+	// unplugged) so playback never jumps to the phone speaker. Nothing auto-plays
+	// on reconnect. Android-only — rejected on desktop, and that's expected.
 	addPluginListener('media-permission', 'audioBecomingNoisy', () => {
 		if (isPlaying) pause();
 	}).catch((e) => console.error('[media-permission] audioBecomingNoisy listener failed:', e));
 
-	// Android: transport commands from the system — Bluetooth/AVRCP buttons,
-	// wired headset clicks, the lockscreen's media controls — relayed by
-	// MediaSessionPlugin (U1). This store stays the only authority; the plugin
-	// never touches the audio engine itself. Desktop rejection ignored, same
-	// as above.
+	// Android: transport commands from the system (Bluetooth/AVRCP buttons,
+	// headset clicks, lockscreen controls) relayed by MediaSessionPlugin. This
+	// store stays the only authority — the plugin never touches the audio engine.
 	addPluginListener('media-session', 'mediaCommand', (e: { action: string; positionMs?: number }) => {
 		switch (e.action) {
 			case 'play': play(); break;
@@ -130,9 +125,8 @@ function ensureListeners() {
 	window.addEventListener('beforeunload', persistState);
 }
 
-// ── Android MediaSession bridge (U1) ───────────────────────────────────────
-// The Rust commands no-op Ok on desktop, so every call is unconditional and
-// every failure swallowed — the bridge must never be able to break playback.
+// Android MediaSession bridge — Rust commands no-op Ok on desktop, so every
+// call here is unconditional and every failure swallowed.
 
 let notifPermissionAsked = false;
 
@@ -220,8 +214,7 @@ async function loadTrackObject(track: Track, resumeAt = 0, record = true) {
 		}
 		if (!notifPermissionAsked) {
 			notifPermissionAsked = true;
-			// First playback is the honest moment to ask: the lockscreen
-			// controls this permission unlocks serve exactly this act.
+			// First playback is the natural moment to ask — it's what this permission unlocks.
 			invoke('request_notification_permission').catch(() => {});
 		}
 		mediaMetadataSync();
@@ -430,12 +423,10 @@ function clearQueue() {
 	persistState();
 }
 
-// ADD TO QUEUE and PLAY NEXT — 2026-08-22, at KP's ⚛ word: "where every we
-// have 'add to playlist' there should also be 'add to queue'". Appending never
-// interrupts what is playing; with nothing loaded the first added track is
-// loaded (not started) so the bar shows what the queue now holds. A track
-// already in the queue is appended again on purpose — a queue is an order, not
-// a set, and repeating a song is a thing people do.
+// Appending never interrupts what is playing; with nothing loaded the first
+// added track is loaded (not started) so the bar shows what the queue now
+// holds. A track already in the queue is appended again on purpose — a queue
+// is an order, not a set.
 function addToQueue(tracks: Track | Track[]) {
 	const list = Array.isArray(tracks) ? tracks : [tracks];
 	if (list.length === 0) return;

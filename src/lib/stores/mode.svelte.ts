@@ -1,9 +1,6 @@
-// The sidebar wears one MODE at a time — KP's ruling, 2026-08-05
-// (docs/THE-UX-WALK.md, U6): "Listen, Create, Settle, Understand are good
-// words." A mode is a view, never a record: switching hats changes which
-// doors are shown, nothing else — no state, no history, no room is lost.
-// The worn hat holds until the vessel chooses again; it never switches
-// itself, whatever route the app navigates to.
+// A mode is a view, never a record: switching modes changes which doors are
+// shown, nothing else. The current mode holds until the vessel chooses again —
+// it never switches itself, whatever route the app navigates to.
 
 export type ModeName = 'listen' | 'create' | 'settle' | 'understand';
 

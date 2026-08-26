@@ -10,7 +10,7 @@
 	import { createBreath, drawSquarePulse, PHASE_COLORS } from '$lib/breath-core/index';
 	import type { BreathDuration } from '$lib/breath-core/index';
 
-	// ── Settings ──────────────────────────────────────────────────────────────
+	// Settings
 
 	interface SattvaSettings {
 		playlistId: string | null;
@@ -45,7 +45,7 @@
 		return { ...DEFAULTS };
 	}
 
-	// ── Reactive state ────────────────────────────────────────────────────────
+	// Reactive state
 
 	let visible = $state(false);
 	let fadingOut = $state(false);
@@ -57,11 +57,9 @@
 
 	let borderCanvas = $state<HTMLCanvasElement | null>(null);
 
-	// ── Non-reactive session state ────────────────────────────────────────────
+	// Non-reactive session state
 
-	// The pacer is the water's (see $lib/breath-core/MIRROR.md); recreated at
-	// mount with the session's chosen duration. This page keeps the dressing
-	// room only.
+	// The pacer is recreated at mount with the session's chosen duration.
 	let breath = createBreath(DEFAULTS.breathDuration);
 	let rafId = 0;
 	let sessionSettings = DEFAULTS;
@@ -80,7 +78,7 @@
 		typeof window !== 'undefined' &&
 		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	// ── Animation loop ────────────────────────────────────────────────────────
+	// Animation loop
 
 	function animLoop() {
 		if (!visible || fadingOut) return;
@@ -106,7 +104,7 @@
 		borderCanvas.height = window.innerHeight;
 	}
 
-	// ── State save / restore ──────────────────────────────────────────────────
+	// State save / restore
 
 	async function applyEntryState(s: SattvaSettings) {
 		savedThemeJSON = localStorage.getItem(THEME_KEY);
@@ -193,7 +191,7 @@
 		}
 	}
 
-	// ── Exit ──────────────────────────────────────────────────────────────────
+	// Exit
 
 	async function exitSattva() {
 		if (exiting) return;
@@ -214,7 +212,7 @@
 		breathingOn = !breathingOn;
 	}
 
-	// ── Lifecycle ─────────────────────────────────────────────────────────────
+	// Lifecycle
 
 	onMount(async () => {
 		sessionSettings = loadSettings();

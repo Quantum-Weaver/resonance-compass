@@ -1,25 +1,16 @@
-// ============================================================================
-/* resonance-ziggy/modules/cosmic/constants/positioning.ts */
-// QUANTUM POSITIONING SYSTEM - COORDINATE GRAPHING FOR IMMERSIVE EXPERIENCES
+// QUANTUM POSITIONING SYSTEM — coordinate graphing for immersive experiences.
 // Single source of truth for viewport anchors, parallax layers, zoom targets,
 // beam origins, camera positions, and coordinate utilities.
-// Derived from dimensions.ts and environment keys.
-// ============================================================================
 
 import { BASE_UNIT, SCREEN_CATEGORIES } from './dimensions';
 
 /**
  * Environment key for zoom/consciousness targeting.
- * The ancestor `assets/mapper` module that once declared the full union no
- * longer exists anywhere in the tree (its import broke every distribution
- * target's typecheck) — until an asset mapper is rebuilt, environments are
- * open strings and ZOOM_TARGETS' keys are the de-facto canon.
+ * Open string (no union) — the module that once declared the full union no longer exists; ZOOM_TARGETS' keys are the de-facto canon.
  */
 export type EnvironmentKey = string;
 
-// ============================================================================
 // 1. VIEWPORT ANCHORS & QUADRANTS
-// ============================================================================
 
 export const VIEWPORT_ANCHORS = {
   // Standard positions (percentage-based)
@@ -48,9 +39,7 @@ export const VIEWPORT_ANCHORS = {
 
 export type ViewportAnchor = keyof typeof VIEWPORT_ANCHORS;
 
-// ============================================================================
 // 2. PARALLAX LAYERS - Depth factors for immersive scrolling
-// ============================================================================
 
 export const PARALLAX_LAYERS = {
   /** Deepest background - stars, nebulae, cosmic backdrop */
@@ -85,9 +74,7 @@ export function getParallaxTransform(
   return `translate(${x * factor}px, ${y * factor}px)`;
 }
 
-// ============================================================================
 // 3. ZOOM TARGETS - Coordinates for panorama zooming
-// ============================================================================
 
 export interface ZoomTarget {
   /** X coordinate in panorama (0-100%) */
@@ -329,9 +316,7 @@ export function getZoomTarget(environment: EnvironmentKey): ZoomTarget {
   };
 }
 
-// ============================================================================
 // 4. BEAM ORIGINS & PATHS - For Continuity Beam
-// ============================================================================
 
 export interface BeamPath {
   /** Starting point (percentage of screen width) */
@@ -368,9 +353,7 @@ export function getBeamPath(origin: BeamOrigin = 'topLeft'): BeamPath {
   return BEAM_ORIGINS[origin];
 }
 
-// ============================================================================
 // 5. CAMERA POSITIONS - For 3D panorama navigation
-// ============================================================================
 
 export interface CameraPosition {
   /** X coordinate in 3D space */
@@ -409,9 +392,7 @@ export function getCameraPosition(preset: CameraPreset = 'default'): CameraPosit
   return CAMERA_POSITIONS[preset];
 }
 
-// ============================================================================
 // 6. ORBIT CONTROLS - For interactive panorama navigation
-// ============================================================================
 
 export interface OrbitConfig {
   /** Enable auto-rotation */
@@ -481,9 +462,7 @@ export const ORBIT_CONFIGS = {
 
 export type OrbitMode = keyof typeof ORBIT_CONFIGS;
 
-// ============================================================================
 // 7. COORDINATE UTILITIES
-// ============================================================================
 
 /** Convert percentage to pixel value */
 export function percentToPixels(percent: number, viewportSize: number): number {
@@ -540,9 +519,7 @@ export function coordinateAngle(
   return (Math.atan2(dy, dx) * 180) / Math.PI;
 }
 
-// ============================================================================
 // 8. RESPONSIVE COORDINATES - Adjusts for screen category
-// ============================================================================
 
 export interface ResponsiveCoordinate {
   mobile: number;
@@ -562,16 +539,7 @@ export function getResponsiveCoordinate(
   return coord.immersive;
 }
 
-// ============================================================================
 // 9. SCENE PRIMITIVES FOR THE STAGE — camera moves + timeline
-// ============================================================================
-// O-6 · Intention #2 (create our own animated content) + this file's own
-// "immersive experiences" header + G-2 staging — scene primitives for the
-// Stage. CAMERA_POSITIONS exist, but there was no *move* between them and no
-// *timeline* to compose them. CAMERA_MOVES are timed, eased transitions between
-// two existing CAMERA_POSITIONS (near-clone of the zoom-targets precedent);
-// SCENE_SEQUENCES are ordered beats (camera move and/or environment zoom, each
-// held for a duration) — a scriptable scene. CSS face: generate_scene.ts.
 
 export interface CameraMove {
   /** Starting camera preset */
@@ -662,28 +630,13 @@ export function sceneTotalDuration(sequence: SceneSequence): number {
   }, 0);
 }
 
-// ============================================================================
-// 11. DIMENSIONAL PROJECTION — the house's first 3D, 2026-08-17
-// ============================================================================
-//
-// Added at KP's ⚛ word ("this will be the house's first 3d experience") beside
-// the camera and parallax work this file already owns, because a projection is
-// a camera with its sleeves rolled up. Shapes come from `solids.ts`; this
-// section turns them into something a screen can draw.
-//
-// THE SPACE, STATED ONCE SO NOTHING HAS TO GUESS: x runs right, y runs DOWN
-// (screen convention, not textbook), z runs TOWARD the viewer. Rotations are
-// applied X, then Y, then Z — v′ = Rz·Ry·Rx·v — and every function below
-// assumes that order.
+// 11. DIMENSIONAL PROJECTION — the house's first 3D
+// Coordinates: x right, y DOWN (screen convention), z TOWARD viewer; rotations apply X, then Y, then Z (v′ = Rz·Ry·Rx·v) — every function below assumes this order.
 
-/** Where the house's light stands: upper-left and slightly in front, which is
- *  the same corner plate-forge lights from (`sheen()` sweeps upper-left, and
- *  `bevel_frame()` catches light up-left, pools shadow down-right). One light,
- *  house-wide, so two surfaces never disagree about where the sun is. */
+/** Light direction: upper-left, slightly in front — matches sheen()/bevel_frame()'s light direction elsewhere; keep them in sync. */
 export const LIGHT_VECTOR: readonly [number, number, number] = [-0.4243, -0.5657, 0.7071];
 
-/** Ambient floor and diffuse reach. Ambient is deliberately generous: a face
- *  turned away should read as *stone in shadow*, never as a hole in the shape. */
+/** Ambient floor and diffuse reach — ambient is deliberately generous so a face turned away reads as stone in shadow, never a hole in the shape. */
 export const SURFACE_LIGHTING = {
   ambient: 0.42,
   diffuse: 0.58,
@@ -759,15 +712,12 @@ export function diffuse(
 }
 
 /**
- * THE GLINT — Blinn-Phong specular, and it is what separates a surface that
- * was PHOTOGRAPHED from one that was drawn. Diffuse alone gives a shape its
- * volume; the highlight is what tells the eye the material is polished.
+ * THE GLINT — Blinn-Phong specular; what separates a surface that reads as
+ * PHOTOGRAPHED from one that reads as drawn. Diffuse alone gives volume;
+ * the highlight tells the eye the material is polished.
  *
  *     ĥ    = normalize(l̂ + v̂)          the half vector, viewer at +z
  *     spec = max(0, n̂·ĥ) ^ shininess
- *
- * Kept beside `diffuse` rather than in an app, because a house whose two
- * surfaces disagree about where the light is has two lights.
  */
 export function specular(
   normal: readonly [number, number, number],
@@ -783,19 +733,8 @@ export function specular(
   return Math.pow(Math.max(0, dot), shininess);
 }
 
-// ----------------------------------------------------------------------------
 // THE FIRST-PERSON TABLE — a surface seen from where someone sits
-// ----------------------------------------------------------------------------
-//
-// Added 2026-08-17 at KP's ⚛ word: "the table top tarot experience should be
-// data driven, but i would like the 3d first person view effect if possible",
-// and "a sense of glancing in a direction toward a card as it is being
-// interacted with."
-//
-// THIS IS A DIFFERENT 3D FROM THE SOLIDS ABOVE, deliberately. A die is a shape
-// we generate, so we project it ourselves. A card is a photograph, and the
-// browser's own perspective engine is better at photographs than we are. These
-// constants are for a CSS 3D plane; `rotate3`/`project` are for our own.
+// A different 3D system from the solids above: a card is a photograph, so these constants drive a CSS 3D plane, not rotate3()/project() (which are for generated shapes).
 
 export const FIRST_PERSON_TABLE = {
   /** How far the eye sits from the surface, in CSS pixels. */
@@ -818,10 +757,7 @@ export const FIRST_PERSON_TABLE = {
  * (0..1 across and down, with 0.5,0.5 at centre), the small rotation that turns
  * the surface toward it — the way a head moves before a hand arrives.
  *
- * Deliberately small, and deliberately NOT overshooting. A viewport that swings
- * is a viewport that costs somebody their afternoon; this house builds for
- * people who feel motion. Consumers must gate it on `prefers-reduced-motion`
- * and should expose its amplitude as a knob rather than baking it in.
+ * Deliberately small, never overshooting. Consumers must gate it on `prefers-reduced-motion` and should expose its amplitude as a knob rather than baking it in.
  */
 export function glanceToward(
   x: number,
@@ -850,9 +786,7 @@ export function orientationFacing(
   return { rx, ry };
 }
 
-// ============================================================================
 // 10. TYPE EXPORTS
-// ============================================================================
 
 export type {
   ZoomTarget as ZoomTargetType,
@@ -865,7 +799,7 @@ export type {
   BeamOrigin as BeamOriginType,
   CameraPreset as CameraPresetType,
   OrbitMode as OrbitModeType,
-  CameraMove as CameraMoveType,       // O-6
-  SceneBeat as SceneBeatType,         // O-6
-  SceneSequence as SceneSequenceType, // O-6
+  CameraMove as CameraMoveType,
+  SceneBeat as SceneBeatType,
+  SceneSequence as SceneSequenceType,
 };

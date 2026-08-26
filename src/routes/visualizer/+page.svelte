@@ -23,16 +23,14 @@
 	let modeLabelText = $state('');
 	let liveFFT = $state(false);
 
-	// Playable keyboard (see docs/VISUALIZER-PLAYABLE-MODE.md): letter rows pick
-	// a palette family + hue tint, digits 1-9 set a speed burst that decays back
-	// to baseline, Up/Down rotate hue, 0 resets. Space stays play/pause and
-	// Left/Right stay mode-cycle (v1 parity — deliberate deviation from rows-map
-	// docs drafts that wanted them for reset/hue).
+	// Playable keyboard (see docs/VISUALIZER-PLAYABLE-MODE.md): letter rows
+	// pick a palette family + hue tint, digits 1-9 set a decaying speed burst,
+	// Up/Down rotate hue, 0 resets. Space is play/pause, Left/Right cycle mode.
 	let keyHue = $state(0);
 	let speedMult = $state(1);
 	let keyPalette = $state<PaletteName | null>(null);
 
-	// ── Settings (⚙ panel, persisted) ──────────────────────────────────────────
+	// Settings (⚙ panel, persisted)
 
 	type PaletteName = 'warm' | 'cool' | 'earth' | 'cosmic';
 	type PaletteSetting = PaletteName | 'auto';
@@ -104,13 +102,10 @@
 	let particles: Particle[] = [];
 	let touchStartX = 0;
 
-	// ── Colour helpers ─────────────────────────────────────────────────────────
-	// Canvas 2D needs literal color values (CSS custom properties don't apply to
-	// fillStyle/strokeStyle), so the palettes are hardcoded here rather than
-	// read from --accent etc. The visualizer is a full-black immersive surface
-	// independent of the active theme, matching the v1 reference. Every renderer
-	// samples color exclusively through cosmicColor(t), so a palette swap
-	// recolors all seven modes at once.
+	// Colour helpers
+	// Canvas 2D needs literal color values (CSS custom properties do not apply
+	// to fillStyle/strokeStyle), so the palettes are hardcoded here. Every
+	// renderer samples through cosmicColor(t), so a swap recolors all modes.
 
 	function lerp(a: number, b: number, t: number) {
 		return a + (b - a) * t;
@@ -189,7 +184,7 @@
 		return `rgb(${r},${g},${b})`;
 	}
 
-	// ── Seeded helpers — deterministic per-track fallback motion when no FFT ────
+	// Seeded helpers — deterministic per-track fallback motion when no FFT
 
 	function hash(s: string, i: number): number {
 		let h = 0x811c9dc5 | 0;
@@ -202,7 +197,7 @@
 		return (h >>> 0) / 0xffffffff;
 	}
 
-	// ── Spectrum level helpers (shared across all modes) ───────────────────────
+	// Spectrum level helpers (shared across all modes)
 	// smoothedBars is advanced once per frame in draw(), not per-mode, so every
 	// mode sees live data. barLevel/bandLevel fall back to seeded motion when
 	// no FFT data has ever arrived.
@@ -235,7 +230,7 @@
 		return sum / (hi - lo);
 	}
 
-	// ── Bars ───────────────────────────────────────────────────────────────────
+	// Bars
 
 	function drawBars(ctx: CanvasRenderingContext2D, W: number, H: number, ts: number) {
 		const gap = 2;
@@ -254,7 +249,7 @@
 		}
 	}
 
-	// ── Waveform ───────────────────────────────────────────────────────────────
+	// Waveform
 
 	function fftEnergy(): number {
 		if (!liveFFT) return isPlaying && !reducedMotion ? 1.0 : 0.1;
@@ -298,7 +293,7 @@
 		ctx.stroke();
 	}
 
-	// ── Spiral ─────────────────────────────────────────────────────────────────
+	// Spiral
 
 	function bassEnergy(): number {
 		if (!liveFFT) return isPlaying && !reducedMotion ? 0.1 : 0.02;
@@ -339,7 +334,7 @@
 		ctx.stroke();
 	}
 
-	// ── Particles ──────────────────────────────────────────────────────────────
+	// Particles
 
 	function updateParticles(W: number, H: number, dt: number) {
 		const energy = liveFFT ? fftEnergy() : isPlaying ? 1 : 0.15;
@@ -383,7 +378,7 @@
 		ctx.globalAlpha = 1;
 	}
 
-	// ── Mandala ────────────────────────────────────────────────────────────────
+	// Mandala
 	// Concentric rings of dots with 12-fold symmetry. Each ring is fed by a
 	// different frequency band (inner = bass, outer = treble); bass pulses the
 	// ring radii, rings counter-rotate.
@@ -434,7 +429,7 @@
 		ctx.globalAlpha = 1;
 	}
 
-	// ── Flower of Life ─────────────────────────────────────────────────────────
+	// Flower of Life
 	// The 19-circle hexagonal pattern. Circle radii breathe with mid energy,
 	// per-ring brightness follows its band, the whole flower slowly turns.
 
@@ -485,7 +480,7 @@
 		ctx.globalAlpha = 1;
 	}
 
-	// ── Metatron's Cube ────────────────────────────────────────────────────────
+	// Metatron's Cube
 	// The 13 Fruit-of-Life nodes with all 78 connecting lines. Node size follows
 	// bass, line glow follows treble, rotation follows overall energy.
 
@@ -546,7 +541,7 @@
 		ctx.globalAlpha = 1;
 	}
 
-	// ── Main draw loop ─────────────────────────────────────────────────────────
+	// Main draw loop
 
 	// Speed setting → baseline factor; 'auto' follows the music's energy.
 	function settingSpeedFactor(): number {
@@ -602,7 +597,7 @@
 		animFrame = requestAnimationFrame(draw);
 	}
 
-	// ── Interaction helpers ────────────────────────────────────────────────────
+	// Interaction helpers
 
 	function resetOverlayTimer() {
 		showOverlay = true;
@@ -710,7 +705,7 @@
 		}
 	}
 
-	// ── Lifecycle ──────────────────────────────────────────────────────────────
+	// Lifecycle
 
 	let unlistenSpectrum: (() => void) | null = null;
 	let hintTimer: ReturnType<typeof setTimeout> | null = null;
@@ -1037,7 +1032,7 @@
 		background: rgba(255, 255, 255, 0.2);
 	}
 
-	/* ── Settings panel + discovery hint ── */
+	/* Settings panel + discovery hint */
 
 	.gear-btn {
 		position: absolute;

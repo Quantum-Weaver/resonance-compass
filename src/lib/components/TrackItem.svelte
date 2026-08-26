@@ -52,8 +52,7 @@
 		menuOpen = !menuOpen;
 	}
 
-	// Beside every "add to playlist" there is an "add to queue" — KP's ⚛ word,
-	// 2026-08-22. The queue is the player's, so this needs no prop from the room.
+	// The queue is the player's, so this needs no prop from the room.
 	function addToQueue() {
 		playerStore.addToQueue(track);
 		menuOpen = false;

@@ -62,10 +62,8 @@
 		flex-direction: column;
 		align-items: center;
 		gap: var(--spacing-2);
-		/* Fill the mount row and allow shrinking below the strip's natural
-		   width — without min-width: 0 a flex parent lets the strip's
-		   fit-content width win, so it overflows both edges and max-width
-		   below never engages the scroll. */
+		/* Without min-width: 0 the flex parent lets the strip's fit-content
+		   width win, and it overflows instead of scrolling. */
 		width: 100%;
 		min-width: 0;
 		max-width: 100%;
@@ -114,8 +112,7 @@
 		border: 1px solid var(--border-color);
 	}
 
-	/* Every face wears its word — the U7 law, engraved at the shed sitting:
-	   an emoji may FACE a word, never replace it. */
+	/* Every face wears its word: an emoji faces a word, never replaces it. */
 	.emoji-btn {
 		flex-shrink: 0;
 		min-width: var(--spacing-10);

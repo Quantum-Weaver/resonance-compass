@@ -1,16 +1,4 @@
 // the-timer — the sensory-first countdown's core, framework-free.
-//
-// RE-HOMED (never extracted), 2026-07-30, per KP's law: "the rehoming
-// should not mean extracting." The core carries the RICHER descendant —
-// resonance-echoes' timer store (pause/resume, the four synthesized
-// chimes, the WebView unlock law) — with Compass's original read beside
-// it; both apps keep their organs untouched. Transmutations at birth,
-// in the open: Svelte $state runes became plain state + a subscribe()
-// so ANY framework can wrap it; localStorage became injectable storage;
-// app couplings (Compass's music-fade, page wiring) became the onTick/
-// onComplete hooks those organs would attach to.
-//
-// The origin laws ride verbatim in the comments where they were written.
 
 export type TimerMode =
   | 'sand'
@@ -40,13 +28,12 @@ export function prefersReducedMotion(): boolean {
   );
 }
 
-// Chime options (KP's ask, 2026-07-26). All synthesized — no audio assets,
-// nothing fetched — and all built on the same sensory-friendly philosophy
-// as the original: gentle attack, long decay, never a buzzer.
+// Chime options. All synthesized — no audio assets, nothing fetched —
+// gentle attack, long decay, never a buzzer.
 export type ChimeId = 'rise' | 'bell' | 'drop' | 'pulse';
 type ChimeNote = { freq: number; at: number; peak: number; decay: number };
 export const CHIME_DEFS: Record<ChimeId, ChimeNote[]> = {
-  // The original three-note rise (C5–E5–G5) — the default, unchanged.
+  // A three-note rise (C5–E5–G5) — the default.
   rise: [
     { freq: 523.25, at: 0, peak: 0.18, decay: 1.4 },
     { freq: 659.25, at: 0.35, peak: 0.18, decay: 1.4 },
@@ -140,18 +127,15 @@ export function createTimer(options: TimerOptions = {}) {
     for (const fn of listeners) fn(state);
   }
 
-  // Keep ONE instance at module scope in your app (not component-local) so
-  // the timer survives navigating away from its page — a page-local
-  // implementation would unmount and remount on every visit, losing track
-  // of (but not actually stopping) any interval already running, letting it
-  // silently orphan or letting a second timer stack on top of it.
+  // Keep ONE instance at module scope, never component-local: a remount
+  // orphans a running interval instead of stopping it.
   let tickInterval: ReturnType<typeof setInterval> | null = null;
   let chimeTimeout: ReturnType<typeof setTimeout> | null = null;
   let chimeCount = 0;
   let audioCtx: AudioContext | null = null;
 
-  // Created/resumed inside start() — a user gesture — so the Android WebView
-  // permits playback later when the timer completes unattended.
+  // Created/resumed inside start() — a user gesture — or the Android WebView
+  // refuses playback when the timer completes unattended.
   function ensureAudio(): AudioContext | null {
     if (typeof AudioContext === 'undefined' || !state.soundOn) return null;
     try {
@@ -163,9 +147,8 @@ export function createTimer(options: TimerOptions = {}) {
     }
   }
 
-  // Plays the selected chime at the selected volume. Each note is a sine
-  // bell with a gentle attack and long decay — sensory-friendly on purpose:
-  // no buzzer, at any setting.
+  // Plays the selected chime at the selected volume; each note is a sine
+  // bell with a gentle attack and long decay.
   function playChime() {
     if (state.chimeVolume <= 0) return; // volume zero is a chosen silence
     const ctx = ensureAudio();
@@ -233,8 +216,6 @@ export function createTimer(options: TimerOptions = {}) {
   }
 
   function pause() {
-    // The sand holds still; nothing is lost. Pause keeps the remaining time
-    // exactly where it stood — no drift, no penalty for stepping away.
     if (!state.isRunning || state.isPaused) return;
     state.isPaused = true;
     if (tickInterval) clearInterval(tickInterval);

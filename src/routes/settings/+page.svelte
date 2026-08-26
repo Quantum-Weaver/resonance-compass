@@ -12,13 +12,9 @@
 	import { PRESET_THEMES, presetSwatch } from '$lib/theme/theme';
 	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
-	// (The mic spike surface retired 2026-08-09 with the real recorder's
-	// arrival — its own planned exit. The room lives at /record.)
 
-	// (The Recording hold-choice left with the recorder, 2026-08-12 — it belongs
-	// to resonance-sistrum, where making new sound lives now.)
 
-	// ── Privacy & About links ───────────────────────────────────────────────────
+	// Privacy & About links
 	const PRIVACY_URL = 'https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md';
 	const SANCTUARY_URL = 'https://audhdities.com';
 	let privacyError = $state(false);
@@ -37,17 +33,15 @@
 		}
 	}
 
-	// Version comes from tauri.conf.json — never hardcoded again.
+	// Version comes from tauri.conf.json, never hardcoded.
 	let appVersion = $state('');
 	getVersion().then((v) => (appVersion = v)).catch(() => (appVersion = ''));
 
-	// ── Theme section ──────────────────────────────────────────────────────────
+	// Theme section
 
-	// Every preset the shelf holds — derived, never hardcoded, so a new preset
-	// appears here the day it is born (the law the onboarding walk already keeps;
-	// Rose, Rainbow and Progress Pride arrived this way 2026-08-22 at KP's word).
-	// The six founding faces are this app's own dress; the shelf's icon stands in
-	// for any it does not name, and a flag preset shows its stripes as the swatch.
+	// Every preset the shelf holds, derived and never hardcoded. The six
+	// founding faces are this app's own dress; the shelf's icon stands in for
+	// any it does not name, and a flag preset shows its stripes as the swatch.
 	const PRESET_ICONS: Record<string, string> = {
 		dark: '🌙', warm: '🔥', ocean: '🌊', forest: '🌲', sunset: '🌅', amoled: '⚫'
 	};
@@ -85,7 +79,7 @@
 		{ key: 'large' as const, label: 'Large' }
 	];
 
-	// ── Equalizer section ────────────────────────────────────────────────────────
+	// Equalizer section
 
 	interface EqStateResponse {
 		enabled: boolean;
@@ -176,7 +170,7 @@
 		return db === 0 ? '0' : (db > 0 ? '+' : '') + db.toFixed(1);
 	}
 
-	// ── Custom EQ presets (localStorage) ──────────────────────────────────────────
+	// Custom EQ presets (localStorage)
 
 	interface CustomEqPreset {
 		name: string;
@@ -253,11 +247,9 @@
 		}
 	});
 
-	// ── Data Sovereignty section ────────────────────────────────────────────────
-	// Export/import cover EVERYTHING the app stores: the songs table (with lyrics
-	// and cover art), all mood events, and every localStorage key (playlists,
-	// history, fragments, arrangements, profiles, focus, sattva, theme, EQ
-	// presets, personal emoji definitions, player state, onboarding flags).
+	// Data Sovereignty section
+	// Export/import cover everything the app stores: the songs table (with
+	// lyrics and cover art), all mood events, and every localStorage key.
 
 	const trackCount = $derived(libraryStore.tracks.length);
 
@@ -265,7 +257,7 @@
 	let pendingExport = $state(false);
 	let showUninstallGuide = $state(false);
 
-	// ── The missing-track sweep (the 2026-07-02 gap report's #1, built 08-12) ──
+	// The missing-track sweep.
 	// Two acts, never one: find and show first, remove only on a second tap.
 	let sweepState = $state<'idle' | 'checking' | 'found' | 'removing'>('idle');
 	let missing = $state<MissingTrack[]>([]);
@@ -301,9 +293,8 @@
 		}
 	}
 
-	// The snapshot's inner shape — carried by BOTH generations: the family
-	// envelope's `data` (new exports, sealed by the water) and the legacy v2
-	// object (old files, honored forever at import).
+	// The snapshot's inner shape, carried by both generations: the family
+	// envelope's `data`, and the legacy v2 object honored at import.
 	interface CompassSnapshot extends Record<string, unknown> {
 		library: unknown[];
 		moodEvents: unknown[];
@@ -342,7 +333,7 @@
 		URL.revokeObjectURL(url);
 	}
 
-	// ── Import ──
+	// Import
 
 	let importState = $state<'idle' | 'confirm' | 'importing' | 'error'>('idle');
 	let importError = $state<string | null>(null);
@@ -350,7 +341,7 @@
 	let pendingImport: CompassSnapshot | null = null;
 	let importSummary = $state('');
 
-	// Legacy shape: Compass's own v2 export (pre-envelope), honored forever.
+	// Legacy shape: this app's own v2 export, pre-envelope.
 	interface LegacyCompassExport {
 		format?: string;
 		library?: unknown[];
@@ -367,8 +358,7 @@
 				const parsed = JSON.parse(String(reader.result)) as unknown;
 				const legacy = parsed as LegacyCompassExport;
 				if (legacy && legacy.format === 'resonance-compass-export') {
-					// The app's own pre-envelope generation — a vessel's old
-					// backup must never be told it's worthless.
+					// The app's own pre-envelope generation, still honored.
 					pendingImport = {
 						library: Array.isArray(legacy.library) ? legacy.library : [],
 						moodEvents: Array.isArray(legacy.moodEvents) ? legacy.moodEvents : [],
@@ -426,7 +416,7 @@
 		importError = null;
 	}
 
-	// ── Purge ──
+	// Purge
 
 	function startPurge(withExport: boolean) {
 		pendingExport = withExport;
@@ -444,10 +434,9 @@
 	async function executePurge() {
 		purgeError = null;
 		try {
-			// Law 2, the water's own hand: the export completes IN HAND before
-			// anything deletes. The DB purge removes fragment/mix rows; the
-			// purge_fragment_files step removes their audio from app-data so no
-			// bytes survive; localStorage.clear() last, never a curated list.
+			// The export completes in hand before anything deletes. The DB purge
+			// removes fragment/mix rows, purge_fragment_files removes their audio,
+			// and localStorage.clear() runs last, never a curated list.
 			await purgeAfter(
 				pendingExport ? exportData : null,
 				() => libraryStore.purgeAllData(),
@@ -456,8 +445,7 @@
 				() => localStorage.clear()
 			);
 		} catch (err) {
-			// Stay on the confirm step and say what failed — the old silent
-			// rejection here was 'purge never purges'.
+			// Stay on the confirm step and say what failed.
 			purgeError = err instanceof Error ? err.message : String(err);
 			return;
 		}
@@ -470,7 +458,7 @@
 		<h1 class="settings-title">Settings</h1>
 	</header>
 
-	<!-- ── Section 1: Theme ── -->
+	<!-- Section 1: Theme -->
 	<section class="section">
 		<h2 class="section-title">Theme</h2>
 
@@ -530,7 +518,7 @@
 		</div>
 	</section>
 
-	<!-- ── Section: Sensory Profiles ── -->
+	<!-- Section: Sensory Profiles -->
 	<section class="section">
 		<h2 class="section-title">Sensory Profiles</h2>
 		<div class="profiles-row">
@@ -544,7 +532,7 @@
 		</div>
 	</section>
 
-	<!-- ── Section 2: Equalizer ── -->
+	<!-- Section 2: Equalizer -->
 	<section class="section" id="eq-section">
 		<button class="section-toggle" onclick={() => (eqOpen = !eqOpen)} aria-expanded={eqOpen}>
 			<span>🎛️ Equalizer</span>
@@ -635,7 +623,7 @@
 		{/if}
 	</section>
 
-	<!-- ── Section 3: Data Sovereignty ── -->
+	<!-- Section 3: Data Sovereignty -->
 	<section class="section">
 		<h2 class="section-title">Data Sovereignty</h2>
 
@@ -820,7 +808,7 @@
 		</div>
 	</section>
 
-	<!-- ── Section 4: About ── -->
+	<!-- Section 4: About -->
 	<section class="section">
 		<h2 class="section-title">About</h2>
 
@@ -865,9 +853,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		/* B1 (the ghost MiniPlayer): contain each section's relayout+paint so
-		   the EQ bank expanding can never smear a stale copy of the fixed bar
-		   into the compositor (paired with the bar's own hard layer promotion) */
+		/* Contain each section's relayout and paint, or the EQ bank expanding
+		   can smear a stale copy of the fixed bar into the compositor */
 		contain: layout paint;
 		padding-bottom: 1.25rem;
 	}
@@ -881,7 +868,7 @@
 		margin: 0;
 	}
 
-	/* ── Theme ── */
+	/* Theme */
 	.theme-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -947,7 +934,7 @@
 		background: color-mix(in srgb, var(--accent) 12%, transparent);
 	}
 
-	/* ── Data Sovereignty ── */
+	/* Data Sovereignty */
 	.track-count {
 		font-size: 0.875rem;
 		color: var(--text-muted);
@@ -960,7 +947,7 @@
 		gap: 0.5rem;
 	}
 
-	/* ── The missing-track sweep ── */
+	/* The missing-track sweep */
 	.sweep {
 		display: flex;
 		flex-direction: column;
@@ -1160,7 +1147,7 @@
 		justify-content: flex-end;
 	}
 
-	/* ── About ── */
+	/* About */
 	.about-card {
 		background: var(--bg-surface);
 		border: 1px solid var(--border-color);
@@ -1206,7 +1193,7 @@
 		line-height: 1.5;
 	}
 
-	/* ── Uninstall Guide ── */
+	/* Uninstall Guide */
 	.uninstall-section {
 		padding-top: 0.75rem;
 		border-top: 1px solid var(--border-color);
@@ -1253,7 +1240,7 @@
 		line-height: 1.5;
 	}
 
-	/* ── Equalizer ── */
+	/* Equalizer */
 	.section-toggle {
 		display: flex;
 		justify-content: space-between;
@@ -1523,7 +1510,7 @@
 		margin: 0;
 	}
 
-	/* ── Import ── */
+	/* Import */
 	.import-zone {
 		display: flex;
 		flex-direction: column;
@@ -1547,7 +1534,7 @@
 		margin: 0;
 	}
 
-	/* ── Sensory Profiles ── */
+	/* Sensory Profiles */
 	.profiles-row {
 		display: flex;
 		align-items: center;

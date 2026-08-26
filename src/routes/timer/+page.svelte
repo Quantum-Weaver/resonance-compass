@@ -4,11 +4,9 @@
 	import SleepTimer from './SleepTimer.svelte';
 	import FocusSession from './FocusSession.svelte';
 
-	// The merged time-room — KP's ⚛ ruling (THE-UX-WALK, the outline):
-	// "focus and timer can be merged without losing features." Nothing was
-	// lost: each room stands whole as a colocated component; this shell only
-	// wears the tabs. The old /focus address leads here with ?tab=focus, and
-	// an active focus session opens its own tab first.
+	// The merged time-room: each room stands whole as a colocated component
+	// and this shell only wears the tabs. /focus leads here with ?tab=focus,
+	// and an active focus session opens its own tab first.
 	let tab = $state<'sleep' | 'focus'>(
 		page.url.searchParams.get('tab') === 'focus' || focusStore.activeSession ? 'focus' : 'sleep'
 	);
