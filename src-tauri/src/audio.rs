@@ -30,6 +30,9 @@ struct CurrentPlayback {
     has_track: bool,
     end_sent: bool,
     stop_flag: bool,
+    // Signal the audio thread to exit so its OutputStream is dropped. Used when
+    // the default output device changes (e.g. Bluetooth connected mid-playback).
+    exit_thread: bool,
 }
 
 pub struct AudioState {
@@ -139,6 +142,39 @@ impl AudioState {
             guard.stop_flag = true;
         }
     }
+
+    /// Drop the current OutputStream and build a new one bound to the current
+    /// default output device. Called when Android reports the audio output route
+    /// has changed (e.g. Bluetooth connected). The caller must reload the track
+    /// into a fresh Sink afterward.
+    pub fn rebuild_output(&self, app: &AppHandle) -> Result<(), String> {
+        self.stop();
+
+        {
+            let mut guard = self.playback.lock().map_err(|_| "playback lock poisoned")?;
+            guard.exit_thread = true;
+        }
+
+        {
+            let mut guard = self.stream_handle.lock().map_err(|_| "audio state lock poisoned")?;
+            *guard = None;
+        }
+
+        // Give the audio thread time to drop its OutputStream. The thread exits
+        // when it sees exit_thread; dropping the stream ends the oboe session.
+        thread::sleep(Duration::from_millis(300));
+
+        {
+            let mut guard = self.stream_handle.lock().map_err(|_| "audio state lock poisoned")?;
+            *guard = start_output(&self.playback, app.clone());
+            guard.clone().ok_or("audio output unavailable after rebuild")?;
+            // Reset the flag so the new thread keeps running.
+            let mut pb = self.playback.lock().map_err(|_| "playback lock poisoned")?;
+            pb.exit_thread = false;
+        }
+
+        Ok(())
+    }
 }
 
 /// Spawns the audio thread and waits for its OutputStreamHandle. Returns None
@@ -177,6 +213,17 @@ fn audio_thread(
     let mut next_pos = Instant::now();
     loop {
         thread::sleep(Duration::from_millis(50));
+
+        {
+            let guard = match playback.lock() {
+                Ok(g) => g,
+                Err(_) => continue,
+            };
+            if guard.exit_thread {
+                return;
+            }
+        }
+
         if next_pos.elapsed() < Duration::from_millis(500) {
             continue;
         }
@@ -269,4 +316,11 @@ pub fn set_volume(vol: f32, state: tauri::State<AudioState>) {
 #[tauri::command]
 pub fn stop(state: tauri::State<AudioState>) {
     state.stop();
+}
+
+#[tauri::command]
+pub async fn rebuild_audio_output(app: AppHandle) -> Result<(), String> {
+    tauri::async_runtime::spawn_blocking(move || app.state::<AudioState>().rebuild_output(&app))
+        .await
+        .map_err(|e| e.to_string())?
 }

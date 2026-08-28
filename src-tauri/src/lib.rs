@@ -912,6 +912,7 @@ pub fn run() {
             audio::seek,
             audio::set_volume,
             audio::stop,
+            audio::rebuild_audio_output,
             equalizer::get_eq_state,
             equalizer::set_eq_band,
             equalizer::set_eq_preamp,

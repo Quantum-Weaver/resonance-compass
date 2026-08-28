@@ -14,8 +14,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.AudioDeviceCallback
+import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.webkit.WebView
 import app.tauri.PermissionState
 import app.tauri.annotation.Command
@@ -66,10 +70,26 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
     }
   }
 
+  // When the set of available audio devices changes — Bluetooth headset
+  // connected, wired headphones plugged, USB DAC attached — the default output
+  // route may shift. Rodio's OutputStream is bound to the device that was
+  // default when it opened, so the frontend must rebuild it and reload the
+  // current track. We emit on both add and remove so reconnects are caught.
+  private val audioDeviceCallback = object : AudioDeviceCallback() {
+    override fun onAudioDevicesAdded(addedDevices: Array<AudioDeviceInfo>) {
+      trigger("audioOutputChanged", JSObject())
+    }
+
+    override fun onAudioDevicesRemoved(removedDevices: Array<AudioDeviceInfo>) {
+      trigger("audioOutputChanged", JSObject())
+    }
+  }
+
   override fun load(webView: WebView) {
     super.load(webView)
-    val filter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
     val ctx = webView.context
+
+    val filter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
     // API 33+ requires an explicit export flag for context-registered receivers.
     // NOT_EXPORTED is correct: only the system delivers this protected broadcast.
     if (Build.VERSION.SDK_INT >= 33) {
@@ -77,6 +97,27 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
     } else {
       @Suppress("UnspecifiedRegisterReceiverFlag")
       ctx.registerReceiver(becomingNoisyReceiver, filter)
+    }
+
+    // API 23+: listen for changes to the available audio devices so playback
+    // can follow Bluetooth/wired/USB routing changes without an app restart.
+    if (Build.VERSION.SDK_INT >= 23) {
+      val audioManager = ctx.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+      audioManager.registerAudioDeviceCallback(audioDeviceCallback, Handler(Looper.getMainLooper()))
+    }
+  }
+
+  override fun unload(webView: WebView) {
+    super.unload(webView)
+    val ctx = webView.context
+    try {
+      ctx.unregisterReceiver(becomingNoisyReceiver)
+    } catch (_: IllegalArgumentException) {
+      // Receiver was not registered; ignore.
+    }
+    if (Build.VERSION.SDK_INT >= 23) {
+      val audioManager = ctx.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+      audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)
     }
   }
 

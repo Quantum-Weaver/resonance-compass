@@ -108,6 +108,14 @@ function ensureListeners() {
 		if (isPlaying) pause();
 	}).catch((e) => console.error('[media-permission] audioBecomingNoisy listener failed:', e));
 
+	// Android: the default audio output device changed (Bluetooth connected,
+	// wired headphones plugged, USB DAC attached). Rodio's OutputStream is bound
+	// to the device that was default when it opened, so we rebuild it and reload
+	// the current track at the same position.
+	addPluginListener('media-permission', 'audioOutputChanged', () => {
+		rebuildAndReload();
+	}).catch((e) => console.error('[media-permission] audioOutputChanged listener failed:', e));
+
 	// Android: transport commands from the system (Bluetooth/AVRCP buttons,
 	// headset clicks, lockscreen controls) relayed by MediaSessionPlugin. This
 	// store stays the only authority — the plugin never touches the audio engine.
@@ -274,6 +282,28 @@ async function stopPlayback() {
 	position = 0;
 	trackLoadedInBackend = false;
 	invoke('media_release').catch(() => {});
+}
+
+// Android: the audio output route changed mid-session. Rebuild the native
+// output stream so it binds to the new default device, then reload the current
+// track if we were playing. The backend stop() clears the old sink; we mark the
+// frontend's loaded flag false so the next play() or reload uses a fresh sink.
+async function rebuildAndReload() {
+	if (!currentTrack) return;
+	const wasPlaying = isPlaying;
+	const savedPosition = position;
+	try {
+		await invoke('rebuild_audio_output');
+		trackLoadedInBackend = false;
+		if (wasPlaying) {
+			await loadTrackObject(currentTrack, savedPosition, false);
+		}
+	} catch (e) {
+		playbackError = e instanceof Error ? e.message : String(e);
+		isPlaying = false;
+		trackLoadedInBackend = false;
+		console.error('[playerStore] rebuild_audio_output failed:', e);
+	}
 }
 
 // Logs a mood event for the track being skipped away from. Called before the
