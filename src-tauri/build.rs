@@ -1,11 +1,13 @@
 fn main() {
-    // The two app-local Android plugins (media_permission.rs, media_session.rs)
-    // must be declared to the ACL or the webview's addPluginListener is denied
-    // at the permission wall — "registerListener not allowed. Plugin not found."
-    // That denial is exactly what killed Bluetooth/AVRCP transport commands and
-    // the audio-becoming-noisy auto-pause (found 2026-08-13, the car ride).
-    // Their capability grants live in capabilities/default.json as
-    // media-session:default / media-permission:default.
+    // The three app-local Android plugins (media_permission.rs, media_session.rs,
+    // folder_picker.rs) must be declared to the ACL or the webview's
+    // addPluginListener is denied at the permission wall — "registerListener
+    // not allowed. Plugin not found." That denial is exactly what killed
+    // Bluetooth/AVRCP transport commands and the audio-becoming-noisy
+    // auto-pause (found 2026-08-13, the car ride). Their capability grants
+    // live in capabilities/default.json as media-session:default /
+    // media-permission:default / folder-picker:default — every plugin its own
+    // entry (ANDROID-BUILD-LAWS §1).
     tauri_build::try_build(
         tauri_build::Attributes::new()
             .plugin(
@@ -16,6 +18,12 @@ fn main() {
             )
             .plugin(
                 "media-permission",
+                tauri_build::InlinedPlugin::new()
+                    .commands(&["registerListener", "removeListener"])
+                    .default_permission(tauri_build::DefaultPermissionRule::AllowAllCommands),
+            )
+            .plugin(
+                "folder-picker",
                 tauri_build::InlinedPlugin::new()
                     .commands(&["registerListener", "removeListener"])
                     .default_permission(tauri_build::DefaultPermissionRule::AllowAllCommands),

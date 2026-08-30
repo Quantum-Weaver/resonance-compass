@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { libraryStore } from '$lib/stores/library.svelte';
+	import { libraryStore, isAndroid } from '$lib/stores/library.svelte';
 	import { playerStore } from '$lib/stores/player.svelte';
 	import { playlistStore } from '$lib/stores/playlist.svelte';
 	import AlbumCard from '$lib/components/AlbumCard.svelte';
@@ -26,6 +26,8 @@
 			const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
 			if (raw) recentSearches = JSON.parse(raw);
 		} catch {}
+		// Android: the folders this app may read, so the header can name them.
+		if (isAndroid) void libraryStore.loadMusicFolders();
 	});
 
 	const greeting = $derived(() => {
@@ -163,6 +165,15 @@
 		await libraryStore.scanLibrary();
 	}
 
+	// Android only: one more folder through the system chooser, then scan it.
+	async function onAddFolder() {
+		await libraryStore.addMusicFolder();
+	}
+
+	async function onForgetFolder(uri: string) {
+		await libraryStore.forgetMusicFolder(uri);
+	}
+
 	function openArtist(id: string) {
 		saveSearch(searchQuery);
 		goto(`/library/artist/${encodeURIComponent(id)}`);
@@ -188,13 +199,32 @@
 					? `Scanning ${Math.round(libraryStore.scanProgress * 100)}%`
 					: tracks.length > 0
 						? 'Rescan'
-						: 'Scan Library'}
+						: isAndroid
+							? 'Choose a folder'
+							: 'Scan Library'}
 			</button>
+			{#if isAndroid && libraryStore.musicFolders.length > 0}
+				<button class="scan-btn" onclick={onAddFolder} disabled={libraryStore.isScanning}>
+					Add a folder
+				</button>
+			{/if}
 		</div>
 	</header>
 
 	{#if libraryStore.scanError}
 		<p class="scan-error">{libraryStore.scanError}</p>
+	{/if}
+
+	{#if isAndroid && libraryStore.musicFolders.length > 0}
+		<p class="folders-line">
+			<span class="folders-label">Folders:</span>
+			{#each libraryStore.musicFolders as f (f.uri)}
+				<span class="folder-chip">
+					{f.name}
+					<button class="chip-x" onclick={() => onForgetFolder(f.uri)} aria-label={`Forget ${f.name}`}>✕</button>
+				</span>
+			{/each}
+		</p>
 	{/if}
 
 	<div class="continue-strip">
@@ -754,5 +784,38 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	/* Android: the granted folders, named, each with its ✕ (release the grant). */
+	.folders-line {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.4rem;
+		margin: 0 0 0.75rem;
+		font-size: 0.85rem;
+		opacity: 0.85;
+	}
+	.folders-label {
+		opacity: 0.7;
+	}
+	.folder-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.15rem 0.6rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, currentColor 10%, transparent);
+	}
+	.chip-x {
+		background: none;
+		border: none;
+		color: inherit;
+		cursor: pointer;
+		opacity: 0.7;
+		padding: 0 0.1rem;
+		font-size: 0.8rem;
+	}
+	.chip-x:hover {
+		opacity: 1;
 	}
 </style>

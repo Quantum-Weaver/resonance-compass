@@ -83,7 +83,7 @@ documented in [ANDROID-BUILD-NOTES.md](ANDROID-BUILD-NOTES.md).
 | Manifest: `READ_MEDIA_AUDIO` + `READ_EXTERNAL_STORAGE` (maxSdk 32) | ✅ in gen manifest | ❌ was missing (gen/ regenerated without it) | ✅ Re-added today + documented in ANDROID-BUILD-NOTES.md |
 | `MainActivity.enableEdgeToEdge()` | ✅ | ✅ present in current gen tree | Re-apply on next `android init` (in ANDROID-BUILD-NOTES.md checklist — gen/ is gitignored) |
 | `build.rs` libc++_shared jniLibs link workaround | ✅ | ✅ identical (inherited) | None |
-| Folder picker on Android | ❌ **never worked** — `tauri-plugin-dialog` 2.7.1 mobile branch returns `FolderPickerNotImplemented` (both versions ship 2.7.1) | ♻️ v2 now bypasses the dialog: scans `/storage/emulated/0/Music` + `Download` directly under media permission | Longer-term: custom SAF tree-picker plugin (see ANDROID-BUILD-NOTES.md roadmap) |
+| Folder picker on Android | ❌ **never worked** — `tauri-plugin-dialog` 2.7.1 mobile branch returns `FolderPickerNotImplemented` (both versions ship 2.7.1) | ✅ **2026-08-30: the app's own SAF picker** (`android-extras/FolderPickerPlugin.kt` ↔ `folder_picker.rs`) — system chooser, persisted grant, tree walked into `content://` URIs; replaces the fixed Music/Download scan | None — v2 now exceeds v1 |
 | PERMISSION_DENIED guidance card (onboarding) | ✅ | ❌ was lost in rebuild | ✅ Restored today |
 | Runtime permission request dialog | ❌ (manual grant via system Settings, guidance card) | ✅ added 2026-07-02: app-local MediaPermissionPlugin.kt + explainer dialog before scan | None — v2 now exceeds v1 |
 
@@ -96,4 +96,4 @@ documented in [ANDROID-BUILD-NOTES.md](ANDROID-BUILD-NOTES.md).
 3. `songs.db` migration decision (§6) — only if any vessel has meaningful v1 data.
 4. Settings polish ports: accent color, display mode, art shape (§5).
 5. Fragments-on-Android via pure-Rust cutting (§1) — only if fragments are wanted on mobile.
-6. SAF folder-picker plugin (§7) — replaces the fixed Music/Download scan with true folder choice.
+6. ~~SAF folder-picker plugin (§7) — replaces the fixed Music/Download scan with true folder choice.~~ ✅ **Built 2026-08-30** at KP's word.

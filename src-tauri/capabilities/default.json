@@ -14,6 +14,7 @@
     "opener:default",
     "dialog:default",
     "media-session:default",
-    "media-permission:default"
+    "media-permission:default",
+    "folder-picker:default"
   ]
 }

@@ -324,33 +324,83 @@ async function saveScannedTracks(scannedTracks: Track[]) {
 	}
 }
 
-// Android's dialog plugin rejects directory picks, so the standard public
-// music locations are scanned directly instead, once Media/Audio permission is granted.
-const ANDROID_MUSIC_DIRS = ['/storage/emulated/0/Music', '/storage/emulated/0/Download'];
-
+// Android: tauri-plugin-dialog rejects directory picks on mobile, so a folder
+// is chosen through the app's own SAF picker (android-extras/FolderPickerPlugin.kt
+// ↔ src-tauri/src/folder_picker.rs): the system chooser, a read grant Android
+// keeps across restarts, and the tree walked into content:// document URIs
+// that scan_paths and the player open through tauri-plugin-fs. This replaced
+// the fixed Music/Download scan at KP's word, 2026-08-30 — a granted folder
+// needs no manifest permission at all.
 export const isAndroid = browser && navigator.userAgent.includes('Android');
 
+export type MusicFolder = { uri: string; name: string };
+
+// The folders Android still lets this app read — the library's folders on
+// this device. Read from the system's own persisted grants, never stored here.
+let musicFolders = $state<MusicFolder[]>([]);
+
+async function loadMusicFolders() {
+	if (!isAndroid) return;
+	const { invoke } = await import('@tauri-apps/api/core');
+	try {
+		musicFolders = await invoke<MusicFolder[]>('persisted_music_folders');
+	} catch (e) {
+		console.error('[libraryStore] persisted folders unavailable:', e);
+	}
+}
+
 // True while the pre-scan permission explainer should be shown (Android only).
-// Set by scanLibrary, consumed by MediaPermissionDialog (mounted in +layout).
+// Kept for MediaPermissionDialog (mounted in +layout); the folder road no
+// longer sets it — a granted folder is its own permission.
 let permissionNeeded = $state(false);
 
-// Gate: on Android, a missing media-access grant doesn't error, it just makes
-// the music invisible (scoped storage) — this checks first to avoid a silent zero-track scan.
+// Scan: desktop picks folders in the dialog; Android rescans every granted
+// folder, and opens the system chooser when none is granted yet.
 async function scanLibrary() {
 	if (isAndroid) {
-		const { invoke } = await import('@tauri-apps/api/core');
-		try {
-			const granted = await invoke<boolean>('check_audio_permission');
-			if (!granted) {
-				permissionNeeded = true;
-				return;
-			}
-		} catch (e) {
-			// Bridge unavailable (stale build) — proceed; runScan still covers the unpermitted case.
-			console.error('[libraryStore] permission check failed:', e);
+		await loadMusicFolders();
+		if (musicFolders.length === 0) {
+			await addMusicFolder();
+			return;
 		}
+		await runScan(musicFolders);
+		return;
 	}
 	await runScan();
+}
+
+// Android: choose one more folder through the system chooser and scan it.
+// Desktop: the same dialog scan as always.
+async function addMusicFolder() {
+	if (!isAndroid) {
+		await runScan();
+		return;
+	}
+	const { invoke } = await import('@tauri-apps/api/core');
+	let picked: MusicFolder | null = null;
+	try {
+		picked = await invoke<MusicFolder | null>('pick_music_folder');
+	} catch (e) {
+		scanError = e instanceof Error ? e.message : String(e);
+		console.error('[libraryStore] folder pick failed:', e);
+		return;
+	}
+	if (!picked) return; // backed out of the chooser — nothing changes
+	await loadMusicFolders();
+	await runScan([picked]);
+}
+
+// Android: give a folder's grant back. Its rows stay until the vessel removes
+// them by signature (Remove missing tracks) — lose-nothing.
+async function forgetMusicFolder(uri: string) {
+	if (!isAndroid) return;
+	const { invoke } = await import('@tauri-apps/api/core');
+	try {
+		await invoke('release_music_folder', { uri });
+	} catch (e) {
+		console.error('[libraryStore] folder release failed:', e);
+	}
+	await loadMusicFolders();
 }
 
 // "Grant Access" in the explainer dialog: fires the system permission prompt,
@@ -376,13 +426,30 @@ function dismissPermissionPrompt() {
 	permissionNeeded = false;
 }
 
-async function runScan() {
+async function runScan(folders?: MusicFolder[]) {
 	const { invoke } = await import('@tauri-apps/api/core');
 	const { listen } = await import('@tauri-apps/api/event');
 
 	let selected: string[];
+	let scannedNames = '';
 	if (isAndroid) {
-		selected = ANDROID_MUSIC_DIRS;
+		// Every audio file under each granted tree, walked by the provider;
+		// the URIs go to scan_paths exactly as desktop paths do.
+		const trees = folders ?? musicFolders;
+		if (trees.length === 0) return;
+		scannedNames = trees.map((t) => t.name).join(', ');
+		scanError = null;
+		selected = [];
+		for (const t of trees) {
+			try {
+				const files = await invoke<{ uri: string }[]>('list_folder_audio', { uri: t.uri });
+				for (const f of files) selected.push(f.uri);
+			} catch (e) {
+				scanError = `${t.name}: ${e instanceof Error ? e.message : String(e)}`;
+				console.error('[libraryStore] folder walk failed:', e);
+				return;
+			}
+		}
 	} else {
 		const { open } = await import('@tauri-apps/plugin-dialog');
 		const picked = await open({ directory: true, multiple: true, title: 'Select your music folders' });
@@ -404,15 +471,14 @@ async function runScan() {
 		const now = Math.floor(Date.now() / 1000);
 		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now, folder: dirOf(t.uri) }));
 		await saveScannedTracks(withTimestamps);
-		if (isAndroid && scanned.length > 0 && db) {
-			await db.execute("DELETE FROM songs WHERE uri LIKE 'content://%'");
-		}
+		// (The old sweep of content:// rows after a fixed-folder scan is gone:
+		// on the folder road, content:// rows ARE the library.)
 		// Reload from the DB so the view reflects every scanned folder, not just this pass.
 		await loadTracks();
 		if (isAndroid && scanned.length === 0 && !scanError) {
 			scanError =
-				'No tracks found in Music or Download. If your music is on this device, ' +
-				'enable Music and audio access in Settings → Apps → Resonance Compass → Permissions, then rescan.';
+				`No audio files were found in ${scannedNames}. ` +
+				'Add a folder that holds your music, or forget this one and choose another.';
 		}
 	} catch (e) {
 		scanError = e instanceof Error ? e.message : String(e);
@@ -593,6 +659,10 @@ export const libraryStore = {
 	get permissionNeeded() { return permissionNeeded; },
 	grantPermissionAndScan,
 	dismissPermissionPrompt,
+	get musicFolders() { return musicFolders; },
+	loadMusicFolders,
+	addMusicFolder,
+	forgetMusicFolder,
 	initDB,
 	loadTracks,
 	setTracks,

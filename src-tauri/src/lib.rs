@@ -14,6 +14,7 @@ use tauri_plugin_sql::{Migration, MigrationKind};
 
 mod audio;
 mod equalizer;
+mod folder_picker;
 mod fragment_engine;
 mod media_permission;
 mod media_session;
@@ -512,6 +513,84 @@ fn find_missing_tracks(uris: Vec<String>) -> Result<Vec<String>, String> {
         .collect())
 }
 
+// ── The music folder on Android (the SAF picker; desktop picks in the dialog) ──
+//
+// Every arm runs the plugin on spawn_blocking: the chooser waits on a person,
+// the tree walk on a provider, and the main looper must not wait on either
+// (the same law play_track carries). Desktop arms answer empty — the dialog
+// plugin's folder picker is that road, and the frontend branches on platform.
+
+#[tauri::command]
+async fn pick_music_folder(
+    app_handle: tauri::AppHandle,
+) -> Result<Option<folder_picker::PickedFolder>, String> {
+    #[cfg(target_os = "android")]
+    {
+        return tauri::async_runtime::spawn_blocking(move || folder_picker::pick(&app_handle))
+            .await
+            .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = app_handle;
+        Ok(None)
+    }
+}
+
+#[tauri::command]
+async fn list_folder_audio(
+    app_handle: tauri::AppHandle,
+    uri: String,
+) -> Result<Vec<folder_picker::FolderAudio>, String> {
+    #[cfg(target_os = "android")]
+    {
+        return tauri::async_runtime::spawn_blocking(move || {
+            folder_picker::list_audio(&app_handle, uri)
+        })
+        .await
+        .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = (app_handle, uri);
+        Ok(Vec::new())
+    }
+}
+
+#[tauri::command]
+async fn persisted_music_folders(
+    app_handle: tauri::AppHandle,
+) -> Result<Vec<folder_picker::PickedFolder>, String> {
+    #[cfg(target_os = "android")]
+    {
+        return tauri::async_runtime::spawn_blocking(move || folder_picker::persisted(&app_handle))
+            .await
+            .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = app_handle;
+        Ok(Vec::new())
+    }
+}
+
+#[tauri::command]
+async fn release_music_folder(app_handle: tauri::AppHandle, uri: String) -> Result<(), String> {
+    #[cfg(target_os = "android")]
+    {
+        return tauri::async_runtime::spawn_blocking(move || {
+            folder_picker::release(&app_handle, uri)
+        })
+        .await
+        .map_err(|e| e.to_string())?;
+    }
+    #[cfg(not(target_os = "android"))]
+    {
+        let _ = (app_handle, uri);
+        Ok(())
+    }
+}
+
 // ── Media permission commands (Android runtime prompt; desktop always granted) ─
 
 #[tauri::command]
@@ -888,11 +967,16 @@ pub fn run() {
     #[cfg(target_os = "android")]
     let builder = builder
         .plugin(media_permission::init())
-        .plugin(media_session::init());
+        .plugin(media_session::init())
+        .plugin(folder_picker::init());
 
     builder
         .invoke_handler(tauri::generate_handler![
             scan_paths,
+            pick_music_folder,
+            list_folder_audio,
+            persisted_music_folders,
+            release_music_folder,
             check_audio_permission,
             request_audio_permission,
             request_mic_permission,

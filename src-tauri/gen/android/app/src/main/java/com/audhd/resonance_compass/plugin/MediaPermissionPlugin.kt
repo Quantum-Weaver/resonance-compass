@@ -21,6 +21,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
 import app.tauri.PermissionState
 import app.tauri.annotation.Command
 import app.tauri.annotation.Permission
@@ -107,16 +108,20 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
     }
   }
 
-  override fun unload(webView: WebView) {
-    super.unload(webView)
-    val ctx = webView.context
+  // Tauri 2.11's Plugin has no unload(webView) — the teardown hook is
+  // onDestroy(activity). The receiver and the device callback were registered
+  // on the webview's context, which is this same activity. (The unload
+  // override was written against an earlier Tauri and stopped compiling when
+  // the crate moved to 2.11 — found 2026-08-30 by the folder picker's build.)
+  override fun onDestroy(activity: AppCompatActivity) {
+    super.onDestroy(activity)
     try {
-      ctx.unregisterReceiver(becomingNoisyReceiver)
+      activity.unregisterReceiver(becomingNoisyReceiver)
     } catch (_: IllegalArgumentException) {
       // Receiver was not registered; ignore.
     }
     if (Build.VERSION.SDK_INT >= 23) {
-      val audioManager = ctx.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+      val audioManager = activity.getSystemService(Context.AUDIO_SERVICE) as AudioManager
       audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)
     }
   }

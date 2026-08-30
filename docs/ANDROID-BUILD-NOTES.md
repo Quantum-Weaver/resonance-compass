@@ -53,26 +53,39 @@ class MainActivity : TauriActivity() {
 ## How library scanning works on Android
 
 `tauri-plugin-dialog` **cannot** open a folder picker on mobile — its mobile branch
-returns `FolderPickerNotImplemented` (verified in plugin source, v2.7.1). So on
-Android the app skips the dialog and scans the standard public locations directly:
-`/storage/emulated/0/Music` and `/storage/emulated/0/Download`
-(`ANDROID_MUSIC_DIRS` in `src/lib/stores/library.svelte.ts`).
+returns `FolderPickerNotImplemented` (verified in plugin source, v2.7.1). So the
+app carries its own: **the SAF folder picker**, built 2026-08-30 at KP's word
+(gap-report #6, the last pending enhancement).
 
-Plain-path reads of public media files work through scoped storage's FUSE layer
-once **Music and audio** (API 33+) / **Files** (≤32) permission is granted.
+- `android-extras/FolderPickerPlugin.kt` (synced into `gen/` by
+  `scripts/sync-android-extras.mjs` like its two siblings) ↔
+  `src-tauri/src/folder_picker.rs` ↔ the commands `pick_music_folder` ·
+  `list_folder_audio` · `persisted_music_folders` · `release_music_folder`.
+- **Choose a folder** puts `ACTION_OPEN_DOCUMENT_TREE` — the system's own
+  chooser — on screen; the grant is taken with `takePersistableUriPermission`,
+  so it survives restarts **with no manifest permission at all**.
+- The tree is walked with `DocumentsContract` into `content://` document URIs
+  (audio by mime, then by extension), and those go to `scan_paths` exactly as
+  desktop paths do — the scan and the player already open `content://` through
+  tauri-plugin-fs's ContentResolver bridge.
+- **Rescan** walks every granted folder again; **Add a folder** grants one more;
+  the ✕ on a folder chip releases its grant (rows stay until removed by
+  signature — lose-nothing). The folders are read from the system's persisted
+  grants each time, never stored in `compass.db`.
+- Every plugin call runs on `spawn_blocking` (the chooser waits on a person; the
+  main looper must never wait on it — the `play_track` law).
 
-The app requests the permission at runtime before scanning:
-`MediaPermissionPlugin.kt` (app-local Tauri mobile plugin, synced from
-`android-extras/`) ↔ `src-tauri/src/media_permission.rs` ↔
-`check_audio_permission` / `request_audio_permission` commands ↔ the
-`MediaPermissionDialog` explainer shown by `scanLibrary()` when access is
-missing. Desktop builds of the commands always return granted.
+`READ_MEDIA_AUDIO` / `READ_EXTERNAL_STORAGE` stay declared in the manifest and
+`MediaPermissionPlugin` still answers `check_audio_permission`, but the folder
+road no longer needs either: the explainer dialog is not shown on scan any more.
+The fixed `/storage/emulated/0/Music` + `Download` scan this replaced lives in git
+history (`ANDROID_MUSIC_DIRS`, removed 2026-08-30).
 
-Failure signals still surfaced in the UI as fallbacks:
-- Permission denied at the system prompt → `PERMISSION_DENIED: …` guidance card
-  (manual path: Settings → Apps → Resonance Compass → Permissions).
-- Zero tracks found — scoped storage hides unpermitted media instead of erroring
-  (Android 11+) → guidance appended to the scan error.
+Failure signals surfaced in the UI:
+- A tree the provider cannot walk → the scan error names the folder and the
+  provider's own sentence.
+- Zero audio files under the chosen folders → *"No audio files were found in
+  …"* with the folder names, and the hint to add or change a folder.
 
 ## The 16 KB page-size dialog (found on the S25, 2026-08-09)
 
@@ -107,11 +120,14 @@ adb install -r release\<name>.apk
 
 ## Known limitation / roadmap
 
-A true "pick any folder" experience on Android needs a small custom Tauri mobile
+~~A true "pick any folder" experience on Android needs a small custom Tauri mobile
 plugin (Kotlin: `ACTION_OPEN_DOCUMENT_TREE` + `takePersistableUriPermission` +
-`DocumentsContract` child enumeration). That also gives grants that survive
-restarts without any manifest permission. Tracked as future work; the fixed
-Music/Download scan covers the common case until then.
+`DocumentsContract` child enumeration).~~ **Built 2026-08-30** — see *How library
+scanning works on Android* above. One honest limit stays from the `content://`
+road: a track that lives behind a provider has no folder the app may write a
+cover file into (`folder_of` answers none), so album art for those tracks comes
+from the tags at play time and the online cover fetch, not from a file beside
+the album.
 
 ---
 

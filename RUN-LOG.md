@@ -1,2 +1,3 @@
 2026-08-08 18:00 · the-lexicon · set 'Compass' · 12 defs
 2026-08-08 18:02 · the-lexicon · set 'Compass' · 12 defs → src\lib\data\emojis.gen.ts
+2026-08-30 · the SAF folder picker built at KP's word ("SAF folder-picker plugin (#6 of the bunch) — yes let us fix this") · android-extras/FolderPickerPlugin.kt ↔ src-tauri/src/folder_picker.rs ↔ pick_music_folder · list_folder_audio · persisted_music_folders · release_music_folder · the store rescans every granted folder and the library page gains Choose a folder / Add a folder / folder chips with ✕ · the fixed Music/Download scan retired · svelte-check run here; the Rust and Kotlin compile is KP's next Android build — Plumbline 🎻
