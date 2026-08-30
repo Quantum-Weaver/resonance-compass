@@ -115,6 +115,13 @@ class FolderPickerPlugin(private val activity: Activity) : Plugin(activity) {
     }.start()
   }
 
+  // Each audio file is reported with its FOLDER (the parent document's URI —
+  // the key its art hangs on, built exactly as the store rebuilds it on load)
+  // and, when the folder holds one, the folder's COVER image as a document
+  // URI. The Rust scan copies that cover once into the app's covers dir, so a
+  // picture sitting beside the tracks is found behind a provider just as it is
+  // on a real path (KP, 2026-08-30: "does not even find the 2 that are sitting
+  // in the folder with the audio tracks").
   private fun walk(tree: Uri, docId: String, out: JSArray, folders: IntArray, depth: Int) {
     if (depth > 32) return // a provider loop is not a library
     folders[0] += 1
@@ -126,23 +133,41 @@ class FolderPickerPlugin(private val activity: Activity) : Plugin(activity) {
       DocumentsContract.Document.COLUMN_SIZE
     )
     val cursor = activity.contentResolver.query(children, projection, null, null, null) ?: return
+    val folderUri = DocumentsContract.buildDocumentUriUsingTree(tree, docId).toString()
+    val audio = ArrayList<JSObject>()
+    val images = ArrayList<Pair<String, String>>() // display name · document id
+    val subfolders = ArrayList<String>()
     cursor.use { c ->
       while (c.moveToNext()) {
         val id = c.getString(0) ?: continue
         val name = c.getString(1) ?: ""
         val mime = c.getString(2) ?: ""
-        if (mime == DocumentsContract.Document.MIME_TYPE_DIR) {
-          walk(tree, id, out, folders, depth + 1)
-        } else if (isAudio(name, mime)) {
-          val f = JSObject()
-          f.put("uri", DocumentsContract.buildDocumentUriUsingTree(tree, id).toString())
-          f.put("name", name)
-          f.put("mime", mime)
-          f.put("size", if (c.isNull(3)) 0L else c.getLong(3))
-          out.put(f)
+        when {
+          mime == DocumentsContract.Document.MIME_TYPE_DIR -> subfolders.add(id)
+          isAudio(name, mime) -> {
+            val f = JSObject()
+            f.put("uri", DocumentsContract.buildDocumentUriUsingTree(tree, id).toString())
+            f.put("name", name)
+            f.put("mime", mime)
+            f.put("size", if (c.isNull(3)) 0L else c.getLong(3))
+            f.put("folder", folderUri)
+            audio.add(f)
+          }
+          isImage(name, mime) -> images.add(Pair(name, id))
         }
       }
     }
+    if (audio.isNotEmpty()) {
+      val cover = pickCover(images)
+      for (f in audio) {
+        if (cover != null) {
+          f.put("cover", DocumentsContract.buildDocumentUriUsingTree(tree, cover.second).toString())
+          f.put("coverExt", cover.first.substringAfterLast('.', "jpg").lowercase())
+        }
+        out.put(f)
+      }
+    }
+    for (sub in subfolders) walk(tree, sub, out, folders, depth + 1)
   }
 
   private fun isAudio(name: String, mime: String): Boolean {
@@ -150,6 +175,29 @@ class FolderPickerPlugin(private val activity: Activity) : Plugin(activity) {
     val dot = name.lastIndexOf('.')
     if (dot < 0) return false
     return audioExtensions.contains(name.substring(dot + 1).lowercase())
+  }
+
+  private val imageExtensions = setOf("jpg", "jpeg", "png", "webp", "gif")
+  private val coverStems = listOf("cover", "folder", "front", "album", "albumart", "artwork")
+
+  private fun isImage(name: String, mime: String): Boolean {
+    if (mime.startsWith("image/")) return true
+    val dot = name.lastIndexOf('.')
+    if (dot < 0) return false
+    return imageExtensions.contains(name.substring(dot + 1).lowercase())
+  }
+
+  // The same rule the Rust scan applies to a real folder (pick_cover_name): a
+  // named cover wins in stem order; failing that, a folder holding exactly one
+  // image is an album folder with its art in it; two unnamed images are
+  // ambiguous and left alone rather than guessed at.
+  private fun pickCover(images: List<Pair<String, String>>): Pair<String, String>? {
+    if (images.isEmpty()) return null
+    for (stem in coverStems) {
+      val hit = images.firstOrNull { it.first.substringBeforeLast('.').lowercase() == stem }
+      if (hit != null) return hit
+    }
+    return if (images.size == 1) images[0] else null
   }
 
   // ── listPersisted: the folders this app may still read ─────────────────────

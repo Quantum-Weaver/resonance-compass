@@ -43,6 +43,10 @@ pub struct TrackInfo {
     /// Path to the ONE cover file that serves this song's album folder.
     #[serde(rename = "coverPath")]
     pub cover_path: Option<String>,
+    /// The album folder this song lives in — a directory path, or, behind an
+    /// Android provider, the parent document's URI the folder walk named.
+    /// The key its art hangs on; the store derives the same key on load.
+    pub folder: Option<String>,
     pub lyrics: Option<String>,
     #[serde(rename = "dateAdded")]
     pub date_added: u64,
@@ -175,6 +179,7 @@ fn parse_metadata(
             duration,
             cover_art: None,
             cover_path: None,
+            folder: None,
             lyrics,
             date_added,
         },
@@ -316,6 +321,53 @@ fn write_cover_bytes(
     Ok(fallback.to_string_lossy().to_string())
 }
 
+/// What the Android folder walk knows about a content:// file that its URI
+/// cannot say: its folder (the parent document — the key its art hangs on) and
+/// the folder's own cover image, when the walk found one beside the tracks.
+#[derive(Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+struct DocHint {
+    uri: String,
+    folder: String,
+    #[serde(default)]
+    cover: Option<String>,
+    #[serde(default)]
+    cover_ext: Option<String>,
+}
+
+/// A folder cover that lives behind a provider is copied ONCE into the app's
+/// covers dir under the folder's stable name, so `read_cover` serves it as a
+/// plain file like any other. Already there → answered without a read.
+fn materialize_content_cover(
+    app_handle: &tauri::AppHandle,
+    folder: &str,
+    cover_uri: &str,
+    ext: &str,
+) -> Result<String, String> {
+    let dir = app_handle
+        .path()
+        .app_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("covers");
+    fs::create_dir_all(&dir).map_err(|e| format!("Cannot create covers dir: {e}"))?;
+    let ext = if IMAGE_EXTENSIONS.contains(&ext) { ext } else { "jpg" };
+    let target = dir.join(app_data_cover_name(folder, ext));
+    if target.is_file() {
+        return Ok(target.to_string_lossy().to_string());
+    }
+    let file_path: FilePath = cover_uri.parse().map_err(|e| format!("{e:?}"))?;
+    let mut opts = OpenOptions::new();
+    opts.read(true);
+    let mut file = app_handle
+        .fs()
+        .open(file_path, opts)
+        .map_err(|e| format!("Cannot open cover {cover_uri}: {e}"))?;
+    let mut bytes = Vec::new();
+    std::io::Read::read_to_end(&mut file, &mut bytes).map_err(|e| e.to_string())?;
+    fs::write(&target, &bytes).map_err(|e| format!("Cannot write cover: {e}"))?;
+    Ok(target.to_string_lossy().to_string())
+}
+
 /// "data:image/png;base64,AAAA" → ("png", bytes). Anything else is refused
 /// rather than guessed at.
 fn decode_data_uri(data_uri: &str) -> Result<(&'static str, Vec<u8>), String> {
@@ -417,8 +469,19 @@ fn collect_audio_paths(dir: &Path, out: &mut Vec<String>) {
 // Android's fixed public Music/Download dirs) or a single file path / content://
 // URI (opened directly). Android has no folder-picker dialog, so its directories
 // arrive as well-known paths readable once media permission is granted.
+// `hints` rides only from the Android folder walk (folder + folder cover per
+// content:// file); desktop passes none and every folder is read from the path.
 #[tauri::command]
-fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<TrackInfo>, String> {
+fn scan_paths(
+    app_handle: tauri::AppHandle,
+    paths: Vec<String>,
+    hints: Option<Vec<DocHint>>,
+) -> Result<Vec<TrackInfo>, String> {
+    let hints: HashMap<String, DocHint> = hints
+        .unwrap_or_default()
+        .into_iter()
+        .map(|h| (h.uri.clone(), h))
+        .collect();
     let mut files: Vec<String> = Vec::new();
     for entry in &paths {
         let p = Path::new(entry);
@@ -450,11 +513,29 @@ fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<Tr
     let mut folder_covers: HashMap<String, Option<String>> = HashMap::new();
 
     for (i, uri) in files.iter().enumerate() {
-        let folder = folder_of(uri);
+        let hint = hints.get(uri);
+        let folder = folder_of(uri).or_else(|| hint.map(|h| h.folder.clone()));
 
         if let Some(dir) = &folder {
             if !folder_covers.contains_key(dir) {
-                folder_covers.insert(dir.clone(), find_folder_cover(Path::new(dir)));
+                let found = if uri.contains("://") {
+                    // Behind a provider: the walk named the folder's cover;
+                    // copy it once into the app's covers dir.
+                    hint.and_then(|h| {
+                        let cover = h.cover.as_deref()?;
+                        let ext = h.cover_ext.as_deref().unwrap_or("jpg");
+                        match materialize_content_cover(&app_handle, dir, cover, ext) {
+                            Ok(path) => Some(path),
+                            Err(e) => {
+                                eprintln!("[scan_paths] folder cover unreadable for {dir}: {e}");
+                                None
+                            }
+                        }
+                    })
+                } else {
+                    find_folder_cover(Path::new(dir))
+                };
+                folder_covers.insert(dir.clone(), found);
             }
         }
 
@@ -479,6 +560,7 @@ fn scan_paths(app_handle: tauri::AppHandle, paths: Vec<String>) -> Result<Vec<Tr
             .and_then(|dir| folder_covers.get(dir))
             .cloned()
             .flatten();
+        info.folder = folder.clone();
 
         tracks.push(info);
         let _ = app_handle.emit("scan-progress", ScanProgress { current: i + 1, total });

@@ -16,6 +16,7 @@ use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::time::{Duration, Instant};
 
+use cpal::traits::{DeviceTrait, HostTrait};
 use crossbeam::channel::Sender as VisSender;
 use rodio::{Decoder, OutputStream, OutputStreamHandle, Sink, Source};
 use tauri::{AppHandle, Emitter, Manager};
@@ -35,11 +36,27 @@ struct CurrentPlayback {
     exit_thread: bool,
 }
 
+/// The name of the host's default output device right now, or None when the
+/// host cannot say. Desktop hosts (WASAPI, CoreAudio, ALSA) answer with the
+/// endpoint that IS default at this moment — a Bluetooth speaker once it has
+/// finished connecting. Android's oboe host answers a constant, so there the
+/// route change rides MediaPermissionPlugin's `audioOutputChanged` instead.
+fn default_output_name() -> Option<String> {
+    cpal::default_host()
+        .default_output_device()
+        .and_then(|d| d.name().ok())
+}
+
 pub struct AudioState {
     playback: Arc<Mutex<CurrentPlayback>>,
     // None when no output device could be opened. Android may refuse the device
     // at app launch, so init failure must not panic — play_track retries instead.
     stream_handle: Mutex<Option<OutputStreamHandle>>,
+    // The default output device's name when the stream was opened. A stream is
+    // bound to that device for life; when the default moves (a Bluetooth
+    // speaker finishing its connection while the app sits open), the stream
+    // must be rebuilt or the music plays into a route nobody hears.
+    opened_on: Mutex<Option<String>>,
     vis_tx: VisSender<VisSample>,
     pub eq: Arc<Mutex<EqState>>,
 }
@@ -52,15 +69,48 @@ impl AudioState {
         if stream_handle.is_none() {
             eprintln!("[audio] output unavailable at startup — will retry on first play");
         }
+        let opened_on = stream_handle.as_ref().and_then(|_| default_output_name());
 
-        AudioState { playback, stream_handle: Mutex::new(stream_handle), vis_tx, eq }
+        AudioState {
+            playback,
+            stream_handle: Mutex::new(stream_handle),
+            opened_on: Mutex::new(opened_on),
+            vis_tx,
+            eq,
+        }
+    }
+
+    /// True when the host's default output device is no longer the one the
+    /// stream was opened on. Always false on Android (the name is a constant
+    /// there; the plugin's event carries the change).
+    fn default_moved(&self) -> bool {
+        if cfg!(target_os = "android") {
+            return false;
+        }
+        let opened = self.opened_on.lock().ok().and_then(|g| g.clone());
+        match (default_output_name(), opened) {
+            (Some(now), Some(then)) => now != then,
+            _ => false,
+        }
     }
 
     pub fn play_track(&self, path: &str, app: &AppHandle) -> Result<(), String> {
+        // The default device moved since the stream opened (Bluetooth finished
+        // connecting after launch): rebuild first, or this sink plays into the
+        // old route and the UI shows music nobody hears (KP, 2026-08-30).
+        if self.default_moved() {
+            self.rebuild_output(app)?;
+        }
+
         let stream_handle = {
             let mut guard = self.stream_handle.lock().map_err(|_| "audio state lock poisoned")?;
             if guard.is_none() {
                 *guard = start_output(&self.playback, app.clone());
+                if guard.is_some() {
+                    if let Ok(mut on) = self.opened_on.lock() {
+                        *on = default_output_name();
+                    }
+                }
             }
             guard.clone().ok_or("audio output unavailable")?
         };
@@ -168,6 +218,9 @@ impl AudioState {
             let mut guard = self.stream_handle.lock().map_err(|_| "audio state lock poisoned")?;
             *guard = start_output(&self.playback, app.clone());
             guard.clone().ok_or("audio output unavailable after rebuild")?;
+            if let Ok(mut on) = self.opened_on.lock() {
+                *on = default_output_name();
+            }
             // Reset the flag so the new thread keeps running.
             let mut pb = self.playback.lock().map_err(|_| "playback lock poisoned")?;
             pb.exit_thread = false;
@@ -210,6 +263,16 @@ fn audio_thread(
     }
     let _stream = stream; // kept alive for the life of this thread — dropping it ends playback
 
+    // Desktop has no route-change event, so this thread watches the default
+    // device itself (every ~2 s, one enumerator call) and tells the frontend
+    // ONCE when it moves; the frontend rebuilds and reloads at the same
+    // position, exactly as it does for Android's event. Skipped on Android,
+    // where the name never changes and the plugin's event is the signal.
+    let watch_default = !cfg!(target_os = "android");
+    let opened_on = if watch_default { default_output_name() } else { None };
+    let mut announced_move = false;
+    let mut next_watch = Instant::now();
+
     let mut next_pos = Instant::now();
     loop {
         thread::sleep(Duration::from_millis(50));
@@ -221,6 +284,16 @@ fn audio_thread(
             };
             if guard.exit_thread {
                 return;
+            }
+        }
+
+        if watch_default && !announced_move && next_watch.elapsed() >= Duration::from_secs(2) {
+            next_watch = Instant::now();
+            if let (Some(now), Some(then)) = (default_output_name(), opened_on.as_ref()) {
+                if &now != then {
+                    announced_move = true;
+                    let _ = app.emit("audio://output-changed", ());
+                }
             }
         }
 

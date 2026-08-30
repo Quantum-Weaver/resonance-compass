@@ -26,6 +26,7 @@ pub struct PickedFolder {
 /// One audio file inside a chosen folder — a content:// document URI the
 /// existing scan opens as it opens any path.
 #[derive(Serialize, Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct FolderAudio {
     pub uri: String,
     pub name: String,
@@ -33,6 +34,14 @@ pub struct FolderAudio {
     pub mime: String,
     #[serde(default)]
     pub size: u64,
+    /// The parent document's URI — the folder key the scan hangs art on.
+    #[serde(default)]
+    pub folder: Option<String>,
+    /// The folder's own cover image beside the tracks, as a document URI.
+    #[serde(default)]
+    pub cover: Option<String>,
+    #[serde(default)]
+    pub cover_ext: Option<String>,
 }
 
 #[cfg(target_os = "android")]

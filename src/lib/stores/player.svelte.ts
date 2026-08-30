@@ -101,6 +101,13 @@ function ensureListeners() {
 		next();
 	});
 
+	// Desktop: the audio thread watched the default output device move (a
+	// Bluetooth speaker finished connecting after launch). Same answer as
+	// Android's audioOutputChanged below — rebuild the stream, reload in place.
+	listen('audio://output-changed', () => {
+		rebuildAndReload();
+	});
+
 	// Android: pause when audio output disconnects (Bluetooth dropped, headphones
 	// unplugged) so playback never jumps to the phone speaker. Nothing auto-plays
 	// on reconnect. Android-only — rejected on desktop, and that's expected.
@@ -284,19 +291,28 @@ async function stopPlayback() {
 	invoke('media_release').catch(() => {});
 }
 
-// Android: the audio output route changed mid-session. Rebuild the native
-// output stream so it binds to the new default device, then reload the current
-// track if we were playing. The backend stop() clears the old sink; we mark the
-// frontend's loaded flag false so the next play() or reload uses a fresh sink.
+// The audio output route changed mid-session (Android's event, or the desktop
+// watcher). Rebuild the native output stream so it binds to the new default
+// device, then reload the current track if we were playing. The backend stop()
+// clears the old sink; we mark the frontend's loaded flag false so the next
+// play() or reload uses a fresh sink.
+//
+// This rebuilds even with NO track loaded: the stream opened at launch is
+// bound to the device that was default then, and a Bluetooth speaker that
+// finished connecting while the app sat idle would otherwise get nothing until
+// a restart (KP, 2026-08-30). An idle rebuild costs a moment and nobody hears it.
 async function rebuildAndReload() {
-	if (!currentTrack) return;
 	const wasPlaying = isPlaying;
 	const savedPosition = position;
 	try {
 		await invoke('rebuild_audio_output');
 		trackLoadedInBackend = false;
-		if (wasPlaying) {
+		if (currentTrack && wasPlaying) {
 			await loadTrackObject(currentTrack, savedPosition, false);
+		} else if (currentTrack) {
+			// Paused: the old sink is gone with the old stream; the next play()
+			// loads the track afresh at its position.
+			isPlaying = false;
 		}
 	} catch (e) {
 		playbackError = e instanceof Error ? e.message : String(e);

@@ -76,13 +76,26 @@ class MediaPermissionPlugin(activity: Activity) : Plugin(activity) {
   // route may shift. Rodio's OutputStream is bound to the device that was
   // default when it opened, so the frontend must rebuild it and reload the
   // current track. We emit on both add and remove so reconnects are caught.
+  // Android reports a device the moment it is ADDED, before the audio route has
+  // finished moving to it; a rebuild fired right then binds the new stream to
+  // the old route and the music plays into nothing (KP, 2026-08-30: audio
+  // "goes no where until app is closed then opened again"). So the event waits
+  // for the route to settle, and a burst of add/remove callbacks (a Bluetooth
+  // handshake fires several) folds into one event.
+  private val mainHandler = Handler(Looper.getMainLooper())
+  private val announceOutputChanged = Runnable { trigger("audioOutputChanged", JSObject()) }
+  private fun outputChanged() {
+    mainHandler.removeCallbacks(announceOutputChanged)
+    mainHandler.postDelayed(announceOutputChanged, 1200)
+  }
+
   private val audioDeviceCallback = object : AudioDeviceCallback() {
     override fun onAudioDevicesAdded(addedDevices: Array<AudioDeviceInfo>) {
-      trigger("audioOutputChanged", JSObject())
+      outputChanged()
     }
 
     override fun onAudioDevicesRemoved(removedDevices: Array<AudioDeviceInfo>) {
-      trigger("audioOutputChanged", JSObject())
+      outputChanged()
     }
   }
 

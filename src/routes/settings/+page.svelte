@@ -10,6 +10,7 @@
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { moodStore } from '$lib/stores/mood.svelte';
 	import { PRESET_THEMES, presetSwatch } from '$lib/theme/theme';
+	import { saveEq, loadSavedEq } from '$lib/eq-persist';
 	import { seal, open, filename, purgeAfter } from '$lib/envelope-core/index';
 
 
@@ -108,6 +109,10 @@
 	let eqActivePreset = $state<string | null>(null);
 	let eqDirty = $state(false);
 
+	// The settings in force outlive the session (KP, 2026-08-30): every change
+	// below lands in localStorage, and the layout pushes them back into the
+	// engine at startup. The engine's state is read first so the page shows
+	// what is actually in force; the saved preset name comes back beside it.
 	async function loadEq() {
 		try {
 			const s = await invoke<EqStateResponse>('get_eq_state');
@@ -115,6 +120,8 @@
 			eqBands = [...s.bands];
 			eqPreamp = s.preamp;
 			eqLabels = [...s.labels];
+			const saved = loadSavedEq();
+			if (saved) eqActivePreset = saved.preset;
 		} catch (e) {
 			console.error('[settings] loadEq failed:', e);
 		} finally {
@@ -122,11 +129,16 @@
 		}
 	}
 
+	function persistEq() {
+		saveEq({ enabled: eqEnabled, preamp: eqPreamp, bands: [...eqBands], preset: eqActivePreset });
+	}
+
 	async function setEqBand(i: number, v: number) {
 		eqBands[i] = v;
 		eqBands = [...eqBands];
 		eqActivePreset = null;
 		eqDirty = true;
+		persistEq();
 		try {
 			await invoke('set_eq_band', { band: i, gainDb: v });
 		} catch (e) {
@@ -137,6 +149,7 @@
 	async function setEqPreamp(v: number) {
 		eqPreamp = v;
 		eqDirty = true;
+		persistEq();
 		try {
 			await invoke('set_eq_preamp', { gainDb: v });
 		} catch (e) {
@@ -146,6 +159,7 @@
 
 	async function toggleEq(val: boolean) {
 		eqEnabled = val;
+		persistEq();
 		try {
 			await invoke('toggle_eq', { enabled: val });
 		} catch (e) {
@@ -161,6 +175,7 @@
 			const s = await invoke<EqStateResponse>('get_eq_state');
 			eqBands = [...s.bands];
 			eqEnabled = s.enabled;
+			persistEq();
 		} catch (e) {
 			console.error('[settings] set_eq_preset failed:', e);
 		}
@@ -221,6 +236,7 @@
 		eqDirty = false;
 		eqBands = [...cp.bands];
 		eqPreamp = cp.preamp;
+		persistEq();
 		for (let i = 0; i < cp.bands.length; i++) {
 			try {
 				await invoke('set_eq_band', { band: i, gainDb: cp.bands[i] });

@@ -24,13 +24,40 @@ const coverCache = new Map<string, string>();
 /** The album folder a URI lives in — the raw parent directory, matching
  *  Rust's `folder_of`. Deliberately NOT the disc-stripped `folderOf` below. */
 function dirOf(uri: string): string {
-	if (uri.includes('://')) return ''; // content:// has no folder we may write into
+	if (uri.startsWith('content://')) return contentFolderOf(uri);
+	if (uri.includes('://')) return ''; // any other scheme has no folder we may key on
 	const cut = Math.max(uri.lastIndexOf('/'), uri.lastIndexOf('\\'));
 	if (cut < 0) return '';
 	// A root keeps its separator, matching Rust's Path::parent(): never the bare "D:".
 	let dir = cut === 0 ? uri.slice(0, 1) : uri.slice(0, cut);
 	if (/^[A-Za-z]:$/.test(dir)) dir += uri[cut];
 	return dir;
+}
+
+// A SAF document URI's folder: the parent document, built the way Android's
+// DocumentsContract.buildDocumentUriUsingTree builds it, so the key the folder
+// walk hands the scan and the key derived here on load are the same string.
+//   content://<authority>/tree/<treeId>/document/<docId>   docId "primary:Music/Album/track.mp3"
+//   → content://<authority>/tree/<treeId>/document/primary%3AMusic%2FAlbum
+// (encodeURIComponent and Android's Uri.encode keep the same unreserved set.)
+function contentFolderOf(uri: string): string {
+	const marker = '/document/';
+	const cut = uri.indexOf(marker);
+	if (cut < 0) return '';
+	const head = uri.slice(0, cut + marker.length);
+	let docId: string;
+	try {
+		docId = decodeURIComponent(uri.slice(cut + marker.length));
+	} catch {
+		return '';
+	}
+	const slash = docId.lastIndexOf('/');
+	if (slash < 0) {
+		// A file at the tree's root: its folder is the tree document itself.
+		const tree = uri.match(/\/tree\/([^/]+)/);
+		return tree ? head + tree[1] : '';
+	}
+	return head + encodeURIComponent(docId.slice(0, slash));
 }
 
 function rowToTrack(row: Record<string, unknown>): Track {
@@ -432,6 +459,9 @@ async function runScan(folders?: MusicFolder[]) {
 
 	let selected: string[];
 	let scannedNames = '';
+	// Android only: what the folder walk knows that a content:// URI cannot say
+	// — each file's folder and the folder's own cover image beside the tracks.
+	let hints: { uri: string; folder: string; cover: string | null; coverExt: string | null }[] | undefined;
 	if (isAndroid) {
 		// Every audio file under each granted tree, walked by the provider;
 		// the URIs go to scan_paths exactly as desktop paths do.
@@ -440,10 +470,21 @@ async function runScan(folders?: MusicFolder[]) {
 		scannedNames = trees.map((t) => t.name).join(', ');
 		scanError = null;
 		selected = [];
+		hints = [];
 		for (const t of trees) {
 			try {
-				const files = await invoke<{ uri: string }[]>('list_folder_audio', { uri: t.uri });
-				for (const f of files) selected.push(f.uri);
+				const files = await invoke<
+					{ uri: string; folder?: string; cover?: string | null; coverExt?: string | null }[]
+				>('list_folder_audio', { uri: t.uri });
+				for (const f of files) {
+					selected.push(f.uri);
+					hints.push({
+						uri: f.uri,
+						folder: f.folder ?? contentFolderOf(f.uri),
+						cover: f.cover ?? null,
+						coverExt: f.coverExt ?? null,
+					});
+				}
 			} catch (e) {
 				scanError = `${t.name}: ${e instanceof Error ? e.message : String(e)}`;
 				console.error('[libraryStore] folder walk failed:', e);
@@ -467,9 +508,11 @@ async function runScan(folders?: MusicFolder[]) {
 	});
 
 	try {
-		const scanned = await invoke<Track[]>('scan_paths', { paths: selected });
+		const scanned = await invoke<Track[]>('scan_paths', { paths: selected, hints });
 		const now = Math.floor(Date.now() / 1000);
-		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now, folder: dirOf(t.uri) }));
+		// The scan's own folder key first (behind a provider it is the walk's);
+		// the path-derived one for anything older or desktop.
+		const withTimestamps = scanned.map((t) => ({ ...t, lastScanned: now, folder: t.folder || dirOf(t.uri) }));
 		await saveScannedTracks(withTimestamps);
 		// (The old sweep of content:// rows after a fixed-folder scan is gone:
 		// on the folder road, content:// rows ARE the library.)

@@ -9,6 +9,7 @@
 	import { moodStore } from '$lib/stores/mood.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { getThemeColors } from '$lib/theme/theme';
+	import { restoreEq } from '$lib/eq-persist';
 	import { onMount } from 'svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import MiniPlayer from '$lib/components/MiniPlayer.svelte';
@@ -26,6 +27,8 @@
 		await libraryStore.initDB();
 		playlistStore.loadPlaylists();
 		await moodStore.initDB();
+		// The equalizer as it was left — into the engine before any track plays.
+		await restoreEq();
 		playerStore.restoreState();
 		profileStore.loadProfiles();
 		const done = localStorage.getItem('onboarding_complete');
