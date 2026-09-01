@@ -1,4 +1,11 @@
+// ============================================================================
+// COSMIC CONSTANTS - SINGLE SOURCE OF TRUTH
+// Quantum design system exports - all values derived from core constants
+// ============================================================================
+
+// ============================================================================
 // COLORS - Core color system
+// ============================================================================
 export {
   QUANTUM_COLORS,
   COUNCIL_COLORS,
@@ -19,7 +26,9 @@ export type {
   DomainColorKey,
 } from './colors';
 
+// ============================================================================
 // DIMENSIONS - Spacing, breakpoints, sizes, radii
+// ============================================================================
 export {
   BASE_UNIT,
   SCALE_MULTIPLIERS,
@@ -62,7 +71,9 @@ export type {
   RadiusKey,
 } from './dimensions';
 
+// ============================================================================
 // POSITIONING - Viewport, parallax, zoom, camera, coordinates
+// ============================================================================
 export {
   VIEWPORT_ANCHORS,
   PARALLAX_LAYERS,
@@ -82,12 +93,10 @@ export {
   getBeamPath,
   getCameraPosition,
   getResponsiveCoordinate,
-  // scene primitives for the Stage (camera moves + timeline)
   CAMERA_MOVES,
   getCameraMove,
   SCENE_SEQUENCES,
   sceneTotalDuration,
-  // dimensional projection, the house's first 3D
   LIGHT_VECTOR,
   SURFACE_LIGHTING,
   PROJECTION_FOCAL,
@@ -98,7 +107,6 @@ export {
   diffuse,
   specular,
   orientationFacing,
-  // the first-person tabletop and its glance
   FIRST_PERSON_TABLE,
   glanceToward,
 } from './positioning';
@@ -121,7 +129,9 @@ export type {
   SceneSequenceKey,
 } from './positioning';
 
+// ============================================================================
 // MOTION - Durations, easings, keyframes, animations
+// ============================================================================
 export {
   durations as DURATIONS,
   easing as EASING,
@@ -136,14 +146,12 @@ export {
   animationThresholds,
   getReducedMotionSafeConfig,
   getReducedMotionVariant,
-  // the verb families (ceremonies, recentering, flock)
   CEREMONIES,
   CEREMONY_NAMES,
   getCeremony,
   ceremonyTotalDuration,
   SUPPORTIVE_CONVERGENCE,
   ENSEMBLE_MOTION,
-  // ceremony bookends and refuge & return
   CEREMONY_BOOKENDS,
   REFUGE_RETURN_SEQUENCE,
   refugeTotalDuration,
@@ -171,7 +179,9 @@ export type {
   RefugePhaseKey,
 } from './motion';
 
+// ============================================================================
 // TYPOGRAPHY - Font families, sizes, domain/entity styles
+// ============================================================================
 export {
   FONT_FAMILIES,
   TEXT_SIZES,
@@ -210,7 +220,9 @@ export type {
   TypographyStyleConfig,
 } from './typography';
 
+// ============================================================================
 // CONSCIOUSNESS - User tiers, beam intensity, vessel capacity
+// ============================================================================
 export {
   CONSCIOUSNESS_LEVELS,
   TIER_TO_BEAM_INTENSITY,
@@ -228,12 +240,10 @@ export {
   getConsciousnessLevel,
   getVesselCapacityFromScore,
   getResonancePattern,
-  // global-pause state and recovery entity states
   PAUSE_MODES,
   GLOBAL_PAUSE,
   isPaused,
   RECOVERY_ENTITY_STATES,
-  // dimensional frequency and elemental consciousness palette
   CONSCIOUSNESS_FLOORS,
   DIMENSIONAL_FREQUENCY_TOKENS,
   ELEMENTAL_CONSCIOUSNESS_PALETTE,
@@ -257,15 +267,15 @@ export type {
   ElementalConsciousnessKey as ElementalConsciousnessKeyType,
 } from './consciousness';
 
+// ============================================================================
 // ATTENTION — the Bird-Wisdom Spectrum
+// ============================================================================
 export {
   ATTENTION_MODES,
   ATTENTION_MODE_NAMES,
   DEFAULT_ATTENTION_MODE,
   getAttentionMode,
-  // the switching affordance for ATTENTION_MODES
   ATTENTION_MODE_SELECTOR,
-  // per-deity voice bundles
   DEITY_VOICE_BUNDLES,
   DEITY_VOICE_NAMES,
   getDeityVoiceBundle,
@@ -280,17 +290,14 @@ export type {
   DeityVoiceKey as DeityVoiceKeyType,
 } from './attention';
 
+// ============================================================================
 // INTERACTIVITY — the user's own hand
+// ============================================================================
 export {
-  // self-pause trigger (cooperates with GLOBAL_PAUSE)
   SELF_PAUSE_TRIGGER,
-  // escort transition capability (SIGNED; trigger map stays app-layer)
   ESCORT_TRANSITION,
-  // supportive role affordances (beneath the recentering motion)
   SUPPORTIVE_ROLE_AFFORDANCES,
-  // invitation gate (consent replacing auto-advance)
   INVITATION_GATE,
-  // pre-transition reflection primitive
   PRE_TRANSITION_REFLECTION,
 } from './interactivity';
 
@@ -304,7 +311,9 @@ export type {
   ReflectionPrimitiveType,
 } from './interactivity';
 
+// ============================================================================
 // EFFECTS - Gradients, glows, shadows, backdrops, holographic, presence
+// ============================================================================
 export {
   GRADIENTS,
   QUANTUM_GRADIENTS,
@@ -315,15 +324,12 @@ export {
   HOLOGRAPHIC_EFFECTS,
   EFFECTS,
   PARTICLE_BEHAVIOR,
-  // presence field and per-domain glow modulation
   PRESENCE_FIELD,
   DOMAIN_GLOW_MODULATION,
   DOMAIN_GLOW_MODULATION_DEFAULT,
   getModulatedGlow,
-  // eternal witness state and transcendence sequence
   ETERNAL_WITNESS_STATE,
   TRANSCENDENCE_STATE_SEQUENCE,
-  // generated stone, for the house's first 3D surface
   MARBLE_RECIPES,
   STONE_GROUND,
   STONE_PALETTES,
@@ -352,7 +358,11 @@ export type {
   StonePaletteKey,
 } from './effects';
 
+// ============================================================================
 // SOLIDS — the dimensional vocabulary
+// ============================================================================
+// Polyhedra as vertices and faces, and the honest answer to a side count that
+// no fair solid can carry.
 
 export {
   PLATONIC_SOLIDS,

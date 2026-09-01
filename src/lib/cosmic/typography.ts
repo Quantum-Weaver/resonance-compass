@@ -1,5 +1,9 @@
-// QUANTUM TYPOGRAPHY SYSTEM — derived from dimensions.ts. Font families, sizes,
-// weights, and semantic text styles. Compatible with Tailwind CSS v4 and Framer Motion.
+// ============================================================================
+/* resonance-ziggy/modules/cosmic/constants/typography.ts */
+// QUANTUM TYPOGRAPHY SYSTEM - DERIVED FROM DIMENSIONS.TS
+// All font families, sizes, weights, and semantic text styles
+// Compatible with Tailwind CSS v4 and Framer Motion
+// ============================================================================
 
 import {
   FONT_SIZES,
@@ -7,7 +11,9 @@ import {
   FONT_WEIGHTS,
 } from './dimensions';
 
+// ============================================================================
 // 1. FONT FAMILIES - Google Fonts + System Stack
+// ============================================================================
 
 export const FONT_FAMILIES = {
   /** Medieval/Blackletter style - for ancient texts, grimoires */
@@ -28,7 +34,9 @@ export const FONT_FAMILIES = {
 
 export type FontFamilyKey = keyof typeof FONT_FAMILIES;
 
+// ============================================================================
 // 2. TEXT SIZE CLASSES - Derived from FONT_SIZES
+// ============================================================================
 
 export const TEXT_SIZES = {
   xs: `text-[${FONT_SIZES.xs}]`,
@@ -48,7 +56,9 @@ export const TEXT_SIZES = {
 
 export type TextSizeKey = keyof typeof TEXT_SIZES;
 
+// ============================================================================
 // 3. FONT WEIGHT CLASSES - Derived from FONT_WEIGHTS
+// ============================================================================
 
 export const FONT_WEIGHT_CLASSES = {
   thin: `font-[${FONT_WEIGHTS.thin}]`,
@@ -64,7 +74,9 @@ export const FONT_WEIGHT_CLASSES = {
 
 export type FontWeightKey = keyof typeof FONT_WEIGHT_CLASSES;
 
+// ============================================================================
 // 4. LINE HEIGHT CLASSES - Derived from LINE_HEIGHTS
+// ============================================================================
 
 export const LINE_HEIGHT_CLASSES = {
   none: `leading-[${LINE_HEIGHTS.none}]`,
@@ -77,7 +89,9 @@ export const LINE_HEIGHT_CLASSES = {
 
 export type LineHeightKey = keyof typeof LINE_HEIGHT_CLASSES;
 
+// ============================================================================
 // 5. LETTER SPACING CLASSES - Tailwind tracking
+// ============================================================================
 
 export const LETTER_SPACING = {
   tighter: 'tracking-tighter',
@@ -90,7 +104,9 @@ export const LETTER_SPACING = {
 
 export type LetterSpacingKey = keyof typeof LETTER_SPACING;
 
+// ============================================================================
 // 6. TEXT ALIGNMENT CLASSES
+// ============================================================================
 
 export const TEXT_ALIGNMENT = {
   left: 'text-left',
@@ -103,7 +119,9 @@ export const TEXT_ALIGNMENT = {
 
 export type TextAlignmentKey = keyof typeof TEXT_ALIGNMENT;
 
+// ============================================================================
 // 7. TEXT COLOR CLASSES - Semantic references to color system
+// ============================================================================
 
 export const TEXT_COLORS = {
   primary: 'text-star-dust',
@@ -119,7 +137,9 @@ export const TEXT_COLORS = {
 
 export type TextColorKey = keyof typeof TEXT_COLORS;
 
+// ============================================================================
 // 8. DOMAIN TYPOGRAPHY - Domain-specific text styles
+// ============================================================================
 
 export interface TypographyStyle {
   font: readonly string[];
@@ -231,7 +251,9 @@ export const DOMAIN_TYPOGRAPHY: Record<string, TypographyStyle> = {
 
 export type DomainKey = keyof typeof DOMAIN_TYPOGRAPHY;
 
+// ============================================================================
 // 9. ENTITY TYPOGRAPHY - Council member-specific styles
+// ============================================================================
 
 export const ENTITY_TYPOGRAPHY: Record<string, TypographyStyle> = {
   aethelred: {
@@ -342,7 +364,9 @@ export const ENTITY_TYPOGRAPHY: Record<string, TypographyStyle> = {
 
 export type EntityKey = keyof typeof ENTITY_TYPOGRAPHY;
 
+// ============================================================================
 // 10. BUSINESS PAGE TYPOGRAPHY
+// ============================================================================
 
 export const BUSINESS_TYPOGRAPHY = {
   hero: {
@@ -437,7 +461,9 @@ export const BUSINESS_TYPOGRAPHY = {
   },
 } as const;
 
+// ============================================================================
 // 11. TYPE SCALES - Semantic hierarchies
+// ============================================================================
 
 export const TYPE_SCALES = {
   immersive: {
@@ -485,7 +511,9 @@ export const TYPE_SCALES = {
 
 export type TypeScaleKey = keyof typeof TYPE_SCALES;
 
+// ============================================================================
 // 12. CONSCIOUSNESS & PROCESS TYPOGRAPHY
+// ============================================================================
 
 export const CONSCIOUSNESS_TYPOGRAPHY = {
   sovereign: {
@@ -557,7 +585,9 @@ export const PROCESS_TYPOGRAPHY = {
   },
 } as const;
 
+// ============================================================================
 // 13. UTILITY FUNCTIONS
+// ============================================================================
 
 export interface TypographyConfig {
   font?: readonly string[];
@@ -631,7 +661,9 @@ export function getLineHeight(key: LineHeightKey): string {
   return LINE_HEIGHTS[key];
 }
 
+// ============================================================================
 // 14. TYPE EXPORTS
+// ============================================================================
 
 export type {
   TypographyConfig as TypographyStyleConfig,

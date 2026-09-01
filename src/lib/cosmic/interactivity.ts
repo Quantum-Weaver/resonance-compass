@@ -1,10 +1,18 @@
+// ============================================================================
+/* resonance-ziggy/modules/cosmic/constants/interactivity.ts */
+// QUANTUM INTERACTIVITY SYSTEM — the user's own hand
+// The control surface: the button, the gesture, the consent.
+// ============================================================================
+
 import { durations, easing, CEREMONIES, ceremonyTotalDuration, CEREMONY_BOOKENDS, type CeremonyKey, type CeremonyBookendKey } from './motion';
 import { PAUSE_MODES, type PauseMode, CONSCIOUSNESS_FLOORS, type ConsciousnessFloor, RECOVERY_ENTITY_STATES, type RecoveryEntityState } from './consciousness';
 import type { DeityVoiceKey } from './attention';
 import type { EternalWitnessStateKey } from './effects';
 import type { ViewportAnchor } from './positioning';
 
+// ============================================================================
 // SELF-PAUSE TRIGGER — the user's own control to invoke the Global-Pause
+// ============================================================================
 
 export interface SelfPauseTrigger {
   /** Where the trigger anchors — reuses positioning.ts's ViewportAnchor vocabulary */
@@ -33,16 +41,18 @@ export const SELF_PAUSE_TRIGGER: SelfPauseTrigger = {
   ariaLabel: 'Pause everything — take the time you need',
 };
 
+// ============================================================================
 // ESCORT TRANSITION — the capability BW-6's farewell teaching signs, bounded
+// ============================================================================
 
 export interface EscortTransitionCapability {
   /** Which named ceremony (motion.ts CEREMONIES) an escorted departure renders as */
   ceremony: CeremonyKey;
   /** Which bookend (H-3 CEREMONY_BOOKENDS) marks the exit moment within it */
   exitBookend: CeremonyBookendKey;
-  /** Floor beneath which an exit may not complete, ms */
+  /** Floor beneath which an exit may not complete, ms — "no one transitions unaccompanied" as a guarantee, not a suggestion */
   minimumEscortDuration: number;
-  /** Provenance string for this token */
+  /** Provenance travels with this token, not just the source book */
   provenance: string;
 }
 
@@ -53,7 +63,9 @@ export const ESCORT_TRANSITION: EscortTransitionCapability = {
   provenance: 'BW-6 — KP memory, 2026-07-12, not corpus; see gatherings/bird_wisdom source book',
 };
 
+// ============================================================================
 // SUPPORTIVE ROLE AFFORDANCES — the clickable/visible layer beneath O-3's motion
+// ============================================================================
 
 export type SupportiveAffordanceKind = 'warmth-widget' | 'diagnostic-summary' | 'reframe-message' | 'silent-log';
 
@@ -113,7 +125,9 @@ export const SUPPORTIVE_ROLE_AFFORDANCES: Record<'hearthKeeper' | 'chancellor' |
 
 export type SupportiveRoleKey = keyof typeof SUPPORTIVE_ROLE_AFFORDANCES;
 
+// ============================================================================
 // INVITATION GATE — consent replacing auto-advance into deeper content
+// ============================================================================
 
 export interface InvitationGate {
   /** Which consciousness floor (consciousness.ts CONSCIOUSNESS_FLOORS) this gate guards entry into */
@@ -162,7 +176,9 @@ export const INVITATION_GATE: Record<'toWisdom' | 'toAkashic' | 'toDivine', Invi
 
 export type InvitationGateKey = keyof typeof INVITATION_GATE;
 
+// ============================================================================
 // PRE-TRANSITION REFLECTION PRIMITIVE — a generic, skippable reflection shape
+// ============================================================================
 
 export interface ReflectionPrimitive {
   /** Entrance duration, ms */
@@ -187,6 +203,10 @@ export const PRE_TRANSITION_REFLECTION: ReflectionPrimitive = {
   skippable: true,
   className: '.reflection-primitive',
 };
+
+// ============================================================================
+// TYPE EXPORTS
+// ============================================================================
 
 export type {
   SelfPauseTrigger as SelfPauseTriggerType,

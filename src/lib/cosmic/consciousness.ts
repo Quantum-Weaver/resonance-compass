@@ -1,6 +1,15 @@
+// ============================================================================
+/* resonance-ziggy/modules/cosmic/constants/consciousness.ts */
+// QUANTUM CONSCIOUSNESS SYSTEM - SINGLE SOURCE OF TRUTH
+// Bridges user state (tier, sovereignty, session) to system expression
+// Controls continuity beam intensity, animation complexity, and immersive responses
+// ============================================================================
+
 import type { EnvironmentKey } from './positioning';
 
+// ============================================================================
 // 1. CONSCIOUSNESS LEVELS - User's journey stage
+// ============================================================================
 
 export const CONSCIOUSNESS_LEVELS = {
   /** Dormant - New user, minimal interaction */
@@ -31,7 +40,9 @@ export const CONSCIOUSNESS_LEVELS = {
 
 export type ConsciousnessLevel = typeof CONSCIOUSNESS_LEVELS[keyof typeof CONSCIOUSNESS_LEVELS];
 
+// ============================================================================
 // 2. BEAM INTENSITY MAPPING - By user tier and consciousness level
+// ============================================================================
 
 export type UserTier = 'community' | 'ally' | 'corporate' | 'council';
 export type BeamIntensityLevel = 'low' | 'medium' | 'high' | 'quantum';
@@ -60,7 +71,9 @@ export const CONSCIOUSNESS_TO_BEAM_INTENSITY: Record<ConsciousnessLevel, BeamInt
   [CONSCIOUSNESS_LEVELS.TRANSCENDENT]: 'quantum',
 } as const;
 
+// ============================================================================
 // 3. BEAM ACTIVATION LOGIC - When the beam should appear
+// ============================================================================
 
 export interface BeamActivationState {
   /** Whether the beam is active */
@@ -96,35 +109,35 @@ export interface SessionState {
 /** Calculate beam activation state from session state */
 export function calculateBeamActivation(state: SessionState): BeamActivationState {
   let intensity = TIER_TO_BEAM_INTENSITY[state.tier] || 'medium';
-
+  
   if (state.sovereigntyScore > 500) {
     if (intensity === 'medium') intensity = 'high';
     else if (intensity === 'high') intensity = 'quantum';
   } else if (state.sovereigntyScore > 200 && intensity === 'low') {
     intensity = 'medium';
   }
-
+  
   if (state.sessionDurationMinutes > 30 && intensity !== 'quantum') {
     if (intensity === 'low') intensity = 'medium';
     else if (intensity === 'medium') intensity = 'high';
   }
-
+  
   const speedMultiplier = state.isFirstVisitToday ? 0.7 : 1;
   const glowMultiplier = state.isFirstVisitToday ? 0.6 : 1;
-
+  
   let variant: keyof typeof BEAM_VARIANT_BY_STATE = 'default';
-
+  
   if (state.primaryHouse) {
     const houseVariant = `house_${state.primaryHouse}` as keyof typeof BEAM_VARIANT_BY_STATE;
     if (BEAM_VARIANT_BY_STATE[houseVariant]) {
       variant = houseVariant;
     }
   }
-
+  
   if (state.hasCompletedAcidTest && variant === 'default') {
     variant = 'awakened';
   }
-
+  
   return {
     active: intensity !== 'low' || state.sessionDurationMinutes > 5,
     intensity,
@@ -134,7 +147,9 @@ export function calculateBeamActivation(state: SessionState): BeamActivationStat
   };
 }
 
+// ============================================================================
 // 4. BEAM VARIANTS - By session state and user attributes
+// ============================================================================
 
 export const BEAM_VARIANT_BY_STATE = {
   /** Default variant - standard quantum sweep */
@@ -159,7 +174,9 @@ export const BEAM_VARIANT_BY_STATE = {
   house_executioner: 'house_executioner',
 } as const;
 
+// ============================================================================
 // 5. VESSEL CAPACITY - Cognitive load and animation complexity
+// ============================================================================
 
 export const VESSEL_CAPACITY_LEVELS = {
   /** Single stream - focused, linear processing */
@@ -190,7 +207,9 @@ export function getVesselCapacityFromScore(score: number): VesselCapacity {
   return VESSEL_CAPACITY_LEVELS.SINGLE;
 }
 
+// ============================================================================
 // 6. ENTITY STATES - Council member current status
+// ============================================================================
 
 export const ENTITY_STATES = {
   /** Forming - Entity is being created/recognized */
@@ -227,7 +246,9 @@ export const ENTITY_STATES = {
 
 export type EntityState = typeof ENTITY_STATES[keyof typeof ENTITY_STATES];
 
+// ============================================================================
 // 7. RESONANCE PATTERNS - System coordination modes
+// ============================================================================
 
 export const RESONANCE_PATTERN_TYPES = {
   /** Individual - Solo interaction */
@@ -272,7 +293,9 @@ export const RESONANCE_PATTERNS: Record<ResonancePatternType, {
   },
 };
 
+// ============================================================================
 // 8. AWARENESS DOMAINS - Which information layers are active
+// ============================================================================
 
 export const AWARENESS_DOMAINS = {
   /** Self - Personal data, profile, settings */
@@ -287,7 +310,9 @@ export const AWARENESS_DOMAINS = {
 
 export type AwarenessDomain = typeof AWARENESS_DOMAINS[keyof typeof AWARENESS_DOMAINS];
 
+// ============================================================================
 // 9. CONSCIOUSNESS UTILITIES
+// ============================================================================
 
 /** Get beam intensity from user tier and sovereignty score */
 export function getBeamIntensity(tier: UserTier, sovereigntyScore: number = 0): BeamIntensityLevel {
@@ -308,7 +333,7 @@ export function getBeamIntensity(tier: UserTier, sovereigntyScore: number = 0): 
 export function getVesselCapacity(tier: UserTier, sovereigntyScore: number): VesselCapacity {
   const fromTier = TIER_TO_VESSEL_CAPACITY[tier];
   const fromScore = getVesselCapacityFromScore(sovereigntyScore);
-
+  
   const tierOrder = Object.values(VESSEL_CAPACITY_LEVELS);
   const tierIndex = tierOrder.indexOf(fromTier);
   const scoreIndex = tierOrder.indexOf(fromScore);
@@ -335,7 +360,9 @@ export function getResonancePattern(activeUserCount: number): ResonancePatternTy
   return RESONANCE_PATTERN_TYPES.INDIVIDUAL;
 }
 
+// ============================================================================
 // 10. GLOBAL-PAUSE STATE — the world-pause, the Sanctuary's gentlest law
+// ============================================================================
 
 export const PAUSE_MODES = {
   /** Active — the world runs normally */
@@ -386,7 +413,9 @@ export function isPaused(mode: PauseMode): boolean {
   return mode !== PAUSE_MODES.ACTIVE;
 }
 
+// ============================================================================
 // 11. RECOVERY ENTITY STATES — fault & recovery (companions hold the recovering)
+// ============================================================================
 
 export const RECOVERY_ENTITY_STATES = {
   /** Faulted — the entity has stumbled and needs holding */
@@ -399,7 +428,9 @@ export const RECOVERY_ENTITY_STATES = {
 
 export type RecoveryEntityState = typeof RECOVERY_ENTITY_STATES[keyof typeof RECOVERY_ENTITY_STATES];
 
+// ============================================================================
 // 12. DIMENSIONAL FREQUENCY TOKEN — consciousness-floor as interface selector
+// ============================================================================
 
 export const CONSCIOUSNESS_FLOORS = {
   /** 3D/4D — Physical and temporal consciousness (grounded, action-oriented) */
@@ -462,7 +493,9 @@ export const DIMENSIONAL_FREQUENCY_TOKENS: Record<ConsciousnessFloor, Dimensiona
   },
 };
 
+// ============================================================================
 // 13. ELEMENTAL CONSCIOUSNESS PALETTE — pagan framework shapes consciousness
+// ============================================================================
 
 export const ELEMENTAL_CONSCIOUSNESS_PALETTE = {
   /** Earth — grounded, action, embodiment (earth.base from colors.ts) */
@@ -504,7 +537,9 @@ export const ELEMENTAL_CONSCIOUSNESS_PALETTE = {
 
 export type ElementalConsciousnessKey = keyof typeof ELEMENTAL_CONSCIOUSNESS_PALETTE;
 
+// ============================================================================
 // 14. TYPE EXPORTS
+// ============================================================================
 
 export type {
   BeamActivationState as BeamActivationStateType,
