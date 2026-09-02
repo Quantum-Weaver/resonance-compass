@@ -26,6 +26,9 @@ board.*
   Ableton Link if feasible (gated on the weave/doorway).
 - **The naming** — Musician's Compass vs Resonance Studio (Council/KP).
 - **Play track update** — when the musician features are live (KP's law).
+  *Beside, 2026-09-01: the closed track already carries compass — Console:
+  Closed testing, Aug 30, 2026 (KP's paste 09-01) — so this row now names
+  only the PRODUCTION/public listing decision, not the closed track.*
 
 ## Maintenance
 - 59 hardcoded hex → cosmic tokens (heaviest in the family).

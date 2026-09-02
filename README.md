@@ -1,7 +1,7 @@
 # 🎻 Resonance Compass
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.3.5-brightgreen.svg)]()
+[![Version](https://img.shields.io/badge/version-2.3.8-brightgreen.svg)]()
 
 *The Compass Room of the AudHDities Sanctuary — a sovereign, local-first music player and self-understanding system.*
 

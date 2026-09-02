@@ -4,6 +4,11 @@ Artifact: `release/resonance-compass-v2.3.0.apk` (signed). NOTE: KP's
 standing word — the PLAY track waits for v3's musician features; the
 GALAXY listing may ship current (his call at upload).*
 
+*Beside, 2026-09-01: the Play closed track already carries compass —
+Console: Closed testing, Aug 30, 2026 (KP's paste 09-01) — so "waits for
+v3" now names only the PRODUCTION/public listing decision, not the closed
+track. Which release reached the track is unconfirmed by the paste.*
+
 ## App name
 Resonance Compass
 
@@ -49,7 +54,7 @@ No UGC shared, no ads, no data collection → Everyone.
 Collects: nothing · Shares: nothing · Optional user-initiated fetches
 only (album art via MusicBrainz, lyrics via LRCLIB — both behind
 buttons, never automatic). Privacy policy (public, verified):
-https://github.com/Quantum-Weaver/resonance-compass/blob/main/PRIVACY.md
+https://audhdities.com/apps/privacy
 
 ## Assets
 Icon: 512×512 from KP's new icon set. Screenshots (resonance-assets/
