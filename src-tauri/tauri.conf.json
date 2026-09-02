@@ -4,9 +4,9 @@
   "version": "2.3.8",
   "identifier": "com.audhd.resonance-compass",
   "build": {
-    "beforeDevCommand": "node C:/_superposition/resonance-ziggy/modules/android-extras/sync-android-extras.mjs resonance-compass && npm run dev",
+    "beforeDevCommand": "npm run sync-android && npm run dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "node C:/_superposition/resonance-ziggy/modules/android-extras/sync-android-extras.mjs resonance-compass && npm run build",
+    "beforeBuildCommand": "npm run sync-android && npm run build",
     "frontendDist": "../build"
   },
   "app": {
