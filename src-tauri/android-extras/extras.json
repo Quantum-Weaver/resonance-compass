@@ -1,0 +1,47 @@
+{
+	"app": "resonance-compass",
+	"from": "resonance-compass/scripts/sync-android-extras.mjs (89 lines), read 2026-09-02",
+	"kotlinPlugins": true,
+	"manifest": {
+		"blocks": [
+			{
+				"id": "media-audio",
+				"test": "READ_MEDIA_AUDIO",
+				"anchor": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+				"mode": "after",
+				"lines": [
+					"    <!-- Android 13+ audio access (API 33+) -->",
+					"    <uses-permission android:name=\"android.permission.READ_MEDIA_AUDIO\" />",
+					"    <!-- Android 12 and below storage access -->",
+					"    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" android:maxSdkVersion=\"32\" />"
+				]
+			},
+			{
+				"id": "record-audio",
+				"test": "RECORD_AUDIO",
+				"anchor": "    <uses-permission android:name=\"android.permission.READ_MEDIA_AUDIO\" />",
+				"mode": "after",
+				"lines": [
+					"    <!-- v3 recording (the Musician's Compass) — microphone -->",
+					"    <uses-permission android:name=\"android.permission.RECORD_AUDIO\" />"
+				]
+			},
+			{
+				"id": "post-notifications",
+				"test": "POST_NOTIFICATIONS",
+				"anchor": "    <uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
+				"mode": "after",
+				"lines": [
+					"    <!-- U1 MediaSession bridge — lockscreen media controls (API 33+) -->",
+					"    <uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\" />"
+				]
+			}
+		]
+	},
+	"sections": {
+		"launcherIcons": false,
+		"windowGround": false,
+		"templateLeftovers": false,
+		"signingConfig": false
+	}
+}

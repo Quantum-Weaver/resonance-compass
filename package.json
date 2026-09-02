@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "sync-android": "node scripts/sync-android-extras.mjs",
+    "sync-android": "node C:/_superposition/resonance-ziggy/modules/android-extras/sync-android-extras.mjs resonance-compass",
     "tauri": "tauri"
   },
   "license": "SEE LICENSE IN LICENSE",
