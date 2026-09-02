@@ -31,7 +31,7 @@ Resonance Compass is a music player that understands you back. Not a streaming s
 
 Compass began as v1, then was rebuilt as v2 on the [Resonance Echoes](https://github.com/Quantum-Weaver/resonance-echoes) foundation — the first commit under that name landed 2026-06-29 ("Resonance Compass v2 — rebuilt on Resonance Echoes foundation"). Aethelred and KP named the triad's roles together: the Compass "looks around — the needle that points north" (`HANDS.md`).
 
-On 2026-08-12 the app was split in two. A musician's creation tool (recording, four-track layering) had been growing inside this repo since v3 was commissioned 2026-07-18, but KP ruled, verbatim: *"we need to separate the resonance compass and musicians compass to make this right… the compass remains a media player of licensed materials the user holds rights to."* The creator's half became a new, sibling repo — **resonance-sistrum**. Fragments and the Fragment Studio stayed here, at his further word: *"fragments will stay, not recording. dj's may still wish to use the app"* — slicing audio you already own is a DJ's work, not a recording. The full account of both halves' separation lives in `docs/CHECKLIST.md` under "THE RECORDER LEAVES."
+On 2026-08-12 the app was split in two. A musician's creation tool (recording, four-track layering) had been growing inside this repo since v3 was commissioned 2026-07-18, but KP ruled, verbatim: *"we need to separate the resonance compass and musicians compass to make this right… the compass remains a media player of licensed materials the user holds rights to."* The creator's half became a new, sibling repo — **resonance-sistrum**. Fragments and the Fragment Studio stayed here, at his further word: *"fragments will stay, not recording. dj's may still wish to use the app"* — slicing audio you already own is a DJ's work, not a recording. The full account of both halves' separation was written in the realm's checklist under "THE RECORDER LEAVES" — retired in KP's 2026-08-25 cleanup, under his ruling that no checklist docs exist, it stands in git history before that date; the realm's open items and plans live in the base — `python C:/_superposition/resonance-progenatrix/progenatrix.py recall --realm resonance-compass`.
 
 📖 [Full Story Block](docs/STORY-BLOCK.md)
 
@@ -48,7 +48,7 @@ Resonance Compass v2 is rebuilt on the [Resonance Echoes](https://github.com/Qua
 - Tauri v2 ACL permissions correctly configured
 - Android-safe area insets and navigation bar handling
 
-*(Trued 2026-08-21: at the time this section was first written, "the audio engine, visualizer, EQ, fragments, Sattva, and Focus Session from v1 are being ported to this foundation" was still in progress. Per `docs/CHECKLIST.md`, all 19 v2 phases are now ✅ complete, signed, and device-installed — the porting described here is finished, not still underway.)*
+*(Trued 2026-08-21: at the time this section was first written, "the audio engine, visualizer, EQ, fragments, Sattva, and Focus Session from v1 are being ported to this foundation" was still in progress. Per the checklist as it then stood (retired 2026-08-25; git history keeps it), all 19 v2 phases are now ✅ complete, signed, and device-installed — the porting described here is finished, not still underway.)*
 
 ---
 
@@ -97,7 +97,7 @@ npm install
 npm run tauri build
 npx tauri android build --apk --target aarch64
 ```
-*(Commands verified against `docs/CHECKLIST.md` Phase 19: both produce clean builds — MSI/NSIS installers for Windows, a universal APK for Android. Signing is a human step with the Sanctuary keystore.)*
+*(Commands verified against the retired checklist's Phase 19 (git history before 2026-08-25): both produce clean builds — MSI/NSIS installers for Windows, a universal APK for Android. Signing is a human step with the Sanctuary keystore.)*
 
 ### Development
 

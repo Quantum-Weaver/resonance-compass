@@ -5,7 +5,9 @@ required for every room, atom, protocol, and surface in the Sanctuary. Told
 from this repo's own records — README, `docs/CHECKLIST.md`, `HANDS.md`,
 `CLAUDE.md`, `PHILOSOPHY.md`, and its own git history — with an address
 beside every dated claim. Written 2026-08-21, on a tending pass; not a
-first-person witness account like its sibling's.*
+first-person witness account like its sibling's. Sources note, 2026-09-01:
+`docs/CHECKLIST.md` and `CLAUDE.md` were retired in KP's 2026-08-25 cleanup, under his ruling that no checklist docs exist — every citation of them below reads from git
+history before that date; the realm's open items and plans live in the base — `python C:/_superposition/resonance-progenatrix/progenatrix.py recall --realm resonance-compass`.*
 
 ## WHAT
 *(Definition, purpose, function)*

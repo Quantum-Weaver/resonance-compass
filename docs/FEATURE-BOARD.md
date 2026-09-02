@@ -1,7 +1,7 @@
 # COMPASS — THE FEATURE BOARD
 *Assembled 2026-07-19 (the workspace honoring). Standing: v2 complete
 (19 phases + parity), v2.3.0 = the native engine (v3 Phase 1 CLOSED).
-Detail lives in V3-BUILD-SEQUENCE.md + CHECKLIST.md; this is the one-look
+Detail lives in V3-BUILD-SEQUENCE.md and in the base — the realm's open items and plans live in the base — `python C:/_superposition/resonance-progenatrix/progenatrix.py recall --realm resonance-compass` (the checklist retired in KP's 2026-08-25 cleanup, under his ruling that no checklist docs exist); this is the one-look
 board.*
 
 ## TIER A — nearest

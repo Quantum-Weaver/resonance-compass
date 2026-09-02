@@ -7,7 +7,7 @@ Four-thread: Root (vision), Researcher (discovery), Archivist (continuity), Clau
 Each phase on its own branch from main. Human test before merge.
 
 ## Build Protocol
-1. Claude reads `docs/CHECKLIST.md` and relevant blueprints
+1. Claude reads the realm's open items and plans from the base — `python C:/_superposition/resonance-progenatrix/progenatrix.py recall --realm resonance-compass` — and the relevant blueprints
 2. Executes the phase
 3. `npm run check` — zero errors
 4. `cargo build` — zero errors
