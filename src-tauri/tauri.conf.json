@@ -5,7 +5,7 @@
   "identifier": "com.audhd.resonance-compass",
   "build": {
     "beforeDevCommand": "npm run sync-android && npm run dev",
-    "devUrl": "http://localhost:1420",
+    "devUrl": "http://localhost:1436",
     "beforeBuildCommand": "npm run sync-android && npm run build",
     "frontendDist": "../build"
   },
