@@ -4,7 +4,7 @@ As of 2026-08-06 (the Cumdach consumption - the care's first spring
 swap, KP's word: "just copy its structure, we will index usage and
 deliver and distribute updates"), the navigation shrine's single
 editable truth is:
-C:\_superposition\resonance-awen\tools\the-cumdach\src\index.ts
+../resonance-awen/tools/the-cumdach/src/index.ts
 
 Do not edit index.ts in THIS folder - it is a byte-faithful mirror
 (SHA256 verified at the copy: 07BB8DBA494A5F04), to be refreshed by

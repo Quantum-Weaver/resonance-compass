@@ -2,7 +2,7 @@
 
 As of 2026-08-08 (the breath swap, the standalone-waters season's third
 water), the breathing pacer's single editable truth is:
-C:\_superposition\resonance-awen\tools\the-breath\src\index.ts
+../resonance-awen/tools/the-breath/src/index.ts
 
 Do not edit index.ts in THIS folder — it is a byte-faithful mirror
 (SHA256 verified at the copy: 0CDE8B05557EC20E), refreshed by hand or by

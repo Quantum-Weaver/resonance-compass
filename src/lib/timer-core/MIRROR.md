@@ -2,7 +2,7 @@
 
 As of 2026-08-08 (the timer swap, the standalone-waters season's second
 water), the timer core's single editable truth is:
-C:\_superposition\resonance-awen\tools\the-timer\src\core.ts
+../resonance-awen/tools/the-timer/src/core.ts
 
 Do not edit core.ts in THIS folder — it is a byte-faithful mirror
 (SHA256 verified at the copy: 06F83FA0D2606D7C), refreshed by hand or by

@@ -3,7 +3,7 @@
 As of 2026-08-06 (the Focus+Timer merge - the end-of-timer chime,
 KP's word: "optional sound at end of timer in compass, in case it is
 being used without music"), the tone's single editable truth is:
-C:\_superposition\resonance-awen\tools\the-chimes\sounds\chime-single.wav
+../resonance-awen/tools/the-chimes/sounds/chime-single.wav
 
 Do not edit the sound in THIS folder - it is a byte-faithful mirror
 (SHA256 verified at the copy: 5F42B6244BF683BA), refreshed by

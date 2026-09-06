@@ -3,7 +3,7 @@
 As of 2026-08-06 (the Epagoge consumption - the carve's gate line 2,
 KP's ⚛ word: "Epagoge consumption - yes"), the onboarding walk's
 single editable truth is:
-C:\_superposition\resonance-awen\tools\the-epagoge\src\index.ts
+../resonance-awen/tools/the-epagoge/src/index.ts
 
 Do not edit index.ts in THIS folder - it is a byte-faithful mirror
 (SHA256 verified at the copy: CBF19821CDCB4BA6), refreshed by

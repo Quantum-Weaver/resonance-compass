@@ -15,7 +15,7 @@
       "Bash(python3 -c ' *)",
       "Bash(python -X utf8 -c ' *)",
       "Bash(node scripts/sync-android-extras.mjs)",
-      "Read(//c/_superposition/**)",
+      "Read(//g/materia/**)",
       "Read(//c/Users/audhd/.cargo/registry/src/**)"
     ]
   },

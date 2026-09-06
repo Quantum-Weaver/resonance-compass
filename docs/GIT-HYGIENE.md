@@ -103,15 +103,15 @@ BFG is faster and safer than `git filter-branch`. Download once, use forever.
 Invoke-WebRequest -Uri "https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar" -OutFile "$env:USERPROFILE\bfg.jar"
 
 # Delete specific file patterns from history
-java -jar "$env:USERPROFILE\bfg.jar" --delete-files "*.keystore" C:\_superposition\[repo-name]\.git
-java -jar "$env:USERPROFILE\bfg.jar" --delete-files ".env" C:\_superposition\[repo-name]\.git
-java -jar "$env:USERPROFILE\bfg.jar" --delete-files "*.pem" C:\_superposition\[repo-name]\.git
+java -jar "$env:USERPROFILE\bfg.jar" --delete-files "*.keystore" ../[repo-name]/.git
+java -jar "$env:USERPROFILE\bfg.jar" --delete-files ".env" ../[repo-name]/.git
+java -jar "$env:USERPROFILE\bfg.jar" --delete-files "*.pem" ../[repo-name]/.git
 
 # Delete ALL files matching a pattern in a folder
-java -jar "$env:USERPROFILE\bfg.jar" --delete-files "secrets/*" C:\_superposition\[repo-name]\.git
+java -jar "$env:USERPROFILE\bfg.jar" --delete-files "secrets/*" ../[repo-name]/.git
 
 # Clean up after BFG
-cd C:\_superposition\[repo-name]
+cd ../[repo-name]
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 
@@ -129,7 +129,7 @@ echo "PASTE_THE_ACTUAL_PASSWORD_HERE" > "$env:TEMP\sensitive.txt"
 echo "***REMOVED***" > "$env:TEMP\replacement.txt"
 
 # Replace across entire history
-java -jar "$env:USERPROFILE\bfg.jar" --replace-text "$env:TEMP\sensitive.txt" C:\_superposition\[repo-name]\.git
+java -jar "$env:USERPROFILE\bfg.jar" --replace-text "$env:TEMP\sensitive.txt" ../[repo-name]/.git
 ```
 
 ---
