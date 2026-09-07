@@ -28,7 +28,7 @@
     },
     {
       "path": "src/lib/cosmic/index.ts",
-      "description": "FILE: index.ts"
+      "description": "COSMIC CONSTANTS - SINGLE SOURCE OF TRUTH"
     },
     {
       "path": "src/lib/cosmic/interactivity.ts",
@@ -60,7 +60,7 @@
   "code_analysis": {
     "attention.ts": {
       "language": "typescript",
-      "lines": 288,
+      "lines": 262,
       "exported_functions": [
         "getAttentionMode",
         "getDeityVoiceBundle"
@@ -90,7 +90,7 @@
     },
     "colors.ts": {
       "language": "typescript",
-      "lines": 377,
+      "lines": 380,
       "exported_functions": [],
       "exported_consts": [
         "QUANTUM_COLORS",
@@ -118,7 +118,7 @@
     },
     "consciousness.ts": {
       "language": "typescript",
-      "lines": 587,
+      "lines": 559,
       "exported_functions": [
         "calculateBeamActivation",
         "getVesselCapacityFromScore",
@@ -223,7 +223,7 @@
     },
     "effects.ts": {
       "language": "typescript",
-      "lines": 636,
+      "lines": 586,
       "exported_functions": [
         "getModulatedGlow"
       ],
@@ -277,7 +277,7 @@
     },
     "index.ts": {
       "language": "typescript",
-      "lines": 425,
+      "lines": 390,
       "exported_functions": [],
       "exported_consts": [],
       "interfaces": [],
@@ -289,7 +289,7 @@
     },
     "interactivity.ts": {
       "language": "typescript",
-      "lines": 283,
+      "lines": 218,
       "exported_functions": [],
       "exported_consts": [
         "SELF_PAUSE_TRIGGER",
@@ -339,7 +339,7 @@
     },
     "motion.ts": {
       "language": "typescript",
-      "lines": 855,
+      "lines": 821,
       "exported_functions": [
         "getReducedMotionSafeConfig",
         "getReducedMotionVariant",
@@ -396,7 +396,7 @@
     },
     "positioning.ts": {
       "language": "typescript",
-      "lines": 871,
+      "lines": 844,
       "exported_functions": [
         "getParallaxFactor",
         "getParallaxTransform",
@@ -462,7 +462,7 @@
     },
     "solids.ts": {
       "language": "typescript",
-      "lines": 504,
+      "lines": 481,
       "exported_functions": [
         "vecAdd",
         "vecSub",
@@ -546,7 +546,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.223936 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.967004 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

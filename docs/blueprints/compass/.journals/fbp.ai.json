@@ -1,0 +1,20 @@
+{
+  "tier": "folder",
+  "folder_name": ".journals",
+  "folder_path": ".journals",
+  "self": "compass/.journals/fbp.ai.json",
+  "parent": "compass/.journals/obp.ai.json",
+  "description": "0 files, 3 subfolders",
+  "files": [],
+  "file_count": 0,
+  "subdirectories": [
+    ".journals/entity",
+    ".journals/proofs",
+    ".journals/realm"
+  ],
+  "code_analysis": {},
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-09-07T14:02:55.891591 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

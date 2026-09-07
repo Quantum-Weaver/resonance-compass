@@ -8,7 +8,7 @@
   "ignored_trees": {
     "release": {
       "address": "release",
-      "files_on_disk": 38,
+      "files_on_disk": 5,
       "walked": false,
       "reason": "gitignored by this repo's own .gitignore \u2014 named and counted, never described, never opened",
       "tracked_files_LEAKED": []
@@ -18,5 +18,5 @@
   "secret_files_found": 0,
   "note": "Existence reported, contents never read. NEVER A VALUE.",
   "verdict": "HELD",
-  "scan_timestamp": "2026-08-21T15:19:25.526303 | in sovereign time"
+  "scan_timestamp": "2026-09-07T14:02:56.191734 | in sovereign time"
 }

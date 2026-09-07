@@ -4,13 +4,13 @@
   "object_path": "src/lib",
   "self": "compass/src/lib/obp.ai.json",
   "parent": "compass/src/dbp.ai.json",
-  "description": "0 files, 12 subfolders",
+  "description": "1 files, 12 subfolders",
   "folders": [
     {
       "blueprint": "compass/src/lib/fbp.ai.json",
       "folder_path": "src/lib",
-      "description": "0 files, 12 subfolders",
-      "file_count": 0,
+      "description": "1 files, 12 subfolders",
+      "file_count": 1,
       "subdirectory_count": 12
     },
     {
@@ -113,8 +113,8 @@
     }
   ],
   "folder_count": 15,
-  "total_files": 100,
-  "integration_timestamp": "2026-08-21T15:19:25.466178 | in sovereign time",
+  "total_files": 101,
+  "integration_timestamp": "2026-09-07T14:02:56.122167 | in sovereign time",
   "maintaining_agent": "ObjectAgent",
   "note": "Links only. Every folder's details live at its own address."
 }

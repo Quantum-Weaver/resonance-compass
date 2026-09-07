@@ -20,7 +20,7 @@
   "code_analysis": {
     "core.ts": {
       "language": "typescript",
-      "lines": 323,
+      "lines": 304,
       "exported_functions": [
         "prefersReducedMotion",
         "createTimer"
@@ -67,7 +67,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.264871 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.999070 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

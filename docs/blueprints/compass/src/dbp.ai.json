@@ -9,9 +9,9 @@
     {
       "blueprint": "compass/src/lib/obp.ai.json",
       "object_path": "src/lib",
-      "description": "0 files, 12 subfolders",
+      "description": "1 files, 12 subfolders",
       "folder_count": 15,
-      "total_files": 100
+      "total_files": 101
     },
     {
       "blueprint": "compass/src/routes/obp.ai.json",
@@ -32,8 +32,8 @@
     }
   ],
   "total_folders": 39,
-  "total_files": 127,
-  "integration_timestamp": "2026-08-21T15:19:25.500074 | in sovereign time",
+  "total_files": 128,
+  "integration_timestamp": "2026-09-07T14:02:56.157708 | in sovereign time",
   "maintaining_agent": "DomainAgent",
   "note": "Links only. Every object's details live at its own address."
 }

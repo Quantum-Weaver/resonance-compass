@@ -20,7 +20,7 @@
   "code_analysis": {
     "index.ts": {
       "language": "typescript",
-      "lines": 134,
+      "lines": 109,
       "exported_functions": [
         "seal",
         "filename",
@@ -67,7 +67,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.232648 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.974015 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

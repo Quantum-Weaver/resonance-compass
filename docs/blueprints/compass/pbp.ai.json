@@ -17,7 +17,7 @@
       "description": "2 files, 2 subfolders",
       "object_count": 2,
       "total_folders": 39,
-      "total_files": 127
+      "total_files": 128
     },
     {
       "blueprint": "compass/src-tauri/dbp.ai.json",
@@ -31,11 +31,18 @@
   "domain_count": 2,
   "objects_reporting_directly": [
     {
+      "blueprint": "compass/.journals/obp.ai.json",
+      "object_path": ".journals",
+      "description": "0 files, 3 subfolders",
+      "folder_count": 4,
+      "total_files": 7
+    },
+    {
       "blueprint": "compass/docs/obp.ai.json",
       "object_path": "docs",
-      "description": "20 files, 1 subfolders",
+      "description": "19 files, 1 subfolders",
       "folder_count": 2,
-      "total_files": 21
+      "total_files": 20
     },
     {
       "blueprint": "compass/static/obp.ai.json",
@@ -50,8 +57,8 @@
       "blueprint": "compass/fbp.ai.json",
       "folder_path": ".",
       "description": "The Compass Room of the AudHDities Sanctuary",
-      "file_count": 15,
-      "subdirectory_count": 9
+      "file_count": 13,
+      "subdirectory_count": 10
     },
     {
       "blueprint": "compass/.cargo/fbp.ai.json",
@@ -63,15 +70,15 @@
     {
       "blueprint": "compass/.claude/fbp.ai.json",
       "folder_path": ".claude",
-      "description": "2 files, 0 subfolders",
-      "file_count": 2,
+      "description": "1 files, 0 subfolders",
+      "file_count": 1,
       "subdirectory_count": 0
     },
     {
       "blueprint": "compass/reports/fbp.ai.json",
       "folder_path": "reports",
-      "description": "6 files, 0 subfolders",
-      "file_count": 6,
+      "description": "7 files, 0 subfolders",
+      "file_count": 7,
       "subdirectory_count": 0
     },
     {
@@ -100,8 +107,8 @@
     }
   ],
   "totals": {
-    "folders_blueprinted": 105,
-    "files_described": 330
+    "folders_blueprinted": 109,
+    "files_described": 335
   },
   "not_walked": {
     "reason": "package-class trees, this repo's own gitignored trees at every depth, reparse points, and this tool's own output",
@@ -134,45 +141,21 @@
     "gitignored_trees": {
       "release": {
         "address": "release",
-        "files_on_disk": 38,
+        "files_on_disk": 5,
         "walked": false,
         "reason": "gitignored by this repo's own .gitignore \u2014 named and counted, never described, never opened"
       }
     },
     "gitignored_trees_at_depth": {
+      "src-tauri/target": {
+        "address": "src-tauri/target",
+        "files_on_disk": 4510,
+        "walked": false,
+        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+      },
       "src-tauri/gen/schemas": {
         "address": "src-tauri/gen/schemas",
         "files_on_disk": 6,
-        "walked": false,
-        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
-      },
-      "src-tauri/gen/android/.gradle": {
-        "address": "src-tauri/gen/android/.gradle",
-        "files_on_disk": 14,
-        "walked": false,
-        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
-      },
-      "src-tauri/gen/android/build": {
-        "address": "src-tauri/gen/android/build",
-        "files_on_disk": 1,
-        "walked": false,
-        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
-      },
-      "src-tauri/gen/android/buildSrc/.gradle": {
-        "address": "src-tauri/gen/android/buildSrc/.gradle",
-        "files_on_disk": 6,
-        "walked": false,
-        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
-      },
-      "src-tauri/gen/android/buildSrc/build": {
-        "address": "src-tauri/gen/android/buildSrc/build",
-        "files_on_disk": 114,
-        "walked": false,
-        "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
-      },
-      "src-tauri/gen/android/app/build": {
-        "address": "src-tauri/gen/android/app/build",
-        "files_on_disk": 2234,
         "walked": false,
         "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
       },
@@ -188,6 +171,6 @@
     "reparse_note": "Junctions and symlinks are named, never entered. Following one would pull an external ground into this repo's count, or loop on a self-junction.",
     "own_output": "docs/blueprints"
   },
-  "generated": "2026-08-21T15:19:25.530216 | in sovereign time",
+  "generated": "2026-09-07T14:02:56.194634 | in sovereign time",
   "maintaining_agent": "ProjectAgent"
 }

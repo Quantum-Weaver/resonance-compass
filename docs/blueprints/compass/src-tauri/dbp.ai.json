@@ -16,9 +16,9 @@
     {
       "blueprint": "compass/src-tauri/android-extras/obp.ai.json",
       "object_path": "src-tauri/android-extras",
-      "description": "2 files, 0 subfolders",
+      "description": "4 files, 0 subfolders",
       "folder_count": 1,
-      "total_files": 2
+      "total_files": 4
     },
     {
       "blueprint": "compass/src-tauri/capabilities/obp.ai.json",
@@ -32,7 +32,7 @@
       "object_path": "src-tauri/gen",
       "description": "0 files, 1 subfolders",
       "folder_count": 41,
-      "total_files": 53
+      "total_files": 50
     },
     {
       "blueprint": "compass/src-tauri/icons/obp.ai.json",
@@ -44,9 +44,9 @@
     {
       "blueprint": "compass/src-tauri/src/obp.ai.json",
       "object_path": "src-tauri/src",
-      "description": "8 files, 0 subfolders",
+      "description": "9 files, 0 subfolders",
       "folder_count": 1,
-      "total_files": 8
+      "total_files": 9
     }
   ],
   "object_count": 6,
@@ -61,7 +61,7 @@
   ],
   "total_folders": 56,
   "total_files": 123,
-  "integration_timestamp": "2026-08-21T15:19:25.501148 | in sovereign time",
+  "integration_timestamp": "2026-09-07T14:02:56.158830 | in sovereign time",
   "maintaining_agent": "DomainAgent",
   "note": "Links only. Every object's details live at its own address."
 }

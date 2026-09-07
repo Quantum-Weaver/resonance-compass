@@ -4,18 +4,13 @@
   "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a",
   "self": "compass/src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/fbp.ai.json",
   "parent": "compass/src-tauri/gen/obp.ai.json",
-  "description": "1 files, 0 subfolders",
-  "files": [
-    {
-      "path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/libc++_shared.so",
-      "description": "file, 1,794,776 bytes"
-    }
-  ],
-  "file_count": 1,
+  "description": "0 files, 0 subfolders",
+  "files": [],
+  "file_count": 0,
   "subdirectories": [],
   "code_analysis": {},
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.363148 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:56.059539 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

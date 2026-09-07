@@ -11,14 +11,6 @@
       "description": "ignore rules, 1,982 bytes"
     },
     {
-      "path": "CLAUDE.md",
-      "description": "CLAUDE.md"
-    },
-    {
-      "path": "FABLE-KERNEL.md",
-      "description": "FABLE-KERNEL"
-    },
-    {
       "path": "HANDS.md",
       "description": "The Hands"
     },
@@ -28,11 +20,11 @@
     },
     {
       "path": "package-lock.json",
-      "description": "data, 82,288 bytes"
+      "description": "data, 84,797 bytes"
     },
     {
       "path": "package.json",
-      "description": "data, 1,159 bytes"
+      "description": "data, 1,211 bytes"
     },
     {
       "path": "PHILOSOPHY.md",
@@ -67,10 +59,11 @@
       "description": "script, 562 bytes"
     }
   ],
-  "file_count": 15,
+  "file_count": 13,
   "subdirectories": [
     ".cargo",
     ".claude",
+    ".journals",
     "docs",
     "reports",
     "screenshots",
@@ -80,62 +73,6 @@
     "static"
   ],
   "code_analysis": {
-    "CLAUDE.md": {
-      "language": "markdown",
-      "lines": 96,
-      "words": 509,
-      "heading_count": 8,
-      "headings": [
-        "CLAUDE.md \u2014 Resonance Compass",
-        "Ground rules \u2014 earned here",
-        "Database (compass.db)",
-        "Structure",
-        "Tools",
-        "People",
-        "Standards",
-        "The forge and the link tender"
-      ],
-      "links_external": 1,
-      "links_site_absolute": [],
-      "links_internal": [],
-      "links_internal_unresolved": [],
-      "links_internal_outside_checkout": [],
-      "code_fences": 1,
-      "table_rows": 0,
-      "checkboxes": {
-        "open": 0,
-        "done": 0
-      },
-      "has_story_block": false,
-      "declares_mirror_class": false
-    },
-    "FABLE-KERNEL.md": {
-      "language": "markdown",
-      "lines": 78,
-      "words": 634,
-      "heading_count": 6,
-      "headings": [
-        "FABLE-KERNEL \u2014 resonance-compass (v3: the Musician's Compass)",
-        "What this is",
-        "Read first",
-        "State (2026-07-09)",
-        "Build path",
-        "Dispatch notes"
-      ],
-      "links_external": 0,
-      "links_site_absolute": [],
-      "links_internal": [],
-      "links_internal_unresolved": [],
-      "links_internal_outside_checkout": [],
-      "code_fences": 0,
-      "table_rows": 0,
-      "checkboxes": {
-        "open": 0,
-        "done": 0
-      },
-      "has_story_block": false,
-      "declares_mirror_class": false
-    },
     "HANDS.md": {
       "language": "markdown",
       "lines": 53,
@@ -273,7 +210,7 @@
     "README.md": {
       "language": "markdown",
       "lines": 178,
-      "words": 1009,
+      "words": 1067,
       "heading_count": 14,
       "headings": [
         "\ud83c\udfbb Resonance Compass",
@@ -333,8 +270,8 @@
     },
     "RUN-LOG.md": {
       "language": "markdown",
-      "lines": 3,
-      "words": 22,
+      "lines": 7,
+      "words": 576,
       "heading_count": 0,
       "headings": [],
       "links_external": 0,
@@ -383,12 +320,6 @@
       "reason": "package-class tree (dependency or build output) \u2014 not counted, because counting it means walking it"
     },
     {
-      "name": ".svelte-kit",
-      "address": ".svelte-kit",
-      "walked": false,
-      "reason": "package-class tree (dependency or build output) \u2014 not counted, because counting it means walking it"
-    },
-    {
       "name": "build",
       "address": "build",
       "walked": false,
@@ -403,12 +334,12 @@
     {
       "name": "release",
       "address": "release",
-      "files_on_disk": 38,
+      "files_on_disk": 5,
       "walked": false,
       "reason": "gitignored by this repo's own .gitignore \u2014 named and counted, never described, never opened"
     }
   ],
-  "scan_timestamp": "2026-08-21T15:19:25.120512 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.887598 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

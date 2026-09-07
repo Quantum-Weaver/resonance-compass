@@ -4,7 +4,7 @@
   "folder_path": "reports",
   "self": "compass/reports/fbp.ai.json",
   "parent": "compass/pbp.ai.json",
-  "description": "6 files, 0 subfolders",
+  "description": "7 files, 0 subfolders",
   "files": [
     {
       "path": "reports/2026-06-30-assessment-manual.md",
@@ -23,15 +23,19 @@
       "description": "Resonance Compass"
     },
     {
+      "path": "reports/2026-08-21-assessment.md",
+      "description": "Resonance Compass"
+    },
+    {
       "path": "reports/analysis.json",
-      "description": "data, 9,245 bytes"
+      "description": "data, 9,502 bytes"
     },
     {
       "path": "reports/inventory.json",
-      "description": "data, 158,850 bytes"
+      "description": "data, 167,159 bytes"
     }
   ],
-  "file_count": 6,
+  "file_count": 7,
   "subdirectories": [],
   "code_analysis": {
     "2026-06-30-assessment-manual.md": {
@@ -152,9 +156,37 @@
       "has_story_block": false,
       "declares_mirror_class": false
     },
+    "2026-08-21-assessment.md": {
+      "language": "markdown",
+      "lines": 81,
+      "words": 1040,
+      "heading_count": 7,
+      "headings": [
+        "Resonance Compass \u2014 Assessment Report",
+        "Summary",
+        "Standards Compliance",
+        "Vulnerabilities",
+        "Gaps",
+        "Test Readiness",
+        "Recommendations"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 7,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
     "analysis.json": {
       "language": "json",
-      "lines": 107,
+      "lines": 116,
       "valid": true,
       "root": "object",
       "top_level_keys": [
@@ -170,7 +202,7 @@
     },
     "inventory.json": {
       "language": "json",
-      "lines": 5480,
+      "lines": 5790,
       "valid": true,
       "root": "object",
       "top_level_keys": [
@@ -187,7 +219,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.168358 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.923394 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

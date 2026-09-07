@@ -12,7 +12,7 @@
     },
     {
       "path": "src-tauri/build.rs",
-      "description": "rust, 2,395 bytes"
+      "description": "rust, 2,801 bytes"
     },
     {
       "path": "src-tauri/Cargo.lock",
@@ -24,7 +24,7 @@
     },
     {
       "path": "src-tauri/tauri.conf.json",
-      "description": "data, 1,265 bytes"
+      "description": "data, 1,233 bytes"
     }
   ],
   "file_count": 5,
@@ -39,7 +39,7 @@
   "code_analysis": {
     "build.rs": {
       "language": "rust",
-      "lines": 48,
+      "lines": 56,
       "pub_fns": [],
       "structs": [],
       "tauri_commands": 0,
@@ -74,8 +74,16 @@
       "key_count": 7
     }
   },
-  "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.326698 | in sovereign time",
+  "folders_not_walked": [
+    {
+      "name": "target",
+      "address": "src-tauri/target",
+      "files_on_disk": 4510,
+      "walked": false,
+      "reason": "gitignored at depth by this repo's own .gitignore \u2014 named and counted, never described, never opened"
+    }
+  ],
+  "scan_timestamp": "2026-09-07T14:02:56.037861 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

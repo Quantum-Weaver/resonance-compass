@@ -12,7 +12,7 @@
     },
     {
       "path": "src/lib/components/EmojiPalette.svelte",
-      "description": "surface, 4,396 bytes"
+      "description": "surface, 4,225 bytes"
     },
     {
       "path": "src/lib/components/GradientPulse.svelte",
@@ -24,7 +24,7 @@
     },
     {
       "path": "src/lib/components/MiniPlayer.svelte",
-      "description": "surface, 7,353 bytes"
+      "description": "surface, 8,046 bytes"
     },
     {
       "path": "src/lib/components/PlayerControls.svelte",
@@ -32,15 +32,15 @@
     },
     {
       "path": "src/lib/components/Sidebar.svelte",
-      "description": "surface, 11,432 bytes"
+      "description": "surface, 10,191 bytes"
     },
     {
       "path": "src/lib/components/TimerVisualization.svelte",
-      "description": "surface, 18,253 bytes"
+      "description": "surface, 17,714 bytes"
     },
     {
       "path": "src/lib/components/TrackItem.svelte",
-      "description": "surface, 7,481 bytes"
+      "description": "surface, 7,584 bytes"
     }
   ],
   "file_count": 9,
@@ -59,7 +59,7 @@
     },
     "EmojiPalette.svelte": {
       "language": "svelte",
-      "lines": 177,
+      "lines": 174,
       "uses_runes": [
         "$derived",
         "$state"
@@ -87,7 +87,7 @@
     },
     "MiniPlayer.svelte": {
       "language": "svelte",
-      "lines": 286,
+      "lines": 316,
       "uses_runes": [
         "$derived",
         "$effect",
@@ -108,7 +108,7 @@
     },
     "Sidebar.svelte": {
       "language": "svelte",
-      "lines": 403,
+      "lines": 369,
       "uses_runes": [
         "$derived",
         "$effect",
@@ -131,7 +131,7 @@
     },
     "TrackItem.svelte": {
       "language": "svelte",
-      "lines": 342,
+      "lines": 355,
       "uses_runes": [
         "$derived",
         "$props",
@@ -142,7 +142,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.194975 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.941162 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

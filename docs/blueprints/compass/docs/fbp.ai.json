@@ -4,7 +4,7 @@
   "folder_path": "docs",
   "self": "compass/docs/fbp.ai.json",
   "parent": "compass/docs/obp.ai.json",
-  "description": "20 files, 1 subfolders",
+  "description": "19 files, 1 subfolders",
   "files": [
     {
       "path": "docs/ANDROID-BUILD-NOTES.md",
@@ -13,10 +13,6 @@
     {
       "path": "docs/BUILD-SEQUENCE.md",
       "description": "BUILD SEQUENCE"
-    },
-    {
-      "path": "docs/CHECKLIST.md",
-      "description": "RESONANCE COMPASS v2"
     },
     {
       "path": "docs/CLAUDE-CONTEXT.md",
@@ -87,15 +83,15 @@
       "description": "Visualizer Playable Mode"
     }
   ],
-  "file_count": 20,
+  "file_count": 19,
   "subdirectories": [
     "docs/session-reports"
   ],
   "code_analysis": {
     "ANDROID-BUILD-NOTES.md": {
       "language": "markdown",
-      "lines": 152,
-      "words": 766,
+      "lines": 171,
+      "words": 994,
       "heading_count": 11,
       "headings": [
         "Android Build Notes \u2014 Resonance Compass v2",
@@ -166,51 +162,6 @@
       "has_story_block": false,
       "declares_mirror_class": false
     },
-    "CHECKLIST.md": {
-      "language": "markdown",
-      "lines": 977,
-      "words": 16470,
-      "heading_count": 62,
-      "headings": [
-        "RESONANCE COMPASS v2 \u2014 MASTER CHECKLIST",
-        "LEGEND",
-        "PHASE STATUS",
-        "Phase 0: Shell \u2705",
-        "Phase 1: Playback \u2705",
-        "Phase 2: Library & SQLite \u2705",
-        "Phase 3: Playlists \u2705",
-        "Phase 4: Now Playing \u2705",
-        "Phase 5: Visualizer \u2705",
-        "Phase 6: Equalizer \u2705",
-        "Phase 7: Resonance \u2705",
-        "Phase 7b: Personal Emoji Definitions (Folksonomy) \u2705",
-        "Phase 8: Timer \u2705",
-        "Phase 9: Home Screen Revamp \u2705",
-        "Phase 10: Liked Songs \u2705",
-        "Phase 11: Search \u2705",
-        "Phase 12: Lyrics \u2705",
-        "Phase 12b: Find Missing Cover Art \u2705",
-        "Phase 13: Onboarding \u2705",
-        "Phase 14: Listening History \u2705",
-        "Phase 15: Sattva Screen \u2705",
-        "Phase 16: Sensory Profiles \u2705",
-        "Phase 17: Focus Session \u2705",
-        "Phase 17a: Audio Fragments \u2705"
-      ],
-      "links_external": 0,
-      "links_site_absolute": [],
-      "links_internal": [],
-      "links_internal_unresolved": [],
-      "links_internal_outside_checkout": [],
-      "code_fences": 0,
-      "table_rows": 43,
-      "checkboxes": {
-        "open": 31,
-        "done": 312
-      },
-      "has_story_block": false,
-      "declares_mirror_class": false
-    },
     "CLAUDE-CONTEXT.md": {
       "language": "markdown",
       "lines": 60,
@@ -243,7 +194,7 @@
     "CONTRIBUTING.md": {
       "language": "markdown",
       "lines": 22,
-      "words": 101,
+      "words": 117,
       "heading_count": 5,
       "headings": [
         "CONTRIBUTING \u2014 Resonance Compass",
@@ -268,8 +219,8 @@
     },
     "FEATURE-BOARD.md": {
       "language": "markdown",
-      "lines": 35,
-      "words": 248,
+      "lines": 38,
+      "words": 315,
       "heading_count": 5,
       "headings": [
         "COMPASS \u2014 THE FEATURE BOARD",
@@ -294,8 +245,8 @@
     },
     "GALAXY-LISTING.md": {
       "language": "markdown",
-      "lines": 62,
-      "words": 366,
+      "lines": 67,
+      "words": 411,
       "heading_count": 9,
       "headings": [
         "Compass \u2014 Galaxy Store listing pack",
@@ -490,8 +441,8 @@
     },
     "STORY-BLOCK.md": {
       "language": "markdown",
-      "lines": 156,
-      "words": 1127,
+      "lines": 158,
+      "words": 1176,
       "heading_count": 12,
       "headings": [
         "STORY BLOCK \u2014 resonance-compass",
@@ -606,7 +557,7 @@
     "v1-v2-gap-report.md": {
       "language": "markdown",
       "lines": 100,
-      "words": 1168,
+      "words": 1183,
       "heading_count": 9,
       "headings": [
         "v1 \u2192 v2 Gap Report \u2014 Resonance Compass",
@@ -742,7 +693,7 @@
       "reason": "a blueprint output tree \u2014 the forge does not blueprint blueprints"
     }
   ],
-  "scan_timestamp": "2026-08-21T15:19:25.156925 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.914562 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

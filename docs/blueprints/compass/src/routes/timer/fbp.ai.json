@@ -8,15 +8,15 @@
   "files": [
     {
       "path": "src/routes/timer/+page.svelte",
-      "description": "surface, 1,828 bytes"
+      "description": "surface, 1,685 bytes"
     },
     {
       "path": "src/routes/timer/FocusSession.svelte",
-      "description": "surface, 26,119 bytes"
+      "description": "surface, 24,347 bytes"
     },
     {
       "path": "src/routes/timer/SleepTimer.svelte",
-      "description": "surface, 8,877 bytes"
+      "description": "surface, 8,644 bytes"
     }
   ],
   "file_count": 3,
@@ -24,7 +24,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 76,
+      "lines": 74,
       "uses_runes": [
         "$state"
       ],
@@ -44,7 +44,7 @@
     },
     "SleepTimer.svelte": {
       "language": "svelte",
-      "lines": 375,
+      "lines": 372,
       "uses_runes": [
         "$derived",
         "$state"
@@ -54,7 +54,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.318927 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:56.032228 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/routes/lyrics/+page.svelte",
-      "description": "surface, 15,269 bytes"
+      "description": "surface, 15,043 bytes"
     }
   ],
   "file_count": 1,
@@ -16,7 +16,7 @@
   "code_analysis": {
     "+page.svelte": {
       "language": "svelte",
-      "lines": 571,
+      "lines": 569,
       "uses_runes": [
         "$derived",
         "$effect",
@@ -27,7 +27,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.296461 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:56.018741 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

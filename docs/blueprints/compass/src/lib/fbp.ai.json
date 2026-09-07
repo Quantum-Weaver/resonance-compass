@@ -4,9 +4,14 @@
   "folder_path": "src/lib",
   "self": "compass/src/lib/fbp.ai.json",
   "parent": "compass/src/lib/obp.ai.json",
-  "description": "0 files, 12 subfolders",
-  "files": [],
-  "file_count": 0,
+  "description": "1 files, 12 subfolders",
+  "files": [
+    {
+      "path": "src/lib/eq-persist.ts",
+      "description": "eq-persist.ts"
+    }
+  ],
+  "file_count": 1,
   "subdirectories": [
     "src/lib/breath-core",
     "src/lib/components",
@@ -21,9 +26,30 @@
     "src/lib/timer-core",
     "src/lib/types"
   ],
-  "code_analysis": {},
+  "code_analysis": {
+    "eq-persist.ts": {
+      "language": "typescript",
+      "lines": 69,
+      "exported_functions": [
+        "saveEq",
+        "loadSavedEq",
+        "restoreEq"
+      ],
+      "exported_consts": [
+        "EQ_KEY"
+      ],
+      "interfaces": [
+        "SavedEq"
+      ],
+      "types": [],
+      "imports_node": [],
+      "spawns_process": false,
+      "writes_files": false,
+      "env_names_read": []
+    }
+  },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.183433 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.933953 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

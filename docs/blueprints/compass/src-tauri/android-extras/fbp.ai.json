@@ -4,22 +4,45 @@
   "folder_path": "src-tauri/android-extras",
   "self": "compass/src-tauri/android-extras/fbp.ai.json",
   "parent": "compass/src-tauri/android-extras/obp.ai.json",
-  "description": "2 files, 0 subfolders",
+  "description": "4 files, 0 subfolders",
   "files": [
     {
+      "path": "src-tauri/android-extras/extras.json",
+      "description": "data, 1,549 bytes"
+    },
+    {
+      "path": "src-tauri/android-extras/FolderPickerPlugin.kt",
+      "description": "file, 10,695 bytes"
+    },
+    {
       "path": "src-tauri/android-extras/MediaPermissionPlugin.kt",
-      "description": "file, 5,276 bytes"
+      "description": "file, 8,165 bytes"
     },
     {
       "path": "src-tauri/android-extras/MediaSessionPlugin.kt",
       "description": "file, 9,094 bytes"
     }
   ],
-  "file_count": 2,
+  "file_count": 4,
   "subdirectories": [],
-  "code_analysis": {},
+  "code_analysis": {
+    "extras.json": {
+      "language": "json",
+      "lines": 48,
+      "valid": true,
+      "root": "object",
+      "top_level_keys": [
+        "app",
+        "from",
+        "kotlinPlugins",
+        "manifest",
+        "sections"
+      ],
+      "key_count": 5
+    }
+  },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.330170 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:56.040010 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -79,8 +79,8 @@
     {
       "blueprint": "compass/src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/plugin/fbp.ai.json",
       "folder_path": "src-tauri/gen/android/app/src/main/java/com/audhd/resonance_compass/plugin",
-      "description": "2 files, 0 subfolders",
-      "file_count": 2,
+      "description": "3 files, 0 subfolders",
+      "file_count": 3,
       "subdirectory_count": 0
     },
     {
@@ -93,29 +93,29 @@
     {
       "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a/fbp.ai.json",
       "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/arm64-v8a",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
+      "description": "0 files, 0 subfolders",
+      "file_count": 0,
       "subdirectory_count": 0
     },
     {
       "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a/fbp.ai.json",
       "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/armeabi-v7a",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
+      "description": "0 files, 0 subfolders",
+      "file_count": 0,
       "subdirectory_count": 0
     },
     {
       "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/x86/fbp.ai.json",
       "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/x86",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
+      "description": "0 files, 0 subfolders",
+      "file_count": 0,
       "subdirectory_count": 0
     },
     {
       "blueprint": "compass/src-tauri/gen/android/app/src/main/jniLibs/x86_64/fbp.ai.json",
       "folder_path": "src-tauri/gen/android/app/src/main/jniLibs/x86_64",
-      "description": "1 files, 0 subfolders",
-      "file_count": 1,
+      "description": "0 files, 0 subfolders",
+      "file_count": 0,
       "subdirectory_count": 0
     },
     {
@@ -295,8 +295,8 @@
     }
   ],
   "folder_count": 41,
-  "total_files": 53,
-  "integration_timestamp": "2026-08-21T15:19:25.484015 | in sovereign time",
+  "total_files": 50,
+  "integration_timestamp": "2026-09-07T14:02:56.139915 | in sovereign time",
   "maintaining_agent": "ObjectAgent",
   "note": "Links only. Every folder's details live at its own address."
 }

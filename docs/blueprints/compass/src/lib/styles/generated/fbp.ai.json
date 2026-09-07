@@ -84,7 +84,7 @@
     },
     {
       "path": "src/lib/styles/generated/variables.css",
-      "description": "stylesheet, 22,689 bytes"
+      "description": "stylesheet, 22,753 bytes"
     },
     {
       "path": "src/lib/styles/generated/zoom.css",
@@ -280,18 +280,18 @@
     },
     "typography.css": {
       "language": "css",
-      "lines": 1582,
-      "classes_defined": 266,
+      "lines": 1590,
+      "classes_defined": 268,
       "animations": [],
       "custom_properties": 0,
       "imports": []
     },
     "variables.css": {
       "language": "css",
-      "lines": 480,
+      "lines": 482,
       "classes_defined": 0,
       "animations": [],
-      "custom_properties": 391,
+      "custom_properties": 393,
       "imports": []
     },
     "zoom.css": {
@@ -304,7 +304,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.260142 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.995857 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

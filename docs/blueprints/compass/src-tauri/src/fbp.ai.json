@@ -4,7 +4,7 @@
   "folder_path": "src-tauri/src",
   "self": "compass/src-tauri/src/fbp.ai.json",
   "parent": "compass/src-tauri/src/obp.ai.json",
-  "description": "8 files, 0 subfolders",
+  "description": "9 files, 0 subfolders",
   "files": [
     {
       "path": "src-tauri/src/audio.rs",
@@ -15,12 +15,16 @@
       "description": "equalizer.rs"
     },
     {
+      "path": "src-tauri/src/folder_picker.rs",
+      "description": "folder_picker.rs"
+    },
+    {
       "path": "src-tauri/src/fragment_engine.rs",
       "description": "\u2500\u2500 THE NATIVE AUDIO ENGINE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
     },
     {
       "path": "src-tauri/src/lib.rs",
-      "description": "rust, 23,914 bytes"
+      "description": "rust, 47,346 bytes"
     },
     {
       "path": "src-tauri/src/main.rs",
@@ -39,12 +43,12 @@
       "description": "visualizer.rs"
     }
   ],
-  "file_count": 8,
+  "file_count": 9,
   "subdirectories": [],
   "code_analysis": {
     "audio.rs": {
       "language": "rust",
-      "lines": 273,
+      "lines": 400,
       "pub_fns": [
         "init",
         "play_track",
@@ -53,18 +57,20 @@
         "seek",
         "set_volume",
         "stop",
+        "rebuild_output",
         "play_track",
         "pause",
         "resume",
         "seek",
         "set_volume",
-        "stop"
+        "stop",
+        "rebuild_audio_output"
       ],
       "structs": [
         "CurrentPlayback",
         "AudioState"
       ],
-      "tauri_commands": 6,
+      "tauri_commands": 7,
       "uses_unsafe": false
     },
     "equalizer.rs": {
@@ -79,6 +85,28 @@
       ],
       "structs": [],
       "tauri_commands": 5,
+      "uses_unsafe": false
+    },
+    "folder_picker.rs": {
+      "language": "rust",
+      "lines": 136,
+      "pub_fns": [
+        "init",
+        "pick",
+        "list_audio",
+        "persisted",
+        "release"
+      ],
+      "structs": [
+        "PickedFolder",
+        "FolderAudio",
+        "FolderPicker",
+        "PickResponse",
+        "ListResponse",
+        "PersistedResponse",
+        "TreeArgs"
+      ],
+      "tauri_commands": 0,
       "uses_unsafe": false
     },
     "fragment_engine.rs": {
@@ -97,16 +125,18 @@
     },
     "lib.rs": {
       "language": "rust",
-      "lines": 642,
+      "lines": 1249,
       "pub_fns": [
         "run"
       ],
       "structs": [
         "TrackInfo",
+        "EmbeddedArt",
+        "DocHint",
         "ScanProgress",
         "MixLayer"
       ],
-      "tauri_commands": 11,
+      "tauri_commands": 18,
       "uses_unsafe": false
     },
     "main.rs": {
@@ -173,7 +203,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.456297 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:56.114542 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

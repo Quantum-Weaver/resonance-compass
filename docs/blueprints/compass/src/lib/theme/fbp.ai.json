@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "src/lib/theme/theme.ts",
-      "description": "typescript, 1,894 bytes"
+      "description": "typescript, 6,818 bytes"
     }
   ],
   "file_count": 1,
@@ -16,13 +16,18 @@
   "code_analysis": {
     "theme.ts": {
       "language": "typescript",
-      "lines": 61,
+      "lines": 174,
       "exported_functions": [],
       "exported_consts": [
         "PRESET_THEMES",
+        "presetSwatch",
+        "DEFAULT_THEME",
+        "TINT_LEVELS",
         "getThemeColors"
       ],
-      "interfaces": [],
+      "interfaces": [
+        "ThemePreset"
+      ],
       "types": [],
       "imports_node": [],
       "spawns_process": false,
@@ -31,7 +36,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.262214 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.997240 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -16,11 +16,11 @@
     },
     {
       "path": "src/lib/stores/library.svelte.ts",
-      "description": "typescript, 18,344 bytes"
+      "description": "typescript, 26,557 bytes"
     },
     {
       "path": "src/lib/stores/mode.svelte.ts",
-      "description": "The sidebar wears one MODE at a time"
+      "description": "A mode is a view, never a record: switching modes changes which doors are"
     },
     {
       "path": "src/lib/stores/mood.svelte.ts",
@@ -28,7 +28,7 @@
     },
     {
       "path": "src/lib/stores/player.svelte.ts",
-      "description": "typescript, 14,139 bytes"
+      "description": "typescript, 15,884 bytes"
     },
     {
       "path": "src/lib/stores/playlist.svelte.ts",
@@ -36,7 +36,7 @@
     },
     {
       "path": "src/lib/stores/profile.svelte.ts",
-      "description": "typescript, 4,743 bytes"
+      "description": "typescript, 3,973 bytes"
     },
     {
       "path": "src/lib/stores/studio.svelte.ts",
@@ -44,11 +44,11 @@
     },
     {
       "path": "src/lib/stores/theme.svelte.ts",
-      "description": "typescript, 1,051 bytes"
+      "description": "typescript, 1,643 bytes"
     },
     {
       "path": "src/lib/stores/timer.svelte.ts",
-      "description": "typescript, 3,202 bytes"
+      "description": "typescript, 2,947 bytes"
     },
     {
       "path": "src/lib/stores/ui.svelte.ts",
@@ -94,7 +94,7 @@
     },
     "library.svelte.ts": {
       "language": "typescript",
-      "lines": 486,
+      "lines": 724,
       "exported_functions": [],
       "exported_consts": [
         "isAndroid",
@@ -103,7 +103,9 @@
       "interfaces": [
         "MissingTrack"
       ],
-      "types": [],
+      "types": [
+        "MusicFolder"
+      ],
       "imports_node": [],
       "spawns_process": false,
       "writes_files": false,
@@ -111,7 +113,7 @@
     },
     "mode.svelte.ts": {
       "language": "typescript",
-      "lines": 36,
+      "lines": 33,
       "exported_functions": [],
       "exported_consts": [
         "modeStore"
@@ -141,7 +143,7 @@
     },
     "player.svelte.ts": {
       "language": "typescript",
-      "lines": 462,
+      "lines": 531,
       "exported_functions": [],
       "exported_consts": [
         "playerStore"
@@ -206,7 +208,7 @@
     },
     "theme.svelte.ts": {
       "language": "typescript",
-      "lines": 43,
+      "lines": 58,
       "exported_functions": [],
       "exported_consts": [
         "themeStore"
@@ -220,7 +222,7 @@
     },
     "timer.svelte.ts": {
       "language": "typescript",
-      "lines": 107,
+      "lines": 104,
       "exported_functions": [],
       "exported_consts": [
         "prefersReducedMotion",
@@ -235,7 +237,7 @@
     },
     "ui.svelte.ts": {
       "language": "typescript",
-      "lines": 11,
+      "lines": 18,
       "exported_functions": [],
       "exported_consts": [
         "uiStore"
@@ -249,7 +251,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.244524 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.983329 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }

@@ -1,0 +1,200 @@
+{
+  "tier": "folder",
+  "folder_name": "realm",
+  "folder_path": ".journals/realm",
+  "self": "compass/.journals/realm/fbp.ai.json",
+  "parent": "compass/.journals/obp.ai.json",
+  "description": "7 files, 0 subfolders",
+  "files": [
+    {
+      "path": ".journals/realm/2026-09-01-the-checklist-pointers-and-the-gen-claim-trued.md",
+      "description": "2026-09-01"
+    },
+    {
+      "path": ".journals/realm/2026-09-01-the-consoles-truth-from-kps-paste.md",
+      "description": "2026-09-01"
+    },
+    {
+      "path": ".journals/realm/2026-09-01-the-privacy-url-is-the-single-page.md",
+      "description": "2026-09-01"
+    },
+    {
+      "path": ".journals/realm/2026-09-01-the-ship-line-fable.md",
+      "description": "2026-09-01"
+    },
+    {
+      "path": ".journals/realm/2026-09-01-waits-for-v3-beside-the-console.md",
+      "description": "2026-09-01"
+    },
+    {
+      "path": ".journals/realm/2026-09-06-old-house-paths-in-prose-made-relative.md",
+      "description": "Old-house paths in prose made relative"
+    },
+    {
+      "path": ".journals/realm/2026-09-06-old-house-paths-made-relative.md",
+      "description": "Old-house paths made relative"
+    }
+  ],
+  "file_count": 7,
+  "subdirectories": [],
+  "code_analysis": {
+    "2026-09-01-the-checklist-pointers-and-the-gen-claim-trued.md": {
+      "language": "markdown",
+      "lines": 8,
+      "words": 139,
+      "heading_count": 1,
+      "headings": [
+        "2026-09-01 \u2014 the checklist pointers re-pointed; the gen/ claim trued"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-01-the-consoles-truth-from-kps-paste.md": {
+      "language": "markdown",
+      "lines": 18,
+      "words": 151,
+      "heading_count": 1,
+      "headings": [
+        "2026-09-01 \u2014 the Console's truth, from KP's paste"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-01-the-privacy-url-is-the-single-page.md": {
+      "language": "markdown",
+      "lines": 10,
+      "words": 125,
+      "heading_count": 1,
+      "headings": [
+        "2026-09-01 \u2014 the privacy policy URL is the single page"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-01-the-ship-line-fable.md": {
+      "language": "markdown",
+      "lines": 18,
+      "words": 148,
+      "heading_count": 1,
+      "headings": [
+        "2026-09-01 \u2014 the 2.3.8 ship line"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-01-waits-for-v3-beside-the-console.md": {
+      "language": "markdown",
+      "lines": 25,
+      "words": 202,
+      "heading_count": 1,
+      "headings": [
+        "2026-09-01 \u2014 \"waits for v3\" trued beside the Console"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-06-old-house-paths-in-prose-made-relative.md": {
+      "language": "markdown",
+      "lines": 21,
+      "words": 85,
+      "heading_count": 1,
+      "headings": [
+        "Old-house paths in prose made relative"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    },
+    "2026-09-06-old-house-paths-made-relative.md": {
+      "language": "markdown",
+      "lines": 6,
+      "words": 45,
+      "heading_count": 1,
+      "headings": [
+        "Old-house paths made relative \u2014 2026-09-06"
+      ],
+      "links_external": 0,
+      "links_site_absolute": [],
+      "links_internal": [],
+      "links_internal_unresolved": [],
+      "links_internal_outside_checkout": [],
+      "code_fences": 0,
+      "table_rows": 0,
+      "checkboxes": {
+        "open": 0,
+        "done": 0
+      },
+      "has_story_block": false,
+      "declares_mirror_class": false
+    }
+  },
+  "folders_not_walked": [],
+  "scan_timestamp": "2026-09-07T14:02:55.897292 | in sovereign time",
+  "maintaining_agent": "FolderAgent",
+  "note": "The details live here. Upper tiers link to this address; they do not copy this body."
+}

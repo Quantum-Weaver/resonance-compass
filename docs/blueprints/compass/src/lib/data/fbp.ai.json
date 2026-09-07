@@ -44,7 +44,7 @@
     },
     "emojis.ts": {
       "language": "typescript",
-      "lines": 24,
+      "lines": 21,
       "exported_functions": [],
       "exported_consts": [
         "EMOJI_DEFS"
@@ -97,7 +97,7 @@
     }
   },
   "folders_not_walked": [],
-  "scan_timestamp": "2026-08-21T15:19:25.230175 | in sovereign time",
+  "scan_timestamp": "2026-09-07T14:02:55.971501 | in sovereign time",
   "maintaining_agent": "FolderAgent",
   "note": "The details live here. Upper tiers link to this address; they do not copy this body."
 }
