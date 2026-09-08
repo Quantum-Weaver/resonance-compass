@@ -155,7 +155,6 @@ src/
 ```
 
 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for the development methodology.
-See [BUILD-SEQUENCE.md](docs/BUILD-SEQUENCE.md) for the complete 19-phase plan.
 
 ---
 
