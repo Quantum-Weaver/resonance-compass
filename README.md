@@ -29,9 +29,10 @@ Resonance Compass is a music player that understands you back. Not a streaming s
 
 *This section required by the [Story Block Standard](https://github.com/Quantum-Weaver/resonance-standards).*
 
-Compass began as v1, then was rebuilt as v2 on the [Resonance Echoes](https://github.com/Quantum-Weaver/resonance-echoes) foundation — the first commit under that name landed 2026-06-29 ("Resonance Compass v2 — rebuilt on Resonance Echoes foundation"). Aethelred and KP named the triad's roles together: the Compass "looks around — the needle that points north" (`HANDS.md`).
-
-On 2026-08-12 the app was split in two. A musician's creation tool (recording, four-track layering) had been growing inside this repo since v3 was commissioned 2026-07-18, but KP ruled, verbatim: *"we need to separate the resonance compass and musicians compass to make this right… the compass remains a media player of licensed materials the user holds rights to."* The creator's half became a new, sibling repo — **resonance-sistrum**. Fragments and the Fragment Studio stayed here, at his further word: *"fragments will stay, not recording. dj's may still wish to use the app"* — slicing audio you already own is a DJ's work, not a recording. The full account of both halves' separation was written in the realm's checklist under "THE RECORDER LEAVES" — retired in KP's 2026-08-25 cleanup, under his ruling that no checklist docs exist, it stands in git history before that date; the realm's open items and plans live in the base — `python ../resonance-progenatrix/progenatrix.py recall --realm resonance-compass`.
+Resonance Compass is a sovereign, local-first music player and
+self-understanding system — it plays the music files you already hold and
+lets you build a personal emotional map of them. It began as v1, then was
+rebuilt as v2 on the [Resonance Echoes](https://github.com/Quantum-Weaver/resonance-echoes) foundation, first commit 2026-06-29. Its name comes from Aethelred and KP naming the triad's roles together: the Compass "looks around — the needle that points north" (`HANDS.md`). KP, on what the app is, verbatim: *"the compass remains a media player of licensed materials the user holds rights to."*
 
 📖 [Full Story Block](docs/STORY-BLOCK.md)
 
