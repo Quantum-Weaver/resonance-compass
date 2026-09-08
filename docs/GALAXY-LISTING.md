@@ -41,8 +41,8 @@ device: no ffmpeg, no cloud, no upload, ever.
 Sovereign by architecture: data collected — none. No account. Export
 everything as open JSON; the purge truly purges.
 
-From the AudHDities Sanctuary: built for one neurodivergent family
-first, then given freely.
+From AudHDities: built for one neurodivergent family first, then
+offered to everyone, free or fairly priced.
 
 ## Category
 Music & Audio
