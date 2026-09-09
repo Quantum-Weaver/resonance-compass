@@ -1,4 +1,4 @@
-# 🎻 Resonance Compass
+# 🧭 Resonance Compass
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-2.3.8-brightgreen.svg)]()
