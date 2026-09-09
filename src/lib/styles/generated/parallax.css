@@ -1,6 +1,6 @@
 /* ============================================================================
  * PARALLAX CLASSES - Generated from positioning.ts
- * Generated: 2026-09-01T04:24:13.596Z
+ * Generated: 2026-09-09T20:56:13.374Z
  * ============================================================================ */
 
 /* ========================================================================== */
@@ -318,7 +318,7 @@
 /* RESPONSIVE PARALLAX VARIANTS */
 /* ========================================================================== */
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-cosmic {
     --parallax-factor: 0.025;
   }
@@ -342,7 +342,7 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-far {
     --parallax-factor: 0.05;
   }
@@ -366,7 +366,7 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-mid {
     --parallax-factor: 0.1;
   }
@@ -390,7 +390,7 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-near {
     --parallax-factor: 0.175;
   }
@@ -414,7 +414,7 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-interactive {
     --parallax-factor: 0.25;
   }
@@ -438,7 +438,7 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 640px) {
   .sm\:parallax-ui {
     --parallax-factor: 0;
   }

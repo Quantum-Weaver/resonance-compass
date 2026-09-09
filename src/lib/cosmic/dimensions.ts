@@ -145,7 +145,7 @@ export type ScreenCategory = keyof typeof SCREEN_CATEGORIES;
 
 /** Breakpoints derived from screen categories (Tailwind compatible) */
 export const BREAKPOINTS = {
-  sm: `${SCREEN_CATEGORIES.MOBILE.max}px`,
+  sm: '640px',
   md: `${SCREEN_CATEGORIES.TABLET.min}px`,
   lg: `${SCREEN_CATEGORIES.DESKTOP.min}px`,
   xl: `${SCREEN_CATEGORIES.IMMERSIVE.min}px`,
